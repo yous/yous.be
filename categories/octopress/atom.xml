@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Octopress | Yous]]></title>
-  <link href="http://yous.be/blog/categories/octopress/atom.xml" rel="self"/>
-  <link href="http://yous.be/blog/"/>
-  <updated>2013-11-29T11:43:30+09:00</updated>
-  <id>http://yous.be/blog/</id>
+  <link href="http://yous.github.io/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://yous.github.io/"/>
+  <updated>2013-11-29T21:17:16+09:00</updated>
+  <id>http://yous.github.io/</id>
   <author>
     <name><![CDATA[Yous]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Octopress in a subdirectory: /blog]]></title>
-    <link href="http://yous.be/blog/2013/08/12/octopress-in-a-subdirectory-slash-blog/"/>
+    <link href="http://yous.github.io/2013/08/12/octopress-in-a-subdirectory-slash-blog/"/>
     <updated>2013-08-12T06:08:00+09:00</updated>
-    <id>http://yous.be/blog/2013/08/12/octopress-in-a-subdirectory-slash-blog</id>
+    <id>http://yous.github.io/2013/08/12/octopress-in-a-subdirectory-slash-blog</id>
     <content type="html"><![CDATA[<p>Octopress 블로그를 사이트 루트가 아닌 하위 디렉토리에서 제공하고 싶을 때, 터미널에서 다음과 같이 실행해 줍니다.</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
@@ -103,11 +103,11 @@
 </pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;/p&gt;</span>
 </span><span class='line'>
 </span><span class='line'><span class="c">&lt;!--</span>
-</span><span class='line'><span class="c">&lt;a href=&quot;http://yous.be/blog/blog/archives&quot;&gt;Blog Archives&lt;/a&gt;</span>
+</span><span class='line'><span class="c">&lt;a href=&quot;http://yous.github.io/blog/archives&quot;&gt;Blog Archives&lt;/a&gt;</span>
 </span><span class='line'><span class="c">--&gt;</span>
 </span><span class='line'>
 </span><span class='line'>
-</span><span class='line'><span class="nt">&lt;p&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://yous.be/blog/archives&quot;</span><span class="nt">&gt;</span>Blog Archives<span class="nt">&lt;/a&gt;</span>
+</span><span class='line'><span class="nt">&lt;p&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://yous.github.io/archives&quot;</span><span class="nt">&gt;</span>Blog Archives<span class="nt">&lt;/a&gt;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <p>사용중인 테마에 따라 추가적인 수정 사항이 있을 수 있습니다.</p>
