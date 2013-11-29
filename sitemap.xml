@@ -1,0 +1,19 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
+    <url>
+        <loc>http://yous.be/blog/2013/08/12/octopress-in-a-subdirectory-slash-blog/</loc>
+        <lastmod>2013-11-12T04:54:35+09:00</lastmod>
+    </url>
+    <url>
+        <loc>http://yous.be/blog/robots.txt</loc>
+        <lastmod>2013-11-12T04:54:35+09:00</lastmod>
+    </url>
+    <url>
+        <loc>http://yous.be/blog/archives/</loc>
+        <lastmod>2013-11-12T04:54:35+09:00</lastmod>
+    </url>
+    <url>
+        <loc>http://yous.be/blog/</loc>
+        <lastmod>2013-11-12T04:54:35+09:00</lastmod>
+    </url>
+</urlset>
