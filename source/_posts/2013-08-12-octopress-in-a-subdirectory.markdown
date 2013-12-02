@@ -15,14 +15,14 @@ rake set_root_dir[/blog]
 rake set_root_dir[/]
 {% endcodeblock %}
 
-그리고 ```_config.yml```을 수정해 줍니다.
+그리고 `_config.yml`을 수정해 줍니다.
 
 {% codeblock _config.yml lang:yml %}
 # url: http://yoursite.com
 url: http://yoursite.com/blog
 {% endcodeblock %}
 
-추가로, ```/blog```를 하위 디렉토리로 사용했을 때, Archives와 Categories, 그리고 포스트 경로들이 ```http://yoursite.com/blog/blog/...```의 형태로 생성됩니다. 중복된 ```/blog```를 지우기 위해 다음과 같이 설정을 변경해 줍니다.
+추가로, `/blog`를 하위 디렉토리로 사용했을 때, Archives와 Categories, 그리고 포스트 경로들이 `http://yoursite.com/blog/blog/...`의 형태로 생성됩니다. 중복된 `/blog`를 지우기 위해 다음과 같이 설정을 변경해 줍니다.
 
 {% codeblock _config.yml lang:yml %}
 # permalink: /blog/:year/:month/:day/:title/
@@ -39,7 +39,7 @@ category_dir: categories
 <li><a href="{{ root_url }}/archives">Archives</a></li>
 {% endcodeblock %}
 
-그리고, ```source/blog/archives``` 폴더를 ```source/archives```로 옮겨주시기 바랍니다.
+그리고, `source/blog/archives` 폴더를 `source/archives`로 옮겨주시기 바랍니다.
 
 {% codeblock source/index.html lang:html %}
 <!--
