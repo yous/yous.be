@@ -1,19 +1,19 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <urlset xmlns='http://www.sitemaps.org/schemas/sitemap/0.9'>
     <url>
-        <loc>http://yous.github.io/2013/08/12/octopress-in-a-subdirectory-slash-blog/</loc>
+        <loc>http://blog.yous.be/2013/08/12/octopress-in-a-subdirectory-slash-blog/</loc>
         <lastmod>2013-11-12T04:54:35+09:00</lastmod>
     </url>
     <url>
-        <loc>http://yous.github.io/robots.txt</loc>
+        <loc>http://blog.yous.be/robots.txt</loc>
         <lastmod>2013-11-12T04:54:35+09:00</lastmod>
     </url>
     <url>
-        <loc>http://yous.github.io/archives/</loc>
+        <loc>http://blog.yous.be/archives/</loc>
         <lastmod>2013-11-12T04:54:35+09:00</lastmod>
     </url>
     <url>
-        <loc>http://yous.github.io/</loc>
+        <loc>http://blog.yous.be/</loc>
         <lastmod>2013-11-12T04:54:35+09:00</lastmod>
     </url>
 </urlset>
