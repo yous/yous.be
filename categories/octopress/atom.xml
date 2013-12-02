@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Yous]]></title>
   <link href="http://blog.yous.be/categories/octopress/atom.xml" rel="self"/>
   <link href="http://blog.yous.be/"/>
-  <updated>2013-12-02T16:53:11+09:00</updated>
+  <updated>2013-12-02T17:23:13+09:00</updated>
   <id>http://blog.yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Octopress in a subdirectory: /blog]]></title>
-    <link href="http://blog.yous.be/2013/08/12/octopress-in-a-subdirectory-slash-blog/"/>
+    <link href="http://blog.yous.be/2013/08/12/octopress-in-a-subdirectory/"/>
     <updated>2013-08-12T06:08:00+09:00</updated>
-    <id>http://blog.yous.be/2013/08/12/octopress-in-a-subdirectory-slash-blog</id>
+    <id>http://blog.yous.be/2013/08/12/octopress-in-a-subdirectory</id>
     <content type="html"><![CDATA[<p>Octopress 블로그를 사이트 루트가 아닌 하위 디렉토리에서 제공하고 싶을 때, 터미널에서 다음과 같이 실행해 줍니다.</p>
 
 <p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
