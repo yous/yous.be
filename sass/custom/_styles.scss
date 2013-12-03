@@ -170,6 +170,17 @@ aside {
 	display: none;
 }
 
+@import "custom/_tomorrow/tomorrow";
+
+.highlight .line-numbers, html .gist .gist-file .gist-syntax .highlight .line_numbers {
+	@include box-shadow(none);
+	text-shadow: none;
+}
+
+figure.code, .gist-file {
+	@include box-shadow(none);
+}
+
 html .gist .gist-file .gist-meta {
 	a[href*='#file'] {
 		right: 0;
