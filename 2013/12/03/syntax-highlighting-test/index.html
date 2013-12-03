@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Yous</title>
+  <title>Syntax Highlighting Test - Yous</title>
   <meta name="author" content="Yous">
 
   
@@ -44,7 +44,7 @@ sample javascript from xui
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.yous.be">
+  <link rel="canonical" href="http://blog.yous.be/2013/12/03/syntax-highlighting-test">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Yous" type="application/atom+xml">
@@ -101,15 +101,12 @@ sample javascript from xui
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/2013/12/03/syntax-highlighting-test/">Syntax Highlighting Test</a></h1>
+      <h1 class="entry-title">Syntax Highlighting Test</h1>
     
     
       <p class="meta">
@@ -132,7 +129,7 @@ sample javascript from xui
   </header>
 
 
-  <div class="entry-content">
+<div class="entry-content">
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -857,22 +854,16 @@ sample javascript from xui
 
 
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/2013/08/12/octopress-in-a-subdirectory/">Octopress in a Subdirectory: /blog</a></h1>
-    
-    
-      <p class="meta">
-        
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Yous</span></span>
+
+      
 
 
 
@@ -884,96 +875,33 @@ sample javascript from xui
   
 
 
-<time datetime="2013-08-12T06:08:00+09:00" pubdate data-updated="true">Aug 12<span>th</span>, 2013</time>
-        
-         | <a href="/2013/08/12/octopress-in-a-subdirectory/#disqus_thread">Comments</a>
-        
-      </p>
+<time datetime="2013-12-03T05:40:30+09:00" pubdate data-updated="true">Dec 3<span>rd</span>, 2013</time>
+      
+
+
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><p>Octopress 블로그를 사이트 루트가 아닌 하위 디렉토리에서 제공하고 싶을 때, 터미널에서 다음과 같이 실행해 줍니다.</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake set_root_dir<span class="o">[</span>/blog<span class="o">]</span>
-</span><span class='line'>
-</span><span class='line'><span class="c"># To go back to publishing to the document root</span>
-</span><span class='line'>rake set_root_dir<span class="o">[</span>/<span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>그리고 <code>_config.yml</code>을 수정해 줍니다.</p>
-
-<figure class='code'><figcaption><span>_config.yml </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="c1"># url: http://yoursite.com</span>
-</span><span class='line'><span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://yoursite.com/blog</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>추가로, <code>/blog</code>를 하위 디렉토리로 사용했을 때, Archives와 Categories, 그리고 포스트 경로들이 <code>http://yoursite.com/blog/blog/...</code>의 형태로 생성됩니다. 중복된 <code>/blog</code>를 지우기 위해 다음과 같이 설정을 변경해 줍니다.</p>
-
-<figure class='code'><figcaption><span>_config.yml </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="c1"># permalink: /blog/:year/:month/:day/:title/</span>
-</span><span class='line'><span class="l-Scalar-Plain">permalink</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/:year/:month/:day/:title/</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># category_dir: blog/categories</span>
-</span><span class='line'><span class="l-Scalar-Plain">category_dir</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">categories</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>source/_includes/custom/navigation.html </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--</span>
-</span><span class='line'><span class="c">&lt;li&gt;&lt;a href=&quot;/blog/archives&quot;&gt;Archives&lt;/a&gt;&lt;/li&gt;</span>
-</span><span class='line'><span class="c">--&gt;</span>
-</span><span class='line'><span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/archives&quot;</span><span class="nt">&gt;</span>Archives<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>그리고, <code>source/blog/archives</code> 폴더를 <code>source/archives</code>로 옮겨주시기 바랍니다.</p>
-
-<figure class='code'><figcaption><span>source/index.html </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--</span>
-</span><span class='line'><span class="c">&lt;a href=&quot;/blog/archives&quot;&gt;Blog Archives&lt;/a&gt;</span>
-</span><span class='line'><span class="c">--&gt;</span>
-</span><span class='line'><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/archives&quot;</span><span class="nt">&gt;</span>Blog Archives<span class="nt">&lt;/a&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>사용중인 테마에 따라 추가적인 수정 사항이 있을 수 있습니다.</p>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.yous.be/2013/12/03/syntax-highlighting-test/" data-via="" data-counturl="http://blog.yous.be/2013/12/03/syntax-highlighting-test/" >Tweet</a>
+  
+  
+  
 </div>
-  
-  
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2013/08/12/octopress-in-a-subdirectory/" title="Previous Post: Octopress in a subdirectory: /blog">&laquo; Octopress in a subdirectory: /blog</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
 
-    </article>
-  
-  <div class="pagination">
-    
-    <a href="/archives">Blog Archives</a>
-    
-  </div>
 </div>
+
 <aside class="sidebar">
   
     <section>
@@ -998,6 +926,7 @@ sample javascript from xui
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -1007,19 +936,6 @@ sample javascript from xui
 
 </footer>
   
-
-<script type="text/javascript">
-      var disqus_shortname = 'yousbe';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
 
 
 
