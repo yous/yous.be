@@ -1,5 +1,5 @@
 .highlight, html .gist .gist-file .gist-syntax .gist-highlight {
-  table td.code { width: 100%; }
+  table td.code, td.line-data { width: 100%; }
   border: 1px solid $pre-border !important;
 }
 .highlight .line-numbers, html .gist .gist-file .gist-syntax .highlight .line_numbers {
@@ -86,7 +86,7 @@ pre {
   @extend .mono;
   border: 1px solid $pre-border;
   line-height: 1.45em;
-  font-size: 13px;
+  font-size: 13px !important;
   margin-bottom: 2.1em;
   padding: .8em 1em;
   color: $pre-color;

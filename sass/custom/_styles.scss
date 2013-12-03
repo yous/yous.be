@@ -183,3 +183,9 @@ figure.code {
 aside {
 	display: none;
 }
+
+html .gist .gist-file .gist-meta {
+	a[href*='#file'] {
+		right: 0;
+	}
+}
