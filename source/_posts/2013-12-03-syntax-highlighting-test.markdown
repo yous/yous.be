@@ -343,3 +343,7 @@ alphabet = 'abcdefghijklmnopqrstuvwxyz'
 # Iterate over part of the alphabet:
 console.log letter for in alphabet[4..8]
 {% endcodeblock %}
+
+{% codeblock lang:ruby %}
+puts "a#{"b#{"c#{"d"}"}"}"
+{% endcodeblock %}
