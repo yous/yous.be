@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Octopress | Yous]]></title>
-  <link href="http://blog.yous.be/categories/octopress/atom.xml" rel="self"/>
+  <title><![CDATA[Category: TomorrowTheme | Yous]]></title>
+  <link href="http://blog.yous.be/categories/tomorrowtheme/atom.xml" rel="self"/>
   <link href="http://blog.yous.be/"/>
   <updated>2013-12-05T06:01:59+09:00</updated>
   <id>http://blog.yous.be/</id>
@@ -123,107 +123,6 @@
    display: none;
  }</code></pre></noscript></div>
 </p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Octopress in a subdirectory: /blog]]></title>
-    <link href="http://blog.yous.be/2013/08/12/octopress-in-a-subdirectory/"/>
-    <updated>2013-08-12T06:08:00+09:00</updated>
-    <id>http://blog.yous.be/2013/08/12/octopress-in-a-subdirectory</id>
-    <content type="html"><![CDATA[<p>Octopress 블로그를 사이트 루트가 아닌 하위 디렉토리에서 제공하고 싶을 때, 터미널에서 다음과 같이 실행해 줍니다.</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake set_root_dir<span class="o">[</span>/blog<span class="o">]</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;To go back to publishing to the document root&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;rake set_root_dir<span class="o">[</span>/<span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>그리고 <code>_config.yml</code>을 수정해 줍니다.</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>_config.yml </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;h1&gt;url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">&lt;a href=&quot;http://yoursite.com&quot;&gt;http://yoursite.com&lt;/a&gt;&lt;/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;p&gt;url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">&lt;a href=&quot;http://yoursite.com/blog&quot;&gt;http://yoursite.com/blog&lt;/a&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>추가로, <code>/blog</code>를 하위 디렉토리로 사용했을 때, Archives와 Categories, 그리고 포스트 경로들이 <code>http://yoursite.com/blog/blog/...</code>의 형태로 생성됩니다. 중복된 <code>/blog</code>를 지우기 위해 다음과 같이 설정을 변경해 줍니다.</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>_config.yml </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;h1&gt;permalink</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/blog/:year/:month/:day/:title/&lt;/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;p&gt;permalink</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/:year/:month/:day/:title/&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;h1&gt;category_dir</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">blog/categories&lt;/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;p&gt;category_dir</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">categories</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>source/_includes/custom/navigation.html </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">&lt;!--</span>
-</span><span class='line'><span class="c">&lt;li&gt;&lt;a href=&quot;/blog/archives&quot;&gt;Archives&lt;/a&gt;&lt;/li&gt;</span>
-</span><span class='line'><span class="c">--&gt;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;p&gt;&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/archives&quot;</span><span class="nt">&gt;</span>Archives<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>그리고, <code>source/blog/archives</code> 폴더를 <code>source/archives</code>로 옮겨주시기 바랍니다.</p>
-
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>source/index.html </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">&lt;!--</span>
-</span><span class='line'><span class="c">&lt;a href=&quot;http://blog.yous.be/blog/archives&quot;&gt;Blog Archives&lt;/a&gt;</span>
-</span><span class='line'><span class="c">--&gt;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;p&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://blog.yous.be/archives&quot;</span><span class="nt">&gt;</span>Blog Archives<span class="nt">&lt;/a&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<p>사용중인 테마에 따라 추가적인 수정 사항이 있을 수 있습니다.</p>
 ]]></content>
   </entry>
   

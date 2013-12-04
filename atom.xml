@@ -4,7 +4,7 @@
   <title><![CDATA[Yous]]></title>
   <link href="http://blog.yous.be/atom.xml" rel="self"/>
   <link href="http://blog.yous.be/"/>
-  <updated>2013-12-03T11:07:18+09:00</updated>
+  <updated>2013-12-05T06:01:59+09:00</updated>
   <id>http://blog.yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -12,6 +12,123 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Tomorrow Theme in Octopress]]></title>
+    <link href="http://blog.yous.be/2013/12/04/tomorrow-theme-in-octopress/"/>
+    <updated>2013-12-04T21:00:20+09:00</updated>
+    <id>http://blog.yous.be/2013/12/04/tomorrow-theme-in-octopress</id>
+    <content type="html"><![CDATA[<h2>Tomorrow Theme</h2>
+
+<p>I usually use Tomorrow Night Eighties of <a href="https://github.com/chriskempson/tomorrow-theme">Tomorrow Theme</a> in Vim, iTerm2, IntelliJ IDEA (Android Studio). You can take a look of Tomorrow Theme.</p>
+
+<p><img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png" alt="Tomorrow Night Look" />
+<img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png" alt="Tomorrow Look" />
+<img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Eighties.png" alt="Tomorrow Night Eighties Look" />
+<img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Blue.png" alt="Tomorrow Night Blue Look" />
+<img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png" alt="Tomorrow Night Bright" /></p>
+
+<p>So I made scss files for Octopress that overrides colors of <code>.highlight</code> and <code>.gist</code> class elements. Usual code blocks and embedded gists are properly highlighted. You can <a href="http://blog.yous.be/2013/12/03/syntax-highlighting-test/">preview</a> and get the <a href="https://github.com/yous/yous.github.io/tree/source/sass/custom/_tomorrow">code</a>.</p>
+
+<h2>Usage</h2>
+
+<ol>
+<li>Download <code>_tomorrow</code> codes in <a href="https://github.com/yous/yous.github.io/tree/source/sass/custom/_tomorrow">GitHub</a>.</li>
+<li>Add <code>_tomorrow</code> folder to <code>sass/custom</code> and just add <code>@import</code> line after the last of the <code>sass/custom/_style.scss</code>.</li>
+</ol>
+
+
+<figure class='code'><figcaption><span>sass/custom/_style.scss </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="c1">// Tomorrow Night</span>
+</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;custom/_tomorrow/tomorrow-night&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Tomorrow</span>
+</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;custom/_tomorrow/tomorrow&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Tomorrow Night Eighties</span>
+</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;custom/_tomorrow/tomorrow-night-eighties&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Tomorrow Night Blue</span>
+</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;custom/_tomorrow/tomorrow-night-blue&quot;</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1">// Tomorrow Night Bright</span>
+</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;custom/_tomorrow/tomorrow-night-bright&quot;</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Fixes</h2>
+
+<ul>
+<li>Default <code>sass/partial/_syntax.scss</code> adds <code>box-shadow</code> and <code>text-shadow</code> to line numbers, also <code>box-shadow</code> to code block and gist. I removed these attributes and it is just can be done by overriding style in <code>sass/custom/_styles.scss</code>.</li>
+</ul>
+
+
+<figure class='code'><figcaption><span>sass/custom/_styles.scss </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="nc">.highlight</span> <span class="nc">.line-numbers</span><span class="o">,</span> <span class="nt">html</span> <span class="nc">.gist</span> <span class="nc">.gist-file</span> <span class="nc">.gist-syntax</span> <span class="nc">.highlight</span> <span class="nc">.line_numbers</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">@include</span><span class="nd"> box-shadow</span><span class="p">(</span><span class="no">none</span><span class="p">);</span>
+</span><span class='line'>  <span class="na">text-shadow</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">figure</span><span class="nc">.code</span><span class="o">,</span> <span class="nc">.gist-file</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">@include</span><span class="nd"> box-shadow</span><span class="p">(</span><span class="no">none</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>This blog uses [Whitespace][] theme. I found some problems that it overrides colors of code block to dark blue and it hides line numbers. To fix these problems, remove lines in <code>sass/custom/_styles.scss</code>.</li>
+</ul>
+
+
+<div><script src='https://gist.github.com/7795229.js'></script>
+<noscript><pre><code>@@ -166,20 +166,6 @@ article {
+   
+ }
+ 
+-figure.code {
+-  .highlight {
+-    background: #212C3B !important;
+-
+-    .gutter {
+-      display: none;
+-    }
+-  }
+-}
+-
+-.pre-code, html .gist .gist-file .gist-syntax .highlight pre, .highlight code {
+-  background: #212C3B !important;
+-}
+-
+ aside {
+   display: none;
+ }</code></pre></noscript></div>
+
+
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Syntax Highlighting Test]]></title>
