@@ -70,4 +70,6 @@ figure.code, .gist-file {
 
 - This blog uses [Whitespace][] theme. I found some problems that it overrides colors of code block to dark blue and it hides line numbers. To fix these problems, remove lines in `sass/custom/_styles.scss`.
 
+[Whitespace]: https://github.com/lucaslew/whitespace
+
 {% gist 7795229 %}
