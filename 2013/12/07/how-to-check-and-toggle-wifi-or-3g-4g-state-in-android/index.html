@@ -1,0 +1,568 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>How to Check and Toggle WiFi or 3G/4G State in Android - Yous</title>
+  <meta name="author" content="Yous">
+
+  
+  <meta name="description" content="Overview Check if WiFi or 3G/4G is Enabled (by User) WiFi
+3G/4G Check if WiFi or 3G/4G is Connected WiFi
+3G/4G Toggle WiFi or 3G/4G Programmatically &hellip;">
+  
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.yous.be/2013/12/07/how-to-check-and-toggle-wifi-or-3g-4g-state-in-android">
+  <link href="/favicon.ico" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Yous" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-43111808-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Yous</a></h1>
+  
+    <h2>for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.yous.be" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      <h1 class="entry-title">How to Check and Toggle WiFi or 3G/4G State in Android</h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-07T18:28:05+09:00" pubdate data-updated="true">Dec 7<span>th</span>, 2013</time>
+        
+         | <a href="#disqus_thread">Comments</a>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><h2>Overview</h2>
+
+<ol>
+<li><a href="#1">Check if WiFi or 3G/4G is Enabled (by User)</a>
+
+<ol>
+<li><a href="#1-1">WiFi</a></li>
+<li><a href="#1-2">3G/4G</a></li>
+</ol>
+</li>
+<li><a href="#2">Check if WiFi or 3G/4G is Connected</a>
+
+<ol>
+<li><a href="#2-1">WiFi</a></li>
+<li><a href="#2-2">3G/4G</a></li>
+</ol>
+</li>
+<li><a href="#3">Toggle WiFi or 3G/4G Programmatically</a>
+
+<ol>
+<li><a href="#3-1">WiFi</a></li>
+<li><a href="#3-2">3G/4G</a></li>
+</ol>
+</li>
+</ol>
+
+
+<p>At some point, we want to know whether the device is connected to network so that we can do some network processes. Also we want to know if <em>user</em> make WiFi or 3G/4G disabled on purpose. Both things are able to know.</p>
+
+<p><a id="1"></a></p>
+
+<h2>1. Check if WiFi or 3G/4G is Enabled (by User)</h2>
+
+<p><a id="1-1"></a></p>
+
+<h3>WiFi</h3>
+
+<p><code>ACCESS_WIFI_STATE</code> permission must be added to <code>AndroidManifest.xml</code>.</p>
+
+<figure class='code'><figcaption><span>AndroidManifest.xml </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.ACCESS_WIFI_STATE&quot;</span> <span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Checking code is simple. In activity, <a href="http://developer.android.com/reference/android/net/wifi/WifiManager.html">WifiManager</a> has a handy method.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">WifiManager</span> <span class="n">wifiManager</span> <span class="o">=</span> <span class="o">(</span><span class="n">WifiManager</span><span class="o">)</span> <span class="n">getSystemService</span><span class="o">(</span><span class="n">WIFI_SERVICE</span><span class="o">);</span>
+</span><span class='line'><span class="kt">boolean</span> <span class="n">wifiEnabled</span> <span class="o">=</span> <span class="n">wifiManager</span><span class="o">.</span><span class="na">isWifiEnabled</span><span class="o">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a id="1-2"></a></p>
+
+<h3>3G/4G</h3>
+
+<p>This is more complicated. As WiFi case, we have to add <code>ACCESS_NETWORK_STATE</code> permission.</p>
+
+<figure class='code'><figcaption><span>AndroidManifest.xml </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.ACCESS_NETWORK_STATE&quot;</span> <span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then we get <a href="http://developer.android.com/reference/android/net/NetworkInfo.html">NetworkInfo</a> from <a href="http://developer.android.com/reference/android/net/ConnectivityManager.html">ConnectivityManager</a>.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">ConnectivityManager</span> <span class="n">connectivityManager</span> <span class="o">=</span>
+</span><span class='line'>    <span class="o">(</span><span class="n">ConnectivityManager</span><span class="o">)</span> <span class="n">getSystemService</span><span class="o">(</span><span class="n">CONNECTIVITY_SERVICE</span><span class="o">);</span>
+</span><span class='line'><span class="n">NetworkInfo</span> <span class="n">mobileInfo</span> <span class="o">=</span>
+</span><span class='line'>    <span class="n">connectivityManager</span><span class="o">.</span><span class="na">getNetworkInfo</span><span class="o">(</span><span class="n">ConnectivityManager</span><span class="o">.</span><span class="na">TYPE_MOBILE</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>See <a href="http://developer.android.com/reference/android/net/NetworkInfo.html#getState()">getState()</a> overview.</p>
+
+<blockquote><p>Reports the current coarse-grained state of the network.</p></blockquote>
+
+<p>There are 6 types of <a href="http://developer.android.com/reference/android/net/NetworkInfo.State.html">NetworkInfo.State</a>.</p>
+
+<ul>
+<li><code>CONNECTED</code></li>
+<li><code>CONNECTING</code></li>
+<li><code>DISCONNECTED</code></li>
+<li><code>DISCONNECTING</code></li>
+<li><code>SUSPENDED</code></li>
+<li><code>UNKNOWN</code></li>
+</ul>
+
+
+<p>Also this is <a href="http://developer.android.com/reference/android/net/NetworkInfo.html#getReason()">getReason()</a> overview.</p>
+
+<blockquote><p>Report the reason an attempt to establish connectivity failed, if one is available.</p></blockquote>
+
+<p>We can realize that when <code>NetworkInfo.State</code> is <code>DISCONNECTED</code>, <code>getReason()</code> reports to us why mobile data is disconnected.</p>
+
+<p>Also I tested several times with <code>getState()</code> and <code>getReason()</code>.</p>
+
+<ul>
+<li><p>Enable WiFi and 3G/4G</p>
+
+<p>When WiFi is connected, mobile data connection automatically closed.</p></li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">mobileInfo</span><span class="o">.</span><span class="na">getState</span><span class="o">()</span>
+</span><span class='line'><span class="c1">// =&gt; DISCONNECTED</span>
+</span><span class='line'><span class="n">mobileInfo</span><span class="o">.</span><span class="na">getReason</span><span class="o">()</span>
+</span><span class='line'><span class="c1">// =&gt; &quot;dataDisabled&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Enable WiFi only</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">mobileInfo</span><span class="o">.</span><span class="na">getState</span><span class="o">()</span>
+</span><span class='line'><span class="c1">// =&gt; DISCONNECTED</span>
+</span><span class='line'><span class="n">mobileInfo</span><span class="o">.</span><span class="na">getReason</span><span class="o">()</span>
+</span><span class='line'><span class="c1">// =&gt; &quot;specificDisabled&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Enable 3G/4G only</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">mobileInfo</span><span class="o">.</span><span class="na">getState</span><span class="o">()</span>
+</span><span class='line'><span class="c1">// =&gt; CONNECTED</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<ul>
+<li>Disable both</li>
+</ul>
+
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">mobileInfo</span><span class="o">.</span><span class="na">getState</span><span class="o">()</span>
+</span><span class='line'><span class="c1">// =&gt; DISCONNECTED</span>
+</span><span class='line'><span class="n">mobileInfo</span><span class="o">.</span><span class="na">getReason</span><span class="o">()</span>
+</span><span class='line'><span class="c1">// =&gt; &quot;specificDisabled&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So the code would be like this.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">String</span> <span class="n">reason</span> <span class="o">=</span> <span class="n">mobileInfo</span><span class="o">.</span><span class="na">getReason</span><span class="o">();</span>
+</span><span class='line'><span class="kt">boolean</span> <span class="n">mobileDisabled</span> <span class="o">=</span> <span class="n">mobileInfo</span><span class="o">.</span><span class="na">getState</span><span class="o">()</span> <span class="o">==</span> <span class="n">NetworkInfo</span><span class="o">.</span><span class="na">State</span><span class="o">.</span><span class="na">DISCONNECTED</span>
+</span><span class='line'>    <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">reason</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">reason</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;specificDisabled&quot;</span><span class="o">));</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a id="2"></a></p>
+
+<h2>2. Check if WiFi or 3G/4G is Connected</h2>
+
+<p>WiFi or 3G/4G may not be connected even if the user enables them. Checking connectivity is useful when we are going to do some network communication.</p>
+
+<p><a id="2-1"></a></p>
+
+<h3>WiFi</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">NetworkInfo</span> <span class="n">wifiInfo</span> <span class="o">=</span>
+</span><span class='line'>    <span class="n">connectivityManager</span><span class="o">.</span><span class="na">getNetworkInfo</span><span class="o">(</span><span class="n">ConnectivityManager</span><span class="o">.</span><span class="na">TYPE_WIFI</span><span class="o">);</span>
+</span><span class='line'><span class="kt">boolean</span> <span class="n">wifiConnected</span> <span class="o">=</span> <span class="n">wifiInfo</span><span class="o">.</span><span class="na">getState</span><span class="o">()</span> <span class="o">==</span> <span class="n">NetworkInfo</span><span class="o">.</span><span class="na">State</span><span class="o">.</span><span class="na">CONNECTED</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a id="2-2"></a></p>
+
+<h3>3G/4G</h3>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">NetworkInfo</span> <span class="n">mobileInfo</span> <span class="o">=</span>
+</span><span class='line'>    <span class="n">connectivityManager</span><span class="o">.</span><span class="na">getNetworkInfo</span><span class="o">(</span><span class="n">ConnectivityManager</span><span class="o">.</span><span class="na">TYPE_MOBILE</span><span class="o">);</span>
+</span><span class='line'><span class="kt">boolean</span> <span class="n">mobileConnected</span> <span class="o">=</span> <span class="n">mobileInfo</span><span class="o">.</span><span class="na">getState</span><span class="o">()</span> <span class="o">==</span> <span class="n">NetworkInfo</span><span class="o">.</span><span class="na">State</span><span class="o">.</span><span class="na">CONNECTED</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a id="3"></a></p>
+
+<h2>3. Toggle WiFi or 3G/4G Programmatically</h2>
+
+<p><a id="3-1"></a></p>
+
+<h3>WiFi</h3>
+
+<p><code>CHANGE_WIFI_STATE</code> permission must be added to <code>AndroidManifest.xml</code>.</p>
+
+<figure class='code'><figcaption><span>AndroidManifest.xml </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.CHANGE_WIFI_STATE&quot;</span> <span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Enabling or disabling WiFi is easy.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">WifiManager</span> <span class="n">wifiManager</span> <span class="o">=</span> <span class="o">(</span><span class="n">WifiManager</span><span class="o">)</span> <span class="n">getSystemService</span><span class="o">(</span><span class="n">WIFI_SERVICE</span><span class="o">);</span>
+</span><span class='line'><span class="n">wifiManager</span><span class="o">.</span><span class="na">setWifiEnabled</span><span class="o">(</span><span class="n">isWifiEnabled</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a id="3-2"></a></p>
+
+<h3>3G/4G</h3>
+
+<p>There is an workaround with reflection on <a href="http://stackoverflow.com/questions/12535101/how-can-i-turn-off-3g-data-programmatically-on-android#12535246">&ldquo;How can i turn off 3G/Data programmatically on Android?&rdquo;</a>.</p>
+
+<p>For Android 2.3 and above:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">private</span> <span class="kt">void</span> <span class="nf">setMobileDataEnabled</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">enabled</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kd">final</span> <span class="n">ConnectivityManager</span> <span class="n">conman</span> <span class="o">=</span>
+</span><span class='line'>      <span class="o">(</span><span class="n">ConnectivityManager</span><span class="o">)</span> <span class="n">context</span><span class="o">.</span><span class="na">getSystemService</span><span class="o">(</span><span class="n">Context</span><span class="o">.</span><span class="na">CONNECTIVITY_SERVICE</span><span class="o">);</span>
+</span><span class='line'>  <span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">final</span> <span class="n">Class</span> <span class="n">conmanClass</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="n">conman</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">());</span>
+</span><span class='line'>    <span class="kd">final</span> <span class="n">Field</span> <span class="n">iConnectivityManagerField</span> <span class="o">=</span> <span class="n">conmanClass</span><span class="o">.</span><span class="na">getDeclaredField</span><span class="o">(</span><span class="s">&quot;mService&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">iConnectivityManagerField</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+</span><span class='line'>    <span class="kd">final</span> <span class="n">Object</span> <span class="n">iConnectivityManager</span> <span class="o">=</span> <span class="n">iConnectivityManagerField</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">conman</span><span class="o">);</span>
+</span><span class='line'>    <span class="kd">final</span> <span class="n">Class</span> <span class="n">iConnectivityManagerClass</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span>
+</span><span class='line'>        <span class="n">iConnectivityManager</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">());</span>
+</span><span class='line'>    <span class="kd">final</span> <span class="n">Method</span> <span class="n">setMobileDataEnabledMethod</span> <span class="o">=</span> <span class="n">iConnectivityManagerClass</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">getDeclaredMethod</span><span class="o">(</span><span class="s">&quot;setMobileDataEnabled&quot;</span><span class="o">,</span> <span class="n">Boolean</span><span class="o">.</span><span class="na">TYPE</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">setMobileDataEnabledMethod</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">setMobileDataEnabledMethod</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">iConnectivityManager</span><span class="o">,</span> <span class="n">enabled</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ClassNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InvocationTargetException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NoSuchMethodException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IllegalAccessException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NoSuchFieldException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>It requires to <code>CHANGE_NETWORK_STATE</code> permission.</p>
+
+<figure class='code'><figcaption><span>AndroidManifest.xml </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.CHANGE_NETWORK_STATE&quot;</span> <span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In Activity:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">setMobileDataEnabled</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">isMobileDataEnabled</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Codes for Android 2.2 and below are also in the same <a href="http://stackoverflow.com/questions/12535101/how-can-i-turn-off-3g-data-programmatically-on-android#12535246">link</a>, but I didn&rsquo;t checked it.</p>
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Yous</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-07T18:28:05+09:00" pubdate data-updated="true">Dec 7<span>th</span>, 2013</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/android/'>Android</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.yous.be/2013/12/07/how-to-check-and-toggle-wifi-or-3g-4g-state-in-android/" data-via="" data-counturl="http://blog.yous.be/2013/12/07/how-to-check-and-toggle-wifi-or-3g-4g-state-in-android/" >Tweet</a>
+  
+  
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2013/12/04/tomorrow-theme-in-octopress/" title="Previous Post: Tomorrow Theme in Octopress">&laquo; Tomorrow Theme in Octopress</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2013/12/07/how-to-check-and-toggle-wifi-or-3g-4g-state-in-android/">How to Check and Toggle WiFi or 3G/4G State in Android</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/12/04/tomorrow-theme-in-octopress/">Tomorrow Theme in Octopress</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/12/03/syntax-highlighting-test/">Syntax Highlighting Test</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2013/08/12/octopress-in-a-subdirectory/">Octopress in a subdirectory: /blog</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  Copyright &copy; 2013 - Yous -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a></span>
+</p>
+
+</footer>
+  
+
+<script type="text/javascript">
+      var disqus_shortname = 'yousbe';
+      
+        
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.yous.be/2013/12/07/how-to-check-and-toggle-wifi-or-3g-4g-state-in-android/';
+        var disqus_url = 'http://blog.yous.be/2013/12/07/how-to-check-and-toggle-wifi-or-3g-4g-state-in-android/';
+        var disqus_script = 'embed.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
+
+
+
+
+
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

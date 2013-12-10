@@ -5,7 +5,7 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Octopress in a subdirectory: /blog - Yous</title>
+  <title>Yous</title>
   <meta name="author" content="Yous">
 
   
@@ -22,7 +22,7 @@ rake set_root_dir[/blog] # To go back to publishing to the document root &hellip
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.yous.be/2013/08/12/octopress-in-a-subdirectory">
+  <link rel="canonical" href="http://blog.yous.be/page/2">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Yous" type="application/atom+xml">
@@ -79,12 +79,15 @@ rake set_root_dir[/blog] # To go back to publishing to the document root &hellip
 </nav>
   <div id="main">
     <div id="content">
-      <div>
-<article class="hentry" role="article">
+      <div class="blog-index">
   
+  
+  
+    <article>
+      
   <header>
     
-      <h1 class="entry-title">Octopress in a subdirectory: /blog</h1>
+      <h1 class="entry-title"><a href="/2013/08/12/octopress-in-a-subdirectory/">Octopress in a subdirectory: /blog</a></h1>
     
     
       <p class="meta">
@@ -102,14 +105,14 @@ rake set_root_dir[/blog] # To go back to publishing to the document root &hellip
 
 <time datetime="2013-08-12T06:08:00+09:00" pubdate data-updated="true">Aug 12<span>th</span>, 2013</time>
         
-         | <a href="#disqus_thread">Comments</a>
+         | <a href="/2013/08/12/octopress-in-a-subdirectory/#disqus_thread">Comments</a>
         
       </p>
     
   </header>
 
 
-<div class="entry-content"><p>Octopress 블로그를 사이트 루트가 아닌 하위 디렉토리에서 제공하고 싶을 때, 터미널에서 다음과 같이 실행해 줍니다.</p>
+  <div class="entry-content"><p>Octopress 블로그를 사이트 루트가 아닌 하위 디렉토리에서 제공하고 싶을 때, 터미널에서 다음과 같이 실행해 줍니다.</p>
 
 <figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -178,66 +181,20 @@ rake set_root_dir[/blog] # To go back to publishing to the document root &hellip
 
 <p>사용중인 테마에 따라 추가적인 수정 사항이 있을 수 있습니다.</p>
 </div>
-
-
-  <footer>
-    <p class="meta">
-      
   
-
-<span class="byline author vcard">Posted by <span class="fn">Yous</span></span>
-
-      
-
-
-
-
-
-
-
-
   
 
 
-<time datetime="2013-08-12T06:08:00+09:00" pubdate data-updated="true">Aug 12<span>th</span>, 2013</time>
-      
-
-<span class="categories">
+    </article>
   
-    <a class='category' href='/categories/octopress/'>Octopress</a>
-  
-</span>
-
-
-    </p>
+  <div class="pagination">
     
-      <div class="sharing">
-  
-  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.yous.be/2013/08/12/octopress-in-a-subdirectory/" data-via="" data-counturl="http://blog.yous.be/2013/08/12/octopress-in-a-subdirectory/" >Tweet</a>
-  
-  
-  
-</div>
-
+    <a href="/archives">Blog Archives</a>
     
-    <p class="meta">
-      
-      
-        <a class="basic-alignment right" href="/2013/12/03/syntax-highlighting-test/" title="Next Post: Syntax Highlighting Test">Syntax Highlighting Test &raquo;</a>
-      
-    </p>
-  </footer>
-</article>
-
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+    <a class="next" href="/">Newer &rarr;</a>
+    
+  </div>
 </div>
-  </section>
-
-
-</div>
-
 <aside class="sidebar">
   
     <section>
@@ -270,7 +227,6 @@ rake set_root_dir[/blog] # To go back to publishing to the document root &hellip
   
 </aside>
 
-
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -285,10 +241,7 @@ rake set_root_dir[/blog] # To go back to publishing to the document root &hellip
       var disqus_shortname = 'yousbe';
       
         
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.yous.be/2013/08/12/octopress-in-a-subdirectory/';
-        var disqus_url = 'http://blog.yous.be/2013/08/12/octopress-in-a-subdirectory/';
-        var disqus_script = 'embed.js';
+        var disqus_script = 'count.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
