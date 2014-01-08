@@ -226,4 +226,4 @@ In Activity:
 setMobileDataEnabled(this, isMobileDataEnabled);
 {% endcodeblock %}
 
-Codes for Android 2.2 and below are also in the same [link][Stack Overflow], but I didn't checked it.
+Codes for Android 2.2 and below are also in the same [link][Stack Overflow], but I didn't check it.
