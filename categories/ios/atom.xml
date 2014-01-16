@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iOS | Yous]]></title>
   <link href="http://blog.yous.be/categories/ios/atom.xml" rel="self"/>
   <link href="http://blog.yous.be/"/>
-  <updated>2014-01-09T06:54:16+09:00</updated>
+  <updated>2014-01-17T03:58:11+09:00</updated>
   <id>http://blog.yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -25,7 +25,7 @@
 <li><a href="#2">방법</a></li>
 <li><a href="#3">결론</a></li>
 <li><a href="#4">단점</a></li>
-<li><a href="#5">2013. 02. 24 업데이트</a></li>
+<li><a href="#5">iOS 6.1.2 업데이트</a></li>
 </ol>
 
 
@@ -728,7 +728,7 @@
 
 <p><a id="5"></a></p>
 
-<h2>2013. 02. 24 업데이트</h2>
+<h2>iOS 6.1.2 업데이트</h2>
 
 <p>iOS 6.1.2 업데이트가 있었습니다. 기본 <code>Music.plist</code>가 iOS 6.1의 <code>Music.plist</code>와 동일함을 확인하였고, 앨범별 임의 재생 또한 문제 없이 잘 적용됨을 확인했습니다.</p>
 ]]></content>
