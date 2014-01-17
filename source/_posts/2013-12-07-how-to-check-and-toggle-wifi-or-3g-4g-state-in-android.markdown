@@ -20,6 +20,8 @@ categories: Android
 
 At some point, we want to know whether the device is connected to network so that we can do some network processes. Also we want to know if _user_ make WiFi or 3G/4G disabled on purpose. Both things are able to know.
 
+<!-- more -->
+
 <a id="1"></a>
 ## 1. Check if WiFi or 3G/4G is Enabled (by User)
 

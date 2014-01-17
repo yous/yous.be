@@ -11,6 +11,8 @@ So guys
 whats up
 {% endcodeblock %}
 
+<!-- more -->
+
 {% include_code test.js lang:js %}
 
 {% codeblock lang:html %}

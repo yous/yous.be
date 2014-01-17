@@ -29,6 +29,8 @@ So I made scss files for Octopress that overrides colors of `.highlight` and `.g
 [Syntax Highlighting Test]: /2013/12/03/syntax-highlighting-test/
 [yous.github.io/sass/custom/_tomorrow]: https://github.com/yous/yous.github.io/tree/source/sass/custom/_tomorrow
 
+<!-- more -->
+
 ## Usage
 
 1. Download `_tomorrow` codes in [GitHub][_tomorrow].
