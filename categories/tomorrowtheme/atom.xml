@@ -4,7 +4,7 @@
   <title><![CDATA[Category: TomorrowTheme | Yous]]></title>
   <link href="http://blog.yous.be/categories/tomorrowtheme/atom.xml" rel="self"/>
   <link href="http://blog.yous.be/"/>
-  <updated>2014-01-17T23:19:49+09:00</updated>
+  <updated>2014-01-18T00:33:21+09:00</updated>
   <id>http://blog.yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -29,6 +29,9 @@
 <img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png" alt="Tomorrow Night Bright" /></p>
 
 <p>So I made scss files for Octopress that overrides colors of <code>.highlight</code> and <code>.gist</code> class elements. Usual code blocks and embedded gists are properly highlighted. You can <a href="/2013/12/03/syntax-highlighting-test/">preview</a> and get the <a href="https://github.com/yous/yous.github.io/tree/source/sass/custom/_tomorrow">code</a>.</p>
+
+<!-- more -->
+
 
 <h2>Usage</h2>
 

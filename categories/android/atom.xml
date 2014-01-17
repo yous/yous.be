@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | Yous]]></title>
   <link href="http://blog.yous.be/categories/android/atom.xml" rel="self"/>
   <link href="http://blog.yous.be/"/>
-  <updated>2014-01-17T23:19:49+09:00</updated>
+  <updated>2014-01-18T00:33:21+09:00</updated>
   <id>http://blog.yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -46,6 +46,9 @@
 
 
 <p>At some point, we want to know whether the device is connected to network so that we can do some network processes. Also we want to know if <em>user</em> make WiFi or 3G/4G disabled on purpose. Both things are able to know.</p>
+
+<!-- more -->
+
 
 <p><a id="1"></a></p>
 

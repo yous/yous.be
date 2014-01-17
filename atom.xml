@@ -4,7 +4,7 @@
   <title><![CDATA[Yous]]></title>
   <link href="http://blog.yous.be/atom.xml" rel="self"/>
   <link href="http://blog.yous.be/"/>
-  <updated>2014-01-17T23:19:49+09:00</updated>
+  <updated>2014-01-18T00:33:21+09:00</updated>
   <id>http://blog.yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -46,6 +46,9 @@
 
 
 <p>At some point, we want to know whether the device is connected to network so that we can do some network processes. Also we want to know if <em>user</em> make WiFi or 3G/4G disabled on purpose. Both things are able to know.</p>
+
+<!-- more -->
+
 
 <p><a id="1"></a></p>
 
@@ -352,6 +355,9 @@
 
 <p>So I made scss files for Octopress that overrides colors of <code>.highlight</code> and <code>.gist</code> class elements. Usual code blocks and embedded gists are properly highlighted. You can <a href="http://blog.yous.be/2013/12/03/syntax-highlighting-test/">preview</a> and get the <a href="https://github.com/yous/yous.github.io/tree/source/sass/custom/_tomorrow">code</a>.</p>
 
+<!-- more -->
+
+
 <h2>Usage</h2>
 
 <ol>
@@ -493,6 +499,11 @@
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>So guys
 </span><span class='line'>whats up</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<!-- more -->
 
 
 
@@ -1239,6 +1250,11 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
+
+
+<!-- more -->
+
+
 <p>그리고 <code>_config.yml</code>을 수정해 줍니다.</p>
 
 <figure class='code'><figcaption><span>_config.yml </span></figcaption>
@@ -1336,6 +1352,9 @@
 <p>그렇습니다! 저처럼 앨범별 임의 재생을 하고 싶은 사람이 올린 질문이었습니다. 댓글을 살펴보면 탈옥한 아이폰에서 작동한다는 글을 볼 수 있었습니다. 물론 2007년에 작성된 댓글이라서 지금의 iOS에 그대로 적용하면 작동하지 않습니다.</p>
 
 <p>하지만 추가적인 검색과 삽질로, 결국 iOS 6.1이 깔려 있는 아이폰에서 &lsquo;앨범별 임의 재생&#8217;으로 음악을 듣는 방법을 알아냈습니다.</p>
+
+<!-- more -->
+
 
 <p><a id="2"></a></p>
 
