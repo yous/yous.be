@@ -55,6 +55,12 @@ So I made scss files for Octopress that overrides colors of `.highlight` and `.g
 
 ## Fixes
 
+- With default `sass/partial/_syntax.scss`, embedded gist code looks [weird][]. To fix them, we should override some styles.
+
+[weird]: http://devspade.com/blog/2013/08/06/fixing-gist-embeds-in-octopress/
+
+{% gist 8474011 %}
+
 - Default `sass/partial/_syntax.scss` adds `box-shadow` and `text-shadow` to line numbers, also `box-shadow` to code block and gist. I removed these attributes and it is just can be done by overriding style in `sass/custom/_styles.scss`.
 
 {% codeblock sass/custom/_styles.scss %}
@@ -68,8 +74,9 @@ figure.code, .gist-file {
 }
 {% endcodeblock %}
 
-- This blog uses [Whitespace][] theme. I found some problems that it overrides colors of code block to dark blue and it hides line numbers. To fix these problems, remove lines in `sass/custom/_styles.scss`.
+- **This issue was fixed by this [commit][].** This blog uses [Whitespace][] theme. I found some problems that it overrides colors of code block to dark blue and it hides line numbers. To fix these problems, remove lines in `sass/custom/_styles.scss`.
 
+[commit]: https://github.com/lucaslew/whitespace/commit/b047f268c804808fb8e2d6a17cbfe8669b9da6b4
 [Whitespace]: https://github.com/lucaslew/whitespace
 
 {% gist 7795229 %}
