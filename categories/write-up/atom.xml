@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: Write-up | Yous]]></title>
+  <link href="http://blog.yous.be/categories/write-up/atom.xml" rel="self"/>
+  <link href="http://blog.yous.be/"/>
+  <updated>2014-01-21T01:32:18+09:00</updated>
+  <id>http://blog.yous.be/</id>
+  <author>
+    <name><![CDATA[Yous]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[Ghost in the Shellcode 2014: inview Write-up]]></title>
+    <link href="http://blog.yous.be/2014/01/20/ghost-in-the-shellcode-2014-inview-write-up/"/>
+    <updated>2014-01-20T22:21:24+09:00</updated>
+    <id>http://blog.yous.be/2014/01/20/ghost-in-the-shellcode-2014-inview-write-up</id>
+    <content type="html"><![CDATA[<h2>Question 3 &ndash; inview</h2>
+
+<blockquote><p>Points: 150</p>
+
+<p>The key is in view, what is it? <a href="https://2014.ghostintheshellcode.com/inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155">File</a></p></blockquote>
+
+<p>If the above link doesn&rsquo;t work, please use this <a href="/downloads/2014/01/20/inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155">link</a>.</p>
+
+<!-- more -->
+
+
+<p>Extract file with this code:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mv inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155 inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155.xz
+</span><span class='line'>xz -d inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155.xz
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Then we can see some trailing whitespace in <code>inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155</code>.</p>
+
+<h2>How to Highlight Trailing Whitespace in Vim</h2>
+
+<p>Add this code to your <code>.vimrc</code>:</p>
+
+<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="nb">highlight</span> ExtraWhitespace ctermbg<span class="p">=</span><span class="k">red</span> guibg<span class="p">=</span><span class="k">red</span>
+</span><span class='line'>autocmd <span class="nb">BufWinEnter</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">/\s+$/</span>
+</span><span class='line'>autocmd <span class="nb">InsertEnter</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">//</span>
+</span><span class='line'>autocmd <span class="nb">InsertLeave</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">/\s+$/</span>
+</span><span class='line'><span class="k">if</span> <span class="k">version</span> <span class="p">&gt;=</span> <span class="m">702</span>
+</span><span class='line'>  autocmd <span class="nb">BufWinLeave</span> * <span class="k">call</span> clearmatches<span class="p">()</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+
+<p>Then <a href="http://www.vim.org">Vim</a> highlights trailing whitespace to red color.</p>
+
+<h2>How to Solve</h2>
+
+<p>I felt something weird, so I converted the file to hex code. In Vim:</p>
+
+<pre><code>:%!xxd
+</code></pre>
+
+<p>Looking at whitespace, I realized there are <code>09(Tab)</code>, <code>0A(New Line)</code>, <code>20(Space)</code> with no rule. Right after that I came up with <a href="http://compsoc.dur.ac.uk/whitespace/">Whitespace</a>. Also there is a <a href="http://ws2js.luilak.net/interpreter.html">interpreter written in JavaScript</a>. Almost done! Just copy and paste the file content to site and press &lsquo;Exec&rsquo; button. If you want to execute it in local, you can use <a href="https://github.com/hostilefork/whitespacers">whitespacers</a>.</p>
+
+<p>Finally the key is:</p>
+
+<pre><code>WhitespaceProgrammingIsHard
+</code></pre>
+]]></content>
+  </entry>
+  
+</feed>

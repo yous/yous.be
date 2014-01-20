@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Yous</title>
+  <title>Ghost in the Shellcode 2014: inview Write-up - Yous</title>
   <meta name="author" content="Yous">
 
   
-  <meta name="description" content="Question 3 &ndash; inview Points: 150 The key is in view, what is it? File If the above link doesn&rsquo;t work, please use this link. ">
+  <meta name="description" content="Question 3 &ndash; inview Points: 150 The key is in view, what is it? File If the above link doesn&rsquo;t work, please use this link. Extract file &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.yous.be">
+  <link rel="canonical" href="http://blog.yous.be/2014/01/20/ghost-in-the-shellcode-2014-inview-write-up">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Yous" type="application/atom+xml">
@@ -75,15 +75,12 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/2014/01/20/ghost-in-the-shellcode-2014-inview-write-up/">Ghost in the Shellcode 2014: inview Write-up</a></h1>
+      <h1 class="entry-title">Ghost in the Shellcode 2014: inview Write-up</h1>
     
     
       <p class="meta">
@@ -101,14 +98,14 @@
 
 <time datetime="2014-01-20T22:21:24+09:00" pubdate data-updated="true">Jan 20<span>th</span>, 2014</time>
         
-         | <a href="/2014/01/20/ghost-in-the-shellcode-2014-inview-write-up/#disqus_thread">Comments</a>
+         | <a href="#disqus_thread">Comments</a>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><h2>Question 3 &ndash; inview</h2>
+<div class="entry-content"><h2>Question 3 &ndash; inview</h2>
 
 <blockquote><p>Points: 150</p>
 
@@ -116,97 +113,67 @@
 
 <p>If the above link doesn&rsquo;t work, please use this <a href="/downloads/2014/01/20/inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155">link</a>.</p>
 
+<!-- more -->
+
+
+<p>Extract file with this code:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='bash'><span class='line'>mv inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155 inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155.xz
+</span><span class='line'>xz -d inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155.xz
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then we can see some trailing whitespace in <code>inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155</code>.</p>
+
+<h2>How to Highlight Trailing Whitespace in Vim</h2>
+
+<p>Add this code to your <code>.vimrc</code>:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="nb">highlight</span> ExtraWhitespace ctermbg<span class="p">=</span><span class="k">red</span> guibg<span class="p">=</span><span class="k">red</span>
+</span><span class='line'>autocmd <span class="nb">BufWinEnter</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">/\s\+$/</span>
+</span><span class='line'>autocmd <span class="nb">InsertEnter</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">//</span>
+</span><span class='line'>autocmd <span class="nb">InsertLeave</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">/\s\+$/</span>
+</span><span class='line'><span class="k">if</span> <span class="k">version</span> <span class="p">&gt;=</span> <span class="m">702</span>
+</span><span class='line'>  autocmd <span class="nb">BufWinLeave</span> * <span class="k">call</span> clearmatches<span class="p">()</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then <a href="http://www.vim.org">Vim</a> highlights trailing whitespace to red color.</p>
+
+<h2>How to Solve</h2>
+
+<p>I felt something weird, so I converted the file to hex code. In Vim:</p>
+
+<pre><code>:%!xxd
+</code></pre>
+
+<p>Looking at whitespace, I realized there are <code>09(Tab)</code>, <code>0A(New Line)</code>, <code>20(Space)</code> with no rule. Right after that I came up with <a href="http://compsoc.dur.ac.uk/whitespace/">Whitespace</a>. Also there is a <a href="http://ws2js.luilak.net/interpreter.html">interpreter written in JavaScript</a>. Almost done! Just copy and paste the file content to site and press &lsquo;Exec&rsquo; button. If you want to execute it in local, you can use <a href="https://github.com/hostilefork/whitespacers">whitespacers</a>.</p>
+
+<p>Finally the key is:</p>
+
+<pre><code>WhitespaceProgrammingIsHard
+</code></pre>
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2014/01/20/ghost-in-the-shellcode-2014-inview-write-up/">Read on &rarr;</a>
-    </footer>
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/2013/12/07/how-to-check-and-toggle-wifi-or-3g-4g-state-in-android/">How to Check and Toggle WiFi or 3G/4G State in Android</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">Yous</span></span>
 
-<time datetime="2013-12-07T18:28:05+09:00" pubdate data-updated="true">Dec 7<span>th</span>, 2013</time>
-        
-         | <a href="/2013/12/07/how-to-check-and-toggle-wifi-or-3g-4g-state-in-android/#disqus_thread">Comments</a>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2>Overview</h2>
-
-<ol>
-<li><a href="#1">Check if WiFi or 3G/4G is Enabled (by User)</a>
-
-<ol>
-<li><a href="#1-1">WiFi</a></li>
-<li><a href="#1-2">3G/4G</a></li>
-</ol>
-</li>
-<li><a href="#2">Check if WiFi or 3G/4G is Connected</a>
-
-<ol>
-<li><a href="#2-1">WiFi</a></li>
-<li><a href="#2-2">3G/4G</a></li>
-</ol>
-</li>
-<li><a href="#3">Toggle WiFi or 3G/4G Programmatically</a>
-
-<ol>
-<li><a href="#3-1">WiFi</a></li>
-<li><a href="#3-2">3G/4G</a></li>
-</ol>
-</li>
-</ol>
-
-
-<p>At some point, we want to know whether the device is connected to network so that we can do some network processes. Also we want to know if <em>user</em> make WiFi or 3G/4G disabled on purpose. Both things are able to know.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2013/12/07/how-to-check-and-toggle-wifi-or-3g-4g-state-in-android/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/2013/12/04/tomorrow-theme-in-octopress/">Tomorrow Theme in Octopress</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -218,46 +185,45 @@
   
 
 
-<time datetime="2013-12-04T21:00:20+09:00" pubdate data-updated="true">Dec 4<span>th</span>, 2013</time>
-        
-         | <a href="/2013/12/04/tomorrow-theme-in-octopress/#disqus_thread">Comments</a>
-        
-      </p>
+<time datetime="2014-01-20T22:21:24+09:00" pubdate data-updated="true">Jan 20<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/ctf/'>CTF</a>, <a class='category' href='/categories/write-up/'>Write-up</a>
+  
+</span>
+
+
+    </p>
     
-  </header>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.yous.be/2014/01/20/ghost-in-the-shellcode-2014-inview-write-up/" data-via="" data-counturl="http://blog.yous.be/2014/01/20/ghost-in-the-shellcode-2014-inview-write-up/" >Tweet</a>
+  
+  
+  
+</div>
 
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2013/12/07/how-to-check-and-toggle-wifi-or-3g-4g-state-in-android/" title="Previous Post: How to Check and Toggle WiFi or 3G/4G State in Android">&laquo; How to Check and Toggle WiFi or 3G/4G State in Android</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
-  <div class="entry-content"><h2>Tomorrow Theme</h2>
+  <section>
+    <h1>Comments</h1>
+    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+  </section>
 
-<p>I usually use Tomorrow Night Eighties of <a href="https://github.com/chriskempson/tomorrow-theme">Tomorrow Theme</a> in Vim, iTerm2, IntelliJ IDEA (Android Studio). You can take a look of Tomorrow Theme.</p>
-
-<p><img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png" alt="Tomorrow Night Look" />
-<img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png" alt="Tomorrow Look" />
-<img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Eighties.png" alt="Tomorrow Night Eighties Look" />
-<img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Blue.png" alt="Tomorrow Night Blue Look" />
-<img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png" alt="Tomorrow Night Bright" /></p>
-
-<p>So I made scss files for Octopress that overrides colors of <code>.highlight</code> and <code>.gist</code> class elements. Usual code blocks and embedded gists are properly highlighted. You can <a href="/2013/12/03/syntax-highlighting-test/">preview</a> and get the <a href="https://github.com/yous/yous.github.io/tree/source/sass/custom/_tomorrow">code</a>.</p>
 
 </div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2013/12/04/tomorrow-theme-in-octopress/">Read on &rarr;</a>
-    </footer>
-  
 
-
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="/page/2/">&larr; Older</a>
-    
-    <a href="/archives">Blog Archives</a>
-    
-  </div>
-</div>
 <aside class="sidebar">
   
     <section>
@@ -294,6 +260,7 @@
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -308,7 +275,10 @@
       var disqus_shortname = 'yousbe';
       
         
-        var disqus_script = 'count.js';
+        // var disqus_developer = 1;
+        var disqus_identifier = 'http://blog.yous.be/2014/01/20/ghost-in-the-shellcode-2014-inview-write-up/';
+        var disqus_url = 'http://blog.yous.be/2014/01/20/ghost-in-the-shellcode-2014-inview-write-up/';
+        var disqus_script = 'embed.js';
       
     (function () {
       var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
