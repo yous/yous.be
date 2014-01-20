@@ -3,7 +3,7 @@ layout: post
 title: "Tomorrow Theme in Octopress"
 date: 2013-12-04 21:00:20 +0900
 comments: true
-categories: Octopress TomorrowTheme
+categories: Octopress Tomorrow-Theme
 ---
 
 ## Tomorrow Theme
