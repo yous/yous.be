@@ -2,7 +2,7 @@
 layout: post
 title: "Ghost in the Shellcode 2014: inview Write-up"
 date: 2014-01-20 22:21:24 +0900
-comments: true
+comments: false
 categories: CTF Write-up
 ---
 

@@ -2,7 +2,7 @@
 layout: post
 title: "Octopress in a subdirectory: /blog"
 date: 2013-08-12 06:08
-comments: true
+comments: false
 categories: Octopress
 ---
 
