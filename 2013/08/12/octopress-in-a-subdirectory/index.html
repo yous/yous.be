@@ -102,8 +102,6 @@ rake set_root_dir[/blog] # To go back to publishing to the document root &hellip
 
 <time datetime="2013-08-12T06:08:00+09:00" pubdate data-updated="true">Aug 12<span>th</span>, 2013</time>
         
-         | <a href="#disqus_thread">Comments</a>
-        
       </p>
     
   </header>
@@ -222,6 +220,8 @@ rake set_root_dir[/blog] # To go back to publishing to the document root &hellip
   
   
   
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
 </div>
 
     
@@ -235,12 +235,6 @@ rake set_root_dir[/blog] # To go back to publishing to the document root &hellip
     </p>
   </footer>
 </article>
-
-  <section>
-    <h1>Comments</h1>
-    <div id="disqus_thread" aria-live="polite"><noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-  </section>
 
 
 </div>
@@ -292,26 +286,19 @@ rake set_root_dir[/blog] # To go back to publishing to the document root &hellip
 </footer>
   
 
-<script type="text/javascript">
-      var disqus_shortname = 'yousbe';
-      
-        
-        // var disqus_developer = 1;
-        var disqus_identifier = 'http://blog.yous.be/2013/08/12/octopress-in-a-subdirectory/';
-        var disqus_url = 'http://blog.yous.be/2013/08/12/octopress-in-a-subdirectory/';
-        var disqus_script = 'embed.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
 
 
 
 
 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
 
 
 
