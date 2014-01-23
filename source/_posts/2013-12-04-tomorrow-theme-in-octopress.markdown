@@ -13,17 +13,11 @@ I usually use Tomorrow Night Eighties of [Tomorrow Theme][] in Vim, iTerm2, Inte
 
 [Tomorrow Theme]: https://github.com/chriskempson/tomorrow-theme
 
-![Tomorrow Night Look][]
-![Tomorrow Look][]
-![Tomorrow Night Eighties Look][]
-![Tomorrow Night Blue Look][]
-![Tomorrow Night Bright][]
-
-[Tomorrow Night Look]: https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png
-[Tomorrow Look]: https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png
-[Tomorrow Night Eighties Look]: https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Eighties.png
-[Tomorrow Night Blue Look]: https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Blue.png
-[Tomorrow Night Bright]: https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png
+{% img https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png Tomorrow Night %}
+{% img https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow.png Tomorrow %}
+{% img https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Eighties.png Tomorrow Night Eighties %}
+{% img https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Blue.png Tomorrow Night Blue %}
+{% img https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png Tomorrow Night Bright %}
 
 So I made scss files for Octopress that overrides colors of `.highlight` and `.gist` class elements. Usual code blocks and embedded gists are properly highlighted. You can [preview][Syntax Highlighting Test] and get the [code][yous.github.io/sass/custom].
 
