@@ -9,9 +9,13 @@ keywords: octopress, tomorrow theme
 
 ## Tomorrow Theme
 
-I usually use Tomorrow Night Eighties of [Tomorrow Theme][] in Vim, iTerm2, IntelliJ IDEA (Android Studio). You can take a look of Tomorrow Theme.
+I usually use Tomorrow Night Eighties of [Tomorrow Theme][] in [Vim][], [iTerm2][], [IntelliJ IDEA][] ([Android Studio][]). You can take a look of Tomorrow Theme.
 
 [Tomorrow Theme]: https://github.com/chriskempson/tomorrow-theme
+[Vim]: http://www.vim.org
+[iTerm2]: http://www.iterm2.com
+[IntelliJ IDEA]: http://www.jetbrains.com/idea/
+[Android Studio]: http://developer.android.com/sdk/installing/studio.html
 
 {% img https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png Tomorrow Night %}
 {% img https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow.png Tomorrow %}
