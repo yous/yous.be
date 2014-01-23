@@ -4,6 +4,7 @@ title: "Tomorrow Theme in Octopress"
 date: 2013-12-04 21:00:20 +0900
 comments: false
 categories: Octopress Tomorrow-Theme
+keywords: octopress, tomorrow theme
 ---
 
 ## Tomorrow Theme

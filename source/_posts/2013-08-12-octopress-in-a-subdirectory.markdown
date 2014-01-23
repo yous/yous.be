@@ -4,6 +4,7 @@ title: "Octopress in a subdirectory: /blog"
 date: 2013-08-12 06:08
 comments: false
 categories: Octopress
+keywords: octopress, subdirectory
 ---
 
 Octopress 블로그를 사이트 루트가 아닌 하위 디렉토리에서 제공하고 싶을 때, 터미널에서 다음과 같이 실행해 줍니다.
