@@ -35,8 +35,6 @@ So I made scss files for Octopress that overrides colors of `.highlight` and `.g
 1. Download `tomorrow` folder and `_tomorrow.scss` from [GitHub][yous.github.io/sass/custom].
 2. Put files to `sass/custom` and just enable one `@import` line from `_tomorrow.scss`. If you want to use Tomorrow Night Eighties theme:
 
-[custom]: https://github.com/yous/yous.github.io/tree/source/sass/custom
-
 {% codeblock sass/custom/_tomorrow.scss %}
 // @import "tomorrow/tomorrow-night";
 // @import "tomorrow/tomorrow";
