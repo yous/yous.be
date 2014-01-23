@@ -134,8 +134,6 @@ aside {
 	display: none;
 }
 
-@import "custom/tomorrow/tomorrow-night-eighties";
-
 .highlight .line-numbers, html .gist .gist-file .gist-syntax .highlight .line_numbers {
 	@include box-shadow(none);
 	text-shadow: none;
