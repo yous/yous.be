@@ -23,7 +23,7 @@ I usually use Tomorrow Night Eighties of [Tomorrow Theme][] in [Vim][], [iTerm2]
 {% img https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Blue.png Tomorrow Night Blue %}
 {% img https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png Tomorrow Night Bright %}
 
-So I made scss files for Octopress that overrides colors of `.highlight` and `.gist` class elements. Usual code blocks and embedded gists are properly highlighted. You can [preview][Syntax Highlighting Test] and get the [code][yous.github.io/sass/custom].
+So I made scss files for Octopress that overrides colors of `.highlight` and `.gist` class elements. Usual code blocks and embedded gists are properly highlighted. The [demo][Syntax Highlighting Test] and the [code][yous.github.io/sass/custom] are available.
 
 [Syntax Highlighting Test]: /2013/12/03/syntax-highlighting-test/
 [yous.github.io/sass/custom]: https://github.com/yous/yous.github.io/tree/source/sass/custom
@@ -33,7 +33,7 @@ So I made scss files for Octopress that overrides colors of `.highlight` and `.g
 ## Usage
 
 1. Download `tomorrow` folder and `_tomorrow.scss` from [GitHub][yous.github.io/sass/custom].
-2. Put files to `sass/custom` and just enable one `@import` line from `_tomorrow.scss`. If you want to use Tomorrow Night Eighties theme:
+2. Put files to `sass/custom` and enable just one `@import` line of `_tomorrow.scss`. For example, if you want to use Tomorrow Night Eighties theme:
 
 {% codeblock sass/custom/_tomorrow.scss %}
 // @import "tomorrow/tomorrow-night";
