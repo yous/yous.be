@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tomorrow-Theme | Yous]]></title>
   <link href="http://blog.yous.be/categories/tomorrow-theme/atom.xml" rel="self"/>
   <link href="http://blog.yous.be/"/>
-  <updated>2014-01-24T06:21:54+09:00</updated>
+  <updated>2014-01-24T06:28:44+09:00</updated>
   <id>http://blog.yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -22,11 +22,11 @@
 
 <p>I usually use Tomorrow Night Eighties of <a href="https://github.com/chriskempson/tomorrow-theme">Tomorrow Theme</a> in Vim, iTerm2, IntelliJ IDEA (Android Studio). You can take a look of Tomorrow Theme.</p>
 
-<p><img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png" alt="Tomorrow Night Look" />
-<img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png" alt="Tomorrow Look" />
-<img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Eighties.png" alt="Tomorrow Night Eighties Look" />
-<img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Blue.png" alt="Tomorrow Night Blue Look" />
-<img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png" alt="Tomorrow Night Bright" /></p>
+<p><img class="<a" src="href="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png">https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png</a>" title="Tomorrow Night" >
+<img class="<a" src="href="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow.png">https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow.png</a>" title="Tomorrow" >
+<img class="<a" src="href="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Eighties.png">https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Eighties.png</a>" title="Tomorrow Night Eighties" >
+<img class="<a" src="href="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Blue.png">https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Blue.png</a>" title="Tomorrow Night Blue" >
+<img class="<a" src="href="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png">https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png</a>" title="Tomorrow Night Bright" ></p>
 
 <p>So I made scss files for Octopress that overrides colors of <code>.highlight</code> and <code>.gist</code> class elements. Usual code blocks and embedded gists are properly highlighted. You can <a href="/2013/12/03/syntax-highlighting-test/">preview</a> and get the <a href="https://github.com/yous/yous.github.io/tree/source/sass/custom">code</a>.</p>
 
