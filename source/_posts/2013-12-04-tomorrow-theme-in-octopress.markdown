@@ -25,35 +25,26 @@ I usually use Tomorrow Night Eighties of [Tomorrow Theme][] in Vim, iTerm2, Inte
 [Tomorrow Night Blue Look]: https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Blue.png
 [Tomorrow Night Bright]: https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png
 
-So I made scss files for Octopress that overrides colors of `.highlight` and `.gist` class elements. Usual code blocks and embedded gists are properly highlighted. You can [preview][Syntax Highlighting Test] and get the [code][yous.github.io/sass/custom/_tomorrow].
+So I made scss files for Octopress that overrides colors of `.highlight` and `.gist` class elements. Usual code blocks and embedded gists are properly highlighted. You can [preview][Syntax Highlighting Test] and get the [code][yous.github.io/sass/custom].
 
 [Syntax Highlighting Test]: /2013/12/03/syntax-highlighting-test/
-[yous.github.io/sass/custom/_tomorrow]: https://github.com/yous/yous.github.io/tree/source/sass/custom/_tomorrow
+[yous.github.io/sass/custom]: https://github.com/yous/yous.github.io/tree/source/sass/custom
 
 <!-- more -->
 
 ## Usage
 
-1. Download `_tomorrow` codes in [GitHub][_tomorrow].
-2. Add `_tomorrow` folder to `sass/custom` and just add `@import` line after the last of the `sass/custom/_style.scss`.
+1. Download `tomorrow` folder and `_tomorrow.scss` from [GitHub][yous.github.io/sass/custom].
+2. Put files to `sass/custom` and just enable one `@import` line from `_tomorrow.scss`. If you want to use Tomorrow Night Eighties theme:
 
-[_tomorrow]: https://github.com/yous/yous.github.io/tree/source/sass/custom/_tomorrow
+[custom]: https://github.com/yous/yous.github.io/tree/source/sass/custom
 
-{% codeblock sass/custom/_style.scss %}
-// Tomorrow Night
-@import "custom/_tomorrow/tomorrow-night";
-
-// Tomorrow
-@import "custom/_tomorrow/tomorrow";
-
-// Tomorrow Night Eighties
-@import "custom/_tomorrow/tomorrow-night-eighties";
-
-// Tomorrow Night Blue
-@import "custom/_tomorrow/tomorrow-night-blue";
-
-// Tomorrow Night Bright
-@import "custom/_tomorrow/tomorrow-night-bright";
+{% codeblock sass/custom/_tomorrow.scss %}
+// @import "tomorrow/tomorrow-night";
+// @import "tomorrow/tomorrow";
+@import "tomorrow/tomorrow-night-eighties";
+// @import "tomorrow/tomorrow-night-blue";
+// @import "tomorrow/tomorrow-night-bright";
 {% endcodeblock %}
 
 ## Fixes
