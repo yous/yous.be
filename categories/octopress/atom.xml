@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Yous]]></title>
   <link href="http://blog.yous.be/categories/octopress/atom.xml" rel="self"/>
   <link href="http://blog.yous.be/"/>
-  <updated>2014-01-24T05:18:35+09:00</updated>
+  <updated>2014-01-24T06:21:54+09:00</updated>
   <id>http://blog.yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -28,7 +28,7 @@
 <img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Blue.png" alt="Tomorrow Night Blue Look" />
 <img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png" alt="Tomorrow Night Bright" /></p>
 
-<p>So I made scss files for Octopress that overrides colors of <code>.highlight</code> and <code>.gist</code> class elements. Usual code blocks and embedded gists are properly highlighted. You can <a href="/2013/12/03/syntax-highlighting-test/">preview</a> and get the <a href="https://github.com/yous/yous.github.io/tree/source/sass/custom/_tomorrow">code</a>.</p>
+<p>So I made scss files for Octopress that overrides colors of <code>.highlight</code> and <code>.gist</code> class elements. Usual code blocks and embedded gists are properly highlighted. You can <a href="/2013/12/03/syntax-highlighting-test/">preview</a> and get the <a href="https://github.com/yous/yous.github.io/tree/source/sass/custom">code</a>.</p>
 
 <!-- more -->
 
@@ -36,40 +36,22 @@
 <h2>Usage</h2>
 
 <ol>
-<li>Download <code>_tomorrow</code> codes in <a href="https://github.com/yous/yous.github.io/tree/source/sass/custom/_tomorrow">GitHub</a>.</li>
-<li>Add <code>_tomorrow</code> folder to <code>sass/custom</code> and just add <code>@import</code> line after the last of the <code>sass/custom/_style.scss</code>.</li>
+<li>Download <code>tomorrow</code> folder and <code>_tomorrow.scss</code> from <a href="https://github.com/yous/yous.github.io/tree/source/sass/custom">GitHub</a>.</li>
+<li>Put files to <code>sass/custom</code> and just enable one <code>@import</code> line from <code>_tomorrow.scss</code>. If you want to use Tomorrow Night Eighties theme:</li>
 </ol>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>sass/custom/<em>style.scss </span></figcaption>
+<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>sass/custom/_tomorrow.scss </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="c1">// Tomorrow Night</span>
-</span><span class='line'><span class="k">@import</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="nt">custom</span><span class="o">/&lt;/</span><span class="nt">em</span><span class="o">&gt;</span><span class="nt">tomorrow</span><span class="o">/</span><span class="nt">tomorrow-night</span><span class="k">&amp;</span><span class="nt">rdquo</span><span class="o">;;&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;//</span> <span class="nt">Tomorrow</span>
-</span><span class='line'><span class="o">@</span><span class="nt">import</span> <span class="k">&amp;</span><span class="nt">ldquo</span><span class="o">;</span><span class="nt">custom</span><span class="o">/</span><span class="nt">_tomorrow</span><span class="o">/</span><span class="nt">tomorrow</span><span class="k">&amp;</span><span class="nt">rdquo</span><span class="o">;;&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;//</span> <span class="nt">Tomorrow</span> <span class="nt">Night</span> <span class="nt">Eighties</span>
-</span><span class='line'><span class="o">@</span><span class="nt">import</span> <span class="k">&amp;</span><span class="nt">ldquo</span><span class="o">;</span><span class="nt">custom</span><span class="o">/</span><span class="nt">_tomorrow</span><span class="o">/</span><span class="nt">tomorrow-night-eighties</span><span class="k">&amp;</span><span class="nt">rdquo</span><span class="o">;;&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;//</span> <span class="nt">Tomorrow</span> <span class="nt">Night</span> <span class="nt">Blue</span>
-</span><span class='line'><span class="o">@</span><span class="nt">import</span> <span class="k">&amp;</span><span class="nt">ldquo</span><span class="o">;</span><span class="nt">custom</span><span class="o">/</span><span class="nt">_tomorrow</span><span class="o">/</span><span class="nt">tomorrow-night-blue</span><span class="k">&amp;</span><span class="nt">rdquo</span><span class="o">;;&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;//</span> <span class="nt">Tomorrow</span> <span class="nt">Night</span> <span class="nt">Bright</span>
-</span><span class='line'><span class="o">@</span><span class="nt">import</span> <span class="k">&amp;</span><span class="nt">ldquo</span><span class="o">;</span><span class="nt">custom</span><span class="o">/</span><span class="nt">_tomorrow</span><span class="o">/</span><span class="nt">tomorrow-night-bright</span><span class="k">&amp;</span><span class="nt">rdquo</span><span class="o">;;</span>
+</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="c1">// @import &amp;ldquo;tomorrow/tomorrow-night&amp;rdquo;;</span>
+</span><span class='line'><span class="c1">// @import &amp;ldquo;tomorrow/tomorrow&amp;rdquo;;</span>
+</span><span class='line'><span class="k">@import</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="nt">tomorrow</span><span class="o">/</span><span class="nt">tomorrow-night-eighties</span><span class="k">&amp;</span><span class="nt">rdquo</span><span class="o">;;</span>
+</span><span class='line'><span class="o">//</span> <span class="o">@</span><span class="nt">import</span> <span class="k">&amp;</span><span class="nt">ldquo</span><span class="o">;</span><span class="nt">tomorrow</span><span class="o">/</span><span class="nt">tomorrow-night-blue</span><span class="k">&amp;</span><span class="nt">rdquo</span><span class="o">;;</span>
+</span><span class='line'><span class="o">//</span> <span class="o">@</span><span class="nt">import</span> <span class="k">&amp;</span><span class="nt">ldquo</span><span class="o">;</span><span class="nt">tomorrow</span><span class="o">/</span><span class="nt">tomorrow-night-bright</span><span class="k">&amp;</span><span class="nt">rdquo</span><span class="o">;;</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
 
 <h2>Fixes</h2>
