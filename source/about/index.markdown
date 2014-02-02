@@ -9,6 +9,8 @@ footer: false
 
 ## CDs
 
+Like Korean Hip-Hop.
+
 1. Epik High -- Pieces, Part one
 2. 배치기 -- Out Of Control
 3. Epik High -- Map Of The Human Soul
