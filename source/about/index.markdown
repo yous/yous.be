@@ -9,6 +9,8 @@ footer: false
 
 ## Yous
 
+{% img /images/about/Super-Hexagon.png %}
+
 Nickname came from my real name.
 
 ## Blog
