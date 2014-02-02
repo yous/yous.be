@@ -7,7 +7,7 @@ sharing: false
 footer: false
 ---
 
-## CD
+## CDs
 
 1. Epik High -- Pieces, Part one
 2. 배치기 -- Out Of Control
