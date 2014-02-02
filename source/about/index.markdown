@@ -9,9 +9,15 @@ footer: false
 
 ## Yous
 
+ChaYoung You.
+
 {% img /images/about/Super-Hexagon.png %}
 
 Nickname came from my real name.
+
+## Site
+
+- [Yous](http://yous.be)
 
 ## Blog
 
