@@ -7,6 +7,21 @@ sharing: false
 footer: false
 ---
 
+## Yous
+
+Nickname came from my real name.
+
+## Blog
+
+What you see now.
+
+## Code
+
+This blog is also available in GitHub [repo](http://github.com/yous/yous.github.io).
+
+- [GitHub](http://github.com/yous)
+- [Bitbucket](http://bitbucket.org/yous)
+
 ## CDs
 
 Like Korean Hip-Hop.
