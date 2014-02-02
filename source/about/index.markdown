@@ -198,8 +198,8 @@ Like Korean Hip-Hop.
 170. Dynamic Duo -- Taxi Driver
 171. Dynamic Duo -- Last Days (한정판)
 172. Eluphant -- Eluphant Bakery (Reissued)
-173. IF -- We Are Music
-174. IF -- More Than Music
+173. IF (Infinite Flow) -- We Are Music
+174. IF (Infinite Flow) -- More Than Music
 175. Kebee -- Poetree Syndrome
 176. Loptimist -- Mind Expander
 177. Overclass -- Collage 2
