@@ -288,3 +288,7 @@ Like Korean Hip-Hop.
 253. Kebee -- Lost & Found
 254. Big Sean -- Hall Of Fame
 255. Artisan Beats & Minos -- The Lost Files
+256. Refrain of EVANGELION
+257. NEON GENESIS EVANGELION
+258. NEON GENESIS EVANGELION 2
+259. jubeat saucer ORIGINAL SOUNDTRACK -Cathy & Marron-
