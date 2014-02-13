@@ -13,19 +13,18 @@ ChaYoung You.
 
 {% img /images/about/Super-Hexagon.png %}
 
-Nickname came from my real name.
-
 ## Site
 
 - [Yous](http://yous.be)
 
 ## Blog
 
-What you see now.
+What you see now. Hosted on [GitHub Pages][]. The source is available in GitHub [repo][].
+
+[GitHub Pages]: http://pages.github.com
+[repo]: http://github.com/yous/yous.github.io
 
 ## Code
-
-This blog is also available in GitHub [repo](http://github.com/yous/yous.github.io).
 
 - [GitHub](http://github.com/yous)
 - [Bitbucket](http://bitbucket.org/yous)
