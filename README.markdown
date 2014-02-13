@@ -1,8 +1,8 @@
-# Yous
+## Yous
 
 Blog for hackers.
 
-# License
+## License
 
 All articles are released under [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). Other directories and files are under MIT License.
 
