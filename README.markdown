@@ -4,9 +4,7 @@ Blog for hackers.
 
 # License
 
-All articles are released under [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/).
-
-Other directories and files are under MIT License.
+All articles are released under [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/). Other directories and files are under MIT License.
 
 The MIT License (MIT)
 
