@@ -22,12 +22,12 @@ ChaYoung You.
 What you see now. Hosted on [GitHub Pages][]. The source is available in GitHub [repo][].
 
 [GitHub Pages]: http://pages.github.com
-[repo]: http://github.com/yous/yous.github.io
+[repo]: https://github.com/yous/yous.github.io
 
 ## Code
 
-- [GitHub](http://github.com/yous)
-- [Bitbucket](http://bitbucket.org/yous)
+- [GitHub](https://github.com/yous)
+- [Bitbucket](https://bitbucket.org/yous)
 
 ## Likes
 
@@ -42,7 +42,7 @@ What you see now. Hosted on [GitHub Pages][]. The source is available in GitHub 
     - [Deemo](https://itunes.apple.com/kr/app/deemo/id700637744?mt=8)
 - [Super Hexagon](http://superhexagon.com)
 
-[@blobyblo]: http://twitter.com/blobyblo
-[@Tukutz81]: http://twitter.com/Tukutz81
-[@realmithrajin]: http://twitter.com/realmithrajin
-[@OfficialPalo]: http://twitter.com/OfficialPalo
+[@blobyblo]: https://twitter.com/blobyblo
+[@Tukutz81]: https://twitter.com/Tukutz81
+[@realmithrajin]: https://twitter.com/realmithrajin
+[@OfficialPalo]: https://twitter.com/OfficialPalo
