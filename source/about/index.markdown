@@ -31,7 +31,7 @@ What you see now. Hosted on [GitHub Pages][]. The source is available in GitHub 
 
 ## Likes
 
-- Collecting [CDs](/about/cds).
+- Collecting [CDs](/about/cds)
 - [Korean Hip-Hop](http://hiphopplaya.com)
     - Epik High (Tablo [@blobyblo][], DJ Tukutz [@Tukutz81][], Mithra眞 [@realmithrajin][])
     - Paloalto [@OfficialPalo][]
@@ -40,7 +40,11 @@ What you see now. Hosted on [GitHub Pages][]. The source is available in GitHub 
     - [jubeat](http://s.ubit.info/yous)
     - [jubeat plus](https://itunes.apple.com/jp/app/jubeat-plus/id395192484?mt=8)
     - [Deemo](https://itunes.apple.com/kr/app/deemo/id700637744?mt=8)
+    - [SOUND VOLTEX II](http://p.eagate.573.jp/game/sdvx/ii/p/)
 - [Super Hexagon](http://superhexagon.com)
+- [Vim](http://www.vim.org)
+- [Tomorrow Theme](https://github.com/chriskempson/tomorrow-theme)
+- [세벌식 자판](http://ko.wikipedia.org/wiki/세벌식_자판)
 
 [@blobyblo]: https://twitter.com/blobyblo
 [@Tukutz81]: https://twitter.com/Tukutz81
