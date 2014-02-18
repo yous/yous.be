@@ -3,7 +3,8 @@ layout: post
 title: "Syntax Highlighting Test"
 date: 2013-12-03 05:40:30 +0900
 comments: false
-categories: Uncategorized
+categories:
+    - Uncategorized
 keywords: syntax, highlighting
 ---
 
