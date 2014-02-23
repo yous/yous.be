@@ -111,8 +111,9 @@
 
   <div class="entry-content"><p>iOS 7.0.6, iOS 6.1.6, Apple TV 6.0.2가 <a href="http://9to5mac.com/2014/02/21/apple-releases-ios-7-0-6-ios-6-1-6-with-fixes/">배포됐다</a>. 애플에서 공개한 iOS 7.0.6의 <a href="http://support.apple.com/kb/HT6147">보안 문제</a>는 다음과 같다.</p>
 
-<blockquote><p>Impact: An attacker with a privileged network position may capture or modify data in sessions protected by SSL/TLS
-Description: Secure Transport failed to validate the authenticity of the connection. This issue was addressed by restoring missing validation steps.</p></blockquote>
+<blockquote><p>Impact: An attacker with a privileged network position may capture or modify data in sessions protected by SSL/TLS</p>
+
+<p>Description: Secure Transport failed to validate the authenticity of the connection. This issue was addressed by restoring missing validation steps.</p></blockquote>
 
 <p>그런데 이 문제의 원인이 된 <a href="http://opensource.apple.com/source/Security/Security-55471/libsecurity_ssl/lib/sslKeyExchange.c">소스 코드</a>가 흥미롭다. ImperialViolet의 <a href="https://www.imperialviolet.org/2014/02/22/applebug.html">글</a>에 따르면 실제 소스는 이렇다:</p>
 
