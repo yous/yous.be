@@ -21,8 +21,6 @@ If the above link doesn't work, please use this [link][].
 
 [link]: /downloads/2014/01/20/inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155
 
-<!-- more -->
-
 Extract file with this code:
 
 {% codeblock lang:bash %}

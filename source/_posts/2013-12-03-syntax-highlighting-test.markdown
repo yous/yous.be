@@ -13,8 +13,6 @@ So guys
 whats up
 {% endcodeblock %}
 
-<!-- more -->
-
 {% include_code test.js lang:js %}
 
 {% codeblock lang:html %}
@@ -54,6 +52,8 @@ task :edit_post, :title do |t, args|
   end
 end
 {% endcodeblock %}
+
+<!-- more -->
 
 {% codeblock Testing PHP (syntax_test.php) %}
 <?php

@@ -17,8 +17,6 @@ rake set_root_dir[/blog]
 rake set_root_dir[/]
 {% endcodeblock %}
 
-<!-- more -->
-
 그리고 `_config.yml`을 수정해 줍니다.
 
 {% codeblock _config.yml lang:yml %}
