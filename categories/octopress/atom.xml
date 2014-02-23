@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Yous]]></title>
   <link href="http://blog.yous.be/categories/octopress/atom.xml" rel="self"/>
   <link href="http://blog.yous.be/"/>
-  <updated>2014-02-23T05:55:01+09:00</updated>
+  <updated>2014-02-23T12:25:36+09:00</updated>
   <id>http://blog.yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -159,9 +159,6 @@
 </span><span class='line'>
 </span><span class='line'>&lt;p&gt;rake set_root_dir<span class="o">[</span>/<span class="o">]</span>
 </span></code></pre></td></tr></table></div></figure></notextile></div></p>
-
-<!-- more -->
-
 
 <p>그리고 <code>_config.yml</code>을 수정해 줍니다.</p>
 

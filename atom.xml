@@ -4,7 +4,7 @@
   <title><![CDATA[Yous]]></title>
   <link href="http://blog.yous.be/atom.xml" rel="self"/>
   <link href="http://blog.yous.be/"/>
-  <updated>2014-02-23T05:55:01+09:00</updated>
+  <updated>2014-02-23T12:25:36+09:00</updated>
   <id>http://blog.yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -100,9 +100,6 @@ Description: Secure Transport failed to validate the authenticity of the connect
 <p>The key is in view, what is it? <a href="https://2014.ghostintheshellcode.com/inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155">File</a></p></blockquote>
 
 <p>If the above link doesn&rsquo;t work, please use this <a href="http://blog.yous.be/downloads/2014/01/20/inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155">link</a>.</p>
-
-<!-- more -->
-
 
 <p>Extract file with this code:</p>
 
@@ -626,11 +623,6 @@ Description: Secure Transport failed to validate the authenticity of the connect
 
 
 
-<!-- more -->
-
-
-
-
 <figure class='code'><figcaption><span> (test.js)</span> <a href='http://blog.yous.be/downloads/code/test.js'>download</a></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -751,6 +743,11 @@ Description: Secure Transport failed to validate the authenticity of the connect
 
 
 
+<!-- more -->
+
+
+
+
 <figure class='code'><figcaption><span>Testing PHP (syntax_test.php) </span></figcaption>
 <div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -803,7 +800,7 @@ Description: Secure Transport failed to validate the authenticity of the connect
 </span><span class='line'><span class="k">echo</span> <span class="nx">camp_html_breadcrumbs</span><span class="p">(</span><span class="nv">$crumbs</span><span class="p">);</span>
 </span><span class='line'>
 </span><span class='line'><span class="cp">?&gt;</span><span class="x"></span>
-</span><span class='line'><span class="x"> </span>
+</span><span class='line'>
 </span><span class='line'><span class="cp">&lt;?php</span>  <span class="k">if</span> <span class="p">(</span><span class="nv">$g_user</span><span class="o">-&gt;</span><span class="na">hasPermission</span><span class="p">(</span><span class="s2">&quot;ManageCountries&quot;</span><span class="p">))</span> <span class="p">{</span> <span class="cp">?&gt;</span><span class="x"></span>
 </span><span class='line'><span class="x">&lt;table BORDER=&quot;0&quot; CELLSPACING=&quot;0&quot; CELLPADDING=&quot;1&quot;&gt;</span>
 </span><span class='line'><span class="x">    &lt;tr&gt;</span>
@@ -1371,11 +1368,6 @@ Description: Secure Transport failed to validate the authenticity of the connect
 </span><span class='line'><span class="c"># To go back to publishing to the document root</span>
 </span><span class='line'>rake set_root_dir<span class="o">[</span>/<span class="o">]</span>
 </span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<!-- more -->
 
 
 <p>그리고 <code>_config.yml</code>을 수정해 줍니다.</p>
