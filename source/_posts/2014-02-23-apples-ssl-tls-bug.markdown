@@ -15,6 +15,7 @@ iOS 7.0.6, iOS 6.1.6, Apple TV 6.0.2가 [배포됐다][9to5Mac]. 애플에서 �
 [security content of iOS 7.0.6]: http://support.apple.com/kb/HT6147
 
 > Impact: An attacker with a privileged network position may capture or modify data in sessions protected by SSL/TLS
+>
 > Description: Secure Transport failed to validate the authenticity of the connection. This issue was addressed by restoring missing validation steps.
 
 그런데 이 문제의 원인이 된 [소스 코드][sslKeyExchange.c]가 흥미롭다. ImperialViolet의 [글][external-url]에 따르면 실제 소스는 이렇다:
