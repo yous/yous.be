@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "Apple's SSl/TLS bug"
+title: "Apple's SSL/TLS bug"
 date: 2014-02-23 04:59:18 +0900
 comments: false
 categories:
