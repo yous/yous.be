@@ -2,4 +2,31 @@
 <link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 <link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
-<meta property="fb:admins" content="100001802412550" />
+<!-- Social media content metadata -->
+{% if site.facebook_app_id %}
+  <meta property="fb:admins" content="{{ site.facebook_app_id }}">
+  <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+  <meta property="og:site_name" content="{{ site.title }}">
+  <meta property="og:url" content="{% if canonical %}{{ canonical }}{% else %}{{ site.url }}{% endif %}">
+  <meta property="og:description" content="{{ description | strip_html | condense_spaces | truncate:200 }}">
+  {% if site.facebook_page %}
+    <meta property="article:author" content="{{ site.facebook_page }}">
+  {% endif %}
+  {% if page.facebook.image %}
+    <meta property="og:image" content="{{ page.facebook.image }}">
+  {% endif %}
+{% endif %}
+<meta name="twitter:card" content="{% if page.twitter_card.type %}{{ page.twitter_card.type }}{% else %}summary{% endif %}">
+{% if site.twitter_user %}
+  <meta name="twitter:site" content="{{ site.twitter_user }}">
+{% endif %}
+<meta name="twitter:title" content="{% if page.title %}{{ page.title | truncate:70 }}{% else %}{{ site.title | truncate:70 }}{% endif %}">
+<meta name="twitter:description" content="{{ description | strip_html | condense_spaces | truncate:200 }}">
+{% if page.twitter_card.creator %}
+  <meta name="twitter:creator" content="{{ page.twitter_card.creator }}">
+{% elsif site.twitter_user %}
+  <meta name="twitter:creator" content="{{ site.twitter_user }}">
+{% endif %}
+{% if page.twitter_card.image %}
+  <meta name="twitter:image:src" content="{{ page.twitter_card.image }}">
+{% endif %}
