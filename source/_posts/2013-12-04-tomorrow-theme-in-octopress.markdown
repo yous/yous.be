@@ -7,6 +7,10 @@ categories:
     - Octopress
     - Tomorrow Theme
 keywords: octopress, tomorrow theme
+facebook:
+    image: https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png
+twitter_card:
+    image: https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png
 ---
 
 ## Tomorrow Theme
