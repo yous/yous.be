@@ -19,6 +19,8 @@ twitter_card:
 [Meta element]: http://en.wikipedia.org/wiki/Meta_element
 [Black Glasses]: http://blackglasses.me/2013/09/19/twitter-cards-facebook-open-graph-and-octopress/
 
+<!-- more -->
+
 ## Facebook Open Graph Tags
 
 {% img https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.2178/851562_1376970469205025_523101852_n.png %}
