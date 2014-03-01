@@ -4,7 +4,7 @@
   <title><![CDATA[Yous]]></title>
   <link href="http://blog.yous.be/atom.xml" rel="self"/>
   <link href="http://blog.yous.be/"/>
-  <updated>2014-02-24T21:32:17+09:00</updated>
+  <updated>2014-03-02T05:15:55+09:00</updated>
   <id>http://blog.yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -12,6 +12,285 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Octopress에서 Facebook Open Graph와 Twitter Cards 지원하기]]></title>
+    <link href="http://blog.yous.be/2014/02/24/support-facebook-open-graph-and-twitter-cards-on-octopress/"/>
+    <updated>2014-02-24T21:50:36+09:00</updated>
+    <id>http://blog.yous.be/2014/02/24/support-facebook-open-graph-and-twitter-cards-on-octopress</id>
+    <content type="html"><![CDATA[<p>블로그에 글을 쓰고 나면 트위터나 페이스북에 링크를 공유하곤 하는데 페이스북의 미리보기가 적절히 표시되지 않고 있다는 사실을 깨달았다. 또한 트위터도 그와 비슷한 기능을 제공하는데, 둘 다 지원하면 좋겠다는 생각을 했다. 이를 제대로 지원하려면 <a href="https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#tags">Facebook Open Graph tags</a>와 <a href="https://dev.twitter.com/docs/cards">Twitter Cards</a>에 대해 알아야 한다. 웹 페이지에 적절한 <a href="http://en.wikipedia.org/wiki/Meta_element">메타 태그</a>를 추가해 주면 페이스북과 트위터에서 인식하고 올바른, 작성자가 의도한 미리보기를 보여준다. 기본적으로 Zac Clancy의 <a href="http://blackglasses.me/2013/09/19/twitter-cards-facebook-open-graph-and-octopress/">글</a>에 상세히 설명되어 있다.</p>
+
+<h2>Facebook Open Graph Tags</h2>
+
+<p><img src="https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.2178/851562_1376970469205025_523101852_n.png"></p>
+
+<p>페이스북에 웹 페이지가 제대로 인식되게 하려면 <a href="https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#tags">Open Graph 태그</a>를 이용해야 한다. 기본적으로 채워야 할 태그들은 다음과 같다:</p>
+
+<ul>
+<li><code>og:title</code>: 사이트 이름 등의 브랜드를 제외한 글 제목이다.</li>
+<li><code>og:site_name</code>: 웹 사이트의 이름이다. URL이 아니라 이름이다. (예: &ldquo;imdb.com&#8221;이 아닌 &#8220;IMDb&rdquo;)</li>
+<li><code>og:url</code>: 글의 고유 식별자가 된다. 검색 엔진 최적화를 위해 사용된 <a href="http://en.wikipedia.org/wiki/Canonical_link_element">표준 URL(Canonical URL)</a>과 연결되어야 하며, 어떤 세션 변수나 사용자 식별 인자나 카운터를 포함하지 않아야 한다. 만약 이 부분을 잘못 사용하게 되면, &lsquo;좋아요&#8217;와 &#8216;공유&#8217;의 수가 이 URL로 합해지지 않고 이 URL의 모든 변형으로 흩어질 것이다.</li>
+<li><code>og:description</code>: 내용 일부를 상세히 설명한 글로, 보통 2~4문장이다. 이 태그는 선택 가능하지만 사람들이 읽고 공유하는 비율을 높일 수 있다.</li>
+<li><code>og:image</code>: 연관된 이미지다. 최소 1200x630 픽셀 크기의 이미지 사용을 추천한다.</li>
+<li><code>fb:app_id</code>: 페이스북이 사이트의 신원을 파악할 수 있게 해 주는 고유 ID다. <a href="https://www.facebook.com/insights/">Facebook Insights</a>가 제대로 동작하는 데에 중요하다.</li>
+</ul>
+
+
+<p>다른 종류의 태그를 더 추가할 수도 있다:</p>
+
+<ul>
+<li><code>og:type</code>: 페이스북의 뉴스피드는 당신의 글을 미디어 종류에 따라 다르게 보여준다.<a href="http://ogp.me/#types">일반적으로 쓰이는 오브젝트 타입(Object Types)</a>들은 이미 정의되어 있다. 만약 오브젝트 타입을 설정하지 않으면 기본 타입으로 <code>website</code>가 쓰인다. Open Graph를 통해 당신만의 타입을 정할 수도 있다.</li>
+<li><code>og:locale</code>: 리소스의 언어다. 기본 설정은 <code>en_US</code>다. <code>og:locale:alternate</code>를 통해 다른 언어도 가능하다는 것을 나타낼 수 있다. 예제와 추가 정보는 <a href="https://developers.facebook.com/docs/internationalization/">국제화(Internationalization)</a>와 <a href="https://developers.facebook.com/docs/technical-guides/opengraph/internationalization/">Open Graph 국제화</a> 페이지를 보라.</li>
+<li><code>article:author</code>: <a href="https://developers.facebook.com/docs/reference/opengraph/object-type/article">글의 저자들로 통하는 링크</a>다. 링크 주소는 뉴스피드에 나타났을 때 저자를 팔로우 할 수 있는 페이스북 프로필이나 페이스북 페이지가 될 수 있다. (저자들은 사람들이 팔로우 할 수 있게 <a href="https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#follow">팔로우</a> 기능을 켜 두어야 한다.)</li>
+<li><code>article:publisher</code>: <a href="https://developers.facebook.com/docs/reference/opengraph/object-type/article">글의 발행인으로 통하는 링크</a>다. 링크 주소는 페이스북 페이지여야 한다. 페이스북은 발행인이 뉴스피드에 표시되었을 때 그것을 &lsquo;좋아요&rsquo; 하는 기능을 제공할 수 있다. 이 태그는 미디어 발행인만 쓸 수 있다.</li>
+</ul>
+
+
+<h2>Twitter Cards</h2>
+
+<p><a href="https://dev.twitter.com/docs/cards">Twitter Cards</a>는 트윗 자체에 링크의 내용을 보여주는 &lsquo;카드&#8217;를 추가하는 기능이다.</p>
+
+<p><img src="https://dev.twitter.com/sites/default/files/images_documentation/web_summary_0.png"></p>
+
+<p>카드의 종류는 7개가 있으며 원하는 용도에 따라 적절히 사용할 수 있다.</p>
+
+<ul>
+<li><a href="https://dev.twitter.com/docs/cards/types/summary-card">Summary Card</a>: 기본 카드. 제목, 설명, 섬네일, 트위터 계정을 포함하고 있다.</li>
+<li><a href="https://dev.twitter.com/docs/cards/large-image-summary-card">Summary Card with Large Image</a>: Summary Card와 비슷하지만 이미지를 강조할 수 있다.</li>
+<li><a href="https://dev.twitter.com/docs/cards/types/photo-card">Photo Card</a>: 트윗 형태의 사진 카드.</li>
+<li><a href="https://dev.twitter.com/docs/cards/types/gallery-card">Gallery Card</a>: 여러 사진을 강조하기 위한 카드다.</li>
+<li><a href="https://dev.twitter.com/docs/cards/types/app-card">App Card</a>: 애플리케이션 정보를 제공하기 위한 카드다.</li>
+<li><a href="https://dev.twitter.com/docs/cards/types/player-card">Player Card</a>: 트윗 형태의 비디오/오디오/미디어 재생 카드다.</li>
+<li><a href="https://dev.twitter.com/docs/cards/types/product-card">Product Card</a>: 상품 내용을 더 잘 나타내기 위한 트윗 카드다.</li>
+</ul>
+
+
+<p>트위터는 <a href="https://dev.twitter.com/docs/cards/validation/validator">카드 검사 도구</a>를 직접 제공하고 있으므로 각 종류의 카드가 어떻게 보이는지, 자신의 사이트가 제대로 인식되는지 테스트 해볼 수 있다.</p>
+
+<h2>Octopress에서 지원하기</h2>
+
+<p>페이스북 Open Graph를 위한 설정 값을 <code>_config.yml</code>에 추가한다.</p>
+
+<figure class='code'><figcaption><span>_config.yml </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">...</span>
+</span><span class='line'><span class="c1"># Facebook Insights / Open Graph</span>
+</span><span class='line'><span class="l-Scalar-Plain">facebook_app_id</span><span class="p-Indicator">:</span>
+</span><span class='line'><span class="l-Scalar-Plain">facebook_page</span><span class="p-Indicator">:</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>페이스북 App ID는 <a href="https://www.facebook.com/insights/">페이스북 인사이트</a>에서 &lsquo;웹사이트를 위한 인사이트&rsquo; 버튼을 눌러 얻을 수 있다. 페이스북 페이지 주소는 <code>article:author</code>에 사용될 정보지만 입력하지 않아도 된다. 트위터는 <code>_config.yml</code>의 <code>twitter_user</code> 값을 이용해 메타 태그를 입력한다. 이 역시 입력하지 않아도 된다.</p>
+
+<p>Octopress에서 사이트에 메타 태그를 추가하는 방법은 간단하다. 일단 <code>source/_includes/custom/head.html</code> 파일에 다음 코드를 추가하자.</p>
+
+<figure class='code'><figcaption><span>source/_includes/custom/head.html </span></figcaption>
+<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'>...
+</span><span class='line'><span class="c">&lt;!-- Social media content metadata --&gt;</span>
+</span><span class='line'>{% if site.facebook_app_id %}
+</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">&quot;fb:admins&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ site.facebook_app_id }}&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">&quot;og:title&quot;</span> <span class="na">content=</span><span class="s">&quot;{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">&quot;og:site_name&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ site.title }}&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">&quot;og:url&quot;</span> <span class="na">content=</span><span class="s">&quot;{% if canonical %}{{ canonical }}{% else %}{{ site.url }}{% endif %}&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">&quot;og:description&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ description | strip_html | condense_spaces | truncate:200 }}&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  {% if site.facebook_page %}
+</span><span class='line'>    <span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">&quot;article:author&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ site.facebook_page }}&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  {% endif %}
+</span><span class='line'>  {% if page.facebook.image %}
+</span><span class='line'>    <span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">&quot;og:image&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ page.facebook.image }}&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  {% endif %}
+</span><span class='line'>{% endif %}
+</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:card&quot;</span> <span class="na">content=</span><span class="s">&quot;{% if page.twitter_card.type %}{{ page.twitter_card.type }}{% else %}summary{% endif %}&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>{% if site.twitter_user %}
+</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:site&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ site.twitter_user }}&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>{% endif %}
+</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:title&quot;</span> <span class="na">content=</span><span class="s">&quot;{% if page.title %}{{ page.title | truncate:70 }}{% else %}{{ site.title | truncate:70 }}{% endif %}&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:description&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ description | strip_html | condense_spaces | truncate:200 }}&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>{% if page.twitter_card.creator %}
+</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:creator&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ page.twitter_card.creator }}&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>{% elsif site.twitter_user %}
+</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:creator&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ site.twitter_user }}&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>{% endif %}
+</span><span class='line'>{% if page.twitter_card.image %}
+</span><span class='line'>  {% if page.twitter_card.type == &#39;gallery&#39; %}
+</span><span class='line'>    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:image0&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ page.twitter_card.image }}&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:image1&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ page.twitter_card.image1 }}&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:image2&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ page.twitter_card.image2 }}&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:image3&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ page.twitter_card.image3 }}&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>  {% else %}
+</span><span class='line'>    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:image:src&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ page.twitter_card.image }}&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>    {% if page.twitter_card.type == &#39;photo&#39; %}
+</span><span class='line'>      {% if page.twitter_card.width %}
+</span><span class='line'>        <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:image:width&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ page.twitter_card.width }}&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      {% endif %}
+</span><span class='line'>      {% if page.twitter_card.height %}
+</span><span class='line'>        <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:image:height&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ page.twitter_card.height }}&quot;</span><span class="nt">&gt;</span>
+</span><span class='line'>      {% endif %}
+</span><span class='line'>    {% endif %}
+</span><span class='line'>  {% endif %}
+</span><span class='line'>{% endif %}
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>페이스북에 링크를 첨부해 상태를 올리면 메타 태그 기반으로 미리보기를 생성해 준다. 다만 트위터의 경우 사이트 등록이 필요하다. <a href="https://dev.twitter.com/docs/cards/validation/validator">카드 검사 도구</a> 페이지에서 사이트가 검사에 통과하면 도메인 인증 요청을 보낼 수 있다. 이 요청이 통과되면 트위터에서 사이트 링크를 트위터 카드로 만들어 보여준다.</p>
+
+<p>추가로 설정 가능한 몇 가지 옵션에 대해 설명하겠다.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span>
+</span><span class='line'><span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
+</span><span class='line'><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&quot;An</span><span class="nv"> </span><span class="s">example</span><span class="nv"> </span><span class="s">post&quot;</span>
+</span><span class='line'><span class="l-Scalar-Plain">date</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2014-02-24</span>
+</span><span class='line'><span class="l-Scalar-Plain">comments</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+</span><span class='line'><span class="l-Scalar-Plain">categories</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">Example</span>
+</span><span class='line'><span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">This is an example post.</span>
+</span><span class='line'><span class="l-Scalar-Plain">facebook</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">image</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://example.com/path/to/image.png</span>
+</span><span class='line'><span class="l-Scalar-Plain">twitter_card</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">creator</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">twitter</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">summary_large_image</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">image</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://example.com/path/to/image.png</span>
+</span><span class='line'><span class="nn">---</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>글에 <code>description</code> 태그를 사용하면 그 값이 description으로 사용된다. 만약 없다면 글 앞부분이 사용된다. <code>facebook</code> 태그 아래에 <code>image</code> 태그를 사용하면 페이스북의 미리보기 이미지로 사용된다. <code>twitter_card</code> 태그 아래의 <code>image</code>도 마찬가지이다. 추가로 <code>twitter_card</code> 태그 아래에 <code>type</code>을 명시할 수 있고, <code>creator</code> 태그를 사용하면 <code>_config.yml</code>의 <code>twitter_user</code> 대신 그 값을 사용한다. <code>facebook</code> 태그와 <code>twitter_card</code> 태그 모두 추가 옵션으로 입력하지 않아도 관계없다.</p>
+
+<p>위 코드가 모든 트위터 카드를 지원하는 것은 아니다. 기본적으로 <code>twitter_card</code>의 <code>image</code> 태그를 입력하면 <code>summary</code>, <code>summary_large_image</code>, <code>photo</code> 타입을 사용할 수 있다. <code>photo</code> 타입은 추가적인 태그를 사용할 수 있다.</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span>
+</span><span class='line'><span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
+</span><span class='line'><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&quot;An</span><span class="nv"> </span><span class="s">example</span><span class="nv"> </span><span class="s">post&quot;</span>
+</span><span class='line'><span class="l-Scalar-Plain">date</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2014-02-24</span>
+</span><span class='line'><span class="l-Scalar-Plain">comments</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+</span><span class='line'><span class="l-Scalar-Plain">categories</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">Example</span>
+</span><span class='line'><span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">This is an example post.</span>
+</span><span class='line'><span class="l-Scalar-Plain">twitter_card</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">photo</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">image</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://example.com/path/to/image.png</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">width</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">640</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">height</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">960</span>
+</span><span class='line'><span class="nn">---</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>width</code> 태그와 <code>height</code> 태그는 사진의 크기를 나타내며 이 두 태그의 입력은 옵션이다. 자세한 사항은 <a href="https://dev.twitter.com/docs/cards/types/photo-card">Photo Card</a> 페이지에서 확인하길 바란다.</p>
+
+<p><code>gallery</code> 타입의 경우 추가로 필요한 태그가 있으며 예제는 다음과 같다:</p>
+
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span>
+</span><span class='line'><span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
+</span><span class='line'><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&quot;An</span><span class="nv"> </span><span class="s">example</span><span class="nv"> </span><span class="s">post&quot;</span>
+</span><span class='line'><span class="l-Scalar-Plain">date</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2014-02-24</span>
+</span><span class='line'><span class="l-Scalar-Plain">comments</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
+</span><span class='line'><span class="l-Scalar-Plain">categories</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">Example</span>
+</span><span class='line'><span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">This is an example post.</span>
+</span><span class='line'><span class="l-Scalar-Plain">twitter_card</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">gallery</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">image</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://example.com/path/to/image.png</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">image1</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://example.com/path/to/image1.png</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">image2</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://example.com/path/to/image2.png</span>
+</span><span class='line'>    <span class="l-Scalar-Plain">image3</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://example.com/path/to/image3.png</span>
+</span><span class='line'><span class="nn">---</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>원래 <a href="https://dev.twitter.com/docs/cards/types/gallery-card">Gallery Card</a>에 쓰이는 태그는 <code>image0</code>부터 <code>image3</code>까지지만 편의를 위해 <code>image0</code>은 <code>image</code> 태그로 대신했다. 이미지 4장의 주소가 모두 필요하다. 이 외의 카드 종류들은 필요로 하는 태그의 종류가 많고 일일이 입력하기에도 불편할 것 같아 구현하지 않았다.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Apple's SSL/TLS bug &rarr;]]></title>

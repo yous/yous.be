@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Yous</title>
+  <title>Octopress에서 Facebook Open Graph와 Twitter Cards 지원하기 - Yous</title>
   <meta name="author" content="Yous">
 
   
   <meta name="description" content="블로그에 글을 쓰고 나면 트위터나 페이스북에 링크를 공유하곤 하는데 페이스북의 미리보기가 적절히 표시되지 않고 있다는 사실을 깨달았다. 또한 트위터도 그와 비슷한 기능을 제공하는데, 둘 다 지원하면 좋겠다는 생각을 했다. 이를 제대로 지원하려면 Facebook &hellip;">
-  
+  <meta name="keywords" content="octopress, facebook, open graph, twitter, twitter card">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.yous.be">
+  <link rel="canonical" href="http://blog.yous.be/2014/02/24/support-facebook-open-graph-and-twitter-cards-on-octopress">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Yous" type="application/atom+xml">
@@ -33,18 +33,25 @@
 <!-- Social media content metadata -->
 
   <meta property="fb:admins" content="100001802412550">
-  <meta property="og:title" content="Yous">
+  <meta property="og:title" content="Octopress에서 Facebook Open Graph와 Twitter Cards 지원하기">
   <meta property="og:site_name" content="Yous">
-  <meta property="og:url" content="http://blog.yous.be">
+  <meta property="og:url" content="http://blog.yous.be/2014/02/24/support-facebook-open-graph-and-twitter-cards-on-octopress">
   <meta property="og:description" content="블로그에 글을 쓰고 나면 트위터나 페이스북에 링크를 공유하곤 하는데 페이스북의 미리보기가 적절히 표시되지 않고 있다는 사실을 깨달았다. 또한 트위터도 그와 비슷한 기능을 제공하는데, 둘 다 지원하면 좋겠다는 생각을 했다. 이를 제대로 지원하려면 Facebook Open Graph tags와 Twitter Cards에 대해 알아야 한다. 웹 페이지에 적절한 &hellip;">
   
+  
+    <meta property="og:image" content="https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.2178/851562_1376970469205025_523101852_n.png">
   
 
 <meta name="twitter:card" content="summary">
 
-<meta name="twitter:title" content="Yous">
+<meta name="twitter:title" content="Octopress에서 Facebook Open Graph와 Twitter Cards 지원하기">
 <meta name="twitter:description" content="블로그에 글을 쓰고 나면 트위터나 페이스북에 링크를 공유하곤 하는데 페이스북의 미리보기가 적절히 표시되지 않고 있다는 사실을 깨달았다. 또한 트위터도 그와 비슷한 기능을 제공하는데, 둘 다 지원하면 좋겠다는 생각을 했다. 이를 제대로 지원하려면 Facebook Open Graph tags와 Twitter Cards에 대해 알아야 한다. 웹 페이지에 적절한 &hellip;">
 
+
+  
+    <meta name="twitter:image:src" content="https://dev.twitter.com/sites/default/files/images_documentation/web_summary_0.png">
+    
+  
 
 
   
@@ -93,15 +100,14 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/2014/02/24/support-facebook-open-graph-and-twitter-cards-on-octopress/">Octopress에서 Facebook Open Graph와 Twitter Cards 지원하기</a></h1>
+      
+        <h1 class="entry-title">Octopress에서 Facebook Open Graph와 Twitter Cards 지원하기</h1>
+      
     
     
       <p class="meta">
@@ -124,7 +130,7 @@
   </header>
 
 
-  <div class="entry-content"><p>블로그에 글을 쓰고 나면 트위터나 페이스북에 링크를 공유하곤 하는데 페이스북의 미리보기가 적절히 표시되지 않고 있다는 사실을 깨달았다. 또한 트위터도 그와 비슷한 기능을 제공하는데, 둘 다 지원하면 좋겠다는 생각을 했다. 이를 제대로 지원하려면 <a href="https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#tags">Facebook Open Graph tags</a>와 <a href="https://dev.twitter.com/docs/cards">Twitter Cards</a>에 대해 알아야 한다. 웹 페이지에 적절한 <a href="http://en.wikipedia.org/wiki/Meta_element">메타 태그</a>를 추가해 주면 페이스북과 트위터에서 인식하고 올바른, 작성자가 의도한 미리보기를 보여준다. 기본적으로 Zac Clancy의 <a href="http://blackglasses.me/2013/09/19/twitter-cards-facebook-open-graph-and-octopress/">글</a>에 상세히 설명되어 있다.</p>
+<div class="entry-content"><p>블로그에 글을 쓰고 나면 트위터나 페이스북에 링크를 공유하곤 하는데 페이스북의 미리보기가 적절히 표시되지 않고 있다는 사실을 깨달았다. 또한 트위터도 그와 비슷한 기능을 제공하는데, 둘 다 지원하면 좋겠다는 생각을 했다. 이를 제대로 지원하려면 <a href="https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#tags">Facebook Open Graph tags</a>와 <a href="https://dev.twitter.com/docs/cards">Twitter Cards</a>에 대해 알아야 한다. 웹 페이지에 적절한 <a href="http://en.wikipedia.org/wiki/Meta_element">메타 태그</a>를 추가해 주면 페이스북과 트위터에서 인식하고 올바른, 작성자가 의도한 미리보기를 보여준다. 기본적으로 Zac Clancy의 <a href="http://blackglasses.me/2013/09/19/twitter-cards-facebook-open-graph-and-octopress/">글</a>에 상세히 설명되어 있다.</p>
 
 <h2>Facebook Open Graph Tags</h2>
 
@@ -396,125 +402,16 @@
 
 <p>원래 <a href="https://dev.twitter.com/docs/cards/types/gallery-card">Gallery Card</a>에 쓰이는 태그는 <code>image0</code>부터 <code>image3</code>까지지만 편의를 위해 <code>image0</code>은 <code>image</code> 태그로 대신했다. 이미지 4장의 주소가 모두 필요하다. 이 외의 카드 종류들은 필요로 하는 태그의 종류가 많고 일일이 입력하기에도 불편할 것 같아 구현하지 않았다.</p>
 </div>
-  
-  
 
 
-    </article>
-  
-  
-    <article>
+  <footer>
+    <p class="meta">
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/02/23/apples-ssl-tls-bug/">Apple&#8217;s SSL/TLS bug &rarr;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
   
 
+<span class="byline author vcard">Posted by <span class="fn">Yous</span></span>
 
-<time datetime="2014-02-23T04:59:18+09:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>iOS 7.0.6, iOS 6.1.6, Apple TV 6.0.2가 <a href="http://9to5mac.com/2014/02/21/apple-releases-ios-7-0-6-ios-6-1-6-with-fixes/">배포됐다</a>. 애플에서 공개한 iOS 7.0.6의 <a href="http://support.apple.com/kb/HT6147">보안 문제</a>는 다음과 같다.</p>
-
-<blockquote><p>Impact: An attacker with a privileged network position may capture or modify data in sessions protected by SSL/TLS</p>
-
-<p>Description: Secure Transport failed to validate the authenticity of the connection. This issue was addressed by restoring missing validation steps.</p></blockquote>
-
-<p>그런데 이 문제의 원인이 된 <a href="http://opensource.apple.com/source/Security/Security-55471/libsecurity_ssl/lib/sslKeyExchange.c">소스 코드</a>가 흥미롭다. ImperialViolet의 <a href="https://www.imperialviolet.org/2014/02/22/applebug.html">글</a>에 따르면 실제 소스는 이렇다:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">static</span> <span class="n">OSStatus</span>
-</span><span class='line'><span class="nf">SSLVerifySignedServerKeyExchange</span><span class="p">(</span><span class="n">SSLContext</span> <span class="o">*</span><span class="n">ctx</span><span class="p">,</span> <span class="n">bool</span> <span class="n">isRsa</span><span class="p">,</span> <span class="n">SSLBuffer</span> <span class="n">signedParams</span><span class="p">,</span>
-</span><span class='line'>                                 <span class="kt">uint8_t</span> <span class="o">*</span><span class="n">signature</span><span class="p">,</span> <span class="n">UInt16</span> <span class="n">signatureLen</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">OSStatus</span>        <span class="n">err</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">...</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">err</span> <span class="o">=</span> <span class="n">ReadyHash</span><span class="p">(</span><span class="o">&amp;</span><span class="n">SSLHashSHA1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">err</span> <span class="o">=</span> <span class="n">SSLHashSHA1</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">clientRandom</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">err</span> <span class="o">=</span> <span class="n">SSLHashSHA1</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">serverRandom</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">err</span> <span class="o">=</span> <span class="n">SSLHashSHA1</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">signedParams</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">err</span> <span class="o">=</span> <span class="n">SSLHashSHA1</span><span class="p">.</span><span class="n">final</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">hashOut</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">...</span>
-</span><span class='line'>
-</span><span class='line'><span class="nl">fail:</span>
-</span><span class='line'>    <span class="n">SSLFreeBuffer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">signedHashes</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">SSLFreeBuffer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">);</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">err</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>단지 <code>goto fail;</code> 라인이 하나 더 있어서 <code>if</code>문과 관계 없이 두 번째 <code>goto</code>문이 실행되어 signature verification을 무조건 통과하게 된다.</p>
-
-<blockquote><p>Note the two <code>goto fail</code> lines in a row. The first one is correctly bound to the if statement but the second, despite the indentation, isn&rsquo;t conditional at all. The code will always jump to the end from that second goto, <code>err</code> will contain a successful value because the SHA1 update operation was successful and so the signature verification will never fail.</p></blockquote>
-
-<p>또한 OS X 10.9.1에는 아직 <a href="http://9to5mac.com/2014/02/22/apple-patched-a-major-ssl-bug-in-ios-yesterday-but-os-x-is-still-at-risk/">이 문제</a>가 있는 것으로 보인다.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
       
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/01/20/ghost-in-the-shellcode-2014-inview-write-up/">Ghost in the Shellcode 2014: inview Write-up</a></h1>
-    
-    
-      <p class="meta">
-        
 
 
 
@@ -526,83 +423,41 @@
   
 
 
-<time datetime="2014-01-20T22:21:24+09:00" pubdate data-updated="true">Jan 20<span>th</span>, 2014</time>
-        
-      </p>
+<time datetime="2014-02-24T21:50:36+09:00" pubdate data-updated="true">Feb 24<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/octopress/'>Octopress</a>
+  
+</span>
+
+
+    </p>
     
-  </header>
-
-
-  <div class="entry-content"><h2>Question 3 &ndash; inview</h2>
-
-<blockquote><p>Points: 150</p>
-
-<p>The key is in view, what is it? <a href="https://2014.ghostintheshellcode.com/inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155">File</a></p></blockquote>
-
-<p>If the above link doesn&rsquo;t work, please use this <a href="/downloads/2014/01/20/inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155">link</a>.</p>
-
-<p>Extract file with this code:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>mv inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155 inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155.xz
-</span><span class='line'>xz -d inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155.xz
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Then we can see some trailing whitespace in <code>inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155</code>.</p>
-
-<h2>How to Highlight Trailing Whitespace in Vim</h2>
-
-<p>Add this code to your <code>.vimrc</code>:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="nb">highlight</span> ExtraWhitespace ctermbg<span class="p">=</span><span class="k">red</span> guibg<span class="p">=</span><span class="k">red</span>
-</span><span class='line'>autocmd <span class="nb">BufWinEnter</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">/\s\+$/</span>
-</span><span class='line'>autocmd <span class="nb">InsertEnter</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">//</span>
-</span><span class='line'>autocmd <span class="nb">InsertLeave</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">/\s\+$/</span>
-</span><span class='line'><span class="k">if</span> <span class="k">version</span> <span class="p">&gt;=</span> <span class="m">702</span>
-</span><span class='line'>  autocmd <span class="nb">BufWinLeave</span> * <span class="k">call</span> clearmatches<span class="p">()</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Then <a href="http://www.vim.org">Vim</a> highlights trailing whitespace to red color.</p>
-
-<h2>How to Solve</h2>
-
-<p>I felt something weird, so I converted the file to hex code. In Vim:</p>
-
-<pre><code>:%!xxd
-</code></pre>
-
-<p>Looking at whitespace, I realized there are <code>09(Tab)</code>, <code>0A(New Line)</code>, <code>20(Space)</code> with no rule. Right after that I came up with <a href="http://compsoc.dur.ac.uk/whitespace/">Whitespace</a>. Also there is a <a href="http://ws2js.luilak.net/interpreter.html">interpreter written in JavaScript</a>. Almost done! Just copy and paste the file content to site and press &lsquo;Exec&rsquo; button. If you want to execute it in local, you can use <a href="https://github.com/hostilefork/whitespacers">whitespacers</a>.</p>
-
-<p>Finally the key is:</p>
-
-<pre><code>WhitespaceProgrammingIsHard
-</code></pre>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.yous.be/2014/02/24/support-facebook-open-graph-and-twitter-cards-on-octopress/" data-via="" data-counturl="http://blog.yous.be/2014/02/24/support-facebook-open-graph-and-twitter-cards-on-octopress/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
 </div>
-  
-  
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2014/02/23/apples-ssl-tls-bug/" title="Previous Post: Apple's SSL/TLS bug">&laquo; Apple's SSL/TLS bug</a>
+      
+      
+    </p>
+  </footer>
+</article>
 
 
-    </article>
-  
-  <div class="pagination">
-    
-      <a class="prev" href="/page/2/">&larr; Older</a>
-    
-    <a href="/archives">Blog Archives</a>
-    
-  </div>
 </div>
+
 <aside class="sidebar">
   
     <section>
@@ -614,7 +469,7 @@
       </li>
     
       <li class="post">
-        <a href="/2014/02/23/apples-ssl-tls-bug/">Apple&#8217;s SSL/TLS bug</a>
+        <a href="/2014/02/23/apples-ssl-tls-bug/">Apple's SSL/TLS bug</a>
       </li>
     
       <li class="post">
@@ -639,6 +494,7 @@
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -649,19 +505,6 @@
 
 </footer>
   
-
-<script type="text/javascript">
-      var disqus_shortname = 'yousbe';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
 
 
 
