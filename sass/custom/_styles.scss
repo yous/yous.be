@@ -113,6 +113,10 @@ aside {
 	display: none;
 }
 
+a {
+  @include link-colors($link-color, $hover: $link-color-hover, $focus: $link-color-hover, $visited: $link-color, $active: $link-color-active);
+}
+
 .highlight .line-numbers, html .gist .gist-file .gist-syntax .highlight .line_numbers {
 	@include box-shadow(none);
 	text-shadow: none;
