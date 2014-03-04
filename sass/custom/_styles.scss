@@ -121,6 +121,10 @@ article header h1 a {
   @include link-colors($text-color, $hover: $link-color-hover, $focus: $link-color-hover, $visited: $text-color, $active: $link-color-active);
 }
 
+.fb-like.fb_iframe_widget span {
+  vertical-align: baseline !important;
+}
+
 .highlight .line-numbers, html .gist .gist-file .gist-syntax .highlight .line_numbers {
 	@include box-shadow(none);
 	text-shadow: none;
