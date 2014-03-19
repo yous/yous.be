@@ -9,7 +9,7 @@
   <meta name="author" content="Yous">
 
   
-  <meta name="description" content="Brian Lovin이 쓴 페이스북 Paper의 디자인 디테일에 관한 글이다. 페이스북 Paper가 나온 지 하루가 지났고 대부분의 리뷰가 다소 갈리고 있다. 나는 페이스북의 열성적 팬은 아니지만, Paper의 디자인과 디테일에 쏟은 관심은 비길 데 없으며 이는 다른 &hellip;">
+  <meta name="description" content="SkullSecurity가 쓴 return-oriented programming에 관한 입문서가 있어 번역했다. ">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -36,14 +36,14 @@
   <meta property="og:title" content="Yous">
   <meta property="og:site_name" content="Yous">
   <meta property="og:url" content="http://blog.yous.be">
-  <meta property="og:description" content="Brian Lovin이 쓴 페이스북 Paper의 디자인 디테일에 관한 글이다. 페이스북 Paper가 나온 지 하루가 지났고 대부분의 리뷰가 다소 갈리고 있다. 나는 페이스북의 열성적 팬은 아니지만, Paper의 디자인과 디테일에 쏟은 관심은 비길 데 없으며 이는 다른 디자이너들과 공유할 가치가 있다. Paper 앱의 애니메이션을 총 23종의 GIF 파일로 &hellip;">
+  <meta property="og:description" content="SkullSecurity가 쓴 return-oriented programming에 관한 입문서가 있어 번역했다. ">
   
   
 
 <meta name="twitter:card" content="summary">
 
 <meta name="twitter:title" content="Yous">
-<meta name="twitter:description" content="Brian Lovin이 쓴 페이스북 Paper의 디자인 디테일에 관한 글이다. 페이스북 Paper가 나온 지 하루가 지났고 대부분의 리뷰가 다소 갈리고 있다. 나는 페이스북의 열성적 팬은 아니지만, Paper의 디자인과 디테일에 쏟은 관심은 비길 데 없으며 이는 다른 디자이너들과 공유할 가치가 있다. Paper 앱의 애니메이션을 총 23종의 GIF 파일로 &hellip;">
+<meta name="twitter:description" content="SkullSecurity가 쓴 return-oriented programming에 관한 입문서가 있어 번역했다. ">
 
 
 
@@ -95,6 +95,47 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2014/03/19/ropasaurusrex-a-primer-on-return-oriented-programming/">ropasaurusrex: return-oriented programming 입문서 &rarr;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-19T20:44:03+09:00" pubdate data-updated="true">Mar 19<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="https://blog.skullsecurity.org">SkullSecurity</a>가 쓴 <a href="http://en.wikipedia.org/wiki/Return-oriented_programming">return-oriented programming</a>에 관한 <a href="https://blog.skullsecurity.org/2013/ropasaurusrex-a-primer-on-return-oriented-programming">입문서</a>가 있어 번역했다.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2014/03/19/ropasaurusrex-a-primer-on-return-oriented-programming/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -177,109 +218,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/02/23/apples-ssl-tls-bug/">Apple&#8217;s SSL/TLS bug &rarr;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-23T04:59:18+09:00" pubdate data-updated="true">Feb 23<span>rd</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>iOS 7.0.6, iOS 6.1.6, Apple TV 6.0.2가 <a href="http://9to5mac.com/2014/02/21/apple-releases-ios-7-0-6-ios-6-1-6-with-fixes/">배포됐다</a>. 애플에서 공개한 iOS 7.0.6의 <a href="http://support.apple.com/kb/HT6147">보안 문제</a>는 다음과 같다.</p>
-
-<blockquote><p>Impact: An attacker with a privileged network position may capture or modify data in sessions protected by SSL/TLS</p>
-
-<p>Description: Secure Transport failed to validate the authenticity of the connection. This issue was addressed by restoring missing validation steps.</p></blockquote>
-
-<p>그런데 이 문제의 원인이 된 <a href="http://opensource.apple.com/source/Security/Security-55471/libsecurity_ssl/lib/sslKeyExchange.c">소스 코드</a>가 흥미롭다. ImperialViolet의 <a href="https://www.imperialviolet.org/2014/02/22/applebug.html">글</a>에 따르면 실제 소스는 이렇다:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">static</span> <span class="n">OSStatus</span>
-</span><span class='line'><span class="nf">SSLVerifySignedServerKeyExchange</span><span class="p">(</span><span class="n">SSLContext</span> <span class="o">*</span><span class="n">ctx</span><span class="p">,</span> <span class="n">bool</span> <span class="n">isRsa</span><span class="p">,</span> <span class="n">SSLBuffer</span> <span class="n">signedParams</span><span class="p">,</span>
-</span><span class='line'>                                 <span class="kt">uint8_t</span> <span class="o">*</span><span class="n">signature</span><span class="p">,</span> <span class="n">UInt16</span> <span class="n">signatureLen</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">OSStatus</span>        <span class="n">err</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">...</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">err</span> <span class="o">=</span> <span class="n">ReadyHash</span><span class="p">(</span><span class="o">&amp;</span><span class="n">SSLHashSHA1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">err</span> <span class="o">=</span> <span class="n">SSLHashSHA1</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">clientRandom</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">err</span> <span class="o">=</span> <span class="n">SSLHashSHA1</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">serverRandom</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">err</span> <span class="o">=</span> <span class="n">SSLHashSHA1</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">signedParams</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">err</span> <span class="o">=</span> <span class="n">SSLHashSHA1</span><span class="p">.</span><span class="n">final</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">hashOut</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">...</span>
-</span><span class='line'>
-</span><span class='line'><span class="nl">fail:</span>
-</span><span class='line'>    <span class="n">SSLFreeBuffer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">signedHashes</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">SSLFreeBuffer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">);</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">err</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>단지 <code>goto fail;</code> 라인이 하나 더 있어서 <code>if</code>문과 관계 없이 두 번째 <code>goto</code>문이 실행되어 signature verification을 무조건 통과하게 된다.</p>
-
-<blockquote><p>Note the two <code>goto fail</code> lines in a row. The first one is correctly bound to the if statement but the second, despite the indentation, isn&rsquo;t conditional at all. The code will always jump to the end from that second goto, <code>err</code> will contain a successful value because the SHA1 update operation was successful and so the signature verification will never fail.</p></blockquote>
-
-<p>또한 OS X 10.9.1에는 아직 <a href="http://9to5mac.com/2014/02/22/apple-patched-a-major-ssl-bug-in-ios-yesterday-but-os-x-is-still-at-risk/">이 문제</a>가 있는 것으로 보인다.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -295,6 +233,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/03/19/ropasaurusrex-a-primer-on-return-oriented-programming/">ropasaurusrex: return-oriented programming 입문서</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/03/04/design-details-paper-by-facebook/">Design Details: Paper by Facebook</a>
       </li>
     
@@ -308,10 +250,6 @@
     
       <li class="post">
         <a href="/2014/01/20/ghost-in-the-shellcode-2014-inview-write-up/">Ghost in the Shellcode 2014: inview Write-up</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2013/12/07/how-to-check-and-toggle-wifi-or-3g-4g-state-in-android/">How to Check and Toggle WiFi or 3G/4G State in Android</a>
       </li>
     
   </ul>
