@@ -10,16 +10,17 @@ keywords: pctf, plaidctf, ropasaurusrex, rop, return-oriented programming
 external-url: https://blog.skullsecurity.org/2013/ropasaurusrex-a-primer-on-return-oriented-programming
 ---
 
-[SkullSecurity][]가 쓴 [return-oriented programming][]에 관한 [입문서][external-url]가 있어 번역했다.
+[SkullSecurity][]의 [Ron Bowes][]가 쓴 [return-oriented programming][]에 관한 [입문서][external-url]가 있어 번역했다.
 
 [SkullSecurity]: https://blog.skullsecurity.org
+[Ron Bowes]: https://blog.skullsecurity.org/author/ron
 [return-oriented programming]: http://en.wikipedia.org/wiki/Return-oriented_programming
 [external-url]: https://blog.skullsecurity.org/2013/ropasaurusrex-a-primer-on-return-oriented-programming
 
 <!-- more -->
 ---
 
-CTF 대회 중 가장 기분이 나쁠 때는 [나중에 깨닫는][hindsight] 문제를 풀 때다. 한 문제에 몇 시간을 보내고 나서--내가 [cnot][]에 쓴 시간에 비할 바는 아니지만--사실은 꽤 쉬운 문제라는 걸 깨닫는다. 하지만 역시 골치아프다. 그게 결국에는 ROP에 대한 것이다!
+CTF 대회 중 가장 기분이 나쁠 때는 [나중에 깨닫는][hindsight] 문제를 풀 때다. 한 문제에 몇 시간을 보내고 나서--내가 [cnot][]에 쓴 시간에 비할 바는 아니지만--사실은 꽤 쉬운 문제라는 걸 깨닫는다. 하지만 역시 골치아프다. 그게 바로 ROP다!
 
 [hindsight]: http://knowyourmeme.com/memes/captain-hindsight
 [cnot]: https://blog.skullsecurity.org/blog/2013/epic-cnot-writeup-plaidctf
@@ -30,7 +31,7 @@ CTF 대회 중 가장 기분이 나쁠 때는 [나중에 깨닫는][hindsight] �
 
 먼저, 이 글에서 파트너가 되어 준 HikingPete에게 감사하고 싶다. 그 덕분에 우리는 이 퍼즐을 훨씬 빨리 풀 수 있었고, 잠깐 동안 세계 3위를 차지했다!
 
-우연히, 난 한동안 [ROP][]에 대한 글을 쓸 셈이었다. 심지어 기초가 될 취약한(vulnerable) 데모 프로그램까지 만들고 있었다! 하지만 PlaidCTF에서 문제가 나왔으니 그 데모 대신 이 문제에 대해 말하겠다! 이건 단순한 writeup이 아니고, 상당히 상세한 return-oriented programming 입문서가 될 것이다! 만약 CTF 문제를 푸는 과정이 더 궁금하다면, [내 cnot writeup][my writeup of cnot]을 보라. :)
+우연히, 난 한동안 [ROP][]에 대한 글을 쓸 셈이었다. 심지어 기초가 될 취약한(vulnerable) 데모 프로그램까지 만들고 있었다! 하지만 PlaidCTF에서 문제가 나왔으니 그 데모 대신 이 문제에 대해 말하겠다! 이건 단순한 문제 풀이(writeup)가 아니고, 상당히 상세한 return-oriented programming 입문서가 될 것이다! 만약 CTF 문제를 푸는 과정이 더 궁금하다면, [내 cnot writeup][my writeup of cnot]을 보라. :)
 
 [ROP]: https://en.wikipedia.org/wiki/Return-oriented_programming
 [my writeup of cnot]: https://blog.skullsecurity.org/blog/2013/epic-cnot-writeup-plaidctf
@@ -42,7 +43,7 @@ ROP--return-oriented programming--는 고전적 익스플로잇(exploit) "[retur
 [return into libc]: https://en.wikipedia.org/wiki/Return-to-libc_attack
 [DEP]: https://en.wikipedia.org/wiki/Data_Execution_Prevention
 
-ROP를 이용하면 이미 실행 가능한 메모리 영역(executable memory)에 있는 코드 중 '[return][]'으로 끝나는 조각들을 뽑아 고를 수 있다. 그 조각들이 가끔은 간단하고, 가끔은 복잡하다. 다행히도 이 예제에서 우리는 간단한 것들만 필요하다!
+ROP를 이용하면 실행 가능한 메모리 영역(executable memory)에 이미 있는 코드 중 '[return][]'으로 끝나는 조각들을 고를 수 있다. 그 조각들이 간단할 때도 있고, 복잡할 때도 있다. 다행히도 이 예제에서 우리는 간단한 것들만 필요하다!
 
 [return]: https://en.wikipedia.org/wiki/Return_statement
 
@@ -50,7 +51,7 @@ ROP를 이용하면 이미 실행 가능한 메모리 영역(executable memory)�
 
 [stack]: https://en.wikipedia.org/wiki/Call_stack
 [my assembly tutorial]: https://blog.skullsecurity.org/wiki/index.php/The_Stack
-[^1]: [링크](https://wiki.skullsecurity.org/Assembly)가 바뀌었다.
+[^1]: 링크가 [바뀌었다](https://wiki.skullsecurity.org/Assembly).
 
 ## 스택
 
@@ -58,7 +59,7 @@ ROP를 이용하면 이미 실행 가능한 메모리 영역(executable memory)�
 
 [Stack overflows]: https://en.wikipedia.org/wiki/Stack_overflow
 
-이 간단한 아이디어를 설명하자면, 함수 `A()`가 함수 `B()`를 두 개의 인자 1, 2와 함께 콜 한다고 하자. 그리고 `B()`는 `C()`를 두 개의 인자 3, 4와 함께 호출한다고 하자. `C()`가 실행 중일 때, 스택은 이렇게 보일 것이다:
+이 간단한 아이디어를 설명하자면, 함수 `A()`가 함수 `B()`를 두 개의 인자 1, 2와 함께 호출한다고 하자. 그리고 `B()`는 `C()`를 두 개의 인자 3, 4와 함께 호출한다고 하자. `C()`가 실행 중일 때, 스택은 이렇게 보일 것이다:
 
 ``` plain
 +----------------------+
@@ -100,7 +101,7 @@ ROP를 이용하면 이미 실행 가능한 메모리 영역(executable memory)�
 
 당신이 이 수준에서 숨쉬듯이 생각하는 사람이 아니라면 이건 꽤 어려운 (눈을 끄는?) 것이기 때문에 조금 설명하도록 하겠다. 매번 당신이 함수를 호출할 때, 새로운 "스택 프레임"이 만들어진다. "프레임"은 단순히 말해 함수가 자신을 위해 스택에 할당한 메모리다. 사실은 할당조차 하지 않으며, 그저 끝에 뭔가 추가하고 `esp` 레지스터를 업데이트 한다. 그러면 이것이 호출하는 모든 함수는 자신의 스택 프레임이 어디에서 시작해야 하는지 알게 된다(`esp`, 스택 포인터이며 이는 기본적으로 변수다).
 
-이 스택 프레임은 현재 함수의 상태(Context)를 담고 있고, 당신이 쉽게 a) 새로 불린 함수의 프레임을 만들고, b) 이전 프레임으로 돌아갈 수 있게 한다 (예를 들어, 함수에서 반환한 경우). `esp`(스택 포인터)는 위아래로 움직이지만 항상 스택의 시작점(가장 낮은 주소)을 가리킨다.
+이 스택 프레임은 현재 함수의 상태(context)를 담고 있고, 당신이 쉽게 a) 새로 불린 함수의 프레임을 만들고, b) 이전 프레임으로 돌아갈 수 있게 한다 (예를 들어, 함수에서 반환한 경우). `esp`(스택 포인터)는 위아래로 움직이지만 항상 스택의 시작점(가장 낮은 주소)을 가리킨다.
 
 다른 함수를 호출했을 때 원래 함수의 지역 변수들은 어디로 가는지 궁금한 적이 있는가 (더 좋게는, 같은 함수를 재귀적으로 한 번 더 호출할 때)? 당연히 없을 것이다! 하지만 생각해 봤다면, 이미 알고 있을 것이다: 우리가 다시 돌아올 예전 스택 프레임에 머무른다!
 
@@ -118,7 +119,7 @@ ROP를 이용하면 이미 실행 가능한 메모리 영역(executable memory)�
 
 ## 천국, 지옥 그리고 스택 프레임
 
-ROP를 이해하기 위해 이해해야 하는 가장 중요한 건: 함수의 스택 프레임은 그 함수의 온 우주라는 것이다. 스택은 함수의 신이고, 인자는 성경의 십계명이고, 지역 변수는 죄며, 프레임 포인터는 성경이고 반환 주소는 천국이다 (그래, 지옥일 수도 있다). 모든 건 [인텔의 책][Book of Intel], 챕터 3, 19-26 구절에 있다 (주: 사실 아니니 보는 수고는 하지 마라).
+ROP를 이해하기 위해 이해해야 하는 가장 중요한 건: 함수의 스택 프레임은 그 함수의 온 우주라는 것이다. 스택은 함수의 신이고, 인자는 성경의 십계명이고, 지역 변수는 죄며, 프레임 포인터는 성경이고 반환 주소는 천국이다 (그래, 지옥일 수도 있다). 모든 건 [인텔의 책][Book of Intel], 3장, 19-26구절에 있다 (주: 사실 아니니 보는 수고는 하지 마라).
 
 [Book of Intel]: http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html
 
@@ -171,7 +172,7 @@ ROP를 이해하기 위해 이해해야 하는 가장 중요한 건: 함수의 �
           ...            (낮은 주소)
 ```
 
-변수 `buf`의 길이는 16바이트다. 만약 프로그램이 buf의 17번째 바이트(즉, `buf[16]`)에 쓰려고 하면 어떻게 될까? 에, 반환 주소의 마지막 바이트--[리틀 엔디안][little endian]--에 쓰게 된다. 18번째 바이트는 반환 주소의 끝에서 두 번째 바이트에 쓰게 되고, 그런 방식이다. 이렇게 우리는 우리가 원하는 곳으로 반환 주소를 바꿀 수 있다. _원하는 곳 어디든_. 함수가 반환하면, 어디로 가겠는가? 뭐, 아마 그건 가야 할 곳으로 가고 있다고 생각할 것이다--완벽한 세계에서는, 그럴 것이다--하지만 아니다! 이 경우에는, 공격자가 원하는 곳 어디로든지 갈 수 있다. 공격자가 [0][]으로 점프하라고 하면, 0으로 점프하고 크래시를 일으킬 것이다. 공격자가 `0x41414141`("AAAA")로 점프하라고 하면, 그리로 점프하고 아마도 크래시를 일으킬 것이다. 공격자가 스택으로 점프하라고 하면... 음, 이건 좀 복잡해진다...
+변수 `buf`의 길이는 16바이트다. 만약 프로그램이 buf의 17번째 바이트(즉, `buf[16]`)에 쓰려고 하면 어떻게 될까? 에, 반환 주소의 마지막 바이트--[리틀 엔디언][little endian]--에 쓰게 된다. 18번째 바이트는 반환 주소의 끝에서 두 번째 바이트에 쓰게 되고, 그런 방식이다. 이렇게 우리는 우리가 원하는 곳으로 반환 주소를 바꿀 수 있다. _원하는 곳 어디든_. 함수가 반환하면, 어디로 가겠는가? 뭐, 아마 그건 가야 할 곳으로 가고 있다고 생각할 것이다--완벽한 세계에서는, 그럴 것이다--하지만 아니다! 이 경우에는, 공격자가 원하는 곳 어디로든지 갈 수 있다. 공격자가 [0][]으로 점프하라고 하면, 0으로 점프하고 크래시를 일으킬 것이다. 공격자가 `0x41414141`("AAAA")로 점프하라고 하면, 그리로 점프하고 아마도 크래시를 일으킬 것이다. 공격자가 스택으로 점프하라고 하면... 음, 이건 좀 복잡해진다...
 
 [little endian]: https://en.wikipedia.org/wiki/Endianness
 [0]: https://en.wikipedia.org/wiki/Zero_page
@@ -186,7 +187,7 @@ ROP를 이해하기 위해 이해해야 하는 가장 중요한 건: 함수의 �
 
 ## 취약점
 
-여기 IDA에서 갓 나온 취약한 함수다:
+여기 IDA에서 갓 뽑은 취약한 함수다:
 
 ```
 .text:080483F4vulnerable_function proc near
@@ -216,7 +217,7 @@ ssize_t __cdecl vulnerable_function()
 }
 ```
 
-256 바이트를 읽어 136 바이트 버퍼에 넣는다. 즐거웠어요 스택 씨!
+256바이트를 읽어 136바이트 버퍼에 넣는다. 즐거웠어요 스택 씨!
 
 이걸 실행함으로써 쉽게 확인할 수 있다. 'A' 뭉치를 파이프로 넣고, 어떻게 되는지 보자:
 
@@ -231,7 +232,7 @@ Program terminated with signal 11, Segmentation fault.
 (gdb)
 ```
 
-간단히 말해서, 이건 우리가 반환 주소를 글자 A 4개(`0x41414141`="AAAA")로 덮어썼다는 걸 의미한다.
+간단히 말해서, 이건 우리가 반환 주소를 글자 A 4개(`0x41414141`="AAAA")로 덮어썼다는 말이다.
 
 이제, 정확히 뭘 조종하고 있는 건지 알아내기 위한 좋은 방법이 있고 나쁜 방법이 있다. 나는 나쁜 방법을 썼다. 내 버퍼 끝에 "BBBB"를 넣고 `0x42424242`("BBBB")에서 크래시를 일으킬 때까지 'A'를 지웠다.
 
@@ -267,7 +268,7 @@ ASLR을 끄고 싶다면:
 $ sudo sysctl -w kernel.randomize_va_space=0
 ```
 
-이건 당신의 시스템이 익스플로잇 당하기 쉽게 만든다는 것을 알아둬라. 그러니 이걸 실험실 환경 바깥에서 하는 건 추천하지 않는다!
+이건 당신의 시스템을 익스플로잇 당하기 쉽게 만든다는 것을 알아둬라. 그러니 이걸 실험실 환경 바깥에서 하는 건 추천하지 않는다!
 
 초반 익스플로잇을 위한 루비 코드다:
 
@@ -313,7 +314,7 @@ Program terminated with signal 11, Segmentation fault.
 
 [libc]: https://en.wikipedia.org/wiki/C_standard_library
 
-음, 궁극적인 목표는 시스템 명령어를 실행하는 것이다. [stdin과 stdout][stdin and stdout]이 모두 [소켓][socket]에 연결되어 있으므로, 우리가 예를 들어 `system("cat /etc/passwd")`를 실행할 수 있다면, 끝난 거다! 한 번 이걸 하면, 우린 어떤 명령어든 실행할 수 있다. 하지만 그건 두 가지를 포함한다:
+음, 궁극적인 목표는 시스템 명령어를 실행하는 것이다. [stdin과 stdout][stdin and stdout]이 모두 [소켓][socket]에 연결되어 있으므로, 예를 들어 우리가 `system("cat /etc/passwd")`를 실행할 수 있다면, 끝난 거다! 이걸 할 수 있으면, 우린 어떤 명령어든 실행할 수 있다. 하지만 그건 두 가지 조건을 포함한다:
 
 [stdin and stdout]: https://en.wikipedia.org/wiki/Standard_streams
 [socket]: https://en.wikipedia.org/wiki/Network_socket
@@ -349,7 +350,7 @@ ron@debian-x86 ~ $ objdump -x ropasaurusrex  | grep -A1 '\.data'
 
 .dynamic 섹션은 동적 링크 정보를 담고 있다. 우리가 하려는 것에 그건 필요 없으니 주소 `0x08049530`을 덮어쓰기로 하자.
 
-다음 단계는 주소 `0x08049530`에 명령어 문자열을 쓸 수 있는 함수를 찾는 것이다. 가장 쓰기 편리한 함수는 라이브러리보다 실행 파일 자체에 들어 있는 것인데, 실행 파일 안의 함수는 시스템에 따라 변하지 않기 때문이다. 우리가 뭘 가지고 있는지 살펴보자:
+다음 단계는 주소 `0x08049530`에 명령어 문자열을 쓸 수 있는 함수를 찾는 것이다. 가장 쓰기 편리한 함수는 라이브러리보다 실행 파일 자체에 들어 있는 것인데, 실행 파일 안의 함수는 시스템에 따라 변하지 않기 때문이다. 우리에게 무엇이 있는지 살펴보자:
 
 ``` sh
 ron@debian-x86 ~ $ objdump -R ropasaurusrex
@@ -365,20 +366,20 @@ OFFSET   TYPE              VALUE
 0804961c R_386_JUMP_SLOT   read
 ```
 
-즉시 사용 가능한 `read()`와 `write()`를 찾았다. 이건 유용하다! `read()` 함수는 소켓에서 데이터를 읽을 것이고 그걸 메모리에 쓸 것이다. 프로토타입은 이렇게 생겼을 것이다:
+즉시 사용 가능한 `read()`와 `write()`를 찾았다. 이건 유용하다! `read()` 함수는 소켓에서 데이터를 읽을 것이고 그걸 메모리에 쓸 것이다. 프로토타입은 이럴 것이다:
 
 ``` c
 ssize_t read(int fd, void *buf, size_t count);
 ```
 
-당신이 `read()` 함수에 진입했을 때, 스택이 이렇게 되길 원하는 것이다:
+당신이 `read()` 함수에 진입했을 때, 이런 스택을 원할 것이다:
 
 ``` plain
 +----------------------+
 |         ...          | - 상관 없다, 다른 함수들이 여기 올 것이다.
 +----------------------+
 
-+----------------------+ <-- read()의 스택 프레임 시작점
++----------------------+ <-- read()의 스택 프레임 시작
 |     size_t count     | - count, strlen("cat /etc/passwd")
 +----------------------+
 |      void *buf       | - 쓸 수 있는(writable) memory, 0x08049530
@@ -447,7 +448,7 @@ connect to [127.0.0.1] from debian-x86.skullseclabs.org [127.0.0.1] 53456
 Segmentation fault (core dumped)
 ```
 
-그게 `read()`의 반환 주소(`0x43434343`)에서 크래시를 일으켰고 명령어를 `0x08049530`의 메모리에 썼다는 걸 확인해라:
+그게 `read()`의 반환 주소(`0x43434343`)에서 크래시를 일으켰고 명령어를 메모리 `0x08049530`에 썼다는 걸 확인해라:
 
 ``` sh
 $ gdb --quiet ./ropasaurusrex core
@@ -491,7 +492,7 @@ Program terminated with signal 11, Segmentation fault.
 0xb7ec2450 <system>:    0x890cec83
 ```
 
-`system()`은 인자를 하나만 받으므로, 스택 프레임을 만드는 건 꽤 쉽다:
+`system()`은 인자를 하나만 받으므로, 스택 프레임을 만드는 건 쉬운 편이다:
 
 ``` plain
 +----------------------+
@@ -563,9 +564,9 @@ Program terminated with signal 11, Segmentation fault.
 +----------------------+
 ```
 
-어라, 이건 좋지 않다! `system()`에 진입할 때, 스택 포인터가 우리가 원하는 `system()` 프레임 바닥이 아닌 `read()` 프레임의 안쪽을 가리키고 있다. 어떻게 해야 할까?
+어라, 이건 좋지 않다! `system()`에 진입할 때, 스택 포인터는 우리가 원하는 `system()` 프레임 바닥이 아닌 `read()` 프레임의 안쪽을 가리키고 있다. 어떻게 해야 할까?
 
-사실, ROP 익스플로잇을 수행할 때, `pop/pop/ret`이라는 굉장히 중요한 구조가 있다. 이 경우엔 `pop/pop/pop/ret`이며 이걸 줄여 "pppr"이라고 부르자. 스택을 비우기에 충분한 "pop"들 뒤에 return이라는 것만 기억해라.
+사실, ROP 익스플로잇을 수행할 때, `pop/pop/ret`이라는 굉장히 중요한 구조가 있다. 이 경우엔 `pop/pop/pop/ret`이며 이걸 줄여 "pppr"이라고 하자. 스택을 비우기에 충분한 "pop"들 뒤에 return이라는 것만 기억해라.
 
 스택에서 원하지 않는 것들을 지우기 위해 `pop/pop/pop/ret`을 사용한다. `read()`는 인자를 3개 받으므로, 우린 스택에서 그 셋을 모두 뽑은 다음 반환해야 한다. 설명을 위해 `read()`가 `pop/pop/pop/ret`으로 반환한 직후의 스택을 그려보자면 이렇다:
 
@@ -631,7 +632,7 @@ Program terminated with signal 11, Segmentation fault.
 +----------------------+
 ```
 
-이게 반환하면, 정확히 우리가 원하는 것을 얻을 수 있다:
+반환하고 나면, 정확히 우리가 원하는 것을 얻을 수 있다:
 
 ``` plain
 +----------------------+
@@ -677,7 +678,7 @@ $ objdump -d ./ropasaurusrex | egrep 'pop|ret'
 
 이건 다음 함수를 실행할 때 1~4개의 인자를 스택에서 지울 수 있게 해준다. 완벽하다!
 
-그리고 이걸 직접 하고 있다면 pop들이 연속한 주소에 있다는 걸 확인해라. 그래서 `egrep`으로 찾는 것은 약간 위험하다.
+그리고 이걸 직접 따라해 보고 있다면, pop들이 연속한 주소에 있어야 한다는 걸 기억해라. 그래서 `egrep`으로 찾는 것은 약간 위험하다.
 
 이제 우리는 세 개의 `pop`과 `ret`이 필요하면 (`read()`가 사용한 세 개의 인자를 지우기 위해) 주소 `0x80484b6`을 사용하면 될 것이다. 그러면 스택은 이렇게 될 것이다:
 
@@ -819,7 +820,7 @@ Program terminated with signal 11, Segmentation fault.
 
 ## ASLR 정복
 
-그래서, 뭘 해야 할까? 사실, 바이너리 자체는 ASLR이 적용되지 않아서, 거기 있는 모든 주소는 유용하게도 그대로 머물러 있다고 믿을 수 있다. 아주 중요하게도, 재배치(relocation) 테이블은 같은 주소에 남아있다:
+그래서, 뭘 해야 할까? 사실, 바이너리 자체는 ASLR이 적용되지 않아서, 유용하게도 거기 있는 모든 주소는 그대로 머물러 있다고 믿을 수 있다. 아주 중요하게도, 재배치(relocation) 테이블은 같은 주소에 남아있다:
 
 ``` sh
 $ objdump -R ./ropasaurusrex
@@ -1056,7 +1057,7 @@ sys:x:3:3:sys:/dev:/bin/sh
 [...]
 ```
 
-물론 `cat /etc/passwd`를 원하는 것으로 바꿀 수 있다 (netcat 리스너를 포함해서!).
+물론 `cat /etc/passwd`를 원하는 값으로 바꿀 수 있다 (netcat 리스너를 포함해서!).
 
 ``` sh
 ron@debian-x86 ~ $ ruby sploit.rb "pwd"
@@ -1077,4 +1078,4 @@ ron
 
 이게 끝이다! 난 믿을 만한, DEP/ASLR을 우회하는 ropasaurusrex 익스플로잇을 만들었다.
 
-질문이 있다면 댓글을 달거나 나에게 연락해라!
+질문이 있다면 댓글을 달거나 나에게 연락해주길 바란다!
