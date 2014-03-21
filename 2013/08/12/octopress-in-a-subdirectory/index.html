@@ -139,11 +139,11 @@ rake set_root_dir[/] 그리고 _config.yml을 수정해 줍니다. &hellip;">
 
 <div class="entry-content"><p>Octopress 블로그를 사이트 루트가 아닌 하위 디렉토리에서 제공하고 싶을 때, 터미널에서 다음과 같이 실행해 줍니다.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake set_root_dir<span class="o">[</span>/blog<span class="o">]</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake set_root_dir<span class="o">[</span>/blog<span class="o">]</span>
 </span><span class='line'>
 </span><span class='line'><span class="c"># To go back to publishing to the document root</span>
 </span><span class='line'>rake set_root_dir<span class="o">[</span>/<span class="o">]</span>
@@ -152,8 +152,7 @@ rake set_root_dir[/] 그리고 _config.yml을 수정해 줍니다. &hellip;">
 
 <p>그리고 <code>_config.yml</code>을 수정해 줍니다.</p>
 
-<figure class='code'><figcaption><span>_config.yml </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>_config.yml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="c1"># url: http://yoursite.com</span>
 </span><span class='line'><span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://yoursite.com/blog</span>
@@ -162,8 +161,7 @@ rake set_root_dir[/] 그리고 _config.yml을 수정해 줍니다. &hellip;">
 
 <p>추가로, <code>/blog</code>를 하위 디렉토리로 사용했을 때, Archives와 Categories, 그리고 포스트 경로들이 <code>http://yoursite.com/blog/blog/...</code>의 형태로 생성됩니다. 중복된 <code>/blog</code>를 지우기 위해 다음과 같이 설정을 변경해 줍니다.</p>
 
-<figure class='code'><figcaption><span>_config.yml </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>_config.yml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -178,8 +176,7 @@ rake set_root_dir[/] 그리고 _config.yml을 수정해 줍니다. &hellip;">
 
 
 
-<figure class='code'><figcaption><span>source/_includes/custom/navigation.html </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>source/_includes/custom/navigation.html</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -192,8 +189,7 @@ rake set_root_dir[/] 그리고 _config.yml을 수정해 줍니다. &hellip;">
 
 <p>그리고, <code>source/blog/archives</code> 폴더를 <code>source/archives</code>로 옮겨주시기 바랍니다.</p>
 
-<figure class='code'><figcaption><span>source/index.html </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>source/index.html</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>

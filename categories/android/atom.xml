@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | Yous]]></title>
   <link href="http://blog.yous.be/categories/android/atom.xml" rel="self"/>
   <link href="http://blog.yous.be/"/>
-  <updated>2014-03-21T05:12:02+09:00</updated>
+  <updated>2014-03-21T22:22:41+09:00</updated>
   <id>http://blog.yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -60,18 +60,16 @@
 
 <p><code>ACCESS_WIFI_STATE</code> permission must be added to <code>AndroidManifest.xml</code>.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>AndroidManifest.xml </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="ni">&amp;lt;</span>uses-permission android:name=<span class="ni">&amp;ldquo;</span>android.permission.ACCESS_WIFI_STATE<span class="ni">&amp;rdquo;</span> /&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p><code>xml AndroidManifest.xml
+&lt;uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /&gt;
+</code></p>
 
 <p>Checking code is simple. In activity, <a href="http://developer.android.com/reference/android/net/wifi/WifiManager.html">WifiManager</a> has a handy method.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">WifiManager</span> <span class="n">wifiManager</span> <span class="o">=</span> <span class="o">(</span><span class="n">WifiManager</span><span class="o">)</span> <span class="n">getSystemService</span><span class="o">(</span><span class="n">WIFI_SERVICE</span><span class="o">);</span>
-</span><span class='line'><span class="kt">boolean</span> <span class="n">wifiEnabled</span> <span class="o">=</span> <span class="n">wifiManager</span><span class="o">.</span><span class="na">isWifiEnabled</span><span class="o">();</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p><code>java
+WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
+boolean wifiEnabled = wifiManager.isWifiEnabled();
+</code></p>
 
 <p><a id="1-2"></a></p>
 
@@ -79,36 +77,24 @@
 
 <p>This is more complicated. As WiFi case, we have to add <code>ACCESS_NETWORK_STATE</code> permission.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>AndroidManifest.xml </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="ni">&amp;lt;</span>uses-permission android:name=<span class="ni">&amp;ldquo;</span>android.permission.ACCESS_NETWORK_STATE<span class="ni">&amp;rdquo;</span> /&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p><code>xml AndroidManifest.xml
+&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;
+</code></p>
 
 <p>Then we get <a href="http://developer.android.com/reference/android/net/NetworkInfo.html">NetworkInfo</a> from <a href="http://developer.android.com/reference/android/net/ConnectivityManager.html">ConnectivityManager</a>.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">ConnectivityManager</span> <span class="n">connectivityManager</span> <span class="o">=&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;(</span><span class="n">ConnectivityManager</span><span class="o">)</span> <span class="n">getSystemService</span><span class="o">(</span><span class="n">CONNECTIVITY_SERVICE</span><span class="o">);</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">NetworkInfo</span> <span class="n">mobileInfo</span> <span class="o">=&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">connectivityManager</span><span class="o">.</span><span class="na">getNetworkInfo</span><span class="o">(</span><span class="n">ConnectivityManager</span><span class="o">.</span><span class="na">TYPE_MOBILE</span><span class="o">);</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>``` java
+ConnectivityManager connectivityManager =</p>
+
+<pre><code>(ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
+</code></pre>
+
+<p>NetworkInfo mobileInfo =</p>
+
+<pre><code>connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+</code></pre>
+
+<p>```</p>
 
 <p>See <a href="http://developer.android.com/reference/android/net/NetworkInfo.html#getState()">getState()</a> overview.</p>
 
@@ -141,74 +127,57 @@
 </ul>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">mobileInfo</span><span class="o">.</span><span class="na">getState</span><span class="o">()</span>
-</span><span class='line'><span class="c1">// =&gt; DISCONNECTED</span>
-</span><span class='line'><span class="n">mobileInfo</span><span class="o">.</span><span class="na">getReason</span><span class="o">()</span>
-</span><span class='line'><span class="c1">// =&gt; &amp;ldquo;dataDisabled&amp;rdquo;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p><code>java
+mobileInfo.getState()
+// =&gt; DISCONNECTED
+mobileInfo.getReason()
+// =&gt; "dataDisabled"
+</code></p>
 
 <ul>
 <li>Enable WiFi only</li>
 </ul>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">mobileInfo</span><span class="o">.</span><span class="na">getState</span><span class="o">()</span>
-</span><span class='line'><span class="c1">// =&gt; DISCONNECTED</span>
-</span><span class='line'><span class="n">mobileInfo</span><span class="o">.</span><span class="na">getReason</span><span class="o">()</span>
-</span><span class='line'><span class="c1">// =&gt; &amp;ldquo;specificDisabled&amp;rdquo;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p><code>java
+mobileInfo.getState()
+// =&gt; DISCONNECTED
+mobileInfo.getReason()
+// =&gt; "specificDisabled"
+</code></p>
 
 <ul>
 <li>Enable 3G/4G only</li>
 </ul>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">mobileInfo</span><span class="o">.</span><span class="na">getState</span><span class="o">()</span>
-</span><span class='line'><span class="c1">// =&gt; CONNECTED</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p><code>java
+mobileInfo.getState()
+// =&gt; CONNECTED
+</code></p>
 
 <ul>
 <li>Disable both</li>
 </ul>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">mobileInfo</span><span class="o">.</span><span class="na">getState</span><span class="o">()</span>
-</span><span class='line'><span class="c1">// =&gt; DISCONNECTED</span>
-</span><span class='line'><span class="n">mobileInfo</span><span class="o">.</span><span class="na">getReason</span><span class="o">()</span>
-</span><span class='line'><span class="c1">// =&gt; &amp;ldquo;specificDisabled&amp;rdquo;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p><code>java
+mobileInfo.getState()
+// =&gt; DISCONNECTED
+mobileInfo.getReason()
+// =&gt; "specificDisabled"
+</code></p>
 
 <p>So the code would be like this.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">String</span> <span class="n">reason</span> <span class="o">=</span> <span class="n">mobileInfo</span><span class="o">.</span><span class="na">getReason</span><span class="o">();</span>
-</span><span class='line'><span class="kt">boolean</span> <span class="n">mobileDisabled</span> <span class="o">=</span> <span class="n">mobileInfo</span><span class="o">.</span><span class="na">getState</span><span class="o">()</span> <span class="o">==</span> <span class="n">NetworkInfo</span><span class="o">.</span><span class="na">State</span><span class="o">.</span><span class="na">DISCONNECTED</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;&amp;</span><span class="n">amp</span><span class="o">;&amp;</span><span class="n">amp</span><span class="o">;</span> <span class="o">(</span><span class="n">reason</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">reason</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;specificDisabled&quot;</span><span class="o">));</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>``` java
+String reason = mobileInfo.getReason();
+boolean mobileDisabled = mobileInfo.getState() == NetworkInfo.State.DISCONNECTED</p>
+
+<pre><code>&amp;&amp; (reason == null || reason.equals("specificDisabled"));
+</code></pre>
+
+<p>```</p>
 
 <p><a id="2"></a></p>
 
@@ -220,37 +189,27 @@
 
 <h3>WiFi</h3>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">NetworkInfo</span> <span class="n">wifiInfo</span> <span class="o">=&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">connectivityManager</span><span class="o">.</span><span class="na">getNetworkInfo</span><span class="o">(</span><span class="n">ConnectivityManager</span><span class="o">.</span><span class="na">TYPE_WIFI</span><span class="o">);</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">boolean</span> <span class="n">wifiConnected</span> <span class="o">=</span> <span class="n">wifiInfo</span><span class="o">.</span><span class="na">getState</span><span class="o">()</span> <span class="o">==</span> <span class="n">NetworkInfo</span><span class="o">.</span><span class="na">State</span><span class="o">.</span><span class="na">CONNECTED</span><span class="o">;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>``` java
+NetworkInfo wifiInfo =</p>
+
+<pre><code>connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+</code></pre>
+
+<p>boolean wifiConnected = wifiInfo.getState() == NetworkInfo.State.CONNECTED;
+```</p>
 
 <p><a id="2-2"></a></p>
 
 <h3>3G/4G</h3>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">NetworkInfo</span> <span class="n">mobileInfo</span> <span class="o">=&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">connectivityManager</span><span class="o">.</span><span class="na">getNetworkInfo</span><span class="o">(</span><span class="n">ConnectivityManager</span><span class="o">.</span><span class="na">TYPE_MOBILE</span><span class="o">);</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="kt">boolean</span> <span class="n">mobileConnected</span> <span class="o">=</span> <span class="n">mobileInfo</span><span class="o">.</span><span class="na">getState</span><span class="o">()</span> <span class="o">==</span> <span class="n">NetworkInfo</span><span class="o">.</span><span class="na">State</span><span class="o">.</span><span class="na">CONNECTED</span><span class="o">;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>``` java
+NetworkInfo mobileInfo =</p>
+
+<pre><code>connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
+</code></pre>
+
+<p>boolean mobileConnected = mobileInfo.getState() == NetworkInfo.State.CONNECTED;
+```</p>
 
 <p><a id="3"></a></p>
 
@@ -262,18 +221,16 @@
 
 <p><code>CHANGE_WIFI_STATE</code> permission must be added to <code>AndroidManifest.xml</code>.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>AndroidManifest.xml </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="ni">&amp;lt;</span>uses-permission android:name=<span class="ni">&amp;ldquo;</span>android.permission.CHANGE_WIFI_STATE<span class="ni">&amp;rdquo;</span> /&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p><code>xml AndroidManifest.xml
+&lt;uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /&gt;
+</code></p>
 
 <p>Enabling or disabling WiFi is easy.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">WifiManager</span> <span class="n">wifiManager</span> <span class="o">=</span> <span class="o">(</span><span class="n">WifiManager</span><span class="o">)</span> <span class="n">getSystemService</span><span class="o">(</span><span class="n">WIFI_SERVICE</span><span class="o">);</span>
-</span><span class='line'><span class="n">wifiManager</span><span class="o">.</span><span class="na">setWifiEnabled</span><span class="o">(</span><span class="n">isWifiEnabled</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p><code>java
+WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
+wifiManager.setWifiEnabled(isWifiEnabled);
+</code></p>
 
 <p><a id="3-2"></a></p>
 
@@ -283,116 +240,68 @@
 
 <p>For Android 2.3 and above:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">private</span> <span class="kt">void</span> <span class="nf">setMobileDataEnabled</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">enabled</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>  <span class="kd">final</span> <span class="n">ConnectivityManager</span> <span class="n">conman</span> <span class="o">=&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>  <span class="o">(</span><span class="n">ConnectivityManager</span><span class="o">)</span> <span class="n">context</span><span class="o">.</span><span class="na">getSystemService</span><span class="o">(</span><span class="n">Context</span><span class="o">.</span><span class="na">CONNECTIVITY_SERVICE</span><span class="o">);</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="k">try</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="kd">final</span> <span class="n">Class</span> <span class="n">conmanClass</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="n">conman</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">());</span>
-</span><span class='line'><span class="kd">final</span> <span class="n">Field</span> <span class="n">iConnectivityManagerField</span> <span class="o">=</span> <span class="n">conmanClass</span><span class="o">.</span><span class="na">getDeclaredField</span><span class="o">(</span><span class="s">&quot;mService&quot;</span><span class="o">);</span>
-</span><span class='line'><span class="n">iConnectivityManagerField</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-</span><span class='line'><span class="kd">final</span> <span class="n">Object</span> <span class="n">iConnectivityManager</span> <span class="o">=</span> <span class="n">iConnectivityManagerField</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">conman</span><span class="o">);</span>
-</span><span class='line'><span class="kd">final</span> <span class="n">Class</span> <span class="n">iConnectivityManagerClass</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span>
-</span><span class='line'>    <span class="n">iConnectivityManager</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">());</span>
-</span><span class='line'><span class="kd">final</span> <span class="n">Method</span> <span class="n">setMobileDataEnabledMethod</span> <span class="o">=</span> <span class="n">iConnectivityManagerClass</span>
-</span><span class='line'>    <span class="o">.</span><span class="na">getDeclaredMethod</span><span class="o">(</span><span class="s">&quot;setMobileDataEnabled&quot;</span><span class="o">,</span> <span class="n">Boolean</span><span class="o">.</span><span class="na">TYPE</span><span class="o">);</span>
-</span><span class='line'><span class="n">setMobileDataEnabledMethod</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
-</span><span class='line'>
-</span><span class='line'><span class="n">setMobileDataEnabledMethod</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">iConnectivityManager</span><span class="o">,</span> <span class="n">enabled</span><span class="o">);</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ClassNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InvocationTargetException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NoSuchMethodException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IllegalAccessException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NoSuchFieldException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span>  <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>``` java
+private void setMobileDataEnabled(Context context, boolean enabled) {
+  final ConnectivityManager conman =</p>
+
+<pre><code>  (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
+</code></pre>
+
+<p>  try {</p>
+
+<pre><code>final Class conmanClass = Class.forName(conman.getClass().getName());
+final Field iConnectivityManagerField = conmanClass.getDeclaredField("mService");
+iConnectivityManagerField.setAccessible(true);
+final Object iConnectivityManager = iConnectivityManagerField.get(conman);
+final Class iConnectivityManagerClass = Class.forName(
+    iConnectivityManager.getClass().getName());
+final Method setMobileDataEnabledMethod = iConnectivityManagerClass
+    .getDeclaredMethod("setMobileDataEnabled", Boolean.TYPE);
+setMobileDataEnabledMethod.setAccessible(true);
+
+setMobileDataEnabledMethod.invoke(iConnectivityManager, enabled);
+</code></pre>
+
+<p>  } catch (ClassNotFoundException e) {</p>
+
+<pre><code>e.printStackTrace();
+</code></pre>
+
+<p>  } catch (InvocationTargetException e) {</p>
+
+<pre><code>e.printStackTrace();
+</code></pre>
+
+<p>  } catch (NoSuchMethodException e) {</p>
+
+<pre><code>e.printStackTrace();
+</code></pre>
+
+<p>  } catch (IllegalAccessException e) {</p>
+
+<pre><code>e.printStackTrace();
+</code></pre>
+
+<p>  } catch (NoSuchFieldException e) {</p>
+
+<pre><code>e.printStackTrace();
+</code></pre>
+
+<p>  }
+}
+```</p>
 
 <p>It requires to <code>CHANGE_NETWORK_STATE</code> permission.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>AndroidManifest.xml </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="ni">&amp;lt;</span>uses-permission android:name=<span class="ni">&amp;ldquo;</span>android.permission.CHANGE_NETWORK_STATE<span class="ni">&amp;rdquo;</span> /&gt;
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p><code>xml AndroidManifest.xml
+&lt;uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" /&gt;
+</code></p>
 
 <p>In Activity:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">setMobileDataEnabled</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">isMobileDataEnabled</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p><code>java
+setMobileDataEnabled(this, isMobileDataEnabled);
+</code></p>
 
 <p>Codes for Android 2.2 and below are also in the same <a href="http://stackoverflow.com/questions/12535101/how-can-i-turn-off-3g-data-programmatically-on-android#12535246">link</a>, but I didn&rsquo;t check it.</p>
 ]]></content>

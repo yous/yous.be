@@ -88,7 +88,7 @@ whats up (test.js) download
 20
 /**
 sample javascript from xui
-*/ var undefined, xui, window = this, string = new String(&#39;string&#39 &hellip;">
+*/ var undefined, xui, window = this, string = new String(&#39;string&#39;), &hellip;">
   
   
 
@@ -121,7 +121,7 @@ whats up (test.js) download
 20
 /**
 sample javascript from xui
-*/ var undefined, xui, window = this, string = new String(&#39;string&#39 &hellip;">
+*/ var undefined, xui, window = this, string = new String(&#39;string&#39;), &hellip;">
 
 
 
@@ -201,9 +201,7 @@ sample javascript from xui
   </header>
 
 
-<div class="entry-content">
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class="entry-content"><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>So guys
 </span><span class='line'>whats up</span></code></pre></td></tr></table></div></figure>
@@ -257,7 +255,7 @@ sample javascript from xui
 
 
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -302,31 +300,19 @@ sample javascript from xui
 
 
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">desc</span> <span class="s2">&quot;Edit a post (defaults to most recent)&quot;</span>
-</span><span class='line'><span class="n">task</span> <span class="ss">:edit_post</span><span class="p">,</span> <span class="ss">:title</span> <span class="k">do</span> <span class="o">|</span><span class="n">t</span><span class="p">,</span> <span class="n">args</span><span class="o">|</span>
-</span><span class='line'>  <span class="n">args</span><span class="o">.</span><span class="n">with_defaults</span><span class="p">(</span><span class="ss">:title</span> <span class="o">=&gt;</span> <span class="kp">false</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">posts</span> <span class="o">=</span> <span class="no">Dir</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;</span><span class="si">#{</span><span class="n">source_dir</span><span class="si">}</span><span class="s2">/</span><span class="si">#{</span><span class="n">posts_dir</span><span class="si">}</span><span class="s2">/*.*&quot;</span><span class="p">)</span>
-</span><span class='line'>  <span class="n">post</span> <span class="o">=</span> <span class="p">(</span><span class="n">args</span><span class="o">.</span><span class="n">title</span><span class="p">)</span> <span class="p">?</span> <span class="n">post</span> <span class="o">=</span> <span class="n">posts</span><span class="o">.</span><span class="n">keep_if</span> <span class="p">{</span><span class="o">|</span><span class="n">post</span><span class="o">|</span> <span class="n">post</span> <span class="o">=~</span> <span class="sr">/</span><span class="si">#{</span><span class="n">args</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="sr">/</span><span class="p">}</span><span class="o">.</span><span class="n">last</span> <span class="p">:</span> <span class="n">posts</span><span class="o">.</span><span class="n">last</span>
-</span><span class='line'>  <span class="k">if</span> <span class="n">post</span>
-</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;Opening </span><span class="si">#{</span><span class="n">post</span><span class="si">}</span><span class="s2"> with </span><span class="si">#{</span><span class="n">editor</span><span class="si">}</span><span class="s2">...&quot;</span>
-</span><span class='line'>    <span class="nb">system</span> <span class="s2">&quot;</span><span class="si">#{</span><span class="no">ENV</span><span class="o">[</span><span class="s1">&#39;EDITOR&#39;</span><span class="o">]</span><span class="si">}</span><span class="s2"> </span><span class="si">#{</span><span class="n">post</span><span class="si">}</span><span class="s2"> &amp;&quot;</span>
-</span><span class='line'>  <span class="k">else</span>
-</span><span class='line'>    <span class="nb">puts</span> <span class="s2">&quot;No posts were found with </span><span class="se">\&quot;</span><span class="si">#{</span><span class="n">args</span><span class="o">.</span><span class="n">title</span><span class="si">}</span><span class="se">\&quot;</span><span class="s2"> in the title.&quot;</span>
-</span><span class='line'>  <span class="k">end</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
+<div><script src='https://gist.github.com/2219214.js'></script>
+<noscript><pre><code>desc &quot;Edit a post (defaults to most recent)&quot;
+task :edit_post, :title do |t, args|
+  args.with_defaults(:title =&gt; false)
+  posts = Dir.glob(&quot;#{source_dir}/#{posts_dir}/*.*&quot;)
+  post = (args.title) ? post = posts.keep_if {|post| post =~ /#{args.title}/}.last : posts.last
+  if post
+    puts &quot;Opening #{post} with #{editor}...&quot;
+    system &quot;#{ENV[&#39;EDITOR&#39;]} #{post} &amp;&quot;
+  else
+    puts &quot;No posts were found with \&quot;#{args.title}\&quot; in the title.&quot;
+  end
+end</code></pre></noscript></div>
 
 
 
@@ -336,8 +322,7 @@ sample javascript from xui
 
 
 
-<figure class='code'><figcaption><span>Testing PHP (syntax_test.php) </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>Testing PHP (syntax_test.php)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -400,8 +385,7 @@ sample javascript from xui
 
 
 
-<figure class='code'><figcaption><span>Testing Objective C (Cocoa1AppDelegate.m) </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>Testing Objective C (Cocoa1AppDelegate.m)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -448,8 +432,7 @@ sample javascript from xui
 
 
 
-<figure class='code'><figcaption><span>Testing Haskel (syntax_test.hs) </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>Testing Haskel (syntax_test.hs)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -489,7 +472,7 @@ sample javascript from xui
 <span class='line-number'>38</span>
 <span class='line-number'>39</span>
 <span class='line-number'>40</span>
-</pre></td><td class='code'><pre><code class='hs'><span class='line'><span class="cm">{-# LANGUAGE OverloadedStrings #-}</span>
+</pre></td><td class='code'><pre><code class='haskell'><span class='line'><span class="cm">{-# LANGUAGE OverloadedStrings #-}</span>
 </span><span class='line'><span class="kr">module</span> <span class="nn">Main</span> <span class="kr">where</span>
 </span><span class='line'>
 </span><span class='line'><span class="c1">--import Prelude hiding (id)</span>
@@ -534,8 +517,7 @@ sample javascript from xui
 
 
 
-<figure class='code'><figcaption><span>Testing Bash (syntax_test.sh) </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>Testing Bash (syntax_test.sh)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -592,8 +574,7 @@ sample javascript from xui
 
 
 
-<figure class='code'><figcaption><span>Testing Python (syntax_test.py) </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>Testing Python (syntax_test.py)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -660,7 +641,7 @@ sample javascript from xui
 <span class='line-number'>65</span>
 <span class='line-number'>66</span>
 <span class='line-number'>67</span>
-</pre></td><td class='code'><pre><code class='py'><span class='line'><span class="c"># test python (sample from offlineimap)</span>
+</pre></td><td class='code'><pre><code class='python'><span class='line'><span class="c"># test python (sample from offlineimap)</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">class</span> <span class="nc">ExitNotifyThread</span><span class="p">(</span><span class="n">Thread</span><span class="p">):</span>
 </span><span class='line'>    <span class="sd">&quot;&quot;&quot;This class is designed to alert a &quot;monitor&quot; to the fact that a thread has</span>
@@ -732,8 +713,7 @@ sample javascript from xui
 
 
 
-<figure class='code'><figcaption><span>Testing Perl (syntax_test.pl) </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>Testing Perl (syntax_test.pl)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -804,8 +784,7 @@ sample javascript from xui
 
 
 
-<figure class='code'><figcaption><span>Testing Java (syntax_test.java) </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>Testing Java (syntax_test.java)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -844,8 +823,7 @@ sample javascript from xui
 
 
 
-<figure class='code'><figcaption><span>Test C (syntax_test.c) </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>Test C (syntax_test.c)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -915,8 +893,7 @@ sample javascript from xui
 
 
 
-<figure class='code'><figcaption><span>Coffeescript Tricks </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>Coffeescript Tricks</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -931,11 +908,9 @@ sample javascript from xui
 
 
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>Test Ruby String Interpolation</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">puts</span> <span class="s2">&quot;a</span><span class="si">#{</span><span class="s2">&quot;b</span><span class="si">#{</span><span class="s2">&quot;c</span><span class="si">#{</span><span class="s2">&quot;d&quot;</span><span class="si">}</span><span class="s2">&quot;</span><span class="si">}</span><span class="s2">&quot;</span><span class="si">}</span><span class="s2">&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
-
-
 
 </div>
 

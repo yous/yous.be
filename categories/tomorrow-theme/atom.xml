@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tomorrow Theme | Yous]]></title>
   <link href="http://blog.yous.be/categories/tomorrow-theme/atom.xml" rel="self"/>
   <link href="http://blog.yous.be/"/>
-  <updated>2014-03-21T05:12:02+09:00</updated>
+  <updated>2014-03-21T22:22:41+09:00</updated>
   <id>http://blog.yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -41,18 +41,13 @@
 </ol>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>sass/custom/_tomorrow.scss </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="c1">// @import &amp;ldquo;tomorrow/tomorrow-night&amp;rdquo;;</span>
-</span><span class='line'><span class="c1">// @import &amp;ldquo;tomorrow/tomorrow&amp;rdquo;;</span>
-</span><span class='line'><span class="k">@import</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="nt">tomorrow</span><span class="o">/</span><span class="nt">tomorrow-night-eighties</span><span class="k">&amp;</span><span class="nt">rdquo</span><span class="o">;;</span>
-</span><span class='line'><span class="o">//</span> <span class="o">@</span><span class="nt">import</span> <span class="k">&amp;</span><span class="nt">ldquo</span><span class="o">;</span><span class="nt">tomorrow</span><span class="o">/</span><span class="nt">tomorrow-night-blue</span><span class="k">&amp;</span><span class="nt">rdquo</span><span class="o">;;</span>
-</span><span class='line'><span class="o">//</span> <span class="o">@</span><span class="nt">import</span> <span class="k">&amp;</span><span class="nt">ldquo</span><span class="o">;</span><span class="nt">tomorrow</span><span class="o">/</span><span class="nt">tomorrow-night-bright</span><span class="k">&amp;</span><span class="nt">rdquo</span><span class="o">;;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p><code>scss sass/custom/_tomorrow.scss
+// @import "tomorrow/tomorrow-night";
+// @import "tomorrow/tomorrow";
+@import "tomorrow/tomorrow-night-eighties";
+// @import "tomorrow/tomorrow-night-blue";
+// @import "tomorrow/tomorrow-night-bright";
+</code></p>
 
 <h2>Fixes</h2>
 
@@ -91,24 +86,16 @@
 </ul>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>sass/custom/_styles.scss </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="nc">.highlight</span> <span class="nc">.line-numbers</span><span class="o">,</span> <span class="nt">html</span> <span class="nc">.gist</span> <span class="nc">.gist-file</span> <span class="nc">.gist-syntax</span> <span class="nc">.highlight</span> <span class="nc">.line_numbers</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">@include</span><span class="nd"> box-shadow</span><span class="p">(</span><span class="no">none</span><span class="p">);</span>
-</span><span class='line'>  <span class="na">text-shadow</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span><span class="nt">figure</span><span class="nc">.code</span><span class="o">,</span> <span class="nc">.gist-file</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">@include</span><span class="nd"> box-shadow</span><span class="p">(</span><span class="no">none</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>``` scss sass/custom/_styles.scss
+.highlight .line-numbers, html .gist .gist-file .gist-syntax .highlight .line_numbers {
+  @include box-shadow(none);
+  text-shadow: none;
+}</p>
+
+<p>figure.code, .gist-file {
+  @include box-shadow(none);
+}
+```</p>
 
 <ul>
 <li><strong>This issue was fixed by this <a href="https://github.com/lucaslew/whitespace/commit/b047f268c804808fb8e2d6a17cbfe8669b9da6b4">commit</a>.</strong> This blog uses <a href="https://github.com/lucaslew/whitespace">Whitespace</a> theme. I found some problems that it overrides colors of code block to dark blue and it hides line numbers. To fix these problems, remove lines in <code>sass/custom/_styles.scss</code>.</li>

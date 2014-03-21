@@ -197,8 +197,8 @@ iOS 6.1.2 업데이트 앨범별 임의 재생 iTunes에는 앨범별 임의 재
 
 <p>이제 본론으로 들어가겠습니다. 변경할 파일은 단 하나입니다.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>/System/Library/PreferenceBundles/MusicSettings.bundle/Music.plist
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>/System/Library/PreferenceBundles/MusicSettings.bundle/Music.plist
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -208,8 +208,7 @@ iOS 6.1.2 업데이트 앨범별 임의 재생 iTunes에는 앨범별 임의 재
 
 <p>위 사진에서 보이는 것들의 정보를 가지고 있다고 생각하시면 됩니다. 소스를 직접 봅시다.</p>
 
-<figure class='code'><figcaption><span>Music.plist </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>Music.plist</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -464,7 +463,7 @@ iOS 6.1.2 업데이트 앨범별 임의 재생 iTunes에는 앨범별 임의 재
 
 <p>지금까지 아이폰에서는 노래별 임의 재생만을 할 수 있었습니다. 여기에서 우리는 메뉴에 노래별 임의 재생이나 앨범별 임의 재생을 선택할 수 있도록 <code>PSLinkListCell</code>을 하나 만들 것입니다. 위치는 <code>음량 자동 조절</code> 바로 아래가 적당할 것 같습니다. <code>&lt;string&gt;SOUND_CHECK_IPHONE&lt;/string&gt;</code>으로 끝나는 <code>&lt;dict&gt;…&lt;/dict&gt;</code> 바로 아래에 다음 코드를 추가하시면 됩니다.</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -523,8 +522,7 @@ iOS 6.1.2 업데이트 앨범별 임의 재생 iTunes에는 앨범별 임의 재
 
 <p>아래는 수정한 <code>Music.plist</code>의 최종 결과입니다.</p>
 
-<figure class='code'><figcaption><span>Music.plist </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>Music.plist</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>

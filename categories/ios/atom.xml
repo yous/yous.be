@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iOS | Yous]]></title>
   <link href="http://blog.yous.be/categories/ios/atom.xml" rel="self"/>
   <link href="http://blog.yous.be/"/>
-  <updated>2014-03-21T05:12:02+09:00</updated>
+  <updated>2014-03-21T22:22:41+09:00</updated>
   <id>http://blog.yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -26,73 +26,41 @@
 
 <p>그런데 이 문제의 원인이 된 <a href="http://opensource.apple.com/source/Security/Security-55471/libsecurity_ssl/lib/sslKeyExchange.c">소스 코드</a>가 흥미롭다. ImperialViolet의 <a href="https://www.imperialviolet.org/2014/02/22/applebug.html">글</a>에 따르면 실제 소스는 이렇다:</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">static</span> <span class="n">OSStatus</span>
-</span><span class='line'><span class="n">SSLVerifySignedServerKeyExchange</span><span class="p">(</span><span class="n">SSLContext</span> <span class="o">*</span><span class="n">ctx</span><span class="p">,</span> <span class="n">bool</span> <span class="n">isRsa</span><span class="p">,</span> <span class="n">SSLBuffer</span> <span class="n">signedParams</span><span class="p">,</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span>                             <span class="kt">uint8_t</span> <span class="o">*</span><span class="n">signature</span><span class="p">,</span> <span class="n">UInt16</span> <span class="n">signatureLen</span><span class="p">)</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">{</span><span class="o">&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">OSStatus</span>        <span class="n">err</span><span class="p">;</span>
-</span><span class='line'><span class="p">...</span>
-</span><span class='line'>
-</span><span class='line'><span class="k">if</span> <span class="p">((</span><span class="n">err</span> <span class="o">=</span> <span class="n">ReadyHash</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">SSLHashSHA1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">hashCtx</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
-</span><span class='line'><span class="k">if</span> <span class="p">((</span><span class="n">err</span> <span class="o">=</span> <span class="n">SSLHashSHA1</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">hashCtx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">clientRandom</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
-</span><span class='line'><span class="k">if</span> <span class="p">((</span><span class="n">err</span> <span class="o">=</span> <span class="n">SSLHashSHA1</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">hashCtx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">serverRandom</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
-</span><span class='line'><span class="k">if</span> <span class="p">((</span><span class="n">err</span> <span class="o">=</span> <span class="n">SSLHashSHA1</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">hashCtx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">signedParams</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
-</span><span class='line'><span class="k">if</span> <span class="p">((</span><span class="n">err</span> <span class="o">=</span> <span class="n">SSLHashSHA1</span><span class="p">.</span><span class="n">final</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">hashCtx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">hashOut</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>    <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
-</span><span class='line'><span class="p">...</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="n">fail</span><span class="o">:&lt;/</span><span class="n">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">pre</span><span class="o">&gt;&lt;</span><span class="n">code</span><span class="o">&gt;</span><span class="n">SSLFreeBuffer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">signedHashes</span><span class="p">);</span>
-</span><span class='line'><span class="n">SSLFreeBuffer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">amp</span><span class="p">;</span><span class="n">hashCtx</span><span class="p">);</span>
-</span><span class='line'><span class="k">return</span> <span class="n">err</span><span class="p">;</span>
-</span><span class='line'><span class="o">&lt;/</span><span class="n">code</span><span class="o">&gt;&lt;/</span><span class="n">pre</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="n">p</span><span class="o">&gt;</span><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>``` c sslKeyExchange.c
+static OSStatus
+SSLVerifySignedServerKeyExchange(SSLContext *ctx, bool isRsa, SSLBuffer signedParams,</p>
+
+<pre><code>                             uint8_t *signature, UInt16 signatureLen)
+</code></pre>
+
+<p>{</p>
+
+<pre><code>OSStatus        err;
+...
+
+if ((err = ReadyHash(&amp;SSLHashSHA1, &amp;hashCtx)) != 0)
+    goto fail;
+if ((err = SSLHashSHA1.update(&amp;hashCtx, &amp;clientRandom)) != 0)
+    goto fail;
+if ((err = SSLHashSHA1.update(&amp;hashCtx, &amp;serverRandom)) != 0)
+    goto fail;
+if ((err = SSLHashSHA1.update(&amp;hashCtx, &amp;signedParams)) != 0)
+    goto fail;
+    goto fail;
+if ((err = SSLHashSHA1.final(&amp;hashCtx, &amp;hashOut)) != 0)
+    goto fail;
+...
+</code></pre>
+
+<p>fail:</p>
+
+<pre><code>SSLFreeBuffer(&amp;signedHashes);
+SSLFreeBuffer(&amp;hashCtx);
+return err;
+</code></pre>
+
+<p>}
+```</p>
 
 <p>단지 <code>goto fail;</code> 라인이 하나 더 있어서 <code>if</code>문과 관계 없이 두 번째 <code>goto</code>문이 실행되어 signature verification을 무조건 통과하게 된다.</p>
 
@@ -162,9 +130,9 @@
 
 <p>이제 본론으로 들어가겠습니다. 변경할 파일은 단 하나입니다.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>/System/Library/PreferenceBundles/MusicSettings.bundle/Music.plist
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p><code>sh
+/System/Library/PreferenceBundles/MusicSettings.bundle/Music.plist
+</code></p>
 
 <p>확장자는 <a href="http://ko.wikipedia.org/wiki/%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0_%EB%A6%AC%EC%8A%A4%ED%8A%B8">plist</a>지만 그냥 메모장으로 열어도 편집할 수 있을 것입니다. 이 파일에는 <code>설정</code> &ndash; <code>음악</code>에서 볼 수 있는 모든 정보를 담고 있습니다.</p>
 
@@ -172,260 +140,134 @@
 
 <p>위 사진에서 보이는 것들의 정보를 가지고 있다고 생각하시면 됩니다. 소스를 직접 봅시다.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Music.plist </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
-<span class='line-number'>96</span>
-<span class='line-number'>97</span>
-<span class='line-number'>98</span>
-<span class='line-number'>99</span>
-<span class='line-number'>100</span>
-<span class='line-number'>101</span>
-<span class='line-number'>102</span>
-<span class='line-number'>103</span>
-<span class='line-number'>104</span>
-<span class='line-number'>105</span>
-<span class='line-number'>106</span>
-<span class='line-number'>107</span>
-<span class='line-number'>108</span>
-<span class='line-number'>109</span>
-<span class='line-number'>110</span>
-<span class='line-number'>111</span>
-<span class='line-number'>112</span>
-<span class='line-number'>113</span>
-<span class='line-number'>114</span>
-<span class='line-number'>115</span>
-<span class='line-number'>116</span>
-<span class='line-number'>117</span>
-<span class='line-number'>118</span>
-<span class='line-number'>119</span>
-<span class='line-number'>120</span>
-<span class='line-number'>121</span>
-<span class='line-number'>122</span>
-<span class='line-number'>123</span>
-<span class='line-number'>124</span>
-<span class='line-number'>125</span>
-<span class='line-number'>126</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="ni">&amp;lt;</span>?xml version=<span class="ni">&amp;ldquo;</span>1.0<span class="ni">&amp;rdquo;</span> encoding=<span class="ni">&amp;ldquo;</span>UTF-8<span class="ni">&amp;rdquo;</span>?&gt;
-</span><span class='line'><span class="ni">&amp;lt;</span>!DOCTYPE plist PUBLIC <span class="ni">&amp;ldquo;&amp;ndash;</span>//Apple//DTD PLIST 1.0//EN<span class="ni">&amp;rdquo;</span> <span class="ni">&amp;ldquo;</span><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;</span><span class="nt">&gt;</span>http://www.apple.com/DTDs/PropertyList-1.0.dtd<span class="nt">&lt;/a&gt;</span><span class="ni">&amp;rdquo;</span>&gt;
-</span><span class='line'><span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'><span class="nt">&lt;dict&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;key&gt;</span>items<span class="nt">&lt;/key&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;array&gt;&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>dict<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>PostNotification<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>com.apple.mobileipod-prefsChanged<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>cell<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>PSSwitchCell<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>default<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>false/<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>defaults<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>com.apple.mobileipod<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>id<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>ShakeToShuffle<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>key<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>MusicShakeToShuffleEnabledSetting<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>label<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>SHAKE_TO_SHUFFLE<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>/dict<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>dict<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>PostNotification<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>com.apple.mobileipod-prefsChanged<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>cell<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>PSSwitchCell<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>default<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>false/<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>defaults<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>com.apple.mobileipod<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>id<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>SoundCheck<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>key<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>MusicSoundCheckEnabledSetting<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>label<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>SOUND_CHECK_IPHONE<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>/dict<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>dict<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>PostNotification<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>com.apple.mobileipod-prefsChanged<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>cell<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>PSLinkListCell<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>default<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>Off<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>defaults<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>com.apple.mobileipod<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>detail<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>EQPresetListController<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>get<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>EQ<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>id<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>EQ<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>key<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>MusicEQPresetName<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>label<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>EQ_IPHONE<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>set<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>setEQ:<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>/dict<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>dict<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>cell<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>PSLinkListCell<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>detail<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>VolumeLimitController<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>get<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>volumeLimitEnabled:<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>id<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>VolumeLimit<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>label<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>VOLUME_LIMIT_IPHONE<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>/dict<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>dict<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>PostNotification<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>com.apple.mobileipod-prefsChanged<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>cell<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>PSSwitchCell<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>default<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>true/<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>defaults<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>com.apple.mobileipod<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>id<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>LyricsAndPodcastInfo<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>key<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>LyricsAndPodcastInfoEnabledDefaultsKey_1_Key<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>label<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>LYRICS_AND_PODCAST_INFO_IPHONE<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>/dict<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>dict<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>PostNotification<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>com.apple.mobileipod-prefsChanged<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>cell<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>PSSwitchCell<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>default<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>true/<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>defaults<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>com.apple.mobileipod<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>id<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>GroupByAlbumArtistPad<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>key<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>MusicGroupByAlbumArtistEnabledSetting<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>label<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>GROUP_BY_ALBUM_ARTIST_IPAD<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>/dict<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>dict<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>PostNotification<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>com.apple.mobileipod-prefsChanged<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>cell<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>PSSwitchCell<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>default<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>true/<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>defaults<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>com.apple.mobileipod<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>id<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>GroupByAlbumArtistPhone<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>key<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>MusicGroupByAlbumArtistEnabledSetting<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>label<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>GROUP_BY_ALBUM_ARTIST_IPHONE<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>/dict<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;p&gt;</span>  <span class="nt">&lt;/array&gt;</span>
-</span><span class='line'><span class="nt">&lt;/dict&gt;</span>
-</span><span class='line'><span class="nt">&lt;/plist&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>``` xml Music.plist
+&lt;?xml version=&ldquo;1.0&rdquo; encoding=&ldquo;UTF-8&rdquo;?>
+&lt;!DOCTYPE plist PUBLIC &ldquo;&ndash;//Apple//DTD PLIST 1.0//EN&rdquo; &ldquo;<a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd">http://www.apple.com/DTDs/PropertyList-1.0.dtd</a>&rdquo;>
+<plist version="1.0">
+<dict>
+  <key>items</key>
+  <array></p>
+
+<pre><code>&lt;dict&gt;
+  &lt;key&gt;PostNotification&lt;/key&gt;
+  &lt;string&gt;com.apple.mobileipod-prefsChanged&lt;/string&gt;
+  &lt;key&gt;cell&lt;/key&gt;
+  &lt;string&gt;PSSwitchCell&lt;/string&gt;
+  &lt;key&gt;default&lt;/key&gt;
+  &lt;false/&gt;
+  &lt;key&gt;defaults&lt;/key&gt;
+  &lt;string&gt;com.apple.mobileipod&lt;/string&gt;
+  &lt;key&gt;id&lt;/key&gt;
+  &lt;string&gt;ShakeToShuffle&lt;/string&gt;
+  &lt;key&gt;key&lt;/key&gt;
+  &lt;string&gt;MusicShakeToShuffleEnabledSetting&lt;/string&gt;
+  &lt;key&gt;label&lt;/key&gt;
+  &lt;string&gt;SHAKE_TO_SHUFFLE&lt;/string&gt;
+&lt;/dict&gt;
+&lt;dict&gt;
+  &lt;key&gt;PostNotification&lt;/key&gt;
+  &lt;string&gt;com.apple.mobileipod-prefsChanged&lt;/string&gt;
+  &lt;key&gt;cell&lt;/key&gt;
+  &lt;string&gt;PSSwitchCell&lt;/string&gt;
+  &lt;key&gt;default&lt;/key&gt;
+  &lt;false/&gt;
+  &lt;key&gt;defaults&lt;/key&gt;
+  &lt;string&gt;com.apple.mobileipod&lt;/string&gt;
+  &lt;key&gt;id&lt;/key&gt;
+  &lt;string&gt;SoundCheck&lt;/string&gt;
+  &lt;key&gt;key&lt;/key&gt;
+  &lt;string&gt;MusicSoundCheckEnabledSetting&lt;/string&gt;
+  &lt;key&gt;label&lt;/key&gt;
+  &lt;string&gt;SOUND_CHECK_IPHONE&lt;/string&gt;
+&lt;/dict&gt;
+&lt;dict&gt;
+  &lt;key&gt;PostNotification&lt;/key&gt;
+  &lt;string&gt;com.apple.mobileipod-prefsChanged&lt;/string&gt;
+  &lt;key&gt;cell&lt;/key&gt;
+  &lt;string&gt;PSLinkListCell&lt;/string&gt;
+  &lt;key&gt;default&lt;/key&gt;
+  &lt;string&gt;Off&lt;/string&gt;
+  &lt;key&gt;defaults&lt;/key&gt;
+  &lt;string&gt;com.apple.mobileipod&lt;/string&gt;
+  &lt;key&gt;detail&lt;/key&gt;
+  &lt;string&gt;EQPresetListController&lt;/string&gt;
+  &lt;key&gt;get&lt;/key&gt;
+  &lt;string&gt;EQ&lt;/string&gt;
+  &lt;key&gt;id&lt;/key&gt;
+  &lt;string&gt;EQ&lt;/string&gt;
+  &lt;key&gt;key&lt;/key&gt;
+  &lt;string&gt;MusicEQPresetName&lt;/string&gt;
+  &lt;key&gt;label&lt;/key&gt;
+  &lt;string&gt;EQ_IPHONE&lt;/string&gt;
+  &lt;key&gt;set&lt;/key&gt;
+  &lt;string&gt;setEQ:&lt;/string&gt;
+&lt;/dict&gt;
+&lt;dict&gt;
+  &lt;key&gt;cell&lt;/key&gt;
+  &lt;string&gt;PSLinkListCell&lt;/string&gt;
+  &lt;key&gt;detail&lt;/key&gt;
+  &lt;string&gt;VolumeLimitController&lt;/string&gt;
+  &lt;key&gt;get&lt;/key&gt;
+  &lt;string&gt;volumeLimitEnabled:&lt;/string&gt;
+  &lt;key&gt;id&lt;/key&gt;
+  &lt;string&gt;VolumeLimit&lt;/string&gt;
+  &lt;key&gt;label&lt;/key&gt;
+  &lt;string&gt;VOLUME_LIMIT_IPHONE&lt;/string&gt;
+&lt;/dict&gt;
+&lt;dict&gt;
+  &lt;key&gt;PostNotification&lt;/key&gt;
+  &lt;string&gt;com.apple.mobileipod-prefsChanged&lt;/string&gt;
+  &lt;key&gt;cell&lt;/key&gt;
+  &lt;string&gt;PSSwitchCell&lt;/string&gt;
+  &lt;key&gt;default&lt;/key&gt;
+  &lt;true/&gt;
+  &lt;key&gt;defaults&lt;/key&gt;
+  &lt;string&gt;com.apple.mobileipod&lt;/string&gt;
+  &lt;key&gt;id&lt;/key&gt;
+  &lt;string&gt;LyricsAndPodcastInfo&lt;/string&gt;
+  &lt;key&gt;key&lt;/key&gt;
+  &lt;string&gt;LyricsAndPodcastInfoEnabledDefaultsKey_1_Key&lt;/string&gt;
+  &lt;key&gt;label&lt;/key&gt;
+  &lt;string&gt;LYRICS_AND_PODCAST_INFO_IPHONE&lt;/string&gt;
+&lt;/dict&gt;
+&lt;dict&gt;
+  &lt;key&gt;PostNotification&lt;/key&gt;
+  &lt;string&gt;com.apple.mobileipod-prefsChanged&lt;/string&gt;
+  &lt;key&gt;cell&lt;/key&gt;
+  &lt;string&gt;PSSwitchCell&lt;/string&gt;
+  &lt;key&gt;default&lt;/key&gt;
+  &lt;true/&gt;
+  &lt;key&gt;defaults&lt;/key&gt;
+  &lt;string&gt;com.apple.mobileipod&lt;/string&gt;
+  &lt;key&gt;id&lt;/key&gt;
+  &lt;string&gt;GroupByAlbumArtistPad&lt;/string&gt;
+  &lt;key&gt;key&lt;/key&gt;
+  &lt;string&gt;MusicGroupByAlbumArtistEnabledSetting&lt;/string&gt;
+  &lt;key&gt;label&lt;/key&gt;
+  &lt;string&gt;GROUP_BY_ALBUM_ARTIST_IPAD&lt;/string&gt;
+&lt;/dict&gt;
+&lt;dict&gt;
+  &lt;key&gt;PostNotification&lt;/key&gt;
+  &lt;string&gt;com.apple.mobileipod-prefsChanged&lt;/string&gt;
+  &lt;key&gt;cell&lt;/key&gt;
+  &lt;string&gt;PSSwitchCell&lt;/string&gt;
+  &lt;key&gt;default&lt;/key&gt;
+  &lt;true/&gt;
+  &lt;key&gt;defaults&lt;/key&gt;
+  &lt;string&gt;com.apple.mobileipod&lt;/string&gt;
+  &lt;key&gt;id&lt;/key&gt;
+  &lt;string&gt;GroupByAlbumArtistPhone&lt;/string&gt;
+  &lt;key&gt;key&lt;/key&gt;
+  &lt;string&gt;MusicGroupByAlbumArtistEnabledSetting&lt;/string&gt;
+  &lt;key&gt;label&lt;/key&gt;
+  &lt;string&gt;GROUP_BY_ALBUM_ARTIST_IPHONE&lt;/string&gt;
+&lt;/dict&gt;
+</code></pre>
+
+<p>  </array>
+</dict>
+</plist>
+```</p>
 
 <p>이해할 수 없는 문구들이 많이 있습니다. 좀더 자세히 봅시다. <code>com.apple.mobileipod</code>이라는 문구가 보이네요. iPod과 관련된 무언가라는 것은 알 수 있습니다. 사진과 코드의 순서에 주목해 봅시다. 각 <code>&lt;key&gt;id&lt;/key&gt;</code> 아래의 <code>&lt;string&gt;</code>과 <code>&lt;/string&gt;</code> 사이에 있는 문구들을 보면, 위에서부터 아래로 <code>ShakeToShuffle</code>, <code>SoundCheck</code>, <code>EQ</code>, <code>VolumeLimit</code>, <code>LyricsAndPodcastInfo</code>, <code>GroupByAlbumArtistPad</code>, <code>GroupByAlbumArtistPhone</code>인데, 위의 사진도 한 번 봅시다. <code>흔들어서 임의 재생</code>, <code>음량 자동 조절</code>, <code>EQ</code>, <code>음량 제한</code>, <code>가사 및 Podcast 정보</code>, <code>앨범 아티스트별 그룹</code>. 이제 감이 오셨나요?</p>
 
@@ -433,67 +275,38 @@
 
 <p>지금까지 아이폰에서는 노래별 임의 재생만을 할 수 있었습니다. 여기에서 우리는 메뉴에 노래별 임의 재생이나 앨범별 임의 재생을 선택할 수 있도록 <code>PSLinkListCell</code>을 하나 만들 것입니다. 위치는 <code>음량 자동 조절</code> 바로 아래가 적당할 것 같습니다. <code>&lt;string&gt;SOUND_CHECK_IPHONE&lt;/string&gt;</code>으로 끝나는 <code>&lt;dict&gt;…&lt;/dict&gt;</code> 바로 아래에 다음 코드를 추가하시면 됩니다.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;dict&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;key&gt;</span>PostNotification<span class="nt">&lt;/key&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;string&gt;</span>com.apple.mobileipod-prefsChanged<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;key&gt;</span>cell<span class="nt">&lt;/key&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;string&gt;</span>PSLinkListCell<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;key&gt;</span>defaults<span class="nt">&lt;/key&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;string&gt;</span>com.apple.mobileipod<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;key&gt;</span>detail<span class="nt">&lt;/key&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;string&gt;</span>PSListItemsController<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;key&gt;</span>key<span class="nt">&lt;/key&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;string&gt;</span>MusicShuffleSetting<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;key&gt;</span>label<span class="nt">&lt;/key&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;string&gt;</span>임의 재생<span class="nt">&lt;/string&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;key&gt;</span>validTitles<span class="nt">&lt;/key&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;array&gt;&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>노래별<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>앨범별<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;p&gt;</span>  <span class="nt">&lt;/array&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;key&gt;</span>validValues<span class="nt">&lt;/key&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;array&gt;&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>Songs<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>Albums<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;p&gt;</span>  <span class="nt">&lt;/array&gt;</span>
-</span><span class='line'><span class="nt">&lt;/dict&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>``` xml
+<dict>
+  <key>PostNotification</key>
+  <string>com.apple.mobileipod-prefsChanged</string>
+  <key>cell</key>
+  <string>PSLinkListCell</string>
+  <key>defaults</key>
+  <string>com.apple.mobileipod</string>
+  <key>detail</key>
+  <string>PSListItemsController</string>
+  <key>key</key>
+  <string>MusicShuffleSetting</string>
+  <key>label</key>
+  <string>임의 재생</string>
+  <key>validTitles</key>
+  <array></p>
+
+<pre><code>&lt;string&gt;노래별&lt;/string&gt;
+&lt;string&gt;앨범별&lt;/string&gt;
+</code></pre>
+
+<p>  </array>
+  <key>validValues</key>
+  <array></p>
+
+<pre><code>&lt;string&gt;Songs&lt;/string&gt;
+&lt;string&gt;Albums&lt;/string&gt;
+</code></pre>
+
+<p>  </array>
+</dict>
+```</p>
 
 <p>우리가 바꿀 <code>key</code>는 바로 <code>MusicShuffleSetting</code>입니다. 이게 가장 중요한 포인트인데, <code>MusicShuffleSetting</code>이 현재 임의 재생 유형을 나타내고 있습니다. 값은 <code>Songs</code>거나 <code>Albums</code>가 되는데, 아이폰에서는 <code>Songs</code>로만 설정되어 있어서 노래별 임의 재생만을 할 수 있었던 것입니다. 이제 이 설정을 우리가 바꿀 수 있게 만듦으로써 아이폰에서도 앨범별 임의 재생을 할 수 있게 됩니다.</p>
 
@@ -503,304 +316,156 @@
 
 <p>아래는 수정한 <code>Music.plist</code>의 최종 결과입니다.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Music.plist </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-<span class='line-number'>60</span>
-<span class='line-number'>61</span>
-<span class='line-number'>62</span>
-<span class='line-number'>63</span>
-<span class='line-number'>64</span>
-<span class='line-number'>65</span>
-<span class='line-number'>66</span>
-<span class='line-number'>67</span>
-<span class='line-number'>68</span>
-<span class='line-number'>69</span>
-<span class='line-number'>70</span>
-<span class='line-number'>71</span>
-<span class='line-number'>72</span>
-<span class='line-number'>73</span>
-<span class='line-number'>74</span>
-<span class='line-number'>75</span>
-<span class='line-number'>76</span>
-<span class='line-number'>77</span>
-<span class='line-number'>78</span>
-<span class='line-number'>79</span>
-<span class='line-number'>80</span>
-<span class='line-number'>81</span>
-<span class='line-number'>82</span>
-<span class='line-number'>83</span>
-<span class='line-number'>84</span>
-<span class='line-number'>85</span>
-<span class='line-number'>86</span>
-<span class='line-number'>87</span>
-<span class='line-number'>88</span>
-<span class='line-number'>89</span>
-<span class='line-number'>90</span>
-<span class='line-number'>91</span>
-<span class='line-number'>92</span>
-<span class='line-number'>93</span>
-<span class='line-number'>94</span>
-<span class='line-number'>95</span>
-<span class='line-number'>96</span>
-<span class='line-number'>97</span>
-<span class='line-number'>98</span>
-<span class='line-number'>99</span>
-<span class='line-number'>100</span>
-<span class='line-number'>101</span>
-<span class='line-number'>102</span>
-<span class='line-number'>103</span>
-<span class='line-number'>104</span>
-<span class='line-number'>105</span>
-<span class='line-number'>106</span>
-<span class='line-number'>107</span>
-<span class='line-number'>108</span>
-<span class='line-number'>109</span>
-<span class='line-number'>110</span>
-<span class='line-number'>111</span>
-<span class='line-number'>112</span>
-<span class='line-number'>113</span>
-<span class='line-number'>114</span>
-<span class='line-number'>115</span>
-<span class='line-number'>116</span>
-<span class='line-number'>117</span>
-<span class='line-number'>118</span>
-<span class='line-number'>119</span>
-<span class='line-number'>120</span>
-<span class='line-number'>121</span>
-<span class='line-number'>122</span>
-<span class='line-number'>123</span>
-<span class='line-number'>124</span>
-<span class='line-number'>125</span>
-<span class='line-number'>126</span>
-<span class='line-number'>127</span>
-<span class='line-number'>128</span>
-<span class='line-number'>129</span>
-<span class='line-number'>130</span>
-<span class='line-number'>131</span>
-<span class='line-number'>132</span>
-<span class='line-number'>133</span>
-<span class='line-number'>134</span>
-<span class='line-number'>135</span>
-<span class='line-number'>136</span>
-<span class='line-number'>137</span>
-<span class='line-number'>138</span>
-<span class='line-number'>139</span>
-<span class='line-number'>140</span>
-<span class='line-number'>141</span>
-<span class='line-number'>142</span>
-<span class='line-number'>143</span>
-<span class='line-number'>144</span>
-<span class='line-number'>145</span>
-<span class='line-number'>146</span>
-<span class='line-number'>147</span>
-<span class='line-number'>148</span>
-</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="ni">&amp;lt;</span>?xml version=<span class="ni">&amp;ldquo;</span>1.0<span class="ni">&amp;rdquo;</span> encoding=<span class="ni">&amp;ldquo;</span>UTF-8<span class="ni">&amp;rdquo;</span>?&gt;
-</span><span class='line'><span class="ni">&amp;lt;</span>!DOCTYPE plist PUBLIC <span class="ni">&amp;ldquo;&amp;ndash;</span>//Apple//DTD PLIST 1.0//EN<span class="ni">&amp;rdquo;</span> <span class="ni">&amp;ldquo;</span><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://www.apple.com/DTDs/PropertyList-1.0.dtd&quot;</span><span class="nt">&gt;</span>http://www.apple.com/DTDs/PropertyList-1.0.dtd<span class="nt">&lt;/a&gt;</span><span class="ni">&amp;rdquo;</span>&gt;
-</span><span class='line'><span class="nt">&lt;plist</span> <span class="na">version=</span><span class="s">&quot;1.0&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'><span class="nt">&lt;dict&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;key&gt;</span>items<span class="nt">&lt;/key&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;array&gt;&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>dict<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>PostNotification<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>com.apple.mobileipod-prefsChanged<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>cell<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>PSSwitchCell<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>default<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>false/<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>defaults<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>com.apple.mobileipod<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>id<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>ShakeToShuffle<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>key<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>MusicShakeToShuffleEnabledSetting<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>label<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>SHAKE_TO_SHUFFLE<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>/dict<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>dict<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>PostNotification<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>com.apple.mobileipod-prefsChanged<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>cell<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>PSSwitchCell<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>default<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>false/<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>defaults<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>com.apple.mobileipod<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>id<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>SoundCheck<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>key<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>MusicSoundCheckEnabledSetting<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>label<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>SOUND_CHECK_IPHONE<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>/dict<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>dict<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>cell<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>PSLinkListCell<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>defaults<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>com.apple.mobileipod<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>detail<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>PSListItemsController<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>key<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>MusicShuffleSetting<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>label<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>임의 재생<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>validTitles<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>array<span class="ni">&amp;gt;</span>
-</span><span class='line'>    <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>노래별<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>    <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>앨범별<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>/array<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>validValues<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>array<span class="ni">&amp;gt;</span>
-</span><span class='line'>    <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>Songs<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>    <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>Albums<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>/array<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>/dict<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>dict<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>PostNotification<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>com.apple.mobileipod-prefsChanged<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>cell<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>PSLinkListCell<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>default<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>Off<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>defaults<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>com.apple.mobileipod<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>detail<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>EQPresetListController<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>get<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>EQ<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>id<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>EQ<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>key<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>MusicEQPresetName<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>label<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>EQ_IPHONE<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>set<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>setEQ:<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>/dict<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>dict<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>cell<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>PSLinkListCell<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>detail<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>VolumeLimitController<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>get<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>volumeLimitEnabled:<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>id<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>VolumeLimit<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>label<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>VOLUME_LIMIT_IPHONE<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>/dict<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>dict<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>PostNotification<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>com.apple.mobileipod-prefsChanged<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>cell<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>PSSwitchCell<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>default<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>true/<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>defaults<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>com.apple.mobileipod<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>id<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>LyricsAndPodcastInfo<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>key<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>LyricsAndPodcastInfoEnabledDefaultsKey_1_Key<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>label<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>LYRICS_AND_PODCAST_INFO_IPHONE<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>/dict<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>dict<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>PostNotification<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>com.apple.mobileipod-prefsChanged<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>cell<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>PSSwitchCell<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>default<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>true/<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>defaults<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>com.apple.mobileipod<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>id<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>GroupByAlbumArtistPad<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>key<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>MusicGroupByAlbumArtistEnabledSetting<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>label<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>GROUP_BY_ALBUM_ARTIST_IPAD<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>/dict<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>dict<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>PostNotification<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>com.apple.mobileipod-prefsChanged<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>cell<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>PSSwitchCell<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>default<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>true/<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>defaults<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>com.apple.mobileipod<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>id<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>GroupByAlbumArtistPhone<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>key<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>MusicGroupByAlbumArtistEnabledSetting<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>key<span class="ni">&amp;gt;</span>label<span class="ni">&amp;lt;</span>/key<span class="ni">&amp;gt;</span>
-</span><span class='line'>  <span class="ni">&amp;lt;</span>string<span class="ni">&amp;gt;</span>GROUP_BY_ALBUM_ARTIST_IPHONE<span class="ni">&amp;lt;</span>/string<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>/dict<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;p&gt;</span>  <span class="nt">&lt;/array&gt;</span>
-</span><span class='line'><span class="nt">&lt;/dict&gt;</span>
-</span><span class='line'><span class="nt">&lt;/plist&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>``` xml Music.plist
+&lt;?xml version=&ldquo;1.0&rdquo; encoding=&ldquo;UTF-8&rdquo;?>
+&lt;!DOCTYPE plist PUBLIC &ldquo;&ndash;//Apple//DTD PLIST 1.0//EN&rdquo; &ldquo;<a href="http://www.apple.com/DTDs/PropertyList-1.0.dtd">http://www.apple.com/DTDs/PropertyList-1.0.dtd</a>&rdquo;>
+<plist version="1.0">
+<dict>
+  <key>items</key>
+  <array></p>
+
+<pre><code>&lt;dict&gt;
+  &lt;key&gt;PostNotification&lt;/key&gt;
+  &lt;string&gt;com.apple.mobileipod-prefsChanged&lt;/string&gt;
+  &lt;key&gt;cell&lt;/key&gt;
+  &lt;string&gt;PSSwitchCell&lt;/string&gt;
+  &lt;key&gt;default&lt;/key&gt;
+  &lt;false/&gt;
+  &lt;key&gt;defaults&lt;/key&gt;
+  &lt;string&gt;com.apple.mobileipod&lt;/string&gt;
+  &lt;key&gt;id&lt;/key&gt;
+  &lt;string&gt;ShakeToShuffle&lt;/string&gt;
+  &lt;key&gt;key&lt;/key&gt;
+  &lt;string&gt;MusicShakeToShuffleEnabledSetting&lt;/string&gt;
+  &lt;key&gt;label&lt;/key&gt;
+  &lt;string&gt;SHAKE_TO_SHUFFLE&lt;/string&gt;
+&lt;/dict&gt;
+&lt;dict&gt;
+  &lt;key&gt;PostNotification&lt;/key&gt;
+  &lt;string&gt;com.apple.mobileipod-prefsChanged&lt;/string&gt;
+  &lt;key&gt;cell&lt;/key&gt;
+  &lt;string&gt;PSSwitchCell&lt;/string&gt;
+  &lt;key&gt;default&lt;/key&gt;
+  &lt;false/&gt;
+  &lt;key&gt;defaults&lt;/key&gt;
+  &lt;string&gt;com.apple.mobileipod&lt;/string&gt;
+  &lt;key&gt;id&lt;/key&gt;
+  &lt;string&gt;SoundCheck&lt;/string&gt;
+  &lt;key&gt;key&lt;/key&gt;
+  &lt;string&gt;MusicSoundCheckEnabledSetting&lt;/string&gt;
+  &lt;key&gt;label&lt;/key&gt;
+  &lt;string&gt;SOUND_CHECK_IPHONE&lt;/string&gt;
+&lt;/dict&gt;
+&lt;dict&gt;
+  &lt;key&gt;cell&lt;/key&gt;
+  &lt;string&gt;PSLinkListCell&lt;/string&gt;
+  &lt;key&gt;defaults&lt;/key&gt;
+  &lt;string&gt;com.apple.mobileipod&lt;/string&gt;
+  &lt;key&gt;detail&lt;/key&gt;
+  &lt;string&gt;PSListItemsController&lt;/string&gt;
+  &lt;key&gt;key&lt;/key&gt;
+  &lt;string&gt;MusicShuffleSetting&lt;/string&gt;
+  &lt;key&gt;label&lt;/key&gt;
+  &lt;string&gt;임의 재생&lt;/string&gt;
+  &lt;key&gt;validTitles&lt;/key&gt;
+  &lt;array&gt;
+    &lt;string&gt;노래별&lt;/string&gt;
+    &lt;string&gt;앨범별&lt;/string&gt;
+  &lt;/array&gt;
+  &lt;key&gt;validValues&lt;/key&gt;
+  &lt;array&gt;
+    &lt;string&gt;Songs&lt;/string&gt;
+    &lt;string&gt;Albums&lt;/string&gt;
+  &lt;/array&gt;
+&lt;/dict&gt;
+&lt;dict&gt;
+  &lt;key&gt;PostNotification&lt;/key&gt;
+  &lt;string&gt;com.apple.mobileipod-prefsChanged&lt;/string&gt;
+  &lt;key&gt;cell&lt;/key&gt;
+  &lt;string&gt;PSLinkListCell&lt;/string&gt;
+  &lt;key&gt;default&lt;/key&gt;
+  &lt;string&gt;Off&lt;/string&gt;
+  &lt;key&gt;defaults&lt;/key&gt;
+  &lt;string&gt;com.apple.mobileipod&lt;/string&gt;
+  &lt;key&gt;detail&lt;/key&gt;
+  &lt;string&gt;EQPresetListController&lt;/string&gt;
+  &lt;key&gt;get&lt;/key&gt;
+  &lt;string&gt;EQ&lt;/string&gt;
+  &lt;key&gt;id&lt;/key&gt;
+  &lt;string&gt;EQ&lt;/string&gt;
+  &lt;key&gt;key&lt;/key&gt;
+  &lt;string&gt;MusicEQPresetName&lt;/string&gt;
+  &lt;key&gt;label&lt;/key&gt;
+  &lt;string&gt;EQ_IPHONE&lt;/string&gt;
+  &lt;key&gt;set&lt;/key&gt;
+  &lt;string&gt;setEQ:&lt;/string&gt;
+&lt;/dict&gt;
+&lt;dict&gt;
+  &lt;key&gt;cell&lt;/key&gt;
+  &lt;string&gt;PSLinkListCell&lt;/string&gt;
+  &lt;key&gt;detail&lt;/key&gt;
+  &lt;string&gt;VolumeLimitController&lt;/string&gt;
+  &lt;key&gt;get&lt;/key&gt;
+  &lt;string&gt;volumeLimitEnabled:&lt;/string&gt;
+  &lt;key&gt;id&lt;/key&gt;
+  &lt;string&gt;VolumeLimit&lt;/string&gt;
+  &lt;key&gt;label&lt;/key&gt;
+  &lt;string&gt;VOLUME_LIMIT_IPHONE&lt;/string&gt;
+&lt;/dict&gt;
+&lt;dict&gt;
+  &lt;key&gt;PostNotification&lt;/key&gt;
+  &lt;string&gt;com.apple.mobileipod-prefsChanged&lt;/string&gt;
+  &lt;key&gt;cell&lt;/key&gt;
+  &lt;string&gt;PSSwitchCell&lt;/string&gt;
+  &lt;key&gt;default&lt;/key&gt;
+  &lt;true/&gt;
+  &lt;key&gt;defaults&lt;/key&gt;
+  &lt;string&gt;com.apple.mobileipod&lt;/string&gt;
+  &lt;key&gt;id&lt;/key&gt;
+  &lt;string&gt;LyricsAndPodcastInfo&lt;/string&gt;
+  &lt;key&gt;key&lt;/key&gt;
+  &lt;string&gt;LyricsAndPodcastInfoEnabledDefaultsKey_1_Key&lt;/string&gt;
+  &lt;key&gt;label&lt;/key&gt;
+  &lt;string&gt;LYRICS_AND_PODCAST_INFO_IPHONE&lt;/string&gt;
+&lt;/dict&gt;
+&lt;dict&gt;
+  &lt;key&gt;PostNotification&lt;/key&gt;
+  &lt;string&gt;com.apple.mobileipod-prefsChanged&lt;/string&gt;
+  &lt;key&gt;cell&lt;/key&gt;
+  &lt;string&gt;PSSwitchCell&lt;/string&gt;
+  &lt;key&gt;default&lt;/key&gt;
+  &lt;true/&gt;
+  &lt;key&gt;defaults&lt;/key&gt;
+  &lt;string&gt;com.apple.mobileipod&lt;/string&gt;
+  &lt;key&gt;id&lt;/key&gt;
+  &lt;string&gt;GroupByAlbumArtistPad&lt;/string&gt;
+  &lt;key&gt;key&lt;/key&gt;
+  &lt;string&gt;MusicGroupByAlbumArtistEnabledSetting&lt;/string&gt;
+  &lt;key&gt;label&lt;/key&gt;
+  &lt;string&gt;GROUP_BY_ALBUM_ARTIST_IPAD&lt;/string&gt;
+&lt;/dict&gt;
+&lt;dict&gt;
+  &lt;key&gt;PostNotification&lt;/key&gt;
+  &lt;string&gt;com.apple.mobileipod-prefsChanged&lt;/string&gt;
+  &lt;key&gt;cell&lt;/key&gt;
+  &lt;string&gt;PSSwitchCell&lt;/string&gt;
+  &lt;key&gt;default&lt;/key&gt;
+  &lt;true/&gt;
+  &lt;key&gt;defaults&lt;/key&gt;
+  &lt;string&gt;com.apple.mobileipod&lt;/string&gt;
+  &lt;key&gt;id&lt;/key&gt;
+  &lt;string&gt;GroupByAlbumArtistPhone&lt;/string&gt;
+  &lt;key&gt;key&lt;/key&gt;
+  &lt;string&gt;MusicGroupByAlbumArtistEnabledSetting&lt;/string&gt;
+  &lt;key&gt;label&lt;/key&gt;
+  &lt;string&gt;GROUP_BY_ALBUM_ARTIST_IPHONE&lt;/string&gt;
+&lt;/dict&gt;
+</code></pre>
+
+<p>  </array>
+</dict>
+</plist>
+```</p>
 
 <p><code>Music.plist</code>의 수정 과정은 <a href="https://bitbucket.org/yous/ios/src">Bitbucket</a>에서 보실 수 있습니다.</p>
 

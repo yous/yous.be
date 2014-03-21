@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Yous]]></title>
   <link href="http://blog.yous.be/categories/octopress/atom.xml" rel="self"/>
   <link href="http://blog.yous.be/"/>
-  <updated>2014-03-21T05:12:02+09:00</updated>
+  <updated>2014-03-21T22:22:41+09:00</updated>
   <id>http://blog.yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -74,311 +74,171 @@
 
 <p>페이스북 Open Graph를 위한 설정 값을 <code>_config.yml</code>에 추가한다.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>_config.yml </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nl">&amp;hellip</span><span class="l-Scalar-Plain">;&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;h1&gt;Facebook Insights / Open Graph&lt;/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;p&gt;facebook_app_id</span><span class="p-Indicator">:</span>
-</span><span class='line'><span class="l-Scalar-Plain">facebook_page</span><span class="p-Indicator">:</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>``` yaml _config.yml
+&hellip;</p>
+
+<h1>Facebook Insights / Open Graph</h1>
+
+<p>facebook_app_id:
+facebook_page:
+```</p>
 
 <p>페이스북 App ID는 <a href="https://www.facebook.com/insights/">페이스북 인사이트</a>에서 &lsquo;웹사이트를 위한 인사이트&rsquo; 버튼을 눌러 얻을 수 있다. 페이스북 페이지 주소는 <code>article:author</code>에 사용될 정보지만 입력하지 않아도 된다. 트위터는 <code>_config.yml</code>의 <code>twitter_user</code> 값을 이용해 메타 태그를 입력한다. 이 역시 입력하지 않아도 된다.</p>
 
 <p>Octopress에서 사이트에 메타 태그를 추가하는 방법은 간단하다. 일단 <code>source/_includes/custom/head.html</code> 파일에 다음 코드를 추가하자.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>source/_includes/custom/head.html </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-<span class='line-number'>45</span>
-<span class='line-number'>46</span>
-<span class='line-number'>47</span>
-<span class='line-number'>48</span>
-<span class='line-number'>49</span>
-<span class='line-number'>50</span>
-<span class='line-number'>51</span>
-<span class='line-number'>52</span>
-<span class='line-number'>53</span>
-<span class='line-number'>54</span>
-<span class='line-number'>55</span>
-<span class='line-number'>56</span>
-<span class='line-number'>57</span>
-<span class='line-number'>58</span>
-<span class='line-number'>59</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="ni">&amp;hellip;</span><span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">&lt;!-- Social media content metadata --&gt;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;p&gt;</span>{% if site.facebook_app_id %}
-</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">&quot;fb:admins&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ site.facebook_app_id }}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">&quot;og:title&quot;</span> <span class="na">content=</span><span class="s">&quot;{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">&quot;og:site_name&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ site.title }}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">&quot;og:url&quot;</span> <span class="na">content=</span><span class="s">&quot;{% if canonical %}{{ canonical }}{% else %}{{ site.url }}{% endif %}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">&quot;og:description&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ description | strip_html | condense_spaces | truncate:200 }}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  {% if site.facebook_page %}<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>meta property=&quot;article:author&quot; content=&quot;{{ site.facebook_page }}&quot;<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;p&gt;</span>  {% endif %}
-</span><span class='line'>  {% if page.facebook.image %}<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>meta property=&quot;og:image&quot; content=&quot;{{ page.facebook.image }}&quot;<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;p&gt;</span>  {% endif %}
-</span><span class='line'>{% endif %}
-</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:card&quot;</span> <span class="na">content=</span><span class="s">&quot;{% if page.twitter_card.type %}{{ page.twitter_card.type }}{% else %}summary{% endif %}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>{% if site.twitter_user %}
-</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:site&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ site.twitter_user }}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>{% endif %}
-</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:title&quot;</span> <span class="na">content=</span><span class="s">&quot;{% if page.title %}{{ page.title | truncate:70 }}{% else %}{{ site.title | truncate:70 }}{% endif %}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:description&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ description | strip_html | condense_spaces | truncate:200 }}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>{% if page.twitter_card.creator %}
-</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:creator&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ page.twitter_card.creator }}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>{% elsif site.twitter_user %}
-</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:creator&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ site.twitter_user }}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>{% endif %}
-</span><span class='line'>{% if page.twitter_card.image %}
-</span><span class='line'>  {% if page.twitter_card.type == <span class="ni">&amp;lsquo;</span>gallery<span class="ni">&amp;rsquo;</span> %}<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>meta name=&quot;twitter:image0&quot; content=&quot;{{ page.twitter_card.image }}&quot;<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>meta name=&quot;twitter:image1&quot; content=&quot;{{ page.twitter_card.image1 }}&quot;<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>meta name=&quot;twitter:image2&quot; content=&quot;{{ page.twitter_card.image2 }}&quot;<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="ni">&amp;lt;</span>meta name=&quot;twitter:image3&quot; content=&quot;{{ page.twitter_card.image3 }}&quot;<span class="ni">&amp;gt;</span>
-</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;p&gt;</span>  {% else %}<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;pre&gt;&lt;code&gt;</span><span class="ni">&amp;lt;</span>meta name=&quot;twitter:image:src&quot; content=&quot;{{ page.twitter_card.image }}&quot;<span class="ni">&amp;gt;</span>
-</span><span class='line'>{% if page.twitter_card.type == &#39;photo&#39; %}
-</span><span class='line'>  {% if page.twitter_card.width %}
-</span><span class='line'>    <span class="ni">&amp;lt;</span>meta name=&quot;twitter:image:width&quot; content=&quot;{{ page.twitter_card.width }}&quot;<span class="ni">&amp;gt;</span>
-</span><span class='line'>  {% endif %}
-</span><span class='line'>  {% if page.twitter_card.height %}
-</span><span class='line'>    <span class="ni">&amp;lt;</span>meta name=&quot;twitter:image:height&quot; content=&quot;{{ page.twitter_card.height }}&quot;<span class="ni">&amp;gt;</span>
-</span><span class='line'>  {% endif %}
-</span><span class='line'>{% endif %}
-</span><span class='line'><span class="nt">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;p&gt;</span>  {% endif %}
-</span><span class='line'>{% endif %}
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>
+``` html source/_includes/custom/head.html
+&hellip;</p>
+
+<!-- Social media content metadata -->
+
+
+<p>{% if site.facebook_app_id %}
+  <meta property="fb:admins" content="{{ site.facebook_app_id }}">
+  <meta property="og:title" content="{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}">
+  <meta property="og:site_name" content="{{ site.title }}">
+  <meta property="og:url" content="{% if canonical %}{{ canonical }}{% else %}{{ site.url }}{% endif %}">
+  <meta property="og:description" content="{{ description | strip_html | condense_spaces | truncate:200 }}">
+  {% if site.facebook_page %}</p>
+
+<pre><code>&lt;meta property="article:author" content="{{ site.facebook_page }}"&gt;
+</code></pre>
+
+<p>  {% endif %}
+  {% if page.facebook.image %}</p>
+
+<pre><code>&lt;meta property="og:image" content="{{ page.facebook.image }}"&gt;
+</code></pre>
+
+<p>  {% endif %}
+{% endif %}
+<meta name="twitter:card" content="{% if page.twitter_card.type %}{{ page.twitter_card.type }}{% else %}summary{% endif %}">
+{% if site.twitter_user %}
+  <meta name="twitter:site" content="{{ site.twitter_user }}">
+{% endif %}
+<meta name="twitter:title" content="{% if page.title %}{{ page.title | truncate:70 }}{% else %}{{ site.title | truncate:70 }}{% endif %}">
+<meta name="twitter:description" content="{{ description | strip_html | condense_spaces | truncate:200 }}">
+{% if page.twitter_card.creator %}
+  <meta name="twitter:creator" content="{{ page.twitter_card.creator }}">
+{% elsif site.twitter_user %}
+  <meta name="twitter:creator" content="{{ site.twitter_user }}">
+{% endif %}
+{% if page.twitter_card.image %}
+  {% if page.twitter_card.type == &lsquo;gallery&rsquo; %}</p>
+
+<pre><code>&lt;meta name="twitter:image0" content="{{ page.twitter_card.image }}"&gt;
+&lt;meta name="twitter:image1" content="{{ page.twitter_card.image1 }}"&gt;
+&lt;meta name="twitter:image2" content="{{ page.twitter_card.image2 }}"&gt;
+&lt;meta name="twitter:image3" content="{{ page.twitter_card.image3 }}"&gt;
+</code></pre>
+
+<p>  {% else %}</p>
+
+<pre><code>&lt;meta name="twitter:image:src" content="{{ page.twitter_card.image }}"&gt;
+{% if page.twitter_card.type == 'photo' %}
+  {% if page.twitter_card.width %}
+    &lt;meta name="twitter:image:width" content="{{ page.twitter_card.width }}"&gt;
+  {% endif %}
+  {% if page.twitter_card.height %}
+    &lt;meta name="twitter:image:height" content="{{ page.twitter_card.height }}"&gt;
+  {% endif %}
+{% endif %}
+</code></pre>
+
+<p>  {% endif %}
+{% endif %}
+```
+</p>
 
 <p>페이스북에 링크를 첨부해 상태를 올리면 메타 태그 기반으로 미리보기를 생성해 준다. 다만 트위터의 경우 사이트 등록이 필요하다. <a href="https://dev.twitter.com/docs/cards/validation/validator">카드 검사 도구</a> 페이지에서 사이트가 검사에 통과하면 도메인 인증 요청을 보낼 수 있다. 이 요청이 통과되면 트위터에서 사이트 링크를 트위터 카드로 만들어 보여준다.</p>
 
 <p>추가로 설정 가능한 몇 가지 옵션에 대해 설명하겠다.</p>
 
-<h2><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">&lt;/h2&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;p&gt;layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
-</span><span class='line'><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="nl">&amp;ldquo</span><span class="l-Scalar-Plain">;An example post&amp;rdquo;</span>
-</span><span class='line'><span class="l-Scalar-Plain">date</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2014-02-24</span>
-</span><span class='line'><span class="l-Scalar-Plain">comments</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
-</span><span class='line'><span class="l-Scalar-Plain">categories:&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;pre&gt;&lt;code&gt;- Example</span>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;p&gt;description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">This is an example post.</span>
-</span><span class='line'><span class="l-Scalar-Plain">facebook:&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;pre&gt;&lt;code&gt;image</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://example.com/path/to/image.png</span>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;p&gt;twitter_card:&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;pre&gt;&lt;code&gt;creator</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">twitter</span>
-</span><span class='line'><span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">summary_large_image</span>
-</span><span class='line'><span class="l-Scalar-Plain">image</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://example.com/path/to/image.png</span>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;hr /&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;p&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<h2>``` yaml</h2>
+
+<p>layout: post
+title: &ldquo;An example post&rdquo;
+date: 2014-02-24
+comments: false
+categories:</p>
+
+<pre><code>- Example
+</code></pre>
+
+<p>description: This is an example post.
+facebook:</p>
+
+<pre><code>image: http://example.com/path/to/image.png
+</code></pre>
+
+<p>twitter_card:</p>
+
+<pre><code>creator: twitter
+type: summary_large_image
+image: http://example.com/path/to/image.png
+</code></pre>
+
+<hr />
+
+<p>```</p>
 
 <p>글에 <code>description</code> 태그를 사용하면 그 값이 description으로 사용된다. 만약 없다면 글 앞부분이 사용된다. <code>facebook</code> 태그 아래에 <code>image</code> 태그를 사용하면 페이스북의 미리보기 이미지로 사용된다. <code>twitter_card</code> 태그 아래의 <code>image</code>도 마찬가지이다. 추가로 <code>twitter_card</code> 태그 아래에 <code>type</code>을 명시할 수 있고, <code>creator</code> 태그를 사용하면 <code>_config.yml</code>의 <code>twitter_user</code> 대신 그 값을 사용한다. <code>facebook</code> 태그와 <code>twitter_card</code> 태그 모두 추가 옵션으로 입력하지 않아도 관계없다.</p>
 
 <p>위 코드가 모든 트위터 카드를 지원하는 것은 아니다. 기본적으로 <code>twitter_card</code>의 <code>image</code> 태그를 입력하면 <code>summary</code>, <code>summary_large_image</code>, <code>photo</code> 타입을 사용할 수 있다. <code>photo</code> 타입은 추가적인 태그를 사용할 수 있다.</p>
 
-<h2><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">&lt;/h2&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;p&gt;layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
-</span><span class='line'><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="nl">&amp;ldquo</span><span class="l-Scalar-Plain">;An example post&amp;rdquo;</span>
-</span><span class='line'><span class="l-Scalar-Plain">date</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2014-02-24</span>
-</span><span class='line'><span class="l-Scalar-Plain">comments</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
-</span><span class='line'><span class="l-Scalar-Plain">categories:&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;pre&gt;&lt;code&gt;- Example</span>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;p&gt;description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">This is an example post.</span>
-</span><span class='line'><span class="l-Scalar-Plain">twitter_card:&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;pre&gt;&lt;code&gt;type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">photo</span>
-</span><span class='line'><span class="l-Scalar-Plain">image</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://example.com/path/to/image.png</span>
-</span><span class='line'><span class="l-Scalar-Plain">width</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">640</span>
-</span><span class='line'><span class="l-Scalar-Plain">height</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">960</span>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;hr /&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;p&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<h2>``` yaml</h2>
+
+<p>layout: post
+title: &ldquo;An example post&rdquo;
+date: 2014-02-24
+comments: false
+categories:</p>
+
+<pre><code>- Example
+</code></pre>
+
+<p>description: This is an example post.
+twitter_card:</p>
+
+<pre><code>type: photo
+image: http://example.com/path/to/image.png
+width: 640
+height: 960
+</code></pre>
+
+<hr />
+
+<p>```</p>
 
 <p><code>width</code> 태그와 <code>height</code> 태그는 사진의 크기를 나타내며 이 두 태그의 입력은 옵션이다. 자세한 사항은 <a href="https://dev.twitter.com/docs/cards/types/photo-card">Photo Card</a> 페이지에서 확인하길 바란다.</p>
 
 <p><code>gallery</code> 타입의 경우 추가로 필요한 태그가 있으며 예제는 다음과 같다:</p>
 
-<h2><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">&lt;/h2&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;p&gt;layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
-</span><span class='line'><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="nl">&amp;ldquo</span><span class="l-Scalar-Plain">;An example post&amp;rdquo;</span>
-</span><span class='line'><span class="l-Scalar-Plain">date</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2014-02-24</span>
-</span><span class='line'><span class="l-Scalar-Plain">comments</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
-</span><span class='line'><span class="l-Scalar-Plain">categories:&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;pre&gt;&lt;code&gt;- Example</span>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;p&gt;description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">This is an example post.</span>
-</span><span class='line'><span class="l-Scalar-Plain">twitter_card:&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;pre&gt;&lt;code&gt;type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">gallery</span>
-</span><span class='line'><span class="l-Scalar-Plain">image</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://example.com/path/to/image.png</span>
-</span><span class='line'><span class="l-Scalar-Plain">image1</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://example.com/path/to/image1.png</span>
-</span><span class='line'><span class="l-Scalar-Plain">image2</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://example.com/path/to/image2.png</span>
-</span><span class='line'><span class="l-Scalar-Plain">image3</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://example.com/path/to/image3.png</span>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;/code&gt;&lt;/pre&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;hr /&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;p&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<h2>``` yaml</h2>
+
+<p>layout: post
+title: &ldquo;An example post&rdquo;
+date: 2014-02-24
+comments: false
+categories:</p>
+
+<pre><code>- Example
+</code></pre>
+
+<p>description: This is an example post.
+twitter_card:</p>
+
+<pre><code>type: gallery
+image: http://example.com/path/to/image.png
+image1: http://example.com/path/to/image1.png
+image2: http://example.com/path/to/image2.png
+image3: http://example.com/path/to/image3.png
+</code></pre>
+
+<hr />
+
+<p>```</p>
 
 <p>원래 <a href="https://dev.twitter.com/docs/cards/types/gallery-card">Gallery Card</a>에 쓰이는 태그는 <code>image0</code>부터 <code>image3</code>까지지만 편의를 위해 <code>image0</code>은 <code>image</code> 태그로 대신했다. 이미지 4장의 주소가 모두 필요하다. 이 외의 카드 종류들은 필요로 하는 태그의 종류가 많고 일일이 입력하기에도 불편할 것 같아 구현하지 않았다.</p>
 ]]></content>
@@ -412,18 +272,13 @@
 </ol>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>sass/custom/_tomorrow.scss </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="c1">// @import &amp;ldquo;tomorrow/tomorrow-night&amp;rdquo;;</span>
-</span><span class='line'><span class="c1">// @import &amp;ldquo;tomorrow/tomorrow&amp;rdquo;;</span>
-</span><span class='line'><span class="k">@import</span> <span class="o">&amp;</span><span class="n">ldquo</span><span class="p">;</span><span class="nt">tomorrow</span><span class="o">/</span><span class="nt">tomorrow-night-eighties</span><span class="k">&amp;</span><span class="nt">rdquo</span><span class="o">;;</span>
-</span><span class='line'><span class="o">//</span> <span class="o">@</span><span class="nt">import</span> <span class="k">&amp;</span><span class="nt">ldquo</span><span class="o">;</span><span class="nt">tomorrow</span><span class="o">/</span><span class="nt">tomorrow-night-blue</span><span class="k">&amp;</span><span class="nt">rdquo</span><span class="o">;;</span>
-</span><span class='line'><span class="o">//</span> <span class="o">@</span><span class="nt">import</span> <span class="k">&amp;</span><span class="nt">ldquo</span><span class="o">;</span><span class="nt">tomorrow</span><span class="o">/</span><span class="nt">tomorrow-night-bright</span><span class="k">&amp;</span><span class="nt">rdquo</span><span class="o">;;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p><code>scss sass/custom/_tomorrow.scss
+// @import "tomorrow/tomorrow-night";
+// @import "tomorrow/tomorrow";
+@import "tomorrow/tomorrow-night-eighties";
+// @import "tomorrow/tomorrow-night-blue";
+// @import "tomorrow/tomorrow-night-bright";
+</code></p>
 
 <h2>Fixes</h2>
 
@@ -462,24 +317,16 @@
 </ul>
 
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>sass/custom/_styles.scss </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="nc">.highlight</span> <span class="nc">.line-numbers</span><span class="o">,</span> <span class="nt">html</span> <span class="nc">.gist</span> <span class="nc">.gist-file</span> <span class="nc">.gist-syntax</span> <span class="nc">.highlight</span> <span class="nc">.line_numbers</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">@include</span><span class="nd"> box-shadow</span><span class="p">(</span><span class="no">none</span><span class="p">);</span>
-</span><span class='line'>  <span class="na">text-shadow</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
-</span><span class='line'><span class="p">}</span><span class="o">&lt;/</span><span class="nt">p</span><span class="o">&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="o">&lt;</span><span class="nt">p</span><span class="o">&gt;</span><span class="nt">figure</span><span class="nc">.code</span><span class="o">,</span> <span class="nc">.gist-file</span> <span class="p">{</span>
-</span><span class='line'>  <span class="k">@include</span><span class="nd"> box-shadow</span><span class="p">(</span><span class="no">none</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>``` scss sass/custom/_styles.scss
+.highlight .line-numbers, html .gist .gist-file .gist-syntax .highlight .line_numbers {
+  @include box-shadow(none);
+  text-shadow: none;
+}</p>
+
+<p>figure.code, .gist-file {
+  @include box-shadow(none);
+}
+```</p>
 
 <ul>
 <li><strong>This issue was fixed by this <a href="https://github.com/lucaslew/whitespace/commit/b047f268c804808fb8e2d6a17cbfe8669b9da6b4">commit</a>.</strong> This blog uses <a href="https://github.com/lucaslew/whitespace">Whitespace</a> theme. I found some problems that it overrides colors of code block to dark blue and it hides line numbers. To fix these problems, remove lines in <code>sass/custom/_styles.scss</code>.</li>
@@ -519,95 +366,57 @@
     <id>http://blog.yous.be/2013/08/12/octopress-in-a-subdirectory</id>
     <content type="html"><![CDATA[<p>Octopress 블로그를 사이트 루트가 아닌 하위 디렉토리에서 제공하고 싶을 때, 터미널에서 다음과 같이 실행해 줍니다.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='bash'><span class='line'>rake set_root_dir<span class="o">[</span>/blog<span class="o">]</span>&lt;/p&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;h1&gt;To go back to publishing to the document root&lt;/h1&gt;
-</span><span class='line'>
-</span><span class='line'>&lt;p&gt;rake set_root_dir<span class="o">[</span>/<span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>``` sh
+rake set_root_dir[/blog]</p>
+
+<h1>To go back to publishing to the document root</h1>
+
+<p>rake set_root_dir[/]
+```</p>
 
 <p>그리고 <code>_config.yml</code>을 수정해 줍니다.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>_config.yml </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;h1&gt;url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">&lt;a href=&quot;http://yoursite.com&quot;&gt;http://yoursite.com&lt;/a&gt;&lt;/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;p&gt;url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">&lt;a href=&quot;http://yoursite.com/blog&quot;&gt;http://yoursite.com/blog&lt;/a&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>``` yaml _config.yml</p>
+
+<h1>url: <a href="http://yoursite.com">http://yoursite.com</a></h1>
+
+<p>url: <a href="http://yoursite.com/blog">http://yoursite.com/blog</a>
+```</p>
 
 <p>추가로, <code>/blog</code>를 하위 디렉토리로 사용했을 때, Archives와 Categories, 그리고 포스트 경로들이 <code>http://yoursite.com/blog/blog/...</code>의 형태로 생성됩니다. 중복된 <code>/blog</code>를 지우기 위해 다음과 같이 설정을 변경해 줍니다.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>_config.yml </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;h1&gt;permalink</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/blog/:year/:month/:day/:title/&lt;/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;p&gt;permalink</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/:year/:month/:day/:title/&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;h1&gt;category_dir</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">blog/categories&lt;/h1&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="l-Scalar-Plain">&lt;p&gt;category_dir</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">categories</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>``` yaml _config.yml</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>source/_includes/custom/navigation.html </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">&lt;!--</span>
-</span><span class='line'><span class="c">&lt;li&gt;&lt;a href=&quot;/blog/archives&quot;&gt;Archives&lt;/a&gt;&lt;/li&gt;</span>
-</span><span class='line'><span class="c">--&gt;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;p&gt;&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/archives&quot;</span><span class="nt">&gt;</span>Archives<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<h1>permalink: /blog/:year/:month/:day/:title/</h1>
+
+<p>permalink: /:year/:month/:day/:title/</p>
+
+<h1>category_dir: blog/categories</h1>
+
+<p>category_dir: categories
+```</p>
+
+<p>``` html source/_includes/custom/navigation.html</p>
+
+<!--
+<li><a href="/blog/archives">Archives</a></li>
+-->
+
+
+<p><li><a href="/archives">Archives</a></li>
+```</p>
 
 <p>그리고, <code>source/blog/archives</code> 폴더를 <code>source/archives</code>로 옮겨주시기 바랍니다.</p>
 
-<p><div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>source/index.html </span></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="nt">&lt;/p&gt;</span>
-</span><span class='line'>
-</span><span class='line'><span class="c">&lt;!--</span>
-</span><span class='line'><span class="c">&lt;a href=&quot;http://blog.yous.be/blog/archives&quot;&gt;Blog Archives&lt;/a&gt;</span>
-</span><span class='line'><span class="c">--&gt;</span>
-</span><span class='line'>
-</span><span class='line'>
-</span><span class='line'><span class="nt">&lt;p&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;http://blog.yous.be/archives&quot;</span><span class="nt">&gt;</span>Blog Archives<span class="nt">&lt;/a&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div></p>
+<p>``` html source/index.html</p>
+
+<!--
+<a href="http://blog.yous.be/blog/archives">Blog Archives</a>
+-->
+
+
+<p><a href="http://blog.yous.be/archives">Blog Archives</a>
+```</p>
 
 <p>사용중인 테마에 따라 추가적인 수정 사항이 있을 수 있습니다.</p>
 ]]></content>
