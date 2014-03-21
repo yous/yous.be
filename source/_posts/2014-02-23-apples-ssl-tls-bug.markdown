@@ -23,7 +23,7 @@ iOS 7.0.6, iOS 6.1.6, Apple TV 6.0.2가 [배포됐다][9to5Mac]. 애플에서 �
 [sslKeyExchange.c]: http://opensource.apple.com/source/Security/Security-55471/libsecurity_ssl/lib/sslKeyExchange.c
 [external-url]: https://www.imperialviolet.org/2014/02/22/applebug.html
 
-{% codeblock lang:c %}
+``` c sslKeyExchange.c
 static OSStatus
 SSLVerifySignedServerKeyExchange(SSLContext *ctx, bool isRsa, SSLBuffer signedParams,
                                  uint8_t *signature, UInt16 signatureLen)
@@ -50,7 +50,7 @@ fail:
     return err;
 
 }
-{% endcodeblock %}
+```
 
 단지 `goto fail;` 라인이 하나 더 있어서 `if`문과 관계 없이 두 번째 `goto`문이 실행되어 signature verification을 무조건 통과하게 된다.
 

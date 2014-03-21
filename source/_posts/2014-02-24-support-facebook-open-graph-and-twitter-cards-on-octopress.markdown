@@ -83,12 +83,12 @@ twitter_card:
 
 페이스북 Open Graph를 위한 설정 값을 `_config.yml`에 추가한다.
 
-{% codeblock _config.yml lang:yml %}
+``` yaml _config.yml
 ...
 # Facebook Insights / Open Graph
 facebook_app_id:
 facebook_page:
-{% endcodeblock %}
+```
 
 페이스북 App ID는 [페이스북 인사이트][Facebook Insights]에서 '웹사이트를 위한 인사이트' 버튼을 눌러 얻을 수 있다. 페이스북 페이지 주소는 `article:author`에 사용될 정보지만 입력하지 않아도 된다. 트위터는 `_config.yml`의 `twitter_user` 값을 이용해 메타 태그를 입력한다. 이 역시 입력하지 않아도 된다.
 
@@ -96,8 +96,8 @@ facebook_page:
 
 Octopress에서 사이트에 메타 태그를 추가하는 방법은 간단하다. 일단 `source/_includes/custom/head.html` 파일에 다음 코드를 추가하자.
 
-{% codeblock source/_includes/custom/head.html lang:html %}
 {% raw %}
+``` html source/_includes/custom/head.html
 ...
 <!-- Social media content metadata -->
 {% if site.facebook_app_id %}
@@ -142,14 +142,14 @@ Octopress에서 사이트에 메타 태그를 추가하는 방법은 간단하�
     {% endif %}
   {% endif %}
 {% endif %}
+```
 {% endraw %}
-{% endcodeblock %}
 
 페이스북에 링크를 첨부해 상태를 올리면 메타 태그 기반으로 미리보기를 생성해 준다. 다만 트위터의 경우 사이트 등록이 필요하다. [카드 검사 도구][Card Validator] 페이지에서 사이트가 검사에 통과하면 도메인 인증 요청을 보낼 수 있다. 이 요청이 통과되면 트위터에서 사이트 링크를 트위터 카드로 만들어 보여준다.
 
 추가로 설정 가능한 몇 가지 옵션에 대해 설명하겠다.
 
-{% codeblock lang:yml %}
+``` yaml
 ---
 layout: post
 title: "An example post"
@@ -165,13 +165,13 @@ twitter_card:
     type: summary_large_image
     image: http://example.com/path/to/image.png
 ---
-{% endcodeblock %}
+```
 
 글에 `description` 태그를 사용하면 그 값이 description으로 사용된다. 만약 없다면 글 앞부분이 사용된다. `facebook` 태그 아래에 `image` 태그를 사용하면 페이스북의 미리보기 이미지로 사용된다. `twitter_card` 태그 아래의 `image`도 마찬가지이다. 추가로 `twitter_card` 태그 아래에 `type`을 명시할 수 있고, `creator` 태그를 사용하면 `_config.yml`의 `twitter_user` 대신 그 값을 사용한다. `facebook` 태그와 `twitter_card` 태그 모두 추가 옵션으로 입력하지 않아도 관계없다.
 
 위 코드가 모든 트위터 카드를 지원하는 것은 아니다. 기본적으로 `twitter_card`의 `image` 태그를 입력하면 `summary`, `summary_large_image`, `photo` 타입을 사용할 수 있다. `photo` 타입은 추가적인 태그를 사용할 수 있다.
 
-{% codeblock lang:yml %}
+``` yaml
 ---
 layout: post
 title: "An example post"
@@ -186,13 +186,13 @@ twitter_card:
     width: 640
     height: 960
 ---
-{% endcodeblock %}
+```
 
 `width` 태그와 `height` 태그는 사진의 크기를 나타내며 이 두 태그의 입력은 옵션이다. 자세한 사항은 [Photo Card][] 페이지에서 확인하길 바란다.
 
 `gallery` 타입의 경우 추가로 필요한 태그가 있으며 예제는 다음과 같다:
 
-{% codeblock lang:yml %}
+``` yaml
 ---
 layout: post
 title: "An example post"
@@ -208,6 +208,6 @@ twitter_card:
     image2: http://example.com/path/to/image2.png
     image3: http://example.com/path/to/image3.png
 ---
-{% endcodeblock %}
+```
 
 원래 [Gallery Card][]에 쓰이는 태그는 `image0`부터 `image3`까지지만 편의를 위해 `image0`은 `image` 태그로 대신했다. 이미지 4장의 주소가 모두 필요하다. 이 외의 카드 종류들은 필요로 하는 태그의 종류가 많고 일일이 입력하기에도 불편할 것 같아 구현하지 않았다.

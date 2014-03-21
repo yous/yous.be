@@ -32,39 +32,39 @@ At some point, we want to know whether the device is connected to network so tha
 
 `ACCESS_WIFI_STATE` permission must be added to `AndroidManifest.xml`.
 
-{% codeblock AndroidManifest.xml %}
+``` xml AndroidManifest.xml
 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-{% endcodeblock %}
+```
 
 Checking code is simple. In activity, [WifiManager][] has a handy method.
 
 [WifiManager]: http://developer.android.com/reference/android/net/wifi/WifiManager.html
 
-{% codeblock lang:java %}
+``` java
 WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
 boolean wifiEnabled = wifiManager.isWifiEnabled();
-{% endcodeblock %}
+```
 
 <a id="1-2"></a>
 ### 3G/4G
 
 This is more complicated. As WiFi case, we have to add `ACCESS_NETWORK_STATE` permission.
 
-{% codeblock AndroidManifest.xml %}
+``` xml AndroidManifest.xml
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-{% endcodeblock %}
+```
 
 Then we get [NetworkInfo][] from [ConnectivityManager][].
 
 [NetworkInfo]: http://developer.android.com/reference/android/net/NetworkInfo.html
 [ConnectivityManager]: http://developer.android.com/reference/android/net/ConnectivityManager.html
 
-{% codeblock lang:java %}
+``` java
 ConnectivityManager connectivityManager =
     (ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
 NetworkInfo mobileInfo =
     connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-{% endcodeblock %}
+```
 
 See [getState()][] overview.
 
@@ -97,45 +97,45 @@ Also I tested several times with `getState()` and `getReason()`.
 
   When WiFi is connected, mobile data connection automatically closed.
 
-{% codeblock lang:java %}
+``` java
 mobileInfo.getState()
 // => DISCONNECTED
 mobileInfo.getReason()
 // => "dataDisabled"
-{% endcodeblock %}
+```
 
 - Enable WiFi only
 
-{% codeblock lang:java %}
+``` java
 mobileInfo.getState()
 // => DISCONNECTED
 mobileInfo.getReason()
 // => "specificDisabled"
-{% endcodeblock %}
+```
 
 - Enable 3G/4G only
 
-{% codeblock lang:java %}
+``` java
 mobileInfo.getState()
 // => CONNECTED
-{% endcodeblock %}
+```
 
 - Disable both
 
-{% codeblock lang:java %}
+``` java
 mobileInfo.getState()
 // => DISCONNECTED
 mobileInfo.getReason()
 // => "specificDisabled"
-{% endcodeblock %}
+```
 
 So the code would be like this.
 
-{% codeblock lang:java %}
+``` java
 String reason = mobileInfo.getReason();
 boolean mobileDisabled = mobileInfo.getState() == NetworkInfo.State.DISCONNECTED
     && (reason == null || reason.equals("specificDisabled"));
-{% endcodeblock %}
+```
 
 <a id="2"></a>
 ## 2. Check if WiFi or 3G/4G is Connected
@@ -145,20 +145,20 @@ WiFi or 3G/4G may not be connected even if the user enables them. Checking conne
 <a id="2-1"></a>
 ### WiFi
 
-{% codeblock lang:java %}
+``` java
 NetworkInfo wifiInfo =
     connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
 boolean wifiConnected = wifiInfo.getState() == NetworkInfo.State.CONNECTED;
-{% endcodeblock %}
+```
 
 <a id="2-2"></a>
 ### 3G/4G
 
-{% codeblock lang:java %}
+``` java
 NetworkInfo mobileInfo =
     connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
 boolean mobileConnected = mobileInfo.getState() == NetworkInfo.State.CONNECTED;
-{% endcodeblock %}
+```
 
 <a id="3"></a>
 ## 3. Toggle WiFi or 3G/4G Programmatically
@@ -168,16 +168,16 @@ boolean mobileConnected = mobileInfo.getState() == NetworkInfo.State.CONNECTED;
 
 `CHANGE_WIFI_STATE` permission must be added to `AndroidManifest.xml`.
 
-{% codeblock AndroidManifest.xml %}
+``` xml AndroidManifest.xml
 <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-{% endcodeblock %}
+```
 
 Enabling or disabling WiFi is easy.
 
-{% codeblock lang:java %}
+``` java
 WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
 wifiManager.setWifiEnabled(isWifiEnabled);
-{% endcodeblock %}
+```
 
 <a id="3-2"></a>
 ### 3G/4G
@@ -188,7 +188,7 @@ There is an workaround with reflection on ["How can i turn off 3G/Data programma
 
 For Android 2.3 and above:
 
-{% codeblock lang:java %}
+``` java
 private void setMobileDataEnabled(Context context, boolean enabled) {
   final ConnectivityManager conman =
       (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -216,18 +216,18 @@ private void setMobileDataEnabled(Context context, boolean enabled) {
     e.printStackTrace();
   }
 }
-{% endcodeblock %}
+```
 
 It requires to `CHANGE_NETWORK_STATE` permission.
 
-{% codeblock AndroidManifest.xml %}
+``` xml AndroidManifest.xml
 <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-{% endcodeblock %}
+```
 
 In Activity:
 
-{% codeblock lang:java %}
+``` java
 setMobileDataEnabled(this, isMobileDataEnabled);
-{% endcodeblock %}
+```
 
 Codes for Android 2.2 and below are also in the same [link][Stack Overflow], but I didn't check it.

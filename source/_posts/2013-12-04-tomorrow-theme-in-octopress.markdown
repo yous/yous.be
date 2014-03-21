@@ -41,13 +41,13 @@ So I made scss files for Octopress that overrides colors of `.highlight` and `.g
 1. Download `tomorrow` folder and `_tomorrow.scss` from [GitHub][yous.github.io/sass/custom].
 2. Put files to `sass/custom` and enable just one `@import` line of `_tomorrow.scss`. For example, if you want to use Tomorrow Night Eighties theme:
 
-{% codeblock sass/custom/_tomorrow.scss %}
+``` scss sass/custom/_tomorrow.scss
 // @import "tomorrow/tomorrow-night";
 // @import "tomorrow/tomorrow";
 @import "tomorrow/tomorrow-night-eighties";
 // @import "tomorrow/tomorrow-night-blue";
 // @import "tomorrow/tomorrow-night-bright";
-{% endcodeblock %}
+```
 
 ## Fixes
 
@@ -59,7 +59,7 @@ So I made scss files for Octopress that overrides colors of `.highlight` and `.g
 
 - Default `sass/partial/_syntax.scss` adds `box-shadow` and `text-shadow` to line numbers, also `box-shadow` to code block and gist. I removed these attributes and it is just can be done by overriding style in `sass/custom/_styles.scss`.
 
-{% codeblock sass/custom/_styles.scss %}
+``` scss sass/custom/_styles.scss
 .highlight .line-numbers, html .gist .gist-file .gist-syntax .highlight .line_numbers {
   @include box-shadow(none);
   text-shadow: none;
@@ -68,7 +68,7 @@ So I made scss files for Octopress that overrides colors of `.highlight` and `.g
 figure.code, .gist-file {
   @include box-shadow(none);
 }
-{% endcodeblock %}
+```
 
 - **This issue was fixed by this [commit][].** This blog uses [Whitespace][] theme. I found some problems that it overrides colors of code block to dark blue and it hides line numbers. To fix these problems, remove lines in `sass/custom/_styles.scss`.
 

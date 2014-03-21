@@ -67,9 +67,9 @@ twitter_card:
 
 이제 본론으로 들어가겠습니다. 변경할 파일은 단 하나입니다.
 
-{% codeblock lang:bash %}
+``` sh
 /System/Library/PreferenceBundles/MusicSettings.bundle/Music.plist
-{% endcodeblock %}
+```
 
 확장자는 [plist][]지만 그냥 메모장으로 열어도 편집할 수 있을 것입니다. 이 파일에는 `설정` - `음악`에서 볼 수 있는 모든 정보를 담고 있습니다.
 
@@ -79,7 +79,7 @@ twitter_card:
 
 위 사진에서 보이는 것들의 정보를 가지고 있다고 생각하시면 됩니다. 소스를 직접 봅시다.
 
-{% codeblock Music.plist lang:xml %}
+``` xml Music.plist
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -203,7 +203,7 @@ twitter_card:
   </array>
 </dict>
 </plist>
-{% endcodeblock %}
+```
 
 이해할 수 없는 문구들이 많이 있습니다. 좀더 자세히 봅시다. `com.apple.mobileipod`이라는 문구가 보이네요. iPod과 관련된 무언가라는 것은 알 수 있습니다. 사진과 코드의 순서에 주목해 봅시다. 각 `<key>id</key>` 아래의 `<string>`과 `</string>` 사이에 있는 문구들을 보면, 위에서부터 아래로 `ShakeToShuffle`, `SoundCheck`, `EQ`, `VolumeLimit`, `LyricsAndPodcastInfo`, `GroupByAlbumArtistPad`, `GroupByAlbumArtistPhone`인데, 위의 사진도 한 번 봅시다. `흔들어서 임의 재생`, `음량 자동 조절`, `EQ`, `음량 제한`, `가사 및 Podcast 정보`, `앨범 아티스트별 그룹`. 이제 감이 오셨나요?
 
@@ -211,7 +211,7 @@ twitter_card:
 
 지금까지 아이폰에서는 노래별 임의 재생만을 할 수 있었습니다. 여기에서 우리는 메뉴에 노래별 임의 재생이나 앨범별 임의 재생을 선택할 수 있도록 `PSLinkListCell`을 하나 만들 것입니다. 위치는 `음량 자동 조절` 바로 아래가 적당할 것 같습니다. `<string>SOUND_CHECK_IPHONE</string>`으로 끝나는 `<dict>…</dict>` 바로 아래에 다음 코드를 추가하시면 됩니다.
 
-{% codeblock lang:xml %}
+``` xml
 <dict>
   <key>PostNotification</key>
   <string>com.apple.mobileipod-prefsChanged</string>
@@ -236,7 +236,7 @@ twitter_card:
     <string>Albums</string>
   </array>
 </dict>
-{% endcodeblock %}
+```
 
 우리가 바꿀 `key`는 바로 `MusicShuffleSetting`입니다. 이게 가장 중요한 포인트인데, `MusicShuffleSetting`이 현재 임의 재생 유형을 나타내고 있습니다. 값은 `Songs`거나 `Albums`가 되는데, 아이폰에서는 `Songs`로만 설정되어 있어서 노래별 임의 재생만을 할 수 있었던 것입니다. 이제 이 설정을 우리가 바꿀 수 있게 만듦으로써 아이폰에서도 앨범별 임의 재생을 할 수 있게 됩니다.
 
@@ -245,7 +245,7 @@ twitter_card:
 
 아래는 수정한 `Music.plist`의 최종 결과입니다.
 
-{% codeblock Music.plist lang:xml %}
+``` xml Music.plist
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
@@ -391,7 +391,7 @@ twitter_card:
   </array>
 </dict>
 </plist>
-{% endcodeblock %}
+```
 
 `Music.plist`의 수정 과정은 [Bitbucket][]에서 보실 수 있습니다.
 

@@ -8,14 +8,14 @@ categories:
 keywords: syntax, highlighting
 ---
 
-{% codeblock %}
+```
 So guys
 whats up
-{% endcodeblock %}
+```
 
 {% include_code test.js lang:js %}
 
-{% codeblock lang:html %}
+``` html
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html><head>
 <title>A Tiny Page</title>
@@ -36,13 +36,13 @@ whats up
 <h2>def</h2>
 <p>Testing page</p>
 </body></html>
-{% endcodeblock %}
+```
 
 {% gist 2219214 %}
 
 <!-- more -->
 
-{% codeblock Testing PHP (syntax_test.php) %}
+``` php Testing PHP (syntax_test.php)
 <?php
 require_once($GLOBALS['g_campsiteDir']. "/$ADMIN_DIR/country/common.php");
 require_once($GLOBALS['g_campsiteDir']. "/classes/SimplePager.php");
@@ -72,9 +72,9 @@ echo camp_html_breadcrumbs($crumbs);
         <td><a href="add.php"><?php putGS("Add new"); ?></a></td>
     </tr>
 </table>
-{% endcodeblock %}
+```
 
-{% codeblock Testing Objective C (Cocoa1AppDelegate.m) %}
+``` objc Testing Objective C (Cocoa1AppDelegate.m)
 #import "Cocoa1AppDelegate.h"
 
 @implementation Cocoa1AppDelegate
@@ -96,9 +96,9 @@ echo camp_html_breadcrumbs($crumbs);
 }
 
 @end
-{% endcodeblock %}
+```
 
-{% codeblock Testing Haskel (syntax_test.hs) %}
+``` haskell Testing Haskel (syntax_test.hs)
 {-# LANGUAGE OverloadedStrings #-}
 module Main where
 
@@ -139,9 +139,9 @@ main = hakyll $ do
 sass :: Compiler Resource String
 sass = getResourceString >>> unixFilter "sass" ["-s", "--scss"]
                          >>> arr compressCss
-{% endcodeblock %}
+```
 
-{% codeblock Testing Bash (syntax_test.sh) %}
+``` sh Testing Bash (syntax_test.sh)
 #!/bin/bash
 
 cd $ROOT_DIR
@@ -168,9 +168,9 @@ case "$PLATFORM" in
                     "Previous settings recorded in ~/tmp/crontab-conflict-arch."
         fi
     ;;
-{% endcodeblock %}
+```
 
-{% codeblock Testing Python (syntax_test.py) %}
+``` python Testing Python (syntax_test.py)
 # test python (sample from offlineimap)
 
 class ExitNotifyThread(Thread):
@@ -238,9 +238,9 @@ class ExitNotifyThread(Thread):
         a call to setExitMessage(), or None if there was no such message
         set."""
         return self.exitmessage
-{% endcodeblock %}
+```
 
-{% codeblock Testing Perl (syntax_test.pl) %}
+``` perl Testing Perl (syntax_test.pl)
 #!perl -w
 
 # Time-stamp: <2002/04/06, 13:12:13 (EST), maverick, csvformat.pl>
@@ -274,9 +274,9 @@ while(<F>)
   print "\n";
 }
 close F;
-{% endcodeblock %}
+```
 
-{% codeblock Testing Java (syntax_test.java) %}
+``` java Testing Java (syntax_test.java)
 import java.util.Map;
 import java.util.TreeSet;
 
@@ -294,9 +294,9 @@ public class GetEnv {
     }
   }
 }
-{% endcodeblock %}
+```
 
-{% codeblock Test C (syntax_test.c) %}
+``` c Test C (syntax_test.c)
 #define UNICODE
 #include <windows.h>
 
@@ -323,18 +323,18 @@ int main(int argc, char **argv) {
   printf("New speed:     %2d\n", speed);
   return 0;
 }
-{% endcodeblock %}
+```
 
 {% gist 4321346 %}
 
-{% codeblock Coffeescript Tricks lang:coffeescript %}
+``` coffeescript Coffeescript Tricks
 # Given an alphabet:
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
 # Iterate over part of the alphabet:
 console.log letter for in alphabet[4..8]
-{% endcodeblock %}
+```
 
-{% codeblock lang:ruby %}
+``` ruby Test Ruby String Interpolation
 puts "a#{"b#{"c#{"d"}"}"}"
-{% endcodeblock %}
+```

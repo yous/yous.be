@@ -23,10 +23,10 @@ If the above link doesn't work, please use this [link][].
 
 Extract file with this code:
 
-{% codeblock lang:bash %}
+``` sh
 mv inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155 inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155.xz
 xz -d inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155.xz
-{% endcodeblock %}
+```
 
 Then we can see some trailing whitespace in `inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155`.
 
@@ -34,7 +34,7 @@ Then we can see some trailing whitespace in `inview-324b8fb59c14da0d5ca1fe2c3119
 
 Add this code to your `.vimrc`:
 
-{% codeblock lang:vim %}
+``` vim .vimrc
 highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace //
@@ -42,7 +42,7 @@ autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 if version >= 702
   autocmd BufWinLeave * call clearmatches()
 end
-{% endcodeblock %}
+```
 
 Then [Vim] highlights trailing whitespace to red color.
 
