@@ -9,7 +9,9 @@
   <meta name="author" content="Yous">
 
   
-  <meta name="description" content="Tomorrow Theme I usually use Tomorrow Night Eighties of Tomorrow Theme in Vim, iTerm2, IntelliJ IDEA (Android Studio). You can take a look of &hellip;">
+  <meta name="description" content="Overview Check if WiFi or 3G/4G is Enabled (by User) WiFi
+3G/4G Check if WiFi or 3G/4G is Connected WiFi
+3G/4G Toggle WiFi or 3G/4G Programmatically &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -36,14 +38,20 @@
   <meta property="og:title" content="Yous">
   <meta property="og:site_name" content="Yous">
   <meta property="og:url" content="http://blog.yous.be/page/3">
-  <meta property="og:description" content="Tomorrow Theme I usually use Tomorrow Night Eighties of Tomorrow Theme in Vim, iTerm2, IntelliJ IDEA (Android Studio). You can take a look of Tomorrow Theme. So I made scss files for Octopress that &hellip;">
+  <meta property="og:description" content="Overview Check if WiFi or 3G/4G is Enabled (by User) WiFi
+3G/4G Check if WiFi or 3G/4G is Connected WiFi
+3G/4G Toggle WiFi or 3G/4G Programmatically WiFi
+3G/4G At some point, we want to know whether &hellip;">
   
   
 
 <meta name="twitter:card" content="summary">
 
 <meta name="twitter:title" content="Yous">
-<meta name="twitter:description" content="Tomorrow Theme I usually use Tomorrow Night Eighties of Tomorrow Theme in Vim, iTerm2, IntelliJ IDEA (Android Studio). You can take a look of Tomorrow Theme. So I made scss files for Octopress that &hellip;">
+<meta name="twitter:description" content="Overview Check if WiFi or 3G/4G is Enabled (by User) WiFi
+3G/4G Check if WiFi or 3G/4G is Connected WiFi
+3G/4G Toggle WiFi or 3G/4G Programmatically WiFi
+3G/4G At some point, we want to know whether &hellip;">
 
 
 
@@ -95,6 +103,74 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2013/12/07/how-to-check-and-toggle-wifi-or-3g-4g-state-in-android/">How to Check and Toggle WiFi or 3G/4G State in Android</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2013-12-07T18:28:05+09:00" pubdate data-updated="true">Dec 7<span>th</span>, 2013</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2>Overview</h2>
+
+<ol>
+<li><a href="#1">Check if WiFi or 3G/4G is Enabled (by User)</a>
+
+<ol>
+<li><a href="#1-1">WiFi</a></li>
+<li><a href="#1-2">3G/4G</a></li>
+</ol>
+</li>
+<li><a href="#2">Check if WiFi or 3G/4G is Connected</a>
+
+<ol>
+<li><a href="#2-1">WiFi</a></li>
+<li><a href="#2-2">3G/4G</a></li>
+</ol>
+</li>
+<li><a href="#3">Toggle WiFi or 3G/4G Programmatically</a>
+
+<ol>
+<li><a href="#3-1">WiFi</a></li>
+<li><a href="#3-2">3G/4G</a></li>
+</ol>
+</li>
+</ol>
+
+
+<p>At some point, we want to know whether the device is connected to network so that we can do some network processes. Also we want to know if <em>user</em> make WiFi or 3G/4G disabled on purpose. Both things are able to know.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/12/07/how-to-check-and-toggle-wifi-or-3g-4g-state-in-android/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
   
   
     <article>
@@ -302,105 +378,6 @@ end</code></pre></noscript></div>
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2013/08/12/octopress-in-a-subdirectory/">Octopress in a subdirectory: /blog</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-08-12T06:08:00+09:00" pubdate data-updated="true">Aug 12<span>th</span>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Octopress 블로그를 사이트 루트가 아닌 하위 디렉토리에서 제공하고 싶을 때, 터미널에서 다음과 같이 실행해 줍니다.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake set_root_dir<span class="o">[</span>/blog<span class="o">]</span>
-</span><span class='line'>
-</span><span class='line'><span class="c"># To go back to publishing to the document root</span>
-</span><span class='line'>rake set_root_dir<span class="o">[</span>/<span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>그리고 <code>_config.yml</code>을 수정해 줍니다.</p>
-
-<figure class='code'><figcaption><span>_config.yml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="c1"># url: http://yoursite.com</span>
-</span><span class='line'><span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://yoursite.com/blog</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>추가로, <code>/blog</code>를 하위 디렉토리로 사용했을 때, Archives와 Categories, 그리고 포스트 경로들이 <code>http://yoursite.com/blog/blog/...</code>의 형태로 생성됩니다. 중복된 <code>/blog</code>를 지우기 위해 다음과 같이 설정을 변경해 줍니다.</p>
-
-<figure class='code'><figcaption><span>_config.yml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="c1"># permalink: /blog/:year/:month/:day/:title/</span>
-</span><span class='line'><span class="l-Scalar-Plain">permalink</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/:year/:month/:day/:title/</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># category_dir: blog/categories</span>
-</span><span class='line'><span class="l-Scalar-Plain">category_dir</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">categories</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>source/_includes/custom/navigation.html</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--</span>
-</span><span class='line'><span class="c">&lt;li&gt;&lt;a href=&quot;/blog/archives&quot;&gt;Archives&lt;/a&gt;&lt;/li&gt;</span>
-</span><span class='line'><span class="c">--&gt;</span>
-</span><span class='line'><span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/archives&quot;</span><span class="nt">&gt;</span>Archives<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>그리고, <code>source/blog/archives</code> 폴더를 <code>source/archives</code>로 옮겨주시기 바랍니다.</p>
-
-<figure class='code'><figcaption><span>source/index.html</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--</span>
-</span><span class='line'><span class="c">&lt;a href=&quot;/blog/archives&quot;&gt;Blog Archives&lt;/a&gt;</span>
-</span><span class='line'><span class="c">--&gt;</span>
-</span><span class='line'><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/archives&quot;</span><span class="nt">&gt;</span>Blog Archives<span class="nt">&lt;/a&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>사용중인 테마에 따라 추가적인 수정 사항이 있을 수 있습니다.</p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/4/">&larr; Older</a>
@@ -418,6 +395,10 @@ end</code></pre></noscript></div>
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/03/25/global-git-ignore/">Global Git Ignore</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/03/19/ropasaurusrex-a-primer-on-return-oriented-programming/">ropasaurusrex: return-oriented programming 입문서</a>
       </li>
     
@@ -431,10 +412,6 @@ end</code></pre></noscript></div>
     
       <li class="post">
         <a href="/2014/02/23/apples-ssl-tls-bug/">Apple&#8217;s SSL/TLS bug</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/01/20/ghost-in-the-shellcode-2014-inview-write-up/">Ghost in the Shellcode 2014: inview Write-up</a>
       </li>
     
   </ul>

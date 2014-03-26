@@ -9,7 +9,7 @@
   <meta name="author" content="Yous">
 
   
-  <meta name="description" content="SkullSecurity의 Ron Bowes가 쓴 return-oriented programming에 관한 입문서가 있어 번역했다. ">
+  <meta name="description" content="usevim의 Alex Young이 쓴 글이다. 나는 몇 년간 .gitignore에 *.sw?을 넣어 왔는데, Vim을 쓰지 않는 사람들은 특정 편집기를 위한 .gitignore 항목을 보고 싶지 않아 할 수도 있다는 걸 깨달았다. 편집기들은 임시 파일과 복구 파일을 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -36,14 +36,14 @@
   <meta property="og:title" content="Yous">
   <meta property="og:site_name" content="Yous">
   <meta property="og:url" content="http://blog.yous.be">
-  <meta property="og:description" content="SkullSecurity의 Ron Bowes가 쓴 return-oriented programming에 관한 입문서가 있어 번역했다. ">
+  <meta property="og:description" content="usevim의 Alex Young이 쓴 글이다. 나는 몇 년간 .gitignore에 *.sw?을 넣어 왔는데, Vim을 쓰지 않는 사람들은 특정 편집기를 위한 .gitignore 항목을 보고 싶지 않아 할 수도 있다는 걸 깨달았다. 편집기들은 임시 파일과 복구 파일을 각자 다른 방식으로 관리하기 때문에 이 설정을 모두에게 강요하는 것은 과해 보인다. &hellip;">
   
   
 
 <meta name="twitter:card" content="summary">
 
 <meta name="twitter:title" content="Yous">
-<meta name="twitter:description" content="SkullSecurity의 Ron Bowes가 쓴 return-oriented programming에 관한 입문서가 있어 번역했다. ">
+<meta name="twitter:description" content="usevim의 Alex Young이 쓴 글이다. 나는 몇 년간 .gitignore에 *.sw?을 넣어 왔는데, Vim을 쓰지 않는 사람들은 특정 편집기를 위한 .gitignore 항목을 보고 싶지 않아 할 수도 있다는 걸 깨달았다. 편집기들은 임시 파일과 복구 파일을 각자 다른 방식으로 관리하기 때문에 이 설정을 모두에게 강요하는 것은 과해 보인다. &hellip;">
 
 
 
@@ -95,6 +95,46 @@
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2014/03/25/global-git-ignore/">Global Git Ignore &rarr;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-25T20:49:32+09:00" pubdate data-updated="true">Mar 25<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://usevim.com">usevim</a>의 <a href="http://twitter.com/#!/alex_young">Alex Young</a>이 쓴 <a href="http://usevim.com/2013/10/04/gitglobal-ignore/">글</a>이다.</p>
+
+<blockquote><p>나는 몇 년간 <code>.gitignore</code>에 <code>*.sw?</code>을 넣어 왔는데, Vim을 쓰지 않는 사람들은 특정 편집기를 위한 <code>.gitignore</code> 항목을 보고 싶지 않아 할 수도 있다는 걸 깨달았다. 편집기들은 임시 파일과 복구 파일을 각자 다른 방식으로 관리하기 때문에 이 설정을 모두에게 강요하는 것은 과해 보인다.</p>
+
+<p>이것보단 global 옵션을 사용하는 것이 낫다. <code>git config --global core.excludesfile ~/.gitignore</code>를 실행해라. 그러면 거기에 <code>*.sw?</code>을, 어쩌면 <code>*~</code>도 넣을 수 있다. 난 <code>.DS_Store</code>를 추가할 텐데, Windows 개발자들은 여기 신경 쓸 필요가 없기 때문이다. 그리고 그들은 아마 <code>Thumbs.db</code>를 추가해야 할 것이다.</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -177,47 +217,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/02/24/support-facebook-open-graph-and-twitter-cards-on-octopress/">Octopress에서 Facebook Open Graph와 Twitter Cards 지원하기</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-24T21:50:36+09:00" pubdate data-updated="true">Feb 24<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>블로그에 글을 쓰고 나면 트위터나 페이스북에 링크를 공유하곤 하는데 페이스북의 미리보기가 적절히 표시되지 않고 있다는 사실을 깨달았다. 또한 트위터도 그와 비슷한 기능을 제공하는데, 둘 다 지원하면 좋겠다는 생각을 했다. 이를 제대로 지원하려면 <a href="https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#tags">Facebook Open Graph tags</a>와 <a href="https://dev.twitter.com/docs/cards">Twitter Cards</a>에 대해 알아야 한다. 웹 페이지에 적절한 <a href="http://en.wikipedia.org/wiki/Meta_element">메타 태그</a>를 추가해 주면 페이스북과 트위터에서 인식하고 올바른, 작성자가 의도한 미리보기를 보여준다. 기본적으로 Zac Clancy의 <a href="http://blackglasses.me/2013/09/19/twitter-cards-facebook-open-graph-and-octopress/">글</a>에 상세히 설명되어 있다.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2014/02/24/support-facebook-open-graph-and-twitter-cards-on-octopress/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -233,6 +232,10 @@
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/03/25/global-git-ignore/">Global Git Ignore</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/03/19/ropasaurusrex-a-primer-on-return-oriented-programming/">ropasaurusrex: return-oriented programming 입문서</a>
       </li>
     
@@ -246,10 +249,6 @@
     
       <li class="post">
         <a href="/2014/02/23/apples-ssl-tls-bug/">Apple&#8217;s SSL/TLS bug</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/01/20/ghost-in-the-shellcode-2014-inview-write-up/">Ghost in the Shellcode 2014: inview Write-up</a>
       </li>
     
   </ul>
