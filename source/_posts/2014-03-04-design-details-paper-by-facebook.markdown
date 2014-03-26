@@ -3,7 +3,8 @@ layout: post
 title: "Design Details: Paper by Facebook"
 date: 2014-03-04 22:02:47 +0900
 comments: false
-categories: Design
+categories:
+    - Design
 keywords: design, paper, facebook, ios, animation
 external-url: http://blog.brianlovin.com/design-details-paper-by-facebook
 ---
