@@ -22,8 +22,12 @@
 }
 
 html .gist .gist-file .gist-meta {
+	color: $tomorrow-foreground;
 	background: $tomorrow-current-line;
 	border-color: $tomorrow-current-line !important;
+	a {
+		color: $tomorrow-foreground !important;
+	}
 }
 
 .pre-code {
