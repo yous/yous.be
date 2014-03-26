@@ -3,6 +3,7 @@ layout: post
 title: "ropasaurusrex: return-oriented programming 입문서"
 date: 2014-03-19 20:44:03 +0900
 comments: false
+description: SkullSecurity의 Ron Bowes가 쓴 return-oriented programming에 관한 입문서가 있어 번역했다.
 categories:
     - CTF
     - Write-up

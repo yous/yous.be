@@ -3,6 +3,7 @@ layout: post
 title: "Global Git Ignore"
 date: 2014-03-25 20:49:32 +0900
 comments: false
+description: usevim의 Alex Young이 쓴 글이다.
 categories:
     - Git
 keywords: git, gitignore, global
