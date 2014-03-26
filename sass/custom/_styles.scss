@@ -129,9 +129,3 @@ article header h1 a {
 figure.code, .gist-file {
 	@include box-shadow(none);
 }
-
-html .gist .gist-file .gist-meta {
-	a[href*='#file'] {
-		right: 0;
-	}
-}
