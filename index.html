@@ -9,7 +9,7 @@
   <meta name="author" content="Yous">
 
   
-  <meta name="description" content="윤지만 씨의 블로그를 통해 Dave Bradford의 글 Twitter Profile Bookmarklet을 봤다. 직접 써 보니 기능이 추가됐으면 더 좋을 것 같아 추가했다. 일단, 원글에 있는 코드의 기능은 간단하다. 모바일 사파리를 통해 트위터 계정을 보다가 &hellip;">
+  <meta name="description" content="Dave Bradford의 트위터에 관한 팁 Twitter Profile Bookmarklet을 봤다. 직접 써 보니 기능이 추가됐으면 더 좋을 것 같아 추가했다. 일단, 원글에 있는 코드의 기능은 간단하다. 모바일 사파리를 통해 트위터 계정을 보다가 북마크 버튼을 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -36,14 +36,14 @@
   <meta property="og:title" content="Yous">
   <meta property="og:site_name" content="Yous">
   <meta property="og:url" content="http://blog.yous.be">
-  <meta property="og:description" content="윤지만 씨의 블로그를 통해 Dave Bradford의 글 Twitter Profile Bookmarklet을 봤다. 직접 써 보니 기능이 추가됐으면 더 좋을 것 같아 추가했다. 일단, 원글에 있는 코드의 기능은 간단하다. 모바일 사파리를 통해 트위터 계정을 보다가 북마크 버튼을 한 번 누르면 Tweetbot에서 볼 수 있게 된다. 여기에 브라우저를 통해 &hellip;">
+  <meta property="og:description" content="Dave Bradford의 트위터에 관한 팁 Twitter Profile Bookmarklet을 봤다. 직접 써 보니 기능이 추가됐으면 더 좋을 것 같아 추가했다. 일단, 원글에 있는 코드의 기능은 간단하다. 모바일 사파리를 통해 트위터 계정을 보다가 북마크 버튼을 한 번 누르면 Tweetbot에서 볼 수 있게 된다. 여기에 브라우저를 통해 &lsquo; &hellip;">
   
   
 
 <meta name="twitter:card" content="summary">
 
 <meta name="twitter:title" content="Yous">
-<meta name="twitter:description" content="윤지만 씨의 블로그를 통해 Dave Bradford의 글 Twitter Profile Bookmarklet을 봤다. 직접 써 보니 기능이 추가됐으면 더 좋을 것 같아 추가했다. 일단, 원글에 있는 코드의 기능은 간단하다. 모바일 사파리를 통해 트위터 계정을 보다가 북마크 버튼을 한 번 누르면 Tweetbot에서 볼 수 있게 된다. 여기에 브라우저를 통해 &hellip;">
+<meta name="twitter:description" content="Dave Bradford의 트위터에 관한 팁 Twitter Profile Bookmarklet을 봤다. 직접 써 보니 기능이 추가됐으면 더 좋을 것 같아 추가했다. 일단, 원글에 있는 코드의 기능은 간단하다. 모바일 사파리를 통해 트위터 계정을 보다가 북마크 버튼을 한 번 누르면 Tweetbot에서 볼 수 있게 된다. 여기에 브라우저를 통해 &lsquo; &hellip;">
 
 
 
@@ -124,7 +124,7 @@
   </header>
 
 
-  <div class="entry-content"><p><a href="http://yoonjiman.net/about/">윤지만</a> 씨의 <a href="http://yoonjiman.net/2014/03/25/twitter-profile-bookmarklet/">블로그</a>를 통해 <a href="http://davebradford.com/about/">Dave Bradford</a>의 글 <a href="http://davebradford.com/blog/twitter-profile-bookmarklet/">Twitter Profile Bookmarklet</a>을 봤다. 직접 써 보니 기능이 추가됐으면 더 좋을 것 같아 추가했다.</p>
+  <div class="entry-content"><p><a href="http://davebradford.com/about/">Dave Bradford</a>의 트위터에 관한 팁 <a href="http://davebradford.com/blog/twitter-profile-bookmarklet/">Twitter Profile Bookmarklet</a>을 봤다. 직접 써 보니 기능이 추가됐으면 더 좋을 것 같아 추가했다.</p>
 
 <p>일단, 원글에 있는 코드의 기능은 간단하다. 모바일 사파리를 통해 트위터 계정을 보다가 북마크 버튼을 한 번 누르면 <a href="http://tapbots.com/software/tweetbot/">Tweetbot</a>에서 볼 수 있게 된다. 여기에 브라우저를 통해 &lsquo;트윗&#8217;을 보고 있다면 Tweetbot으로 바로 그 트윗을 볼 수 있게 기능을 추가했다. OS X에서도 동일하게 작동한다.</p>
 
@@ -156,6 +156,10 @@
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class=''><span class='line'>javascript:var%20url=document.URL;var%20match=url.match(/status(?:es)?%5C/(%5Cd+)/i);var%20tweetbotUrl;if(match==null)%7BtweetbotUrl=url.replace(/https?:%5C/%5C/(mobile%5C.)?twitter%5C.com%5C//i,%22tweetbot:///user_profile/%22)%7Delse%7BtweetbotUrl=%22tweetbot:///status/%22+match[1]%7Dwindow.location=tweetbotUrl;</span></code></pre></td></tr></table></div></figure>
 
+
+<p>기기에 Tweetbot 2와 Tweetbot 3가 모두 깔려 있을 때 Tweetbot 2로 열리는 점은 아쉽다.</p>
+
+<p>via <a href="http://yoonjiman.net/2014/03/25/twitter-profile-bookmarklet/">Yoon Jiman</a></p>
 </div>
   
   
