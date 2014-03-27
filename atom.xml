@@ -4,7 +4,7 @@
   <title><![CDATA[Yous]]></title>
   <link href="http://blog.yous.be/atom.xml" rel="self"/>
   <link href="http://blog.yous.be/"/>
-  <updated>2014-03-27T09:18:39+09:00</updated>
+  <updated>2014-03-27T10:48:29+09:00</updated>
   <id>http://blog.yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -12,6 +12,46 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Twitter Link Bookmarklet &rarr;]]></title>
+    <link href="http://blog.yous.be/2014/03/27/twitter-link-bookmarklet/"/>
+    <updated>2014-03-27T10:18:57+09:00</updated>
+    <id>http://blog.yous.be/2014/03/27/twitter-link-bookmarklet</id>
+    <content type="html"><![CDATA[<p><a href="http://yoonjiman.net/about/">윤지만</a> 씨의 <a href="http://yoonjiman.net/2014/03/25/twitter-profile-bookmarklet/">블로그</a>를 통해 <a href="http://davebradford.com/about/">Dave Bradford</a>의 글 <a href="http://davebradford.com/blog/twitter-profile-bookmarklet/">Twitter Profile Bookmarklet</a>을 봤다. 직접 써 보니 기능이 추가됐으면 더 좋을 것 같아 추가했다.</p>
+
+<p>일단, 원글에 있는 코드의 기능은 간단하다. 모바일 사파리를 통해 트위터 계정을 보다가 북마크 버튼을 한 번 누르면 <a href="http://tapbots.com/software/tweetbot/">Tweetbot</a>에서 볼 수 있게 된다. 여기에 브라우저를 통해 &lsquo;트윗&#8217;을 보고 있다면 Tweetbot으로 바로 그 트윗을 볼 수 있게 기능을 추가했다. OS X에서도 동일하게 작동한다.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">URL</span><span class="p">;</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">match</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/status(?:es)?\/(\d+)/i</span><span class="p">);</span>
+</span><span class='line'><span class="kd">var</span> <span class="nx">tweetbotUrl</span><span class="p">;</span>
+</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">match</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">tweetbotUrl</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/https?:\/\/(mobile\.)?twitter\.com\//</span><span class="p">,</span> <span class="s2">&quot;tweetbot:///user_profile/&quot;</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="k">else</span> <span class="p">{</span>
+</span><span class='line'>    <span class="nx">tweetbotUrl</span> <span class="o">=</span> <span class="s2">&quot;tweetbot:///status/&quot;</span> <span class="o">+</span> <span class="nx">match</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">location</span> <span class="o">=</span> <span class="nx">tweetbotUrl</span><span class="p">;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>원리는 간단하다. 현재 페이지 URL에 <code>status</code>나 <code>statuses</code>가 포함되어 있으면 트윗을 열고, 그렇지 않으면 계정을 보여 준다. 아래 코드를 북마크 해두고, 필요할 때 눌러주면 된다.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>javascript:var%20url=document.URL;var%20match=url.match(/status(?:es)?%5C/(%5Cd+)/i);var%20tweetbotUrl;if(match==null)%7BtweetbotUrl=url.replace(/https?:%5C/%5C/(mobile%5C.)?twitter%5C.com%5C//i,%22tweetbot:///user_profile/%22)%7Delse%7BtweetbotUrl=%22tweetbot:///status/%22+match[1]%7Dwindow.location=tweetbotUrl;</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Global Git Ignore &rarr;]]></title>
