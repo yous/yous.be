@@ -10,10 +10,8 @@ keywords: twitter, profile, link, bookmark, bookmarklet
 external-url: http://davebradford.com/blog/twitter-profile-bookmarklet/
 ---
 
-[윤지만][] 씨의 [블로그][]를 통해 [Dave Bradford][]의 글 [Twitter Profile Bookmarklet][external-url]을 봤다. 직접 써 보니 기능이 추가됐으면 더 좋을 것 같아 추가했다.
+[Dave Bradford][]의 트위터에 관한 팁 [Twitter Profile Bookmarklet][external-url]을 봤다. 직접 써 보니 기능이 추가됐으면 더 좋을 것 같아 추가했다.
 
-[윤지만]: http://yoonjiman.net/about/
-[블로그]: http://yoonjiman.net/2014/03/25/twitter-profile-bookmarklet/
 [Dave Bradford]: http://davebradford.com/about/
 [external-url]: http://davebradford.com/blog/twitter-profile-bookmarklet/
 
@@ -39,3 +37,7 @@ window.location = tweetbotUrl;
 ``` plain
 javascript:var%20url=document.URL;var%20match=url.match(/status(?:es)?%5C/(%5Cd+)/i);var%20tweetbotUrl;if(match==null)%7BtweetbotUrl=url.replace(/https?:%5C/%5C/(mobile%5C.)?twitter%5C.com%5C//i,%22tweetbot:///user_profile/%22)%7Delse%7BtweetbotUrl=%22tweetbot:///status/%22+match[1]%7Dwindow.location=tweetbotUrl;
 ```
+
+기기에 Tweetbot 2와 Tweetbot 3가 모두 깔려 있을 때 Tweetbot 2로 열리는 점은 아쉽다.
+
+via [Yoon Jiman](http://yoonjiman.net/2014/03/25/twitter-profile-bookmarklet/)
