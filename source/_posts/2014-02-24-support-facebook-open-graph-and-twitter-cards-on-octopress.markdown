@@ -12,7 +12,7 @@ twitter_card:
     image: https://dev.twitter.com/sites/default/files/images_documentation/web_summary_0.png
 ---
 
-블로그에 글을 쓰고 나면 트위터나 페이스북에 링크를 공유하곤 하는데 페이스북의 미리보기가 적절히 표시되지 않고 있다는 사실을 깨달았다. 또한 트위터도 그와 비슷한 기능을 제공하는데, 둘 다 지원하면 좋겠다는 생각을 했다. 이를 제대로 지원하려면 [Facebook Open Graph tags][]와 [Twitter Cards][]에 대해 알아야 한다. 웹 페이지에 적절한 [메타 태그][Meta element]를 추가해 주면 페이스북과 트위터에서 인식하고 올바른, 작성자가 의도한 미리보기를 보여준다. 기본적으로 Zac Clancy의 [글][Black Glasses]에 상세히 설명되어 있다.
+블로그에 글을 쓰고 나면 트위터나 페이스북에 링크를 공유하곤 하는데 페이스북의 미리보기가 적절히 표시되지 않고 있다는 사실을 깨달았다. 또한 트위터도 그와 비슷한 기능을 제공하는데, 둘 다 지원하면 좋겠다는 생각을 했다. 이를 제대로 지원하려면 [Facebook Open Graph tags][]와 [Twitter Cards][]에 대해 알아야 한다. 웹 페이지에 적절한 [메타 태그][Meta element]를 추가해 주면 페이스북과 트위터에서 인식하고 올바른, 작성자가 의도한 미리보기를 보여준다. 기본적으로 Zac Clancy가 쓴 [Octopress에서 이 두 가지를 지원하는 글][Black Glasses]에 상세히 설명되어 있다.
 
 [Facebook Open Graph tags]: https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#tags
 [Twitter Cards]: https://dev.twitter.com/docs/cards

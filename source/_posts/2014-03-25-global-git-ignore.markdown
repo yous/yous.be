@@ -10,7 +10,7 @@ keywords: git, gitignore, global
 external-url: http://usevim.com/2013/10/04/gitglobal-ignore/
 ---
 
-[usevim][]의 [Alex Young][]이 쓴 [글][external-url]이다.
+[usevim][]의 [Alex Young][]이 쓴 [global gitignore에 관한 글][external-url]다.
 
 [usevim]: http://usevim.com
 [Alex Young]: http://twitter.com/#!/alex_young
