@@ -130,7 +130,7 @@
   </header>
 
 
-<div class="entry-content"><p>블로그에 글을 쓰고 나면 트위터나 페이스북에 링크를 공유하곤 하는데 페이스북의 미리보기가 적절히 표시되지 않고 있다는 사실을 깨달았다. 또한 트위터도 그와 비슷한 기능을 제공하는데, 둘 다 지원하면 좋겠다는 생각을 했다. 이를 제대로 지원하려면 <a href="https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#tags">Facebook Open Graph tags</a>와 <a href="https://dev.twitter.com/docs/cards">Twitter Cards</a>에 대해 알아야 한다. 웹 페이지에 적절한 <a href="http://en.wikipedia.org/wiki/Meta_element">메타 태그</a>를 추가해 주면 페이스북과 트위터에서 인식하고 올바른, 작성자가 의도한 미리보기를 보여준다. 기본적으로 Zac Clancy의 <a href="http://blackglasses.me/2013/09/19/twitter-cards-facebook-open-graph-and-octopress/">글</a>에 상세히 설명되어 있다.</p>
+<div class="entry-content"><p>블로그에 글을 쓰고 나면 트위터나 페이스북에 링크를 공유하곤 하는데 페이스북의 미리보기가 적절히 표시되지 않고 있다는 사실을 깨달았다. 또한 트위터도 그와 비슷한 기능을 제공하는데, 둘 다 지원하면 좋겠다는 생각을 했다. 이를 제대로 지원하려면 <a href="https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#tags">Facebook Open Graph tags</a>와 <a href="https://dev.twitter.com/docs/cards">Twitter Cards</a>에 대해 알아야 한다. 웹 페이지에 적절한 <a href="http://en.wikipedia.org/wiki/Meta_element">메타 태그</a>를 추가해 주면 페이스북과 트위터에서 인식하고 올바른, 작성자가 의도한 미리보기를 보여준다. 기본적으로 Zac Clancy가 쓴 <a href="http://blackglasses.me/2013/09/19/twitter-cards-facebook-open-graph-and-octopress/">Octopress에서 이 두 가지를 지원하는 글</a>에 상세히 설명되어 있다.</p>
 
 <!-- more -->
 
@@ -144,7 +144,7 @@
 <ul>
 <li><code>og:title</code>: 사이트 이름 등의 브랜드를 제외한 글 제목이다.</li>
 <li><code>og:site_name</code>: 웹 사이트의 이름이다. URL이 아니라 이름이다. (예: &ldquo;imdb.com&#8221;이 아닌 &#8220;IMDb&rdquo;)</li>
-<li><code>og:url</code>: 글의 고유 식별자가 된다. 검색 엔진 최적화를 위해 사용된 <a href="http://en.wikipedia.org/wiki/Canonical_link_element">표준 URL(Canonical URL)</a>과 연결되어야 하며, 어떤 세션 변수나 사용자 식별 인자나 카운터를 포함하지 않아야 한다. 만약 이 부분을 잘못 사용하게 되면, &lsquo;좋아요&#8217;와 &#8216;공유&#8217;의 수가 이 URL로 합해지지 않고 이 URL의 모든 변형으로 흩어질 것이다.</li>
+<li><code>og:url</code>: 글의 고유 식별자가 된다. 검색 엔진 최적화를 위해 사용된 <a href="http://en.wikipedia.org/wiki/Canonical_link_element">표준(canonical) URL</a>과 연결되어야 하며, 어떤 세션 변수나 사용자 식별 인자나 카운터를 포함하지 않아야 한다. 만약 이 부분을 잘못 사용하게 되면, &lsquo;좋아요&#8217;와 &#8216;공유&#8217;의 수가 이 URL로 합해지지 않고 이 URL의 모든 변형으로 흩어질 것이다.</li>
 <li><code>og:description</code>: 내용 일부를 상세히 설명한 글로, 보통 2~4문장이다. 이 태그는 선택 가능하지만 사람들이 읽고 공유하는 비율을 높일 수 있다.</li>
 <li><code>og:image</code>: 연관된 이미지다. 최소 1200x630 픽셀 크기의 이미지 사용을 추천한다.</li>
 <li><code>fb:app_id</code>: 페이스북이 사이트의 신원을 파악할 수 있게 해 주는 고유 ID다. <a href="https://www.facebook.com/insights/">Facebook Insights</a>가 제대로 동작하는 데에 중요하다.</li>
@@ -154,8 +154,8 @@
 <p>다른 종류의 태그를 더 추가할 수도 있다:</p>
 
 <ul>
-<li><code>og:type</code>: 페이스북의 뉴스피드는 당신의 글을 미디어 종류에 따라 다르게 보여준다.<a href="http://ogp.me/#types">일반적으로 쓰이는 오브젝트 타입(Object Types)</a>들은 이미 정의되어 있다. 만약 오브젝트 타입을 설정하지 않으면 기본 타입으로 <code>website</code>가 쓰인다. Open Graph를 통해 당신만의 타입을 정할 수도 있다.</li>
-<li><code>og:locale</code>: 리소스의 언어다. 기본 설정은 <code>en_US</code>다. <code>og:locale:alternate</code>를 통해 다른 언어도 가능하다는 것을 나타낼 수 있다. 예제와 추가 정보는 <a href="https://developers.facebook.com/docs/internationalization/">국제화(Internationalization)</a>와 <a href="https://developers.facebook.com/docs/technical-guides/opengraph/internationalization/">Open Graph 국제화</a> 페이지를 보라.</li>
+<li><code>og:type</code>: 페이스북의 뉴스피드는 당신의 글을 미디어 종류에 따라 다르게 보여준다.<a href="http://ogp.me/#types">일반적으로 쓰이는 오브젝트 타입</a>은 이미 정의되어 있다. 만약 오브젝트 타입을 설정하지 않으면 기본 타입으로 <code>website</code>가 쓰인다. Open Graph를 통해 당신만의 타입을 정할 수도 있다.</li>
+<li><code>og:locale</code>: 리소스의 언어다. 기본 설정은 <code>en_US</code>다. <code>og:locale:alternate</code>를 통해 다른 언어도 가능하다는 것을 나타낼 수 있다. 예제와 추가 정보는 <a href="https://developers.facebook.com/docs/internationalization/">국제화</a>와 <a href="https://developers.facebook.com/docs/technical-guides/opengraph/internationalization/">Open Graph 국제화</a> 페이지를 보라.</li>
 <li><code>article:author</code>: <a href="https://developers.facebook.com/docs/reference/opengraph/object-type/article">글의 저자들로 통하는 링크</a>다. 링크 주소는 뉴스피드에 나타났을 때 저자를 팔로우 할 수 있는 페이스북 프로필이나 페이스북 페이지가 될 수 있다. (저자들은 사람들이 팔로우 할 수 있게 <a href="https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#follow">팔로우</a> 기능을 켜 두어야 한다.)</li>
 <li><code>article:publisher</code>: <a href="https://developers.facebook.com/docs/reference/opengraph/object-type/article">글의 발행인으로 통하는 링크</a>다. 링크 주소는 페이스북 페이지여야 한다. 페이스북은 발행인이 뉴스피드에 표시되었을 때 그것을 &lsquo;좋아요&rsquo; 하는 기능을 제공할 수 있다. 이 태그는 미디어 발행인만 쓸 수 있다.</li>
 </ul>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iOS | Yous]]></title>
   <link href="http://blog.yous.be/categories/ios/atom.xml" rel="self"/>
   <link href="http://blog.yous.be/"/>
-  <updated>2014-03-27T10:54:39+09:00</updated>
+  <updated>2014-03-28T21:42:28+09:00</updated>
   <id>http://blog.yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -24,7 +24,7 @@
 
 <p>Description: Secure Transport failed to validate the authenticity of the connection. This issue was addressed by restoring missing validation steps.</p></blockquote>
 
-<p>그런데 이 문제의 원인이 된 <a href="http://opensource.apple.com/source/Security/Security-55471/libsecurity_ssl/lib/sslKeyExchange.c">소스 코드</a>가 흥미롭다. ImperialViolet의 <a href="https://www.imperialviolet.org/2014/02/22/applebug.html">글</a>에 따르면 실제 소스는 이렇다:</p>
+<p>그런데 이 문제의 원인이 된 <a href="http://opensource.apple.com/source/Security/Security-55471/libsecurity_ssl/lib/sslKeyExchange.c">소스 코드</a>가 흥미롭다. Adam Langley의 <a href="https://www.imperialviolet.org/2014/02/22/applebug.html">이 버그에 관한 글</a>에 따르면 실제 소스는 이렇다:</p>
 
 <p>``` c sslKeyExchange.c
 static OSStatus
@@ -104,7 +104,7 @@ return err;
 
 <p>하지만 찾는 것은 쉽지 않았습니다. 우선 그 기능을 구현한 트윅은 없는 것처럼 보였습니다. 음악과 관련된 트윅은 대부분 기존의 음악 어플을 쉽게 제어할 수 있도록 하는 것이었고, 임의 재생과 관련된 것은 찾기 어려웠습니다.</p>
 
-<p>그래도 희망의 끈을 놓지 않고 계속 검색해 보던 중에, 이런 <a href="http://www.hackint0sh.org/free-toolchain-software-126/req-album-shuffle-option-18867.htm">글</a>을 발견하게 되었습니다.</p>
+<p>그래도 희망의 끈을 놓지 않고 계속 검색해 보던 중에, <a href="http://www.hackint0sh.org/free-toolchain-software-126/req-album-shuffle-option-18867.htm">앨범별 임의 재생에 관한 질문</a>을 발견하게 되었습니다.</p>
 
 <p>그렇습니다! 저처럼 앨범별 임의 재생을 하고 싶은 사람이 올린 질문이었습니다. 댓글을 살펴보면 탈옥한 아이폰에서 작동한다는 글을 볼 수 있었습니다. 물론 2007년에 작성된 댓글이라서 지금의 iOS에 그대로 적용하면 작동하지 않습니다.</p>
 
