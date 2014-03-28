@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iOS | Yous]]></title>
   <link href="http://blog.yous.be/categories/ios/atom.xml" rel="self"/>
   <link href="http://blog.yous.be/"/>
-  <updated>2014-03-28T21:42:28+09:00</updated>
+  <updated>2014-03-28T21:49:19+09:00</updated>
   <id>http://blog.yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -12,6 +12,46 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Twitter Link Bookmarklet]]></title>
+    <link href="http://blog.yous.be/2014/03/27/twitter-link-bookmarklet/"/>
+    <updated>2014-03-27T10:18:57+09:00</updated>
+    <id>http://blog.yous.be/2014/03/27/twitter-link-bookmarklet</id>
+    <content type="html"><![CDATA[<p><a href="http://davebradford.com/about/">Dave Bradford</a>의 트위터에 관한 팁 <a href="http://davebradford.com/blog/twitter-profile-bookmarklet/">Twitter Profile Bookmarklet</a>을 봤다. 직접 써 보니 기능이 추가됐으면 더 좋을 것 같아 추가했다.</p>
+
+<p>일단, 원글에 있는 코드의 기능은 간단하다. 모바일 사파리를 통해 트위터 계정을 보다가 북마크 버튼을 한 번 누르면 <a href="http://tapbots.com/software/tweetbot/">Tweetbot</a>에서 볼 수 있게 된다. 여기에 브라우저를 통해 &lsquo;트윗'을 보고 있다면 Tweetbot으로 바로 그 트윗을 볼 수 있게 기능을 추가했다. OS X에서도 동일하게 작동한다.</p>
+
+<p>``` javascript
+var url = document.URL;
+var match = url.match(/status(?:es)?\/(\d+)/i);
+var tweetbotUrl;
+if (match == null) {</p>
+
+<pre><code>tweetbotUrl = url.replace(/https?:\/\/(mobile\.)?twitter\.com\//, "tweetbot:///user_profile/");
+</code></pre>
+
+<p>}
+else {</p>
+
+<pre><code>tweetbotUrl = "tweetbot:///status/" + match[1];
+</code></pre>
+
+<p>}
+window.location = tweetbotUrl;
+```</p>
+
+<p>원리는 간단하다. 현재 페이지 URL에 <code>status</code>나 <code>statuses</code>가 포함되어 있으면 트윗을 열고, 그렇지 않으면 계정을 보여 준다. 아래 코드를 북마크 해두고, 필요할 때 눌러주면 된다.</p>
+
+<p><code>plain
+javascript:var%20url=document.URL;var%20match=url.match(/status(?:es)?%5C/(%5Cd+)/i);var%20tweetbotUrl;if(match==null)%7BtweetbotUrl=url.replace(/https?:%5C/%5C/(mobile%5C.)?twitter%5C.com%5C//i,%22tweetbot:///user_profile/%22)%7Delse%7BtweetbotUrl=%22tweetbot:///status/%22+match[1]%7Dwindow.location=tweetbotUrl;
+</code></p>
+
+<p>기기에 Tweetbot 2와 Tweetbot 3가 모두 깔려 있을 때 Tweetbot 2로 열리는 점은 아쉽다.</p>
+
+<p>via <a href="http://yoonjiman.net/2014/03/25/twitter-profile-bookmarklet/">Yoon Jiman</a></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Apple's SSL/TLS bug]]></title>
