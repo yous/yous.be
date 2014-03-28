@@ -5,8 +5,8 @@ date: 2014-03-27 10:18:57 +0900
 comments: false
 description: Dave Bradford의 Twitter Profile Bookmarklet에 추가됐으면 하는 기능이 있어 추가했다.
 categories:
-    - Tip
-keywords: twitter, profile, link, bookmark, bookmarklet
+    - iOS
+keywords: twitter, profile, link, bookmark, bookmarklet, tweetbot
 external-url: http://davebradford.com/blog/twitter-profile-bookmarklet/
 ---
 
