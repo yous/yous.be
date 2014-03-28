@@ -29,7 +29,7 @@ twitter_card:
 
 - `og:title`: 사이트 이름 등의 브랜드를 제외한 글 제목이다.
 - `og:site_name`: 웹 사이트의 이름이다. URL이 아니라 이름이다. (예: "imdb.com"이 아닌 "IMDb")
-- `og:url`: 글의 고유 식별자가 된다. 검색 엔진 최적화를 위해 사용된 [표준 URL(Canonical URL)][Canonical link element]과 연결되어야 하며, 어떤 세션 변수나 사용자 식별 인자나 카운터를 포함하지 않아야 한다. 만약 이 부분을 잘못 사용하게 되면, '좋아요'와 '공유'의 수가 이 URL로 합해지지 않고 이 URL의 모든 변형으로 흩어질 것이다.
+- `og:url`: 글의 고유 식별자가 된다. 검색 엔진 최적화를 위해 사용된 [표준(canonical) URL][Canonical link element]과 연결되어야 하며, 어떤 세션 변수나 사용자 식별 인자나 카운터를 포함하지 않아야 한다. 만약 이 부분을 잘못 사용하게 되면, '좋아요'와 '공유'의 수가 이 URL로 합해지지 않고 이 URL의 모든 변형으로 흩어질 것이다.
 - `og:description`: 내용 일부를 상세히 설명한 글로, 보통 2~4문장이다. 이 태그는 선택 가능하지만 사람들이 읽고 공유하는 비율을 높일 수 있다.
 - `og:image`: 연관된 이미지다. 최소 1200x630 픽셀 크기의 이미지 사용을 추천한다.
 - `fb:app_id`: 페이스북이 사이트의 신원을 파악할 수 있게 해 주는 고유 ID다. [Facebook Insights][]가 제대로 동작하는 데에 중요하다.
@@ -39,8 +39,8 @@ twitter_card:
 
 다른 종류의 태그를 더 추가할 수도 있다:
 
-- `og:type`: 페이스북의 뉴스피드는 당신의 글을 미디어 종류에 따라 다르게 보여준다.[일반적으로 쓰이는 오브젝트 타입(Object Types)][number of different common object types]들은 이미 정의되어 있다. 만약 오브젝트 타입을 설정하지 않으면 기본 타입으로 `website`가 쓰인다. Open Graph를 통해 당신만의 타입을 정할 수도 있다.
-- `og:locale`: 리소스의 언어다. 기본 설정은 `en_US`다. `og:locale:alternate`를 통해 다른 언어도 가능하다는 것을 나타낼 수 있다. 예제와 추가 정보는 [국제화(Internationalization)][Internationalization]와 [Open Graph 국제화][Open Graph Internationalization] 페이지를 보라.
+- `og:type`: 페이스북의 뉴스피드는 당신의 글을 미디어 종류에 따라 다르게 보여준다.[일반적으로 쓰이는 오브젝트 타입][number of different common object types]은 이미 정의되어 있다. 만약 오브젝트 타입을 설정하지 않으면 기본 타입으로 `website`가 쓰인다. Open Graph를 통해 당신만의 타입을 정할 수도 있다.
+- `og:locale`: 리소스의 언어다. 기본 설정은 `en_US`다. `og:locale:alternate`를 통해 다른 언어도 가능하다는 것을 나타낼 수 있다. 예제와 추가 정보는 [국제화][Internationalization]와 [Open Graph 국제화][Open Graph Internationalization] 페이지를 보라.
 - `article:author`: [글의 저자들로 통하는 링크][property links to the authors of the article]다. 링크 주소는 뉴스피드에 나타났을 때 저자를 팔로우 할 수 있는 페이스북 프로필이나 페이스북 페이지가 될 수 있다. (저자들은 사람들이 팔로우 할 수 있게 [팔로우][follow] 기능을 켜 두어야 한다.)
 - `article:publisher`: [글의 발행인으로 통하는 링크][property links to the publisher of the article]다. 링크 주소는 페이스북 페이지여야 한다. 페이스북은 발행인이 뉴스피드에 표시되었을 때 그것을 '좋아요' 하는 기능을 제공할 수 있다. 이 태그는 미디어 발행인만 쓸 수 있다.
 

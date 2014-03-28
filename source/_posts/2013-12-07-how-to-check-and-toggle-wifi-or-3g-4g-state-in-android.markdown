@@ -230,4 +230,6 @@ In Activity:
 setMobileDataEnabled(this, isMobileDataEnabled);
 ```
 
-Codes for Android 2.2 and below are also in the same [link][Stack Overflow], but I didn't check it.
+Codes for Android 2.2 and below are also in the same [answer][Stack Overflow], but it requires `MODIFY_PHONE_STATE` permission that can be used by [system applications only][].
+
+[system applications only]: http://developer.android.com/reference/android/Manifest.permission.html#MODIFY_PHONE_STATE
