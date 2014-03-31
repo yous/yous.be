@@ -4,7 +4,7 @@
   <title><![CDATA[Yous]]></title>
   <link href="http://blog.yous.be/atom.xml" rel="self"/>
   <link href="http://blog.yous.be/"/>
-  <updated>2014-03-31T17:51:45+09:00</updated>
+  <updated>2014-04-01T02:34:53+09:00</updated>
   <id>http://blog.yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -12,6 +12,44 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Trailing whitespace is evil. Don't commit evil into your repo. &rarr;]]></title>
+    <link href="http://blog.yous.be/2014/03/31/trailing-whitespace-is-evil-dont-commit-evil-into-your-repo/"/>
+    <updated>2014-03-31T20:57:09+09:00</updated>
+    <id>http://blog.yous.be/2014/03/31/trailing-whitespace-is-evil-dont-commit-evil-into-your-repo</id>
+    <content type="html"><![CDATA[<p><a href="http://codeimpossible.com/about.html">Jared Barboza</a>가 쓴 <a href="http://codeimpossible.com/2012/04/02/Trailing-whitespace-is-evil-Don-t-commit-evil-into-your-repo-/">줄 끝 공백에 관한 글</a>이다.</p>
+
+<blockquote><p><strong>난 최근에 다양한 사람/언어/편집기와 함께 많은 프로젝트를 진행해 왔다. 우리들 대부분은 Git 초보자였고, 각 프로젝트는 줄 끝 공백에 관한 진짜 문제가 있었다.</strong></p></blockquote>
+
+<p>경력 있는 개발자로만 이루어진 팀이라고 해도 이런 문제는 발생하기 마련이다.</p>
+
+<blockquote><p>줄 끝 공백은 당신의 저장소에서 상당히 많은 문제를 일으킬 수 있다. 실제로 바뀐 것은 공백일 뿐인데도 그 줄에 변경 사항이 있다는 잘못된 diff를 만든다.</p>
+
+<p>이는 개발 과정에서 나중에 실제 파일의 변경 사항이 무엇이었는지 찾기 불가능하게 만든다. 대부분의 오픈 소스 프로젝트 대표들은 이를 알고 있고, 그들 대부분은 줄 끝 공백을 없애지 않은 풀 리퀘스트를 거절할 것이다.</p></blockquote>
+
+<p>이후 글에서는 Visual Studio와 Sublime Text 2에서 줄 끝 공백을 제거하는 방법과 git hook을 통해 커밋에 줄 끝 공백이 포함되지 않도록 하는 방법을 소개하고 있다.</p>
+
+<p>나는 Android Studio에서는 파일 저장 시 모든 줄 끝 공백을 지우고, Vim에서는 줄 끝 공백에 하이라이트를 입혀 쓰고 있다.</p>
+
+<figure class='code'><figcaption><span>.vimrc</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="nb">highlight</span> ExtraWhitespace ctermbg<span class="p">=</span><span class="k">red</span> guibg<span class="p">=</span><span class="k">red</span>
+</span><span class='line'>autocmd <span class="nb">BufWinEnter</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">/\s\+$/</span>
+</span><span class='line'>autocmd <span class="nb">InsertEnter</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">//</span>
+</span><span class='line'>autocmd <span class="nb">InsertLeave</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">/\s\+$/</span>
+</span><span class='line'><span class="k">if</span> <span class="k">version</span> <span class="p">&gt;=</span> <span class="m">702</span>
+</span><span class='line'>  autocmd <span class="nb">BufWinLeave</span> * <span class="k">call</span> clearmatches<span class="p">()</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Twitter Link Bookmarklet &rarr;]]></title>

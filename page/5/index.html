@@ -9,7 +9,11 @@
   <meta name="author" content="Yous">
 
   
-  <meta name="description" content="SkullSecurity의 Ron Bowes가 쓴 return-oriented programming 입문서가 있어 번역했다. ">
+  <meta name="description" content="목차 앨범별 임의 재생
+방법
+결론
+단점
+iOS 6.1.2 업데이트 앨범별 임의 재생 iTunes에는 앨범별 임의 재생을 이용해 음악을 들을 수 있는 기능이 있습니다. 개인적으로 아티스트가 앨범의 곡 배치 또한 잘 생각해서 만들어야 한다고 생각하고, 또 그렇게 만든다고 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +22,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://blog.yous.be/page/2">
+  <link rel="canonical" href="http://blog.yous.be/page/5">
   <link href="/favicon.ico" rel="icon">
   <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
   <link href="/atom.xml" rel="alternate" title="Yous" type="application/atom+xml">
@@ -35,15 +39,23 @@
   <meta property="fb:admins" content="100001802412550">
   <meta property="og:title" content="Yous">
   <meta property="og:site_name" content="Yous">
-  <meta property="og:url" content="http://blog.yous.be/page/2">
-  <meta property="og:description" content="SkullSecurity의 Ron Bowes가 쓴 return-oriented programming 입문서가 있어 번역했다. ">
+  <meta property="og:url" content="http://blog.yous.be/page/5">
+  <meta property="og:description" content="목차 앨범별 임의 재생
+방법
+결론
+단점
+iOS 6.1.2 업데이트 앨범별 임의 재생 iTunes에는 앨범별 임의 재생을 이용해 음악을 들을 수 있는 기능이 있습니다. 개인적으로 아티스트가 앨범의 곡 배치 또한 잘 생각해서 만들어야 한다고 생각하고, 또 그렇게 만든다고 믿는 편입니다. 그래서 보통 앨범에 있는 곡들을 1번 트랙부터 순서대로 들으려는 경향이 &hellip;">
   
   
 
 <meta name="twitter:card" content="summary">
 
 <meta name="twitter:title" content="Yous">
-<meta name="twitter:description" content="SkullSecurity의 Ron Bowes가 쓴 return-oriented programming 입문서가 있어 번역했다. ">
+<meta name="twitter:description" content="목차 앨범별 임의 재생
+방법
+결론
+단점
+iOS 6.1.2 업데이트 앨범별 임의 재생 iTunes에는 앨범별 임의 재생을 이용해 음악을 들을 수 있는 기능이 있습니다. 개인적으로 아티스트가 앨범의 곡 배치 또한 잘 생각해서 만들어야 한다고 생각하고, 또 그렇게 만든다고 믿는 편입니다. 그래서 보통 앨범에 있는 곡들을 1번 트랙부터 순서대로 들으려는 경향이 &hellip;">
 
 
 
@@ -101,7 +113,7 @@
       
   <header>
     
-      <h1 class="entry-title"><a href="/2014/03/19/ropasaurusrex-a-primer-on-return-oriented-programming/">ropasaurusrex: return-oriented programming 입문서 &rarr;</a></h1>
+      <h1 class="entry-title"><a href="/2013/02/19/ios-6.1-music-album-shuffle/">iOS 6.1에서 앨범별 임의 재생으로 음악 듣기</a></h1>
     
     
       <p class="meta">
@@ -117,101 +129,53 @@
   
 
 
-<time datetime="2014-03-19T20:44:03+09:00" pubdate data-updated="true">Mar 19<span>th</span>, 2014</time>
+<time datetime="2013-02-19T03:31:00+09:00" pubdate data-updated="true">Feb 19<span>th</span>, 2013</time>
         
       </p>
     
   </header>
 
 
-  <div class="entry-content"><p><a href="https://blog.skullsecurity.org">SkullSecurity</a>의 <a href="https://blog.skullsecurity.org/author/ron">Ron Bowes</a>가 쓴 <a href="https://blog.skullsecurity.org/2013/ropasaurusrex-a-primer-on-return-oriented-programming">return-oriented programming 입문서</a>가 있어 번역했다.</p>
+  <div class="entry-content"><h2>목차</h2>
+
+<ol>
+<li><a href="#1">앨범별 임의 재생</a></li>
+<li><a href="#2">방법</a></li>
+<li><a href="#3">결론</a></li>
+<li><a href="#4">단점</a></li>
+<li><a href="#5">iOS 6.1.2 업데이트</a></li>
+</ol>
+
+
+<p><a id="1"></a></p>
+
+<h2>앨범별 임의 재생</h2>
+
+<p><a href="http://www.apple.com/kr/itunes/">iTunes</a>에는 앨범별 임의 재생을 이용해 음악을 들을 수 있는 기능이 있습니다.</p>
+
+<p><img class="center" src="/images/2013/02/19/1.png" title="iTunes" ></p>
+
+<p>개인적으로 아티스트가 앨범의 곡 배치 또한 잘 생각해서 만들어야 한다고 생각하고, 또 그렇게 만든다고 믿는 편입니다. 그래서 보통 앨범에 있는 곡들을 1번 트랙부터 순서대로 들으려는 경향이 있습니다.</p>
+
+<p>그런데 앨범의 곡들을 순서대로 들으려니 문제가 하나 있습니다. 아이폰에서 앨범의 곡들을 순서대로 듣는 방법은 앨범을 선택해서 들어간 후, 1번 트랙을 터치하는 것뿐이라는 겁니다. 그러면 마지막 트랙이 끝났을 때 아이폰 스피커 혹은 이어폰에서 정적만 흐르고 있겠죠. 하지만 전 귀찮은 것을 상당히 싫어하는 사람이라, 다음 앨범은 어떤 걸 선택해도 큰 상관이 없습니다. 다만 노래가 끊기지 않고 계속 나왔으면 좋겠어요.</p>
+
+<p>하지만 딱히 방법이 없어서 그냥 앨범을 하나씩 순서대로 듣거나 전체 노래를 임의 재생하면서 듣고 다녔습니다. iOS 6이 나온 후로는 순정 아이폰으로 잘 쓰고 다녔죠. 그러다가 iOS 6.1 업데이트가 출시되고, 얼마 되지 않아 탈옥 툴이 공개된 겁니다. 탈옥을 하고 몇 가지 트윅을 찾으면서 이런 생각을 하게 됐습니다.</p>
+
+<blockquote><p>앨범별 임의 재생을 구현해 놓은 트윅이 있지 않을까?</p></blockquote>
+
+<p>하지만 찾는 것은 쉽지 않았습니다. 우선 그 기능을 구현한 트윅은 없는 것처럼 보였습니다. 음악과 관련된 트윅은 대부분 기존의 음악 어플을 쉽게 제어할 수 있도록 하는 것이었고, 임의 재생과 관련된 것은 찾기 어려웠습니다.</p>
+
+<p>그래도 희망의 끈을 놓지 않고 계속 검색해 보던 중에, <a href="http://www.hackint0sh.org/free-toolchain-software-126/req-album-shuffle-option-18867.htm">앨범별 임의 재생에 관한 질문</a>을 발견하게 되었습니다.</p>
+
+<p>그렇습니다! 저처럼 앨범별 임의 재생을 하고 싶은 사람이 올린 질문이었습니다. 댓글을 살펴보면 탈옥한 아이폰에서 작동한다는 글을 볼 수 있었습니다. 물론 2007년에 작성된 댓글이라서 지금의 iOS에 그대로 적용하면 작동하지 않습니다.</p>
+
+<p>하지만 추가적인 검색과 삽질로, 결국 iOS 6.1이 깔려 있는 아이폰에서 &lsquo;앨범별 임의 재생&#8217;으로 음악을 듣는 방법을 알아냈습니다.</p>
 
 </div>
   
   
     <footer>
-      <a rel="full-article" href="/2014/03/19/ropasaurusrex-a-primer-on-return-oriented-programming/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/03/04/design-details-paper-by-facebook/">Design Details: Paper by Facebook &rarr;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-03-04T22:02:47+09:00" pubdate data-updated="true">Mar 4<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://blog.brianlovin.com/">Brian Lovin</a>이 쓴 <a href="http://blog.brianlovin.com/design-details-paper-by-facebook">페이스북 Paper의 디자인 디테일</a>에 관한 글이다.</p>
-
-<blockquote><p><a href="https://itunes.apple.com/us/app/paper-stories-from-facebook/id794163692">페이스북 Paper</a>가 나온 지 하루가 지났고 대부분의 리뷰가 <a href="https://news.ycombinator.com/item?id=7171808">다소 갈리고 있다</a>. 나는 페이스북의 열성적 팬은 아니지만, Paper의 디자인과 디테일에 쏟은 관심은 비길 데 없으며 이는 다른 디자이너들과 공유할 가치가 있다.</p></blockquote>
-
-<p>Paper 앱의 애니메이션을 총 23종의 GIF 파일로 기록하고 리뷰해 놓았다. Paper 앱이 출시되고 꽤 시간이 지났지만 앱을 사용하면서 눈치채지 못했던 점이 많아 지금이라도 공유한다.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/02/24/support-facebook-open-graph-and-twitter-cards-on-octopress/">Octopress에서 Facebook Open Graph와 Twitter Cards 지원하기</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-02-24T21:50:36+09:00" pubdate data-updated="true">Feb 24<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>블로그에 글을 쓰고 나면 트위터나 페이스북에 링크를 공유하곤 하는데 페이스북의 미리보기가 적절히 표시되지 않고 있다는 사실을 깨달았다. 또한 트위터도 그와 비슷한 기능을 제공하는데, 둘 다 지원하면 좋겠다는 생각을 했다. 이를 제대로 지원하려면 <a href="https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#tags">Facebook Open Graph tags</a>와 <a href="https://dev.twitter.com/docs/cards">Twitter Cards</a>에 대해 알아야 한다. 웹 페이지에 적절한 <a href="http://en.wikipedia.org/wiki/Meta_element">메타 태그</a>를 추가해 주면 페이스북과 트위터에서 인식하고 올바른, 작성자가 의도한 미리보기를 보여준다. 기본적으로 Zac Clancy가 쓴 <a href="http://blackglasses.me/2013/09/19/twitter-cards-facebook-open-graph-and-octopress/">Octopress에서 이 두 가지를 지원하는 글</a>에 상세히 설명되어 있다.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2014/02/24/support-facebook-open-graph-and-twitter-cards-on-octopress/">Read on &rarr;</a>
+      <a rel="full-article" href="/2013/02/19/ios-6.1-music-album-shuffle/">Read on &rarr;</a>
     </footer>
   
 
@@ -220,11 +184,9 @@
   
   <div class="pagination">
     
-      <a class="prev" href="/page/3/">&larr; Older</a>
-    
     <a href="/archives">Blog Archives</a>
     
-    <a class="next" href="/">Newer &rarr;</a>
+    <a class="next" href="/page/4/">Newer &rarr;</a>
     
   </div>
 </div>
