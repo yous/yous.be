@@ -2,9 +2,9 @@ $noise-bg: image-url('noise.png') top left !default;
 $img-border: inline-image('dotted-border.png');
 
 // Main Link Colors
-$link-color: lighten(#165b94, 3) !default;
+$link-color: #195ea2 !default;
 $link-color-hover: adjust-color($link-color, $lightness: 10, $saturation: 25) !default;
-$link-color-visited: adjust-color($link-color, $hue: 80, $lightness: -4) !default;
+$link-color-visited: adjust-color($link-color, $saturation: -20, $lightness: -4) !default;
 $link-color-active: adjust-color($link-color-hover, $lightness: -15) !default;
 
 // Main Section Colors
@@ -14,11 +14,11 @@ $article-border: #eeeeee !default;
 
 $header-bg: #333 !default;
 $header-border: lighten($header-bg, 15) !default;
-$title-color: #737373 !default;
-$subtitle-color: #aaa !default;
+$title-color: #777777 !default;
+$subtitle-color: lighten($title-color, 25) !default;
 
 $text-color: #222 !default;
-$text-color-light: #aaa !default;
+$text-color-light: lighten($text-color, 60) !default;
 $type-border: #ddd !default;
 
 /* Navigation */
@@ -45,7 +45,7 @@ $sidebar-border-hover: darken($sidebar-bg, 7) !default;
 $sidebar-link-color-subdued: lighten($sidebar-color, 20) !default;
 $sidebar-link-color-subdued-hover: $sidebar-link-color-hover !default;
 
-$footer-color: #AAA !default;
+$footer-color: #888 !default;
 $footer-bg: #ccc !default;
 $footer-bg-front: image-url('noise.png') !default;
 $footer-bg-back: linear-gradient(lighten($footer-bg, 8), $footer-bg, darken($footer-bg, 11)) !default;

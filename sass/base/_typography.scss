@@ -1,10 +1,10 @@
 $blockquote: $type-border !default;
 
 // Fonts
-$sans: "Open Sans","Helvetica Neue", Arial, NanumBarunGothic, "Malgun Gothic", DotumChe, sans-serif !default;
+$sans: "Open Sans","Helvetica Neue", Arial, NanumBarunGothic, "Apple SD Gothic Neo", AppleGothic, "Malgun Gothic", DotumChe, sans-serif !default;
 $serif: "PT Serif", Georgia, Times, "Times New Roman", serif !default;
 $mono: Menlo, Monaco, "Andale Mono", "lucida console", "Courier New", DotumChe, monospace !default;
-$heading-font-family: "Fjalla One", "Georgia", "Helvetica Neue", Arial, NanumBarunGothic, "Malgun Gothic", DotumChe, sans-serif !default;
+$heading-font-family: "Fjalla One", "Georgia", "Helvetica Neue", Arial, NanumBarunGothic, "Apple SD Gothic Neo", AppleGothic, "Malgun Gothic", DotumChe, sans-serif !default;
 $header-title-font-family: $heading-font-family !default;
 $header-subtitle-font-family: $serif !default;
 
@@ -46,24 +46,28 @@ h1 {
   @extend .heading;
   text-rendering: optimizelegibility;
   margin-bottom: 1em;
+  font-weight: bold;
 }
 h2, section h1 {
-  font-size: 1.6em;
+  font-size: 1.5em;
+  font-weight: bold;
 }
 h3, section h2, section section h1 {
   font-size: 1.3em;
+  color: $subtitle-color;
+  font-weight: bold;
 }
 h4, section h3, section section h2, section section section h1 {
   font-size: 1em;
-  font-weight: bold;
+  color: $subtitle-color;
 }
 h5, section h4, section section h3 {
   font-size: .9em;
-  font-weight: bold;
+  color: $subtitle-color;
 }
 h6, section h5, section section h4, section section section h3 {
   font-size: .8em;
-  font-weight: bold;
+  color: $subtitle-color;
 }
 
 p, article blockquote, ul, ol { margin-bottom: 1.5em; }
@@ -112,6 +116,7 @@ big { font-size: 1.2em; }
 
 article blockquote {
   $bq-margin: 1.2em;
+  font-style: italic;
   position: relative;
   font-size: 1.2em;
   line-height: 1.5em;
