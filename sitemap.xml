@@ -61,12 +61,16 @@
         <lastmod>2014-04-01T02:44:20+09:00</lastmod>
     </url>
     <url>
+        <loc>http://blog.yous.be/2014/04/03/fragment-transaction-and-activity-state-loss/</loc>
+        <lastmod>2014-04-03T00:47:04+09:00</lastmod>
+    </url>
+    <url>
         <loc>http://blog.yous.be/robots.txt</loc>
         <lastmod>2014-03-31T17:49:30+09:00</lastmod>
     </url>
     <url>
         <loc>http://blog.yous.be/about/cds/</loc>
-        <lastmod>2014-04-01T23:24:10+09:00</lastmod>
+        <lastmod>2014-04-03T00:53:28+09:00</lastmod>
     </url>
     <url>
         <loc>http://blog.yous.be/about/</loc>
@@ -74,10 +78,10 @@
     </url>
     <url>
         <loc>http://blog.yous.be/archives/</loc>
-        <lastmod>2014-04-01T02:44:20+09:00</lastmod>
+        <lastmod>2014-04-03T00:47:04+09:00</lastmod>
     </url>
     <url>
         <loc>http://blog.yous.be/</loc>
-        <lastmod>2014-04-01T02:44:20+09:00</lastmod>
+        <lastmod>2014-04-03T00:47:04+09:00</lastmod>
     </url>
 </urlset>
