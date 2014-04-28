@@ -39,7 +39,7 @@ What you see now. Hosted on [GitHub Pages][]. The source is available in [GitHub
 - Rhythm games
     - [jubeat](http://s.ubit.info/yous)
     - [jubeat plus](https://itunes.apple.com/jp/app/jubeat-plus/id395192484?mt=8)
-    - [Deemo](https://itunes.apple.com/kr/app/deemo/id700637744?mt=8)
+    - [Deemo](http://www.rayark.com/g/deemo/)
     - [SOUND VOLTEX II](http://p.eagate.573.jp/game/sdvx/ii/p/)
 - [Super Hexagon](http://superhexagon.com)
 - [Vim](http://www.vim.org)
