@@ -9,7 +9,7 @@ footer: false
 
 ## Yous
 
-ChaYoung You.
+ChaYoung You
 
 {% img /images/about/Super-Hexagon.png %}
 
@@ -19,10 +19,10 @@ ChaYoung You.
 
 ## Blog
 
-What you see now. Hosted on [GitHub Pages][]. The source is available in GitHub [repo][].
+What you see now. Hosted on [GitHub Pages][]. The source is available in [GitHub repo][].
 
 [GitHub Pages]: http://pages.github.com
-[repo]: https://github.com/yous/yous.github.io
+[GitHub repo]: https://github.com/yous/yous.github.io
 
 ## Code
 
