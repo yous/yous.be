@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Write-up | Yous]]></title>
-  <link href="http://blog.yous.be/categories/write-up/atom.xml" rel="self"/>
-  <link href="http://blog.yous.be/"/>
-  <updated>2014-05-02T17:56:29+09:00</updated>
-  <id>http://blog.yous.be/</id>
+  <link href="http://yous.be/categories/write-up/atom.xml" rel="self"/>
+  <link href="http://yous.be/"/>
+  <updated>2014-05-02T18:26:16+09:00</updated>
+  <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[ropasaurusrex: return-oriented programming 입문서]]></title>
-    <link href="http://blog.yous.be/2014/03/19/ropasaurusrex-a-primer-on-return-oriented-programming/"/>
+    <link href="http://yous.be/2014/03/19/ropasaurusrex-a-primer-on-return-oriented-programming/"/>
     <updated>2014-03-19T20:44:03+09:00</updated>
-    <id>http://blog.yous.be/2014/03/19/ropasaurusrex-a-primer-on-return-oriented-programming</id>
+    <id>http://yous.be/2014/03/19/ropasaurusrex-a-primer-on-return-oriented-programming</id>
     <content type="html"><![CDATA[<p><a href="https://blog.skullsecurity.org">SkullSecurity</a>의 <a href="https://blog.skullsecurity.org/author/ron">Ron Bowes</a>가 쓴 <a href="https://blog.skullsecurity.org/2013/ropasaurusrex-a-primer-on-return-oriented-programming">return-oriented programming 입문서</a>가 있어 번역했다.</p>
 
 <!-- more -->
@@ -1166,9 +1166,9 @@ ron
   
   <entry>
     <title type="html"><![CDATA[Ghost in the Shellcode 2014: inview Write-up]]></title>
-    <link href="http://blog.yous.be/2014/01/20/ghost-in-the-shellcode-2014-inview-write-up/"/>
+    <link href="http://yous.be/2014/01/20/ghost-in-the-shellcode-2014-inview-write-up/"/>
     <updated>2014-01-20T22:21:24+09:00</updated>
-    <id>http://blog.yous.be/2014/01/20/ghost-in-the-shellcode-2014-inview-write-up</id>
+    <id>http://yous.be/2014/01/20/ghost-in-the-shellcode-2014-inview-write-up</id>
     <content type="html"><![CDATA[<h2>Question 3 &ndash; inview</h2>
 
 <blockquote><p>Points: 150</p>

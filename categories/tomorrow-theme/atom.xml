@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Tomorrow Theme | Yous]]></title>
-  <link href="http://blog.yous.be/categories/tomorrow-theme/atom.xml" rel="self"/>
-  <link href="http://blog.yous.be/"/>
-  <updated>2014-05-02T17:56:29+09:00</updated>
-  <id>http://blog.yous.be/</id>
+  <link href="http://yous.be/categories/tomorrow-theme/atom.xml" rel="self"/>
+  <link href="http://yous.be/"/>
+  <updated>2014-05-02T18:26:16+09:00</updated>
+  <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Tomorrow Theme in Octopress]]></title>
-    <link href="http://blog.yous.be/2013/12/04/tomorrow-theme-in-octopress/"/>
+    <link href="http://yous.be/2013/12/04/tomorrow-theme-in-octopress/"/>
     <updated>2013-12-04T21:00:20+09:00</updated>
-    <id>http://blog.yous.be/2013/12/04/tomorrow-theme-in-octopress</id>
+    <id>http://yous.be/2013/12/04/tomorrow-theme-in-octopress</id>
     <content type="html"><![CDATA[<h2>Tomorrow Theme</h2>
 
 <p>I usually use Tomorrow Night Eighties of <a href="https://github.com/chriskempson/tomorrow-theme">Tomorrow Theme</a> in <a href="http://www.vim.org">Vim</a>, <a href="http://www.iterm2.com">iTerm2</a>, <a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a> (<a href="http://developer.android.com/sdk/installing/studio.html">Android Studio</a>). You can take a look of Tomorrow Theme.</p>

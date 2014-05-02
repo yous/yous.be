@@ -1,4 +1,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: http://blog.yous.be/sitemap.xml
+Sitemap: http://yous.be/sitemap.xml

@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Octopress | Yous]]></title>
-  <link href="http://blog.yous.be/categories/octopress/atom.xml" rel="self"/>
-  <link href="http://blog.yous.be/"/>
-  <updated>2014-05-02T17:56:29+09:00</updated>
-  <id>http://blog.yous.be/</id>
+  <link href="http://yous.be/categories/octopress/atom.xml" rel="self"/>
+  <link href="http://yous.be/"/>
+  <updated>2014-05-02T18:26:16+09:00</updated>
+  <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Octopress에서 Facebook Open Graph와 Twitter Cards 지원하기]]></title>
-    <link href="http://blog.yous.be/2014/02/24/support-facebook-open-graph-and-twitter-cards-on-octopress/"/>
+    <link href="http://yous.be/2014/02/24/support-facebook-open-graph-and-twitter-cards-on-octopress/"/>
     <updated>2014-02-24T21:50:36+09:00</updated>
-    <id>http://blog.yous.be/2014/02/24/support-facebook-open-graph-and-twitter-cards-on-octopress</id>
+    <id>http://yous.be/2014/02/24/support-facebook-open-graph-and-twitter-cards-on-octopress</id>
     <content type="html"><![CDATA[<p>블로그에 글을 쓰고 나면 트위터나 페이스북에 링크를 공유하곤 하는데 페이스북의 미리보기가 적절히 표시되지 않고 있다는 사실을 깨달았다. 또한 트위터도 그와 비슷한 기능을 제공하는데, 둘 다 지원하면 좋겠다는 생각을 했다. 이를 제대로 지원하려면 <a href="https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#tags">Facebook Open Graph tags</a>와 <a href="https://dev.twitter.com/docs/cards">Twitter Cards</a>에 대해 알아야 한다. 웹 페이지에 적절한 <a href="http://en.wikipedia.org/wiki/Meta_element">메타 태그</a>를 추가해 주면 페이스북과 트위터에서 인식하고 올바른, 작성자가 의도한 미리보기를 보여준다. 기본적으로 Zac Clancy가 쓴 <a href="http://blackglasses.me/2013/09/19/twitter-cards-facebook-open-graph-and-octopress/">Octopress에서 이 두 가지를 지원하는 글</a>에 상세히 설명되어 있다.</p>
 
 <!-- more -->
@@ -246,9 +246,9 @@ image3: http://example.com/path/to/image3.png
   
   <entry>
     <title type="html"><![CDATA[Tomorrow Theme in Octopress]]></title>
-    <link href="http://blog.yous.be/2013/12/04/tomorrow-theme-in-octopress/"/>
+    <link href="http://yous.be/2013/12/04/tomorrow-theme-in-octopress/"/>
     <updated>2013-12-04T21:00:20+09:00</updated>
-    <id>http://blog.yous.be/2013/12/04/tomorrow-theme-in-octopress</id>
+    <id>http://yous.be/2013/12/04/tomorrow-theme-in-octopress</id>
     <content type="html"><![CDATA[<h2>Tomorrow Theme</h2>
 
 <p>I usually use Tomorrow Night Eighties of <a href="https://github.com/chriskempson/tomorrow-theme">Tomorrow Theme</a> in <a href="http://www.vim.org">Vim</a>, <a href="http://www.iterm2.com">iTerm2</a>, <a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a> (<a href="http://developer.android.com/sdk/installing/studio.html">Android Studio</a>). You can take a look of Tomorrow Theme.</p>
@@ -361,9 +361,9 @@ image3: http://example.com/path/to/image3.png
   
   <entry>
     <title type="html"><![CDATA[Octopress in a subdirectory: /blog]]></title>
-    <link href="http://blog.yous.be/2013/08/12/octopress-in-a-subdirectory/"/>
+    <link href="http://yous.be/2013/08/12/octopress-in-a-subdirectory/"/>
     <updated>2013-08-12T06:08:00+09:00</updated>
-    <id>http://blog.yous.be/2013/08/12/octopress-in-a-subdirectory</id>
+    <id>http://yous.be/2013/08/12/octopress-in-a-subdirectory</id>
     <content type="html"><![CDATA[<p>Octopress 블로그를 사이트 루트가 아닌 하위 디렉토리에서 제공하고 싶을 때, 터미널에서 다음과 같이 실행해 줍니다.</p>
 
 <p>``` sh
@@ -411,11 +411,11 @@ rake set_root_dir[/blog]</p>
 <p>``` html source/index.html</p>
 
 <!--
-<a href="http://blog.yous.be/blog/archives">Blog Archives</a>
+<a href="http://yous.be/blog/archives">Blog Archives</a>
 -->
 
 
-<p><a href="http://blog.yous.be/archives">Blog Archives</a>
+<p><a href="http://yous.be/archives">Blog Archives</a>
 ```</p>
 
 <p>사용중인 테마에 따라 추가적인 수정 사항이 있을 수 있습니다.</p>

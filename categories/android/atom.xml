@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: Android | Yous]]></title>
-  <link href="http://blog.yous.be/categories/android/atom.xml" rel="self"/>
-  <link href="http://blog.yous.be/"/>
-  <updated>2014-05-02T17:56:29+09:00</updated>
-  <id>http://blog.yous.be/</id>
+  <link href="http://yous.be/categories/android/atom.xml" rel="self"/>
+  <link href="http://yous.be/"/>
+  <updated>2014-05-02T18:26:16+09:00</updated>
+  <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Fragment Transaction &amp; Activity State Loss]]></title>
-    <link href="http://blog.yous.be/2014/04/03/fragment-transaction-and-activity-state-loss/"/>
+    <link href="http://yous.be/2014/04/03/fragment-transaction-and-activity-state-loss/"/>
     <updated>2014-04-03T00:03:50+09:00</updated>
-    <id>http://blog.yous.be/2014/04/03/fragment-transaction-and-activity-state-loss</id>
+    <id>http://yous.be/2014/04/03/fragment-transaction-and-activity-state-loss</id>
     <content type="html"><![CDATA[<p><a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html">FragmentTransaction</a>을 <a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#commit()">commit()</a> 했을 때 Activity의 <a href="http://developer.android.com/reference/android/app/Activity.html#onSaveInstanceState(android.os.Bundle)">onSaveInstanceState(Bundle)</a>이 실행된 후라면 다음과 같은 에러 메시지를 보게 된다:</p>
 
 <p><code>
@@ -30,9 +30,9 @@ java.lang.IllegalStateException: Can not perform this action after onSaveInstanc
   
   <entry>
     <title type="html"><![CDATA[How to Check and Toggle WiFi or 3G/4G State in Android]]></title>
-    <link href="http://blog.yous.be/2013/12/07/how-to-check-and-toggle-wifi-or-3g-4g-state-in-android/"/>
+    <link href="http://yous.be/2013/12/07/how-to-check-and-toggle-wifi-or-3g-4g-state-in-android/"/>
     <updated>2013-12-07T18:28:05+09:00</updated>
-    <id>http://blog.yous.be/2013/12/07/how-to-check-and-toggle-wifi-or-3g-4g-state-in-android</id>
+    <id>http://yous.be/2013/12/07/how-to-check-and-toggle-wifi-or-3g-4g-state-in-android</id>
     <content type="html"><![CDATA[<h2>Overview</h2>
 
 <ol>

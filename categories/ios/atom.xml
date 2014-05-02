@@ -2,10 +2,10 @@
 <feed xmlns="http://www.w3.org/2005/Atom">
 
   <title><![CDATA[Category: iOS | Yous]]></title>
-  <link href="http://blog.yous.be/categories/ios/atom.xml" rel="self"/>
-  <link href="http://blog.yous.be/"/>
-  <updated>2014-05-02T17:56:29+09:00</updated>
-  <id>http://blog.yous.be/</id>
+  <link href="http://yous.be/categories/ios/atom.xml" rel="self"/>
+  <link href="http://yous.be/"/>
+  <updated>2014-05-02T18:26:16+09:00</updated>
+  <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
     
@@ -15,9 +15,9 @@
   
   <entry>
     <title type="html"><![CDATA[Twitter Link Bookmarklet]]></title>
-    <link href="http://blog.yous.be/2014/03/27/twitter-link-bookmarklet/"/>
+    <link href="http://yous.be/2014/03/27/twitter-link-bookmarklet/"/>
     <updated>2014-03-27T10:18:57+09:00</updated>
-    <id>http://blog.yous.be/2014/03/27/twitter-link-bookmarklet</id>
+    <id>http://yous.be/2014/03/27/twitter-link-bookmarklet</id>
     <content type="html"><![CDATA[<p><a href="http://davebradford.com/about/">Dave Bradford</a>의 트위터에 관한 팁 <a href="http://davebradford.com/blog/twitter-profile-bookmarklet/">Twitter Profile Bookmarklet</a>을 봤다. 직접 써 보니 기능이 추가됐으면 더 좋을 것 같아 추가했다.</p>
 
 <p>일단, 원글에 있는 코드의 기능은 간단하다. 모바일 사파리를 통해 트위터 계정을 보다가 북마크 버튼을 한 번 누르면 <a href="http://tapbots.com/software/tweetbot/">Tweetbot</a>에서 볼 수 있게 된다. 여기에 브라우저를 통해 &lsquo;트윗'을 보고 있다면 Tweetbot으로 바로 그 트윗을 볼 수 있게 기능을 추가했다. OS X에서도 동일하게 작동한다.</p>
@@ -55,9 +55,9 @@ javascript:var%20url=document.URL;var%20match=url.match(/status(?:es)?%5C/(%5Cd+
   
   <entry>
     <title type="html"><![CDATA[Apple's SSL/TLS bug]]></title>
-    <link href="http://blog.yous.be/2014/02/23/apples-ssl-tls-bug/"/>
+    <link href="http://yous.be/2014/02/23/apples-ssl-tls-bug/"/>
     <updated>2014-02-23T04:59:18+09:00</updated>
-    <id>http://blog.yous.be/2014/02/23/apples-ssl-tls-bug</id>
+    <id>http://yous.be/2014/02/23/apples-ssl-tls-bug</id>
     <content type="html"><![CDATA[<p>iOS 7.0.6, iOS 6.1.6, Apple TV 6.0.2가 <a href="http://9to5mac.com/2014/02/21/apple-releases-ios-7-0-6-ios-6-1-6-with-fixes/">배포됐다</a>. 애플에서 공개한 iOS 7.0.6의 <a href="http://support.apple.com/kb/HT6147">보안 문제</a>는 다음과 같다.</p>
 
 <blockquote><p>Impact: An attacker with a privileged network position may capture or modify data in sessions protected by SSL/TLS</p>
@@ -112,9 +112,9 @@ return err;
   
   <entry>
     <title type="html"><![CDATA[iOS 6.1에서 앨범별 임의 재생으로 음악 듣기]]></title>
-    <link href="http://blog.yous.be/2013/02/19/ios-6.1-music-album-shuffle/"/>
+    <link href="http://yous.be/2013/02/19/ios-6.1-music-album-shuffle/"/>
     <updated>2013-02-19T03:31:00+09:00</updated>
-    <id>http://blog.yous.be/2013/02/19/ios-6.1-music-album-shuffle</id>
+    <id>http://yous.be/2013/02/19/ios-6.1-music-album-shuffle</id>
     <content type="html"><![CDATA[<h2>목차</h2>
 
 <ol>
