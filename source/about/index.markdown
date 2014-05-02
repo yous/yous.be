@@ -13,10 +13,6 @@ ChaYoung You
 
 {% img /images/about/Super-Hexagon.png %}
 
-## Site
-
-- [Yous](http://yous.be)
-
 ## Blog
 
 What you see now. Hosted on [GitHub Pages][]. The source is available in [GitHub repo][].
