@@ -32,12 +32,12 @@ What you see now. Hosted on [GitHub Pages][]. The source is available in [GitHub
     - Epik High (Tablo [@blobyblo][], DJ Tukutz [@Tukutz81][], Mithra眞 [@realmithrajin][])
     - Paloalto [@OfficialPalo][]
 - [Evangelion](http://www.evangelion.co.jp)
-- Rhythm games
-    - [jubeat](http://s.ubit.info/yous)
-    - [jubeat plus](https://itunes.apple.com/jp/app/jubeat-plus/id395192484?mt=8)
-    - [Deemo](http://www.rayark.com/g/deemo/)
-    - [SOUND VOLTEX II](http://p.eagate.573.jp/game/sdvx/ii/p/)
 - Games
+    - Rhythm games
+        - [jubeat](http://s.ubit.info/yous)
+        - [jubeat plus](https://itunes.apple.com/jp/app/jubeat-plus/id395192484?mt=8)
+        - [Deemo](http://www.rayark.com/g/deemo/)
+        - [SOUND VOLTEX II](http://p.eagate.573.jp/game/sdvx/ii/p/)
     - [Super Hexagon](http://superhexagon.com)
     - [Monument Valley](http://www.monumentvalleygame.com)
     - [Threes!](http://asherv.com/threes/)
