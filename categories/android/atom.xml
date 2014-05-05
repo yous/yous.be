@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | Yous]]></title>
   <link href="http://yous.be/categories/android/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-05-02T18:45:29+09:00</updated>
+  <updated>2014-05-05T19:21:35+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -65,13 +65,9 @@ java.lang.IllegalStateException: Can not perform this action after onSaveInstanc
 <!-- more -->
 
 
-<p><a id="1"></a></p>
+<h2><a id="1"></a>1. Check if WiFi or 3G/4G is Enabled (by User)</h2>
 
-<h2>1. Check if WiFi or 3G/4G is Enabled (by User)</h2>
-
-<p><a id="1-1"></a></p>
-
-<h3>WiFi</h3>
+<h3><a id="1-1"></a>WiFi</h3>
 
 <p><code>ACCESS_WIFI_STATE</code> permission must be added to <code>AndroidManifest.xml</code>.</p>
 
@@ -86,9 +82,7 @@ WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
 boolean wifiEnabled = wifiManager.isWifiEnabled();
 </code></p>
 
-<p><a id="1-2"></a></p>
-
-<h3>3G/4G</h3>
+<h3><a id="1-2"></a>3G/4G</h3>
 
 <p>This is more complicated. As WiFi case, we have to add <code>ACCESS_NETWORK_STATE</code> permission.</p>
 
@@ -194,15 +188,11 @@ boolean mobileDisabled = mobileInfo.getState() == NetworkInfo.State.DISCONNECTED
 
 <p>```</p>
 
-<p><a id="2"></a></p>
-
-<h2>2. Check if WiFi or 3G/4G is Connected</h2>
+<h2><a id="2"></a>2. Check if WiFi or 3G/4G is Connected</h2>
 
 <p>WiFi or 3G/4G may not be connected even if the user enables them. Checking connectivity is useful when we are going to do some network communication.</p>
 
-<p><a id="2-1"></a></p>
-
-<h3>WiFi</h3>
+<h3><a id="2-1"></a>WiFi</h3>
 
 <p>``` java
 NetworkInfo wifiInfo =</p>
@@ -213,9 +203,7 @@ NetworkInfo wifiInfo =</p>
 <p>boolean wifiConnected = wifiInfo.getState() == NetworkInfo.State.CONNECTED;
 ```</p>
 
-<p><a id="2-2"></a></p>
-
-<h3>3G/4G</h3>
+<h3><a id="2-2"></a>3G/4G</h3>
 
 <p>``` java
 NetworkInfo mobileInfo =</p>
@@ -226,13 +214,9 @@ NetworkInfo mobileInfo =</p>
 <p>boolean mobileConnected = mobileInfo.getState() == NetworkInfo.State.CONNECTED;
 ```</p>
 
-<p><a id="3"></a></p>
+<h2><a id="3"></a>3. Toggle WiFi or 3G/4G Programmatically</h2>
 
-<h2>3. Toggle WiFi or 3G/4G Programmatically</h2>
-
-<p><a id="3-1"></a></p>
-
-<h3>WiFi</h3>
+<h3><a id="3-1"></a>WiFi</h3>
 
 <p><code>CHANGE_WIFI_STATE</code> permission must be added to <code>AndroidManifest.xml</code>.</p>
 
@@ -247,9 +231,7 @@ WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
 wifiManager.setWifiEnabled(isWifiEnabled);
 </code></p>
 
-<p><a id="3-2"></a></p>
-
-<h3>3G/4G</h3>
+<h3><a id="3-2"></a>3G/4G</h3>
 
 <p>There is an workaround with reflection on <a href="http://stackoverflow.com/questions/12535101/how-can-i-turn-off-3g-data-programmatically-on-android#12535246">&ldquo;How can i turn off 3G/Data programmatically on Android?&rdquo;</a>.</p>
 
