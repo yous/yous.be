@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Tomorrow Theme | Yous]]></title>
   <link href="http://yous.be/categories/tomorrow-theme/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-05-05T19:21:35+09:00</updated>
+  <updated>2014-05-05T19:37:27+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -18,7 +18,7 @@
     <link href="http://yous.be/2013/12/04/tomorrow-theme-in-octopress/"/>
     <updated>2013-12-04T21:00:20+09:00</updated>
     <id>http://yous.be/2013/12/04/tomorrow-theme-in-octopress</id>
-    <content type="html"><![CDATA[<h2>Tomorrow Theme</h2>
+    <content type="html"><![CDATA[<h2><a id="tomorrow-theme"></a>Tomorrow Theme</h2>
 
 <p>I usually use Tomorrow Night Eighties of <a href="https://github.com/chriskempson/tomorrow-theme">Tomorrow Theme</a> in <a href="http://www.vim.org">Vim</a>, <a href="http://www.iterm2.com">iTerm2</a>, <a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a> (<a href="http://developer.android.com/sdk/installing/studio.html">Android Studio</a>). You can take a look of Tomorrow Theme.</p>
 
@@ -33,7 +33,7 @@
 <!-- more -->
 
 
-<h2>Usage</h2>
+<h2><a id="usage"></a>Usage</h2>
 
 <ol>
 <li>Download <code>tomorrow</code> folder and <code>_tomorrow.scss</code> from <a href="https://github.com/yous/yous.github.io/tree/source/sass/custom">GitHub</a>.</li>
@@ -49,7 +49,7 @@
 // @import "tomorrow/tomorrow-night-bright";
 </code></p>
 
-<h2>Fixes</h2>
+<h2><a id="fixes"></a>Fixes</h2>
 
 <ul>
 <li>With default <code>sass/partial/_syntax.scss</code>, embedded gist code looks <a href="http://devspade.com/blog/2013/08/06/fixing-gist-embeds-in-octopress/">weird</a>. To fix them, we should override some styles.</li>
