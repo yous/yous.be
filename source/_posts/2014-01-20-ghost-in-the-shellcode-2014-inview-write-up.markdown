@@ -9,7 +9,7 @@ categories:
 keywords: ghost in the shellcode, inview
 ---
 
-## Question 3 - inview
+## <a id="question-3-inview"></a>Question 3 - inview
 
 > Points: 150
 >
@@ -30,7 +30,7 @@ xz -d inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155.xz
 
 Then we can see some trailing whitespace in `inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155`.
 
-## How to Highlight Trailing Whitespace in Vim
+## <a id="how-to-highlight-trailing-whitespace-in-vim"></a>How to Highlight Trailing Whitespace in Vim
 
 Add this code to your `.vimrc`:
 
@@ -48,7 +48,7 @@ Then [Vim] highlights trailing whitespace to red color.
 
 [Vim]: http://www.vim.org
 
-## How to Solve
+## <a id="how-to-solve"></a>How to Solve
 
 I felt something weird, so I converted the file to hex code. In Vim:
 

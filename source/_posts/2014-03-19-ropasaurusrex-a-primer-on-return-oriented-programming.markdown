@@ -36,7 +36,7 @@ CTF 대회 중 가장 기분이 나쁠 때는 [나중에 깨닫는][hindsight] �
 [ROP]: https://en.wikipedia.org/wiki/Return-oriented_programming
 [my writeup of cnot]: https://blog.skullsecurity.org/blog/2013/epic-cnot-writeup-plaidctf
 
-## 도대체 ROP가 뭐야?
+## <a id="what-the-heck-is-rop"></a>도대체 ROP가 뭐야?
 
 ROP--return-oriented programming--는 고전적 익스플로잇(exploit) "[return into libc][]"를 나타내는 현대 용어다. 이 아이디어는 프로그램을 마음대로 조종할 수 있는 오버플로(overflow)나 다른 유형의 취약점을 발견했지만, 코드를 실행 가능한 메모리 영역(executable memory)에 올릴 수 있는 확실한 방법이 없을 때([DEP][], 데이터 실행 방지(Data Execution Prevention), 사용자가 원하는 곳에서부터 코드를 실행시킬 수 없다)를 위한 것이다.
 
@@ -53,7 +53,7 @@ ROP를 이용하면 실행 가능한 메모리 영역(executable memory)에 이�
 [my assembly tutorial]: https://blog.skullsecurity.org/wiki/index.php/The_Stack
 [^1]: 링크가 [바뀌었다](https://wiki.skullsecurity.org/Assembly).
 
-## 스택
+## <a id="the-stack"></a>스택
 
 스택에 관해 한 번쯤은 들어보았을 것이다. [스택 오버플로(stack overflow)][Stack overflows]? 스택 깨뜨리기(smashing the stack)? 하지만 그게 무슨 뜻인가? 이미 알고 있다면, 이걸 간단한 입문서 정도로 생각하거나 바로 다음 섹션으로 넘어가라. 당신 마음대로!
 
@@ -117,7 +117,7 @@ ROP를 이용하면 실행 가능한 메모리 영역(executable memory)에 이�
 [removed by the calling function]: https://en.wikipedia.org/wiki/X86_calling_conventions#cdecl
 [except when they're not]: https://en.wikipedia.org/wiki/X86_calling_conventions#stdcall
 
-## 천국, 지옥 그리고 스택 프레임
+## <a id="heaven-hell-and-stack-frames"></a>천국, 지옥 그리고 스택 프레임
 
 ROP를 이해하기 위해 이해해야 하는 가장 중요한 건: 함수의 스택 프레임은 그 함수의 온 우주라는 것이다. 스택은 함수의 신이고, 인자는 성경의 십계명이고, 지역 변수는 죄며, 프레임 포인터는 성경이고 반환 주소는 천국이다 (그래, 지옥일 수도 있다). 모든 건 [인텔의 책][Book of Intel], 3장, 19-26구절에 있다 (주: 사실 아니니 보는 수고는 하지 마라).
 
@@ -153,7 +153,7 @@ ROP를 이해하기 위해 이해해야 하는 가장 중요한 건: 함수의 �
 
 제대로 동작하는 시스템에서는, 이게 작동 원리다. 안전한 전제다. "seconds" 값은 스택에 들어갔을 때 스택에만 있을 것이고, 반환 주소는 호출된 장소를 가리키고 있을 것이다. 그럼, 그럼. 달리 어떤 방법으로 그리 갈 수 있을까?
 
-## 스택 주무르기
+## <a id="controlling-the-stack"></a>스택 주무르기
 
 ...뭐, 당신이 궁금해 하니 말하겠다. 우리 모두 "스택 오버플로"에 대해 들어봤다. 그건 스택에 있는 변수를 덮어쓰는 것과 관련이 있다. 그게 무슨 뜻이냐? 뭐, 이런 스택 프레임이 있다고 하자:
 
@@ -177,7 +177,7 @@ ROP를 이해하기 위해 이해해야 하는 가장 중요한 건: 함수의 �
 [little endian]: https://en.wikipedia.org/wiki/Endianness
 [0]: https://en.wikipedia.org/wiki/Zero_page
 
-## DEP
+## <a id="dep"></a>DEP
 
 전통적으로, 공격자는 스택에 코드를 넣을 수 있었기 때문에 (어찌 되었건, 코드는 그저 바이트 뭉치일 뿐이다!), 반환 주소가 스택을 가리키도록 바꿔 왔다. 하지만 그건 시스템을 공격하는 일반적이고 쉬운 방법이었기 때문에, OS 회사의 나쁜 자식들이 (농담이다, 난 당신들을 사랑한다 :)) 데이터 실행 방지, DEP를 통해 이를 멈췄다. DEP가 적용된 어떤 시스템이건, 스택에서 코드를 실행할 수 없다--좀 더 일반적으로, 공격자가 쓸(write) 수 있는 어떤 곳에서도--그렇지 않으면, 크래시를 일으킨다.
 
@@ -185,7 +185,7 @@ ROP를 이해하기 위해 이해해야 하는 가장 중요한 건: 함수의 �
 
 음, 이제 그걸 할 것이다. 하지만 먼저, 이 문제가 사용하는 취약점을 보자!
 
-## 취약점
+## <a id="the-vulnerability"></a>취약점
 
 여기 IDA에서 갓 뽑은 취약한 함수다:
 
@@ -248,7 +248,7 @@ ron@debian-x86 ~ $ gdb ./ropasaurusrex core
 [pattern_create.rb]: https://github.com/rapid7/metasploit-framework/blob/master/tools/pattern_create.rb
 [pattern_offset.rb]: https://github.com/rapid7/metasploit-framework/blob/master/tools/pattern_offset.rb
 
-## 익스플로잇 제작 시작하기
+## <a id="starting-to-write-an-exploit"></a>익스플로잇 제작 시작하기
 
 가장 먼저 해야 할 일은 `ropasaurusrex`를 네트워크 서비스로 실행시키는 것이다. CTF 주최자들은 [xinetd][]를 썼지만, 우리는 (우리의 목적에) 그만큼 좋은 [netcat][]을 쓸 것이다.
 
@@ -306,7 +306,7 @@ Program terminated with signal 11, Segmentation fault.
 
 이게 익스플로잇의 시작이다!
 
-## 어떻게 ASLR로 시간을 낭비하는가
+## <a id="how-to-waste-time-with-aslr"></a>어떻게 ASLR로 시간을 낭비하는가
 
 이 섹션을 '시간 낭비'라고 하는 이유는, 내가 ASLR이 적용되어 있다는 것을--그 때--깨닫지 못했기 때문이다. 하지만 ASLR이 적용되어 있지 않다고 가정하는 것은 이 문제를 훨씬 교육하기 좋은 퍼즐로 만들어준다. 그러니 지금은 ASLR에 대해 걱정하지 말자--실제로, ASLR을 _정의_조차 하지 말자. 다음 섹션에 나올 것이다.
 
@@ -322,7 +322,7 @@ Program terminated with signal 11, Segmentation fault.
 1. `cat /etc/passwd` 문자열을 메모리 어딘가에 넣기
 2. `system()` 함수 실행하기
 
-### 메모리에 문자열 넣기
+### <a id="getting-the-string-into-memory"></a>메모리에 문자열 넣기
 
 메모리에 문자열을 넣는 건 실제로 두 소단계를 포함한다:
 
@@ -461,7 +461,7 @@ Program terminated with signal 11, Segmentation fault.
 
 완벽하다!
 
-### 실행하기
+### <a id="running-it"></a>실행하기
 
 이제 우린 `cat /etc/passwd`를 메모리에 썼고, `system()`을 호출해서 저 주소를 가리키면 된다. 거의 다 됐다. ASLR이 적용되지 않았다면 쉽다. 실행 파일에는 libc가 링크되어 있다:
 
@@ -794,7 +794,7 @@ ron@debian-x86 ~ $ ruby sploit.rb "cat /etc/passwd"
 
 여기서부터 조금 더 복잡해진다. 가보자!
 
-## ASLR이 뭐야?
+## <a id="what-is-aslr"></a>ASLR이 뭐야?
 
 ASLR--주소 공간 레이아웃 불규칙화(address space layout randomization)--은 현대 시스템(FreeBSD는 제외)에 구현된 방어 기법으로, 라이브러리가 로드 되는 주소를 불규칙화 한다. 그 예로, ropasaurusrex를 두 번 실행하고 `system()`의 주소를 알아내 보자:
 
@@ -818,7 +818,7 @@ Program terminated with signal 11, Segmentation fault.
 
 `system()`의 주소가 `0xb766e450`에서 `0xb76a7450`으로 바뀐 것을 보라. 이게 문제다!
 
-## ASLR 정복
+## <a id="defeating-aslr"></a>ASLR 정복
 
 그래서, 뭘 해야 할까? 사실, 바이너리 자체는 ASLR이 적용되지 않아서, 유용하게도 거기 있는 모든 주소는 그대로 머물러 있다고 믿을 수 있다. 아주 중요하게도, 재배치(relocation) 테이블은 같은 주소에 남아있다:
 
@@ -852,7 +852,7 @@ $1 = {<text variable, no debug info>} 0xb7f48110 <read>
 
 보라.. `read()`를 가리키는 포인터가 우리가 알고 있는 메모리 주소에 있다! 이걸로 뭘 할지 궁금한가...? 힌트를 하나 주겠다: 우리는 `write()` 함수--주소를 아는 또 하나의 함수--를 사용해 임의의 메모리에서 데이터를 가져와 소켓에 쓸 수 있다.
 
-## 드디어, 코드 실행!
+## <a id="finally-running-some-code"></a>드디어, 코드 실행!
 
 좋다, 잠깐 멈추고, 단계를 나누자. 우리는 이와 같은 과정이 필요하다:
 
@@ -944,7 +944,7 @@ $1 = {<text variable, no debug info>} 0xb7f48110 <read>
 
 프레임 [6]은 표준적인 `pop/pop/pop/ret` 구조지만 약간 다르다: `pop/pop/pop/ret`의 반환 주소가 실제론 `read()`의 `.plt` 엔트리인 `0x804832c`다. `read()`의 `.plt` 엔트리를 `system()`으로 덮어쓰기 때문에, 이 호출은 실제로 `system()`으로 가게 된다!
 
-## 최종 코드
+## <a id="final-code"></a>최종 코드
 
 휴! 꽤 복잡했다. DEP와 ASLR을 모두 우회하며 ropasaurusrex의 익스플로잇을 모두 구현한 코드다:
 
@@ -1074,7 +1074,7 @@ whoami
 ron
 ```
 
-## 결론
+## <a id="conclusion"></a>결론
 
 이게 끝이다! 난 믿을 만한, DEP/ASLR을 우회하는 ropasaurusrex 익스플로잇을 만들었다.
 

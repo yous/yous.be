@@ -7,30 +7,30 @@ sharing: false
 footer: false
 ---
 
-## Yous
+## <a id="yous"></a>Yous
 
 ChaYoung You
 
 {% img /images/about/Super-Hexagon.png %}
 
-## Contact
+## <a id="contact"></a>Contact
 
 - [ask.fm](http://ask.fm/yousbe)
 - <yous@yous.be>
 
-## Blog
+## <a id="blog"></a>Blog
 
 What you see now. Hosted on [GitHub Pages][]. The source is available in [GitHub repo][].
 
 [GitHub Pages]: http://pages.github.com
 [GitHub repo]: https://github.com/yous/yous.github.io
 
-## Code
+## <a id="code"></a>Code
 
 - [GitHub](https://github.com/yous)
 - [Bitbucket](https://bitbucket.org/yous)
 
-## Likes
+## <a id="likes"></a>Likes
 
 - Collecting [CDs](/about/cds)
 - [Korean Hip-Hop](http://hiphopplaya.com)

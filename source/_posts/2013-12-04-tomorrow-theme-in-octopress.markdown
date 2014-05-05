@@ -13,7 +13,7 @@ twitter_card:
     image: https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png
 ---
 
-## Tomorrow Theme
+## <a id="tomorrow-theme"></a>Tomorrow Theme
 
 I usually use Tomorrow Night Eighties of [Tomorrow Theme][] in [Vim][], [iTerm2][], [IntelliJ IDEA][] ([Android Studio][]). You can take a look of Tomorrow Theme.
 
@@ -36,7 +36,7 @@ So I made scss files for Octopress that overrides colors of `.highlight` and `.g
 
 <!-- more -->
 
-## Usage
+## <a id="usage"></a>Usage
 
 1. Download `tomorrow` folder and `_tomorrow.scss` from [GitHub][yous.github.io/sass/custom].
 2. Put files to `sass/custom` and enable just one `@import` line of `_tomorrow.scss`. For example, if you want to use Tomorrow Night Eighties theme:
@@ -49,7 +49,7 @@ So I made scss files for Octopress that overrides colors of `.highlight` and `.g
 // @import "tomorrow/tomorrow-night-bright";
 ```
 
-## Fixes
+## <a id="fixes"></a>Fixes
 
 - With default `sass/partial/_syntax.scss`, embedded gist code looks [weird][]. To fix them, we should override some styles.
 
