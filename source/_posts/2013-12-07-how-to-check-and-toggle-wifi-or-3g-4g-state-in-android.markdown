@@ -24,11 +24,9 @@ At some point, we want to know whether the device is connected to network so tha
 
 <!-- more -->
 
-<a id="1"></a>
-## 1. Check if WiFi or 3G/4G is Enabled (by User)
+## <a id="1"></a>1. Check if WiFi or 3G/4G is Enabled (by User)
 
-<a id="1-1"></a>
-### WiFi
+### <a id="1-1"></a>WiFi
 
 `ACCESS_WIFI_STATE` permission must be added to `AndroidManifest.xml`.
 
@@ -45,8 +43,7 @@ WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
 boolean wifiEnabled = wifiManager.isWifiEnabled();
 ```
 
-<a id="1-2"></a>
-### 3G/4G
+### <a id="1-2"></a>3G/4G
 
 This is more complicated. As WiFi case, we have to add `ACCESS_NETWORK_STATE` permission.
 
@@ -137,13 +134,11 @@ boolean mobileDisabled = mobileInfo.getState() == NetworkInfo.State.DISCONNECTED
     && (reason == null || reason.equals("specificDisabled"));
 ```
 
-<a id="2"></a>
-## 2. Check if WiFi or 3G/4G is Connected
+## <a id="2"></a>2. Check if WiFi or 3G/4G is Connected
 
 WiFi or 3G/4G may not be connected even if the user enables them. Checking connectivity is useful when we are going to do some network communication.
 
-<a id="2-1"></a>
-### WiFi
+### <a id="2-1"></a>WiFi
 
 ``` java
 NetworkInfo wifiInfo =
@@ -151,8 +146,7 @@ NetworkInfo wifiInfo =
 boolean wifiConnected = wifiInfo.getState() == NetworkInfo.State.CONNECTED;
 ```
 
-<a id="2-2"></a>
-### 3G/4G
+### <a id="2-2"></a>3G/4G
 
 ``` java
 NetworkInfo mobileInfo =
@@ -160,11 +154,9 @@ NetworkInfo mobileInfo =
 boolean mobileConnected = mobileInfo.getState() == NetworkInfo.State.CONNECTED;
 ```
 
-<a id="3"></a>
-## 3. Toggle WiFi or 3G/4G Programmatically
+## <a id="3"></a>3. Toggle WiFi or 3G/4G Programmatically
 
-<a id="3-1"></a>
-### WiFi
+### <a id="3-1"></a>WiFi
 
 `CHANGE_WIFI_STATE` permission must be added to `AndroidManifest.xml`.
 
@@ -179,8 +171,7 @@ WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
 wifiManager.setWifiEnabled(isWifiEnabled);
 ```
 
-<a id="3-2"></a>
-### 3G/4G
+### <a id="3-2"></a>3G/4G
 
 There is an workaround with reflection on ["How can i turn off 3G/Data programmatically on Android?"][Stack Overflow].
 
