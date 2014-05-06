@@ -7,9 +7,9 @@ categories:
     - iOS
 keywords: ios, shuffle by album, 앨범별 임의 재생
 facebook:
-    image: http://blog.yous.be/images/2013/02/19/1.png
+    image: http://yous.be/images/2013/02/19/1.png
 twitter_card:
-    image: http://blog.yous.be/images/2013/02/19/1.png
+    image: http://yous.be/images/2013/02/19/1.png
 ---
 
 ## 목차
