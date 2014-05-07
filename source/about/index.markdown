@@ -5,7 +5,7 @@ date: 2014-01-31 19:37
 comments: false
 sharing: false
 footer: false
-description: About Yous: contact, code, likes, etc.
+description: About Yous - contact, code, likes, etc.
 ---
 
 ## <a id="yous"></a>Yous
