@@ -52,7 +52,10 @@ What you see now. Hosted on [GitHub Pages][]. The source is available in [GitHub
     - [World of Warcraft](http://kr.battle.net/wow/ko/)
 - [Vim](http://www.vim.org)
 - [Tomorrow Theme](https://github.com/chriskempson/tomorrow-theme)
+- [Happy Hacking Keyboard](http://www.pfu.fujitsu.com/hhkeyboard/)
 - [세벌식 자판](http://ko.wikipedia.org/wiki/세벌식_자판)
+- [iPhone](http://www.apple.com/iphone/)
+- [Mac](http://www.apple.com/mac/)
 
 [@blobyblo]: https://twitter.com/blobyblo
 [@Tukutz81]: https://twitter.com/Tukutz81
