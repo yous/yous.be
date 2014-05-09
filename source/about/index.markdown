@@ -24,9 +24,10 @@ ChaYoung You
 
 ## <a id="blog"></a>Blog
 
-What you see now. Hosted on [GitHub Pages][]. The source is available in [GitHub repo][].
+What you see now. Hosted on [GitHub Pages][] and all articles are written using [Markdown][]. The source is available in [GitHub repo][].
 
 [GitHub Pages]: http://pages.github.com
+[Markdown]: http://daringfireball.net/projects/markdown/
 [GitHub repo]: https://github.com/yous/yous.github.io
 
 ## <a id="code"></a>Code
@@ -50,15 +51,15 @@ What you see now. Hosted on [GitHub Pages][]. The source is available in [GitHub
     - [Super Hexagon](http://superhexagon.com)
     - [Monument Valley](http://www.monumentvalleygame.com)
     - [Threes!](http://asherv.com/threes/)
+    - [2048](http://gabrielecirulli.github.io/2048/)
     - [Portal 2](http://www.thinkwithportals.com)
     - [Diablo III](http://kr.battle.net/d3/ko/)
     - [World of Warcraft](http://kr.battle.net/wow/ko/)
+- [Markdown][]
 - [Vim](http://www.vim.org)
 - [Tomorrow Theme](https://github.com/chriskempson/tomorrow-theme)
 - [Happy Hacking Keyboard](http://www.pfu.fujitsu.com/hhkeyboard/)
 - [세벌식 자판](http://ko.wikipedia.org/wiki/세벌식_자판)
-- [iPhone](http://www.apple.com/iphone/)
-- [Mac](http://www.apple.com/mac/)
 
 [@blobyblo]: https://twitter.com/blobyblo
 [@Tukutz81]: https://twitter.com/Tukutz81
