@@ -5,6 +5,10 @@ comments: false
 sharing: false
 footer: false
 description: About Yous - contact, code, likes, etc.
+facebook:
+    image: http://yous.be/images/about/Super-Hexagon.png
+twitter_card:
+    image: http://yous.be/images/about/Super-Hexagon.png
 ---
 
 ## <a id="yous"></a>Yous
