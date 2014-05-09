@@ -4,7 +4,7 @@ title: "About"
 comments: false
 sharing: false
 footer: false
-description: About Yous - contact, code, likes, etc.
+description: About Yous - contact, projects, interests, likes, etc.
 facebook:
     image: http://yous.be/images/about/Super-Hexagon.png
 twitter_card:
@@ -30,10 +30,22 @@ What you see now. Hosted on [GitHub Pages][] and all articles are written using 
 [Markdown]: http://daringfireball.net/projects/markdown/
 [GitHub repo]: https://github.com/yous/yous.github.io
 
+## <a id="projects"></a>Projects
+
+- [스터디 헬퍼](https://play.google.com/store/apps/details?id=kr.co.tamseng.StudyHelper)
+
 ## <a id="code"></a>Code
 
 - [GitHub](https://github.com/yous)
 - [Bitbucket](https://bitbucket.org/yous)
+
+## <a id="interests"></a>Interests
+
+- [Ruby](https://www.ruby-lang.org)
+- [Ruby on Rails](http://rubyonrails.org)
+- [Android](http://www.android.com)
+- Security
+    - [GoN](http://gon.kaist.ac.kr)
 
 ## <a id="likes"></a>Likes
 
