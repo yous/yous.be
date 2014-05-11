@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | Yous]]></title>
   <link href="http://yous.be/categories/android/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-05-11T16:30:26+09:00</updated>
+  <updated>2014-05-12T07:43:17+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -12,6 +12,22 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Layout Inflation as Intended]]></title>
+    <link href="http://yous.be/2014/05/12/layout-inflation-as-intended/"/>
+    <updated>2014-05-12T07:17:37+09:00</updated>
+    <id>http://yous.be/2014/05/12/layout-inflation-as-intended</id>
+    <content type="html"><![CDATA[<p>안드로이드 개발을 하다 보면 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html">LayoutInflater</a>의 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup)">inflate(int, ViewGroup)</a>와 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup,%20boolean)">inflate(int, ViewGroup, boolean)</a>는 꽤 익숙하다. 하지만 다음 두 줄의 코드가 어떻게 다른지 아는 사람은 그리 많지 않을 것 같다. 실제로 <a href="http://tools.android.com/tips/lint">Android Lint</a>는 한쪽 코드는 피하도록 권하고 있다.</p>
+
+<p><code>java
+inflater.inflate(R.layout.my_layout, null);
+inflater.inflate(R.layout.my_layout, parent, false);
+</code></p>
+
+<p><a href="http://www.doubleencore.com/author/daves/">Dave Smith</a>가 이 두 코드의 비교와 함께, <a href="http://www.doubleencore.com/2013/05/layout-inflation-as-intended/">바른 Layout Inflation 방법</a>에 대해 설명한 글이 있어 소개한다.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Fragment Transaction &amp; Activity State Loss]]></title>

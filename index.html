@@ -9,8 +9,7 @@
   <meta name="author" content="Yous">
 
   
-  <meta name="description" content="FragmentTransaction을 commit() 했을 때 Activity의 onSaveInstanceState(Bundle)이 실행된 후라면 다음과 같은 에러 메시지를 보게 된다: 1
-java.lang.IllegalStateException: Can not &hellip;">
+  <meta name="description" content="안드로이드 개발을 하다 보면 LayoutInflater의 inflate(int, ViewGroup)와 inflate(int, ViewGroup, boolean)는 꽤 익숙하다. 하지만 다음 두 줄의 코드가 어떻게 다른지 아는 사람은 그리 많지 않을 것 같다. 실제로 &hellip;">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -41,16 +40,18 @@ java.lang.IllegalStateException: Can not &hellip;">
   <meta property="og:title" content="Yous">
   <meta property="og:site_name" content="Yous">
   <meta property="og:url" content="http://yous.be">
-  <meta property="og:description" content="FragmentTransaction을 commit() 했을 때 Activity의 onSaveInstanceState(Bundle)이 실행된 후라면 다음과 같은 에러 메시지를 보게 된다: 1
-java.lang.IllegalStateException: Can not perform this action after onSaveInstanceState 이 문제의 &hellip;">
+  <meta property="og:description" content="안드로이드 개발을 하다 보면 LayoutInflater의 inflate(int, ViewGroup)와 inflate(int, ViewGroup, boolean)는 꽤 익숙하다. 하지만 다음 두 줄의 코드가 어떻게 다른지 아는 사람은 그리 많지 않을 것 같다. 실제로 Android Lint는 한쪽 코드는 피하도록 권하고 있다. 1
+2
+inflater. &hellip;">
   
   
 
 <meta name="twitter:card" content="summary">
 
 <meta name="twitter:title" content="Yous">
-<meta name="twitter:description" content="FragmentTransaction을 commit() 했을 때 Activity의 onSaveInstanceState(Bundle)이 실행된 후라면 다음과 같은 에러 메시지를 보게 된다: 1
-java.lang.IllegalStateException: Can not perform this action after onSaveInstanceState 이 문제의 &hellip;">
+<meta name="twitter:description" content="안드로이드 개발을 하다 보면 LayoutInflater의 inflate(int, ViewGroup)와 inflate(int, ViewGroup, boolean)는 꽤 익숙하다. 하지만 다음 두 줄의 코드가 어떻게 다른지 아는 사람은 그리 많지 않을 것 같다. 실제로 Android Lint는 한쪽 코드는 피하도록 권하고 있다. 1
+2
+inflater. &hellip;">
 
 
 
@@ -102,6 +103,51 @@ java.lang.IllegalStateException: Can not perform this action after onSaveInstanc
     <div id="content">
       <div class="blog-index">
   
+  
+  
+    <article>
+      
+  <header>
+    
+      <h1 class="entry-title"><a href="/2014/05/12/layout-inflation-as-intended/">Layout Inflation as Intended &rarr;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-12T07:17:37+09:00" pubdate data-updated="true">May 12<span>th</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>안드로이드 개발을 하다 보면 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html">LayoutInflater</a>의 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup)">inflate(int, ViewGroup)</a>와 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup,%20boolean)">inflate(int, ViewGroup, boolean)</a>는 꽤 익숙하다. 하지만 다음 두 줄의 코드가 어떻게 다른지 아는 사람은 그리 많지 않을 것 같다. 실제로 <a href="http://tools.android.com/tips/lint">Android Lint</a>는 한쪽 코드는 피하도록 권하고 있다.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">inflater</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">my_layout</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+</span><span class='line'><span class="n">inflater</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">my_layout</span><span class="o">,</span> <span class="n">parent</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="http://www.doubleencore.com/author/daves/">Dave Smith</a>가 이 두 코드의 비교와 함께, <a href="http://www.doubleencore.com/2013/05/layout-inflation-as-intended/">바른 Layout Inflation 방법</a>에 대해 설명한 글이 있어 소개한다.</p>
+</div>
+  
+  
+
+
+    </article>
   
   
     <article>
@@ -210,158 +256,6 @@ java.lang.IllegalStateException: Can not perform this action after onSaveInstanc
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/03/27/twitter-link-bookmarklet/">Twitter Link Bookmarklet &rarr;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-03-27T10:18:57+09:00" pubdate data-updated="true">Mar 27<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://davebradford.com/about/">Dave Bradford</a>의 트위터에 관한 팁 <a href="http://davebradford.com/blog/twitter-profile-bookmarklet/">Twitter Profile Bookmarklet</a>을 봤다. 직접 써 보니 기능이 추가됐으면 더 좋을 것 같아 추가했다.</p>
-
-<p>일단, 원글에 있는 코드의 기능은 간단하다. 모바일 사파리를 통해 트위터 계정을 보다가 북마크 버튼을 한 번 누르면 <a href="http://tapbots.com/software/tweetbot/">Tweetbot</a>에서 볼 수 있게 된다. 여기에 브라우저를 통해 &lsquo;트윗&#8217;을 보고 있다면 Tweetbot으로 바로 그 트윗을 볼 수 있게 기능을 추가했다. OS X에서도 동일하게 작동한다.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">URL</span><span class="p">;</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">match</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/status(?:es)?\/(\d+)/i</span><span class="p">);</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">tweetbotUrl</span><span class="p">;</span>
-</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">match</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">tweetbotUrl</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/https?:\/\/(mobile\.)?twitter\.com\//</span><span class="p">,</span> <span class="s2">&quot;tweetbot:///user_profile/&quot;</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="k">else</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">tweetbotUrl</span> <span class="o">=</span> <span class="s2">&quot;tweetbot:///status/&quot;</span> <span class="o">+</span> <span class="nx">match</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">location</span> <span class="o">=</span> <span class="nx">tweetbotUrl</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>원리는 간단하다. 현재 페이지 URL에 <code>status</code>나 <code>statuses</code>가 포함되어 있으면 트윗을 열고, 그렇지 않으면 계정을 보여 준다. 아래 코드를 북마크 해두고, 필요할 때 눌러주면 된다.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>javascript:var%20url=document.URL;var%20match=url.match(/status(?:es)?%5C/(%5Cd+)/i);var%20tweetbotUrl;if(match==null)%7BtweetbotUrl=url.replace(/https?:%5C/%5C/(mobile%5C.)?twitter%5C.com%5C//i,%22tweetbot:///user_profile/%22)%7Delse%7BtweetbotUrl=%22tweetbot:///status/%22+match[1]%7Dwindow.location=tweetbotUrl;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>기기에 Tweetbot 2와 Tweetbot 3가 모두 깔려 있을 때 Tweetbot 2로 열리는 점은 아쉽다.</p>
-
-<p>via <a href="http://yoonjiman.net/2014/03/25/twitter-profile-bookmarklet/">Yoon Jiman</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/03/25/global-git-ignore/">Global Git Ignore &rarr;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-03-25T20:49:32+09:00" pubdate data-updated="true">Mar 25<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://usevim.com">usevim</a>의 <a href="http://twitter.com/#!/alex_young">Alex Young</a>이 쓴 <a href="http://usevim.com/2013/10/04/gitglobal-ignore/">global gitignore에 관한 글</a>이다.</p>
-
-<blockquote><p>나는 몇 년간 <code>.gitignore</code>에 <code>*.sw?</code>을 넣어 왔는데, Vim을 쓰지 않는 사람들은 특정 편집기를 위한 <code>.gitignore</code> 항목을 보고 싶지 않아 할 수도 있다는 걸 깨달았다. 편집기들은 임시 파일과 복구 파일을 각자 다른 방식으로 관리하기 때문에 이 설정을 모두에게 강요하는 것은 과해 보인다.</p>
-
-<p>이것보단 global 옵션을 사용하는 것이 낫다. <code>git config --global core.excludesfile ~/.gitignore</code>를 실행해라. 그러면 거기에 <code>*.sw?</code>을, 어쩌면 <code>*~</code>도 넣을 수 있다. 난 <code>.DS_Store</code>를 추가할 텐데, Windows 개발자들은 여기 신경 쓸 필요가 없기 때문이다. 그리고 그들은 아마 <code>Thumbs.db</code>를 추가해야 할 것이다.</p></blockquote>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/03/19/ropasaurusrex-a-primer-on-return-oriented-programming/">ropasaurusrex: return-oriented programming 입문서 &rarr;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-03-19T20:44:03+09:00" pubdate data-updated="true">Mar 19<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="https://blog.skullsecurity.org">SkullSecurity</a>의 <a href="https://blog.skullsecurity.org/author/ron">Ron Bowes</a>가 쓴 <a href="https://blog.skullsecurity.org/2013/ropasaurusrex-a-primer-on-return-oriented-programming">return-oriented programming 입문서</a>가 있어 번역했다.</p>
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2014/03/19/ropasaurusrex-a-primer-on-return-oriented-programming/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -377,6 +271,10 @@ java.lang.IllegalStateException: Can not perform this action after onSaveInstanc
   <ul id="recent_posts">
     
       <li class="post">
+        <a href="/2014/05/12/layout-inflation-as-intended/">Layout Inflation as Intended</a>
+      </li>
+    
+      <li class="post">
         <a href="/2014/04/03/fragment-transaction-and-activity-state-loss/">Fragment Transaction &amp; Activity State Loss</a>
       </li>
     
@@ -390,10 +288,6 @@ java.lang.IllegalStateException: Can not perform this action after onSaveInstanc
     
       <li class="post">
         <a href="/2014/03/25/global-git-ignore/">Global Git Ignore</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/03/19/ropasaurusrex-a-primer-on-return-oriented-programming/">ropasaurusrex: return-oriented programming 입문서</a>
       </li>
     
   </ul>

@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: Write-up - Yous</title>
+  <title>Layout Inflation as Intended - Yous</title>
   <meta name="author" content="Yous">
 
   
-  <meta name="description" content="Category: Write-up">
-  
+  <meta name="description" content="바른 Layout Inflation 방법에 대해 설명해 놓은 Dave Smith의 글이 있어 소개한다.">
+  <meta name="keywords" content="android, layout, inflate, inflation, root, parent, container, null">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://yous.becategories/write-up">
+  <link rel="canonical" href="http://yous.be/2014/05/12/layout-inflation-as-intended">
   <link href="/favicon.png" rel="icon">
   <link href="/apple-touch-icon.png" rel="apple-touch-icon">
   <link href="/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76">
@@ -37,17 +37,17 @@
 <!-- Social media content metadata -->
 
   <meta property="fb:admins" content="100001802412550">
-  <meta property="og:title" content="Category: Write-up">
+  <meta property="og:title" content="Layout Inflation as Intended">
   <meta property="og:site_name" content="Yous">
-  <meta property="og:url" content="http://yous.becategories/write-up">
-  <meta property="og:description" content="Category: Write-up">
+  <meta property="og:url" content="http://yous.be/2014/05/12/layout-inflation-as-intended">
+  <meta property="og:description" content="바른 Layout Inflation 방법에 대해 설명해 놓은 Dave Smith의 글이 있어 소개한다.">
   
   
 
 <meta name="twitter:card" content="summary">
 
-<meta name="twitter:title" content="Category: Write-up">
-<meta name="twitter:description" content="Category: Write-up">
+<meta name="twitter:title" content="Layout Inflation as Intended">
+<meta name="twitter:description" content="바른 Layout Inflation 방법에 대해 설명해 놓은 Dave Smith의 글이 있어 소개한다.">
 
 
 
@@ -98,49 +98,97 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: Write-up</h1>
+    
+      
+        <h1 class="entry-title"><a href="http://www.doubleencore.com/2013/05/layout-inflation-as-intended/">Layout Inflation as Intended &rarr;</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-12T07:17:37+09:00" pubdate data-updated="true">May 12<span>th</span>, 2014</time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p>안드로이드 개발을 하다 보면 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html">LayoutInflater</a>의 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup)">inflate(int, ViewGroup)</a>와 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup,%20boolean)">inflate(int, ViewGroup, boolean)</a>는 꽤 익숙하다. 하지만 다음 두 줄의 코드가 어떻게 다른지 아는 사람은 그리 많지 않을 것 같다. 실제로 <a href="http://tools.android.com/tips/lint">Android Lint</a>는 한쪽 코드는 피하도록 권하고 있다.</p>
 
-  
-  <h2>2014</h2>
-
-<article>
-  
-<h1><a href="/2014/03/19/ropasaurusrex-a-primer-on-return-oriented-programming/">ropasaurusrex: return-oriented programming 입문서 &rarr;</a></h1>
-<time datetime="2014-03-19T20:44:03+09:00" pubdate><span class='month'>Mar</span> <span class='day'>19</span> <span class='year'>2014</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/categories/ctf/'>CTF</a>, <a class='category' href='/categories/write-up/'>Write-up</a></span>
-</footer>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">inflater</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">my_layout</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+</span><span class='line'><span class="n">inflater</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">my_layout</span><span class="o">,</span> <span class="n">parent</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-</article>
-
-
-
-<article>
-  
-<h1><a href="/2014/01/20/ghost-in-the-shellcode-2014-inview-write-up/">Ghost in the Shellcode 2014: inview Write-up</a></h1>
-<time datetime="2014-01-20T22:21:24+09:00" pubdate><span class='month'>Jan</span> <span class='day'>20</span> <span class='year'>2014</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/categories/ctf/'>CTF</a>, <a class='category' href='/categories/write-up/'>Write-up</a></span>
-</footer>
-
-
-</article>
-
+<p><a href="http://www.doubleencore.com/author/daves/">Dave Smith</a>가 이 두 코드의 비교와 함께, <a href="http://www.doubleencore.com/2013/05/layout-inflation-as-intended/">바른 Layout Inflation 방법</a>에 대해 설명한 글이 있어 소개한다.</p>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Yous</span></span>
+
+      
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-12T07:17:37+09:00" pubdate data-updated="true">May 12<span>th</span>, 2014</time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/android/'>Android</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://yous.be/2014/05/12/layout-inflation-as-intended/" data-via="" data-counturl="http://yous.be/2014/05/12/layout-inflation-as-intended/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2014/04/03/fragment-transaction-and-activity-state-loss/" title="Previous Post: Fragment Transaction &amp; Activity State Loss">&laquo; Fragment Transaction &amp; Activity State Loss</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 
@@ -193,19 +241,6 @@
 
 </footer>
   
-
-<script type="text/javascript">
-      var disqus_shortname = 'yousbe';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
 
 
 
