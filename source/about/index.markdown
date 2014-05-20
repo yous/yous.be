@@ -54,6 +54,7 @@ What you see now. Hosted on [GitHub Pages][] and all articles are written using 
     - Epik High (Tablo [@blobyblo][], DJ Tukutz [@Tukutz81][], Mithra眞 [@realmithrajin][])
     - Paloalto [@OfficialPalo][]
 - [Evangelion](http://www.evangelion.co.jp)
+    - [evangelion.jp](http://evangelion.jp)
 - Games
     - Rhythm games
         - [jubeat](http://s.ubit.info/yous)
