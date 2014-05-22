@@ -69,6 +69,10 @@
         <lastmod>2014-05-12T07:42:45+09:00</lastmod>
     </url>
     <url>
+        <loc>http://yous.be/2014/05/15/how-to-configure-proguard-using-gradle/</loc>
+        <lastmod>2014-05-22T17:26:40+09:00</lastmod>
+    </url>
+    <url>
         <loc>http://yous.be/robots.txt</loc>
         <lastmod>2014-04-19T23:56:13+09:00</lastmod>
     </url>
@@ -82,10 +86,10 @@
     </url>
     <url>
         <loc>http://yous.be/archives/</loc>
-        <lastmod>2014-05-12T07:42:45+09:00</lastmod>
+        <lastmod>2014-05-22T17:26:40+09:00</lastmod>
     </url>
     <url>
         <loc>http://yous.be/</loc>
-        <lastmod>2014-05-12T07:42:45+09:00</lastmod>
+        <lastmod>2014-05-22T17:26:40+09:00</lastmod>
     </url>
 </urlset>

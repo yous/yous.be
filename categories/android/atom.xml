@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | Yous]]></title>
   <link href="http://yous.be/categories/android/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-05-22T12:07:46+09:00</updated>
+  <updated>2014-05-22T17:31:22+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -12,6 +12,197 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Gradle 환경에서 ProGuard 사용하기]]></title>
+    <link href="http://yous.be/2014/05/15/how-to-configure-proguard-using-gradle/"/>
+    <updated>2014-05-15T18:11:13+09:00</updated>
+    <id>http://yous.be/2014/05/15/how-to-configure-proguard-using-gradle</id>
+    <content type="html"><![CDATA[<h2><a id="gradle"></a>Gradle</h2>
+
+<p><img src="http://www.gradle.org/img/gradle_logo.gif" alt="Gradle" /></p>
+
+<p>최근 <a href="http://developer.android.com/sdk/installing/studio.html">Android Studio</a>를 통해 개발을 진행하게 되면서, 자연스럽게 <a href="http://www.gradle.org">Gradle</a>을 사용하게 되었다. <code>.gradle</code> 확장자를 가진 파일을 통해 빌드 설정을 자유롭게 조정할 수 있다. 이 글에서는 Gradle을 이용해 배포 APK를 생성하는 방법과 함께 <a href="http://proguard.sourceforge.net">ProGuard</a>를 사용법을 공유하겠다.</p>
+
+<h2><a id="how-to-create-release-apk-using-gradle"></a>Gradle 환경에서 배포 APK 생성하기</h2>
+
+<p>배포 APK에는 서명이 되어 있어야 하는데, 이를 위해서는 keystore 파일과 그 암호, 키 별칭, 키 암호가 필요하다. 디버그 APK에도 서명을 하지만, <a href="http://developer.android.com/tools/publishing/app-signing.html#debugmode">알려진 keystore 암호와 키 별칭, 키 암호</a>를 사용한다. 배포 APK의 서명을 위해 프로젝트의 <code>build.gradle</code> 파일에 다음 코드를 추가하면 된다.</p>
+
+<p>``` groovy
+android {</p>
+
+<pre><code>// ...
+
+signingConfigs {
+    release {
+        storeFile file("YOUR_KEYSTORE_PATH")
+        storePassword "YOUR_KEYSTORE_PASSWORD"
+        keyAlias "YOUR_KEY_ALIAS"
+        keyPassword "YOUR_KEY_PASSWORD"
+    }
+}
+
+buildTypes {
+    release {
+        signingConfig signingConfigs.release
+    }
+}
+</code></pre>
+
+<p>}
+```</p>
+
+<p>이때 <code>buildTypes</code> 아래의 <code>debug</code> 항목은 굳이 명시하지 않아도 <a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Build-Types">기본적으로 생성</a>되며, 이 <code>buildType</code>은 <a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Signing-Configurations">디버그 keystore와 키를 사용하도록 설정</a>되어 있다.</p>
+
+<p>다만 이 때 <code>build.gradle</code> 파일에 keystore 암호와 키 암호가 평문으로 들어가게 되는데, 소스를 공개하고 있는 등의 이유로 이를 피하고 싶다면 각각의 항목을 쉘 프롬프트에서 입력받을 수 있다:</p>
+
+<p>``` groovy
+signingConfigs {</p>
+
+<pre><code>release {
+    storeFile file(console.readLine("\n\$ Enter keystore path: "))
+    storePassword new String(console.readPassword("\n\$ Enter keystore password: "))
+    keyAlias console.readLine("\n\$ Enter key alias: ")
+    keyPassword new String(console.readPassword("\n\$ Enter key password: "))
+}
+</code></pre>
+
+<p>}
+```</p>
+
+<p>그러나 이는 <a href="http://stackoverflow.com/questions/18328730/how-to-create-a-release-signed-apk-file-using-gradle#19210105">IDE를 통해 디버그 APK를 생성할 때 크래시</a>를 내며, 이는 그때 코드의 <code>console</code>이 <code>null</code>이라서 발생하는 오류다. 이를 해결한 최종 코드는 다음과 같다:</p>
+
+<p>``` groovy
+signingConfigs {</p>
+
+<pre><code>release {
+    final Console console = System.console();
+    if (console != null) {
+        storeFile file(console.readLine("\n\$ Enter keystore path: "))
+        storePassword new String(console.readPassword("\n\$ Enter keystore password: "))
+        keyAlias console.readLine("\n\$ Enter key alias: ")
+        keyPassword new String(console.readPassword("\n\$ Enter key password: "))
+    }
+}
+</code></pre>
+
+<p>}
+```</p>
+
+<p>디버그 APK와 배포 APK의 패키지 이름이 같으면 APK의 서명이 서로 달라 개발과 디버깅에 어려움이 있다. 이를 해결하기 위해서 <code>buildTypes</code> 아래에 <code>debug</code> 항목을 선언하여 디버그 APK의 패키지 이름을 바꿀 수 있고, 추가로 버전명도 바꿀 수 있다:</p>
+
+<p>``` groovy
+buildTypes {</p>
+
+<pre><code>debug {
+    packageNameSuffix '.debug'
+    versionNameSuffix '-debug'
+}
+</code></pre>
+
+<p>}
+```</p>
+
+<p>이제 터미널에서 다음 명령을 실행하면 디버그 APK와 배포 APK를 각각 얻을 수 있다. 물론 디버그 APK는 IDE로도 생성할 수 있다.</p>
+
+<p><code>sh
+$ ./gradlew assembleDebug
+$ ./gradlew assembleRelease
+</code></p>
+
+<p>Gradle은 <a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Android-tasks">캐멀케이스 단축키를 지원</a>해서 <code>aR</code>에 해당하는 다른 명령이 없는 한 <code>assembleRelease</code> 대신 <code>aR</code>을 사용할 수 있다.</p>
+
+<!-- more -->
+
+
+<h2><a id="how-to-use-proguard"></a>ProGuard 사용하기</h2>
+
+<p>배포 APK를 생성할 때 ProGuard를 사용할 수도 있는데, <code>build.gradle</code>에 다음 코드를 추가하면 된다:</p>
+
+<p>``` groovy
+buildTypes {</p>
+
+<pre><code>release {
+    runProguard true
+    proguardFile getDefaultProguardFile('proguard-android.txt')
+}
+</code></pre>
+
+<p>}
+```</p>
+
+<p><code>getDefaultProguardFile()</code>는 <a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Running-ProGuard">SDK에 위치한 해당 이름의 파일을 가져와 적용</a>한다. <code>proguard-android.txt</code>와 <code>proguard-android-optimize.txt</code>가 있으며 <a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Running-ProGuard">앞의 것은 최적화를 수행하지 않고, 뒤의 것은 최적화를 수행</a>한다.</p>
+
+<p>추가적인 다른 <code>proguardFile</code>을 더 적용하고 싶다면 <code>proguardFiles</code>를 사용하면 된다:</p>
+
+<p>``` groovy
+buildTypes {</p>
+
+<pre><code>release {
+    runProguard true
+    proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
+}
+</code></pre>
+
+<p>}
+```</p>
+
+<p>다른 라이브러리 프로젝트를 가져다 사용하고 있을 경우, ProGuard 사용에 있어 주의해야 할 경우가 생긴다.</p>
+
+<h3><a id="actionbarsherlock"></a>ActionBarSherlock</h3>
+
+<p><a href="http://actionbarsherlock.com">ActionBarSherlock</a>의 경우 ProGuard를 사용할 때, <a href="http://actionbarsherlock.com/faq.html">다음 규칙을 추가하라고 명시</a>하고 있다:</p>
+
+<p>```
+-keep class android.support.v4.app.<strong> { *; }
+-keep interface android.support.v4.app.</strong> { <em>; }
+-keep class com.actionbarsherlock.** { </em>; }
+-keep interface com.actionbarsherlock.<em>* { </em>; }</p>
+
+<p>-keepattributes <em>Annotation</em>
+```</p>
+
+<h3><a id="crashlytics"></a>Crashlytics</h3>
+
+<p><a href="https://www.crashlytics.com">Crashlytics</a>는 이미 ProGuard를 사용한 라이브러리들을 다시 ProGuard가 검사할 필요 없게 해서 <a href="http://www.crashlytics.com/blog/mastering-proguard-for-building-lightweight-android-code/">빌드 시간을 줄이는 팁</a>을 제공하고 있다:</p>
+
+<p><code>
+-libraryjars libs
+-keep class com.crashlytics.** { *; }
+</code></p>
+
+<p><a href="http://developer.android.com/tools/support-library/">Android Support Library</a>는 이미 소스가 공개되어 있기 때문에 코드 난독화가 필요하지 않다:</p>
+
+<p><code>
+-libraryjars libs
+-keep class android.support.v4.app.** { *; }
+-keep interface android.support.v4.app.** { *; }
+</code></p>
+
+<p>ProGuard를 이용해 코드 난독화 작업을 거치게 되면, 소스 파일의 줄 번호가 바뀌게 되어 Crashlytics의 스택 트레이스에서 정보를 얻기 어려울 수 있다. <a href="http://support.crashlytics.com/knowledgebase/articles/202926-android-studio-and-intellij-with-proguard">소스 파일의 줄 번호 정보를 유지</a>하려면 다음 문장을 추가한다:</p>
+
+<p><code>
+-keepattributes SourceFile,LineNumberTable
+</code></p>
+
+<p>다만 이 코드 때문에 난독화가 덜 되는 것 같다는 생각이 든다면, 파일 이름을 모두 <code>"SourceFile"</code> 문자열로 <a href="http://proguard.sourceforge.net/manual/examples.html#stacktrace">바꿀 수도 있다</a>:</p>
+
+<p><code>
+-renamesourcefileattribute SourceFile
+-keepattributes SourceFile,LineNumberTable
+</code></p>
+
+<h2><a id="see-also"></a>참고 목록</h2>
+
+<ul>
+<li><a href="http://tools.android.com/tech-docs/new-build-system/user-guide">Gradle Plugin User Guide</a> by <a href="http://tools.android.com">Android Tools Project Site</a></li>
+<li><a href="http://www.crashlytics.com/blog/mastering-proguard-for-building-lightweight-android-code/">Mastering ProGuard for Building Lightweight Android Code</a> by <a href="https://www.crashlytics.com">Crashlytics</a></li>
+<li><a href="http://proguard.sourceforge.net/manual/index.html">ProGuard Manual</a> by <a href="http://proguard.sourceforge.net">ProGuard</a></li>
+<li><a href="http://novafactory.net/archives/2845">Gradle &ndash; Progaurd 사용하기(proguard rule)</a> by <a href="https://plus.google.com/113131691466488717287">Nova</a></li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Layout Inflation as Intended]]></title>

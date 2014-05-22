@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Yous</title>
+  <title>Gradle 환경에서 ProGuard 사용하기 - Yous</title>
   <meta name="author" content="Yous">
 
   
-  <meta name="description" content="Blog for hackers.">
-  
+  <meta name="description" content="Gradle을 이용해 배포 APK를 생성하는 방법과 함께 ProGuard 사용법을 공유한다.">
+  <meta name="keywords" content="gradle, proguard, signed, release, apk, android studio, actionbarsherlock, crashlytics">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://yous.be">
+  <link rel="canonical" href="http://yous.be/2014/05/15/how-to-configure-proguard-using-gradle">
   <link href="/favicon.png" rel="icon">
   <link href="/apple-touch-icon.png" rel="apple-touch-icon">
   <link href="/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76">
@@ -37,22 +37,25 @@
 <!-- Social media content metadata -->
 
   <meta property="fb:admins" content="100001802412550">
-  <meta property="og:title" content="Yous">
+  <meta property="og:title" content="Gradle 환경에서 ProGuard 사용하기">
   <meta property="og:site_name" content="Yous">
-  <meta property="og:url" content="http://yous.be">
-  <meta property="og:description" content="Blog for hackers.">
+  <meta property="og:url" content="http://yous.be/2014/05/15/how-to-configure-proguard-using-gradle">
+  <meta property="og:description" content="Gradle을 이용해 배포 APK를 생성하는 방법과 함께 ProGuard 사용법을 공유한다.">
   
   
-    <meta property="og:image" content="http://yous.be/images/about/Super-Hexagon.png">
+    <meta property="og:image" content="http://www.gradle.org/img/gradle_logo.gif">
   
 
 <meta name="twitter:card" content="summary">
 
-<meta name="twitter:title" content="Yous">
-<meta name="twitter:description" content="Blog for hackers.">
+<meta name="twitter:title" content="Gradle 환경에서 ProGuard 사용하기">
+<meta name="twitter:description" content="Gradle을 이용해 배포 APK를 생성하는 방법과 함께 ProGuard 사용법을 공유한다.">
 
 
-  <meta name="twitter:image:src" content="http://yous.be/images/about/Super-Hexagon.png">
+  
+    <meta name="twitter:image:src" content="http://www.gradle.org/img/gradle_logo.gif">
+    
+  
 
 
   
@@ -101,15 +104,14 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div class="blog-index">
+      <div>
+<article class="hentry" role="article">
   
-  
-  
-    <article>
-      
   <header>
     
-      <h1 class="entry-title"><a href="/2014/05/15/how-to-configure-proguard-using-gradle/">Gradle 환경에서 ProGuard 사용하기</a></h1>
+      
+        <h1 class="entry-title">Gradle 환경에서 ProGuard 사용하기</h1>
+      
     
     
       <p class="meta">
@@ -132,7 +134,7 @@
   </header>
 
 
-  <div class="entry-content"><h2><a id="gradle"></a>Gradle</h2>
+<div class="entry-content"><h2><a id="gradle"></a>Gradle</h2>
 
 <p><img src="http://www.gradle.org/img/gradle_logo.gif" alt="Gradle" /></p>
 
@@ -259,200 +261,12 @@
 
 <p>Gradle은 <a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Android-tasks">캐멀케이스 단축키를 지원</a>해서 <code>aR</code>에 해당하는 다른 명령이 없는 한 <code>assembleRelease</code> 대신 <code>aR</code>을 사용할 수 있다.</p>
 
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2014/05/15/how-to-configure-proguard-using-gradle/">Read on &rarr;</a>
-    </footer>
-  
+<!-- more -->
 
 
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/05/12/layout-inflation-as-intended/">Layout Inflation as Intended &rarr;</a></h1>
-    
-    
-      <p class="meta">
-        
+<h2><a id="how-to-use-proguard"></a>ProGuard 사용하기</h2>
 
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-05-12T07:17:37+09:00" pubdate data-updated="true">May 12<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>안드로이드 개발을 하다 보면 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html">LayoutInflater</a>의 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup)">inflate(int, ViewGroup)</a>와 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup,%20boolean)">inflate(int, ViewGroup, boolean)</a>는 꽤 익숙하다. 하지만 다음 두 줄의 코드가 어떻게 다른지 아는 사람은 그리 많지 않을 것 같다. 실제로 <a href="http://tools.android.com/tips/lint">Android Lint</a>는 한쪽 코드는 피하도록 권하고 있다.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">inflater</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">my_layout</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
-</span><span class='line'><span class="n">inflater</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">my_layout</span><span class="o">,</span> <span class="n">parent</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="http://www.doubleencore.com/author/daves/">Dave Smith</a>가 이 두 코드의 비교와 함께, <a href="http://www.doubleencore.com/2013/05/layout-inflation-as-intended/">바른 Layout Inflation 방법</a>에 대해 설명한 글이 있어 소개한다.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/04/03/fragment-transaction-and-activity-state-loss/">Fragment Transaction &amp; Activity State Loss &rarr;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-04-03T00:03:50+09:00" pubdate data-updated="true">Apr 3<span>rd</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html">FragmentTransaction</a>을 <a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#commit()">commit()</a> 했을 때 Activity의 <a href="http://developer.android.com/reference/android/app/Activity.html#onSaveInstanceState(android.os.Bundle)">onSaveInstanceState(Bundle)</a>이 실행된 후라면 다음과 같은 에러 메시지를 보게 된다:</p>
-
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>java.lang.IllegalStateException: Can not perform this action after onSaveInstanceState</span></code></pre></td></tr></table></div></figure>
-
-
-<p>이 문제의 원인이 무엇인지, 어떻게 이 Exception을 피할지, 그리고 <a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#commitAllowingStateLoss()">commitAllowingStateLoss()</a>가 왜 마지막 수단이 되어야 하는지 잘 설명한 글이 있어 소개한다. <a href="http://www.androiddesignpatterns.com/about/">Alex Lockwood</a>가 쓴 <a href="http://www.androiddesignpatterns.com/2013/08/fragment-transaction-commit-state-loss.html">Fragment Transaction과 Activity State Loss</a>에 관한 글이다.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/03/31/trailing-whitespace-is-evil-dont-commit-evil-into-your-repo/">Trailing whitespace is evil. Don&#8217;t commit evil into your repo. &rarr;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-03-31T20:57:09+09:00" pubdate data-updated="true">Mar 31<span>st</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://codeimpossible.com/about.html">Jared Barboza</a>가 쓴 <a href="http://codeimpossible.com/2012/04/02/Trailing-whitespace-is-evil-Don-t-commit-evil-into-your-repo-/">줄 끝 공백에 관한 글</a>이다.</p>
-
-<blockquote><p><strong>난 최근에 다양한 사람/언어/편집기와 함께 많은 프로젝트를 진행해 왔다. 우리들 대부분은 Git 초보자였고, 각 프로젝트는 줄 끝 공백에 관한 문제가 있었다.</strong></p></blockquote>
-
-<p>경력 있는 개발자로만 이루어진 팀이라고 해도 이런 문제는 발생하기 마련이다.</p>
-
-<blockquote><p>줄 끝 공백은 당신의 저장소에서 상당히 많은 문제를 일으킬 수 있다. 실제로 바뀐 것은 공백일 뿐인데도 그 줄에 변경 사항이 있다는 잘못된 diff를 만든다.</p>
-
-<p>이는 개발 과정에서 나중에 실제 파일의 변경 사항이 무엇이었는지 찾기 불가능하게 만든다. 대부분의 오픈 소스 프로젝트 대표들은 이를 알고 있고, 그들 대부분은 줄 끝 공백을 없애지 않은 풀 리퀘스트를 거절할 것이다.</p></blockquote>
-
-<p>이후 글에서는 Visual Studio와 Sublime Text 2에서 줄 끝 공백을 제거하는 방법과 git hook을 통해 커밋에 줄 끝 공백이 포함되지 않도록 하는 방법을 소개하고 있다.</p>
-
-<p>나는 Android Studio에서는 파일 저장 시 모든 줄 끝 공백을 지우고, Vim에서는 줄 끝 공백에 하이라이트를 입혀 쓰고 있다.</p>
-
-<figure class='code'><figcaption><span>.vimrc</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="nb">highlight</span> ExtraWhitespace ctermbg<span class="p">=</span><span class="k">red</span> guibg<span class="p">=</span><span class="k">red</span>
-</span><span class='line'>autocmd <span class="nb">BufWinEnter</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">/\s\+$/</span>
-</span><span class='line'>autocmd <span class="nb">InsertEnter</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">//</span>
-</span><span class='line'>autocmd <span class="nb">InsertLeave</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">/\s\+$/</span>
-</span><span class='line'><span class="k">if</span> <span class="k">version</span> <span class="p">&gt;=</span> <span class="m">702</span>
-</span><span class='line'>  autocmd <span class="nb">BufWinLeave</span> * <span class="k">call</span> clearmatches<span class="p">()</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/03/27/twitter-link-bookmarklet/">Twitter Link Bookmarklet &rarr;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-03-27T10:18:57+09:00" pubdate data-updated="true">Mar 27<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://davebradford.com/about/">Dave Bradford</a>의 트위터에 관한 팁 <a href="http://davebradford.com/blog/twitter-profile-bookmarklet/">Twitter Profile Bookmarklet</a>을 봤다. 직접 써 보니 기능이 추가됐으면 더 좋을 것 같아 추가했다.</p>
-
-<p>일단, 원글에 있는 코드의 기능은 간단하다. 모바일 사파리를 통해 트위터 계정을 보다가 북마크 버튼을 한 번 누르면 <a href="http://tapbots.com/software/tweetbot/">Tweetbot</a>에서 볼 수 있게 된다. 여기에 브라우저를 통해 &lsquo;트윗&#8217;을 보고 있다면 Tweetbot으로 바로 그 트윗을 볼 수 있게 기능을 추가했다. OS X에서도 동일하게 작동한다.</p>
+<p>배포 APK를 생성할 때 ProGuard를 사용할 수도 있는데, <code>build.gradle</code>에 다음 코드를 추가하면 된다:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -460,47 +274,159 @@
 <span class='line-number'>4</span>
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">URL</span><span class="p">;</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">match</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/status(?:es)?\/(\d+)/i</span><span class="p">);</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">tweetbotUrl</span><span class="p">;</span>
-</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">match</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">tweetbotUrl</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/https?:\/\/(mobile\.)?twitter\.com\//</span><span class="p">,</span> <span class="s2">&quot;tweetbot:///user_profile/&quot;</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="k">else</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">tweetbotUrl</span> <span class="o">=</span> <span class="s2">&quot;tweetbot:///status/&quot;</span> <span class="o">+</span> <span class="nx">match</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">location</span> <span class="o">=</span> <span class="nx">tweetbotUrl</span><span class="p">;</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">buildTypes</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">release</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">runProguard</span> <span class="kc">true</span>
+</span><span class='line'>        <span class="n">proguardFile</span> <span class="nf">getDefaultProguardFile</span><span class="o">(</span><span class="s1">&#39;proguard-android.txt&#39;</span><span class="o">)</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>원리는 간단하다. 현재 페이지 URL에 <code>status</code>나 <code>statuses</code>가 포함되어 있으면 트윗을 열고, 그렇지 않으면 계정을 보여 준다. 아래 코드를 북마크 해두고, 필요할 때 눌러주면 된다.</p>
+<p><code>getDefaultProguardFile()</code>는 <a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Running-ProGuard">SDK에 위치한 해당 이름의 파일을 가져와 적용</a>한다. <code>proguard-android.txt</code>와 <code>proguard-android-optimize.txt</code>가 있으며 <a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Running-ProGuard">앞의 것은 최적화를 수행하지 않고, 뒤의 것은 최적화를 수행</a>한다.</p>
+
+<p>추가적인 다른 <code>proguardFile</code>을 더 적용하고 싶다면 <code>proguardFiles</code>를 사용하면 된다:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>javascript:var%20url=document.URL;var%20match=url.match(/status(?:es)?%5C/(%5Cd+)/i);var%20tweetbotUrl;if(match==null)%7BtweetbotUrl=url.replace(/https?:%5C/%5C/(mobile%5C.)?twitter%5C.com%5C//i,%22tweetbot:///user_profile/%22)%7Delse%7BtweetbotUrl=%22tweetbot:///status/%22+match[1]%7Dwindow.location=tweetbotUrl;</span></code></pre></td></tr></table></div></figure>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">buildTypes</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">release</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">runProguard</span> <span class="kc">true</span>
+</span><span class='line'>        <span class="n">proguardFiles</span> <span class="nf">getDefaultProguardFile</span><span class="o">(</span><span class="s1">&#39;proguard-android.txt&#39;</span><span class="o">),</span> <span class="s1">&#39;proguard-project.txt&#39;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
 
-<p>기기에 Tweetbot 2와 Tweetbot 3가 모두 깔려 있을 때 Tweetbot 2로 열리는 점은 아쉽다.</p>
+<p>다른 라이브러리 프로젝트를 가져다 사용하고 있을 경우, ProGuard 사용에 있어 주의해야 할 경우가 생긴다.</p>
 
-<p>via <a href="http://yoonjiman.net/2014/03/25/twitter-profile-bookmarklet/">Yoon Jiman</a></p>
+<h3><a id="actionbarsherlock"></a>ActionBarSherlock</h3>
+
+<p><a href="http://actionbarsherlock.com">ActionBarSherlock</a>의 경우 ProGuard를 사용할 때, <a href="http://actionbarsherlock.com/faq.html">다음 규칙을 추가하라고 명시</a>하고 있다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="o">-</span><span class="n">keep</span> <span class="kd">class</span> <span class="nc">android</span><span class="o">.</span><span class="na">support</span><span class="o">.</span><span class="na">v4</span><span class="o">.</span><span class="na">app</span><span class="o">.**</span> <span class="o">{</span> <span class="o">*;</span> <span class="o">}</span>
+</span><span class='line'><span class="o">-</span><span class="n">keep</span> <span class="kd">interface</span> <span class="nc">android</span><span class="o">.</span><span class="na">support</span><span class="o">.</span><span class="na">v4</span><span class="o">.</span><span class="na">app</span><span class="o">.**</span> <span class="o">{</span> <span class="o">*;</span> <span class="o">}</span>
+</span><span class='line'><span class="o">-</span><span class="n">keep</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">actionbarsherlock</span><span class="o">.**</span> <span class="o">{</span> <span class="o">*;</span> <span class="o">}</span>
+</span><span class='line'><span class="o">-</span><span class="n">keep</span> <span class="kd">interface</span> <span class="nc">com</span><span class="o">.</span><span class="na">actionbarsherlock</span><span class="o">.**</span> <span class="o">{</span> <span class="o">*;</span> <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">-</span><span class="n">keepattributes</span> <span class="o">*</span><span class="n">Annotation</span><span class="o">*</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3><a id="crashlytics"></a>Crashlytics</h3>
+
+<p><a href="https://www.crashlytics.com">Crashlytics</a>는 이미 ProGuard를 사용한 라이브러리들을 다시 ProGuard가 검사할 필요 없게 해서 <a href="http://www.crashlytics.com/blog/mastering-proguard-for-building-lightweight-android-code/">빌드 시간을 줄이는 팁</a>을 제공하고 있다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="o">-</span><span class="n">libraryjars</span> <span class="n">libs</span>
+</span><span class='line'><span class="o">-</span><span class="n">keep</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">crashlytics</span><span class="o">.**</span> <span class="o">{</span> <span class="o">*;</span> <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p><a href="http://developer.android.com/tools/support-library/">Android Support Library</a>는 이미 소스가 공개되어 있기 때문에 코드 난독화가 필요하지 않다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="o">-</span><span class="n">libraryjars</span> <span class="n">libs</span>
+</span><span class='line'><span class="o">-</span><span class="n">keep</span> <span class="kd">class</span> <span class="nc">android</span><span class="o">.</span><span class="na">support</span><span class="o">.</span><span class="na">v4</span><span class="o">.</span><span class="na">app</span><span class="o">.**</span> <span class="o">{</span> <span class="o">*;</span> <span class="o">}</span>
+</span><span class='line'><span class="o">-</span><span class="n">keep</span> <span class="kd">interface</span> <span class="nc">android</span><span class="o">.</span><span class="na">support</span><span class="o">.</span><span class="na">v4</span><span class="o">.</span><span class="na">app</span><span class="o">.**</span> <span class="o">{</span> <span class="o">*;</span> <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>ProGuard를 이용해 코드 난독화 작업을 거치게 되면, 소스 파일의 줄 번호가 바뀌게 되어 Crashlytics의 스택 트레이스에서 정보를 얻기 어려울 수 있다. <a href="http://support.crashlytics.com/knowledgebase/articles/202926-android-studio-and-intellij-with-proguard">소스 파일의 줄 번호 정보를 유지</a>하려면 다음 문장을 추가한다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="o">-</span><span class="n">keepattributes</span> <span class="n">SourceFile</span><span class="o">,</span><span class="n">LineNumberTable</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>다만 이 코드 때문에 난독화가 덜 되는 것 같다는 생각이 든다면, 파일 이름을 모두 <code>"SourceFile"</code> 문자열로 <a href="http://proguard.sourceforge.net/manual/examples.html#stacktrace">바꿀 수도 있다</a>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="o">-</span><span class="n">renamesourcefileattribute</span> <span class="n">SourceFile</span>
+</span><span class='line'><span class="o">-</span><span class="n">keepattributes</span> <span class="n">SourceFile</span><span class="o">,</span><span class="n">LineNumberTable</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2><a id="see-also"></a>참고 목록</h2>
+
+<ul>
+<li><a href="http://tools.android.com/tech-docs/new-build-system/user-guide">Gradle Plugin User Guide</a> by <a href="http://tools.android.com">Android Tools Project Site</a></li>
+<li><a href="http://www.crashlytics.com/blog/mastering-proguard-for-building-lightweight-android-code/">Mastering ProGuard for Building Lightweight Android Code</a> by <a href="https://www.crashlytics.com">Crashlytics</a></li>
+<li><a href="http://proguard.sourceforge.net/manual/index.html">ProGuard Manual</a> by <a href="http://proguard.sourceforge.net">ProGuard</a></li>
+<li><a href="http://novafactory.net/archives/2845">Gradle &ndash; Progaurd 사용하기(proguard rule)</a> by <a href="https://plus.google.com/113131691466488717287">Nova</a></li>
+</ul>
+
 </div>
+
+
+  <footer>
+    <p class="meta">
+      
   
+
+<span class="byline author vcard">Posted by <span class="fn">Yous</span></span>
+
+      
+
+
+
+
+
+
+
+
   
 
 
-    </article>
+<time datetime="2014-05-15T18:11:13+09:00" pubdate data-updated="true">May 15<span>th</span>, 2014</time>
+      
+
+<span class="categories">
   
-  <div class="pagination">
+    <a class='category' href='/categories/android/'>Android</a>
+  
+</span>
+
+
+    </p>
     
-      <a class="prev" href="/page/2/">&larr; Older</a>
-    
-    <a href="/archives">Blog Archives</a>
-    
-  </div>
+      <div class="sharing">
+  
+  <a href="http://twitter.com/share" class="twitter-share-button" data-url="http://yous.be/2014/05/15/how-to-configure-proguard-using-gradle/" data-via="" data-counturl="http://yous.be/2014/05/15/how-to-configure-proguard-using-gradle/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
 </div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2014/05/12/layout-inflation-as-intended/" title="Previous Post: Layout Inflation as Intended">&laquo; Layout Inflation as Intended</a>
+      
+      
+    </p>
+  </footer>
+</article>
+
+
+</div>
+
 <aside class="sidebar">
   
     <section>
@@ -520,7 +446,7 @@
       </li>
     
       <li class="post">
-        <a href="/2014/03/31/trailing-whitespace-is-evil-dont-commit-evil-into-your-repo/">Trailing whitespace is evil. Don&#8217;t commit evil into your repo.</a>
+        <a href="/2014/03/31/trailing-whitespace-is-evil-dont-commit-evil-into-your-repo/">Trailing whitespace is evil. Don't commit evil into your repo.</a>
       </li>
     
       <li class="post">
@@ -537,6 +463,7 @@
   
 </aside>
 
+
     </div>
   </div>
   <footer role="contentinfo"><p>
@@ -547,19 +474,6 @@
 
 </footer>
   
-
-<script type="text/javascript">
-      var disqus_shortname = 'yousbe';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = 'http://' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
 
 
 
