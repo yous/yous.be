@@ -71,6 +71,7 @@ github_skip_forks: true
 # Twitter
 twitter_user:
 twitter_tweet_button: true
+twitter_image: http://yous.be/images/about/Super-Hexagon.png
 
 # Google +1
 google_plus_one: false
@@ -102,3 +103,4 @@ facebook_like: true
 # Facebook Insights / Open Graph
 facebook_app_id: 100001802412550
 facebook_page:
+facebook_image: http://yous.be/images/about/Super-Hexagon.png

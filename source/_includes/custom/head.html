@@ -14,6 +14,8 @@
   {% endif %}
   {% if page.facebook.image %}
     <meta property="og:image" content="{{ page.facebook.image }}">
+  {% elsif site.facebook_image %}
+    <meta property="og:image" content="{{ site.facebook_image }}">
   {% endif %}
 {% endif %}
 <meta name="twitter:card" content="{% if page.twitter_card.type %}{{ page.twitter_card.type }}{% else %}summary{% endif %}">
@@ -44,4 +46,6 @@
       {% endif %}
     {% endif %}
   {% endif %}
+{% elsif site.twitter_image %}
+  <meta name="twitter:image:src" content="{{ site.twitter_image }}">
 {% endif %}
