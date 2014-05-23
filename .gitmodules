@@ -1,3 +1,6 @@
 [submodule ".themes/whitespace"]
 	path = .themes/whitespace
 	url = git@github.com:lucaslew/whitespace.git
+[submodule "plugins/jekyll_alias_generator"]
+	path = plugins/jekyll_alias_generator
+	url = git@github.com:tsmango/jekyll_alias_generator
