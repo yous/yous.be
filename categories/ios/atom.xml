@@ -4,7 +4,7 @@
   <title><![CDATA[Category: iOS | Yous]]></title>
   <link href="http://yous.be/categories/ios/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-05-22T17:31:22+09:00</updated>
+  <updated>2014-05-23T14:53:11+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -118,15 +118,15 @@ return err;
     <content type="html"><![CDATA[<h2>목차</h2>
 
 <ol>
-<li><a href="#1">앨범별 임의 재생</a></li>
-<li><a href="#2">방법</a></li>
-<li><a href="#3">결론</a></li>
-<li><a href="#4">단점</a></li>
-<li><a href="#5">iOS 6.1.2 업데이트</a></li>
+<li><a href="#shuffle-by-album">앨범별 임의 재생</a></li>
+<li><a href="#how-to">방법</a></li>
+<li><a href="#conclusion">결론</a></li>
+<li><a href="#short">단점</a></li>
+<li><a href="#ios-6-1-2">iOS 6.1.2 업데이트</a></li>
 </ol>
 
 
-<h2><a id="1"></a>앨범별 임의 재생</h2>
+<h2><a id="shuffle-by-album"></a>앨범별 임의 재생</h2>
 
 <p><a href="http://www.apple.com/kr/itunes/">iTunes</a>에는 앨범별 임의 재생을 이용해 음악을 들을 수 있는 기능이 있습니다.</p>
 
@@ -151,7 +151,7 @@ return err;
 <!-- more -->
 
 
-<h2><a id="2"></a>방법</h2>
+<h2><a id="how-to"></a>방법</h2>
 
 <p>우선 몇 가지 준비물이 필요한데, 제 환경은 다음과 같았습니다.</p>
 
@@ -346,7 +346,7 @@ return err;
 
 <p>우리가 바꿀 <code>key</code>는 바로 <code>MusicShuffleSetting</code>입니다. 이게 가장 중요한 포인트인데, <code>MusicShuffleSetting</code>이 현재 임의 재생 유형을 나타내고 있습니다. 값은 <code>Songs</code>거나 <code>Albums</code>가 되는데, 아이폰에서는 <code>Songs</code>로만 설정되어 있어서 노래별 임의 재생만을 할 수 있었던 것입니다. 이제 이 설정을 우리가 바꿀 수 있게 만듦으로써 아이폰에서도 앨범별 임의 재생을 할 수 있게 됩니다.</p>
 
-<h2><a id="3"></a>결론</h2>
+<h2><a id="conclusion"></a>결론</h2>
 
 <p>아래는 수정한 <code>Music.plist</code>의 최종 결과입니다.</p>
 
@@ -510,11 +510,11 @@ return err;
 
 <p>우선 모든 노래 중 아무 곡이나 재생한 후 <code>설정</code> &ndash; <code>음악</code> &ndash; <code>임의 재생</code>에 들어가서 <code>앨범별</code>을 선택하면 현재 노래 순서가 바뀐 것을 확인할 수 있습니다. <code>앨범별</code>을 선택하는 순간 아이폰에서 재생 순서를 전부 만들어 놓는 것 같습니다.</p>
 
-<h2><a id="4"></a>단점</h2>
+<h2><a id="short"></a>단점</h2>
 
 <p>이렇게 우리가 아이폰에서 앨범별 임의 재생을 할 수 있게 되었지만, 안타깝게도 완벽하게 작동하는 것은 아닙니다. 사용해 본 결과, 음악을 듣다가 음악 앱을 끄고 다시 재생하게 되면 <code>설정</code> &ndash; <code>음악</code> &ndash; <code>임의 재생</code>에서는 <code>노래별</code>로 바뀌어 있습니다. 하지만 여기에서 다시 <code>앨범별</code>을 선택하면 노래의 순서가 재설정 되어버립니다! <code>노래별</code>로 선택되어 있지만 사용자가 직접 선택하지 않는 이상 노래 순서가 재설정 되지는 않으니 그냥 끝까지 들으시면 모든 앨범을 들을 수 있으실 겁니다.</p>
 
-<h2><a id="5"></a>iOS 6.1.2 업데이트</h2>
+<h2><a id="ios-6-1-2"></a>iOS 6.1.2 업데이트</h2>
 
 <p>iOS 6.1.2 업데이트가 있었습니다. 기본 <code>Music.plist</code>가 iOS 6.1의 <code>Music.plist</code>와 동일함을 확인하였고, 앨범별 임의 재생 또한 문제 없이 잘 적용됨을 확인했습니다.</p>
 ]]></content>
