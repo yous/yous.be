@@ -7,6 +7,7 @@ description: Dave Bradford의 Twitter Profile Bookmarklet에 추가됐으면 하
 categories:
     - iOS
 keywords: twitter, profile, link, bookmark, bookmarklet, tweetbot
+alias: /p/20140327
 external-url: http://davebradford.com/blog/twitter-profile-bookmarklet/
 ---
 

@@ -6,6 +6,7 @@ comments: false
 categories:
     - Uncategorized
 keywords: syntax, highlighting
+alias: /p/20131203
 ---
 
 ```

@@ -6,6 +6,7 @@ comments: false
 categories:
     - Android
 keywords: android, wifi, 3g, 4g
+alias: /p/20131207
 ---
 
 ## Overview

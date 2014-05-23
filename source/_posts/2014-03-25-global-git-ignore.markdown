@@ -7,6 +7,7 @@ description: usevim의 Alex Young이 쓴 global gitignore에 관한 글이다.
 categories:
     - Git
 keywords: git, gitignore, global
+alias: /p/20140325
 external-url: http://usevim.com/2013/10/04/gitglobal-ignore/
 ---
 
