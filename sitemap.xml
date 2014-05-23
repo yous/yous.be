@@ -73,6 +73,10 @@
         <lastmod>2014-05-23T14:48:41+09:00</lastmod>
     </url>
     <url>
+        <loc>http://yous.be/2014/05/23/how-to-add-redirects-to-post-url-on-octopress/</loc>
+        <lastmod>2014-05-23T16:48:28+09:00</lastmod>
+    </url>
+    <url>
         <loc>http://yous.be/robots.txt</loc>
         <lastmod>2014-04-19T23:56:13+09:00</lastmod>
     </url>
@@ -86,10 +90,10 @@
     </url>
     <url>
         <loc>http://yous.be/archives/</loc>
-        <lastmod>2014-05-23T14:48:41+09:00</lastmod>
+        <lastmod>2014-05-23T16:48:28+09:00</lastmod>
     </url>
     <url>
         <loc>http://yous.be/</loc>
-        <lastmod>2014-05-23T14:48:41+09:00</lastmod>
+        <lastmod>2014-05-23T16:48:28+09:00</lastmod>
     </url>
 </urlset>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Octopress | Yous]]></title>
   <link href="http://yous.be/categories/octopress/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-05-23T14:53:11+09:00</updated>
+  <updated>2014-05-23T16:49:07+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -12,6 +12,70 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to Add Redirects to Post URL on Octopress]]></title>
+    <link href="http://yous.be/2014/05/23/how-to-add-redirects-to-post-url-on-octopress/"/>
+    <updated>2014-05-23T14:56:44+09:00</updated>
+    <id>http://yous.be/2014/05/23/how-to-add-redirects-to-post-url-on-octopress</id>
+    <content type="html"><![CDATA[<p>When I write a new post on <a href="http://octopress.org">Octopress</a>, I share the link of it to somewhere doesn&rsquo;t support <a href="http://en.wikipedia.org/wiki/Hyperlink">hyperlinks</a>. Since people can&rsquo;t click the link, they should copy and paste or just type it letter by letter. I wanted to make it easier, so I maded short url for every post.</p>
+
+<h2><a id="alias-generator-for-posts"></a>Alias Generator for Posts</h2>
+
+<p>There is a <a href="http://jekyllrb.com">Jekyll</a> plugin that <a href="https://github.com/tsmango/jekyll_alias_generator">generates redirect pages for posts with aliases</a>. Octopress is based on Jekyll and this plugin has no compatibility problem. Its source is on GitHub, so I just added it as submodule:</p>
+
+<p><code>sh
+$ git submodule add git@github.com:tsmango/jekyll_alias_generator plugins/jekyll_alias_generator
+</code></p>
+
+<p>In your <code>_config.yml</code>, you may have this line:</p>
+
+<p><code>yaml
+plugins: plugins
+</code></p>
+
+<p>Then it reads <code>plugins</code> directory and <code>alias_generator.rb</code> in <code>plugins/jekyll_alias_generator/_plugins/</code> directory is also loaded, so you can use and manage it!</p>
+
+<h2><a id="how-to-use"></a>How to Use</h2>
+
+<p>This plugin checks <code>alias</code> inside every post&rsquo;s YAML Front Matter. Just place the path of the alias:</p>
+
+<h2>``` yaml</h2>
+
+<p>layout: post
+title: &ldquo;How to Add Redirects to Post URL on Octopress&rdquo;</p>
+
+<h2>alias: /p/20140523</h2>
+
+<p>```</p>
+
+<p>Multiple aliases are also available:</p>
+
+<h2>``` yaml</h2>
+
+<p>layout: post
+title: &ldquo;How to Add Redirects to Post URL on Octopress&rdquo;</p>
+
+<h2>alias: [/one-alias/index.html, /another-alias/index.html]</h2>
+
+<p>```</p>
+
+<p>When I <code>rake generate</code>, the plugin generates static html file at <code>/p/20140523/index.html</code>:</p>
+
+<p><code>html
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;link rel="canonical" href="http://yous.be/2014/05/23/how-to-add-redirects-to-post-url-on-octopress/"/&gt;
+&lt;meta http-equiv="content-type" content="text/html; charset=utf-8" /&gt;
+&lt;meta http-equiv="refresh" content="0;url=/2014/05/23/how-to-add-redirects-to-post-url-on-octopress/" /&gt;
+&lt;/head&gt;
+&lt;/html&gt;
+</code></p>
+
+<p>When you go to <a href="/p/20140523">/p/20140523</a>, it will redirect here. It also has <a href="http://en.wikipedia.org/wiki/Canonical_link_element">canonical link</a>, so it won&rsquo;t affect search engine or web analysis services.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Octopress에서 Facebook Open Graph와 Twitter Cards 지원하기]]></title>

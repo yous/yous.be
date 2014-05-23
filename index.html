@@ -109,6 +109,115 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2014/05/23/how-to-add-redirects-to-post-url-on-octopress/">How to Add Redirects to Post URL on Octopress</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-05-23T14:56:44+09:00" pubdate data-updated="true">May 23<span>rd</span>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>When I write a new post on <a href="http://octopress.org">Octopress</a>, I share the link of it to somewhere doesn&rsquo;t support <a href="http://en.wikipedia.org/wiki/Hyperlink">hyperlinks</a>. Since people can&rsquo;t click the link, they should copy and paste or just type it letter by letter. I wanted to make it easier, so I maded short url for every post.</p>
+
+<h2><a id="alias-generator-for-posts"></a>Alias Generator for Posts</h2>
+
+<p>There is a <a href="http://jekyllrb.com">Jekyll</a> plugin that <a href="https://github.com/tsmango/jekyll_alias_generator">generates redirect pages for posts with aliases</a>. Octopress is based on Jekyll and this plugin has no compatibility problem. Its source is on GitHub, so I just added it as submodule:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>git submodule add git@github.com:tsmango/jekyll_alias_generator plugins/jekyll_alias_generator
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>In your <code>_config.yml</code>, you may have this line:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">plugins</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">plugins</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Then it reads <code>plugins</code> directory and <code>alias_generator.rb</code> in <code>plugins/jekyll_alias_generator/_plugins/</code> directory is also loaded, so you can use and manage it!</p>
+
+<h2><a id="how-to-use"></a>How to Use</h2>
+
+<p>This plugin checks <code>alias</code> inside every post&rsquo;s YAML Front Matter. Just place the path of the alias:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span>
+</span><span class='line'><span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
+</span><span class='line'><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&quot;How</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Add</span><span class="nv"> </span><span class="s">Redirects</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Post</span><span class="nv"> </span><span class="s">URL</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Octopress&quot;</span>
+</span><span class='line'><span class="l-Scalar-Plain">alias</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/p/20140523</span>
+</span><span class='line'><span class="nn">---</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Multiple aliases are also available:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span>
+</span><span class='line'><span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
+</span><span class='line'><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&quot;How</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Add</span><span class="nv"> </span><span class="s">Redirects</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Post</span><span class="nv"> </span><span class="s">URL</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Octopress&quot;</span>
+</span><span class='line'><span class="l-Scalar-Plain">alias</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">/one-alias/index.html</span><span class="p-Indicator">,</span> <span class="nv">/another-alias/index.html</span><span class="p-Indicator">]</span>
+</span><span class='line'><span class="nn">---</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When I <code>rake generate</code>, the plugin generates static html file at <code>/p/20140523/index.html</code>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
+</span><span class='line'><span class="nt">&lt;html&gt;</span>
+</span><span class='line'><span class="nt">&lt;head&gt;</span>
+</span><span class='line'><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;canonical&quot;</span> <span class="na">href=</span><span class="s">&quot;/2014/05/23/how-to-add-redirects-to-post-url-on-octopress/&quot;</span><span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;content-type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html; charset=utf-8&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;refresh&quot;</span> <span class="na">content=</span><span class="s">&quot;0;url=/2014/05/23/how-to-add-redirects-to-post-url-on-octopress/&quot;</span> <span class="nt">/&gt;</span>
+</span><span class='line'><span class="nt">&lt;/head&gt;</span>
+</span><span class='line'><span class="nt">&lt;/html&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>When you go to <a href="/p/20140523">/p/20140523</a>, it will redirect here. It also has <a href="http://en.wikipedia.org/wiki/Canonical_link_element">canonical link</a>, so it won&rsquo;t affect search engine or web analysis services.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2014/05/15/how-to-configure-proguard-using-gradle/">Gradle 환경에서 ProGuard 사용하기</a></h1>
     
     
@@ -422,77 +531,6 @@
 
     </article>
   
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/03/27/twitter-link-bookmarklet/">Twitter Link Bookmarklet &rarr;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-03-27T10:18:57+09:00" pubdate data-updated="true">Mar 27<span>th</span>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://davebradford.com/about/">Dave Bradford</a>의 트위터에 관한 팁 <a href="http://davebradford.com/blog/twitter-profile-bookmarklet/">Twitter Profile Bookmarklet</a>을 봤다. 직접 써 보니 기능이 추가됐으면 더 좋을 것 같아 추가했다.</p>
-
-<p>일단, 원글에 있는 코드의 기능은 간단하다. 모바일 사파리를 통해 트위터 계정을 보다가 북마크 버튼을 한 번 누르면 <a href="http://tapbots.com/software/tweetbot/">Tweetbot</a>에서 볼 수 있게 된다. 여기에 브라우저를 통해 &lsquo;트윗&#8217;을 보고 있다면 Tweetbot으로 바로 그 트윗을 볼 수 있게 기능을 추가했다. OS X에서도 동일하게 작동한다.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-</pre></td><td class='code'><pre><code class='javascript'><span class='line'><span class="kd">var</span> <span class="nx">url</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">URL</span><span class="p">;</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">match</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">match</span><span class="p">(</span><span class="sr">/status(?:es)?\/(\d+)/i</span><span class="p">);</span>
-</span><span class='line'><span class="kd">var</span> <span class="nx">tweetbotUrl</span><span class="p">;</span>
-</span><span class='line'><span class="k">if</span> <span class="p">(</span><span class="nx">match</span> <span class="o">==</span> <span class="kc">null</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">tweetbotUrl</span> <span class="o">=</span> <span class="nx">url</span><span class="p">.</span><span class="nx">replace</span><span class="p">(</span><span class="sr">/https?:\/\/(mobile\.)?twitter\.com\//</span><span class="p">,</span> <span class="s2">&quot;tweetbot:///user_profile/&quot;</span><span class="p">);</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="k">else</span> <span class="p">{</span>
-</span><span class='line'>    <span class="nx">tweetbotUrl</span> <span class="o">=</span> <span class="s2">&quot;tweetbot:///status/&quot;</span> <span class="o">+</span> <span class="nx">match</span><span class="p">[</span><span class="mi">1</span><span class="p">];</span>
-</span><span class='line'><span class="p">}</span>
-</span><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">location</span> <span class="o">=</span> <span class="nx">tweetbotUrl</span><span class="p">;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>원리는 간단하다. 현재 페이지 URL에 <code>status</code>나 <code>statuses</code>가 포함되어 있으면 트윗을 열고, 그렇지 않으면 계정을 보여 준다. 아래 코드를 북마크 해두고, 필요할 때 눌러주면 된다.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>javascript:var%20url=document.URL;var%20match=url.match(/status(?:es)?%5C/(%5Cd+)/i);var%20tweetbotUrl;if(match==null)%7BtweetbotUrl=url.replace(/https?:%5C/%5C/(mobile%5C.)?twitter%5C.com%5C//i,%22tweetbot:///user_profile/%22)%7Delse%7BtweetbotUrl=%22tweetbot:///status/%22+match[1]%7Dwindow.location=tweetbotUrl;</span></code></pre></td></tr></table></div></figure>
-
-
-<p>기기에 Tweetbot 2와 Tweetbot 3가 모두 깔려 있을 때 Tweetbot 2로 열리는 점은 아쉽다.</p>
-
-<p>via <a href="http://yoonjiman.net/2014/03/25/twitter-profile-bookmarklet/">Yoon Jiman</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
   <div class="pagination">
     
       <a class="prev" href="/page/2/">&larr; Older</a>
@@ -503,37 +541,7 @@
 </div>
 <aside class="sidebar">
   
-    <section>
-  <h1>Recent Posts</h1>
-  <ul id="recent_posts">
     
-      <li class="post">
-        <a href="/2014/05/15/how-to-configure-proguard-using-gradle/">Gradle 환경에서 ProGuard 사용하기</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/05/12/layout-inflation-as-intended/">Layout Inflation as Intended</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/04/03/fragment-transaction-and-activity-state-loss/">Fragment Transaction &amp; Activity State Loss</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/03/31/trailing-whitespace-is-evil-dont-commit-evil-into-your-repo/">Trailing whitespace is evil. Don&#8217;t commit evil into your repo.</a>
-      </li>
-    
-      <li class="post">
-        <a href="/2014/03/27/twitter-link-bookmarklet/">Twitter Link Bookmarklet</a>
-      </li>
-    
-  </ul>
-</section>
-
-
-
-
-
   
 </aside>
 
