@@ -6,7 +6,7 @@ comments: false
 description: Gradle을 이용해 배포 APK를 생성하는 방법과 함께 ProGuard 사용법을 공유한다.
 categories:
     - Android
-keywords: gradle, proguard, signed, release, apk, android studio, actionbarsherlock, crashlytics
+keywords: gradle, proguard, signed, release, apk, android studio, actionbarsherlock, crashlytics, google play services sdk
 alias: /p/20140515
 facebook:
     image: http://www.gradle.org/img/gradle_logo.gif
@@ -194,6 +194,32 @@ ProGuard를 이용해 코드 난독화 작업을 거치게 되면, 소스 파일
 ```
 -renamesourcefileattribute SourceFile
 -keepattributes SourceFile,LineNumberTable
+```
+
+### <a id="google-play-services-sdk"></a>Google Play Services SDK
+
+[Google Play Services SDK][] 또한 필요한 클래스가 사라지는 것을 방지하기 위한 [ProGuard 규칙][Create a Proguard Exception]을 제공하고 있다:
+
+[Google Play Services SDK]: https://developer.android.com/google/play-services/index.html
+[Create a Proguard Exception]: https://developer.android.com/google/play-services/setup.html#Proguard
+
+```
+-keep class * extends java.util.ListResourceBundle {
+    protected Object[][] getContents();
+}
+
+-keep public class com.google.android.gms.common.internal.safeparcel.SafeParcelable {
+    public static final *** NULL;
+}
+
+-keepnames @com.google.android.gms.common.annotation.KeepName class *
+-keepclassmembernames class * {
+    @com.google.android.gms.common.annotation.KeepName *;
+}
+
+-keepnames class * implements android.os.Parcelable {
+    public static final ** CREATOR;
+}
 ```
 
 ## <a id="see-also"></a>참고 목록
