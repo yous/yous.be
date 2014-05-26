@@ -4,7 +4,7 @@
   <title><![CDATA[Category: Android | Yous]]></title>
   <link href="http://yous.be/categories/android/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-05-26T14:32:22+09:00</updated>
+  <updated>2014-05-26T15:40:51+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -191,6 +191,41 @@ buildTypes {</p>
 -renamesourcefileattribute SourceFile
 -keepattributes SourceFile,LineNumberTable
 </code></p>
+
+<h3><a id="google-play-services-sdk"></a>Google Play Services SDK</h3>
+
+<p><a href="https://developer.android.com/google/play-services/index.html">Google Play Services SDK</a> 또한 필요한 클래스가 사라지는 것을 방지하기 위한 <a href="https://developer.android.com/google/play-services/setup.html#Proguard">ProGuard 규칙</a>을 제공하고 있다:</p>
+
+<p>```
+-keep class * extends java.util.ListResourceBundle {</p>
+
+<pre><code>protected Object[][] getContents();
+</code></pre>
+
+<p>}</p>
+
+<p>-keep public class com.google.android.gms.common.internal.safeparcel.SafeParcelable {</p>
+
+<pre><code>public static final *** NULL;
+</code></pre>
+
+<p>}</p>
+
+<p>-keepnames @com.google.android.gms.common.annotation.KeepName class *
+-keepclassmembernames class * {</p>
+
+<pre><code>@com.google.android.gms.common.annotation.KeepName *;
+</code></pre>
+
+<p>}</p>
+
+<p>-keepnames class * implements android.os.Parcelable {</p>
+
+<pre><code>public static final ** CREATOR;
+</code></pre>
+
+<p>}
+```</p>
 
 <h2><a id="see-also"></a>참고 목록</h2>
 

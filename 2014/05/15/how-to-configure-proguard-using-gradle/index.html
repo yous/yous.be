@@ -10,7 +10,7 @@
 
   
   <meta name="description" content="Gradle을 이용해 배포 APK를 생성하는 방법과 함께 ProGuard 사용법을 공유한다.">
-  <meta name="keywords" content="gradle, proguard, signed, release, apk, android studio, actionbarsherlock, crashlytics">
+  <meta name="keywords" content="gradle, proguard, signed, release, apk, android studio, actionbarsherlock, crashlytics, google play services sdk">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -358,6 +358,45 @@
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="o">-</span><span class="n">renamesourcefileattribute</span> <span class="n">SourceFile</span>
 </span><span class='line'><span class="o">-</span><span class="n">keepattributes</span> <span class="n">SourceFile</span><span class="o">,</span><span class="n">LineNumberTable</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h3><a id="google-play-services-sdk"></a>Google Play Services SDK</h3>
+
+<p><a href="https://developer.android.com/google/play-services/index.html">Google Play Services SDK</a> 또한 필요한 클래스가 사라지는 것을 방지하기 위한 <a href="https://developer.android.com/google/play-services/setup.html#Proguard">ProGuard 규칙</a>을 제공하고 있다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="o">-</span><span class="n">keep</span> <span class="kd">class</span> <span class="err">* </span><span class="nc">extends</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">ListResourceBundle</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">protected</span> <span class="n">Object</span><span class="o">[][]</span> <span class="nf">getContents</span><span class="o">();</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">gms</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">safeparcel</span><span class="o">.</span><span class="na">SafeParcelable</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="o">***</span> <span class="n">NULL</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">-</span><span class="n">keepnames</span> <span class="nd">@com.google.android.gms.common.annotation.KeepName</span> <span class="kd">class</span> <span class="err">*</span>
+</span><span class='line'><span class="o">-</span><span class="n">keepclassmembernames</span> <span class="kd">class</span> <span class="err">* {</span>
+</span><span class='line'>    <span class="nd">@com.google.android.gms.common.annotation.KeepName</span> <span class="o">*;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">-</span><span class="n">keepnames</span> <span class="kd">class</span> <span class="err">* </span><span class="nc">implements</span> <span class="n">android</span><span class="o">.</span><span class="na">os</span><span class="o">.</span><span class="na">Parcelable</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="o">**</span> <span class="n">CREATOR</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
