@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
 
-  <title><![CDATA[Category: Octopress | Yous]]></title>
+  <title><![CDATA[Category: octopress | Yous]]></title>
   <link href="http://yous.be/categories/octopress/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-05-26T15:40:51+09:00</updated>
+  <updated>2014-06-24T18:18:56+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -89,7 +89,7 @@ title: &ldquo;How to Add Redirects to Post URL on Octopress&rdquo;</p>
 
 <h2><a id="facebook-open-graph-tags"></a>Facebook Open Graph Tags</h2>
 
-<p><img class="<a" src="href="https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.2178/851562_1376970469205025_523101852_n.png">https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.2178/851562_1376970469205025_523101852_n.png</a>"></p>
+<p>{% img <a href="https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.2178/851562_1376970469205025_523101852_n.png">https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.2178/851562_1376970469205025_523101852_n.png</a> %}</p>
 
 <p>페이스북에 웹 페이지가 제대로 인식되게 하려면 <a href="https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#tags">Open Graph 태그</a>를 이용해야 한다. 기본적으로 채워야 할 태그들은 다음과 같다:</p>
 
@@ -117,7 +117,7 @@ title: &ldquo;How to Add Redirects to Post URL on Octopress&rdquo;</p>
 
 <p><a href="https://dev.twitter.com/docs/cards">Twitter Cards</a>는 트윗 자체에 링크의 내용을 보여주는 &lsquo;카드'를 추가하는 기능이다.</p>
 
-<p><img class="<a" src="href="https://dev.twitter.com/sites/default/files/images_documentation/web_summary_0.png">https://dev.twitter.com/sites/default/files/images_documentation/web_summary_0.png</a>"></p>
+<p>{% img <a href="https://dev.twitter.com/sites/default/files/images_documentation/web_summary_0.png">https://dev.twitter.com/sites/default/files/images_documentation/web_summary_0.png</a> %}</p>
 
 <p>카드의 종류는 7개가 있으며 원하는 용도에 따라 적절히 사용할 수 있다.</p>
 
@@ -151,7 +151,7 @@ facebook_page:
 
 <p>Octopress에서 사이트에 메타 태그를 추가하는 방법은 간단하다. 일단 <code>source/_includes/custom/head.html</code> 파일에 다음 코드를 추가하자.</p>
 
-<p>
+<p>{% raw %}
 ``` html source/_includes/custom/head.html
 &hellip;</p>
 
@@ -213,7 +213,7 @@ facebook_page:
 <p>  {% endif %}
 {% endif %}
 ```
-</p>
+{% endraw %}</p>
 
 <p>페이스북에 링크를 첨부해 상태를 올리면 메타 태그 기반으로 미리보기를 생성해 준다. 다만 트위터의 경우 사이트 등록이 필요하다. <a href="https://dev.twitter.com/docs/cards/validation/validator">카드 검사 도구</a> 페이지에서 사이트가 검사에 통과하면 도메인 인증 요청을 보낼 수 있다. 이 요청이 통과되면 트위터에서 사이트 링크를 트위터 카드로 만들어 보여준다.</p>
 
@@ -317,11 +317,11 @@ image3: http://example.com/path/to/image3.png
 
 <p>I usually use Tomorrow Night Eighties of <a href="https://github.com/chriskempson/tomorrow-theme">Tomorrow Theme</a> in <a href="http://www.vim.org">Vim</a>, <a href="http://www.iterm2.com">iTerm2</a>, <a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a> (<a href="http://developer.android.com/sdk/installing/studio.html">Android Studio</a>). You can take a look of Tomorrow Theme.</p>
 
-<p><img class="<a" src="href="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png">https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png</a>" title="Tomorrow Night" >
-<img class="<a" src="href="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow.png">https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow.png</a>" title="Tomorrow" >
-<img class="<a" src="href="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Eighties.png">https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Eighties.png</a>" title="Tomorrow Night Eighties" >
-<img class="<a" src="href="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Blue.png">https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Blue.png</a>" title="Tomorrow Night Blue" >
-<img class="<a" src="href="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png">https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png</a>" title="Tomorrow Night Bright" ></p>
+<p>{% img <a href="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png">https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png</a> Tomorrow Night %}
+{% img <a href="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow.png">https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow.png</a> Tomorrow %}
+{% img <a href="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Eighties.png">https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Eighties.png</a> Tomorrow Night Eighties %}
+{% img <a href="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Blue.png">https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Blue.png</a> Tomorrow Night Blue %}
+{% img <a href="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png">https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png</a> Tomorrow Night Bright %}</p>
 
 <p>So I made scss files for Octopress that overrides colors of <code>.highlight</code> and <code>.gist</code> class elements. Usual code blocks and embedded gists are properly highlighted. The <a href="/2013/12/03/syntax-highlighting-test/">demo</a> and the <a href="https://github.com/yous/yous.github.io/tree/source/sass/custom">code</a> are available.</p>
 
@@ -351,30 +351,7 @@ image3: http://example.com/path/to/image3.png
 </ul>
 
 
-<p><div><script src='https://gist.github.com/8474011.js'></script>
-<noscript><pre><code>@@ -1,10 +1,10 @@
- .highlight, html .gist .gist-file .gist-syntax .gist-highlight {
--  table td.code { width: 100%; }
-+  table td.code, td.line-data { width: 100%; }
-   border: 1px solid $pre-border !important;
- }
- .highlight .line-numbers, html .gist .gist-file .gist-syntax .highlight .line_numbers {
-   text-align: right;
--  font-size: 13px;
-+  font-size: 13px !important;
-   line-height: 1.45em;
-   @if $solarized == light {
-     background: lighten($base03, 1) $noise-bg !important;
-@@ -69,7 +69,7 @@ html .gist .gist-file {
-       &amp;:hover { color: $base1 !important; }
-     }
-     a[href*=&#39;#file&#39;] {
--      position: absolute; top: 0; left:0; right:-10px;
-+      position: absolute; top: 0; left:0; right:0;
-       color: #474747 !important;
-       @extend .code-title;
-       &amp;:hover { color: $link-color !important; }</code></pre></noscript></div>
-</p>
+<p>{% gist 8474011 %}</p>
 
 <ul>
 <li>Default <code>sass/partial/_syntax.scss</code> adds <code>box-shadow</code> and <code>text-shadow</code> to line numbers, also <code>box-shadow</code> to code block and gist. I removed these attributes and it is just can be done by overriding style in <code>sass/custom/_styles.scss</code>.</li>
@@ -397,29 +374,7 @@ image3: http://example.com/path/to/image3.png
 </ul>
 
 
-<p><div><script src='https://gist.github.com/7795229.js'></script>
-<noscript><pre><code>@@ -166,20 +166,6 @@ article {
-   
- }
- 
--figure.code {
--  .highlight {
--    background: #212C3B !important;
--
--    .gutter {
--      display: none;
--    }
--  }
--}
--
--.pre-code, html .gist .gist-file .gist-syntax .highlight pre, .highlight code {
--  background: #212C3B !important;
--}
--
- aside {
-   display: none;
- }</code></pre></noscript></div>
-</p>
+<p>{% gist 7795229 %}</p>
 ]]></content>
   </entry>
   
@@ -463,11 +418,11 @@ rake set_root_dir[/blog]</p>
 <p>``` html source/_includes/custom/navigation.html</p>
 
 <!--
-<li><a href="/blog/archives">Archives</a></li>
+<li><a href="{{ root_url }}/blog/archives">Archives</a></li>
 -->
 
 
-<p><li><a href="/archives">Archives</a></li>
+<p><li><a href="{{ root_url }}/archives">Archives</a></li>
 ```</p>
 
 <p>그리고, <code>source/blog/archives</code> 폴더를 <code>source/archives</code>로 옮겨주시기 바랍니다.</p>
