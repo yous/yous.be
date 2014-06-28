@@ -4,7 +4,7 @@
   <title><![CDATA[Yous]]></title>
   <link href="http://yous.be/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-06-27T22:21:45+09:00</updated>
+  <updated>2014-06-28T14:59:04+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -780,7 +780,7 @@
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span><span class="nb">ulimit</span> -c unlimited
-</span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s2">&quot;print &#39;A&#39;x300&quot;</span> | ./ropasaurusrex
+</span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s2">&quot;print &#39;A&#39;x300&quot;</span> <span class="p">|</span> ./ropasaurusrex
 </span><span class='line'>Segmentation fault <span class="o">(</span>core dumped<span class="o">)</span>
 </span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>gdb ./ropasaurusrex core
 </span><span class='line'><span class="o">[</span>...<span class="o">]</span>
@@ -798,7 +798,7 @@
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s2">&quot;print &#39;A&#39;x140;print &#39;BBBB&#39;&quot;</span> | ./ropasaurusrex
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s2">&quot;print &#39;A&#39;x140;print &#39;BBBB&#39;&quot;</span> <span class="p">|</span> ./ropasaurusrex
 </span><span class='line'>Segmentation fault <span class="o">(</span>core dumped<span class="o">)</span>
 </span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>gdb ./ropasaurusrex core
 </span><span class='line'><span class="c">#0  0x42424242 in ?? ()</span>
@@ -813,7 +813,7 @@
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span><span class="k">while </span><span class="nb">true</span>; <span class="k">do </span>nc -vv -l -p 4444 -e ./ropasaurusrex; <span class="k">done</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span><span class="k">while </span><span class="nb">true</span><span class="p">;</span> <span class="k">do </span>nc -vv -l -p 4444 -e ./ropasaurusrex<span class="p">;</span> <span class="k">done</span>
 </span><span class='line'>listening on <span class="o">[</span>any<span class="o">]</span> 4444 ...
 </span></code></pre></td></tr></table></div></figure>
 
@@ -913,7 +913,7 @@
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>objdump -x ropasaurusrex  | grep -A1 <span class="s1">&#39;\.data&#39;</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>objdump -x ropasaurusrex  <span class="p">|</span> grep -A1 <span class="s1">&#39;\.data&#39;</span>
 </span><span class='line'> 23 .data         00000008  08049620  08049620  00000620  2**2
 </span><span class='line'>                   CONTENTS, ALLOC, LOAD, DATA
 </span></code></pre></td></tr></table></div></figure>
@@ -1135,7 +1135,7 @@
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>objdump -T /lib/i686/cmov/libc.so.6 | grep system
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>objdump -T /lib/i686/cmov/libc.so.6 <span class="p">|</span> grep system
 </span><span class='line'>000f5470 g    DF .text  00000042  GLIBC_2.0   svcerr_systemerr
 </span><span class='line'>00039450 g    DF .text  0000007d  GLIBC_PRIVATE __libc_system
 </span><span class='line'>00039450  w   DF .text  0000007d  GLIBC_2.0   system
@@ -1472,7 +1472,7 @@
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>objdump -d ./ropasaurusrex | egrep <span class="s1">&#39;pop|ret&#39;</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>objdump -d ./ropasaurusrex <span class="p">|</span> egrep <span class="s1">&#39;pop|ret&#39;</span>
 </span><span class='line'><span class="o">[</span>...<span class="o">]</span>
 </span><span class='line'> 80484b5:       5b                      pop    ebx
 </span><span class='line'> 80484b6:       5e                      pop    esi
@@ -1700,7 +1700,7 @@
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s1">&#39;printf &quot;A&quot;x1000&#39;</span> | ./ropasaurusrex
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s1">&#39;printf &quot;A&quot;x1000&#39;</span> <span class="p">|</span> ./ropasaurusrex
 </span><span class='line'>Segmentation fault <span class="o">(</span>core dumped<span class="o">)</span>
 </span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>gdb ./ropasaurusrex core
 </span><span class='line'>Program terminated with signal 11, Segmentation fault.
@@ -1708,7 +1708,7 @@
 </span><span class='line'><span class="o">(</span>gdb<span class="o">)</span> x/x system
 </span><span class='line'>0xb766e450 &lt;system&gt;:    0x890cec83
 </span><span class='line'>
-</span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s1">&#39;printf &quot;A&quot;x1000&#39;</span> | ./ropasaurusrex
+</span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s1">&#39;printf &quot;A&quot;x1000&#39;</span> <span class="p">|</span> ./ropasaurusrex
 </span><span class='line'>Segmentation fault <span class="o">(</span>core dumped<span class="o">)</span>
 </span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>gdb ./ropasaurusrex core
 </span><span class='line'>Program terminated with signal 11, Segmentation fault.
@@ -2157,7 +2157,7 @@
 </span><span class='line'>/home/ron
 </span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>ruby sploit.rb <span class="s2">&quot;whoami&quot;</span>
 </span><span class='line'>ron
-</span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>ruby sploit.rb <span class="s2">&quot;nc -vv -l -p 5555 -e /bin/sh&quot;</span> &amp;
+</span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>ruby sploit.rb <span class="s2">&quot;nc -vv -l -p 5555 -e /bin/sh&quot;</span> <span class="p">&amp;</span>
 </span><span class='line'><span class="o">[</span>1<span class="o">]</span> 3015
 </span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>nc -vv localhost 5555
 </span><span class='line'>debian-x86.skullseclabs.org <span class="o">[</span>127.0.0.1<span class="o">]</span> 5555 <span class="o">(</span>?<span class="o">)</span> open
@@ -2219,7 +2219,7 @@
 <li><code>og:url</code>: 글의 고유 식별자가 된다. 검색 엔진 최적화를 위해 사용된 <a href="http://en.wikipedia.org/wiki/Canonical_link_element">표준(canonical) URL</a>과 연결되어야 하며, 어떤 세션 변수나 사용자 식별 인자나 카운터를 포함하지 않아야 한다. 만약 이 부분을 잘못 사용하게 되면, &lsquo;좋아요&#8217;와 &#8216;공유&#8217;의 수가 이 URL로 합해지지 않고 이 URL의 모든 변형으로 흩어질 것이다.</li>
 <li><code>og:description</code>: 내용 일부를 상세히 설명한 글로, 보통 2~4문장이다. 이 태그는 선택 가능하지만 사람들이 읽고 공유하는 비율을 높일 수 있다.</li>
 <li><code>og:image</code>: 연관된 이미지다. 최소 1200x630 픽셀 크기의 이미지 사용을 추천한다.</li>
-<li><code>fb:app_id</code>: 페이스북이 사이트의 신원을 파악할 수 있게 해 주는 고유 ID다. <a href="https://www.facebook.com/insights/">Facebook Insights</a>가 제대로 동작하는 데에 중요하다.</li>
+<li><code>fb:app_id</code>: 페이스북이 사이트의 신원을 파악할 수 있게 해 주는 고유 ID다. <a href="https://developers.facebook.com/docs/insights/">Facebook Insights</a>가 제대로 동작하는 데에 중요하다.</li>
 </ul>
 
 
@@ -2269,7 +2269,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>페이스북 App ID는 <a href="https://www.facebook.com/insights/">페이스북 인사이트</a>에서 &lsquo;웹사이트를 위한 인사이트&rsquo; 버튼을 눌러 얻을 수 있다. 페이스북 페이지 주소는 <code>article:author</code>에 사용될 정보지만 입력하지 않아도 된다. 트위터는 <code>_config.yml</code>의 <code>twitter_user</code> 값을 이용해 메타 태그를 입력한다. 이 역시 입력하지 않아도 된다.</p>
+<p>페이스북 App ID는 <a href="https://developers.facebook.com/docs/insights/">페이스북 인사이트</a>에서 &lsquo;웹사이트를 위한 인사이트&rsquo; 버튼을 눌러 얻을 수 있다. 페이스북 페이지 주소는 <code>article:author</code>에 사용될 정보지만 입력하지 않아도 된다. 트위터는 <code>_config.yml</code>의 <code>twitter_user</code> 값을 이용해 메타 태그를 입력한다. 이 역시 입력하지 않아도 된다.</p>
 
 <p>Octopress에서 사이트에 메타 태그를 추가하는 방법은 간단하다. 일단 <code>source/_includes/custom/head.html</code> 파일에 다음 코드를 추가하자.</p>
 
@@ -2517,7 +2517,7 @@
 <span class='line-number'>25</span>
 <span class='line-number'>26</span>
 </pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">static</span> <span class="n">OSStatus</span>
-</span><span class='line'><span class="nf">SSLVerifySignedServerKeyExchange</span><span class="p">(</span><span class="n">SSLContext</span> <span class="o">*</span><span class="n">ctx</span><span class="p">,</span> <span class="n">bool</span> <span class="n">isRsa</span><span class="p">,</span> <span class="n">SSLBuffer</span> <span class="n">signedParams</span><span class="p">,</span>
+</span><span class='line'><span class="nf">SSLVerifySignedServerKeyExchange</span><span class="p">(</span><span class="n">SSLContext</span> <span class="o">*</span><span class="n">ctx</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">isRsa</span><span class="p">,</span> <span class="n">SSLBuffer</span> <span class="n">signedParams</span><span class="p">,</span>
 </span><span class='line'>                                 <span class="kt">uint8_t</span> <span class="o">*</span><span class="n">signature</span><span class="p">,</span> <span class="n">UInt16</span> <span class="n">signatureLen</span><span class="p">)</span>
 </span><span class='line'><span class="p">{</span>
 </span><span class='line'>    <span class="n">OSStatus</span>        <span class="n">err</span><span class="p">;</span>
@@ -3272,11 +3272,11 @@ end</code></pre></noscript></div>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">IBAction</span><span class="p">)</span><span class="nf">getSiteContents:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">sender</span> <span class="p">{</span>
-</span><span class='line'>    <span class="p">[</span><span class="n">model</span> <span class="nl">setPageUrl:</span><span class="p">[</span><span class="n">siteUrl</span> <span class="n">stringValue</span><span class="p">]];</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">model</span> <span class="n">setPageUrl</span><span class="o">:</span><span class="p">[</span><span class="n">siteUrl</span> <span class="n">stringValue</span><span class="p">]];</span>
 </span><span class='line'>    <span class="n">NSString</span><span class="o">*</span> <span class="n">reply</span> <span class="o">=</span> <span class="p">[</span><span class="n">model</span> <span class="n">getUrlAsString</span><span class="p">];</span>
 </span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;pageSrc: %@&quot;</span><span class="p">,</span> <span class="n">reply</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">[</span><span class="n">pageContents</span> <span class="nl">setString:</span><span class="n">reply</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">[[[</span><span class="n">pageContents</span> <span class="n">textStorage</span><span class="p">]</span> <span class="n">mutableString</span><span class="p">]</span> <span class="nl">appendString:</span><span class="n">reply</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">pageContents</span> <span class="n">setString</span><span class="o">:</span><span class="n">reply</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[[[</span><span class="n">pageContents</span> <span class="n">textStorage</span><span class="p">]</span> <span class="n">mutableString</span><span class="p">]</span> <span class="n">appendString</span><span class="o">:</span><span class="n">reply</span><span class="p">];</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">@end</span>
@@ -3400,7 +3400,7 @@ end</code></pre></noscript></div>
 </span><span class='line'>
 </span><span class='line'><span class="nb">cd</span> <span class="nv">$ROOT_DIR</span>
 </span><span class='line'><span class="nv">DOT_FILES</span><span class="o">=</span><span class="s2">&quot;lastpass weechat ssh Xauthority&quot;</span>
-</span><span class='line'><span class="k">for </span>dotfile in <span class="nv">$DOT_FILES</span>; <span class="k">do </span>conform_link <span class="s2">&quot;$DATA_DIR/$dotfile&quot;</span> <span class="s2">&quot;.$dotfile&quot;</span>; <span class="k">done</span>
+</span><span class='line'><span class="k">for </span>dotfile in <span class="nv">$DOT_FILES</span><span class="p">;</span> <span class="k">do </span>conform_link <span class="s2">&quot;$DATA_DIR/$dotfile&quot;</span> <span class="s2">&quot;.$dotfile&quot;</span><span class="p">;</span> <span class="k">done</span>
 </span><span class='line'>
 </span><span class='line'><span class="c"># TODO: refactor with suffix variables (or common cron values)</span>
 </span><span class='line'>
@@ -3410,7 +3410,7 @@ end</code></pre></noscript></div>
 </span><span class='line'>        crontab -l &gt; <span class="nv">$ROOT_DIR</span>/tmp/crontab-conflict-arch
 </span><span class='line'>        <span class="nb">cd</span> <span class="nv">$ROOT_DIR</span>/<span class="nv">$CONF_DIR</span>/cron
 </span><span class='line'>        <span class="k">if</span> <span class="o">[[</span> <span class="s2">&quot;$(diff ~/tmp/crontab-conflict-arch crontab-current-arch)&quot;</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span>
-</span><span class='line'>            <span class="o">]]</span>;
+</span><span class='line'>            <span class="o">]]</span><span class="p">;</span>
 </span><span class='line'>            <span class="k">then</span> <span class="c"># no difference with current backup</span>
 </span><span class='line'>                logger <span class="s2">&quot;$LOG_PREFIX: crontab live settings match stored &quot;</span><span class="se">\</span>
 </span><span class='line'>                    <span class="s2">&quot;settings; no restore required&quot;</span>
@@ -3421,7 +3421,7 @@ end</code></pre></noscript></div>
 </span><span class='line'>                    <span class="s2">&quot;live settings; stored settings restored. &quot;</span><span class="se">\</span>
 </span><span class='line'>                    <span class="s2">&quot;Previous settings recorded in ~/tmp/crontab-conflict-arch.&quot;</span>
 </span><span class='line'>        <span class="k">fi</span>
-</span><span class='line'>    ;;
+</span><span class='line'>    <span class="p">;;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 

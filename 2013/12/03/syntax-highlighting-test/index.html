@@ -86,6 +86,15 @@
 </ul>
   
   
+  
+  
+  
+<ul class="subscription">
+  <li><a href="https://github.com/yous" rel="subscribe-github" title="@yous on GitHub">GitHub</a></li>
+</ul>
+  
+  
+  
 <form action="http://google.com/search" method="get">
   <fieldset role="search">
     <input type="hidden" name="q" value="site:yous.be" />
@@ -350,11 +359,11 @@ end</code></pre></noscript></div>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">-</span> <span class="p">(</span><span class="kt">IBAction</span><span class="p">)</span><span class="nf">getSiteContents:</span><span class="p">(</span><span class="kt">id</span><span class="p">)</span><span class="nv">sender</span> <span class="p">{</span>
-</span><span class='line'>    <span class="p">[</span><span class="n">model</span> <span class="nl">setPageUrl:</span><span class="p">[</span><span class="n">siteUrl</span> <span class="n">stringValue</span><span class="p">]];</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">model</span> <span class="n">setPageUrl</span><span class="o">:</span><span class="p">[</span><span class="n">siteUrl</span> <span class="n">stringValue</span><span class="p">]];</span>
 </span><span class='line'>    <span class="n">NSString</span><span class="o">*</span> <span class="n">reply</span> <span class="o">=</span> <span class="p">[</span><span class="n">model</span> <span class="n">getUrlAsString</span><span class="p">];</span>
 </span><span class='line'>    <span class="n">NSLog</span><span class="p">(</span><span class="s">@&quot;pageSrc: %@&quot;</span><span class="p">,</span> <span class="n">reply</span><span class="p">);</span>
-</span><span class='line'>    <span class="p">[</span><span class="n">pageContents</span> <span class="nl">setString:</span><span class="n">reply</span><span class="p">];</span>
-</span><span class='line'>    <span class="p">[[[</span><span class="n">pageContents</span> <span class="n">textStorage</span><span class="p">]</span> <span class="n">mutableString</span><span class="p">]</span> <span class="nl">appendString:</span><span class="n">reply</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[</span><span class="n">pageContents</span> <span class="n">setString</span><span class="o">:</span><span class="n">reply</span><span class="p">];</span>
+</span><span class='line'>    <span class="p">[[[</span><span class="n">pageContents</span> <span class="n">textStorage</span><span class="p">]</span> <span class="n">mutableString</span><span class="p">]</span> <span class="n">appendString</span><span class="o">:</span><span class="n">reply</span><span class="p">];</span>
 </span><span class='line'><span class="p">}</span>
 </span><span class='line'>
 </span><span class='line'><span class="k">@end</span>
@@ -478,7 +487,7 @@ end</code></pre></noscript></div>
 </span><span class='line'>
 </span><span class='line'><span class="nb">cd</span> <span class="nv">$ROOT_DIR</span>
 </span><span class='line'><span class="nv">DOT_FILES</span><span class="o">=</span><span class="s2">&quot;lastpass weechat ssh Xauthority&quot;</span>
-</span><span class='line'><span class="k">for </span>dotfile in <span class="nv">$DOT_FILES</span>; <span class="k">do </span>conform_link <span class="s2">&quot;$DATA_DIR/$dotfile&quot;</span> <span class="s2">&quot;.$dotfile&quot;</span>; <span class="k">done</span>
+</span><span class='line'><span class="k">for </span>dotfile in <span class="nv">$DOT_FILES</span><span class="p">;</span> <span class="k">do </span>conform_link <span class="s2">&quot;$DATA_DIR/$dotfile&quot;</span> <span class="s2">&quot;.$dotfile&quot;</span><span class="p">;</span> <span class="k">done</span>
 </span><span class='line'>
 </span><span class='line'><span class="c"># TODO: refactor with suffix variables (or common cron values)</span>
 </span><span class='line'>
@@ -488,7 +497,7 @@ end</code></pre></noscript></div>
 </span><span class='line'>        crontab -l &gt; <span class="nv">$ROOT_DIR</span>/tmp/crontab-conflict-arch
 </span><span class='line'>        <span class="nb">cd</span> <span class="nv">$ROOT_DIR</span>/<span class="nv">$CONF_DIR</span>/cron
 </span><span class='line'>        <span class="k">if</span> <span class="o">[[</span> <span class="s2">&quot;$(diff ~/tmp/crontab-conflict-arch crontab-current-arch)&quot;</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span>
-</span><span class='line'>            <span class="o">]]</span>;
+</span><span class='line'>            <span class="o">]]</span><span class="p">;</span>
 </span><span class='line'>            <span class="k">then</span> <span class="c"># no difference with current backup</span>
 </span><span class='line'>                logger <span class="s2">&quot;$LOG_PREFIX: crontab live settings match stored &quot;</span><span class="se">\</span>
 </span><span class='line'>                    <span class="s2">&quot;settings; no restore required&quot;</span>
@@ -499,7 +508,7 @@ end</code></pre></noscript></div>
 </span><span class='line'>                    <span class="s2">&quot;live settings; stored settings restored. &quot;</span><span class="se">\</span>
 </span><span class='line'>                    <span class="s2">&quot;Previous settings recorded in ~/tmp/crontab-conflict-arch.&quot;</span>
 </span><span class='line'>        <span class="k">fi</span>
-</span><span class='line'>    ;;
+</span><span class='line'>    <span class="p">;;</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
