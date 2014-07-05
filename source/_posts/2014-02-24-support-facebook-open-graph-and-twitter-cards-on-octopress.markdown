@@ -33,10 +33,10 @@ twitter_card:
 - `og:url`: 글의 고유 식별자가 된다. 검색 엔진 최적화를 위해 사용된 [표준(canonical) URL][Canonical link element]과 연결되어야 하며, 어떤 세션 변수나 사용자 식별 인자나 카운터를 포함하지 않아야 한다. 만약 이 부분을 잘못 사용하게 되면, '좋아요'와 '공유'의 수가 이 URL로 합해지지 않고 이 URL의 모든 변형으로 흩어질 것이다.
 - `og:description`: 내용 일부를 상세히 설명한 글로, 보통 2~4문장이다. 이 태그는 선택 가능하지만 사람들이 읽고 공유하는 비율을 높일 수 있다.
 - `og:image`: 연관된 이미지다. 최소 1200x630 픽셀 크기의 이미지 사용을 추천한다.
-- `fb:app_id`: 페이스북이 사이트의 신원을 파악할 수 있게 해 주는 고유 ID다. [Facebook Insights][]가 제대로 동작하는 데에 중요하다.
+- `fb:app_id`: 페이스북이 사이트의 신원을 파악할 수 있게 해 주는 고유 ID다. Facebook Insights가 제대로 동작하는 데에 중요하다. 자세한 내용은 [Insights 문서][Insights documentation]에서 확인할 수 있다.
 
 [Canonical link element]: http://en.wikipedia.org/wiki/Canonical_link_element
-[Facebook Insights]: https://developers.facebook.com/docs/insights/
+[Insights documentation]: https://developers.facebook.com/docs/insights/
 
 다른 종류의 태그를 더 추가할 수도 있다:
 
