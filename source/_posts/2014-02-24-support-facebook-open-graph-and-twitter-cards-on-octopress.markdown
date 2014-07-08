@@ -6,7 +6,7 @@ comments: false
 categories:
     - Octopress
 keywords: octopress, facebook, open graph, twitter, twitter card
-alias: /p/20140224
+redirect_from: /p/20140224/
 facebook:
     image: https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.2178/851562_1376970469205025_523101852_n.png
 twitter_card:

@@ -6,7 +6,7 @@ comments: false
 categories:
     - iOS
 keywords: ios, 6.1.6, 7.0.6, ssl, tls
-alias: /p/20140223
+redirect_from: /p/20140223/
 external-url: https://www.imperialviolet.org/2014/02/22/applebug.html
 ---
 

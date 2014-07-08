@@ -7,7 +7,7 @@ description: Adding redirect urls to post using jekyll_alias_generator on Octopr
 categories:
     - Octopress
 keywords: redirect, alias, shortcut, octopress, jekyll, alias generator
-alias: /p/20140523
+redirect_from: /p/20140523/
 ---
 
 When I write a new post on [Octopress][], I share the link of it to somewhere doesn't support [hyperlinks][Hyperlink]. Since people can't click the link, they should copy and paste or just type it letter by letter. I wanted to make it easier, so I maded short url for every post.

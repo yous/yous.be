@@ -7,7 +7,7 @@ categories:
     - Octopress
     - Tomorrow Theme
 keywords: octopress, tomorrow theme
-alias: /p/20131204
+redirect_from: /p/20131204/
 facebook:
     image: https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png
 twitter_card:

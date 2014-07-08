@@ -7,7 +7,7 @@ description: 바른 Layout Inflation 방법에 대해 설명해 놓은 Dave Smit
 categories:
     - Android
 keywords: android, layout, inflate, inflation, root, parent, container, null
-alias: /p/20140512
+redirect_from: /p/20140512/
 external-url: http://www.doubleencore.com/2013/05/layout-inflation-as-intended/
 ---
 

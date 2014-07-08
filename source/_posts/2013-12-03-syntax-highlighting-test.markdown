@@ -6,7 +6,7 @@ comments: false
 categories:
     - Uncategorized
 keywords: syntax, highlighting
-alias: /p/20131203
+redirect_from: /p/20131203/
 ---
 
 ```

@@ -7,7 +7,7 @@ description: Brian Lovin이 쓴 페이스북 Paper의 디자인 디테일에 관
 categories:
     - Design
 keywords: design, paper, facebook, ios, animation
-alias: /p/20140304
+redirect_from: /p/20140304/
 external-url: http://blog.brianlovin.com/design-details-paper-by-facebook
 ---
 

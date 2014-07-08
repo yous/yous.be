@@ -7,7 +7,7 @@ categories:
     - CTF
     - Write-up
 keywords: ghost in the shellcode, inview
-alias: /p/20140120
+redirect_from: /p/20140120/
 ---
 
 ## <a id="question-3-inview"></a>Question 3 - inview

@@ -8,7 +8,7 @@ categories:
     - CTF
     - Write-up
 keywords: pctf, plaidctf, ropasaurusrex, rop, return-oriented programming
-alias: /p/20140319
+redirect_from: /p/20140319/
 external-url: https://blog.skullsecurity.org/2013/ropasaurusrex-a-primer-on-return-oriented-programming
 ---
 

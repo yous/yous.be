@@ -7,7 +7,7 @@ description: Jared Barboza가 쓴 줄 끝 공백에 관한 글이다. "난 최�
 categories:
     - Git
 keywords: trailing, whitespace, git
-alias: /p/20140331
+redirect_from: /p/20140331/
 external-url: http://codeimpossible.com/2012/04/02/Trailing-whitespace-is-evil-Don-t-commit-evil-into-your-repo-/
 ---
 
