@@ -65,12 +65,12 @@ body > nav {
       text-shadow: darken($nav-bg, 3) 0 1px;
       float: left;
       text-decoration: none;
-      font-size: 1.1em;
-      padding: .1em 0;
+      font-size: .9em;
+      padding: .3em 0 .1em;
       line-height: 1.5em;
     }
     li + li {
-      border-left: 1px solid $nav-border-left;
+      border-left: 0;
       margin-left: .8em;
       a {
         padding-left: .8em;
@@ -151,6 +151,7 @@ body > nav {
     }
   }
   ul.subscription { position: relative; top: .2em; li, a { border: 0; padding: 0; }}
+  a[rel=subscribe-bitbucket]{ @include whitespace-subscription-button('bitbucket_22_gray.png'); }
   a[rel=subscribe-github]{ @include whitespace-subscription-button('github_22_gray.png'); }
   a[rel=subscribe-delicious]{ @include whitespace-subscription-button('delicious_22_gray.png'); }
   a[rel=subscribe-pinboard]{ @include whitespace-subscription-button('pinboard_22_gray.png'); }
