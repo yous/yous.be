@@ -116,6 +116,7 @@ task :new_post, :title do |t, args|
     post.puts "comments: false"
     post.puts "categories: "
     post.puts "keywords: "
+    post.puts "redirect_from: /p/#{Time.now.strftime('%Y%m%d')}/"
     post.puts "---"
   end
 end
