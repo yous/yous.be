@@ -15,7 +15,7 @@ footer: false
 6. W & Whale -- HARDBOILED
 7. Soul Company -- The Bangerz
 8. Epik High -- Swan Songs
-9. LYn -- Let Go, Let In, It&#39;s A New Day
+9. LYn -- Let Go, Let In, It's A New Day
 10. Epik High -- High Society
 11. Epik High -- Remapping The Human Soul
 12. L.E.O -- 검은띠
@@ -36,7 +36,7 @@ footer: false
 27. Epik High X Planet Shiver -- Remixing The Human Soul
 28. Naachal & Issac Squab (Golden Boy Training Academy) -- The Training Day Vol.1
 29. Ignito -- Demolish (Reissue Edition)
-30. Thomson&#39;s gazelle -- NASTY THOMSON
+30. Thomson's gazelle -- NASTY THOMSON
 31. Project Z -- Project Z
 32. Vitality -- V
 33. Revenans -- Beholder & Xenorm
@@ -68,18 +68,18 @@ footer: false
 59. XEPY -- Pandora Disc
 60. Paloalto -- Lonely Hearts
 61. Rimi -- Rap Messiah
-62. J&#39;kyun -- RE BIRTHDAY
+62. J'kyun -- RE BIRTHDAY
 63. Double K -- Ink Music
 64. Overclass -- Love Songs
-65. Nuol -- Instrumental of &#39;The Mission&#39; &#39;Humanoid / Hypnotica&#39;
-66. JA -- &#39;90 Director&#39;s cut
+65. Nuol -- Instrumental of 'The Mission' 'Humanoid / Hypnotica'
+66. JA -- &rsquo;90 Director's cut
 67. 화나 -- Brainstorming
 68. Supreme Team -- Spin Off
 69. B-Free -- Road to FREEDUMB the MIXTAPE
 70. B-Free -- FREEDUMB
 71. L.E.O -- The Third Piece : 보물섬
 72. B-Free -- Road to FREEDUMB the MIXTAPE
-73. DOK2 & RADO -- IT&#39;S WE EP
+73. DOK2 & RADO -- IT'S WE EP
 74. Nas -- Illmatic: 10th Anniversary Platinum Edition
 75. 강산여울 -- Love & Hate
 76. 방사능 -- 리듬파워!
@@ -102,7 +102,7 @@ footer: false
 93. Jazzyfact -- Lifes Like
 94. Loptimist -- Lilac
 95. DJ Wegun -- Soul Food Maker
-96. VASCO -- &#39;GUERRILLA MUZIK&#39; Vol.1: Prologue
+96. VASCO -- 'GUERRILLA MUZIK' Vol.1: Prologue
 97. Kanye West -- My Beautiful Dark Twisted Fantasy
 98. The Quiett -- The Real Me
 99. GONZO -- HUSTLE REAL HARD
@@ -115,7 +115,7 @@ footer: false
 106. Eluphant -- Man On The Earth
 107. Soulman & Minos -- Coffee Calls For A Cigarette
 108. Optical Eyez XL -- Wreckage
-109. JA -- Loopcoffin Vol.2 - &#39;COFFIN BUILDER&#39;
+109. JA -- Loopcoffin Vol.2 - 'COFFIN BUILDER'
 110. Loquence -- The Black Band (Mixtape)
 111. Defconn -- The Rage Theater
 112. Ignito -- Black
@@ -124,7 +124,7 @@ footer: false
 115. META X WRECKX -- DJ AND MC
 116. R-EST -- T.F.O.N
 117. Basick -- Classick
-118. Simon D -- Simon Dominic Presents &#39;SNL LEAGUE BEGINS&#39;
+118. Simon D -- Simon Dominic Presents 'SNL LEAGUE BEGINS'
 119. Tablo -- 열꽃
 120. Mad Clown -- Anything Goes
 121. DOK2 -- Do It For The Fans Mixtape
@@ -139,7 +139,7 @@ footer: false
 130. Paloalto -- 전야제
 131. Simo & Mood Schula -- Simo & Mood Schula
 132. Dynamic Duo -- DIGILOG 2/2
-133. 검정치마 -- Don&#39;t You Worry Baby (I&#39;m Only Swimming)
+133. 검정치마 -- Don't You Worry Baby (I'm Only Swimming)
 134. Swings -- Punchline King III
 135. Dok2 -- Love & Life, The Album
 136. Noise Mob -- M.O.B
@@ -186,7 +186,7 @@ footer: false
 177. Overclass -- Collage 2
 178. P-Type -- The Vintage
 179. TBNY -- HI [SIDE-A]
-180. UMC/UW -- &#39;ONE/ONLY&#39; 2nd delivery edition
+180. UMC/UW -- 'ONE/ONLY' 2nd delivery edition
 181. Verbal Jint -- 누명 간보기
 183. Verbal Jint -- 사수자리 vol.1 모범라임즈
 182. Verbal Jint -- 누명 afterplay
@@ -203,7 +203,7 @@ footer: false
 194. Mos Def -- True Magic
 195. N\*E\*R\*D -- Seeing Sounds
 199. Nas -- It Was Wriiten
-198. Nas -- Street&#39;s Disciple
+198. Nas -- Street's Disciple
 196. Nas -- Hip Hop Is Dead
 197. Nas -- Untitled
 200. Q-Tip -- The Renaissance
@@ -218,7 +218,7 @@ footer: false
 209. Idiotape -- 11111101
 210. V.A. - Les Misérables : Highlights From The Motion Picture Soundtrack
 211. Dok2 -- South Korean Rapstar Mixtape
-212. JA -- Shining Moments Director&#39;s cut
+212. JA -- Shining Moments Director's cut
 213. The Quiett -- AMBITIQN
 214. Swings -- #1 MIXTAPE Vol.2
 215. DIGIPEDI X JINBO -- Fantasy
@@ -267,7 +267,7 @@ footer: false
 258. NEON GENESIS EVANGELION
 259. NEON GENESIS EVANGELION 2
 260. jubeat saucer ORIGINAL SOUNDTRACK -Cathy & Marron-
-261. Nell -- Newton&#39;s Apple
+261. Nell -- Newton's Apple
 262. Swings -- 감정기복 II Part. 1 주요 우울증 (Major Depression)
 263. Huckleberry P -- gOld
 264. Evo -- Beautiful Mind
