@@ -23,16 +23,14 @@ ChaYoung You
 
 ## <a id="blog"></a>Blog
 
-- [Yous](http://yous.be)
-
+- [Yous](http://yous.be)  
     What you see now. Hosted on [GitHub Pages][] and all articles are written using [Markdown][]. The source is available in [GitHub repo][].
 
 [GitHub Pages]: http://pages.github.com
 [Markdown]: http://daringfireball.net/projects/markdown/
 [GitHub repo]: https://github.com/yous/yous.github.io
 
-- [Yous Lyrics](http://lyrics.yous.be)
-
+- [Yous Lyrics](http://lyrics.yous.be)  
     Favorite lyric quotes blog hosted on [Tumblr](https://www.tumblr.com).
 
 ## <a id="projects"></a>Projects
