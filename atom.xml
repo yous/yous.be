@@ -4,7 +4,7 @@
   <title><![CDATA[Yous]]></title>
   <link href="http://yous.be/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-07-09T03:26:43+09:00</updated>
+  <updated>2014-07-12T05:14:08+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -12,6 +12,126 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Move to 'jekyll-redirect-from']]></title>
+    <link href="http://yous.be/2014/07/09/move-to-jekyll-redirect-from/"/>
+    <updated>2014-07-09T15:41:31+09:00</updated>
+    <id>http://yous.be/2014/07/09/move-to-jekyll-redirect-from</id>
+    <content type="html"><![CDATA[<h2><a id="problems-with-jekyll-alias-generator"></a>Problems with jekyll_alias_generator</h2>
+
+<p>I wrote <a href="http://yous.be/2014/05/23/how-to-add-redirects-to-post-url-on-octopress/">&ldquo;How to Add Redirects to Post URL on Octopress&rdquo;</a> few month ago. Now <a href="https://github.com/imathis/octopress/commit/72ea6042e33f0b92e4923c3af00e923f19472573">Octopress is compatible</a> with <a href="http://jekyllrb.com">Jekyll</a> 2.0, and some plugins don&rsquo;t seem to work. Current Octopress uses Jekyll <a href="https://github.com/imathis/octopress/blob/4fdae37e4294618084f652c99c0c06ba7663ac07/Gemfile.lock#L26">2.0.3</a> and when I run <code>rake generate</code>, I see an error:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>/path/to/jekyll/lib/jekyll/static_file.rb:40:in <span class="sb">`</span>stat<span class="err">&#39;</span>: Not a directory @ rb_file_s_stat - /path/to/generated/alias/index.html/ <span class="o">(</span>Errno::ENOTDIR<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>So I make <a href="https://github.com/yous/jekyll_alias_generator/commit/7de96759bdd7a2c27fa2d4d603c6c1f585fd2abc">this commit</a>:</p>
+
+<div><script src='https://gist.github.com/30d45925d0b100052f6d.js'></script>
+<noscript><pre><code>diff --git a/_plugins/alias_generator.rb b/_plugins/alias_generator.rb
+index 1d24cd8..50e9404 100644
+--- a/_plugins/alias_generator.rb
++++ b/_plugins/alias_generator.rb
+@@ -70,9 +70,10 @@ module Jekyll
+           file.write(alias_template(destination_path))
+         end
+ 
+-        (alias_index_path.split(&#39;/&#39;).size + 1).times do |sections|
++        alias_index_path.split(&#39;/&#39;).size.times do |sections|
+           @site.static_files &lt;&lt; Jekyll::AliasFile.new(@site, @site.dest, alias_index_path.split(&#39;/&#39;)[0, sections].join(&#39;/&#39;), &#39;&#39;)
+         end
++        @site.static_files &lt;&lt; Jekyll::AliasFile.new(@site, @site.dest, alias_dir, alias_file)
+       end
+     end
+ </code></pre></noscript></div>
+
+
+<p>But it seems that there is <a href="https://github.com/tsmango/jekyll_alias_generator/issues/12">another problem</a> with latest Jekyll, so I make <a href="https://github.com/yous/jekyll_alias_generator/commit/59a72029307a730014a020dcb3f73506f80ddab5">another commit</a>:</p>
+
+<div><script src='https://gist.github.com/ceb181878cf15b529e6d.js'></script>
+<noscript><pre><code>diff --git a/_plugins/alias_generator.rb b/_plugins/alias_generator.rb
+index 50e9404..76102db 100644
+--- a/_plugins/alias_generator.rb
++++ b/_plugins/alias_generator.rb
+@@ -56,13 +56,13 @@ module Jekyll
+       alias_paths.compact!
+ 
+       alias_paths.flatten.each do |alias_path|
+-        alias_path = alias_path.to_s
++        alias_path = File.join(&#39;/&#39;, alias_path.to_s)
+ 
+         alias_dir  = File.extname(alias_path).empty? ? alias_path : File.dirname(alias_path)
+         alias_file = File.extname(alias_path).empty? ? &quot;index.html&quot; : File.basename(alias_path)
+ 
+-        fs_path_to_dir   = File.join(@site.dest, alias_dir)
+-        alias_index_path = File.join(alias_dir, alias_file)
++        fs_path_to_dir = File.join(@site.dest, alias_dir)
++        alias_sections = alias_dir.split(&#39;/&#39;)[1..-1]
+ 
+         FileUtils.mkdir_p(fs_path_to_dir)
+ 
+@@ -70,8 +70,8 @@ module Jekyll
+           file.write(alias_template(destination_path))
+         end
+ 
+-        alias_index_path.split(&#39;/&#39;).size.times do |sections|
+-          @site.static_files &lt;&lt; Jekyll::AliasFile.new(@site, @site.dest, alias_index_path.split(&#39;/&#39;)[0, sections].join(&#39;/&#39;), &#39;&#39;)
++        alias_sections.size.times do |sections|
++          @site.static_files &lt;&lt; Jekyll::AliasFile.new(@site, @site.dest, alias_sections[0, sections + 1].join(&#39;/&#39;), &#39;&#39;)
+         end
+         @site.static_files &lt;&lt; Jekyll::AliasFile.new(@site, @site.dest, alias_dir, alias_file)
+       end</code></pre></noscript></div>
+
+
+<p>To say the result first, I had <a href="https://github.com/yous/yous.github.io/commit/2cf44cbe21b499c89dc8ac68f6f170add52f9d6e">no luck</a>. The alias directories are generated, every <code>index.html</code> file under each directory won&rsquo;t. By looking at diff of <code>sitemap.xml</code>, the plugin seems to generate wrong paths. I&rsquo;m pretty newbie to Jekyll and how Octopress works with it. Also this is a plugin for Jekyll, not Octopress. So if you have any fix for this problem, please make pull requests to <a href="https://github.com/tsmango/jekyll_alias_generator/pulls">jekyll_alias_generator</a> or just <a href="http://yous.be/about/#contact">contact me</a>.</p>
+
+<!-- more -->
+
+
+<h2><a id="jekyll-redirect-from"></a>jekyll-redirect-from</h2>
+
+<p>While searching how to fix this problem, I found <a href="https://github.com/jekyll/jekyll-redirect-from">jekyll-redirect-from</a> served by Jekyll team. What it does is almost completely same with <code>jekyll_alias_generator</code>. Generates alias HTML files when we set <code>redirect_from</code> key in YAML front matter of the post.</p>
+
+<p>To use this plugin, install <code>jekyll-redirect-from</code> gem by select one option from below:</p>
+
+<ul>
+<li>Add <code>gem 'jekyll-redirect-from'</code> to <code>Gemfile</code> and execute <code>bundle</code>.</li>
+<li>Run <code>gem install jekyll-redirect-from</code> on terminal.</li>
+</ul>
+
+
+<p>Then add it to your <code>_config.yml</code>:</p>
+
+<figure class='code'><figcaption><span>_config.yml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">gems</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">jekyll-redirect-from</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Ready to add redirects! You can use this by adding <code>redirect_from</code> to the YAML front matter of your page or post:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">redirect_from</span><span class="p-Indicator">:</span>
+</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">/path/to/alias/</span>
+</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">/path/to/another/alias</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>You can also specify just one url:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">redirect_from</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/path/to/alias/</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note that <code>/path/to/alias/</code> will generate a <code>/path/to/alias/index.html</code>, while <code>/path/to/alias</code> will generate a <code>/path/to/alias</code>.</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[How to Add Redirects to Post URL on Octopress]]></title>

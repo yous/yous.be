@@ -4,7 +4,7 @@
   <title><![CDATA[Category: android | Yous]]></title>
   <link href="http://yous.be/categories/android/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-07-09T03:26:43+09:00</updated>
+  <updated>2014-07-12T05:14:08+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -28,87 +28,120 @@
 
 <p>배포 APK에는 서명이 되어 있어야 하는데, 이를 위해서는 keystore 파일과 그 암호, 키 별칭, 키 암호가 필요하다. 디버그 APK에도 서명을 하지만, <a href="http://developer.android.com/tools/publishing/app-signing.html#debugmode">알려진 keystore 암호와 키 별칭, 키 암호</a>를 사용한다. 배포 APK의 서명을 위해 프로젝트의 <code>build.gradle</code> 파일에 다음 코드를 추가하면 된다.</p>
 
-<p>``` groovy
-android {</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">android</span> <span class="o">{</span>
+</span><span class='line'>    <span class="c1">// ...</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">signingConfigs</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">release</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">storeFile</span> <span class="nf">file</span><span class="o">(</span><span class="s2">&quot;YOUR_KEYSTORE_PATH&quot;</span><span class="o">)</span>
+</span><span class='line'>            <span class="n">storePassword</span> <span class="s2">&quot;YOUR_KEYSTORE_PASSWORD&quot;</span>
+</span><span class='line'>            <span class="n">keyAlias</span> <span class="s2">&quot;YOUR_KEY_ALIAS&quot;</span>
+</span><span class='line'>            <span class="n">keyPassword</span> <span class="s2">&quot;YOUR_KEY_PASSWORD&quot;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">buildTypes</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">release</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">signingConfig</span> <span class="n">signingConfigs</span><span class="o">.</span><span class="na">release</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>// ...
-
-signingConfigs {
-    release {
-        storeFile file("YOUR_KEYSTORE_PATH")
-        storePassword "YOUR_KEYSTORE_PASSWORD"
-        keyAlias "YOUR_KEY_ALIAS"
-        keyPassword "YOUR_KEY_PASSWORD"
-    }
-}
-
-buildTypes {
-    release {
-        signingConfig signingConfigs.release
-    }
-}
-</code></pre>
-
-<p>}
-```</p>
 
 <p>이때 <code>buildTypes</code> 아래의 <code>debug</code> 항목은 굳이 명시하지 않아도 <a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Build-Types">기본적으로 생성</a>되며, 이 <code>buildType</code>은 <a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Signing-Configurations">디버그 keystore와 키를 사용하도록 설정</a>되어 있다.</p>
 
 <p>다만 이 때 <code>build.gradle</code> 파일에 keystore 암호와 키 암호가 평문으로 들어가게 되는데, 소스를 공개하고 있는 등의 이유로 이를 피하고 싶다면 각각의 항목을 쉘 프롬프트에서 입력받을 수 있다:</p>
 
-<p>``` groovy
-signingConfigs {</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">signingConfigs</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">release</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">storeFile</span> <span class="nf">file</span><span class="o">(</span><span class="n">console</span><span class="o">.</span><span class="na">readLine</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter keystore path: &quot;</span><span class="o">))</span>
+</span><span class='line'>        <span class="n">storePassword</span> <span class="k">new</span> <span class="nf">String</span><span class="o">(</span><span class="n">console</span><span class="o">.</span><span class="na">readPassword</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter keystore password: &quot;</span><span class="o">))</span>
+</span><span class='line'>        <span class="n">keyAlias</span> <span class="n">console</span><span class="o">.</span><span class="na">readLine</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter key alias: &quot;</span><span class="o">)</span>
+</span><span class='line'>        <span class="n">keyPassword</span> <span class="k">new</span> <span class="nf">String</span><span class="o">(</span><span class="n">console</span><span class="o">.</span><span class="na">readPassword</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter key password: &quot;</span><span class="o">))</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>release {
-    storeFile file(console.readLine("\n\$ Enter keystore path: "))
-    storePassword new String(console.readPassword("\n\$ Enter keystore password: "))
-    keyAlias console.readLine("\n\$ Enter key alias: ")
-    keyPassword new String(console.readPassword("\n\$ Enter key password: "))
-}
-</code></pre>
-
-<p>}
-```</p>
 
 <p>그러나 이는 <a href="http://stackoverflow.com/questions/18328730/how-to-create-a-release-signed-apk-file-using-gradle#19210105">IDE를 통해 디버그 APK를 생성할 때 크래시</a>를 내며, 이는 그때 코드의 <code>console</code>이 <code>null</code>이라서 발생하는 오류다. 이를 해결한 최종 코드는 다음과 같다:</p>
 
-<p>``` groovy
-signingConfigs {</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">signingConfigs</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">release</span> <span class="o">{</span>
+</span><span class='line'>        <span class="kd">final</span> <span class="n">Console</span> <span class="n">console</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">console</span><span class="o">();</span>
+</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="n">console</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">storeFile</span> <span class="nf">file</span><span class="o">(</span><span class="n">console</span><span class="o">.</span><span class="na">readLine</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter keystore path: &quot;</span><span class="o">))</span>
+</span><span class='line'>            <span class="n">storePassword</span> <span class="k">new</span> <span class="nf">String</span><span class="o">(</span><span class="n">console</span><span class="o">.</span><span class="na">readPassword</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter keystore password: &quot;</span><span class="o">))</span>
+</span><span class='line'>            <span class="n">keyAlias</span> <span class="n">console</span><span class="o">.</span><span class="na">readLine</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter key alias: &quot;</span><span class="o">)</span>
+</span><span class='line'>            <span class="n">keyPassword</span> <span class="k">new</span> <span class="nf">String</span><span class="o">(</span><span class="n">console</span><span class="o">.</span><span class="na">readPassword</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter key password: &quot;</span><span class="o">))</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>release {
-    final Console console = System.console();
-    if (console != null) {
-        storeFile file(console.readLine("\n\$ Enter keystore path: "))
-        storePassword new String(console.readPassword("\n\$ Enter keystore password: "))
-        keyAlias console.readLine("\n\$ Enter key alias: ")
-        keyPassword new String(console.readPassword("\n\$ Enter key password: "))
-    }
-}
-</code></pre>
-
-<p>}
-```</p>
 
 <p>디버그 APK와 배포 APK의 패키지 이름이 같으면 APK의 서명이 서로 달라 개발과 디버깅에 어려움이 있다. 이를 해결하기 위해서 <code>buildTypes</code> 아래에 <code>debug</code> 항목을 선언하여 디버그 APK의 패키지 이름을 바꿀 수 있고, 추가로 버전명도 바꿀 수 있다:</p>
 
-<p>``` groovy
-buildTypes {</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">buildTypes</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">debug</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">packageNameSuffix</span> <span class="s1">&#39;.debug&#39;</span>
+</span><span class='line'>        <span class="n">versionNameSuffix</span> <span class="s1">&#39;-debug&#39;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>debug {
-    packageNameSuffix '.debug'
-    versionNameSuffix '-debug'
-}
-</code></pre>
-
-<p>}
-```</p>
 
 <p>이제 터미널에서 다음 명령을 실행하면 디버그 APK와 배포 APK를 각각 얻을 수 있다. 물론 디버그 APK는 IDE로도 생성할 수 있다.</p>
 
-<p><code>sh
-$ ./gradlew assembleDebug
-$ ./gradlew assembleRelease
-</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>./gradlew assembleDebug
+</span><span class='line'><span class="nv">$ </span>./gradlew assembleRelease
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Gradle은 <a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Android-tasks">캐멀케이스 단축키를 지원</a>해서 <code>aR</code>에 해당하는 다른 명령이 없는 한 <code>assembleRelease</code> 대신 <code>aR</code>을 사용할 수 있다.</p>
 
@@ -119,33 +152,39 @@ $ ./gradlew assembleRelease
 
 <p>배포 APK를 생성할 때 ProGuard를 사용할 수도 있는데, <code>build.gradle</code>에 다음 코드를 추가하면 된다:</p>
 
-<p>``` groovy
-buildTypes {</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">buildTypes</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">release</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">runProguard</span> <span class="kc">true</span>
+</span><span class='line'>        <span class="n">proguardFile</span> <span class="nf">getDefaultProguardFile</span><span class="o">(</span><span class="s1">&#39;proguard-android.txt&#39;</span><span class="o">)</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>release {
-    runProguard true
-    proguardFile getDefaultProguardFile('proguard-android.txt')
-}
-</code></pre>
-
-<p>}
-```</p>
 
 <p><code>getDefaultProguardFile()</code>는 <a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Running-ProGuard">SDK에 위치한 해당 이름의 파일을 가져와 적용</a>한다. <code>proguard-android.txt</code>와 <code>proguard-android-optimize.txt</code>가 있으며 <a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Running-ProGuard">앞의 것은 최적화를 수행하지 않고, 뒤의 것은 최적화를 수행</a>한다.</p>
 
 <p>추가적인 다른 <code>proguardFile</code>을 더 적용하고 싶다면 <code>proguardFiles</code>를 사용하면 된다:</p>
 
-<p>``` groovy
-buildTypes {</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">buildTypes</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">release</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">runProguard</span> <span class="kc">true</span>
+</span><span class='line'>        <span class="n">proguardFiles</span> <span class="nf">getDefaultProguardFile</span><span class="o">(</span><span class="s1">&#39;proguard-android.txt&#39;</span><span class="o">),</span> <span class="s1">&#39;proguard-project.txt&#39;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>release {
-    runProguard true
-    proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-project.txt'
-}
-</code></pre>
-
-<p>}
-```</p>
 
 <p>다른 라이브러리 프로젝트를 가져다 사용하고 있을 경우, ProGuard 사용에 있어 주의해야 할 경우가 생긴다.</p>
 
@@ -153,79 +192,97 @@ buildTypes {</p>
 
 <p><a href="http://actionbarsherlock.com">ActionBarSherlock</a>의 경우 ProGuard를 사용할 때, <a href="http://actionbarsherlock.com/faq.html">다음 규칙을 추가하라고 명시</a>하고 있다:</p>
 
-<p>```
--keep class android.support.v4.app.<strong> { *; }
--keep interface android.support.v4.app.</strong> { <em>; }
--keep class com.actionbarsherlock.** { </em>; }
--keep interface com.actionbarsherlock.<em>* { </em>; }</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="o">-</span><span class="n">keep</span> <span class="kd">class</span> <span class="nc">android</span><span class="o">.</span><span class="na">support</span><span class="o">.</span><span class="na">v4</span><span class="o">.</span><span class="na">app</span><span class="o">.**</span> <span class="o">{</span> <span class="o">*;</span> <span class="o">}</span>
+</span><span class='line'><span class="o">-</span><span class="n">keep</span> <span class="kd">interface</span> <span class="nc">android</span><span class="o">.</span><span class="na">support</span><span class="o">.</span><span class="na">v4</span><span class="o">.</span><span class="na">app</span><span class="o">.**</span> <span class="o">{</span> <span class="o">*;</span> <span class="o">}</span>
+</span><span class='line'><span class="o">-</span><span class="n">keep</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">actionbarsherlock</span><span class="o">.**</span> <span class="o">{</span> <span class="o">*;</span> <span class="o">}</span>
+</span><span class='line'><span class="o">-</span><span class="n">keep</span> <span class="kd">interface</span> <span class="nc">com</span><span class="o">.</span><span class="na">actionbarsherlock</span><span class="o">.**</span> <span class="o">{</span> <span class="o">*;</span> <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">-</span><span class="n">keepattributes</span> <span class="o">*</span><span class="n">Annotation</span><span class="o">*</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>-keepattributes <em>Annotation</em>
-```</p>
 
 <h3><a id="crashlytics"></a>Crashlytics</h3>
 
 <p><a href="https://www.crashlytics.com">Crashlytics</a>는 이미 ProGuard를 사용한 라이브러리들을 다시 ProGuard가 검사할 필요 없게 해서 <a href="http://www.crashlytics.com/blog/mastering-proguard-for-building-lightweight-android-code/">빌드 시간을 줄이는 팁</a>을 제공하고 있다:</p>
 
-<p><code>
--libraryjars libs
--keep class com.crashlytics.** { *; }
-</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="o">-</span><span class="n">libraryjars</span> <span class="n">libs</span>
+</span><span class='line'><span class="o">-</span><span class="n">keep</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">crashlytics</span><span class="o">.**</span> <span class="o">{</span> <span class="o">*;</span> <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p><a href="http://developer.android.com/tools/support-library/">Android Support Library</a>는 이미 소스가 공개되어 있기 때문에 코드 난독화가 필요하지 않다:</p>
 
-<p><code>
--libraryjars libs
--keep class android.support.v4.app.** { *; }
--keep interface android.support.v4.app.** { *; }
-</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="o">-</span><span class="n">libraryjars</span> <span class="n">libs</span>
+</span><span class='line'><span class="o">-</span><span class="n">keep</span> <span class="kd">class</span> <span class="nc">android</span><span class="o">.</span><span class="na">support</span><span class="o">.</span><span class="na">v4</span><span class="o">.</span><span class="na">app</span><span class="o">.**</span> <span class="o">{</span> <span class="o">*;</span> <span class="o">}</span>
+</span><span class='line'><span class="o">-</span><span class="n">keep</span> <span class="kd">interface</span> <span class="nc">android</span><span class="o">.</span><span class="na">support</span><span class="o">.</span><span class="na">v4</span><span class="o">.</span><span class="na">app</span><span class="o">.**</span> <span class="o">{</span> <span class="o">*;</span> <span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>ProGuard를 이용해 코드 난독화 작업을 거치게 되면, 소스 파일의 줄 번호가 바뀌게 되어 Crashlytics의 스택 트레이스에서 정보를 얻기 어려울 수 있다. <a href="http://support.crashlytics.com/knowledgebase/articles/202926-android-studio-and-intellij-with-proguard">소스 파일의 줄 번호 정보를 유지</a>하려면 다음 문장을 추가한다:</p>
 
-<p><code>
--keepattributes SourceFile,LineNumberTable
-</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="o">-</span><span class="n">keepattributes</span> <span class="n">SourceFile</span><span class="o">,</span><span class="n">LineNumberTable</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>다만 이 코드 때문에 난독화가 덜 되는 것 같다는 생각이 든다면, 파일 이름을 모두 <code>"SourceFile"</code> 문자열로 <a href="http://proguard.sourceforge.net/manual/examples.html#stacktrace">바꿀 수도 있다</a>:</p>
 
-<p><code>
--renamesourcefileattribute SourceFile
--keepattributes SourceFile,LineNumberTable
-</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="o">-</span><span class="n">renamesourcefileattribute</span> <span class="n">SourceFile</span>
+</span><span class='line'><span class="o">-</span><span class="n">keepattributes</span> <span class="n">SourceFile</span><span class="o">,</span><span class="n">LineNumberTable</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <h3><a id="google-play-services-sdk"></a>Google Play Services SDK</h3>
 
 <p><a href="https://developer.android.com/google/play-services/index.html">Google Play Services SDK</a> 또한 필요한 클래스가 사라지는 것을 방지하기 위한 <a href="https://developer.android.com/google/play-services/setup.html#Proguard">ProGuard 규칙</a>을 제공하고 있다:</p>
 
-<p>```
--keep class * extends java.util.ListResourceBundle {</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="o">-</span><span class="n">keep</span> <span class="kd">class</span> <span class="err">* </span><span class="nc">extends</span> <span class="n">java</span><span class="o">.</span><span class="na">util</span><span class="o">.</span><span class="na">ListResourceBundle</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">protected</span> <span class="n">Object</span><span class="o">[][]</span> <span class="nf">getContents</span><span class="o">();</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">-</span><span class="n">keep</span> <span class="kd">public</span> <span class="kd">class</span> <span class="nc">com</span><span class="o">.</span><span class="na">google</span><span class="o">.</span><span class="na">android</span><span class="o">.</span><span class="na">gms</span><span class="o">.</span><span class="na">common</span><span class="o">.</span><span class="na">internal</span><span class="o">.</span><span class="na">safeparcel</span><span class="o">.</span><span class="na">SafeParcelable</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="o">***</span> <span class="n">NULL</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">-</span><span class="n">keepnames</span> <span class="nd">@com.google.android.gms.common.annotation.KeepName</span> <span class="kd">class</span> <span class="err">*</span>
+</span><span class='line'><span class="o">-</span><span class="n">keepclassmembernames</span> <span class="kd">class</span> <span class="err">* {</span>
+</span><span class='line'>    <span class="nd">@com.google.android.gms.common.annotation.KeepName</span> <span class="o">*;</span>
+</span><span class='line'><span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">-</span><span class="n">keepnames</span> <span class="kd">class</span> <span class="err">* </span><span class="nc">implements</span> <span class="n">android</span><span class="o">.</span><span class="na">os</span><span class="o">.</span><span class="na">Parcelable</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">public</span> <span class="kd">static</span> <span class="kd">final</span> <span class="o">**</span> <span class="n">CREATOR</span><span class="o">;</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>protected Object[][] getContents();
-</code></pre>
-
-<p>}</p>
-
-<p>-keep public class com.google.android.gms.common.internal.safeparcel.SafeParcelable {</p>
-
-<pre><code>public static final *** NULL;
-</code></pre>
-
-<p>}</p>
-
-<p>-keepnames @com.google.android.gms.common.annotation.KeepName class *
--keepclassmembernames class * {</p>
-
-<pre><code>@com.google.android.gms.common.annotation.KeepName *;
-</code></pre>
-
-<p>}</p>
-
-<p>-keepnames class * implements android.os.Parcelable {</p>
-
-<pre><code>public static final ** CREATOR;
-</code></pre>
-
-<p>}
-```</p>
 
 <h2><a id="see-also"></a>참고 목록</h2>
 
@@ -246,10 +303,12 @@ buildTypes {</p>
     <id>http://yous.be/2014/05/12/layout-inflation-as-intended</id>
     <content type="html"><![CDATA[<p>안드로이드 개발을 하다 보면 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html">LayoutInflater</a>의 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup)">inflate(int, ViewGroup)</a>와 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup,%20boolean)">inflate(int, ViewGroup, boolean)</a>는 꽤 익숙하다. 하지만 다음 두 줄의 코드가 어떻게 다른지 아는 사람은 그리 많지 않을 것 같다. 실제로 <a href="http://tools.android.com/tips/lint">Android Lint</a>는 한쪽 코드는 피하도록 권하고 있다.</p>
 
-<p><code>java
-inflater.inflate(R.layout.my_layout, null);
-inflater.inflate(R.layout.my_layout, parent, false);
-</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">inflater</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">my_layout</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+</span><span class='line'><span class="n">inflater</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">my_layout</span><span class="o">,</span> <span class="n">parent</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p><a href="http://www.doubleencore.com/author/daves/">Dave Smith</a>가 이 두 코드의 비교와 함께, <a href="http://www.doubleencore.com/2013/05/layout-inflation-as-intended/">바른 Layout Inflation 방법</a>에 대해 설명한 글이 있어 소개한다.</p>
 ]]></content>
@@ -262,9 +321,9 @@ inflater.inflate(R.layout.my_layout, parent, false);
     <id>http://yous.be/2014/04/03/fragment-transaction-and-activity-state-loss</id>
     <content type="html"><![CDATA[<p><a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html">FragmentTransaction</a>을 <a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#commit()">commit()</a> 했을 때 Activity의 <a href="http://developer.android.com/reference/android/app/Activity.html#onSaveInstanceState(android.os.Bundle)">onSaveInstanceState(Bundle)</a>이 실행된 후라면 다음과 같은 에러 메시지를 보게 된다:</p>
 
-<p><code>
-java.lang.IllegalStateException: Can not perform this action after onSaveInstanceState
-</code></p>
+<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>java.lang.IllegalStateException: Can not perform this action after onSaveInstanceState</span></code></pre></td></tr></table></div></figure>
+
 
 <p>이 문제의 원인이 무엇인지, 어떻게 이 Exception을 피할지, 그리고 <a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#commitAllowingStateLoss()">commitAllowingStateLoss()</a>가 왜 마지막 수단이 되어야 하는지 잘 설명한 글이 있어 소개한다. <a href="http://www.androiddesignpatterns.com/about/">Alex Lockwood</a>가 쓴 <a href="http://www.androiddesignpatterns.com/2013/08/fragment-transaction-commit-state-loss.html">Fragment Transaction과 Activity State Loss</a>에 관한 글이다.</p>
 ]]></content>
@@ -313,39 +372,41 @@ java.lang.IllegalStateException: Can not perform this action after onSaveInstanc
 
 <p><code>ACCESS_WIFI_STATE</code> permission must be added to <code>AndroidManifest.xml</code>.</p>
 
-<p><code>xml AndroidManifest.xml
-&lt;uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /&gt;
-</code></p>
+<figure class='code'><figcaption><span>AndroidManifest.xml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.ACCESS_WIFI_STATE&quot;</span> <span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Checking code is simple. In activity, <a href="http://developer.android.com/reference/android/net/wifi/WifiManager.html">WifiManager</a> has a handy method.</p>
 
-<p><code>java
-WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
-boolean wifiEnabled = wifiManager.isWifiEnabled();
-</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">WifiManager</span> <span class="n">wifiManager</span> <span class="o">=</span> <span class="o">(</span><span class="n">WifiManager</span><span class="o">)</span> <span class="n">getSystemService</span><span class="o">(</span><span class="n">WIFI_SERVICE</span><span class="o">);</span>
+</span><span class='line'><span class="kt">boolean</span> <span class="n">wifiEnabled</span> <span class="o">=</span> <span class="n">wifiManager</span><span class="o">.</span><span class="na">isWifiEnabled</span><span class="o">();</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <h3><a id="1-2"></a>3G/4G</h3>
 
 <p>This is more complicated. As WiFi case, we have to add <code>ACCESS_NETWORK_STATE</code> permission.</p>
 
-<p><code>xml AndroidManifest.xml
-&lt;uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /&gt;
-</code></p>
+<figure class='code'><figcaption><span>AndroidManifest.xml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.ACCESS_NETWORK_STATE&quot;</span> <span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Then we get <a href="http://developer.android.com/reference/android/net/NetworkInfo.html">NetworkInfo</a> from <a href="http://developer.android.com/reference/android/net/ConnectivityManager.html">ConnectivityManager</a>.</p>
 
-<p>``` java
-ConnectivityManager connectivityManager =</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">ConnectivityManager</span> <span class="n">connectivityManager</span> <span class="o">=</span>
+</span><span class='line'>    <span class="o">(</span><span class="n">ConnectivityManager</span><span class="o">)</span> <span class="n">getSystemService</span><span class="o">(</span><span class="n">CONNECTIVITY_SERVICE</span><span class="o">);</span>
+</span><span class='line'><span class="n">NetworkInfo</span> <span class="n">mobileInfo</span> <span class="o">=</span>
+</span><span class='line'>    <span class="n">connectivityManager</span><span class="o">.</span><span class="na">getNetworkInfo</span><span class="o">(</span><span class="n">ConnectivityManager</span><span class="o">.</span><span class="na">TYPE_MOBILE</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>(ConnectivityManager) getSystemService(CONNECTIVITY_SERVICE);
-</code></pre>
-
-<p>NetworkInfo mobileInfo =</p>
-
-<pre><code>connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-</code></pre>
-
-<p>```</p>
 
 <p>See <a href="http://developer.android.com/reference/android/net/NetworkInfo.html#getState()">getState()</a> overview.</p>
 
@@ -378,57 +439,71 @@ ConnectivityManager connectivityManager =</p>
 </ul>
 
 
-<p><code>java
-mobileInfo.getState()
-// =&gt; DISCONNECTED
-mobileInfo.getReason()
-// =&gt; "dataDisabled"
-</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">mobileInfo</span><span class="o">.</span><span class="na">getState</span><span class="o">()</span>
+</span><span class='line'><span class="c1">// =&gt; DISCONNECTED</span>
+</span><span class='line'><span class="n">mobileInfo</span><span class="o">.</span><span class="na">getReason</span><span class="o">()</span>
+</span><span class='line'><span class="c1">// =&gt; &quot;dataDisabled&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <ul>
 <li>Enable WiFi only</li>
 </ul>
 
 
-<p><code>java
-mobileInfo.getState()
-// =&gt; DISCONNECTED
-mobileInfo.getReason()
-// =&gt; "specificDisabled"
-</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">mobileInfo</span><span class="o">.</span><span class="na">getState</span><span class="o">()</span>
+</span><span class='line'><span class="c1">// =&gt; DISCONNECTED</span>
+</span><span class='line'><span class="n">mobileInfo</span><span class="o">.</span><span class="na">getReason</span><span class="o">()</span>
+</span><span class='line'><span class="c1">// =&gt; &quot;specificDisabled&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <ul>
 <li>Enable 3G/4G only</li>
 </ul>
 
 
-<p><code>java
-mobileInfo.getState()
-// =&gt; CONNECTED
-</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">mobileInfo</span><span class="o">.</span><span class="na">getState</span><span class="o">()</span>
+</span><span class='line'><span class="c1">// =&gt; CONNECTED</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <ul>
 <li>Disable both</li>
 </ul>
 
 
-<p><code>java
-mobileInfo.getState()
-// =&gt; DISCONNECTED
-mobileInfo.getReason()
-// =&gt; "specificDisabled"
-</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">mobileInfo</span><span class="o">.</span><span class="na">getState</span><span class="o">()</span>
+</span><span class='line'><span class="c1">// =&gt; DISCONNECTED</span>
+</span><span class='line'><span class="n">mobileInfo</span><span class="o">.</span><span class="na">getReason</span><span class="o">()</span>
+</span><span class='line'><span class="c1">// =&gt; &quot;specificDisabled&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>So the code would be like this.</p>
 
-<p>``` java
-String reason = mobileInfo.getReason();
-boolean mobileDisabled = mobileInfo.getState() == NetworkInfo.State.DISCONNECTED</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">String</span> <span class="n">reason</span> <span class="o">=</span> <span class="n">mobileInfo</span><span class="o">.</span><span class="na">getReason</span><span class="o">();</span>
+</span><span class='line'><span class="kt">boolean</span> <span class="n">mobileDisabled</span> <span class="o">=</span> <span class="n">mobileInfo</span><span class="o">.</span><span class="na">getState</span><span class="o">()</span> <span class="o">==</span> <span class="n">NetworkInfo</span><span class="o">.</span><span class="na">State</span><span class="o">.</span><span class="na">DISCONNECTED</span>
+</span><span class='line'>    <span class="o">&amp;&amp;</span> <span class="o">(</span><span class="n">reason</span> <span class="o">==</span> <span class="kc">null</span> <span class="o">||</span> <span class="n">reason</span><span class="o">.</span><span class="na">equals</span><span class="o">(</span><span class="s">&quot;specificDisabled&quot;</span><span class="o">));</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>&amp;&amp; (reason == null || reason.equals("specificDisabled"));
-</code></pre>
-
-<p>```</p>
 
 <h2><a id="2"></a>2. Check if WiFi or 3G/4G is Connected</h2>
 
@@ -436,25 +511,25 @@ boolean mobileDisabled = mobileInfo.getState() == NetworkInfo.State.DISCONNECTED
 
 <h3><a id="2-1"></a>WiFi</h3>
 
-<p>``` java
-NetworkInfo wifiInfo =</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">NetworkInfo</span> <span class="n">wifiInfo</span> <span class="o">=</span>
+</span><span class='line'>    <span class="n">connectivityManager</span><span class="o">.</span><span class="na">getNetworkInfo</span><span class="o">(</span><span class="n">ConnectivityManager</span><span class="o">.</span><span class="na">TYPE_WIFI</span><span class="o">);</span>
+</span><span class='line'><span class="kt">boolean</span> <span class="n">wifiConnected</span> <span class="o">=</span> <span class="n">wifiInfo</span><span class="o">.</span><span class="na">getState</span><span class="o">()</span> <span class="o">==</span> <span class="n">NetworkInfo</span><span class="o">.</span><span class="na">State</span><span class="o">.</span><span class="na">CONNECTED</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
-</code></pre>
-
-<p>boolean wifiConnected = wifiInfo.getState() == NetworkInfo.State.CONNECTED;
-```</p>
 
 <h3><a id="2-2"></a>3G/4G</h3>
 
-<p>``` java
-NetworkInfo mobileInfo =</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">NetworkInfo</span> <span class="n">mobileInfo</span> <span class="o">=</span>
+</span><span class='line'>    <span class="n">connectivityManager</span><span class="o">.</span><span class="na">getNetworkInfo</span><span class="o">(</span><span class="n">ConnectivityManager</span><span class="o">.</span><span class="na">TYPE_MOBILE</span><span class="o">);</span>
+</span><span class='line'><span class="kt">boolean</span> <span class="n">mobileConnected</span> <span class="o">=</span> <span class="n">mobileInfo</span><span class="o">.</span><span class="na">getState</span><span class="o">()</span> <span class="o">==</span> <span class="n">NetworkInfo</span><span class="o">.</span><span class="na">State</span><span class="o">.</span><span class="na">CONNECTED</span><span class="o">;</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>connectivityManager.getNetworkInfo(ConnectivityManager.TYPE_MOBILE);
-</code></pre>
-
-<p>boolean mobileConnected = mobileInfo.getState() == NetworkInfo.State.CONNECTED;
-```</p>
 
 <h2><a id="3"></a>3. Toggle WiFi or 3G/4G Programmatically</h2>
 
@@ -462,16 +537,19 @@ NetworkInfo mobileInfo =</p>
 
 <p><code>CHANGE_WIFI_STATE</code> permission must be added to <code>AndroidManifest.xml</code>.</p>
 
-<p><code>xml AndroidManifest.xml
-&lt;uses-permission android:name="android.permission.CHANGE_WIFI_STATE" /&gt;
-</code></p>
+<figure class='code'><figcaption><span>AndroidManifest.xml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.CHANGE_WIFI_STATE&quot;</span> <span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Enabling or disabling WiFi is easy.</p>
 
-<p><code>java
-WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
-wifiManager.setWifiEnabled(isWifiEnabled);
-</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">WifiManager</span> <span class="n">wifiManager</span> <span class="o">=</span> <span class="o">(</span><span class="n">WifiManager</span><span class="o">)</span> <span class="n">getSystemService</span><span class="o">(</span><span class="n">WIFI_SERVICE</span><span class="o">);</span>
+</span><span class='line'><span class="n">wifiManager</span><span class="o">.</span><span class="na">setWifiEnabled</span><span class="o">(</span><span class="n">isWifiEnabled</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <h3><a id="3-2"></a>3G/4G</h3>
 
@@ -479,68 +557,76 @@ wifiManager.setWifiEnabled(isWifiEnabled);
 
 <p>For Android 2.3 and above:</p>
 
-<p>``` java
-private void setMobileDataEnabled(Context context, boolean enabled) {
-  final ConnectivityManager conman =</p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="kd">private</span> <span class="kt">void</span> <span class="nf">setMobileDataEnabled</span><span class="o">(</span><span class="n">Context</span> <span class="n">context</span><span class="o">,</span> <span class="kt">boolean</span> <span class="n">enabled</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>  <span class="kd">final</span> <span class="n">ConnectivityManager</span> <span class="n">conman</span> <span class="o">=</span>
+</span><span class='line'>      <span class="o">(</span><span class="n">ConnectivityManager</span><span class="o">)</span> <span class="n">context</span><span class="o">.</span><span class="na">getSystemService</span><span class="o">(</span><span class="n">Context</span><span class="o">.</span><span class="na">CONNECTIVITY_SERVICE</span><span class="o">);</span>
+</span><span class='line'>  <span class="k">try</span> <span class="o">{</span>
+</span><span class='line'>    <span class="kd">final</span> <span class="n">Class</span> <span class="n">conmanClass</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span><span class="n">conman</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">());</span>
+</span><span class='line'>    <span class="kd">final</span> <span class="n">Field</span> <span class="n">iConnectivityManagerField</span> <span class="o">=</span> <span class="n">conmanClass</span><span class="o">.</span><span class="na">getDeclaredField</span><span class="o">(</span><span class="s">&quot;mService&quot;</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">iConnectivityManagerField</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+</span><span class='line'>    <span class="kd">final</span> <span class="n">Object</span> <span class="n">iConnectivityManager</span> <span class="o">=</span> <span class="n">iConnectivityManagerField</span><span class="o">.</span><span class="na">get</span><span class="o">(</span><span class="n">conman</span><span class="o">);</span>
+</span><span class='line'>    <span class="kd">final</span> <span class="n">Class</span> <span class="n">iConnectivityManagerClass</span> <span class="o">=</span> <span class="n">Class</span><span class="o">.</span><span class="na">forName</span><span class="o">(</span>
+</span><span class='line'>        <span class="n">iConnectivityManager</span><span class="o">.</span><span class="na">getClass</span><span class="o">().</span><span class="na">getName</span><span class="o">());</span>
+</span><span class='line'>    <span class="kd">final</span> <span class="n">Method</span> <span class="n">setMobileDataEnabledMethod</span> <span class="o">=</span> <span class="n">iConnectivityManagerClass</span>
+</span><span class='line'>        <span class="o">.</span><span class="na">getDeclaredMethod</span><span class="o">(</span><span class="s">&quot;setMobileDataEnabled&quot;</span><span class="o">,</span> <span class="n">Boolean</span><span class="o">.</span><span class="na">TYPE</span><span class="o">);</span>
+</span><span class='line'>    <span class="n">setMobileDataEnabledMethod</span><span class="o">.</span><span class="na">setAccessible</span><span class="o">(</span><span class="kc">true</span><span class="o">);</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">setMobileDataEnabledMethod</span><span class="o">.</span><span class="na">invoke</span><span class="o">(</span><span class="n">iConnectivityManager</span><span class="o">,</span> <span class="n">enabled</span><span class="o">);</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">ClassNotFoundException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">InvocationTargetException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NoSuchMethodException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">IllegalAccessException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span> <span class="k">catch</span> <span class="o">(</span><span class="n">NoSuchFieldException</span> <span class="n">e</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">e</span><span class="o">.</span><span class="na">printStackTrace</span><span class="o">();</span>
+</span><span class='line'>  <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<pre><code>  (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
-</code></pre>
-
-<p>  try {</p>
-
-<pre><code>final Class conmanClass = Class.forName(conman.getClass().getName());
-final Field iConnectivityManagerField = conmanClass.getDeclaredField("mService");
-iConnectivityManagerField.setAccessible(true);
-final Object iConnectivityManager = iConnectivityManagerField.get(conman);
-final Class iConnectivityManagerClass = Class.forName(
-    iConnectivityManager.getClass().getName());
-final Method setMobileDataEnabledMethod = iConnectivityManagerClass
-    .getDeclaredMethod("setMobileDataEnabled", Boolean.TYPE);
-setMobileDataEnabledMethod.setAccessible(true);
-
-setMobileDataEnabledMethod.invoke(iConnectivityManager, enabled);
-</code></pre>
-
-<p>  } catch (ClassNotFoundException e) {</p>
-
-<pre><code>e.printStackTrace();
-</code></pre>
-
-<p>  } catch (InvocationTargetException e) {</p>
-
-<pre><code>e.printStackTrace();
-</code></pre>
-
-<p>  } catch (NoSuchMethodException e) {</p>
-
-<pre><code>e.printStackTrace();
-</code></pre>
-
-<p>  } catch (IllegalAccessException e) {</p>
-
-<pre><code>e.printStackTrace();
-</code></pre>
-
-<p>  } catch (NoSuchFieldException e) {</p>
-
-<pre><code>e.printStackTrace();
-</code></pre>
-
-<p>  }
-}
-```</p>
 
 <p>It requires to <code>CHANGE_NETWORK_STATE</code> permission.</p>
 
-<p><code>xml AndroidManifest.xml
-&lt;uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" /&gt;
-</code></p>
+<figure class='code'><figcaption><span>AndroidManifest.xml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.CHANGE_NETWORK_STATE&quot;</span> <span class="nt">/&gt;</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>In Activity:</p>
 
-<p><code>java
-setMobileDataEnabled(this, isMobileDataEnabled);
-</code></p>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">setMobileDataEnabled</span><span class="o">(</span><span class="k">this</span><span class="o">,</span> <span class="n">isMobileDataEnabled</span><span class="o">);</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <p>Codes for Android 2.2 and below are also in the same <a href="http://stackoverflow.com/questions/12535101/how-can-i-turn-off-3g-data-programmatically-on-android#12535246">answer</a>, but it requires <code>MODIFY_PHONE_STATE</code> permission that can be used by <a href="http://developer.android.com/reference/android/Manifest.permission.html#MODIFY_PHONE_STATE">system applications only</a>.</p>
 ]]></content>

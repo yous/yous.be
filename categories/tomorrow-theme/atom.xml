@@ -4,7 +4,7 @@
   <title><![CDATA[Category: tomorrow theme | Yous]]></title>
   <link href="http://yous.be/categories/tomorrow-theme/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-07-09T03:26:43+09:00</updated>
+  <updated>2014-07-12T05:14:08+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -22,13 +22,13 @@
 
 <p>I usually use Tomorrow Night Eighties of <a href="https://github.com/chriskempson/tomorrow-theme">Tomorrow Theme</a> in <a href="http://www.vim.org">Vim</a>, <a href="http://www.iterm2.com">iTerm2</a>, <a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a> (<a href="http://developer.android.com/sdk/installing/studio.html">Android Studio</a>). You can take a look of Tomorrow Theme.</p>
 
-<p><img class="<a" src="href="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png">https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png</a>" title="Tomorrow Night" >
-<img class="<a" src="href="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow.png">https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow.png</a>" title="Tomorrow" >
-<img class="<a" src="href="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Eighties.png">https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Eighties.png</a>" title="Tomorrow Night Eighties" >
-<img class="<a" src="href="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Blue.png">https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Blue.png</a>" title="Tomorrow Night Blue" >
-<img class="<a" src="href="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png">https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png</a>" title="Tomorrow Night Bright" ></p>
+<p><img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png" title="Tomorrow Night" >
+<img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow.png" title="Tomorrow" >
+<img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Eighties.png" title="Tomorrow Night Eighties" >
+<img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Blue.png" title="Tomorrow Night Blue" >
+<img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png" title="Tomorrow Night Bright" ></p>
 
-<p>So I made scss files for Octopress that overrides colors of <code>.highlight</code> and <code>.gist</code> class elements. Usual code blocks and embedded gists are properly highlighted. The <a href="/2013/12/03/syntax-highlighting-test/">demo</a> and the <a href="https://github.com/yous/yous.github.io/tree/source/sass/custom">code</a> are available.</p>
+<p>So I made scss files for Octopress that overrides colors of <code>.highlight</code> and <code>.gist</code> class elements. Usual code blocks and embedded gists are properly highlighted. The <a href="http://yous.be/2013/12/03/syntax-highlighting-test/">demo</a> and the <a href="https://github.com/yous/yous.github.io/tree/source/sass/custom">code</a> are available.</p>
 
 <!-- more -->
 
@@ -41,13 +41,18 @@
 </ol>
 
 
-<p><code>scss sass/custom/_tomorrow.scss
-// @import "tomorrow/tomorrow-night";
-// @import "tomorrow/tomorrow";
-@import "tomorrow/tomorrow-night-eighties";
-// @import "tomorrow/tomorrow-night-blue";
-// @import "tomorrow/tomorrow-night-bright";
-</code></p>
+<figure class='code'><figcaption><span>sass/custom/_tomorrow.scss</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="c1">// @import &quot;tomorrow/tomorrow-night&quot;;</span>
+</span><span class='line'><span class="c1">// @import &quot;tomorrow/tomorrow&quot;;</span>
+</span><span class='line'><span class="k">@import</span> <span class="s2">&quot;tomorrow/tomorrow-night-eighties&quot;</span><span class="p">;</span>
+</span><span class='line'><span class="c1">// @import &quot;tomorrow/tomorrow-night-blue&quot;;</span>
+</span><span class='line'><span class="c1">// @import &quot;tomorrow/tomorrow-night-bright&quot;;</span>
+</span></code></pre></td></tr></table></div></figure>
+
 
 <h2><a id="fixes"></a>Fixes</h2>
 
@@ -56,7 +61,7 @@
 </ul>
 
 
-<p><div><script src='https://gist.github.com/8474011.js'></script>
+<div><script src='https://gist.github.com/8474011.js'></script>
 <noscript><pre><code>@@ -1,10 +1,10 @@
  .highlight, html .gist .gist-file .gist-syntax .gist-highlight {
 -  table td.code { width: 100%; }
@@ -79,30 +84,38 @@
        color: #474747 !important;
        @extend .code-title;
        &amp;:hover { color: $link-color !important; }</code></pre></noscript></div>
-</p>
+
 
 <ul>
 <li>Default <code>sass/partial/_syntax.scss</code> adds <code>box-shadow</code> and <code>text-shadow</code> to line numbers, also <code>box-shadow</code> to code block and gist. I removed these attributes and it is just can be done by overriding style in <code>sass/custom/_styles.scss</code>.</li>
 </ul>
 
 
-<p>``` scss sass/custom/_styles.scss
-.highlight .line-numbers, html .gist .gist-file .gist-syntax .highlight .line_numbers {
-  @include box-shadow(none);
-  text-shadow: none;
-}</p>
+<figure class='code'><figcaption><span>sass/custom/_styles.scss</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='scss'><span class='line'><span class="nc">.highlight</span> <span class="nc">.line-numbers</span><span class="o">,</span> <span class="nt">html</span> <span class="nc">.gist</span> <span class="nc">.gist-file</span> <span class="nc">.gist-syntax</span> <span class="nc">.highlight</span> <span class="nc">.line_numbers</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">@include</span><span class="nd"> box-shadow</span><span class="p">(</span><span class="no">none</span><span class="p">);</span>
+</span><span class='line'>  <span class="na">text-shadow</span><span class="o">:</span> <span class="no">none</span><span class="p">;</span>
+</span><span class='line'><span class="p">}</span>
+</span><span class='line'>
+</span><span class='line'><span class="nt">figure</span><span class="nc">.code</span><span class="o">,</span> <span class="nc">.gist-file</span> <span class="p">{</span>
+</span><span class='line'>  <span class="k">@include</span><span class="nd"> box-shadow</span><span class="p">(</span><span class="no">none</span><span class="p">);</span>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
 
-<p>figure.code, .gist-file {
-  @include box-shadow(none);
-}
-```</p>
 
 <ul>
 <li><strong>This issue was fixed by this <a href="https://github.com/lucaslew/whitespace/commit/b047f268c804808fb8e2d6a17cbfe8669b9da6b4">commit</a>.</strong> This blog uses <a href="https://github.com/lucaslew/whitespace">Whitespace</a> theme. I found some problems that it overrides colors of code block to dark blue and it hides line numbers. To fix these problems, remove lines in <code>sass/custom/_styles.scss</code>.</li>
 </ul>
 
 
-<p><div><script src='https://gist.github.com/7795229.js'></script>
+<div><script src='https://gist.github.com/7795229.js'></script>
 <noscript><pre><code>@@ -166,20 +166,6 @@ article {
    
  }
@@ -124,7 +137,9 @@
  aside {
    display: none;
  }</code></pre></noscript></div>
-</p>
+
+
+
 ]]></content>
   </entry>
   
