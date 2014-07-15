@@ -271,3 +271,10 @@ footer: false
 262. Swings -- 감정기복 II Part. 1 주요 우울증 (Major Depression)
 263. Huckleberry P -- gOld
 264. Evo -- Beautiful Mind
+265. ILLIONAIRE RECORDS -- 11:11 (Deluxe Edition)
+266. 이소라 -- 8
+267. Kid Ash X G2 -- Project:Brainwash
+268. IU -- 꽃갈피
+269. Dynamic Duo -- Enlightened
+270. B-Free -- Korean Dream
+271. Reddy -- Imaginary Foundation
