@@ -4,7 +4,7 @@
   <title><![CDATA[Yous]]></title>
   <link href="http://yous.be/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-07-14T17:04:33+09:00</updated>
+  <updated>2014-07-16T16:26:50+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Introducing Source Han Sans: An open source Pan-CJK typeface &rarr;]]></title>
+    <link href="http://yous.be/2014/07/16/introducing-source-han-sans-an-open-source-pan-cjk-typeface/"/>
+    <updated>2014-07-16T16:04:27+09:00</updated>
+    <id>http://yous.be/2014/07/16/introducing-source-han-sans-an-open-source-pan-cjk-typeface</id>
+    <content type="html"><![CDATA[<blockquote><p>Adobe, in partnership with Google, is pleased to announce the release of <a href="http://adobe.ly/TkSHS">Source Han Sans</a>, a new open source Pan-CJK typeface family that is now available on Typekit for desktop use.</p>
+
+<p><img src="http://typekit.files.wordpress.com/2014/07/multi-language-sample-v3.jpg?w=800&amp;h=408" alt="Multi-language sample" /></p>
+
+<p>More information on Google&rsquo;s Noto Sans CJK family is available on their <a href="http://goo.gl/yhFcim">blog</a>.</p></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Move to 'jekyll-redirect-from']]></title>
