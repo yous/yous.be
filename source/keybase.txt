@@ -1,0 +1,65 @@
+==================================================================
+https://keybase.io/yous
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://yous.be
+  * I am yous (https://keybase.io/yous) on keybase.
+  * I have a public key with fingerprint 1BF1 AFE8 682E 45A2 11FF  2C0E 891B 7A9E 1D5A 400A
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "key": {
+            "fingerprint": "1bf1afe8682e45a211ff2c0e891b7a9e1d5a400a",
+            "host": "keybase.io",
+            "key_id": "891b7a9e1d5a400a",
+            "uid": "764ab7a46e95ac9fe18cbffb77a4bb00",
+            "username": "yous"
+        },
+        "service": {
+            "hostname": "yous.be",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1405501611,
+    "expire_in": 157680000,
+    "prev": "8466f4fe2baf95dd89890ca5aa6d5745add63687161cc2696e0dab30d9d7471c",
+    "seqno": 2,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: Keybase OpenPGP v0.1.23
+Comment: https://keybase.io/crypto
+
+yMHgAnicbZFdSBRfGMZXd7fQ/sHmYpSY5lSoqMuc3flcEyyhJAIxKboQt3NmzuwO
+qzO7s7vq5hcEEZiihEQfF/ZBSOiNJRmlaaaFGUSRRZHQPwgjk6ygVSjwjBR00bkZ
+5vc+z/Oe97yTG62W1KR9sz9d870jRUkz4x9jlqqHpf1NFNLlOOVtooJ47aOomh8b
+IUPVopSXAkgBUMECJ7gxw0I3AIrilmgsiADxUMRAZiFD05AqpAJ6xHSQGAQj2KXq
+hJEfnyoT+g99bK3AcwwkFYbDIgslUcFAkJCiIJ4whGjaFEawocE6TNRxPRahWgop
+QupViZCmtbZ/VV0IE0vI0KO6pNcSGIhGQ17TE42HTFEDRr7fdh9SNZmMSwz12Iio
+ukZ5AVFKUdXMAwzNsjTgACikcGNINbBPNRUszwk0OWYbXG8Ox3CcwijYjaAisrIs
+iIJIS5CFkJNZnjybLHMeTuBJlCS5OZHDtAyRh5ZFmWd4IJH+ERzWdMrrJteEfhIZ
+Uf0ajMYMTLVMjFfbLEmplnX2ZHNhltQUx581Hi1f/8vpD052WK8/nppZtvdniNPP
+dtme3u4ry2HmZ2uqrnUEjjc/6StNvDhzks9QRqo71d7h2U0rzrv655vNyo35sUMJ
+V8rhVpR1Xi6dKM46NpGrOcKZ2Vme4BIM7r/q9WQOpBWnzW2xVQ6V91b15y3P5VTu
+SP6SdyTTlh5/8NXV98q5CCwN29oT8NtCW/6Ggq4VNex/XVJ06a115lFL4Nxy98HG
+hfb0gZShqedwT7BgYfMB62Vnfm7raE3PlbH4p65mF7z/49bF2vf/d7/bOyjvLgG+
+cEXBhe0nhu942rLvOT6crTj1X1Gs2+44XbZ18KVjMX9050jPdMK+FHtT1/ndWAUY
+QQ0Y
+=mCFM
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/yous
+
+==================================================================
