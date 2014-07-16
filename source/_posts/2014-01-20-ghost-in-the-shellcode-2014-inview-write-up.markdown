@@ -5,8 +5,7 @@ date: 2014-01-20 22:21:24 +0900
 comments: false
 categories:
     - CTF
-    - Write-up
-keywords: ghost in the shellcode, inview
+keywords: ghost in the shellcode, inview, write-up
 redirect_from: /p/20140120/
 ---
 
