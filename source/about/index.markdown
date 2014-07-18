@@ -19,7 +19,7 @@ ChaYoung You
 
 ## <a id="contact"></a>Contact
 
-- <a href="mailto:yous@yous.be">yous@yous.be</a>
+- <yous@yous.be>
 - [keybase.io/yous](https://keybase.io/yous)
 
 ## <a id="blog"></a>Blog
