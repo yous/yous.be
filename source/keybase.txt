@@ -12,12 +12,21 @@ To claim this, I am signing this object:
 
 {
     "body": {
+        "client": {
+            "name": "keybase.io node.js client",
+            "version": "0.4.11"
+        },
         "key": {
             "fingerprint": "1bf1afe8682e45a211ff2c0e891b7a9e1d5a400a",
             "host": "keybase.io",
-            "key_id": "891b7a9e1d5a400a",
+            "key_id": "891B7A9E1D5A400A",
             "uid": "764ab7a46e95ac9fe18cbffb77a4bb00",
             "username": "yous"
+        },
+        "merkle_root": {
+            "ctime": 1405684748,
+            "hash": "41c22c7a9743cfc41a51bd4d979f81ca7f46e3b62ec8789360bffb920d013abe06ac1c7c15d37d35ec4b10fba198e6695655ebb969c099ef69a61a3e7a4ff603",
+            "seqno": 29626
         },
         "service": {
             "hostname": "yous.be",
@@ -26,35 +35,37 @@ To claim this, I am signing this object:
         "type": "web_service_binding",
         "version": 1
     },
-    "ctime": 1405501611,
+    "ctime": 1405684780,
     "expire_in": 157680000,
-    "prev": "8466f4fe2baf95dd89890ca5aa6d5745add63687161cc2696e0dab30d9d7471c",
-    "seqno": 2,
+    "prev": "5be20792e86b2762518d17373bce7b76a93f8464b027ac40ff85bbc26477a15e",
+    "seqno": 7,
     "tag": "signature"
 }
 
 with the aforementioned key, yielding the PGP signature:
 
 -----BEGIN PGP MESSAGE-----
-Version: Keybase OpenPGP v0.1.23
-Comment: https://keybase.io/crypto
+Version: GnuPG/MacGPG2 v2.0.22 (Darwin)
 
-yMHgAnicbZFdSBRfGMZXd7fQ/sHmYpSY5lSoqMuc3flcEyyhJAIxKboQt3NmzuwO
-qzO7s7vq5hcEEZiihEQfF/ZBSOiNJRmlaaaFGUSRRZHQPwgjk6ygVSjwjBR00bkZ
-5vc+z/Oe97yTG62W1KR9sz9d870jRUkz4x9jlqqHpf1NFNLlOOVtooJ47aOomh8b
-IUPVopSXAkgBUMECJ7gxw0I3AIrilmgsiADxUMRAZiFD05AqpAJ6xHSQGAQj2KXq
-hJEfnyoT+g99bK3AcwwkFYbDIgslUcFAkJCiIJ4whGjaFEawocE6TNRxPRahWgop
-QupViZCmtbZ/VV0IE0vI0KO6pNcSGIhGQ17TE42HTFEDRr7fdh9SNZmMSwz12Iio
-ukZ5AVFKUdXMAwzNsjTgACikcGNINbBPNRUszwk0OWYbXG8Ox3CcwijYjaAisrIs
-iIJIS5CFkJNZnjybLHMeTuBJlCS5OZHDtAyRh5ZFmWd4IJH+ERzWdMrrJteEfhIZ
-Uf0ajMYMTLVMjFfbLEmplnX2ZHNhltQUx581Hi1f/8vpD052WK8/nppZtvdniNPP
-dtme3u4ry2HmZ2uqrnUEjjc/6StNvDhzks9QRqo71d7h2U0rzrv655vNyo35sUMJ
-V8rhVpR1Xi6dKM46NpGrOcKZ2Vme4BIM7r/q9WQOpBWnzW2xVQ6V91b15y3P5VTu
-SP6SdyTTlh5/8NXV98q5CCwN29oT8NtCW/6Ggq4VNex/XVJ06a115lFL4Nxy98HG
-hfb0gZShqedwT7BgYfMB62Vnfm7raE3PlbH4p65mF7z/49bF2vf/d7/bOyjvLgG+
-cEXBhe0nhu942rLvOT6crTj1X1Gs2+44XbZ18KVjMX9050jPdMK+FHtT1/ndWAUY
-QQ0Y
-=mCFM
+owFdkn9oVlUYx9+9mmw2x/qjkTHD3YSItrdz7j33nHtei3grE0uL9WZDab6dc+5z
+tqvbe9/uvVut8YLQMCola4m/goEVWVCDEPyjiPpH0hIREX8gLjGcJkrBYtnc7Nyx
+yLp/nfs8n+f7fJ/znO2L5mWyNU+dvJkbH/mmrebHKzJTPFzfOmjJ0B+w8oOW6gmg
+nKSnsugFK29tggEpYsgF4dJy6ENuY7x0jmm1+iGKg7BsKJQjOYytamvKp9U6KHdB
+VImCVMzCUmOhwaOeDcQVNsZa2wqBx7FkggP2XUEQEkazO4yT/7S1ZjVLgW+ihn+c
+FfgK/KRbMHzB5PpmE4wSYZQIBe4KxTVgT0mtJTMxKRFKwRiiuZkGwr449doL0aYe
+KEVhODuxSoI0jQlyqUcY8YwbEXebAoKVbSvjlBFHaUWwcLH0ic8Z1x5WgmnT2ZHU
+BuUxjzsUpc25jXyEHSEBUaGwYgq7vsN8xwVFJEZaCsw9oJS71HVBSk65QpyDplxQ
+LBww7rWmyDH2Y3ilHFp5m1ObVtPfqD9QkNpOb+y2wXISDF6JwiRUYY8JdidJJZ+O
+mwxUUuhVkKW58pL8OCj7ZlW3LxMb9H9X4aFWC16rBBGUgpRwGfWQ+dI+0G80XQk2
+Ytw2K5Y2o7aLPR8zhzlSAZOMCu5oj1Aikc2EIkhrz5VS2ZSYDWEX/h2QGZ+iy0jG
+QVdZJH0RWNW3aprnZ2qymQV3ZNPXmllY1/jPE566WpsZef4UKxwJWy52bjv9/vnm
+h1/f3xFe3J1beWm6enTRzOpPd+6qRZNTbyxzf79a91XxWvbN5Zt7nvl6eu2jWyfu
+9JLsexuGGl5u3/7tC4d2dD50NLlvw/jmbQceSNYenJh0xn8eHqy/9dvOplUnTp5e
+cmLd99UFoqs+d6X9wq9PbBwFeWbxupHO3XvPvj1d/POTprqRvVvWfD58oGXVi4+M
+eedG563/6dxy/7OPZMv5++8+fGN0/dk/PmgvPtswNtaxsqNxV37/d1uXqMYfrk9N
+qFttz614rHZoesc9T++5q9KbzD/y7l9bMu80f7n6eMOameLlQzfv3Vda1rZvcviU
+eOlC0xe/9H84dGOh/+BM4djBvwE=
+=V2YO
 -----END PGP MESSAGE-----
 
 And finally, I am proving ownership of this host by posting or
