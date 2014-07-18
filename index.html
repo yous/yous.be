@@ -124,6 +124,219 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2014/07/18/using-keybase/">Using Keybase</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-07-18T03:21:09+09:00" pubdate data-updated="true">Jul 18<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2><a id="keybase"></a>Keybase</h2>
+
+<p><img src="https://keybase.io/images/logo.png" alt="Keybase" /></p>
+
+<blockquote><p>Keybase will be a public directory of publicly auditable public keys. All paired, for convenience, with unique usernames.</p></blockquote>
+
+<p>I just created my <a href="https://keybase.io">Keybase</a>. You can see my PGP public key on <a href="https://keybase.io/yous">keybase.io/yous</a> and get the key via <code>https://keybase.io/yous/key.asc</code>. Anyone can encrypt messages using my public key and then I could decrypt it using my private key and see the message with safety. All of these can be done in browser, in <a href="https://keybase.io">Keybase</a>.</p>
+
+<h2><a id="keybase-proof"></a>Keybase Proof</h2>
+
+<p>Keybase provides several ways to prove own identity of a Twitter account, a GitHub account, websites and a bitcoin address. Still it can be done on the browser, also you can use <a href="https://keybase.io/docs/command_line">command line</a> for it. I proved <a href="https://github.com/yous">my GitHub</a> by <a href="https://gist.github.com/yous/149b0775d2ff02eac323">keybase.md</a> and <a href="http://yous.be">this site</a> by <a href="http://yous.be/keybase.txt">keybase.txt</a>. Also you can check it with command line like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>keybase id yous
+</span><span class='line'>✔ public key fingerprint: 1BF1 AFE8 682E 45A2 11FF 2C0E 891B 7A9E 1D5A 400A
+</span><span class='line'>✔ <span class="s2">&quot;yous&quot;</span> on github: https://gist.github.com/149b0775d2ff02eac323
+</span><span class='line'>✔ admin of yous.be via HTTP: http://yous.be/keybase.txt
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2><a id="directory-signing"></a>Directory Signing</h2>
+
+<p>Command line program of Keybase provides <code>dir</code> command to sign or verify directory. First you should install command line, see the <a href="https://keybase.io/docs/command_line/installation">installation docs</a>. If you already have an account, just run <code>keybase login</code>. You can also signup with <code>keybase signup</code> in terminal.</p>
+
+<p>At first, you should change directory to sign:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>~ <span class="nv">$ </span><span class="nb">cd </span>Dropbox/Public
+</span><span class='line'>~/Dropbox/Public <span class="nv">$ </span>keybase dir sign
+</span><span class='line'>info: Success! Wrote SIGNED.md from 224 found items
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>then <code>~/Dropbox/Public/SIGNED.md</code> is generated. On same directory, veryfing directory is also possible with:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>~/Dropbox/Public <span class="nv">$ </span>keybase dir verify
+</span><span class='line'>info: Valid signature from keybase user yous
+</span><span class='line'>✔ public key fingerprint: 1BF1 AFE8 682E 45A2 11FF 2C0E 891B 7A9E 1D5A 400A
+</span><span class='line'>✔ <span class="s2">&quot;yous&quot;</span> on github: https://gist.github.com/149b0775d2ff02eac323
+</span><span class='line'>✔ admin of yous.be via HTTP: http://yous.be/keybase.txt
+</span><span class='line'>info: Signed 4 minutes ago <span class="o">(</span>Fri Jul 18 2014 20:06:31 GMT+0900 <span class="o">(</span>KST<span class="o">))</span>
+</span><span class='line'>info: Success! 1 signature<span class="o">(</span>s<span class="o">)</span> verified<span class="p">;</span> 224 items checked
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2><a id="using-custom-email"></a>Using Custom Email</h2>
+
+<p>When you create public key on <a href="https://keybase.io">Keybase</a>, default UID has name as <code>keybase.io/&lt;username&gt;</code> and email as <code>&lt;username&gt;@keybase.io</code>. You can add UID with your real name and regular email. From <a href="http://superuser.com/questions/293184/one-gnupg-pgp-key-pair-two-emails">One GnuPG/PGP key pair, two emails?</a>:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>gpg --edit-key &lt;username&gt;@keybase.io
+</span><span class='line'>gpg&gt; adduid
+</span><span class='line'>Real name: &lt;name&gt;
+</span><span class='line'>Email address: &lt;email&gt;
+</span><span class='line'>Comment: &lt;comment or Return to none&gt;
+</span><span class='line'>Change <span class="o">(</span>N<span class="o">)</span>ame, <span class="o">(</span>C<span class="o">)</span>omment, <span class="o">(</span>E<span class="o">)</span>mail or <span class="o">(</span>O<span class="o">)</span>kay/<span class="o">(</span>Q<span class="o">)</span>uit? o
+</span><span class='line'>Enter passphrase: &lt;passphrase&gt;
+</span><span class='line'>gpg&gt; uid &lt;uid&gt;
+</span><span class='line'>gpg&gt; trust
+</span><span class='line'>Your decision? 5
+</span><span class='line'>Do you really want to <span class="nb">set </span>this key to ultimate trust? <span class="o">(</span>y/N<span class="o">)</span> y
+</span><span class='line'>gpg&gt; save
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2><a id="signing-commits"></a>Signing Commits</h2>
+
+<p>All the crypto of Keybase is performed with GPG, you can sign your tags and your commits. To setup your signing key, you need to get your key id by:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>gpg --list-secret-keys <span class="p">|</span> grep <span class="s2">&quot;^sec&quot;</span>
+</span><span class='line'>sec   4096R/1D5A400A 2014-07-16
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>The <code>1D5A400A</code> part is your key id. Then simply you can set your signing key by:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>git config --global user.signingkey 1D5A400A
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Also</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>git config --global commit.gpgsign <span class="nb">true</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>makes Git to sign every commits:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>mkdir tmp <span class="o">&amp;&amp;</span> <span class="nb">cd </span>tmp
+</span><span class='line'><span class="nv">$ </span>git init
+</span><span class='line'><span class="nv">$ </span><span class="nb">echo </span>foo &gt; foo
+</span><span class='line'><span class="nv">$ </span>git add foo
+</span><span class='line'><span class="nv">$ </span>git commit -m <span class="s2">&quot;Test commit of foo&quot;</span>
+</span><span class='line'>
+</span><span class='line'>You need a passphrase to unlock the secret key <span class="k">for</span>
+</span><span class='line'>user: <span class="s2">&quot;ChaYoung You &lt;yousbe@gmail.com&gt;&quot;</span>
+</span><span class='line'>2048-bit RSA key, ID E79FBC2D, created 2014-07-16 <span class="o">(</span>main key ID 1D5A400A<span class="o">)</span>
+</span><span class='line'>
+</span><span class='line'><span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> 6cdfc26<span class="o">]</span> Test commit of foo
+</span><span class='line'> 1 file changed, 1 insertion<span class="o">(</span>+<span class="o">)</span>
+</span><span class='line'> create mode 100644 foo
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After adding signed commits, you can see the signature of commits by using <code>--show-signature</code> option:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>git log --show-signature
+</span><span class='line'>commit 6cdfc26eb2273fed14181fe4a09b6240323b8930
+</span><span class='line'>gpg: Signature made 금  7/18 21:29:24 2014 KST using RSA key ID E79FBC2D
+</span><span class='line'>gpg: Good signature from <span class="s2">&quot;ChaYoung You &lt;yousbe@gmail.com&gt;&quot;</span>
+</span><span class='line'>gpg:                 aka <span class="s2">&quot;keybase.io/yous &lt;yous@keybase.io&gt;&quot;</span>
+</span><span class='line'>Author: ChaYoung You &lt;yousbe@gmail.com&gt;
+</span><span class='line'>Date:   Fri Jul 18 21:29:14 2014 +0900
+</span><span class='line'>
+</span><span class='line'>    Test commit of foo
+</span><span class='line'>
+</span><span class='line'> foo <span class="p">|</span> 1 +
+</span><span class='line'> 1 file changed, 1 insertion<span class="o">(</span>+<span class="o">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For more information, see <a href="http://mikegerwitz.com/papers/git-horror-story">A Git Horror Story: Repository Integrity With Signed Commits</a> by Mike Gerwitz.</p>
+
+<h2><a id="contact-me"></a>Contact Me</h2>
+
+<p>So, now feel free to contact me via <a href="https://keybase.io/yous">keybase.io/yous</a> and other <a href="/about">contacts</a>. The source of this site is available on <a href="https://github.com/yous/yous.github.io">GitHub</a>, forks and pull requests are welcome!</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2014/07/16/introducing-source-han-sans-an-open-source-pan-cjk-typeface/">Introducing Source Han Sans: An open source Pan-CJK typeface &rarr;</a></h1>
     
     
@@ -537,51 +750,6 @@ index 50e9404..76102db 100644
     <footer>
       <a rel="full-article" href="/2014/05/15/how-to-configure-proguard-using-gradle/">Read on &rarr;</a>
     </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/05/12/layout-inflation-as-intended/">Layout Inflation as Intended &rarr;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-05-12T07:17:37+09:00" pubdate data-updated="true">May 12<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>안드로이드 개발을 하다 보면 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html">LayoutInflater</a>의 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup)">inflate(int, ViewGroup)</a>와 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup,%20boolean)">inflate(int, ViewGroup, boolean)</a>는 꽤 익숙하다. 하지만 다음 두 줄의 코드가 어떻게 다른지 아는 사람은 그리 많지 않을 것 같다. 실제로 <a href="http://tools.android.com/tips/lint">Android Lint</a>는 한쪽 코드는 피하도록 권하고 있다.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">inflater</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">my_layout</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
-</span><span class='line'><span class="n">inflater</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">my_layout</span><span class="o">,</span> <span class="n">parent</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="http://www.doubleencore.com/author/daves/">Dave Smith</a>가 이 두 코드의 비교와 함께, <a href="http://www.doubleencore.com/2013/05/layout-inflation-as-intended/">바른 Layout Inflation 방법</a>에 대해 설명한 글이 있어 소개한다.</p>
-</div>
-  
   
 
 
