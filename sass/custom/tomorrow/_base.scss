@@ -1,4 +1,4 @@
-@mixin selection($bg, $color: inherit, $text-shadow: none){
+@mixin selection($bg, $color: inherit, $text-shadow: none) {
   * {
     &::-moz-selection { background: $bg; color: $color; text-shadow: $text-shadow; }
     &::-webkit-selection { background: $bg; color: $color; text-shadow: $text-shadow; }
@@ -28,6 +28,11 @@ html .gist .gist-file .gist-meta {
   a {
     color: $tomorrow-foreground !important;
   }
+}
+
+pre {
+  background: $tomorrow-background !important;
+  color: $tomorrow-foreground !important;
 }
 
 .pre-code {
