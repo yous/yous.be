@@ -124,6 +124,46 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2014/03/25/global-git-ignore/">Global Git Ignore &rarr;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-03-25T20:49:32+09:00" pubdate data-updated="true">Mar 25<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p><a href="http://usevim.com">usevim</a>의 <a href="http://twitter.com/#!/alex_young">Alex Young</a>이 쓴 <a href="http://usevim.com/2013/10/04/gitglobal-ignore/">global gitignore에 관한 글</a>이다.</p>
+
+<blockquote><p>나는 몇 년간 <code>.gitignore</code>에 <code>*.sw?</code>을 넣어 왔는데, Vim을 쓰지 않는 사람들은 특정 편집기를 위한 <code>.gitignore</code> 항목을 보고 싶지 않아 할 수도 있다는 걸 깨달았다. 편집기들은 임시 파일과 복구 파일을 각자 다른 방식으로 관리하기 때문에 이 설정을 모두에게 강요하는 것은 과해 보인다.</p>
+
+<p>이것보단 global 옵션을 사용하는 것이 낫다. <code>git config --global core.excludesfile ~/.gitignore</code>를 실행해라. 그러면 거기에 <code>*.sw?</code>을, 어쩌면 <code>*~</code>도 넣을 수 있다. 난 <code>.DS_Store</code>를 추가할 텐데, Windows 개발자들은 여기 신경 쓸 필요가 없기 때문이다. 그리고 그들은 아마 <code>Thumbs.db</code>를 추가해야 할 것이다.</p></blockquote>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2014/03/19/ropasaurusrex-a-primer-on-return-oriented-programming/">ropasaurusrex: return-oriented programming 입문서 &rarr;</a></h1>
     
     
@@ -337,96 +377,6 @@
 <blockquote><p>Note the two <code>goto fail</code> lines in a row. The first one is correctly bound to the if statement but the second, despite the indentation, isn&rsquo;t conditional at all. The code will always jump to the end from that second goto, <code>err</code> will contain a successful value because the SHA1 update operation was successful and so the signature verification will never fail.</p></blockquote>
 
 <p>또한 OS X 10.9.1에는 아직 <a href="http://9to5mac.com/2014/02/22/apple-patched-a-major-ssl-bug-in-ios-yesterday-but-os-x-is-still-at-risk/">이 문제</a>가 있는 것으로 보인다.</p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/01/20/ghost-in-the-shellcode-2014-inview-write-up/">Ghost in the Shellcode 2014: inview Write-up</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-01-20T22:21:24+09:00" pubdate data-updated="true">Jan 20<sup>th</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2><a id="question-3-inview"></a>Question 3 &ndash; inview</h2>
-
-<blockquote><p>Points: 150</p>
-
-<p>The key is in view, what is it? <a href="https://2014.ghostintheshellcode.com/inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155">File</a></p></blockquote>
-
-<p>If the above link doesn&rsquo;t work, please use this <a href="/downloads/2014/01/20/inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155">link</a>.</p>
-
-<p>Extract file with this code:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>mv inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155 inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155.xz
-</span><span class='line'>xz -d inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155.xz
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Then we can see some trailing whitespace in <code>inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155</code>.</p>
-
-<h2><a id="how-to-highlight-trailing-whitespace-in-vim"></a>How to Highlight Trailing Whitespace in Vim</h2>
-
-<p>Add this code to your <code>.vimrc</code>:</p>
-
-<figure class='code'><figcaption><span>.vimrc</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="nb">highlight</span> ExtraWhitespace ctermbg<span class="p">=</span><span class="k">red</span> guibg<span class="p">=</span><span class="k">red</span>
-</span><span class='line'>autocmd <span class="nb">BufWinEnter</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">/\s\+$/</span>
-</span><span class='line'>autocmd <span class="nb">InsertEnter</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">//</span>
-</span><span class='line'>autocmd <span class="nb">InsertLeave</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">/\s\+$/</span>
-</span><span class='line'><span class="k">if</span> <span class="k">version</span> <span class="p">&gt;=</span> <span class="m">702</span>
-</span><span class='line'>  autocmd <span class="nb">BufWinLeave</span> * <span class="k">call</span> clearmatches<span class="p">()</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Then <a href="http://www.vim.org">Vim</a> highlights trailing whitespace to red color.</p>
-
-<h2><a id="how-to-solve"></a>How to Solve</h2>
-
-<p>I felt something weird, so I converted the file to hex code. In Vim:</p>
-
-<pre><code>:%!xxd
-</code></pre>
-
-<p>Looking at whitespace, I realized there are <code>09(Tab)</code>, <code>0A(New Line)</code>, <code>20(Space)</code> with no rule. Right after that I came up with <a href="http://compsoc.dur.ac.uk/whitespace/">Whitespace</a>. Also there is a <a href="http://ws2js.luilak.net/interpreter.html">interpreter written in JavaScript</a>. Almost done! Just copy and paste the file content to site and press &lsquo;Exec&rsquo; button. If you want to execute it in local, you can use <a href="https://github.com/hostilefork/whitespacers">whitespacers</a>.</p>
-
-<p>Finally the key is:</p>
-
-<pre><code>WhitespaceProgrammingIsHard
-</code></pre>
 </div>
   
   
