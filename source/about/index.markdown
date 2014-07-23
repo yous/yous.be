@@ -59,6 +59,9 @@ ChaYoung You
     - Paloalto [@OfficialPalo][]
 - [Evangelion](http://www.evangelion.co.jp)
     - [evangelion.jp](http://evangelion.jp)
+    - [asuka.moe](http://asuka.moe)
+        - [cyborgs.txt](http://asuka.moe/cyborgs.txt)
+        - [where.asuka.moe](http://where.asuka.moe)
 - Puzzles
     - [Nonogram](http://en.wikipedia.org/wiki/Nonogram)
 - Games
