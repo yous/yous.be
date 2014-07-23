@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ios | Yous]]></title>
   <link href="http://yous.be/categories/ios/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-07-23T19:29:33+09:00</updated>
+  <updated>2014-07-23T19:43:59+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -27,6 +27,10 @@
 <p><img src="http://cdn.arstechnica.net/wp-content/uploads/2014/07/pcapd1.jpg" alt="com.apple.pcapd" /></p>
 
 <p>Slides of Zdziarski&rsquo;s talk, titled <strong>Identifying Back Doors, Attack Points, and Surveillance Mechanisms in iOS Devices</strong> are <a href="http://www.zdziarski.com/blog/wp-content/uploads/2014/07/iOS_Backdoors_Attack_Points_Surveillance_Mechanisms.pdf">here</a>.</p></blockquote>
+
+<p>Also check the page about <a href="http://support.apple.com/kb/HT6331">iOS: About diagnostic capabilities</a> on Apple Support:</p>
+
+<blockquote><p>Each of these diagnostic capabilities requires the user to have unlocked their device and agreed to trust another computer. Any data transmitted between the iOS device and trusted computer is encrypted with keys not shared with Apple. For users who have enabled iTunes Wi-Fi Sync on a trusted computer, these services may also be accessed wirelessly by that computer.</p></blockquote>
 ]]></content>
   </entry>
   
