@@ -59,6 +59,8 @@ ChaYoung You
     - Paloalto [@OfficialPalo][]
 - [Evangelion](http://www.evangelion.co.jp)
     - [evangelion.jp](http://evangelion.jp)
+- Puzzles
+    - [Nonogram](http://en.wikipedia.org/wiki/Nonogram)
 - Games
     - Rhythm games
         - [jubeat](http://s.ubit.info/yous)
