@@ -17,5 +17,4 @@ group :development do
 end
 
 gem 'sinatra', '~> 1.4.2'
-gem 'therubyracer'
 gem 'jekyll-redirect-from', '~> 0.4.0'
