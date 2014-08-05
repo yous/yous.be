@@ -59,7 +59,9 @@ ChaYoung You
     - Paloalto [@OfficialPalo][]
 - [Evangelion](http://www.evangelion.co.jp)
     - [evangelion.jp](http://evangelion.jp)
+        - [404.html](http://evangelion.jp/404.html)
     - [asuka.moe](http://asuka.moe)
+        - [404.html](http://asuka.moe/404.html)
         - [cyborgs.txt](http://asuka.moe/cyborgs.txt)
         - [where.asuka.moe](http://where.asuka.moe)
 - Puzzles
