@@ -124,6 +124,109 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2014/02/23/apples-ssl-tls-bug/">Apple&#8217;s SSL/TLS bug &rarr;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-02-23T04:59:18+09:00" pubdate data-updated="true">Feb 23<sup>rd</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>iOS 7.0.6, iOS 6.1.6, Apple TV 6.0.2가 <a href="http://9to5mac.com/2014/02/21/apple-releases-ios-7-0-6-ios-6-1-6-with-fixes/">배포됐다</a>. 애플에서 공개한 iOS 7.0.6의 <a href="http://support.apple.com/kb/HT6147">보안 문제</a>는 다음과 같다.</p>
+
+<blockquote><p>Impact: An attacker with a privileged network position may capture or modify data in sessions protected by SSL/TLS</p>
+
+<p>Description: Secure Transport failed to validate the authenticity of the connection. This issue was addressed by restoring missing validation steps.</p></blockquote>
+
+<p>그런데 이 문제의 원인이 된 <a href="http://opensource.apple.com/source/Security/Security-55471/libsecurity_ssl/lib/sslKeyExchange.c">소스 코드</a>가 흥미롭다. Adam Langley의 <a href="https://www.imperialviolet.org/2014/02/22/applebug.html">이 버그에 관한 글</a>에 따르면 실제 소스는 이렇다:</p>
+
+<figure class='code'><figcaption><span>sslKeyExchange.c</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">static</span> <span class="n">OSStatus</span>
+</span><span class='line'><span class="nf">SSLVerifySignedServerKeyExchange</span><span class="p">(</span><span class="n">SSLContext</span> <span class="o">*</span><span class="n">ctx</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">isRsa</span><span class="p">,</span> <span class="n">SSLBuffer</span> <span class="n">signedParams</span><span class="p">,</span>
+</span><span class='line'>                                 <span class="kt">uint8_t</span> <span class="o">*</span><span class="n">signature</span><span class="p">,</span> <span class="n">UInt16</span> <span class="n">signatureLen</span><span class="p">)</span>
+</span><span class='line'><span class="p">{</span>
+</span><span class='line'>    <span class="n">OSStatus</span>        <span class="n">err</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">...</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">err</span> <span class="o">=</span> <span class="n">ReadyHash</span><span class="p">(</span><span class="o">&amp;</span><span class="n">SSLHashSHA1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">err</span> <span class="o">=</span> <span class="n">SSLHashSHA1</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">clientRandom</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">err</span> <span class="o">=</span> <span class="n">SSLHashSHA1</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">serverRandom</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">err</span> <span class="o">=</span> <span class="n">SSLHashSHA1</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">signedParams</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
+</span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
+</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">err</span> <span class="o">=</span> <span class="n">SSLHashSHA1</span><span class="p">.</span><span class="n">final</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">hashOut</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
+</span><span class='line'>    <span class="p">...</span>
+</span><span class='line'>
+</span><span class='line'><span class="nl">fail:</span>
+</span><span class='line'>    <span class="n">SSLFreeBuffer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">signedHashes</span><span class="p">);</span>
+</span><span class='line'>    <span class="n">SSLFreeBuffer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">);</span>
+</span><span class='line'>    <span class="k">return</span> <span class="n">err</span><span class="p">;</span>
+</span><span class='line'>
+</span><span class='line'><span class="p">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>단지 <code>goto fail;</code> 라인이 하나 더 있어서 <code>if</code>문과 관계 없이 두 번째 <code>goto</code>문이 실행되어 signature verification을 무조건 통과하게 된다.</p>
+
+<blockquote><p>Note the two <code>goto fail</code> lines in a row. The first one is correctly bound to the if statement but the second, despite the indentation, isn&rsquo;t conditional at all. The code will always jump to the end from that second goto, <code>err</code> will contain a successful value because the SHA1 update operation was successful and so the signature verification will never fail.</p></blockquote>
+
+<p>또한 OS X 10.9.1에는 아직 <a href="http://9to5mac.com/2014/02/22/apple-patched-a-major-ssl-bug-in-ios-yesterday-but-os-x-is-still-at-risk/">이 문제</a>가 있는 것으로 보인다.</p>
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2014/01/20/ghost-in-the-shellcode-2014-inview-write-up/">Ghost in the Shellcode 2014: inview Write-up</a></h1>
     
     
@@ -478,105 +581,6 @@ end</code></pre></noscript></div>
     <footer>
       <a rel="full-article" href="/2013/12/03/syntax-highlighting-test/">Read on &rarr;</a>
     </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2013/08/12/octopress-in-a-subdirectory/">Octopress in a subdirectory: /blog</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2013-08-12T06:08:00+09:00" pubdate data-updated="true">Aug 12<sup>th</sup>, 2013</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>Octopress 블로그를 사이트 루트가 아닌 하위 디렉토리에서 제공하고 싶을 때, 터미널에서 다음과 같이 실행해 줍니다.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake set_root_dir<span class="o">[</span>/blog<span class="o">]</span>
-</span><span class='line'>
-</span><span class='line'><span class="c"># To go back to publishing to the document root</span>
-</span><span class='line'>rake set_root_dir<span class="o">[</span>/<span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>그리고 <code>_config.yml</code>을 수정해 줍니다.</p>
-
-<figure class='code'><figcaption><span>_config.yml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="c1"># url: http://yoursite.com</span>
-</span><span class='line'><span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://yoursite.com/blog</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>추가로, <code>/blog</code>를 하위 디렉토리로 사용했을 때, Archives와 Categories, 그리고 포스트 경로들이 <code>http://yoursite.com/blog/blog/...</code>의 형태로 생성됩니다. 중복된 <code>/blog</code>를 지우기 위해 다음과 같이 설정을 변경해 줍니다.</p>
-
-<figure class='code'><figcaption><span>_config.yml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="c1"># permalink: /blog/:year/:month/:day/:title/</span>
-</span><span class='line'><span class="l-Scalar-Plain">permalink</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/:year/:month/:day/:title/</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># category_dir: blog/categories</span>
-</span><span class='line'><span class="l-Scalar-Plain">category_dir</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">categories</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span>source/_includes/custom/navigation.html</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--</span>
-</span><span class='line'><span class="c">&lt;li&gt;&lt;a href=&quot;/blog/archives&quot;&gt;Archives&lt;/a&gt;&lt;/li&gt;</span>
-</span><span class='line'><span class="c">--&gt;</span>
-</span><span class='line'><span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/archives&quot;</span><span class="nt">&gt;</span>Archives<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>그리고, <code>source/blog/archives</code> 폴더를 <code>source/archives</code>로 옮겨주시기 바랍니다.</p>
-
-<figure class='code'><figcaption><span>source/index.html</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--</span>
-</span><span class='line'><span class="c">&lt;a href=&quot;/blog/archives&quot;&gt;Blog Archives&lt;/a&gt;</span>
-</span><span class='line'><span class="c">--&gt;</span>
-</span><span class='line'><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/archives&quot;</span><span class="nt">&gt;</span>Blog Archives<span class="nt">&lt;/a&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>사용중인 테마에 따라 추가적인 수정 사항이 있을 수 있습니다.</p>
-</div>
-  
   
 
 

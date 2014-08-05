@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+
+  <title><![CDATA[Category: zsh | Yous]]></title>
+  <link href="http://yous.be/categories/zsh/atom.xml" rel="self"/>
+  <link href="http://yous.be/"/>
+  <updated>2014-08-05T15:29:15+09:00</updated>
+  <id>http://yous.be/</id>
+  <author>
+    <name><![CDATA[Yous]]></name>
+    
+  </author>
+  <generator uri="http://octopress.org/">Octopress</generator>
+
+  
+  <entry>
+    <title type="html"><![CDATA[zsh: no matches found]]></title>
+    <link href="http://yous.be/2014/08/05/zsh-no-matches-found/"/>
+    <updated>2014-08-05T14:31:03+09:00</updated>
+    <id>http://yous.be/2014/08/05/zsh-no-matches-found</id>
+    <content type="html"><![CDATA[<p>With the use of <a href="http://www.git-scm.com">Git</a> or <a href="http://octopress.org">Octopress</a> (typically <a href="https://github.com/ruby/rake">Rake</a>), we type <code>[</code>, <code>]</code>, <code>^</code> characters to terminal:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git reset HEAD^
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake install<span class="o">[</span>classic<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Some <a href="http://www.zsh.org">Zsh</a> users know what would happen when we type that commands:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>zsh: no matches found: HEAD^
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>zsh: no matches found: install<span class="o">[</span>classic<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is caused by Zsh:</p>
+
+<blockquote><p>zsh allows Filename Generation and Pattern Matching (Globbing) using square brackets and other characters (explained in the <a href="http://zsh.sourceforge.net/Guide/zshguide05.html">zsh guide</a>, section 5.9).</p></blockquote>
+
+<p>The solution is simple:</p>
+
+<blockquote><p>The solution, found in the <a href="http://zsh.sourceforge.net/FAQ/zshfaq03.html">zsh FAQ</a> (section 3.4), is simply adding a line in ~/.zshrc that disables globbing for a single command:</p></blockquote>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">alias </span><span class="nv">rake</span><span class="o">=</span><span class="s2">&quot;noglob rake&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Aliasing <code>git</code> is also useful:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">alias </span><span class="nv">git</span><span class="o">=</span><span class="s2">&quot;noglob git&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+</feed>

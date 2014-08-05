@@ -124,6 +124,88 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2014/08/05/zsh-no-matches-found/">zsh: no matches found &rarr;</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+
+
+
+
+  
+
+
+<time datetime="2014-08-05T14:31:03+09:00" pubdate data-updated="true">Aug 5<sup>th</sup>, 2014</time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>With the use of <a href="http://www.git-scm.com">Git</a> or <a href="http://octopress.org">Octopress</a> (typically <a href="https://github.com/ruby/rake">Rake</a>), we type <code>[</code>, <code>]</code>, <code>^</code> characters to terminal:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>git reset HEAD^
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake install<span class="o">[</span>classic<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Some <a href="http://www.zsh.org">Zsh</a> users know what would happen when we type that commands:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>zsh: no matches found: HEAD^
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>zsh: no matches found: install<span class="o">[</span>classic<span class="o">]</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>This is caused by Zsh:</p>
+
+<blockquote><p>zsh allows Filename Generation and Pattern Matching (Globbing) using square brackets and other characters (explained in the <a href="http://zsh.sourceforge.net/Guide/zshguide05.html">zsh guide</a>, section 5.9).</p></blockquote>
+
+<p>The solution is simple:</p>
+
+<blockquote><p>The solution, found in the <a href="http://zsh.sourceforge.net/FAQ/zshfaq03.html">zsh FAQ</a> (section 3.4), is simply adding a line in ~/.zshrc that disables globbing for a single command:</p></blockquote>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">alias </span><span class="nv">rake</span><span class="o">=</span><span class="s2">&quot;noglob rake&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Aliasing <code>git</code> is also useful:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nb">alias </span><span class="nv">git</span><span class="o">=</span><span class="s2">&quot;noglob git&quot;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+</div>
+  
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2014/07/22/undocumented-ios-functions-allow-monitoring-of-personal-data-expert-says/">Undocumented iOS functions allow monitoring of personal data, expert says &rarr;</a></h1>
     
     
@@ -374,115 +456,6 @@ index 50e9404..76102db 100644
     <footer>
       <a rel="full-article" href="/2014/07/09/move-to-jekyll-redirect-from/">Read on &rarr;</a>
     </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/05/23/how-to-add-redirects-to-post-url-on-octopress/">How to Add Redirects to Post URL on Octopress</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-
-
-
-
-  
-
-
-<time datetime="2014-05-23T14:56:44+09:00" pubdate data-updated="true">May 23<sup>rd</sup>, 2014</time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>When I write a new post on <a href="http://octopress.org">Octopress</a>, I share the link of it to somewhere doesn&rsquo;t support <a href="http://en.wikipedia.org/wiki/Hyperlink">hyperlinks</a>. Since people can&rsquo;t click the link, they should copy and paste or just type it letter by letter. I wanted to make it easier, so I maded short url for every post.</p>
-
-<h2><a id="alias-generator-for-posts"></a>Alias Generator for Posts</h2>
-
-<p>There is a <a href="http://jekyllrb.com">Jekyll</a> plugin that <a href="https://github.com/tsmango/jekyll_alias_generator">generates redirect pages for posts with aliases</a>. Octopress is based on Jekyll and this plugin has no compatibility problem. Its source is on GitHub, so I just added it as submodule:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>git submodule add git@github.com:tsmango/jekyll_alias_generator plugins/jekyll_alias_generator
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>In your <code>_config.yml</code>, you may have this line:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">plugins</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">plugins</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Then it reads <code>plugins</code> directory and <code>alias_generator.rb</code> in <code>plugins/jekyll_alias_generator/_plugins/</code> directory is also loaded, so you can use and manage it!</p>
-
-<h2><a id="how-to-use"></a>How to Use</h2>
-
-<p>This plugin checks <code>alias</code> inside every post&rsquo;s YAML Front Matter. Just place the path of the alias:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span>
-</span><span class='line'><span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
-</span><span class='line'><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&quot;How</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Add</span><span class="nv"> </span><span class="s">Redirects</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Post</span><span class="nv"> </span><span class="s">URL</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Octopress&quot;</span>
-</span><span class='line'><span class="l-Scalar-Plain">alias</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/p/20140523</span>
-</span><span class='line'><span class="nn">---</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Multiple aliases are also available:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span>
-</span><span class='line'><span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
-</span><span class='line'><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&quot;How</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Add</span><span class="nv"> </span><span class="s">Redirects</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Post</span><span class="nv"> </span><span class="s">URL</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Octopress&quot;</span>
-</span><span class='line'><span class="l-Scalar-Plain">alias</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">/one-alias/index.html</span><span class="p-Indicator">,</span> <span class="nv">/another-alias/index.html</span><span class="p-Indicator">]</span>
-</span><span class='line'><span class="nn">---</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>When I <code>rake generate</code>, the plugin generates static html file at <code>/p/20140523/index.html</code>:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'><span class="nt">&lt;head&gt;</span>
-</span><span class='line'><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;canonical&quot;</span> <span class="na">href=</span><span class="s">&quot;/2014/05/23/how-to-add-redirects-to-post-url-on-octopress/&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;content-type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html; charset=utf-8&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;refresh&quot;</span> <span class="na">content=</span><span class="s">&quot;0;url=/2014/05/23/how-to-add-redirects-to-post-url-on-octopress/&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;/head&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>When you go to <a href="/p/20140523">/p/20140523</a>, it will redirect here. It also has <a href="http://en.wikipedia.org/wiki/Canonical_link_element">canonical link</a>, so it won&rsquo;t affect search engine or web analysis services.</p>
-</div>
-  
   
 
 
