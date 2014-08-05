@@ -278,3 +278,5 @@ footer: false
 269. Dynamic Duo -- Enlightened
 270. B-Free -- Korean Dream
 271. Reddy -- Imaginary Foundation
+272. Beenzino -- Up All Night
+273. Crush -- Crush On You
