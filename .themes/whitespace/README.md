@@ -6,9 +6,10 @@ Whitespace is a minimal and responsive theme for [Octopress](http://octopress.or
 Demos
 -----
 
-Unmodified: [Lucas Lew's blog](http://lucaslew.com).
 
-Slightly customized: [Chymeric Tutorials](http://chymeric.eu), [Yous' Blog](http://yous.be/)
+Default theme: [Themespace Preview](http://themespace.github.io/whitespace/)
+
+Actual blogs: [Lucas Lew's blog](http://lucaslew.com), [Chymeric Tutorials](http://chymeric.eu), [Yous' Blog](http://yous.be/)
 
 *If you are using whitespace and would like to showcase your website, we would be very happy to add you to the list! Just tell us your URL via the issue tracking system!*
 
@@ -17,7 +18,7 @@ Install
 -------
     $ cd octopress
     $ git clone git://github.com/lucaslew/whitespace.git .themes/whitespace
-    $ rake install['whitespace']
+    $ rake install['whitespace'] # for zsh, use: rake install\['whitespace'\] 
     $ rake generate
 
 
@@ -44,12 +45,12 @@ Update and Keep Customizations
 
 Comment System
 --------------
-Added support for open-source [Juvia](https://github.com/phusion/juvia) comment system. It requires two extra parameters in `_config.yml`: `juvia_site_key` and `juvia_host`.
+We support the open-source [Juvia](https://github.com/phusion/juvia) comment system. To enable it, add the `juvia_site_key` and `juvia_host` parameters in `_config.yml`.
 
 
 Navigation Bar
 --------------
-You can add several icons to the navigation bar. Just set some parameters in `_config.yml`:
+You can add several icons to the navigation bar. Just set the corresponding user IDs in `_config.yml`:
 
 - `googleplus_user` with `googleplus_hidden: false` for Google+ profile.
 - `pinboard_user` for Pinboard bookmarks.
@@ -60,7 +61,7 @@ You can add several icons to the navigation bar. Just set some parameters in `_c
 
 External URL
 ------------
-You can write a [Linklog](http://en.wikipedia.org/wiki/Linklog) by using this theme. To publish a linked post, just add `external-url` variable in the YAML front matter of your post.
+You can also use our theme to set up a [Linklog](http://en.wikipedia.org/wiki/Linklog)! To publish a link post, just add the `external-url` variable to the YAML section (the header) of your post - and specify a valid URL.
 
     ---
     layout: post
@@ -68,8 +69,27 @@ You can write a [Linklog](http://en.wikipedia.org/wiki/Linklog) by using this th
     external-url: http://example.com/some/external/url
     ---
 
-Then the title will have '&rarr;' at the end. Also the title link will point to the external url.
+The title will be rendered with an arrow (&rarr;) character at the end; and the title link will point to the external url.
 
+Google+ "authored by" link
+------------------------
+If the `googleplus_user` variable is set under `_config.yml`, by default, posts will contain a link with `rel="author"` pointing to the respective Google+ profile.
+
+You can override the pofile for the authored by link for a specific post by adding `googleplus_user` for the post:  
+
+    ---
+    layout: post
+    ...
+    gooleplus_user: [put overriding profile id here]
+    ---
+	
+You can also choose to ignore the link by assigning `ignore` to the `googleplus_user` post variable (in your post header). The "authored by" text will then be displayed without a link.
+
+    ---
+    layout: post
+    ...
+    gooleplus_user: ignore
+    ---
 
 License
 -------
