@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ctf | Yous]]></title>
   <link href="http://yous.be/categories/ctf/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-08-13T02:19:53+09:00</updated>
+  <updated>2014-08-13T03:04:02+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -25,7 +25,7 @@
 
 <hr />
 
-<p>CTF 대회 중 가장 기분이 나쁠 때는 <a href="http://knowyourmeme.com/memes/captain-hindsight">나중에 깨닫는</a> 문제를 풀 때다. 한 문제에 몇 시간을 보내고 나서&ndash;내가 <a href="https://blog.skullsecurity.org/blog/2013/epic-cnot-writeup-plaidctf">cnot</a>에 쓴 시간에 비할 바는 아니지만&ndash;사실은 꽤 쉬운 문제라는 걸 깨닫는다. 하지만 역시 골치아프다. 그게 바로 ROP다!</p>
+<p>CTF 대회 중 가장 기분이 나쁠 때는 <a href="http://knowyourmeme.com/memes/captain-hindsight">나중에 깨닫는</a> 문제를 풀 때다. 한 문제에 몇 시간을 보내고 나서&mdash;내가 <a href="https://blog.skullsecurity.org/blog/2013/epic-cnot-writeup-plaidctf">cnot</a>에 쓴 시간에 비할 바는 아니지만&mdash;사실은 꽤 쉬운 문제라는 걸 깨닫는다. 하지만 역시 골치아프다. 그게 바로 ROP다!</p>
 
 <p>어쨌든, 잘못된 방법으로 많은 시간을 썼음에도 불구하고 (특히, 한동안 <a href="https://en.wikipedia.org/wiki/Address_space_layout_randomization">ASLR</a>을 우회할 생각은 하지 않았다), 우리가 이 문제를 풀기까지 거쳤던 과정(ASLR을 고려하지 않고, 그 다음은 ASLR을 고려해서)은 설명하기 좋은 방법이므로 이 글에서도 같은 방법을 사용하겠다.</p>
 
@@ -35,7 +35,7 @@
 
 <h2><a id="what-the-heck-is-rop"></a>도대체 ROP가 뭐야?</h2>
 
-<p>ROP&ndash;return-oriented programming&ndash;는 고전적 익스플로잇(exploit) &ldquo;<a href="https://en.wikipedia.org/wiki/Return-to-libc_attack">return into libc</a>&#8220;를 나타내는 현대 용어다. 이 아이디어는 프로그램을 마음대로 조종할 수 있는 오버플로(overflow)나 다른 유형의 취약점을 발견했지만, 코드를 실행 가능한 메모리 영역(executable memory)에 올릴 수 있는 확실한 방법이 없을 때(<a href="https://en.wikipedia.org/wiki/Data_Execution_Prevention">DEP</a>, 데이터 실행 방지(Data Execution Prevention), 사용자가 원하는 곳에서부터 코드를 실행시킬 수 없다)를 위한 것이다.</p>
+<p>ROP&mdash;return-oriented programming&mdash;는 고전적 익스플로잇(exploit) &ldquo;<a href="https://en.wikipedia.org/wiki/Return-to-libc_attack">return into libc</a>&#8220;를 나타내는 현대 용어다. 이 아이디어는 프로그램을 마음대로 조종할 수 있는 오버플로(overflow)나 다른 유형의 취약점을 발견했지만, 코드를 실행 가능한 메모리 영역(executable memory)에 올릴 수 있는 확실한 방법이 없을 때(<a href="https://en.wikipedia.org/wiki/Data_Execution_Prevention">DEP</a>, 데이터 실행 방지(Data Execution Prevention), 사용자가 원하는 곳에서부터 코드를 실행시킬 수 없다)를 위한 것이다.</p>
 
 <p>ROP를 이용하면 실행 가능한 메모리 영역(executable memory)에 이미 있는 코드 중 &lsquo;<a href="https://en.wikipedia.org/wiki/Return_statement">return</a>&#8216;으로 끝나는 조각들을 고를 수 있다. 그 조각들이 간단할 때도 있고, 복잡할 때도 있다. 다행히도 이 예제에서 우리는 간단한 것들만 필요하다!</p>
 
@@ -128,7 +128,7 @@
 <p>이제 스택에 무엇이 저장되어 있는지 스택에 들어간 순서대로 보자 (헷갈리지만, 스택을 다른 방법으로 그릴 수도 있다; 이 글에서는 스택이 위에서 아래로 늘어나기에 오래된/호출하는 함수는 위에, 새로운/호출된 함수는 아래에 있다):</p>
 
 <ul>
-<li>인자(Parameters): 호출한 함수가 넘긴 인자들&ndash;ROP에서 <em>대단히</em> 중요하다.</li>
+<li>인자(Parameters): 호출한 함수가 넘긴 인자들&mdash;ROP에서 <em>대단히</em> 중요하다.</li>
 <li>반환 주소(Return address): 모든 함수는 자신이 끝나면 어디로 가야 하는지 알아야 한다. 당신이 함수를 호출하면, 그 함수에 진입하기 앞서 호출 직후의 명령어(instruction) 주소가 스택에 들어간다. 반환하는 순간, 그 주소를 스택에서 뽑고, 그리로 점프한다. 이건 ROP에서 대단히 중요하다.</li>
 <li>프레임 포인터(Saved frame pointer): 이건 완전히 무시하자. 정말로. 이건 예외는 있지만 컴파일러가 일반적으로 하는 일이고, 이에 대해 다시 언급하지는 않을 것이다.</li>
 <li>지역 변수(Local variables): 함수는 지역 변수를 저장하기 위해 필요한 만큼 (적당한 범위 내에서) 메모리를 할당할 수 있다. 지역 변수는 여기서 시작한다. ROP와는 전혀 관계 없으며 무시해도 안전하다.</li>
@@ -213,11 +213,11 @@
 </span><span class='line'>          ...            (낮은 주소)</span></code></pre></td></tr></table></div></figure>
 
 
-<p>변수 <code>buf</code>의 길이는 16바이트다. 만약 프로그램이 buf의 17번째 바이트(즉, <code>buf[16]</code>)에 쓰려고 하면 어떻게 될까? 에, 반환 주소의 마지막 바이트&ndash;<a href="https://en.wikipedia.org/wiki/Endianness">리틀 엔디언</a>&ndash;에 쓰게 된다. 18번째 바이트는 반환 주소의 끝에서 두 번째 바이트에 쓰게 되고, 그런 방식이다. 이렇게 우리는 우리가 원하는 곳으로 반환 주소를 바꿀 수 있다. <em>원하는 곳 어디든</em>. 함수가 반환하면, 어디로 가겠는가? 뭐, 아마 그건 가야 할 곳으로 가고 있다고 생각할 것이다&ndash;완벽한 세계에서는, 그럴 것이다&ndash;하지만 아니다! 이 경우에는, 공격자가 원하는 곳 어디로든지 갈 수 있다. 공격자가 <a href="https://en.wikipedia.org/wiki/Zero_page">0</a>으로 점프하라고 하면, 0으로 점프하고 크래시를 일으킬 것이다. 공격자가 <code>0x41414141</code>(&ldquo;AAAA&rdquo;)로 점프하라고 하면, 그리로 점프하고 아마도 크래시를 일으킬 것이다. 공격자가 스택으로 점프하라고 하면&hellip; 음, 이건 좀 복잡해진다&hellip;</p>
+<p>변수 <code>buf</code>의 길이는 16바이트다. 만약 프로그램이 buf의 17번째 바이트(즉, <code>buf[16]</code>)에 쓰려고 하면 어떻게 될까? 에, 반환 주소의 마지막 바이트&mdash;<a href="https://en.wikipedia.org/wiki/Endianness">리틀 엔디언</a>&mdash;에 쓰게 된다. 18번째 바이트는 반환 주소의 끝에서 두 번째 바이트에 쓰게 되고, 그런 방식이다. 이렇게 우리는 우리가 원하는 곳으로 반환 주소를 바꿀 수 있다. <em>원하는 곳 어디든</em>. 함수가 반환하면, 어디로 가겠는가? 뭐, 아마 그건 가야 할 곳으로 가고 있다고 생각할 것이다&mdash;완벽한 세계에서는, 그럴 것이다&mdash;하지만 아니다! 이 경우에는, 공격자가 원하는 곳 어디로든지 갈 수 있다. 공격자가 <a href="https://en.wikipedia.org/wiki/Zero_page">0</a>으로 점프하라고 하면, 0으로 점프하고 크래시를 일으킬 것이다. 공격자가 <code>0x41414141</code>(&ldquo;AAAA&rdquo;)로 점프하라고 하면, 그리로 점프하고 아마도 크래시를 일으킬 것이다. 공격자가 스택으로 점프하라고 하면&hellip; 음, 이건 좀 복잡해진다&hellip;</p>
 
 <h2><a id="dep"></a>DEP</h2>
 
-<p>전통적으로, 공격자는 스택에 코드를 넣을 수 있었기 때문에 (어찌 되었건, 코드는 그저 바이트 뭉치일 뿐이다!), 반환 주소가 스택을 가리키도록 바꿔 왔다. 하지만 그건 시스템을 공격하는 일반적이고 쉬운 방법이었기 때문에, OS 회사의 나쁜 자식들이 (농담이다, 난 당신들을 사랑한다 :)) 데이터 실행 방지, DEP를 통해 이를 멈췄다. DEP가 적용된 어떤 시스템이건, 스택에서 코드를 실행할 수 없다&ndash;좀 더 일반적으로, 공격자가 쓸(write) 수 있는 어떤 곳에서도&ndash;그렇지 않으면, 크래시를 일으킨다.</p>
+<p>전통적으로, 공격자는 스택에 코드를 넣을 수 있었기 때문에 (어찌 되었건, 코드는 그저 바이트 뭉치일 뿐이다!), 반환 주소가 스택을 가리키도록 바꿔 왔다. 하지만 그건 시스템을 공격하는 일반적이고 쉬운 방법이었기 때문에, OS 회사의 나쁜 자식들이 (농담이다, 난 당신들을 사랑한다 :)) 데이터 실행 방지, DEP를 통해 이를 멈췄다. DEP가 적용된 어떤 시스템이건, 스택에서 코드를 실행할 수 없다&mdash;좀 더 일반적으로, 공격자가 쓸(write) 수 있는 어떤 곳에서도&mdash;그렇지 않으면, 크래시를 일으킨다.</p>
 
 <p>그러면 코드를 실행할 권한도 없이 도대체 어떻게 코드를 실행할 수 있나!?</p>
 
@@ -393,7 +393,7 @@
 
 <h2><a id="how-to-waste-time-with-aslr"></a>어떻게 ASLR로 시간을 낭비하는가</h2>
 
-<p>이 섹션을 &lsquo;시간 낭비&#8217;라고 하는 이유는, 내가 ASLR이 적용되어 있다는 것을&ndash;그 때&ndash;깨닫지 못했기 때문이다. 하지만 ASLR이 적용되어 있지 않다고 가정하는 것은 이 문제를 훨씬 교육하기 좋은 퍼즐로 만들어준다. 그러니 지금은 ASLR에 대해 걱정하지 말자&ndash;실제로, ASLR을 <em>정의</em>조차 하지 말자. 다음 섹션에 나올 것이다.</p>
+<p>이 섹션을 &lsquo;시간 낭비&#8217;라고 하는 이유는, 내가 ASLR이 적용되어 있다는 것을&mdash;그 때&mdash;깨닫지 못했기 때문이다. 하지만 ASLR이 적용되어 있지 않다고 가정하는 것은 이 문제를 훨씬 교육하기 좋은 퍼즐로 만들어준다. 그러니 지금은 ASLR에 대해 걱정하지 말자&mdash;실제로, ASLR을 <em>정의</em>조차 하지 말자. 다음 섹션에 나올 것이다.</p>
 
 <p>좋다, 이제 우린 뭘 하고 싶은가? 우린 취약한 프로세스를 가지고 있고, <a href="https://en.wikipedia.org/wiki/C_standard_library">libc</a> 공유 라이브러리도 있다. 다음 단계는 뭔가?</p>
 
@@ -1190,7 +1190,7 @@
 
 <h2><a id="what-is-aslr"></a>ASLR이 뭐야?</h2>
 
-<p>ASLR&ndash;주소 공간 레이아웃 불규칙화(address space layout randomization)&ndash;은 현대 시스템(FreeBSD는 제외)에 구현된 방어 기법으로, 라이브러리가 로드 되는 주소를 불규칙화 한다. 그 예로, ropasaurusrex를 두 번 실행하고 <code>system()</code>의 주소를 알아내 보자:</p>
+<p>ASLR&mdash;주소 공간 레이아웃 불규칙화(address space layout randomization)&mdash;은 현대 시스템(FreeBSD는 제외)에 구현된 방어 기법으로, 라이브러리가 로드 되는 주소를 불규칙화 한다. 그 예로, ropasaurusrex를 두 번 실행하고 <code>system()</code>의 주소를 알아내 보자:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -1256,7 +1256,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>이렇게 <code>read()</code>와 <code>write()</code>의 주소&ndash;바이너리 안에 있는&ndash;를 알게 되었다. 이게 뭘 의미하느냐? 바이너리가 실행 중일 때 이들의 값을 살펴보자:</p>
+<p>이렇게 <code>read()</code>와 <code>write()</code>의 주소&mdash;바이너리 안에 있는&mdash;를 알게 되었다. 이게 뭘 의미하느냐? 바이너리가 실행 중일 때 이들의 값을 살펴보자:</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
@@ -1279,7 +1279,7 @@
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>보라.. <code>read()</code>를 가리키는 포인터가 우리가 알고 있는 메모리 주소에 있다! 이걸로 뭘 할지 궁금한가&hellip;? 힌트를 하나 주겠다: 우리는 <code>write()</code> 함수&ndash;주소를 아는 또 하나의 함수&ndash;를 사용해 임의의 메모리에서 데이터를 가져와 소켓에 쓸 수 있다.</p>
+<p>보라.. <code>read()</code>를 가리키는 포인터가 우리가 알고 있는 메모리 주소에 있다! 이걸로 뭘 할지 궁금한가&hellip;? 힌트를 하나 주겠다: 우리는 <code>write()</code> 함수&mdash;주소를 아는 또 하나의 함수&mdash;를 사용해 임의의 메모리에서 데이터를 가져와 소켓에 쓸 수 있다.</p>
 
 <h2><a id="finally-running-some-code"></a>드디어, 코드 실행!</h2>
 
