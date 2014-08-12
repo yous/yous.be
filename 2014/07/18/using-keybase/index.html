@@ -34,6 +34,10 @@
 <link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
 <link href='//fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'>
 <link href='//fonts.googleapis.com/css?family=Fjalla+One' rel='stylesheet' type='text/css'>
+<!--- MathJax Configuration -->
+<script type="text/javascript"
+src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
 <!-- Social media content metadata -->
 
   <meta property="fb:admins" content="100001802412550">
@@ -142,7 +146,7 @@
   
 
 
-<time datetime="2014-07-18T03:21:09+09:00" pubdate data-updated="true">Jul 18<sup>th</sup>, 2014</time>
+<time datetime="2014-07-18T03:21:09+09:00" pubdate data-updated="true"></time>
         
       </p>
     
@@ -289,12 +293,12 @@
 </span><span class='line'><span class="nv">$ </span>git commit -m <span class="s2">&quot;Test commit of foo&quot;</span>
 </span><span class='line'>
 </span><span class='line'>You need a passphrase to unlock the secret key <span class="k">for</span>
-</span><span class='line'>user: <span class="s2">&quot;ChaYoung You &lt;yousbe@gmail.com&gt;&quot;</span>
+</span><span class='line'>user: <span class="s2">&quot;John Doe &lt;john.doe@example.com&gt;&quot;</span>
 </span><span class='line'>2048-bit RSA key, ID E79FBC2D, created 2014-07-16 <span class="o">(</span>main key ID 1D5A400A<span class="o">)</span>
 </span><span class='line'>
 </span><span class='line'><span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> 6cdfc26<span class="o">]</span> Test commit of foo
-</span><span class='line'> 1 file changed, 1 insertion<span class="o">(</span>+<span class="o">)</span>
-</span><span class='line'> create mode 100644 foo
+</span><span class='line'> <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
+</span><span class='line'> create mode <span class="m">100644</span> foo
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -314,16 +318,16 @@
 <span class='line-number'>12</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>git log --show-signature
 </span><span class='line'>commit 6cdfc26eb2273fed14181fe4a09b6240323b8930
-</span><span class='line'>gpg: Signature made 금  7/18 21:29:24 2014 KST using RSA key ID E79FBC2D
-</span><span class='line'>gpg: Good signature from <span class="s2">&quot;ChaYoung You &lt;yousbe@gmail.com&gt;&quot;</span>
-</span><span class='line'>gpg:                 aka <span class="s2">&quot;keybase.io/yous &lt;yous@keybase.io&gt;&quot;</span>
-</span><span class='line'>Author: ChaYoung You &lt;yousbe@gmail.com&gt;
-</span><span class='line'>Date:   Fri Jul 18 21:29:14 2014 +0900
+</span><span class='line'>gpg: Signature made 금  7/18 21:29:24 <span class="m">2014</span> KST using RSA key ID E79FBC2D
+</span><span class='line'>gpg: Good signature from <span class="s2">&quot;John Doe &lt;john.doe@example.com&gt;&quot;</span>
+</span><span class='line'>gpg:                 aka <span class="s2">&quot;keybase.io/jdoe &lt;jdoe@keybase.io&gt;&quot;</span>
+</span><span class='line'>Author: John Doe &lt;john.doe@example.com&gt;
+</span><span class='line'>Date:   Fri Jul <span class="m">18</span> 21:29:14 <span class="m">2014</span> +0900
 </span><span class='line'>
 </span><span class='line'>    Test commit of foo
 </span><span class='line'>
-</span><span class='line'> foo <span class="p">|</span> 1 +
-</span><span class='line'> 1 file changed, 1 insertion<span class="o">(</span>+<span class="o">)</span>
+</span><span class='line'> foo <span class="p">|</span> <span class="m">1</span> +
+</span><span class='line'> <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -340,7 +344,16 @@
       
   
 
-<span class="byline author vcard">Authored by <span class="fn">Yous</span></span>
+
+    
+  
+
+  <span class="byline author vcard">Authored by <span class="fn">
+  
+    Yous
+  
+  </span></span>
+
 
       
 
@@ -354,7 +367,7 @@
   
 
 
-<time datetime="2014-07-18T03:21:09+09:00" pubdate data-updated="true">Jul 18<sup>th</sup>, 2014</time>
+<time datetime="2014-07-18T03:21:09+09:00" pubdate data-updated="true"></time>
       
 
 <span class="categories">
