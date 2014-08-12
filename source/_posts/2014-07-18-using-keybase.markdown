@@ -112,7 +112,7 @@ $ git add foo
 $ git commit -m "Test commit of foo"
 
 You need a passphrase to unlock the secret key for
-user: "ChaYoung You <yousbe@gmail.com>"
+user: "John Doe <john.doe@example.com>"
 2048-bit RSA key, ID E79FBC2D, created 2014-07-16 (main key ID 1D5A400A)
 
 [master (root-commit) 6cdfc26] Test commit of foo
@@ -126,9 +126,9 @@ After adding signed commits, you can see the signature of commits by using `--sh
 $ git log --show-signature
 commit 6cdfc26eb2273fed14181fe4a09b6240323b8930
 gpg: Signature made 금  7/18 21:29:24 2014 KST using RSA key ID E79FBC2D
-gpg: Good signature from "ChaYoung You <yousbe@gmail.com>"
-gpg:                 aka "keybase.io/yous <yous@keybase.io>"
-Author: ChaYoung You <yousbe@gmail.com>
+gpg: Good signature from "John Doe <john.doe@example.com>"
+gpg:                 aka "keybase.io/jdoe <jdoe@keybase.io>"
+Author: John Doe <john.doe@example.com>
 Date:   Fri Jul 18 21:29:14 2014 +0900
 
     Test commit of foo
