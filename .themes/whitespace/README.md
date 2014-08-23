@@ -1,6 +1,6 @@
 Whitespace
 ==========
-Whitespace is a minimal and responsive theme for [Octopress](http://octopress.org). This theme lets your contents take the center stage of your blog.
+Whitespace is a minimal and responsive theme for [Octopress](http://octopress.org). This theme lets your content take the center stage of your blog.
 
 
 Demos
@@ -88,7 +88,7 @@ You can also choose to ignore the link by assigning `ignore` to the `googleplus_
     ---
     layout: post
     ...
-    gooleplus_user: ignore
+    googleplus_user: ignore
     ---
 
 License
