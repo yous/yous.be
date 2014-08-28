@@ -53,6 +53,10 @@ ChaYoung You
 - Security
     - [GoN](http://gon.kaist.ac.kr)
 
+## <a id="education"></a>Education
+
+[Korea Advanced Institute of Science and Technology](http://www.kaist.ac.kr), Undergraduate of Mathematical Sciences and Computer Science, 2011--Present
+
 ## <a id="likes"></a>Likes
 
 - Collecting [CDs](/about/cds)
