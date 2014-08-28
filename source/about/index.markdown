@@ -59,12 +59,12 @@ ChaYoung You
     - Epik High (Tablo [@blobyblo][], DJ Tukutz [@Tukutz81][], Mithra眞 [@realmithrajin][])
     - Paloalto [@OfficialPalo][]
 - [Evangelion](http://www.evangelion.co.jp)
-    - [evangelion.jp](http://evangelion.jp)
+    - [evangelion.jp](http://evangelion.jp) ([GitHub](https://github.com/yous/evangelion.jp))
         - [404.html](http://evangelion.jp/404.html)
-    - [asuka.moe](http://asuka.moe)
+        - [asuka.evangelion.jp](http://asuka.evangelion.jp)
+    - [asuka.moe](http://asuka.moe) ([GitHub](https://github.com/yous/asuka.moe))
         - [404.html](http://asuka.moe/404.html)
         - [cyborgs.txt](http://asuka.moe/cyborgs.txt)
-        - [where.asuka.moe](http://where.asuka.moe)
 - Puzzles
     - [Nonogram](http://en.wikipedia.org/wiki/Nonogram)
 - Games
