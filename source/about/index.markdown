@@ -38,6 +38,7 @@ ChaYoung You
 
 - [스터디 헬퍼](https://play.google.com/store/apps/details?id=kr.co.tamseng.StudyHelper)
 - [Raheui](https://github.com/yous/raheui) --- Aheui interpreter in Ruby.
+- [aheui.vim](https://github.com/yous/aheui.vim) --- Vim syntax highlighting for Aheui.
 
 ## <a id="code"></a>Code
 
