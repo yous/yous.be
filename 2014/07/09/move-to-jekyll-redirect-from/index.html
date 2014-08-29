@@ -145,9 +145,9 @@
 
 <p>I wrote <a href="/2014/05/23/how-to-add-redirects-to-post-url-on-octopress/">&ldquo;How to Add Redirects to Post URL on Octopress&rdquo;</a> few month ago. Now <a href="https://github.com/imathis/octopress/commit/72ea6042e33f0b92e4923c3af00e923f19472573">Octopress is compatible</a> with <a href="http://jekyllrb.com">Jekyll</a> 2.0, and some plugins don&rsquo;t seem to work. Current Octopress uses Jekyll <a href="https://github.com/imathis/octopress/blob/4fdae37e4294618084f652c99c0c06ba7663ac07/Gemfile.lock#L26">2.0.3</a> and when I run <code>rake generate</code>, I see an error:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>/path/to/jekyll/lib/jekyll/static_file.rb:40:in <span class="sb">`</span>stat<span class="err">&#39;</span>: Not a directory @ rb_file_s_stat - /path/to/generated/alias/index.html/ <span class="o">(</span>Errno::ENOTDIR<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>So I make <a href="https://github.com/yous/jekyll_alias_generator/commit/7de96759bdd7a2c27fa2d4d603c6c1f585fd2abc">this commit</a>:</p>
@@ -227,29 +227,29 @@ index 50e9404..76102db 100644
 
 <p>Then add it to your <code>_config.yml</code>:</p>
 
-<figure class='code'><figcaption><span>_config.yml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>_config.yml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">gems</span><span class="p-Indicator">:</span>
 </span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">jekyll-redirect-from</span>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>Ready to add redirects! You can use this by adding <code>redirect_from</code> to the YAML front matter of your page or post:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">redirect_from</span><span class="p-Indicator">:</span>
 </span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">/path/to/alias/</span>
 </span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">/path/to/another/alias</span>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>You can also specify just one url:</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">redirect_from</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/path/to/alias/</span>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>Note that <code>/path/to/alias/</code> will generate a <code>/path/to/alias/index.html</code>, while <code>/path/to/alias</code> will generate a <code>/path/to/alias</code>.</p>

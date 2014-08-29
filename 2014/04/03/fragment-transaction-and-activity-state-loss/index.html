@@ -143,8 +143,8 @@
 
 <div class="entry-content"><p><a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html">FragmentTransaction</a>을 <a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#commit()">commit()</a> 했을 때 Activity의 <a href="http://developer.android.com/reference/android/app/Activity.html#onSaveInstanceState(android.os.Bundle)">onSaveInstanceState(Bundle)</a>이 실행된 후라면 다음과 같은 에러 메시지를 보게 된다:</p>
 
-<figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>java.lang.IllegalStateException: Can not perform this action after onSaveInstanceState</span></code></pre></td></tr></table></div></figure>
+<div class='bogus-wrapper'><notextile><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>java.lang.IllegalStateException: Can not perform this action after onSaveInstanceState</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>이 문제의 원인이 무엇인지, 어떻게 이 Exception을 피할지, 그리고 <a href="http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#commitAllowingStateLoss()">commitAllowingStateLoss()</a>가 왜 마지막 수단이 되어야 하는지 잘 설명한 글이 있어 소개한다. <a href="http://www.androiddesignpatterns.com/about/">Alex Lockwood</a>가 쓴 <a href="http://www.androiddesignpatterns.com/2013/08/fragment-transaction-commit-state-loss.html">Fragment Transaction과 Activity State Loss</a>에 관한 글이다.</p>

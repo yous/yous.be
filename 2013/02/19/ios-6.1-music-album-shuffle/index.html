@@ -175,7 +175,7 @@
 
 <p>그렇습니다! 저처럼 앨범별 임의 재생을 하고 싶은 사람이 올린 질문이었습니다. 댓글을 살펴보면 탈옥한 아이폰에서 작동한다는 글을 볼 수 있었습니다. 물론 2007년에 작성된 댓글이라서 지금의 iOS에 그대로 적용하면 작동하지 않습니다.</p>
 
-<p>하지만 추가적인 검색과 삽질로, 결국 iOS 6.1이 깔려 있는 아이폰에서 &lsquo;앨범별 임의 재생&#8217;으로 음악을 듣는 방법을 알아냈습니다.</p>
+<p>하지만 추가적인 검색과 삽질로, 결국 iOS 6.1이 깔려 있는 아이폰에서 &lsquo;앨범별 임의 재생'으로 음악을 듣는 방법을 알아냈습니다.</p>
 
 <!-- more -->
 
@@ -195,9 +195,9 @@
 
 <p>이제 본론으로 들어가겠습니다. 변경할 파일은 단 하나입니다.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>/System/Library/PreferenceBundles/MusicSettings.bundle/Music.plist
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>확장자는 <a href="http://ko.wikipedia.org/wiki/%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0_%EB%A6%AC%EC%8A%A4%ED%8A%B8">plist</a>지만 그냥 메모장으로 열어도 편집할 수 있을 것입니다. 이 파일에는 <code>설정</code> - <code>음악</code>에서 볼 수 있는 모든 정보를 담고 있습니다.</p>
@@ -206,7 +206,7 @@
 
 <p>위 사진에서 보이는 것들의 정보를 가지고 있다고 생각하시면 됩니다. 소스를 직접 봅시다.</p>
 
-<figure class='code'><figcaption><span>Music.plist</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Music.plist</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -452,7 +452,7 @@
 </span><span class='line'>  <span class="nt">&lt;/array&gt;</span>
 </span><span class='line'><span class="nt">&lt;/dict&gt;</span>
 </span><span class='line'><span class="nt">&lt;/plist&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>이해할 수 없는 문구들이 많이 있습니다. 좀더 자세히 봅시다. <code>com.apple.mobileipod</code>이라는 문구가 보이네요. iPod과 관련된 무언가라는 것은 알 수 있습니다. 사진과 코드의 순서에 주목해 봅시다. 각 <code>&lt;key&gt;id&lt;/key&gt;</code> 아래의 <code>&lt;string&gt;</code>과 <code>&lt;/string&gt;</code> 사이에 있는 문구들을 보면, 위에서부터 아래로 <code>ShakeToShuffle</code>, <code>SoundCheck</code>, <code>EQ</code>, <code>VolumeLimit</code>, <code>LyricsAndPodcastInfo</code>, <code>GroupByAlbumArtistPad</code>, <code>GroupByAlbumArtistPhone</code>인데, 위의 사진도 한 번 봅시다. <code>흔들어서 임의 재생</code>, <code>음량 자동 조절</code>, <code>EQ</code>, <code>음량 제한</code>, <code>가사 및 Podcast 정보</code>, <code>앨범 아티스트별 그룹</code>. 이제 감이 오셨나요?</p>
@@ -461,7 +461,7 @@
 
 <p>지금까지 아이폰에서는 노래별 임의 재생만을 할 수 있었습니다. 여기에서 우리는 메뉴에 노래별 임의 재생이나 앨범별 임의 재생을 선택할 수 있도록 <code>PSLinkListCell</code>을 하나 만들 것입니다. 위치는 <code>음량 자동 조절</code> 바로 아래가 적당할 것 같습니다. <code>&lt;string&gt;SOUND_CHECK_IPHONE&lt;/string&gt;</code>으로 끝나는 <code>&lt;dict&gt;…&lt;/dict&gt;</code> 바로 아래에 다음 코드를 추가하시면 됩니다.</p>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -509,7 +509,7 @@
 </span><span class='line'>    <span class="nt">&lt;string&gt;</span>Albums<span class="nt">&lt;/string&gt;</span>
 </span><span class='line'>  <span class="nt">&lt;/array&gt;</span>
 </span><span class='line'><span class="nt">&lt;/dict&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p>우리가 바꿀 <code>key</code>는 바로 <code>MusicShuffleSetting</code>입니다. 이게 가장 중요한 포인트인데, <code>MusicShuffleSetting</code>이 현재 임의 재생 유형을 나타내고 있습니다. 값은 <code>Songs</code>거나 <code>Albums</code>가 되는데, 아이폰에서는 <code>Songs</code>로만 설정되어 있어서 노래별 임의 재생만을 할 수 있었던 것입니다. 이제 이 설정을 우리가 바꿀 수 있게 만듦으로써 아이폰에서도 앨범별 임의 재생을 할 수 있게 됩니다.</p>
@@ -518,7 +518,7 @@
 
 <p>아래는 수정한 <code>Music.plist</code>의 최종 결과입니다.</p>
 
-<figure class='code'><figcaption><span>Music.plist</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>Music.plist</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -808,7 +808,7 @@
 </span><span class='line'>  <span class="nt">&lt;/array&gt;</span>
 </span><span class='line'><span class="nt">&lt;/dict&gt;</span>
 </span><span class='line'><span class="nt">&lt;/plist&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
+</span></code></pre></td></tr></table></div></figure></notextile></div>
 
 
 <p><code>Music.plist</code>의 수정 과정은 <a href="https://bitbucket.org/yous/ios/src">Bitbucket</a>에서 보실 수 있습니다.</p>
