@@ -280,3 +280,5 @@ footer: false
 271. Reddy --- Imaginary Foundation
 272. Beenzino --- Up All Night
 273. Crush --- Crush On You
+274. Nas --- Illmatic XX
+275. Ra.D --- Soundz
