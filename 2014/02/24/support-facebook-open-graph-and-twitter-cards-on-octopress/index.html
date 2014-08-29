@@ -157,8 +157,8 @@
 
 <ul>
 <li><code>og:title</code>: 사이트 이름 등의 브랜드를 제외한 글 제목이다.</li>
-<li><code>og:site_name</code>: 웹 사이트의 이름이다. URL이 아니라 이름이다. (예: &ldquo;imdb.com"이 아닌 "IMDb&rdquo;)</li>
-<li><code>og:url</code>: 글의 고유 식별자가 된다. 검색 엔진 최적화를 위해 사용된 <a href="http://en.wikipedia.org/wiki/Canonical_link_element">표준(canonical) URL</a>과 연결되어야 하며, 어떤 세션 변수나 사용자 식별 인자나 카운터를 포함하지 않아야 한다. 만약 이 부분을 잘못 사용하게 되면, &lsquo;좋아요'와 '공유'의 수가 이 URL로 합해지지 않고 이 URL의 모든 변형으로 흩어질 것이다.</li>
+<li><code>og:site_name</code>: 웹 사이트의 이름이다. URL이 아니라 이름이다. (예: &ldquo;imdb.com&#8221;이 아닌 &#8220;IMDb&rdquo;)</li>
+<li><code>og:url</code>: 글의 고유 식별자가 된다. 검색 엔진 최적화를 위해 사용된 <a href="http://en.wikipedia.org/wiki/Canonical_link_element">표준(canonical) URL</a>과 연결되어야 하며, 어떤 세션 변수나 사용자 식별 인자나 카운터를 포함하지 않아야 한다. 만약 이 부분을 잘못 사용하게 되면, &lsquo;좋아요&#8217;와 &#8216;공유&#8217;의 수가 이 URL로 합해지지 않고 이 URL의 모든 변형으로 흩어질 것이다.</li>
 <li><code>og:description</code>: 내용 일부를 상세히 설명한 글로, 보통 2~4문장이다. 이 태그는 선택 가능하지만 사람들이 읽고 공유하는 비율을 높일 수 있다.</li>
 <li><code>og:image</code>: 연관된 이미지다. 최소 1200x630 픽셀 크기의 이미지 사용을 추천한다.</li>
 <li><code>fb:app_id</code>: 페이스북이 사이트의 신원을 파악할 수 있게 해 주는 고유 ID다. Facebook Insights가 제대로 동작하는 데에 중요하다. 자세한 내용은 <a href="https://developers.facebook.com/docs/insights/">Insights 문서</a>에서 확인할 수 있다.</li>
@@ -177,7 +177,7 @@
 
 <h2><a id="twitter-cards"></a>Twitter Cards</h2>
 
-<p><a href="https://dev.twitter.com/docs/cards">Twitter Cards</a>는 트윗 자체에 링크의 내용을 보여주는 &lsquo;카드'를 추가하는 기능이다.</p>
+<p><a href="https://dev.twitter.com/docs/cards">Twitter Cards</a>는 트윗 자체에 링크의 내용을 보여주는 &lsquo;카드&#8217;를 추가하는 기능이다.</p>
 
 <p><img src="https://dev.twitter.com/sites/default/files/images_documentation/web_summary_0.png"></p>
 
@@ -200,7 +200,7 @@
 
 <p>페이스북 Open Graph를 위한 설정 값을 <code>_config.yml</code>에 추가한다.</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>_config.yml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>_config.yml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -208,14 +208,14 @@
 </span><span class='line'><span class="c1"># Facebook Insights / Open Graph</span>
 </span><span class='line'><span class="l-Scalar-Plain">facebook_app_id</span><span class="p-Indicator">:</span>
 </span><span class='line'><span class="l-Scalar-Plain">facebook_page</span><span class="p-Indicator">:</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>페이스북 App ID는 <a href="https://www.facebook.com/insights/">페이스북 인사이트</a>에서 &lsquo;웹사이트를 위한 인사이트&rsquo; 버튼을 눌러 얻을 수 있다. 페이스북 페이지 주소는 <code>article:author</code>에 사용될 정보지만 입력하지 않아도 된다. 트위터는 <code>_config.yml</code>의 <code>twitter_user</code> 값을 이용해 메타 태그를 입력한다. 이 역시 입력하지 않아도 된다.</p>
 
 <p>Octopress에서 사이트에 메타 태그를 추가하는 방법은 간단하다. 일단 <code>source/_includes/custom/head.html</code> 파일에 다음 코드를 추가하자.</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>source/_includes/custom/head.html</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>source/_includes/custom/head.html</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -303,14 +303,14 @@
 </span><span class='line'>    {% endif %}
 </span><span class='line'>  {% endif %}
 </span><span class='line'>{% endif %}
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>페이스북에 링크를 첨부해 상태를 올리면 메타 태그 기반으로 미리보기를 생성해 준다. 다만 트위터의 경우 사이트 등록이 필요하다. <a href="https://dev.twitter.com/docs/cards/validation/validator">카드 검사 도구</a> 페이지에서 사이트가 검사에 통과하면 도메인 인증 요청을 보낼 수 있다. 이 요청이 통과되면 트위터에서 사이트 링크를 트위터 카드로 만들어 보여준다.</p>
 
 <p>추가로 설정 가능한 몇 가지 옵션에 대해 설명하겠다.</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -340,14 +340,14 @@
 </span><span class='line'>    <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">summary_large_image</span>
 </span><span class='line'>    <span class="l-Scalar-Plain">image</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://example.com/path/to/image.png</span>
 </span><span class='line'><span class="nn">---</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>글에 <code>description</code> 태그를 사용하면 그 값이 description으로 사용된다. 만약 없다면 글 앞부분이 사용된다. <code>facebook</code> 태그 아래에 <code>image</code> 태그를 사용하면 페이스북의 미리보기 이미지로 사용된다. <code>twitter_card</code> 태그 아래의 <code>image</code>도 마찬가지이다. 추가로 <code>twitter_card</code> 태그 아래에 <code>type</code>을 명시할 수 있고, <code>creator</code> 태그를 사용하면 <code>_config.yml</code>의 <code>twitter_user</code> 대신 그 값을 사용한다. <code>facebook</code> 태그와 <code>twitter_card</code> 태그 모두 추가 옵션으로 입력하지 않아도 관계없다.</p>
 
 <p>위 코드가 모든 트위터 카드를 지원하는 것은 아니다. 기본적으로 <code>twitter_card</code>의 <code>image</code> 태그를 입력하면 <code>summary</code>, <code>summary_large_image</code>, <code>photo</code> 타입을 사용할 수 있다. <code>photo</code> 타입은 추가적인 태그를 사용할 수 있다.</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -375,14 +375,14 @@
 </span><span class='line'>    <span class="l-Scalar-Plain">width</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">640</span>
 </span><span class='line'>    <span class="l-Scalar-Plain">height</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">960</span>
 </span><span class='line'><span class="nn">---</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p><code>width</code> 태그와 <code>height</code> 태그는 사진의 크기를 나타내며 이 두 태그의 입력은 옵션이다. 자세한 사항은 <a href="https://dev.twitter.com/docs/cards/types/photo-card">Photo Card</a> 페이지에서 확인하길 바란다.</p>
 
 <p><code>gallery</code> 타입의 경우 추가로 필요한 태그가 있으며 예제는 다음과 같다:</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -412,7 +412,7 @@
 </span><span class='line'>    <span class="l-Scalar-Plain">image2</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://example.com/path/to/image2.png</span>
 </span><span class='line'>    <span class="l-Scalar-Plain">image3</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://example.com/path/to/image3.png</span>
 </span><span class='line'><span class="nn">---</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>원래 <a href="https://dev.twitter.com/docs/cards/types/gallery-card">Gallery Card</a>에 쓰이는 태그는 <code>image0</code>부터 <code>image3</code>까지지만 편의를 위해 <code>image0</code>은 <code>image</code> 태그로 대신했다. 이미지 4장의 주소가 모두 필요하다. 이 외의 카드 종류들은 필요로 하는 태그의 종류가 많고 일일이 입력하기에도 불편할 것 같아 구현하지 않았다.</p>

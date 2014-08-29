@@ -147,16 +147,16 @@
 
 <p>There is a <a href="http://jekyllrb.com">Jekyll</a> plugin that <a href="https://github.com/tsmango/jekyll_alias_generator">generates redirect pages for posts with aliases</a>. Octopress is based on Jekyll and this plugin has no compatibility problem. Its source is on GitHub, so I just added it as submodule:</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>git submodule add git@github.com:tsmango/jekyll_alias_generator plugins/jekyll_alias_generator
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>In your <code>_config.yml</code>, you may have this line:</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">plugins</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">plugins</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>Then it reads <code>plugins</code> directory and <code>alias_generator.rb</code> in <code>plugins/jekyll_alias_generator/_plugins/</code> directory is also loaded, so you can use and manage it!</p>
@@ -165,7 +165,7 @@
 
 <p>This plugin checks <code>alias</code> inside every post&rsquo;s YAML Front Matter. Just place the path of the alias:</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -175,12 +175,12 @@
 </span><span class='line'><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&quot;How</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Add</span><span class="nv"> </span><span class="s">Redirects</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Post</span><span class="nv"> </span><span class="s">URL</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Octopress&quot;</span>
 </span><span class='line'><span class="l-Scalar-Plain">alias</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/p/20140523</span>
 </span><span class='line'><span class="nn">---</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>Multiple aliases are also available:</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -190,12 +190,12 @@
 </span><span class='line'><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&quot;How</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Add</span><span class="nv"> </span><span class="s">Redirects</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Post</span><span class="nv"> </span><span class="s">URL</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Octopress&quot;</span>
 </span><span class='line'><span class="l-Scalar-Plain">alias</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">/one-alias/index.html</span><span class="p-Indicator">,</span> <span class="nv">/another-alias/index.html</span><span class="p-Indicator">]</span>
 </span><span class='line'><span class="nn">---</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>When I <code>rake generate</code>, the plugin generates static html file at <code>/p/20140523/index.html</code>:</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -211,7 +211,7 @@
 </span><span class='line'><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;refresh&quot;</span> <span class="na">content=</span><span class="s">&quot;0;url=/2014/05/23/how-to-add-redirects-to-post-url-on-octopress/&quot;</span> <span class="nt">/&gt;</span>
 </span><span class='line'><span class="nt">&lt;/head&gt;</span>
 </span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>When you go to <a href="/p/20140523">/p/20140523</a>, it will redirect here. It also has <a href="http://en.wikipedia.org/wiki/Canonical_link_element">canonical link</a>, so it won&rsquo;t affect search engine or web analysis services.</p>

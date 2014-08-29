@@ -156,7 +156,7 @@
 
 <p>Keybase provides several ways to prove own identity of a Twitter account, a GitHub account, websites and a bitcoin address. Still it can be done on the browser, also you can use <a href="https://keybase.io/docs/command_line">command line</a> for it. I proved <a href="https://github.com/yous">my GitHub</a> by <a href="https://gist.github.com/yous/149b0775d2ff02eac323">keybase.md</a> and <a href="http://yous.be">this site</a> by <a href="http://yous.be/keybase.txt">keybase.txt</a>. Also you can check it with command line like:</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -164,7 +164,7 @@
 </span><span class='line'>✔ public key fingerprint: 1BF1 AFE8 682E 45A2 11FF 2C0E 891B 7A9E 1D5A 400A
 </span><span class='line'>✔ <span class="s2">&quot;yous&quot;</span> on github: https://gist.github.com/149b0775d2ff02eac323
 </span><span class='line'>✔ admin of yous.be via HTTP: http://yous.be/keybase.txt
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 
@@ -178,18 +178,18 @@
 
 <p>At first, you should change directory to sign:</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>~ <span class="nv">$ </span><span class="nb">cd </span>Dropbox/Public
 </span><span class='line'>~/Dropbox/Public <span class="nv">$ </span>keybase dir sign
 </span><span class='line'>info: Success! Wrote SIGNED.md from 224 found items
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>then <code>~/Dropbox/Public/SIGNED.md</code> is generated. On same directory, veryfing directory is also possible with:</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -203,14 +203,14 @@
 </span><span class='line'>✔ admin of yous.be via HTTP: http://yous.be/keybase.txt
 </span><span class='line'>info: Signed 4 minutes ago <span class="o">(</span>Fri Jul 18 2014 20:06:31 GMT+0900 <span class="o">(</span>KST<span class="o">))</span>
 </span><span class='line'>info: Success! 1 signature<span class="o">(</span>s<span class="o">)</span> verified<span class="p">;</span> 224 items checked
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h2><a id="using-custom-email"></a>Using Custom Email</h2>
 
 <p>When you create public key on <a href="https://keybase.io">Keybase</a>, default UID has name as <code>keybase.io/&lt;username&gt;</code> and email as <code>&lt;username&gt;@keybase.io</code>. You can add UID with your real name and regular email. From <a href="http://superuser.com/questions/293184/one-gnupg-pgp-key-pair-two-emails">One GnuPG/PGP key pair, two emails?</a>:</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -234,37 +234,37 @@
 </span><span class='line'>Your decision? 5
 </span><span class='line'>Do you really want to <span class="nb">set </span>this key to ultimate trust? <span class="o">(</span>y/N<span class="o">)</span> y
 </span><span class='line'>gpg&gt; save
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <h2><a id="signing-commits"></a>Signing Commits</h2>
 
 <p>All the crypto of Keybase is performed with GPG, you can sign your tags and your commits. To setup your signing key, you need to get your key id by:</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>gpg --list-secret-keys <span class="p">|</span> grep <span class="s2">&quot;^sec&quot;</span>
 </span><span class='line'>sec   4096R/1D5A400A 2014-07-16
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>The <code>1D5A400A</code> part is your key id. Then simply you can set your signing key by:</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>git config --global user.signingkey 1D5A400A
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>Also</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>git config --global commit.gpgsign <span class="nb">true</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>makes Git to sign every commits:</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -290,12 +290,12 @@
 </span><span class='line'><span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> 6cdfc26<span class="o">]</span> Test commit of foo
 </span><span class='line'> <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
 </span><span class='line'> create mode <span class="m">100644</span> foo
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>After adding signed commits, you can see the signature of commits by using <code>--show-signature</code> option:</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -319,7 +319,7 @@
 </span><span class='line'>
 </span><span class='line'> foo <span class="p">|</span> <span class="m">1</span> +
 </span><span class='line'> <span class="m">1</span> file changed, <span class="m">1</span> insertion<span class="o">(</span>+<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>For more information, see <a href="http://mikegerwitz.com/papers/git-horror-story">A Git Horror Story: Repository Integrity With Signed Commits</a> by Mike Gerwitz.</p>

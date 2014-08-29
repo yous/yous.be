@@ -149,7 +149,7 @@
 
 <p>그런데 이 문제의 원인이 된 <a href="http://opensource.apple.com/source/Security/Security-55471/libsecurity_ssl/lib/sslKeyExchange.c">소스 코드</a>가 흥미롭다. Adam Langley의 <a href="https://www.imperialviolet.org/2014/02/22/applebug.html">이 버그에 관한 글</a>에 따르면 실제 소스는 이렇다:</p>
 
-<div class='bogus-wrapper'><notextile><figure class='code'><figcaption><span>sslKeyExchange.c</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span>sslKeyExchange.c</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -201,7 +201,7 @@
 </span><span class='line'>    <span class="k">return</span> <span class="n">err</span><span class="p">;</span>
 </span><span class='line'>
 </span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure></notextile></div>
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>단지 <code>goto fail;</code> 라인이 하나 더 있어서 <code>if</code>문과 관계 없이 두 번째 <code>goto</code>문이 실행되어 signature verification을 무조건 통과하게 된다.</p>
