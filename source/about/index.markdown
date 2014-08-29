@@ -67,9 +67,12 @@ ChaYoung You
     - [evangelion.jp](http://evangelion.jp) ([GitHub](https://github.com/yous/evangelion.jp))
         - [404.html](http://evangelion.jp/404.html)
         - [asuka.evangelion.jp](http://asuka.evangelion.jp)
+        - <asuka@evangelion.jp>
     - [asuka.moe](http://asuka.moe) ([GitHub](https://github.com/yous/asuka.moe))
         - [404.html](http://asuka.moe/404.html)
         - [cyborgs.txt](http://asuka.moe/cyborgs.txt)
+        - <my@asuka.moe>
+    - <asuka@chan.moe>
 - Puzzles
     - [Nonogram](http://en.wikipedia.org/wiki/Nonogram)
 - Games
