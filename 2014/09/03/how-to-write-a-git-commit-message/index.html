@@ -5,12 +5,12 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>Category: git - Yous</title>
+  <title>How to Write a Git Commit Message - Yous</title>
   <meta name="author" content="Yous">
 
   
-  <meta name="description" content="Category: git">
-  
+  <meta name="description" content="The seven rules of a great git commit message.">
+  <meta name="keywords" content="git, commit, commit message">
 
   <!-- http://t.co/dKP3o1e -->
   <meta name="HandheldFriendly" content="True">
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://yous.be/categories/git">
+  <link rel="canonical" href="http://yous.be/2014/09/03/how-to-write-a-git-commit-message">
   <link href="/favicon.png" rel="icon">
   <link href="/apple-touch-icon.png" rel="apple-touch-icon">
   <link href="/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76">
@@ -39,22 +39,25 @@
 <!-- Social media content metadata -->
 
   <meta property="fb:admins" content="100001802412550">
-  <meta property="og:title" content="Category: git">
+  <meta property="og:title" content="How to Write a Git Commit Message">
   <meta property="og:site_name" content="Yous">
-  <meta property="og:url" content="http://yous.be/categories/git">
-  <meta property="og:description" content="Category: git">
+  <meta property="og:url" content="http://yous.be/2014/09/03/how-to-write-a-git-commit-message">
+  <meta property="og:description" content="The seven rules of a great git commit message.">
   
   
-    <meta property="og:image" content="http://yous.be/images/about/Super-Hexagon.png">
+    <meta property="og:image" content="http://imgs.xkcd.com/comics/git_commit.png">
   
 
 <meta name="twitter:card" content="summary">
 
-<meta name="twitter:title" content="Category: git">
-<meta name="twitter:description" content="Category: git">
+<meta name="twitter:title" content="How to Write a Git Commit Message">
+<meta name="twitter:description" content="The seven rules of a great git commit message.">
 
 
-  <meta name="twitter:image:src" content="http://yous.be/images/about/Super-Hexagon.png">
+  
+    <meta name="twitter:image:src" content="http://imgs.xkcd.com/comics/git_commit.png">
+    
+  
 
 
   
@@ -119,63 +122,96 @@
   <div id="main">
     <div id="content">
       <div>
-<article role="article">
+<article class="hentry" role="article">
   
   <header>
-    <h1 class="entry-title">Category: git</h1>
+    
+      
+        <h1 class="entry-title"><a href="http://chris.beams.io/posts/git-commit/">How to Write a Git Commit Message &rarr;</a></h1>
+      
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-09-03T22:12:47+09:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>10:12 pm</span></time>
+        
+      </p>
     
   </header>
-  
-  <div id="blog-archives" class="category">
 
 
+<div class="entry-content"><p><a href="http://xkcd.com/1296/"><img src="http://imgs.xkcd.com/comics/git_commit.png" alt="Git Commit" /></a></p>
 
-  
-  <h2>2014</h2>
+<blockquote><h2>The seven rules of a great git commit message</h2>
 
-<article>
-  
-<h1><a href="/2014/09/03/how-to-write-a-git-commit-message/">How to Write a Git Commit Message &rarr;</a></h1>
-<time datetime="2014-09-03T22:12:47+09:00" pubdate><span class='month'>Sep</span> <span class='day'>03</span> <span class='year'>2014</span></time>
+<blockquote><p>Keep in mind: <a href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">This</a> <a href="http://www.git-scm.com/book/en/Distributed-Git-Contributing-to-a-Project#Commit-Guidelines">has</a> <a href="https://github.com/torvalds/subsurface/blob/master/README#L82-109">all</a> <a href="http://who-t.blogspot.co.at/2009/12/on-commit-messages.html">been</a> <a href="https://github.com/erlang/otp/wiki/writing-good-commit-messages">said</a> <a href="https://github.com/spring-projects/spring-framework/blob/30bce7/CONTRIBUTING.md#format-commit-messages">before</a>.</p></blockquote>
 
-<footer>
-  <span class="categories">posted in <a class='category' href='/categories/git/'>git</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/2014/03/31/trailing-whitespace-is-evil-dont-commit-evil-into-your-repo/">Trailing whitespace is evil. Don&#8217;t commit evil into your repo. &rarr;</a></h1>
-<time datetime="2014-03-31T20:57:09+09:00" pubdate><span class='month'>Mar</span> <span class='day'>31</span> <span class='year'>2014</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/categories/git/'>git</a></span>
-</footer>
-
-
-</article>
-
-
-
-<article>
-  
-<h1><a href="/2014/03/25/global-git-ignore/">Global Git Ignore &rarr;</a></h1>
-<time datetime="2014-03-25T20:49:32+09:00" pubdate><span class='month'>Mar</span> <span class='day'>25</span> <span class='year'>2014</span></time>
-
-<footer>
-  <span class="categories">posted in <a class='category' href='/categories/git/'>git</a></span>
-</footer>
-
-
-</article>
-
+<ol>
+<li><a href="http://chris.beams.io/posts/git-commit/#separate">Separate subject from body with a blank line</a></li>
+<li><a href="http://chris.beams.io/posts/git-commit/#limit-50">Limit the subject line to 50 characters</a></li>
+<li><a href="http://chris.beams.io/posts/git-commit/#capitalize">Capitalize the subject line</a></li>
+<li><a href="http://chris.beams.io/posts/git-commit/#end">Do not end the subject line with a period</a></li>
+<li><a href="http://chris.beams.io/posts/git-commit/#imperative">Use the imperative mood in the subject line</a></li>
+<li><a href="http://chris.beams.io/posts/git-commit/#wrap-72">Wrap the body at 72 characters</a></li>
+<li><a href="http://chris.beams.io/posts/git-commit/#why-not-how">Use the body to explain <em>what</em> and <em>why</em> vs. <em>how</em></a></li>
+</ol>
+</blockquote>
 </div>
 
+
+  <footer>
+    <p class="meta">
+      
   
+
+
+
+  <span class="byline author vcard">Authored by <span class="fn">
+  
+    Yous
+  
+  </span></span>
+
+
+      
+
+
+
+
+<time class='entry-date' datetime='2014-09-03T22:12:47+09:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>10:12 pm</span></time>
+      
+
+<span class="categories">
+  
+    <a class='category' href='/categories/git/'>git</a>
+  
+</span>
+
+
+    </p>
+    
+      <div class="sharing">
+  
+  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://yous.be/2014/09/03/how-to-write-a-git-commit-message/" data-via="" data-counturl="http://yous.be/2014/09/03/how-to-write-a-git-commit-message/" >Tweet</a>
+  
+  
+  
+    <div class="fb-like" data-send="true" data-width="450" data-show-faces="false"></div>
+  
+</div>
+
+    
+    <p class="meta">
+      
+        <a class="basic-alignment left" href="/2014/08/05/zsh-no-matches-found/" title="Previous Post: zsh: no matches found">&laquo; zsh: no matches found</a>
+      
+      
+    </p>
+  </footer>
 </article>
 
 
@@ -198,19 +234,6 @@
 
 </footer>
   
-
-<script type="text/javascript">
-      var disqus_shortname = 'yousbe';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
 
 
 

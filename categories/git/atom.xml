@@ -4,7 +4,7 @@
   <title><![CDATA[Category: git | Yous]]></title>
   <link href="http://yous.be/categories/git/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-09-03T00:58:37+09:00</updated>
+  <updated>2014-09-03T22:32:32+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -12,6 +12,30 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[How to Write a Git Commit Message]]></title>
+    <link href="http://yous.be/2014/09/03/how-to-write-a-git-commit-message/"/>
+    <updated>2014-09-03T22:12:47+09:00</updated>
+    <id>http://yous.be/2014/09/03/how-to-write-a-git-commit-message</id>
+    <content type="html"><![CDATA[<p><a href="http://xkcd.com/1296/"><img src="http://imgs.xkcd.com/comics/git_commit.png" alt="Git Commit" /></a></p>
+
+<blockquote><h2>The seven rules of a great git commit message</h2>
+
+<blockquote><p>Keep in mind: <a href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">This</a> <a href="http://www.git-scm.com/book/en/Distributed-Git-Contributing-to-a-Project#Commit-Guidelines">has</a> <a href="https://github.com/torvalds/subsurface/blob/master/README#L82-109">all</a> <a href="http://who-t.blogspot.co.at/2009/12/on-commit-messages.html">been</a> <a href="https://github.com/erlang/otp/wiki/writing-good-commit-messages">said</a> <a href="https://github.com/spring-projects/spring-framework/blob/30bce7/CONTRIBUTING.md#format-commit-messages">before</a>.</p></blockquote>
+
+<ol>
+<li><a href="http://chris.beams.io/posts/git-commit/#separate">Separate subject from body with a blank line</a></li>
+<li><a href="http://chris.beams.io/posts/git-commit/#limit-50">Limit the subject line to 50 characters</a></li>
+<li><a href="http://chris.beams.io/posts/git-commit/#capitalize">Capitalize the subject line</a></li>
+<li><a href="http://chris.beams.io/posts/git-commit/#end">Do not end the subject line with a period</a></li>
+<li><a href="http://chris.beams.io/posts/git-commit/#imperative">Use the imperative mood in the subject line</a></li>
+<li><a href="http://chris.beams.io/posts/git-commit/#wrap-72">Wrap the body at 72 characters</a></li>
+<li><a href="http://chris.beams.io/posts/git-commit/#why-not-how">Use the body to explain <em>what</em> and <em>why</em> vs. <em>how</em></a></li>
+</ol>
+</blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Trailing whitespace is evil. Don't commit evil into your repo.]]></title>

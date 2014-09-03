@@ -126,6 +126,40 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2014/02/24/support-facebook-open-graph-and-twitter-cards-on-octopress/">Octopress에서 Facebook Open Graph와 Twitter Cards 지원하기</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-02-24T21:50:36+09:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>24</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>9:50 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><p>블로그에 글을 쓰고 나면 트위터나 페이스북에 링크를 공유하곤 하는데 페이스북의 미리보기가 적절히 표시되지 않고 있다는 사실을 깨달았다. 또한 트위터도 그와 비슷한 기능을 제공하는데, 둘 다 지원하면 좋겠다는 생각을 했다. 이를 제대로 지원하려면 <a href="https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#tags">Facebook Open Graph tags</a>와 <a href="https://dev.twitter.com/docs/cards">Twitter Cards</a>에 대해 알아야 한다. 웹 페이지에 적절한 <a href="http://en.wikipedia.org/wiki/Meta_element">메타 태그</a>를 추가해 주면 페이스북과 트위터에서 인식하고 올바른, 작성자가 의도한 미리보기를 보여준다. 기본적으로 Zac Clancy가 쓴 <a href="http://blackglasses.me/2013/09/19/twitter-cards-facebook-open-graph-and-octopress/">Octopress에서 이 두 가지를 지원하는 글</a>에 상세히 설명되어 있다.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2014/02/24/support-facebook-open-graph-and-twitter-cards-on-octopress/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2014/02/23/apples-ssl-tls-bug/">Apple&#8217;s SSL/TLS bug &rarr;</a></h1>
     
     
@@ -399,154 +433,6 @@
   
     <footer>
       <a rel="full-article" href="/2013/12/04/tomorrow-theme-in-octopress/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2013/12/03/syntax-highlighting-test/">Syntax Highlighting Test</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-12-03T05:40:30+09:00'><span class='date'><span class='date-month'>Dec</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2013</span></span> <span class='time'>5:40 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><figure class='code'><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>So guys
-</span><span class='line'>whats up</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span> (test.js)</span> <a href='/downloads/code/test.js'>download</a></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='js'><span class='line'><span class="cm">/**</span>
-</span><span class='line'><span class="cm">sample javascript from xui</span>
-</span><span class='line'><span class="cm">*/</span>
-</span><span class='line'>
-</span><span class='line'><span class="kd">var</span> <span class="kc">undefined</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">xui</span><span class="p">,</span>
-</span><span class='line'>    <span class="nb">window</span>     <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">string</span>     <span class="o">=</span> <span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="s1">&#39;string&#39;</span><span class="p">),</span>
-</span><span class='line'>    <span class="nb">document</span>   <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nb">document</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">simpleExpr</span> <span class="o">=</span> <span class="sr">/^#?([\w-]+)$/</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">idExpr</span>     <span class="o">=</span> <span class="sr">/^#/</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">tagExpr</span>    <span class="o">=</span> <span class="sr">/&lt;([\w:]+)/</span><span class="p">,</span>
-</span><span class='line'>    <span class="nx">slice</span>      <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">[].</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="p">};</span>
-</span><span class='line'>    <span class="k">try</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">slice</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">nodeType</span><span class="p">;</span> <span class="p">}</span>
-</span><span class='line'>    <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span> <span class="nx">slice</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">ret</span><span class="o">=</span><span class="p">[];</span> <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
-</span><span class='line'>        <span class="nx">ret</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span> <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span> <span class="p">};</span> <span class="p">}</span>
-</span><span class='line'>
-</span><span class='line'><span class="nb">window</span><span class="p">.</span><span class="nx">x$</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">xui</span> <span class="o">=</span> <span class="nx">xui</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>    <span class="k">return</span> <span class="k">new</span> <span class="nx">xui</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">);</span>
-</span><span class='line'><span class="p">};</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html PUBLIC &quot;-//W3C//DTD HTML 4.01 Transitional//EN&quot;&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;&lt;head&gt;</span>
-</span><span class='line'><span class="nt">&lt;title&gt;</span>A Tiny Page<span class="nt">&lt;/title&gt;</span>
-</span><span class='line'><span class="nt">&lt;style </span><span class="na">type=</span><span class="s">&quot;text/css&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'><span class="o">&lt;!</span><span class="nt">--</span>
-</span><span class='line'>      <span class="nt">p</span> <span class="p">{</span> <span class="k">font-size</span><span class="o">:</span><span class="m">15pt</span><span class="p">;</span> <span class="k">color</span><span class="o">:</span><span class="m">#000</span> <span class="p">}</span>
-</span><span class='line'>    <span class="nt">--</span><span class="o">&gt;</span>
-</span><span class='line'><span class="nt">&lt;/style&gt;&lt;/head&gt;</span><span class="c">&lt;!-- real comment --&gt;</span>
-</span><span class='line'><span class="nt">&lt;body</span> <span class="na">bgcolor=</span><span class="s">&quot;#FFFFFF&quot;</span> <span class="na">text=</span><span class="s">&quot;#000000&quot;</span> <span class="na">link=</span><span class="s">&quot;#0000CC&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'><span class="nt">&lt;script </span><span class="na">language=</span><span class="s">&quot;javascript&quot;</span> <span class="na">type=</span><span class="s">&quot;text/javascript&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>      <span class="kd">function</span> <span class="nx">changeHeight</span><span class="p">(</span><span class="nx">h</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>        <span class="kd">var</span> <span class="nx">tds</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="s2">&quot;td&quot;</span><span class="p">);</span>
-</span><span class='line'>        <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">tds</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-</span><span class='line'>          <span class="nx">tds</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">setAttribute</span><span class="p">(</span><span class="s2">&quot;height&quot;</span><span class="p">,</span> <span class="nx">h</span> <span class="o">+</span> <span class="s2">&quot;px&quot;</span><span class="p">);</span>
-</span><span class='line'>      <span class="p">}}</span>
-</span><span class='line'><span class="nt">&lt;/script&gt;</span>
-</span><span class='line'><span class="nt">&lt;h1&gt;</span>abc<span class="nt">&lt;/h1&gt;</span>
-</span><span class='line'><span class="nt">&lt;h2&gt;</span>def<span class="nt">&lt;/h2&gt;</span>
-</span><span class='line'><span class="nt">&lt;p&gt;</span>Testing page<span class="nt">&lt;/p&gt;</span>
-</span><span class='line'><span class="nt">&lt;/body&gt;&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-
-
-<div><script src='https://gist.github.com/2219214.js'></script>
-<noscript><pre><code>desc &quot;Edit a post (defaults to most recent)&quot;
-task :edit_post, :title do |t, args|
-  args.with_defaults(:title =&gt; false)
-  posts = Dir.glob(&quot;#{source_dir}/#{posts_dir}/*.*&quot;)
-  post = (args.title) ? post = posts.keep_if {|post| post =~ /#{args.title}/}.last : posts.last
-  if post
-    puts &quot;Opening #{post} with #{editor}...&quot;
-    system &quot;#{ENV[&#39;EDITOR&#39;]} #{post} &amp;&quot;
-  else
-    puts &quot;No posts were found with \&quot;#{args.title}\&quot; in the title.&quot;
-  end
-end</code></pre></noscript></div>
-
-
-
-
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2013/12/03/syntax-highlighting-test/">Read on &rarr;</a>
     </footer>
   
 
