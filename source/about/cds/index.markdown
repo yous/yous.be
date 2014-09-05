@@ -282,3 +282,5 @@ footer: false
 273. Crush --- Crush On You
 274. Nas --- Illmatic XX
 275. Ra.D --- Soundz
+276. 소리헤다 --- 소리헤다
+277. Idiotape --- Tours
