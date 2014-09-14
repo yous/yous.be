@@ -4,6 +4,7 @@
 // Please edit specifications in place if you are building an other theme!
 .highlight .line-numbers, html .gist .gist-file .gist-syntax .highlight .line_numbers {
   @include box-shadow(none);
+  text-shadow: none;
 }
 
 html .gist .gist-file .gist-meta {
