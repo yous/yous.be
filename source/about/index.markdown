@@ -42,8 +42,8 @@ ChaYoung You
 
 ## <a id="code"></a>Code
 
-- [GitHub](https://github.com/yous)
-- [Bitbucket](https://bitbucket.org/yous)
+- GitHub: [@yous](https://github.com/yous)
+- Bitbucket: [@yous](https://bitbucket.org/yous)
 
 ## <a id="interests"></a>Interests
 
