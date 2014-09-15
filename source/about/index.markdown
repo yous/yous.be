@@ -22,6 +22,17 @@ ChaYoung You
 - <yous@yous.be>
 - [keybase.io/yous](https://keybase.io/yous)
 
+## <a id="projects"></a>Projects
+
+- [스터디 헬퍼](https://play.google.com/store/apps/details?id=kr.co.tamseng.StudyHelper)
+- [Raheui](https://github.com/yous/raheui) --- Aheui interpreter in Ruby.
+- [aheui.vim](https://github.com/yous/aheui.vim) --- Vim syntax highlighting for Aheui.
+
+## <a id="code"></a>Code
+
+- GitHub: [@yous](https://github.com/yous)
+- Bitbucket: [@yous](https://bitbucket.org/yous)
+
 ## <a id="blog"></a>Blog
 
 - [Yous](http://yous.be)  
@@ -33,17 +44,6 @@ ChaYoung You
 
 - [Yous Lyrics](http://lyrics.yous.be)  
     Favorite lyric quotes blog hosted on [Tumblr](https://www.tumblr.com).
-
-## <a id="projects"></a>Projects
-
-- [스터디 헬퍼](https://play.google.com/store/apps/details?id=kr.co.tamseng.StudyHelper)
-- [Raheui](https://github.com/yous/raheui) --- Aheui interpreter in Ruby.
-- [aheui.vim](https://github.com/yous/aheui.vim) --- Vim syntax highlighting for Aheui.
-
-## <a id="code"></a>Code
-
-- GitHub: [@yous](https://github.com/yous)
-- Bitbucket: [@yous](https://bitbucket.org/yous)
 
 ## <a id="interests"></a>Interests
 
