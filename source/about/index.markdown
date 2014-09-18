@@ -26,7 +26,10 @@ ChaYoung You
 
 - [스터디 헬퍼](https://play.google.com/store/apps/details?id=kr.co.tamseng.StudyHelper)
 - [Raheui](https://github.com/yous/raheui) --- Aheui interpreter in Ruby.
+- [zsh-themes](https://github.com/yous/zsh-themes) --- Custom Zsh themes.
 - [aheui.vim](https://github.com/yous/aheui.vim) --- Vim syntax highlighting for Aheui.
+- [pad_monster_book](https://github.com/yous/pad_monster_book) --- The monster book for Puzzle & Dragons.
+- [YousList](https://github.com/yous/YousList) --- Adblock Plus filter.
 
 ## <a id="code"></a>Code
 
