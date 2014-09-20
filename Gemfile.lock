@@ -50,7 +50,7 @@ GEM
     jekyll-sitemap (0.6.0)
     jekyll-watch (1.1.1)
       listen (~> 2.7)
-    kramdown (1.4.1)
+    kramdown (1.4.2)
     liquid (2.6.1)
     listen (2.7.9)
       celluloid (>= 0.15.2)
