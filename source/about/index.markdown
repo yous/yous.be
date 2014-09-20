@@ -33,8 +33,8 @@ ChaYoung You
 
 ## <a id="code"></a>Code
 
-- GitHub: [@yous](https://github.com/yous)
-- Bitbucket: [@yous](https://bitbucket.org/yous)
+- [@yous](https://github.com/yous) on GitHub
+- [@yous](https://bitbucket.org/yous) on Bitbucket
 
 ## <a id="blog"></a>Blog
 
