@@ -39,11 +39,7 @@ ChaYoung You
 ## <a id="blog"></a>Blog
 
 - [Yous](http://yous.be)  
-    What you see now. Hosted on [GitHub Pages][] and all articles are written using [Markdown][]. The source is available in [GitHub repo][].
-
-[GitHub Pages]: http://pages.github.com
-[Markdown]: http://daringfireball.net/projects/markdown/
-[GitHub repo]: https://github.com/yous/yous.github.io
+    What you see now. Hosted on [GitHub Pages][] and all articles are written using [Markdown][]. The source is available in [GitHub repo][yous.github.io].
 
 - [Yous Lyrics](http://lyrics.yous.be)  
     Favorite lyric quotes blog hosted on [Tumblr](https://www.tumblr.com).
@@ -63,8 +59,8 @@ ChaYoung You
 ## <a id="likes"></a>Likes
 
 - Music
-    - Collecting [CDs](/about/cds)
-    - [Korean Hip-Hop](http://hiphopplaya.com)
+    - Collecting [CDs](/about/cds/)
+    - Korean Hip-Hop
         - Epik High (Tablo [@blobyblo][], DJ Tukutz [@Tukutz81][], Mithra眞 [@realmithrajin][])
         - Paloalto [@OfficialPalo][]
 - [Evangelion](http://www.evangelion.co.jp)
@@ -93,6 +89,9 @@ ChaYoung You
 - [Tomorrow Theme](https://github.com/chriskempson/tomorrow-theme)
 - [Happy Hacking Keyboard](http://www.pfu.fujitsu.com/hhkeyboard/)
 
+[GitHub Pages]: http://pages.github.com
+[Markdown]: http://daringfireball.net/projects/markdown/
+[yous.github.io]: https://github.com/yous/yous.github.io
 [@blobyblo]: https://twitter.com/blobyblo
 [@Tukutz81]: https://twitter.com/Tukutz81
 [@realmithrajin]: https://twitter.com/realmithrajin
