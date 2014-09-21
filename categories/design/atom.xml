@@ -4,7 +4,7 @@
   <title><![CDATA[Category: design | Yous]]></title>
   <link href="http://yous.be/categories/design/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-09-20T20:55:40+09:00</updated>
+  <updated>2014-09-21T19:39:54+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -12,6 +12,33 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Yet Another Hex Word]]></title>
+    <link href="http://yous.be/2014/09/21/yet-another-hex-word/"/>
+    <updated>2014-09-21T05:59:49+09:00</updated>
+    <id>http://yous.be/2014/09/21/yet-another-hex-word</id>
+    <content type="html"><![CDATA[<p><img src="http://yous.be/images/2014/09/21/0ff1ce.svg" title="#0ff1ce" >
+<img src="http://yous.be/images/2014/09/21/10ca1e.svg" title="#10ca1e" >
+<img src="http://yous.be/images/2014/09/21/5afe57.svg" title="#5afe57" >
+<img src="http://yous.be/images/2014/09/21/50f7ba11.svg" title="#50f7ba11" >
+<img src="http://yous.be/images/2014/09/21/ad1da5.svg" title="#ad1da5" >
+<img src="http://yous.be/images/2014/09/21/b01dface.svg" title="#b01dface" >
+<img src="http://yous.be/images/2014/09/21/ba11ad.svg" title="#ba11ad" >
+<img src="http://yous.be/images/2014/09/21/ba5eba11.svg" title="#ba5eba11" >
+<img src="http://yous.be/images/2014/09/21/c0ffee.svg" title="#c0ffee" >
+<img src="http://yous.be/images/2014/09/21/ca7.svg" title="#ca7" >
+<img src="http://yous.be/images/2014/09/21/cafebabe.svg" title="#cafebabe" >
+<img src="http://yous.be/images/2014/09/21/d00d1e.svg" title="#d00d1e" >
+<img src="http://yous.be/images/2014/09/21/d1ab10.svg" title="#d1ab10" >
+<img src="http://yous.be/images/2014/09/21/dad.svg" title="#dad" >
+<img src="http://yous.be/images/2014/09/21/deadbeef.svg" title="#deadbeef" >
+<img src="http://yous.be/images/2014/09/21/defea7.svg" title="#defea7" >
+<img src="http://yous.be/images/2014/09/21/defec7.svg" title="#defec7" >
+<img src="http://yous.be/images/2014/09/21/defec7ed.svg" title="#defec7ed" >
+<img src="http://yous.be/images/2014/09/21/faceb00c.svg" title="#faceb00c" ></p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Introducing Source Han Sans: An open source Pan-CJK typeface]]></title>
