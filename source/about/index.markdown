@@ -61,20 +61,13 @@ ChaYoung You
 - Music
     - Collecting [CDs](/about/cds/)
     - Korean Hip-Hop
-        - Epik High (Tablo [@blobyblo][], DJ Tukutz [@Tukutz81][], Mithra眞 [@realmithrajin][])
-        - Paloalto [@OfficialPalo][]
 - [Evangelion](http://www.evangelion.co.jp)
     - [evangelion.jp](http://evangelion.jp) ([GitHub](https://github.com/yous/evangelion.jp))
-        - [asuka.evangelion.jp](http://asuka.evangelion.jp)
-        - <asuka@evangelion.jp>
     - [asuka.moe](http://asuka.moe) ([GitHub](https://github.com/yous/asuka.moe))
-        - [cyborgs.txt](http://asuka.moe/cyborgs.txt)
-        - <my@asuka.moe>
-    - <asuka@chan.moe>
 - Puzzles
     - [Nonogram](http://en.wikipedia.org/wiki/Nonogram)
     - [A Regular Crossword](http://web.mit.edu/puzzle/www/2013/coinheist.com/rubik/a_regular_crossword/index.html)
-    - [Regex Crossword](http://regexcrossword.com)
+    - [regexcrossword.com](http://regexcrossword.com)
 - Games
     - Rhythm games
         - [jubeat](http://s.ubit.info/yous)
@@ -84,15 +77,7 @@ ChaYoung You
     - [Super Hexagon](http://superhexagon.com)
     - [Monument Valley](http://www.monumentvalleygame.com)
     - [Portal 2](http://www.thinkwithportals.com)
-- [Markdown][]
-- [Vim](http://www.vim.org)
-- [Tomorrow Theme](https://github.com/chriskempson/tomorrow-theme)
-- [Happy Hacking Keyboard](http://www.pfu.fujitsu.com/hhkeyboard/)
 
 [GitHub Pages]: http://pages.github.com
 [Markdown]: http://daringfireball.net/projects/markdown/
 [yous.github.io]: https://github.com/yous/yous.github.io
-[@blobyblo]: https://twitter.com/blobyblo
-[@Tukutz81]: https://twitter.com/Tukutz81
-[@realmithrajin]: https://twitter.com/realmithrajin
-[@OfficialPalo]: https://twitter.com/OfficialPalo
