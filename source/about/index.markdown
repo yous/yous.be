@@ -62,17 +62,16 @@ ChaYoung You
 
 ## <a id="likes"></a>Likes
 
-- Collecting [CDs](/about/cds)
-- [Korean Hip-Hop](http://hiphopplaya.com)
-    - Epik High (Tablo [@blobyblo][], DJ Tukutz [@Tukutz81][], Mithra眞 [@realmithrajin][])
-    - Paloalto [@OfficialPalo][]
+- Music
+    - Collecting [CDs](/about/cds)
+    - [Korean Hip-Hop](http://hiphopplaya.com)
+        - Epik High (Tablo [@blobyblo][], DJ Tukutz [@Tukutz81][], Mithra眞 [@realmithrajin][])
+        - Paloalto [@OfficialPalo][]
 - [Evangelion](http://www.evangelion.co.jp)
     - [evangelion.jp](http://evangelion.jp) ([GitHub](https://github.com/yous/evangelion.jp))
-        - [404.html](http://evangelion.jp/404.html)
         - [asuka.evangelion.jp](http://asuka.evangelion.jp)
         - <asuka@evangelion.jp>
     - [asuka.moe](http://asuka.moe) ([GitHub](https://github.com/yous/asuka.moe))
-        - [404.html](http://asuka.moe/404.html)
         - [cyborgs.txt](http://asuka.moe/cyborgs.txt)
         - <my@asuka.moe>
     - <asuka@chan.moe>
@@ -93,7 +92,6 @@ ChaYoung You
 - [Vim](http://www.vim.org)
 - [Tomorrow Theme](https://github.com/chriskempson/tomorrow-theme)
 - [Happy Hacking Keyboard](http://www.pfu.fujitsu.com/hhkeyboard/)
-- [세벌식 자판](http://ko.wikipedia.org/wiki/세벌식_자판)
 
 [@blobyblo]: https://twitter.com/blobyblo
 [@Tukutz81]: https://twitter.com/Tukutz81
