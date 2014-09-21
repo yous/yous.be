@@ -78,6 +78,8 @@ ChaYoung You
     - <asuka@chan.moe>
 - Puzzles
     - [Nonogram](http://en.wikipedia.org/wiki/Nonogram)
+    - [A Regular Crossword](http://web.mit.edu/puzzle/www/2013/coinheist.com/rubik/a_regular_crossword/index.html)
+    - [Regex Crossword](http://regexcrossword.com)
 - Games
     - Rhythm games
         - [jubeat](http://s.ubit.info/yous)
