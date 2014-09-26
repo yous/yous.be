@@ -284,3 +284,5 @@ footer: false
 275. Ra.D --- Soundz
 276. 소리헤다 --- 소리헤다
 277. Idiotape --- Tours
+278. WUTAN & BUGGY --- HOL!DAY
+279. The Quiett --- AMBITIQN (Reissue)
