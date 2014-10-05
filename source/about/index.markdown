@@ -30,6 +30,7 @@ ChaYoung You
 - [aheui.vim](https://github.com/yous/aheui.vim) --- Vim syntax highlighting for Aheui.
 - [pad_monster_book](https://github.com/yous/pad_monster_book) --- The monster book for Puzzle & Dragons.
 - [YousList](https://github.com/yous/YousList) --- Adblock Plus filter.
+- [Dwaet](https://github.com/yous/dwaet) --- No doet, it's dwaet.
 
 ## <a id="code"></a>Code
 
