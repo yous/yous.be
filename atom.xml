@@ -4,7 +4,7 @@
   <title><![CDATA[Yous]]></title>
   <link href="http://yous.be/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-10-06T01:58:34+09:00</updated>
+  <updated>2014-10-06T02:00:30+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -205,7 +205,7 @@
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>~ <span class="nv">$ </span><span class="nb">cd </span>Dropbox/Public
 </span><span class='line'>~/Dropbox/Public <span class="nv">$ </span>keybase dir sign
-</span><span class='line'>info: Success! Wrote SIGNED.md from 224 found items
+</span><span class='line'>info: Success! Wrote SIGNED.md from <span class="m">224</span> found items
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -223,8 +223,8 @@
 </span><span class='line'>✔ public key fingerprint: 1BF1 AFE8 682E 45A2 11FF 2C0E 891B 7A9E 1D5A 400A
 </span><span class='line'>✔ <span class="s2">&quot;yous&quot;</span> on github: https://gist.github.com/149b0775d2ff02eac323
 </span><span class='line'>✔ admin of yous.be via HTTP: http://yous.be/keybase.txt
-</span><span class='line'>info: Signed 4 minutes ago <span class="o">(</span>Fri Jul 18 2014 20:06:31 GMT+0900 <span class="o">(</span>KST<span class="o">))</span>
-</span><span class='line'>info: Success! 1 signature<span class="o">(</span>s<span class="o">)</span> verified<span class="p">;</span> 224 items checked
+</span><span class='line'>info: Signed <span class="m">4</span> minutes ago <span class="o">(</span>Fri Jul <span class="m">18</span> <span class="m">2014</span> 20:06:31 GMT+0900 <span class="o">(</span>KST<span class="o">))</span>
+</span><span class='line'>info: Success! <span class="m">1</span> signature<span class="o">(</span>s<span class="o">)</span> verified<span class="p">;</span> <span class="m">224</span> items checked
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -910,11 +910,11 @@ index 50e9404..76102db 100644
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="nb">highlight</span> ExtraWhitespace ctermbg<span class="p">=</span><span class="k">red</span> guibg<span class="p">=</span><span class="k">red</span>
-</span><span class='line'>autocmd <span class="nb">BufWinEnter</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">/\s\+$/</span>
-</span><span class='line'>autocmd <span class="nb">InsertEnter</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">//</span>
-</span><span class='line'>autocmd <span class="nb">InsertLeave</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">/\s\+$/</span>
+</span><span class='line'><span class="k">autocmd</span> <span class="nb">BufWinEnter</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">/\s\+$/</span>
+</span><span class='line'><span class="k">autocmd</span> <span class="nb">InsertEnter</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">//</span>
+</span><span class='line'><span class="k">autocmd</span> <span class="nb">InsertLeave</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">/\s\+$/</span>
 </span><span class='line'><span class="k">if</span> <span class="k">version</span> <span class="p">&gt;=</span> <span class="m">702</span>
-</span><span class='line'>  autocmd <span class="nb">BufWinLeave</span> * <span class="k">call</span> clearmatches<span class="p">()</span>
+</span><span class='line'>  <span class="k">autocmd</span> <span class="nb">BufWinLeave</span> * <span class="k">call</span> clearmatches<span class="p">()</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -1285,8 +1285,8 @@ index 50e9404..76102db 100644
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span><span class="k">while </span><span class="nb">true</span><span class="p">;</span> <span class="k">do </span>nc -vv -l -p 4444 -e ./ropasaurusrex<span class="p">;</span> <span class="k">done</span>
-</span><span class='line'>listening on <span class="o">[</span>any<span class="o">]</span> 4444 ...
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span><span class="k">while</span> <span class="nb">true</span><span class="p">;</span> <span class="k">do</span> nc -vv -l -p <span class="m">4444</span> -e ./ropasaurusrex<span class="p">;</span> <span class="k">done</span>
+</span><span class='line'>listening on <span class="o">[</span>any<span class="o">]</span> <span class="m">4444</span> ...
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -1386,7 +1386,7 @@ index 50e9404..76102db 100644
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>objdump -x ropasaurusrex  <span class="p">|</span> grep -A1 <span class="s1">&#39;\.data&#39;</span>
-</span><span class='line'> 23 .data         00000008  08049620  08049620  00000620  2**2
+</span><span class='line'> <span class="m">23</span> .data         <span class="m">00000008</span>  <span class="m">08049620</span>  <span class="m">08049620</span>  <span class="m">00000620</span>  2**2
 </span><span class='line'>                   CONTENTS, ALLOC, LOAD, DATA
 </span></code></pre></td></tr></table></div></figure>
 
@@ -1395,7 +1395,7 @@ index 50e9404..76102db 100644
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'> 20 .dynamic      000000d0  08049530  08049530  00000530  2**2
+</pre></td><td class='code'><pre><code class='sh'><span class='line'> <span class="m">20</span> .dynamic      000000d0  <span class="m">08049530</span>  <span class="m">08049530</span>  <span class="m">00000530</span>  2**2
 </span><span class='line'>                   CONTENTS, ALLOC, LOAD, DATA
 </span></code></pre></td></tr></table></div></figure>
 
@@ -1421,10 +1421,10 @@ index 50e9404..76102db 100644
 </span><span class='line'>
 </span><span class='line'>DYNAMIC RELOCATION RECORDS
 </span><span class='line'>OFFSET   TYPE              VALUE
-</span><span class='line'>08049600 R_386_GLOB_DAT    __gmon_start__
-</span><span class='line'>08049610 R_386_JUMP_SLOT   __gmon_start__
-</span><span class='line'>08049614 R_386_JUMP_SLOT   write
-</span><span class='line'>08049618 R_386_JUMP_SLOT   __libc_start_main
+</span><span class='line'><span class="m">08049600</span> R_386_GLOB_DAT    __gmon_start__
+</span><span class='line'><span class="m">08049610</span> R_386_JUMP_SLOT   __gmon_start__
+</span><span class='line'><span class="m">08049614</span> R_386_JUMP_SLOT   write
+</span><span class='line'><span class="m">08049618</span> R_386_JUMP_SLOT   __libc_start_main
 </span><span class='line'>0804961c R_386_JUMP_SLOT   <span class="nb">read</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -1561,7 +1561,7 @@ index 50e9404..76102db 100644
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>listening on <span class="o">[</span>any<span class="o">]</span> 4444 ...
+</pre></td><td class='code'><pre><code class='sh'><span class='line'>listening on <span class="o">[</span>any<span class="o">]</span> <span class="m">4444</span> ...
 </span><span class='line'>connect to <span class="o">[</span>127.0.0.1<span class="o">]</span> from debian-x86.skullseclabs.org <span class="o">[</span>127.0.0.1<span class="o">]</span> 53456
 </span><span class='line'>Segmentation fault <span class="o">(</span>core dumped<span class="o">)</span>
 </span></code></pre></td></tr></table></div></figure>
@@ -1608,9 +1608,9 @@ index 50e9404..76102db 100644
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
 </pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>objdump -T /lib/i686/cmov/libc.so.6 <span class="p">|</span> grep system
-</span><span class='line'>000f5470 g    DF .text  00000042  GLIBC_2.0   svcerr_systemerr
-</span><span class='line'>00039450 g    DF .text  0000007d  GLIBC_PRIVATE __libc_system
-</span><span class='line'>00039450  w   DF .text  0000007d  GLIBC_2.0   system
+</span><span class='line'>000f5470 g    DF .text  <span class="m">00000042</span>  GLIBC_2.0   svcerr_systemerr
+</span><span class='line'><span class="m">00039450</span> g    DF .text  0000007d  GLIBC_PRIVATE __libc_system
+</span><span class='line'><span class="m">00039450</span>  w   DF .text  0000007d  GLIBC_2.0   system
 </span></code></pre></td></tr></table></div></figure>
 
 
@@ -2213,10 +2213,10 @@ index 50e9404..76102db 100644
 </span><span class='line'>
 </span><span class='line'>DYNAMIC RELOCATION RECORDS
 </span><span class='line'>OFFSET   TYPE              VALUE
-</span><span class='line'>08049600 R_386_GLOB_DAT    __gmon_start__
-</span><span class='line'>08049610 R_386_JUMP_SLOT   __gmon_start__
-</span><span class='line'>08049614 R_386_JUMP_SLOT   write
-</span><span class='line'>08049618 R_386_JUMP_SLOT   __libc_start_main
+</span><span class='line'><span class="m">08049600</span> R_386_GLOB_DAT    __gmon_start__
+</span><span class='line'><span class="m">08049610</span> R_386_JUMP_SLOT   __gmon_start__
+</span><span class='line'><span class="m">08049614</span> R_386_JUMP_SLOT   write
+</span><span class='line'><span class="m">08049618</span> R_386_JUMP_SLOT   __libc_start_main
 </span><span class='line'>0804961c R_386_JUMP_SLOT   <span class="nb">read</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -2632,7 +2632,7 @@ index 50e9404..76102db 100644
 </span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>ruby sploit.rb <span class="s2">&quot;nc -vv -l -p 5555 -e /bin/sh&quot;</span> <span class="p">&amp;</span>
 </span><span class='line'><span class="o">[</span>1<span class="o">]</span> 3015
 </span><span class='line'>ron@debian-x86 ~ <span class="nv">$ </span>nc -vv localhost 5555
-</span><span class='line'>debian-x86.skullseclabs.org <span class="o">[</span>127.0.0.1<span class="o">]</span> 5555 <span class="o">(</span>?<span class="o">)</span> open
+</span><span class='line'>debian-x86.skullseclabs.org <span class="o">[</span>127.0.0.1<span class="o">]</span> <span class="m">5555</span> <span class="o">(</span>?<span class="o">)</span> open
 </span><span class='line'><span class="nb">pwd</span>
 </span><span class='line'>/home/ron
 </span><span class='line'>whoami
@@ -3008,7 +3008,7 @@ index 50e9404..76102db 100644
 </span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
 </span><span class='line'>    <span class="p">...</span>
 </span><span class='line'>
-</span><span class='line'><span class="nl">fail:</span>
+</span><span class='line'><span class="nl">fail</span><span class="p">:</span>
 </span><span class='line'>    <span class="n">SSLFreeBuffer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">signedHashes</span><span class="p">);</span>
 </span><span class='line'>    <span class="n">SSLFreeBuffer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">);</span>
 </span><span class='line'>    <span class="k">return</span> <span class="n">err</span><span class="p">;</span>
@@ -3061,11 +3061,11 @@ index 50e9404..76102db 100644
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
 </pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="nb">highlight</span> ExtraWhitespace ctermbg<span class="p">=</span><span class="k">red</span> guibg<span class="p">=</span><span class="k">red</span>
-</span><span class='line'>autocmd <span class="nb">BufWinEnter</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">/\s\+$/</span>
-</span><span class='line'>autocmd <span class="nb">InsertEnter</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">//</span>
-</span><span class='line'>autocmd <span class="nb">InsertLeave</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">/\s\+$/</span>
+</span><span class='line'><span class="k">autocmd</span> <span class="nb">BufWinEnter</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">/\s\+$/</span>
+</span><span class='line'><span class="k">autocmd</span> <span class="nb">InsertEnter</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">//</span>
+</span><span class='line'><span class="k">autocmd</span> <span class="nb">InsertLeave</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">/\s\+$/</span>
 </span><span class='line'><span class="k">if</span> <span class="k">version</span> <span class="p">&gt;=</span> <span class="m">702</span>
-</span><span class='line'>  autocmd <span class="nb">BufWinLeave</span> * <span class="k">call</span> clearmatches<span class="p">()</span>
+</span><span class='line'>  <span class="k">autocmd</span> <span class="nb">BufWinLeave</span> * <span class="k">call</span> clearmatches<span class="p">()</span>
 </span><span class='line'><span class="k">end</span>
 </span></code></pre></td></tr></table></div></figure>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ios | Yous]]></title>
   <link href="http://yous.be/categories/ios/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-10-06T01:58:34+09:00</updated>
+  <updated>2014-10-06T02:00:30+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -137,7 +137,7 @@
 </span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
 </span><span class='line'>    <span class="p">...</span>
 </span><span class='line'>
-</span><span class='line'><span class="nl">fail:</span>
+</span><span class='line'><span class="nl">fail</span><span class="p">:</span>
 </span><span class='line'>    <span class="n">SSLFreeBuffer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">signedHashes</span><span class="p">);</span>
 </span><span class='line'>    <span class="n">SSLFreeBuffer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">);</span>
 </span><span class='line'>    <span class="k">return</span> <span class="n">err</span><span class="p">;</span>
