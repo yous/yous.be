@@ -4,7 +4,7 @@
   <title><![CDATA[Category: octopress | Yous]]></title>
   <link href="http://yous.be/categories/octopress/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-10-08T16:39:20+09:00</updated>
+  <updated>2014-10-08T19:09:29+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -227,7 +227,7 @@ index 50e9404..76102db 100644
 
 <h2><a id="facebook-open-graph-tags"></a>Facebook Open Graph Tags</h2>
 
-<p><img src="https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.2178/851562_1376970469205025_523101852_n.png"></p>
+<p><img src="http://yous.be/images/2014/02/24/facebook_open_graph.png" title="Facebook Open Graph" ></p>
 
 <p>페이스북에 웹 페이지가 제대로 인식되게 하려면 <a href="https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#tags">Open Graph 태그</a>를 이용해야 한다. 기본적으로 채워야 할 태그들은 다음과 같다:</p>
 
@@ -255,7 +255,7 @@ index 50e9404..76102db 100644
 
 <p><a href="https://dev.twitter.com/docs/cards">Twitter Cards</a>는 트윗 자체에 링크의 내용을 보여주는 &lsquo;카드&#8217;를 추가하는 기능이다.</p>
 
-<p><img src="https://dev.twitter.com/sites/default/files/images_documentation/web_summary_0.png"></p>
+<p><img src="http://yous.be/images/2014/02/24/twitter_card_summary.png" title="Twitter Summary Card" ></p>
 
 <p>카드의 종류는 7개가 있으며 원하는 용도에 따라 적절히 사용할 수 있다.</p>
 
@@ -270,7 +270,7 @@ index 50e9404..76102db 100644
 </ul>
 
 
-<p>트위터는 <a href="https://dev.twitter.com/docs/cards/validation/validator">카드 검사 도구</a>를 직접 제공하고 있으므로 각 종류의 카드가 어떻게 보이는지, 자신의 사이트가 제대로 인식되는지 테스트 해볼 수 있다.</p>
+<p>트위터는 <a href="https://cards-dev.twitter.com/validator">카드 검사 도구</a>를 직접 제공하고 있으므로 각 종류의 카드가 어떻게 보이는지, 자신의 사이트가 제대로 인식되는지 테스트 해볼 수 있다.</p>
 
 <h2><a id="support-in-octopress"></a>Octopress에서 지원하기</h2>
 
@@ -382,7 +382,7 @@ index 50e9404..76102db 100644
 </span></code></pre></td></tr></table></div></figure>
 
 
-<p>페이스북에 링크를 첨부해 상태를 올리면 메타 태그 기반으로 미리보기를 생성해 준다. 다만 트위터의 경우 사이트 등록이 필요하다. <a href="https://dev.twitter.com/docs/cards/validation/validator">카드 검사 도구</a> 페이지에서 사이트가 검사에 통과하면 도메인 인증 요청을 보낼 수 있다. 이 요청이 통과되면 트위터에서 사이트 링크를 트위터 카드로 만들어 보여준다.</p>
+<p>페이스북에 링크를 첨부해 상태를 올리면 메타 태그 기반으로 미리보기를 생성해 준다. 다만 트위터의 경우 사이트 등록이 필요하다. <a href="https://cards-dev.twitter.com/validator">카드 검사 도구</a> 페이지에서 사이트가 검사에 통과하면 도메인 인증 요청을 보낼 수 있다. 이 요청이 통과되면 트위터에서 사이트 링크를 트위터 카드로 만들어 보여준다.</p>
 
 <p>추가로 설정 가능한 몇 가지 옵션에 대해 설명하겠다.</p>
 
