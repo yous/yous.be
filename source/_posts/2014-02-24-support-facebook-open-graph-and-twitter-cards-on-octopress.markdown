@@ -8,9 +8,9 @@ categories:
 keywords: octopress, facebook, open graph, twitter, twitter card
 redirect_from: /p/20140224/
 facebook:
-    image: https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.2178/851562_1376970469205025_523101852_n.png
+    image: http://yous.be/images/2014/02/24/facebook_open_graph.png
 twitter_card:
-    image: https://dev.twitter.com/sites/default/files/images_documentation/web_summary_0.png
+    image: http://yous.be/images/2014/02/24/twitter_card_summary.png
 ---
 
 블로그에 글을 쓰고 나면 트위터나 페이스북에 링크를 공유하곤 하는데 페이스북의 미리보기가 적절히 표시되지 않고 있다는 사실을 깨달았다. 또한 트위터도 그와 비슷한 기능을 제공하는데, 둘 다 지원하면 좋겠다는 생각을 했다. 이를 제대로 지원하려면 [Facebook Open Graph tags][]와 [Twitter Cards][]에 대해 알아야 한다. 웹 페이지에 적절한 [메타 태그][Meta element]를 추가해 주면 페이스북과 트위터에서 인식하고 올바른, 작성자가 의도한 미리보기를 보여준다. 기본적으로 Zac Clancy가 쓴 [Octopress에서 이 두 가지를 지원하는 글][Black Glasses]에 상세히 설명되어 있다.
@@ -24,7 +24,7 @@ twitter_card:
 
 ## <a id="facebook-open-graph-tags"></a>Facebook Open Graph Tags
 
-{% img https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.2178/851562_1376970469205025_523101852_n.png %}
+{% img /images/2014/02/24/facebook_open_graph.png Facebook Open Graph %}
 
 페이스북에 웹 페이지가 제대로 인식되게 하려면 [Open Graph 태그][Facebook Open Graph tags]를 이용해야 한다. 기본적으로 채워야 할 태그들은 다음과 같다:
 
@@ -56,7 +56,7 @@ twitter_card:
 
 [Twitter Cards][]는 트윗 자체에 링크의 내용을 보여주는 '카드'를 추가하는 기능이다.
 
-{% img https://dev.twitter.com/sites/default/files/images_documentation/web_summary_0.png %}
+{% img /images/2014/02/24/twitter_card_summary.png Twitter Summary Card %}
 
 카드의 종류는 7개가 있으며 원하는 용도에 따라 적절히 사용할 수 있다.
 
