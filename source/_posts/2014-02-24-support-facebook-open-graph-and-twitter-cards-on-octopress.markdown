@@ -78,7 +78,7 @@ twitter_card:
 
 트위터는 [카드 검사 도구][Card Validator]를 직접 제공하고 있으므로 각 종류의 카드가 어떻게 보이는지, 자신의 사이트가 제대로 인식되는지 테스트 해볼 수 있다.
 
-[Card Validator]: https://dev.twitter.com/docs/cards/validation/validator
+[Card Validator]: https://cards-dev.twitter.com/validator
 
 ## <a id="support-in-octopress"></a>Octopress에서 지원하기
 
