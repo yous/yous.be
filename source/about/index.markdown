@@ -31,6 +31,7 @@ ChaYoung You ([Resume](/resume/en.pdf))
 - [pad_monster_book](https://github.com/yous/pad_monster_book) --- The monster book for Puzzle & Dragons.
 - [YousList](https://github.com/yous/YousList) --- Adblock Plus filter.
 - [Dwaet](https://github.com/yous/dwaet) --- No doet, it's dwaet.
+- [Sawarineko](https://github.com/yous/sawarineko) --- Get your Nya!
 
 ## <a id="code"></a>Code
 
