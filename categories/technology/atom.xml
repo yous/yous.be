@@ -4,7 +4,7 @@
   <title><![CDATA[Category: technology | Yous]]></title>
   <link href="http://yous.be/categories/technology/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-10-12T13:28:15+09:00</updated>
+  <updated>2014-10-26T22:36:47+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -12,6 +12,19 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[On becoming an expert C programmer]]></title>
+    <link href="http://yous.be/2014/10/26/on-becoming-an-expert-c-programmer/"/>
+    <updated>2014-10-26T22:21:30+09:00</updated>
+    <id>http://yous.be/2014/10/26/on-becoming-an-expert-c-programmer</id>
+    <content type="html"><![CDATA[<blockquote><p>The following is from an EMail message that I sent to to an individual on 12-Apr-2001. You may find this EMail message useful.</p>
+
+<p>The Writer asked:</p>
+
+<blockquote><p>&ldquo;I just recently visited your website &hellip; Just wanted to say greetings and ask a simple question: Do you think I stand a chance in the C programming field if I keep it up? Tell me what I should do in order to keep strong feelings towards C.&rdquo;</p></blockquote></blockquote>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Using Keybase]]></title>

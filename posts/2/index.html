@@ -127,6 +127,63 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2014/07/18/using-keybase/">Using Keybase</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-07-18T03:21:09+09:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>18</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>3:21 am</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2><a id="keybase"></a>Keybase</h2>
+
+<p><img src="https://keybase.io/images/logo.png" alt="Keybase" /></p>
+
+<blockquote><p>Keybase will be a public directory of publicly auditable public keys. All paired, for convenience, with unique usernames.</p></blockquote>
+
+<p>I just created my <a href="https://keybase.io">Keybase</a>. You can see my PGP public key on <a href="https://keybase.io/yous">keybase.io/yous</a> and get the key via <code>https://keybase.io/yous/key.asc</code>. Anyone can encrypt messages using my public key and then I could decrypt it using my private key and see the message with safety. All of these can be done in browser, in <a href="https://keybase.io">Keybase</a>.</p>
+
+<h2><a id="keybase-proof"></a>Keybase Proof</h2>
+
+<p>Keybase provides several ways to prove own identity of a Twitter account, a GitHub account, websites and a bitcoin address. Still it can be done on the browser, also you can use <a href="https://keybase.io/docs/command_line">command line</a> for it. I proved <a href="https://github.com/yous">my GitHub</a> by <a href="https://gist.github.com/yous/149b0775d2ff02eac323">keybase.md</a> and <a href="http://yous.be">this site</a> by <a href="http://yous.be/keybase.txt">keybase.txt</a>. Also you can check it with command line like:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>keybase id yous
+</span><span class='line'>✔ public key fingerprint: 1BF1 AFE8 682E 45A2 11FF 2C0E 891B 7A9E 1D5A 400A
+</span><span class='line'>✔ <span class="s2">&quot;yous&quot;</span> on github: https://gist.github.com/149b0775d2ff02eac323
+</span><span class='line'>✔ admin of yous.be via HTTP: http://yous.be/keybase.txt
+</span></code></pre></td></tr></table></div></figure>
+
+
+
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2014/07/18/using-keybase/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2014/07/16/introducing-source-han-sans-an-open-source-pan-cjk-typeface/">Introducing Source Han Sans: An open source Pan-CJK typeface &rarr;</a></h1>
     
     
@@ -512,44 +569,6 @@ index 50e9404..76102db 100644
     <footer>
       <a rel="full-article" href="/2014/05/15/how-to-configure-proguard-using-gradle/">Read on &rarr;</a>
     </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/05/12/layout-inflation-as-intended/">Layout Inflation as Intended &rarr;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-05-12T07:17:37+09:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>7:17 am</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p>안드로이드 개발을 하다 보면 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html">LayoutInflater</a>의 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup)">inflate(int, ViewGroup)</a>와 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup,%20boolean)">inflate(int, ViewGroup, boolean)</a>는 꽤 익숙하다. 하지만 다음 두 줄의 코드가 어떻게 다른지 아는 사람은 그리 많지 않을 것 같다. 실제로 <a href="http://tools.android.com/tips/lint">Android Lint</a>는 한쪽 코드는 피하도록 권하고 있다.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">inflater</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">my_layout</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
-</span><span class='line'><span class="n">inflater</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">my_layout</span><span class="o">,</span> <span class="n">parent</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><a href="http://www.doubleencore.com/author/daves/">Dave Smith</a>가 이 두 코드의 비교와 함께, <a href="http://www.doubleencore.com/2013/05/layout-inflation-as-intended/">바른 Layout Inflation 방법</a>에 대해 설명한 글이 있어 소개한다.</p>
-</div>
-  
   
 
 
