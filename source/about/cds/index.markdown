@@ -286,3 +286,13 @@ footer: false
 277. Idiotape --- Tours
 278. WUTAN & BUGGY --- HOL!DAY
 279. The Quiett --- AMBITIQN (Reissue)
+280. Jerry.k --- 현실, 적
+281. Don Mills --- Young Don
+282. 개코 --- Redingray
+283. Paloalto --- Cheers
+284. 고상지 --- MAYCGRE 1.0
+285. Crucial Star --- Midnight
+286. 장기하와 얼굴들 --- 사람의 마음
+287. 서태지 --- Quiet Night
+288. Epik High --- 신발장
+289. Kebee --- Evolutional Poems (Reissue)
