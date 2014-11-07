@@ -32,7 +32,7 @@ ChaYoung You ([Resume](/resume/en.pdf))
 - [YousList](https://github.com/yous/YousList) --- Adblock Plus filter.
 - [Dwaet](https://github.com/yous/dwaet) --- No doet, it's dwaet.
 - [Sawarineko](https://github.com/yous/sawarineko) --- Get your Nya!
-- [BaseHangul](https://github.com/yous/basehangul) --- Human-readable binary encoding, [BaseHangul](https://github.com/koreapyj/basehangul) for Ruby.
+- [BaseHangul](https://github.com/yous/basehangul) --- Human-readable binary encoding, [BaseHangul](https://basehangul.github.io) for Ruby.
 
 ## <a id="code"></a>Code
 
