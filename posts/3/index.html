@@ -127,6 +127,165 @@
       
   <header>
     
+      <h1 class="entry-title"><a href="/2014/05/15/how-to-configure-proguard-using-gradle/">Gradle 환경에서 ProGuard 사용하기</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2014-05-15T18:11:13+09:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>6:11 pm</span></time>
+        
+      </p>
+    
+  </header>
+
+
+  <div class="entry-content"><h2><a id="gradle"></a>Gradle</h2>
+
+<p><img src="http://www.gradle.org/img/gradle_logo.gif" alt="Gradle" /></p>
+
+<p>최근 <a href="http://developer.android.com/sdk/installing/studio.html">Android Studio</a>를 통해 개발을 진행하게 되면서, 자연스럽게 <a href="http://www.gradle.org">Gradle</a>을 사용하게 되었다. <code>.gradle</code> 확장자를 가진 파일을 통해 빌드 설정을 자유롭게 조정할 수 있다. 이 글에서는 Gradle을 이용해 배포 APK를 생성하는 방법과 함께 <a href="http://proguard.sourceforge.net">ProGuard</a>를 사용법을 공유하겠다.</p>
+
+<h2><a id="how-to-create-release-apk-using-gradle"></a>Gradle 환경에서 배포 APK 생성하기</h2>
+
+<p>배포 APK에는 서명이 되어 있어야 하는데, 이를 위해서는 keystore 파일과 그 암호, 키 별칭, 키 암호가 필요하다. 디버그 APK에도 서명을 하지만, <a href="http://developer.android.com/tools/publishing/app-signing.html#debugmode">알려진 keystore 암호와 키 별칭, 키 암호</a>를 사용한다. 배포 APK의 서명을 위해 프로젝트의 <code>build.gradle</code> 파일에 다음 코드를 추가하면 된다.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">android</span> <span class="o">{</span>
+</span><span class='line'>    <span class="c1">// ...</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">signingConfigs</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">release</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">storeFile</span> <span class="nf">file</span><span class="o">(</span><span class="s2">&quot;YOUR_KEYSTORE_PATH&quot;</span><span class="o">)</span>
+</span><span class='line'>            <span class="n">storePassword</span> <span class="s2">&quot;YOUR_KEYSTORE_PASSWORD&quot;</span>
+</span><span class='line'>            <span class="n">keyAlias</span> <span class="s2">&quot;YOUR_KEY_ALIAS&quot;</span>
+</span><span class='line'>            <span class="n">keyPassword</span> <span class="s2">&quot;YOUR_KEY_PASSWORD&quot;</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'>
+</span><span class='line'>    <span class="n">buildTypes</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">release</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">signingConfig</span> <span class="n">signingConfigs</span><span class="o">.</span><span class="na">release</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>이때 <code>buildTypes</code> 아래의 <code>debug</code> 항목은 굳이 명시하지 않아도 <a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Build-Types">기본적으로 생성</a>되며, 이 <code>buildType</code>은 <a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Signing-Configurations">디버그 keystore와 키를 사용하도록 설정</a>되어 있다.</p>
+
+<p>다만 이 때 <code>build.gradle</code> 파일에 keystore 암호와 키 암호가 평문으로 들어가게 되는데, 소스를 공개하고 있는 등의 이유로 이를 피하고 싶다면 각각의 항목을 쉘 프롬프트에서 입력받을 수 있다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">signingConfigs</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">release</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">storeFile</span> <span class="nf">file</span><span class="o">(</span><span class="n">console</span><span class="o">.</span><span class="na">readLine</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter keystore path: &quot;</span><span class="o">))</span>
+</span><span class='line'>        <span class="n">storePassword</span> <span class="k">new</span> <span class="nf">String</span><span class="o">(</span><span class="n">console</span><span class="o">.</span><span class="na">readPassword</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter keystore password: &quot;</span><span class="o">))</span>
+</span><span class='line'>        <span class="n">keyAlias</span> <span class="n">console</span><span class="o">.</span><span class="na">readLine</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter key alias: &quot;</span><span class="o">)</span>
+</span><span class='line'>        <span class="n">keyPassword</span> <span class="k">new</span> <span class="nf">String</span><span class="o">(</span><span class="n">console</span><span class="o">.</span><span class="na">readPassword</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter key password: &quot;</span><span class="o">))</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>그러나 이는 <a href="http://stackoverflow.com/questions/18328730/how-to-create-a-release-signed-apk-file-using-gradle#19210105">IDE를 통해 디버그 APK를 생성할 때 크래시</a>를 내며, 이는 그때 코드의 <code>console</code>이 <code>null</code>이라서 발생하는 오류다. 이를 해결한 최종 코드는 다음과 같다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">signingConfigs</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">release</span> <span class="o">{</span>
+</span><span class='line'>        <span class="kd">final</span> <span class="n">Console</span> <span class="n">console</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">console</span><span class="o">();</span>
+</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="n">console</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+</span><span class='line'>            <span class="n">storeFile</span> <span class="nf">file</span><span class="o">(</span><span class="n">console</span><span class="o">.</span><span class="na">readLine</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter keystore path: &quot;</span><span class="o">))</span>
+</span><span class='line'>            <span class="n">storePassword</span> <span class="k">new</span> <span class="nf">String</span><span class="o">(</span><span class="n">console</span><span class="o">.</span><span class="na">readPassword</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter keystore password: &quot;</span><span class="o">))</span>
+</span><span class='line'>            <span class="n">keyAlias</span> <span class="n">console</span><span class="o">.</span><span class="na">readLine</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter key alias: &quot;</span><span class="o">)</span>
+</span><span class='line'>            <span class="n">keyPassword</span> <span class="k">new</span> <span class="nf">String</span><span class="o">(</span><span class="n">console</span><span class="o">.</span><span class="na">readPassword</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter key password: &quot;</span><span class="o">))</span>
+</span><span class='line'>        <span class="o">}</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>디버그 APK와 배포 APK의 패키지 이름이 같으면 APK의 서명이 서로 달라 개발과 디버깅에 어려움이 있다. 이를 해결하기 위해서 <code>buildTypes</code> 아래에 <code>debug</code> 항목을 선언하여 디버그 APK의 패키지 이름을 바꿀 수 있고, 추가로 버전명도 바꿀 수 있다:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">buildTypes</span> <span class="o">{</span>
+</span><span class='line'>    <span class="n">debug</span> <span class="o">{</span>
+</span><span class='line'>        <span class="n">packageNameSuffix</span> <span class="s1">&#39;.debug&#39;</span>
+</span><span class='line'>        <span class="n">versionNameSuffix</span> <span class="s1">&#39;-debug&#39;</span>
+</span><span class='line'>    <span class="o">}</span>
+</span><span class='line'><span class="o">}</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>이제 터미널에서 다음 명령을 실행하면 디버그 APK와 배포 APK를 각각 얻을 수 있다. 물론 디버그 APK는 IDE로도 생성할 수 있다.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>./gradlew assembleDebug
+</span><span class='line'><span class="nv">$ </span>./gradlew assembleRelease
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Gradle은 <a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Android-tasks">캐멀케이스 단축키를 지원</a>해서 <code>aR</code>에 해당하는 다른 명령이 없는 한 <code>assembleRelease</code> 대신 <code>aR</code>을 사용할 수 있다.</p>
+
+</div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2014/05/15/how-to-configure-proguard-using-gradle/">Read on &rarr;</a>
+    </footer>
+  
+
+
+    </article>
+  
+  
+    <article>
+      
+  <header>
+    
       <h1 class="entry-title"><a href="/2014/05/12/layout-inflation-as-intended/">Layout Inflation as Intended &rarr;</a></h1>
     
     
@@ -310,39 +469,6 @@
 <p>기기에 Tweetbot 2와 Tweetbot 3가 모두 깔려 있을 때 Tweetbot 2로 열리는 점은 아쉽다.</p>
 
 <p>via <a href="http://yoonjiman.net/2014/03/25/twitter-profile-bookmarklet/">Yoon Jiman</a></p>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/03/25/global-git-ignore/">Global Git Ignore &rarr;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-03-25T20:49:32+09:00'><span class='date'><span class='date-month'>Mar</span> <span class='date-day'>25</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>8:49 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><p><a href="http://usevim.com">usevim</a>의 <a href="http://twitter.com/#!/alex_young">Alex Young</a>이 쓴 <a href="http://usevim.com/2013/10/04/gitglobal-ignore/">global gitignore에 관한 글</a>이다.</p>
-
-<blockquote><p>나는 몇 년간 <code>.gitignore</code>에 <code>*.sw?</code>을 넣어 왔는데, Vim을 쓰지 않는 사람들은 특정 편집기를 위한 <code>.gitignore</code> 항목을 보고 싶지 않아 할 수도 있다는 걸 깨달았다. 편집기들은 임시 파일과 복구 파일을 각자 다른 방식으로 관리하기 때문에 이 설정을 모두에게 강요하는 것은 과해 보인다.</p>
-
-<p>이것보단 global 옵션을 사용하는 것이 낫다. <code>git config --global core.excludesfile ~/.gitignore</code>를 실행해라. 그러면 거기에 <code>*.sw?</code>을, 어쩌면 <code>*~</code>도 넣을 수 있다. 난 <code>.DS_Store</code>를 추가할 텐데, Windows 개발자들은 여기 신경 쓸 필요가 없기 때문이다. 그리고 그들은 아마 <code>Thumbs.db</code>를 추가해야 할 것이다.</p></blockquote>
 </div>
   
   

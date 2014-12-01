@@ -5,11 +5,11 @@
 <!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
 <head>
   <meta charset="utf-8">
-  <title>About - Yous</title>
+  <title>Yous</title>
   <meta name="author" content="Yous">
 
   
-  <meta name="description" content="About Yous - contact, projects, interests, likes, etc.">
+  <meta name="description" content="Blog for hackers.">
   
 
   <!-- http://t.co/dKP3o1e -->
@@ -18,7 +18,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://yous.be/about">
+  <link rel="canonical" href="http://yous.be/posts/6">
   <link href="/favicon.png" rel="icon">
   <link href="/apple-touch-icon.png" rel="apple-touch-icon">
   <link href="/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76">
@@ -39,10 +39,10 @@
 <!-- Social media content metadata -->
 
   <meta property="fb:admins" content="100001802412550">
-  <meta property="og:title" content="About">
+  <meta property="og:title" content="Yous">
   <meta property="og:site_name" content="Yous">
-  <meta property="og:url" content="http://yous.be/about">
-  <meta property="og:description" content="About Yous - contact, projects, interests, likes, etc.">
+  <meta property="og:url" content="http://yous.be/posts/6">
+  <meta property="og:description" content="Blog for hackers.">
   
   
     <meta property="og:image" content="http://yous.be/images/about/Super-Hexagon.png">
@@ -50,14 +50,11 @@
 
 <meta name="twitter:card" content="summary">
 
-<meta name="twitter:title" content="About">
-<meta name="twitter:description" content="About Yous - contact, projects, interests, likes, etc.">
+<meta name="twitter:title" content="Yous">
+<meta name="twitter:description" content="Blog for hackers.">
 
 
-  
-    <meta name="twitter:image:src" content="http://yous.be/images/about/Super-Hexagon.png">
-    
-  
+  <meta name="twitter:image:src" content="http://yous.be/images/about/Super-Hexagon.png">
 
 
   
@@ -122,137 +119,87 @@
 </nav>
   <div id="main">
     <div id="content">
-      <div>
-<article role="article">
+      <div class="blog-index">
   
+  
+  
+    <article>
+      
   <header>
-    <h1 class="entry-title">About</h1>
+    
+      <h1 class="entry-title"><a href="/2013/02/19/ios-6.1-music-album-shuffle/">iOS 6.1에서 앨범별 임의 재생으로 음악 듣기</a></h1>
+    
+    
+      <p class="meta">
+        
+
+
+
+
+<time class='entry-date' datetime='2013-02-19T03:31:00+09:00'><span class='date'><span class='date-month'>Feb</span> <span class='date-day'>19</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>3:31 am</span></time>
+        
+      </p>
     
   </header>
-  
-  <h2><a id="yous"></a>Yous</h2>
-
-<p>ChaYoung You (<a href="/resume/en.pdf">Resume</a>)</p>
-
-<p><img src="/images/about/Super-Hexagon.png"></p>
-
-<h2><a id="contact"></a>Contact</h2>
-
-<ul>
-<li><a href="&#109;&#97;&#105;&#108;&#x74;&#x6f;&#x3a;&#x79;&#111;&#117;&#x73;&#64;&#x79;&#x6f;&#x75;&#115;&#x2e;&#98;&#x65;">&#121;&#x6f;&#x75;&#x73;&#64;&#121;&#x6f;&#x75;&#x73;&#46;&#x62;&#x65;</a></li>
-<li><a href="https://keybase.io/yous">keybase.io/yous</a></li>
-</ul>
 
 
-<h2><a id="projects"></a>Projects</h2>
+  <div class="entry-content"><h2>목차</h2>
 
-<ul>
-<li><a href="https://play.google.com/store/apps/details?id=kr.co.tamseng.StudyHelper">스터디 헬퍼</a></li>
-<li><a href="https://github.com/yous/raheui">Raheui</a> &mdash; Aheui interpreter in Ruby.</li>
-<li><a href="https://github.com/yous/zsh-themes">zsh-themes</a> &mdash; Custom Zsh themes.</li>
-<li><a href="https://github.com/yous/aheui.vim">aheui.vim</a> &mdash; Vim syntax highlighting for Aheui.</li>
-<li><a href="https://github.com/yous/pad_monster_book">pad_monster_book</a> &mdash; The monster book for Puzzle &amp; Dragons.</li>
-<li><a href="https://github.com/yous/YousList">YousList</a> &mdash; Adblock Plus filter.</li>
-<li><a href="https://github.com/yous/dwaet">Dwaet</a> &mdash; No doet, it&rsquo;s dwaet.</li>
-<li><a href="https://github.com/yous/sawarineko">Sawarineko</a> &mdash; Get your Nya!</li>
-<li><a href="https://github.com/yous/basehangul">BaseHangul</a> &mdash; Human-readable binary encoding, <a href="https://basehangul.github.io">BaseHangul</a> for Ruby.</li>
-</ul>
+<ol>
+<li><a href="#shuffle-by-album">앨범별 임의 재생</a></li>
+<li><a href="#how-to">방법</a></li>
+<li><a href="#conclusion">결론</a></li>
+<li><a href="#short">단점</a></li>
+<li><a href="#ios-6-1-2">iOS 6.1.2 업데이트</a></li>
+</ol>
 
 
-<h2><a id="code"></a>Code</h2>
+<h2><a id="shuffle-by-album"></a>앨범별 임의 재생</h2>
 
-<ul>
-<li><a href="https://github.com/yous">@yous</a> on GitHub</li>
-<li><a href="https://bitbucket.org/yous">@yous</a> on Bitbucket</li>
-</ul>
+<p><a href="http://www.apple.com/kr/itunes/">iTunes</a>에는 앨범별 임의 재생을 이용해 음악을 들을 수 있는 기능이 있습니다.</p>
 
+<p><img class="center" src="/images/2013/02/19/1.png" title="iTunes" ></p>
 
-<h2><a id="blog"></a>Blog</h2>
+<p>개인적으로 아티스트가 앨범의 곡 배치 또한 잘 생각해서 만들어야 한다고 생각하고, 또 그렇게 만든다고 믿는 편입니다. 그래서 보통 앨범에 있는 곡들을 1번 트랙부터 순서대로 들으려는 경향이 있습니다.</p>
 
-<ul>
-<li><p><a href="http://yous.be">Yous</a><br/>
-  What you see now. Hosted on <a href="http://pages.github.com">GitHub Pages</a> and all articles are written using <a href="http://daringfireball.net/projects/markdown/">Markdown</a>. The source is available in <a href="https://github.com/yous/yous.github.io">GitHub repo</a>.</p></li>
-<li><p><a href="http://lyrics.yous.be">Yous Lyrics</a><br/>
-  Favorite lyric quotes blog hosted on <a href="https://www.tumblr.com">Tumblr</a>.</p></li>
-</ul>
+<p>그런데 앨범의 곡들을 순서대로 들으려니 문제가 하나 있습니다. 아이폰에서 앨범의 곡들을 순서대로 듣는 방법은 앨범을 선택해서 들어간 후, 1번 트랙을 터치하는 것뿐이라는 겁니다. 그러면 마지막 트랙이 끝났을 때 아이폰 스피커 혹은 이어폰에서 정적만 흐르고 있겠죠. 하지만 전 귀찮은 것을 상당히 싫어하는 사람이라, 다음 앨범은 어떤 걸 선택해도 큰 상관이 없습니다. 다만 노래가 끊기지 않고 계속 나왔으면 좋겠어요.</p>
 
+<p>하지만 딱히 방법이 없어서 그냥 앨범을 하나씩 순서대로 듣거나 전체 노래를 임의 재생하면서 듣고 다녔습니다. iOS 6이 나온 후로는 순정 아이폰으로 잘 쓰고 다녔죠. 그러다가 iOS 6.1 업데이트가 출시되고, 얼마 되지 않아 탈옥 툴이 공개된 겁니다. 탈옥을 하고 몇 가지 트윅을 찾으면서 이런 생각을 하게 됐습니다.</p>
 
-<h2><a id="interests"></a>Interests</h2>
+<blockquote><p>앨범별 임의 재생을 구현해 놓은 트윅이 있지 않을까?</p></blockquote>
 
-<ul>
-<li><a href="https://www.ruby-lang.org">Ruby</a></li>
-<li><a href="http://rubyonrails.org">Ruby on Rails</a></li>
-<li><a href="http://www.android.com">Android</a></li>
-<li>Security
+<p>하지만 찾는 것은 쉽지 않았습니다. 우선 그 기능을 구현한 트윅은 없는 것처럼 보였습니다. 음악과 관련된 트윅은 대부분 기존의 음악 어플을 쉽게 제어할 수 있도록 하는 것이었고, 임의 재생과 관련된 것은 찾기 어려웠습니다.</p>
 
-<ul>
-<li><a href="http://gon.kaist.ac.kr">GoN</a></li>
-</ul>
-</li>
-</ul>
+<p>그래도 희망의 끈을 놓지 않고 계속 검색해 보던 중에, <a href="http://www.hackint0sh.org/free-toolchain-software-126/req-album-shuffle-option-18867.htm">앨범별 임의 재생에 관한 질문</a>을 발견하게 되었습니다.</p>
 
+<p>그렇습니다! 저처럼 앨범별 임의 재생을 하고 싶은 사람이 올린 질문이었습니다. 댓글을 살펴보면 탈옥한 아이폰에서 작동한다는 글을 볼 수 있었습니다. 물론 2007년에 작성된 댓글이라서 지금의 iOS에 그대로 적용하면 작동하지 않습니다.</p>
 
-<h2><a id="education"></a>Education</h2>
-
-<p><a href="http://www.kaist.ac.kr">Korea Advanced Institute of Science and Technology</a>, Undergraduate of Mathematical Sciences and Computer Science, 2011&ndash;Present</p>
-
-<h2><a id="likes"></a>Likes</h2>
-
-<ul>
-<li>Music
-
-<ul>
-<li>Collecting <a href="/about/cds/">CDs</a></li>
-<li>Korean Hip-Hop</li>
-</ul>
-</li>
-<li><a href="http://www.evangelion.co.jp">Evangelion</a>
-
-<ul>
-<li><a href="http://evangelion.jp">evangelion.jp</a> (<a href="https://github.com/yous/evangelion.jp">GitHub</a>)</li>
-<li><a href="http://asuka.moe">asuka.moe</a> (<a href="https://github.com/yous/asuka.moe">GitHub</a>)</li>
-</ul>
-</li>
-<li>Puzzles
-
-<ul>
-<li><a href="http://en.wikipedia.org/wiki/Nonogram">Nonogram</a></li>
-<li><a href="http://web.mit.edu/puzzle/www/2013/coinheist.com/rubik/a_regular_crossword/index.html">A Regular Crossword</a></li>
-<li><a href="http://regexcrossword.com">regexcrossword.com</a></li>
-</ul>
-</li>
-<li>Games
-
-<ul>
-<li>Rhythm games
-
-<ul>
-<li><a href="http://s.ubit.info/yous">jubeat</a></li>
-<li><a href="https://itunes.apple.com/jp/app/jubeat-plus/id395192484?mt=8">jubeat plus</a></li>
-<li><a href="http://www.rayark.com/g/deemo/">Deemo</a></li>
-<li><a href="http://p.eagate.573.jp/game/sdvx/ii/p/">SOUND VOLTEX II</a></li>
-</ul>
-</li>
-<li><a href="http://superhexagon.com">Super Hexagon</a></li>
-<li><a href="http://www.monumentvalleygame.com">Monument Valley</a></li>
-<li><a href="http://www.thinkwithportals.com">Portal 2</a></li>
-</ul>
-</li>
-</ul>
-
-
-  
-</article>
-
+<p>하지만 추가적인 검색과 삽질로, 결국 iOS 6.1이 깔려 있는 아이폰에서 &lsquo;앨범별 임의 재생&#8217;으로 음악을 듣는 방법을 알아냈습니다.</p>
 
 </div>
+  
+  
+    <footer>
+      <a rel="full-article" href="/2013/02/19/ios-6.1-music-album-shuffle/">Read on &rarr;</a>
+    </footer>
+  
 
+
+    </article>
+  
+  <div class="pagination">
+    
+    <a href="/archives">Blog Archives</a>
+    
+    <a class="next" href="/posts/5">Newer &rarr;</a>
+    
+  </div>
+</div>
 <aside class="sidebar">
   
     
   
 </aside>
-
 
     </div>
   </div>
@@ -264,6 +211,19 @@
 
 </footer>
   
+
+<script type="text/javascript">
+      var disqus_shortname = 'yousbe';
+      
+        
+        var disqus_script = 'count.js';
+      
+    (function () {
+      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
+      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+    }());
+</script>
 
 
 

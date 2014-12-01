@@ -4,7 +4,7 @@
   <title><![CDATA[Yous]]></title>
   <link href="http://yous.be/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-11-30T17:57:10+09:00</updated>
+  <updated>2014-12-01T14:04:57+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -12,6 +12,180 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[Automatically Quit Vim if Actual Files are Closed]]></title>
+    <link href="http://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed/"/>
+    <updated>2014-11-30T18:02:45+09:00</updated>
+    <id>http://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed</id>
+    <content type="html"><![CDATA[<p><img src="http://yous.be/images/2014/11/30/vim.png" alt="Vim" /></p>
+
+<h2>Sidebar</h2>
+
+<p>Many Vim user use plugins which open sidebar like <a href="https://github.com/scrooloose/nerdtree">NERDTree</a> or <a href="https://github.com/vim-scripts/taglist.vim">Tag List</a>. In my case, I always open NERDTree and Tag List on Vim startup. Their file and tag navigation features are extremely handy.</p>
+
+<p>We use <code>:q</code> to quit, <code>:q!</code> or <code>ZQ</code> to quit without saving, <code>:wq</code>, <code>:x</code> or <code>ZZ</code> to save and quit. But these commands are applied to only one buffer. NERDTree or Tag List windows are not closed until we close them individually or quit all using <code>:qa</code>.</p>
+
+<h2>Getting into the Problem</h2>
+
+<p>But as one of the Vim users, I close it within a few minutes or even a few seconds after I opened it. I want to keep quitting Vim easy. Using <code>:qa</code> everytime doesn&rsquo;t make sence. Actually, <a href="https://github.com/scrooloose/nerdtree#faq">NERDTree gives us a tip</a> to close Vim if the only window left open is a NERDTree:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">autocmd</span> bufenter * <span class="k">if</span> <span class="p">(</span>winnr<span class="p">(</span><span class="s2">&quot;$&quot;</span><span class="p">)</span> <span class="p">==</span> <span class="m">1</span> &amp;&amp; exists<span class="p">(</span><span class="s2">&quot;b:NERDTreeType&quot;</span><span class="p">)</span> &amp;&amp; <span class="k">b</span>:NERDTreeType <span class="p">==</span> <span class="s2">&quot;primary&quot;</span><span class="p">)</span> <span class="p">|</span> <span class="k">q</span> <span class="p">|</span> <span class="k">endif</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>If I close the last window when a NERDTree exists, Vim automatically closes. But what if we have Tag List window also? <code>winnr("$")</code> returns the current window count, so the above code triggers only when the window count is 1. So Vim will quit automatically only when NERDTree is the last window.</p>
+
+<!-- more -->
+
+
+<h2>Not Interesting Buffer</h2>
+
+<p>There are some types of window which isn&rsquo;t important while quitting Vim.</p>
+
+<ol>
+<li><p>Help</p>
+
+<p> We can look up documentation of Vim itself or its plugins by <code>:help</code> or <code>:h</code> command. This is one of the most powerful features of Vim, but these windows aren&rsquo;t editable and we don&rsquo;t need them while quitting Vim.</p></li>
+<li><p>QuickFix</p>
+
+<p> Some plugins like <a href="https://github.com/scrooloose/syntastic">Syntastic</a> or <a href="https://github.com/ngmy/vim-rubocop">Vim RuboCop</a> show errors on QuickFix window and Vim supports navigating them with <code>:cnext</code> and <code>:cprev</code>. There windows aren&rsquo;t needed also.</p></li>
+<li><p>NERDTree and Tag List</p>
+
+<p> Here is where we started.</p></li>
+</ol>
+
+
+<h2>Investigate the Buffer</h2>
+
+<p>Vim buffers have its type. Help and QuickFix buffers also have it so we&rsquo;re ready to go. See <code>'buftype'</code> documentation:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>                      *<span class="s1">&#39;buftype&#39;</span>* *<span class="s1">&#39;bt&#39;</span>* *E382*
+</span><span class='line'><span class="s1">&#39;buftype&#39;</span> <span class="s1">&#39;bt&#39;</span>        string <span class="p">(</span>default: <span class="s2">&quot;&quot;</span><span class="p">)</span>
+</span><span class='line'>          local <span class="k">to</span> buffer
+</span><span class='line'>          {not <span class="k">in</span> Vi}
+</span><span class='line'>          {not available when compiled without the <span class="p">|+</span>quickfix<span class="p">|</span>
+</span><span class='line'>          feature}
+</span><span class='line'>  The value of this <span class="k">option</span> specifies the type of <span class="k">a</span> buffer:
+</span><span class='line'>    <span class="p">&lt;</span>empty<span class="p">&gt;</span>   normal buffer
+</span><span class='line'>    nofile    buffer which <span class="k">is</span> not related <span class="k">to</span> <span class="k">a</span> <span class="k">file</span> and will not be
+</span><span class='line'>          written
+</span><span class='line'>    <span class="nb">nowrite</span>   buffer which will not be written
+</span><span class='line'>    acwrite   buffer which will always be written with <span class="nb">BufWriteCmd</span>
+</span><span class='line'>          autocommands. {not available when compiled without the
+</span><span class='line'>          <span class="p">|+</span><span class="k">autocmd</span><span class="p">|</span> feature}
+</span><span class='line'>    quickfix  quickfix buffer<span class="p">,</span> contains <span class="nb">list</span> of errors <span class="p">|</span>:<span class="k">cwindow</span><span class="p">|</span>
+</span><span class='line'>          or <span class="nb">list</span> of locations <span class="p">|</span>:<span class="k">lwindow</span><span class="p">|</span>
+</span><span class='line'>    help      help buffer <span class="p">(</span>you are not supposed <span class="k">to</span> <span class="k">set</span> this
+</span><span class='line'>          manually<span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Because <code>quickfix</code> and <code>help</code> type is already exists, all we have to do is retrieve that value. This code returns the buftype of current buffer:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>getbufvar<span class="p">(</span>winbufnr<span class="p">(</span><span class="m">0</span><span class="p">),</span> <span class="s1">&#39;&amp;buftype&#39;</span><span class="p">)</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note that <code>winbufnr(0)</code> returns the number of the buffer in the current window.</p>
+
+<p>For NERDTree and Tag List, we check the name of the buffer.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>bufname<span class="p">(</span>winbufnr<span class="p">(</span><span class="m">0</span><span class="p">))</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>NERDTree has <code>t:NERDTreeBufName</code> for this, Tag List has same name for every buffer; <code>__Tag_List__</code>.</p>
+
+<p>So we can check whether the current buffer is NERDTree or not with this:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>exists<span class="p">(</span><span class="s1">&#39;t:NERDTreeBufName&#39;</span><span class="p">)</span> &amp;&amp; bufname<span class="p">(</span>winbufnr<span class="p">(</span><span class="m">0</span><span class="p">))</span> <span class="p">==</span> <span class="k">t</span>:NERDTreeBufName
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>For Tag List:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'>bufname<span class="p">(</span>winbufnr<span class="p">(</span><span class="m">0</span><span class="p">))</span> <span class="p">==</span> <span class="s1">&#39;__Tag_List__&#39;</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>Automatically Quit Vim</h2>
+
+<p>We can check the current buffer is important or not. Then how can we check that for every buffer? Now do some basic programming.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">function</span><span class="p">!</span> CheckLeftBuffers<span class="p">()</span>
+</span><span class='line'>  <span class="k">if</span> tabpagenr<span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">)</span> <span class="p">==</span> <span class="m">1</span>
+</span><span class='line'>    <span class="k">let</span> <span class="k">i</span> <span class="p">=</span> <span class="m">1</span>
+</span><span class='line'>    <span class="k">while</span> <span class="k">i</span> <span class="p">&lt;=</span> winnr<span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">)</span>
+</span><span class='line'>      <span class="k">if</span> getbufvar<span class="p">(</span>winbufnr<span class="p">(</span><span class="k">i</span><span class="p">),</span> <span class="s1">&#39;&amp;buftype&#39;</span><span class="p">)</span> <span class="p">==</span> <span class="s1">&#39;help&#39;</span> <span class="p">||</span>
+</span><span class='line'>          \ getbufvar<span class="p">(</span>winbufnr<span class="p">(</span><span class="k">i</span><span class="p">),</span> <span class="s1">&#39;&amp;buftype&#39;</span><span class="p">)</span> <span class="p">==</span> <span class="s1">&#39;quickfix&#39;</span> <span class="p">||</span>
+</span><span class='line'>          \ exists<span class="p">(</span><span class="s1">&#39;t:NERDTreeBufName&#39;</span><span class="p">)</span> &amp;&amp;
+</span><span class='line'>          \   bufname<span class="p">(</span>winbufnr<span class="p">(</span><span class="k">i</span><span class="p">))</span> <span class="p">==</span> <span class="k">t</span>:NERDTreeBufName <span class="p">||</span>
+</span><span class='line'>          \ bufname<span class="p">(</span>winbufnr<span class="p">(</span><span class="k">i</span><span class="p">))</span> <span class="p">==</span> <span class="s1">&#39;__Tag_List__&#39;</span>
+</span><span class='line'>        <span class="k">let</span> <span class="k">i</span> <span class="p">+=</span> <span class="m">1</span>
+</span><span class='line'>      <span class="k">else</span>
+</span><span class='line'>        <span class="k">break</span>
+</span><span class='line'>      <span class="k">endif</span>
+</span><span class='line'>    <span class="k">endwhile</span>
+</span><span class='line'>    <span class="k">if</span> <span class="k">i</span> <span class="p">==</span> winnr<span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">)</span> <span class="p">+</span> <span class="m">1</span>
+</span><span class='line'>      <span class="k">qall</span>
+</span><span class='line'>    <span class="k">endif</span>
+</span><span class='line'>    unlet <span class="k">i</span>
+</span><span class='line'>  <span class="k">endif</span>
+</span><span class='line'><span class="k">endfunction</span>
+</span><span class='line'><span class="k">autocmd</span> <span class="nb">BufEnter</span> * <span class="k">call</span> CheckLeftBuffers<span class="p">()</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Note that <code>CheckLeftBuffers()</code> will check buffers only when the tab page count is 1. It iterates every window and check its <code>'buftype'</code> is <code>'help'</code> or <code>'quickfix'</code>. If every window is Help window or QuickFix window, <code>i</code> becomes <code>winnr('$') + 1</code>. Then we&rsquo;re safe to quit all windows by calling <code>qall</code>. Finally we add <code>CheckLeftBuffers()</code> to <code>BufEnter *</code>, so it&rsquo;ll be called on everytime we close a window&mdash;<strong>on the fly!</strong></p>
+
+<p>You can see my actual <a href="https://github.com/yous/dotfiles/commit/735976604471bb6186d3867a30c421c839ad3ad4">vimrc commit</a> and also check out my <a href="https://github.com/yous/dotfiles">dotfiles repo</a>!</p>
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[On becoming an expert C programmer &rarr;]]></title>
@@ -3035,69 +3209,6 @@ index 50e9404..76102db 100644
 <blockquote><p>Note the two <code>goto fail</code> lines in a row. The first one is correctly bound to the if statement but the second, despite the indentation, isn&rsquo;t conditional at all. The code will always jump to the end from that second goto, <code>err</code> will contain a successful value because the SHA1 update operation was successful and so the signature verification will never fail.</p></blockquote>
 
 <p>또한 OS X 10.9.1에는 아직 <a href="http://9to5mac.com/2014/02/22/apple-patched-a-major-ssl-bug-in-ios-yesterday-but-os-x-is-still-at-risk/">이 문제</a>가 있는 것으로 보인다.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Ghost in the Shellcode 2014: inview Write-up]]></title>
-    <link href="http://yous.be/2014/01/20/ghost-in-the-shellcode-2014-inview-write-up/"/>
-    <updated>2014-01-20T22:21:24+09:00</updated>
-    <id>http://yous.be/2014/01/20/ghost-in-the-shellcode-2014-inview-write-up</id>
-    <content type="html"><![CDATA[<h2><a id="question-3-inview"></a>Question 3 - inview</h2>
-
-<blockquote><p>Points: 150</p>
-
-<p>The key is in view, what is it? <a href="https://2014.ghostintheshellcode.com/inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155">File</a></p></blockquote>
-
-<p>If the above link doesn&rsquo;t work, please use this <a href="http://yous.be/downloads/2014/01/20/inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155">link</a>.</p>
-
-<p>Extract file with this code:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>mv inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155 inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155.xz
-</span><span class='line'>xz -d inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155.xz
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Then we can see some trailing whitespace in <code>inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155</code>.</p>
-
-<h2><a id="how-to-highlight-trailing-whitespace-in-vim"></a>How to Highlight Trailing Whitespace in Vim</h2>
-
-<p>Add this code to your <code>.vimrc</code>:</p>
-
-<figure class='code'><figcaption><span>.vimrc</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="nb">highlight</span> ExtraWhitespace ctermbg<span class="p">=</span><span class="k">red</span> guibg<span class="p">=</span><span class="k">red</span>
-</span><span class='line'><span class="k">autocmd</span> <span class="nb">BufWinEnter</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">/\s\+$/</span>
-</span><span class='line'><span class="k">autocmd</span> <span class="nb">InsertEnter</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">//</span>
-</span><span class='line'><span class="k">autocmd</span> <span class="nb">InsertLeave</span> * <span class="k">match</span> ExtraWhitespace <span class="sr">/\s\+$/</span>
-</span><span class='line'><span class="k">if</span> <span class="k">version</span> <span class="p">&gt;=</span> <span class="m">702</span>
-</span><span class='line'>  <span class="k">autocmd</span> <span class="nb">BufWinLeave</span> * <span class="k">call</span> clearmatches<span class="p">()</span>
-</span><span class='line'><span class="k">end</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Then <a href="http://www.vim.org">Vim</a> highlights trailing whitespace to red color.</p>
-
-<h2><a id="how-to-solve"></a>How to Solve</h2>
-
-<p>I felt something weird, so I converted the file to hex code. In Vim:</p>
-
-<pre><code>:%!xxd
-</code></pre>
-
-<p>Looking at whitespace, I realized there are <code>09(Tab)</code>, <code>0A(New Line)</code>, <code>20(Space)</code> with no rule. Right after that I came up with <a href="http://compsoc.dur.ac.uk/whitespace/">Whitespace</a>. Also there is a <a href="http://ws2js.luilak.net/interpreter.html">interpreter written in JavaScript</a>. Almost done! Just copy and paste the file content to site and press &lsquo;Exec&rsquo; button. If you want to execute it in local, you can use <a href="https://github.com/hostilefork/whitespacers">whitespacers</a>.</p>
-
-<p>Finally the key is:</p>
-
-<pre><code>WhitespaceProgrammingIsHard
-</code></pre>
 ]]></content>
   </entry>
   
