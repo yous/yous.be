@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ctf | Yous]]></title>
   <link href="http://yous.be/categories/ctf/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-12-01T14:04:57+09:00</updated>
+  <updated>2014-12-09T06:30:43+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -12,6 +12,465 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[SECCON CTF 2014: Easy Cipher Write-up]]></title>
+    <link href="http://yous.be/2014/12/09/seccon-ctf-2014-easy-cipher-write-up/"/>
+    <updated>2014-12-09T00:11:30+09:00</updated>
+    <id>http://yous.be/2014/12/09/seccon-ctf-2014-easy-cipher-write-up</id>
+    <content type="html"><![CDATA[<h2>Crypto100 - Easy Cipher</h2>
+
+<blockquote><p>87 101 108 1100011 0157 6d 0145 040 116 0157 100000 0164 104 1100101 32 0123 69 67 0103 1001111 1001110 040 062 060 49 064 100000 0157 110 6c 0151 1101110 101 040 0103 1010100 70 101110 0124 1101000 101 100000 1010011 1000101 67 0103 4f 4e 100000 105 1110011 040 116 1101000 0145 040 1100010 0151 103 103 0145 1110011 0164 100000 1101000 0141 99 6b 1100101 0162 32 0143 111 1101110 1110100 101 0163 0164 040 0151 0156 040 74 0141 1110000 1100001 0156 056 4f 0157 0160 115 44 040 0171 1101111 117 100000 1110111 0141 0156 1110100 32 0164 6f 32 6b 1101110 1101111 1110111 100000 0164 1101000 0145 040 0146 6c 97 1100111 2c 100000 0144 111 110 100111 116 100000 1111001 6f 117 63 0110 1100101 0162 0145 100000 1111001 111 117 100000 97 114 0145 46 1010011 0105 0103 67 79 1001110 123 87 110011 110001 67 110000 1001101 32 55 060 100000 110111 0110 110011 32 53 51 0103 0103 060 0116 040 5a 0117 73 0101 7d 1001000 0141 1110110 1100101 100000 102 0165 0156 33</p></blockquote>
+
+<p>It looks like a set of numbers split with space. But there are multiple integer bases.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">nums</span> <span class="o">=</span> <span class="sx">%w(87 101 108 1100011 0157 6d 0145 040 116 0157 100000 0164 104 1100101</span>
+</span><span class='line'><span class="sx">          32 0123 69 67 0103 1001111 1001110 040 062 060 49 064 100000 0157 110</span>
+</span><span class='line'><span class="sx">          6c 0151 1101110 101 040 0103 1010100 70 101110 0124 1101000 101 100000</span>
+</span><span class='line'><span class="sx">          1010011 1000101 67 0103 4f 4e 100000 105 1110011 040 116 1101000 0145</span>
+</span><span class='line'><span class="sx">          040 1100010 0151 103 103 0145 1110011 0164 100000 1101000 0141 99 6b</span>
+</span><span class='line'><span class="sx">          1100101 0162 32 0143 111 1101110 1110100 101 0163 0164 040 0151 0156</span>
+</span><span class='line'><span class="sx">          040 74 0141 1110000 1100001 0156 056 4f 0157 0160 115 44 040 0171</span>
+</span><span class='line'><span class="sx">          1101111 117 100000 1110111 0141 0156 1110100 32 0164 6f 32 6b 1101110</span>
+</span><span class='line'><span class="sx">          1101111 1110111 100000 0164 1101000 0145 040 0146 6c 97 1100111 2c</span>
+</span><span class='line'><span class="sx">          100000 0144 111 110 100111 116 100000 1111001 6f 117 63 0110 1100101</span>
+</span><span class='line'><span class="sx">          0162 0145 100000 1111001 111 117 100000 97 114 0145 46 1010011 0105</span>
+</span><span class='line'><span class="sx">          0103 67 79 1001110 123 87 110011 110001 67 110000 1001101 32 55 060</span>
+</span><span class='line'><span class="sx">          100000 110111 0110 110011 32 53 51 0103 0103 060 0116 040 5a 0117 73</span>
+</span><span class='line'><span class="sx">          0101 7d 1001000 0141 1110110 1100101 100000 102 0165 0156 33)</span>
+</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">ord</span> <span class="o">=</span> <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;=</span> <span class="mi">5</span>
+</span><span class='line'>          <span class="n">s</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">elsif</span> <span class="n">s</span> <span class="o">=~</span> <span class="sr">/[a-f]/</span>
+</span><span class='line'>          <span class="n">s</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">elsif</span> <span class="n">s</span><span class="o">.</span><span class="n">start_with?</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
+</span><span class='line'>          <span class="n">s</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">else</span>
+</span><span class='line'>          <span class="n">s</span><span class="o">.</span><span class="n">to_i</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>  <span class="n">ord</span><span class="o">.</span><span class="n">chr</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str</span><span class="o">.</span><span class="n">join</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Just run with Ruby:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Welcome to the SECCON 2014 online CTF.The SECCON is the biggest hacker contest in Japan.Oops, you want to know the flag, don't you?Here you are.SECCON{W31C0M 70 7H3 53CC0N ZOIA}Have fun!</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Finally the flag is:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SECCON{W31C0M 70 7H3 53CC0N ZOIA}</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[SECCON CTF 2014: QR (Easy) Write-up]]></title>
+    <link href="http://yous.be/2014/12/07/seccon-ctf-2014-qr-easy-write-up/"/>
+    <updated>2014-12-07T19:02:51+09:00</updated>
+    <id>http://yous.be/2014/12/07/seccon-ctf-2014-qr-easy-write-up</id>
+    <content type="html"><![CDATA[<h2>QR200 - QR (Easy)</h2>
+
+<blockquote><p>Funniest joke in the world(?):<br/>
+&ldquo;Last night, I had a dream I was eating QR cakes&hellip;.<br/>
+but when I woke up, half my QR code was gone!&rdquo;</p>
+
+<p><img src="http://yous.be/images/2014/12/07/DSC01964_s.JPG" alt="QR (Easy)" /></p>
+
+<hr />
+
+<p>世界一面白いジョーク：<br/>
+昨晩フランネルケーキを食べる夢を見たんだけど、<br/>
+朝起きたらQRコードが半分なくなってたんだ！</p></blockquote>
+
+<!-- more -->
+
+
+<h2>First Look</h2>
+
+<p>At first, we need clean image based on the image above.</p>
+
+<p><img src="http://yous.be/images/2014/12/07/skeleton_qr.png" alt="Skeleton QR code" /></p>
+
+<p>The size of this QR code is 29x29 and the size of version <em>V</em> is <em>N &times; N</em> with <em>N = 17 + 4V</em>, so this is version 3.</p>
+
+<h2>Format Information</h2>
+
+<p><img src="http://yous.be/images/2014/12/07/qr_format_information.png" alt="Format information" /></p>
+
+<p>Note that the area indicates format information of QR code. Actually the format information is 15 bits long and the area has last 8 bits.</p>
+
+<p><img src="http://yous.be/images/2014/12/07/format_information_bits.png" alt="Format information bits" /></p>
+
+<p>Searching <a href="http://www.thonky.com/qr-code-tutorial/format-version-tables/#list-of-all-format-information-strings">the list of all format information strings</a>, we can find out that the type information bits are <code>001001110111110</code>. So this QR code has ECC level H and mask pattern 1.</p>
+
+<h2>Off the Mask</h2>
+
+<p>According to <a href="http://www.thonky.com/qr-code-tutorial/mask-patterns/">QR Mask Patterns Explained</a>, mask number 1 has formula <code>(row) mod 2 == 0</code>. Note that the row number start from 0. So we have to switch the bit of the row of which the coordinate is 0, 2, 4, &hellip;, 28.</p>
+
+<p>Also there are fixed patterns in QR code, so we have to switch bits of data section only. See the data area and the bit order.</p>
+
+<p><img src="http://yous.be/images/2014/12/07/QR_Ver3_Codeword_Ordering.svg" alt="QR Ver3 Codeword Ordering" /><br/>
+(via <a href="http://commons.wikimedia.org/wiki/File:QR_Ver3_Codeword_Ordering.svg">wikipedia.org</a>)</p>
+
+<p>So, the raw D1&ndash;D26 are:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">D1</span>  <span class="o">=</span> <span class="mb">0b11101100</span>
+</span><span class='line'><span class="no">D14</span> <span class="o">=</span> <span class="mb">0b10000010</span>
+</span><span class='line'><span class="no">D2</span>  <span class="o">=</span> <span class="mb">0b11111000</span>
+</span><span class='line'><span class="no">D15</span> <span class="o">=</span> <span class="mb">0b10010101</span>
+</span><span class='line'><span class="no">D3</span>  <span class="o">=</span> <span class="mb">0b00110110</span>
+</span><span class='line'><span class="no">D16</span> <span class="o">=</span> <span class="mb">0b00111101</span>
+</span><span class='line'><span class="no">D4</span>  <span class="o">=</span> <span class="mb">0b01110110</span>
+</span><span class='line'><span class="no">D17</span> <span class="o">=</span> <span class="mb">0b01100010</span>
+</span><span class='line'><span class="no">D5</span>  <span class="o">=</span> <span class="mb">0b00100010</span>
+</span><span class='line'><span class="no">D18</span> <span class="o">=</span> <span class="mb">0b11101001</span>
+</span><span class='line'><span class="no">D6</span>  <span class="o">=</span> <span class="mb">0b11110001</span>
+</span><span class='line'><span class="no">D19</span> <span class="o">=</span> <span class="mb">0b10100001</span>
+</span><span class='line'><span class="no">D7</span>  <span class="o">=</span> <span class="mb">0b00110111</span>
+</span><span class='line'><span class="no">D20</span> <span class="o">=</span> <span class="mb">0b11100101</span>
+</span><span class='line'><span class="no">D8</span>  <span class="o">=</span> <span class="mb">0b01010010</span>
+</span><span class='line'><span class="no">D21</span> <span class="o">=</span> <span class="mb">0b11010101</span>
+</span><span class='line'><span class="no">D9</span>  <span class="o">=</span> <span class="mb">0b00010111</span>
+</span><span class='line'><span class="no">D22</span> <span class="o">=</span> <span class="mb">0b00101101</span>
+</span><span class='line'><span class="no">D10</span> <span class="o">=</span> <span class="mb">0b11011110</span>
+</span><span class='line'><span class="no">D23</span> <span class="o">=</span> <span class="mb">0b10010111</span>
+</span><span class='line'><span class="no">D11</span> <span class="o">=</span> <span class="mb">0b01000100</span>
+</span><span class='line'><span class="no">D24</span> <span class="o">=</span> <span class="mb">0b10001011</span>
+</span><span class='line'><span class="no">D12</span> <span class="o">=</span> <span class="mb">0b01010100</span>
+</span><span class='line'><span class="no">D25</span> <span class="o">=</span> <span class="mb">0b01111000</span>
+</span><span class='line'><span class="no">D13</span> <span class="o">=</span> <span class="mb">0b11001101</span>
+</span><span class='line'><span class="no">D26</span> <span class="o">=</span> <span class="mb">0b11000110</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After masking off,</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">D1</span>  <span class="o">=</span> <span class="mb">0b00100000</span>
+</span><span class='line'><span class="no">D14</span> <span class="o">=</span> <span class="mb">0b01001110</span>
+</span><span class='line'><span class="no">D2</span>  <span class="o">=</span> <span class="mb">0b00110100</span>
+</span><span class='line'><span class="no">D15</span> <span class="o">=</span> <span class="mb">0b01011001</span>
+</span><span class='line'><span class="no">D3</span>  <span class="o">=</span> <span class="mb">0b11111010</span>
+</span><span class='line'><span class="no">D16</span> <span class="o">=</span> <span class="mb">0b00001110</span>
+</span><span class='line'><span class="no">D4</span>  <span class="o">=</span> <span class="mb">0b01000101</span>
+</span><span class='line'><span class="no">D17</span> <span class="o">=</span> <span class="mb">0b01010001</span>
+</span><span class='line'><span class="no">D5</span>  <span class="o">=</span> <span class="mb">0b00010001</span>
+</span><span class='line'><span class="no">D18</span> <span class="o">=</span> <span class="mb">0b11011010</span>
+</span><span class='line'><span class="no">D6</span>  <span class="o">=</span> <span class="mb">0b00111101</span>
+</span><span class='line'><span class="no">D19</span> <span class="o">=</span> <span class="mb">0b10010010</span>
+</span><span class='line'><span class="no">D7</span>  <span class="o">=</span> <span class="mb">0b00000100</span>
+</span><span class='line'><span class="no">D20</span> <span class="o">=</span> <span class="mb">0b11010101</span>
+</span><span class='line'><span class="no">D8</span>  <span class="o">=</span> <span class="mb">0b10011110</span>
+</span><span class='line'><span class="no">D21</span> <span class="o">=</span> <span class="mb">0b00011001</span>
+</span><span class='line'><span class="no">D9</span>  <span class="o">=</span> <span class="mb">0b11010100</span>
+</span><span class='line'><span class="no">D22</span> <span class="o">=</span> <span class="mb">0b00010001</span>
+</span><span class='line'><span class="no">D10</span> <span class="o">=</span> <span class="mb">0b00010100</span>
+</span><span class='line'><span class="no">D23</span> <span class="o">=</span> <span class="mb">0b00001110</span>
+</span><span class='line'><span class="no">D11</span> <span class="o">=</span> <span class="mb">0b11011101</span>
+</span><span class='line'><span class="no">D24</span> <span class="o">=</span> <span class="mb">0b00010010</span>
+</span><span class='line'><span class="no">D12</span> <span class="o">=</span> <span class="mb">0b11010010</span>
+</span><span class='line'><span class="no">D25</span> <span class="o">=</span> <span class="mb">0b00011111</span>
+</span><span class='line'><span class="no">D13</span> <span class="o">=</span> <span class="mb">0b01010100</span>
+</span><span class='line'><span class="no">D26</span> <span class="o">=</span> <span class="mb">0b01000000</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now we can start decoding the data.</p>
+
+<h2>Data Decoding</h2>
+
+<p>There are <a href="http://www.thonky.com/qr-code-tutorial/data-encoding/#step-3-add-the-mode-indicator">mode indicators</a> for decoding:</p>
+
+<ul>
+<li><code>0001</code>: Numeric Mode (10 bits per 3 digits)</li>
+<li><code>0010</code>: Alphanumeric Mode (11 bits per 2 characters)</li>
+<li><code>0100</code>: Byte Mode (8 bits per character)</li>
+<li><code>1000</code>: Kanji Mode (13 bits per character)</li>
+<li><code>0111</code>: ECI Mode</li>
+</ul>
+
+
+<p><a href="http://www.thonky.com/qr-code-tutorial/data-encoding/#step-4-add-the-character-count-indicator">Character count indicator</a> follows after a mode indicator.</p>
+
+<ul>
+<li>Version 1&ndash;9
+
+<ul>
+<li>Numeric mode: 10 bits</li>
+<li>Alphanumeric mode: 9 bits</li>
+<li>Byte mode: 8 bits</li>
+<li>Kanji mode: 8 bits</li>
+</ul>
+</li>
+<li>Version 10&ndash;26
+
+<ul>
+<li>Numeric mode: 12 bits</li>
+<li>Alphanumeric mode: 11 bits</li>
+<li>Byte mode: 16 bits</li>
+<li>Kanji mode: 10 bits</li>
+</ul>
+</li>
+<li>Version 27&ndash;40
+
+<ul>
+<li>Numeric mode: 14 bits</li>
+<li>Alphanumeric mode: 13 bits</li>
+<li>Byte mode: 16 bits</li>
+<li>Kanji mode: 12 bits</li>
+</ul>
+</li>
+</ul>
+
+
+<p>See the encoding process for each mode:</p>
+
+<ul>
+<li><a href="http://www.thonky.com/qr-code-tutorial/numeric-mode-encoding/">Numeric Mode Encoding</a></li>
+<li><a href="http://www.thonky.com/qr-code-tutorial/alphanumeric-mode-encoding/">Alphanumeric Mode Encoding</a></li>
+<li><a href="http://www.thonky.com/qr-code-tutorial/byte-mode-encoding/">Byte Mode Encoding</a></li>
+<li><a href="http://www.thonky.com/qr-code-tutorial/kanji-mode-encoding/">Kanji Mode Encoding</a></li>
+</ul>
+
+
+<p>Let&rsquo;s start with above data D1&ndash;D26:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;00100000&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;00110100&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;11111010&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;01000101&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;00010001&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;00111101&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;00000100&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;10011110&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;11010100&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;00010100&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;11011101&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;11010010&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;01010100&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;01001110&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;01011001&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;00001110&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;01010001&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;11011010&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;10010010&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;11010101&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;00011001&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;00010001&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;00001110&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;00010010&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;00011111&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;01000000&#39;</span>
+</span><span class='line'><span class="n">alphanumeric</span> <span class="o">=</span> <span class="s1">&#39;0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:&#39;</span><span class="o">.</span><span class="n">chars</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">str</span><span class="o">.</span><span class="n">slice!</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">kanji</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;=</span> <span class="mh">0x1740</span>
+</span><span class='line'>    <span class="p">(</span><span class="mh">0xC140</span> <span class="o">+</span> <span class="n">num</span> <span class="o">/</span> <span class="mh">0xC0</span> <span class="o">*</span> <span class="mh">0x100</span> <span class="o">+</span> <span class="n">num</span> <span class="o">%</span> <span class="mh">0xC0</span><span class="p">)</span>
+</span><span class='line'>      <span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="no">Encoding</span><span class="o">::</span><span class="no">Shift_JIS</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="no">Encoding</span><span class="o">::</span><span class="no">UTF_8</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="p">(</span><span class="mh">0x8140</span> <span class="o">+</span> <span class="n">num</span> <span class="o">/</span> <span class="mh">0xC0</span> <span class="o">*</span> <span class="mh">0x100</span> <span class="o">+</span> <span class="n">num</span> <span class="o">%</span> <span class="mh">0xC0</span><span class="p">)</span>
+</span><span class='line'>      <span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="no">Encoding</span><span class="o">::</span><span class="no">Shift_JIS</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="no">Encoding</span><span class="o">::</span><span class="no">UTF_8</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="kp">loop</span> <span class="k">do</span>
+</span><span class='line'>  <span class="k">case</span> <span class="n">mode</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">when</span> <span class="s1">&#39;0010&#39;</span> <span class="c1"># Alphanumeric</span>
+</span><span class='line'>    <span class="n">count</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">(</span><span class="n">count</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">chunk</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>      <span class="nb">print</span> <span class="n">alphanumeric</span><span class="o">[</span><span class="n">chunk</span> <span class="o">/</span> <span class="mi">45</span><span class="o">]</span> <span class="o">+</span> <span class="n">alphanumeric</span><span class="o">[</span><span class="n">chunk</span> <span class="o">%</span> <span class="mi">45</span><span class="o">]</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="nb">print</span> <span class="n">alphanumeric</span><span class="o">[</span><span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">]</span> <span class="k">if</span> <span class="n">count</span><span class="o">.</span><span class="n">odd?</span>
+</span><span class='line'>  <span class="k">when</span> <span class="s1">&#39;0100&#39;</span> <span class="c1"># Byte</span>
+</span><span class='line'>    <span class="n">count</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">count</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
+</span><span class='line'>      <span class="nb">print</span> <span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">chr</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">when</span> <span class="s1">&#39;1000&#39;</span> <span class="c1"># Kanji</span>
+</span><span class='line'>    <span class="n">count</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">count</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
+</span><span class='line'>      <span class="nb">print</span> <span class="n">kanji</span><span class="p">(</span><span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">when</span> <span class="s1">&#39;0000&#39;</span> <span class="c1"># Terminate</span>
+</span><span class='line'>    <span class="k">break</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="nb">fail</span> <span class="s2">&quot;Unhandled mode </span><span class="si">#{</span><span class="n">mode</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Fortunately, the QR code contains alphanumeric encoding and byte encoding only. You can get the flag by running above code with Ruby:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SECCON{PSwIQ9d9GjKTdD8H}</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>References</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/QR_code">QR code on Wikipedia</a></li>
+<li><a href="http://www.thonky.com/qr-code-tutorial/">QR Code Tutorial</a> by <a href="http://www.thonky.com">Thonky</a></li>
+<li><a href="http://www.ams.org/samplings/feature-column/fc-2013-02">How to Read QR Symbols Without Your Mobile Telephone</a> by Bill Casselman</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[ropasaurusrex: return-oriented programming 입문서]]></title>

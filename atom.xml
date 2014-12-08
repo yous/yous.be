@@ -4,7 +4,7 @@
   <title><![CDATA[Yous]]></title>
   <link href="http://yous.be/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-12-01T14:04:57+09:00</updated>
+  <updated>2014-12-09T06:30:43+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -12,6 +12,465 @@
   </author>
   <generator uri="http://octopress.org/">Octopress</generator>
 
+  
+  <entry>
+    <title type="html"><![CDATA[SECCON CTF 2014: Easy Cipher Write-up]]></title>
+    <link href="http://yous.be/2014/12/09/seccon-ctf-2014-easy-cipher-write-up/"/>
+    <updated>2014-12-09T00:11:30+09:00</updated>
+    <id>http://yous.be/2014/12/09/seccon-ctf-2014-easy-cipher-write-up</id>
+    <content type="html"><![CDATA[<h2>Crypto100 - Easy Cipher</h2>
+
+<blockquote><p>87 101 108 1100011 0157 6d 0145 040 116 0157 100000 0164 104 1100101 32 0123 69 67 0103 1001111 1001110 040 062 060 49 064 100000 0157 110 6c 0151 1101110 101 040 0103 1010100 70 101110 0124 1101000 101 100000 1010011 1000101 67 0103 4f 4e 100000 105 1110011 040 116 1101000 0145 040 1100010 0151 103 103 0145 1110011 0164 100000 1101000 0141 99 6b 1100101 0162 32 0143 111 1101110 1110100 101 0163 0164 040 0151 0156 040 74 0141 1110000 1100001 0156 056 4f 0157 0160 115 44 040 0171 1101111 117 100000 1110111 0141 0156 1110100 32 0164 6f 32 6b 1101110 1101111 1110111 100000 0164 1101000 0145 040 0146 6c 97 1100111 2c 100000 0144 111 110 100111 116 100000 1111001 6f 117 63 0110 1100101 0162 0145 100000 1111001 111 117 100000 97 114 0145 46 1010011 0105 0103 67 79 1001110 123 87 110011 110001 67 110000 1001101 32 55 060 100000 110111 0110 110011 32 53 51 0103 0103 060 0116 040 5a 0117 73 0101 7d 1001000 0141 1110110 1100101 100000 102 0165 0156 33</p></blockquote>
+
+<p>It looks like a set of numbers split with space. But there are multiple integer bases.</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">nums</span> <span class="o">=</span> <span class="sx">%w(87 101 108 1100011 0157 6d 0145 040 116 0157 100000 0164 104 1100101</span>
+</span><span class='line'><span class="sx">          32 0123 69 67 0103 1001111 1001110 040 062 060 49 064 100000 0157 110</span>
+</span><span class='line'><span class="sx">          6c 0151 1101110 101 040 0103 1010100 70 101110 0124 1101000 101 100000</span>
+</span><span class='line'><span class="sx">          1010011 1000101 67 0103 4f 4e 100000 105 1110011 040 116 1101000 0145</span>
+</span><span class='line'><span class="sx">          040 1100010 0151 103 103 0145 1110011 0164 100000 1101000 0141 99 6b</span>
+</span><span class='line'><span class="sx">          1100101 0162 32 0143 111 1101110 1110100 101 0163 0164 040 0151 0156</span>
+</span><span class='line'><span class="sx">          040 74 0141 1110000 1100001 0156 056 4f 0157 0160 115 44 040 0171</span>
+</span><span class='line'><span class="sx">          1101111 117 100000 1110111 0141 0156 1110100 32 0164 6f 32 6b 1101110</span>
+</span><span class='line'><span class="sx">          1101111 1110111 100000 0164 1101000 0145 040 0146 6c 97 1100111 2c</span>
+</span><span class='line'><span class="sx">          100000 0144 111 110 100111 116 100000 1111001 6f 117 63 0110 1100101</span>
+</span><span class='line'><span class="sx">          0162 0145 100000 1111001 111 117 100000 97 114 0145 46 1010011 0105</span>
+</span><span class='line'><span class="sx">          0103 67 79 1001110 123 87 110011 110001 67 110000 1001101 32 55 060</span>
+</span><span class='line'><span class="sx">          100000 110111 0110 110011 32 53 51 0103 0103 060 0116 040 5a 0117 73</span>
+</span><span class='line'><span class="sx">          0101 7d 1001000 0141 1110110 1100101 100000 102 0165 0156 33)</span>
+</span><span class='line'><span class="n">str</span> <span class="o">=</span> <span class="n">nums</span><span class="o">.</span><span class="n">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
+</span><span class='line'>  <span class="n">ord</span> <span class="o">=</span> <span class="k">if</span> <span class="n">s</span><span class="o">.</span><span class="n">size</span> <span class="o">&gt;=</span> <span class="mi">5</span>
+</span><span class='line'>          <span class="n">s</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">elsif</span> <span class="n">s</span> <span class="o">=~</span> <span class="sr">/[a-f]/</span>
+</span><span class='line'>          <span class="n">s</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">elsif</span> <span class="n">s</span><span class="o">.</span><span class="n">start_with?</span><span class="p">(</span><span class="s1">&#39;0&#39;</span><span class="p">)</span>
+</span><span class='line'>          <span class="n">s</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
+</span><span class='line'>        <span class="k">else</span>
+</span><span class='line'>          <span class="n">s</span><span class="o">.</span><span class="n">to_i</span>
+</span><span class='line'>        <span class="k">end</span>
+</span><span class='line'>  <span class="n">ord</span><span class="o">.</span><span class="n">chr</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'><span class="nb">puts</span> <span class="n">str</span><span class="o">.</span><span class="n">join</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Just run with Ruby:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>Welcome to the SECCON 2014 online CTF.The SECCON is the biggest hacker contest in Japan.Oops, you want to know the flag, don't you?Here you are.SECCON{W31C0M 70 7H3 53CC0N ZOIA}Have fun!</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Finally the flag is:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SECCON{W31C0M 70 7H3 53CC0N ZOIA}</span></code></pre></td></tr></table></div></figure>
+
+]]></content>
+  </entry>
+  
+  <entry>
+    <title type="html"><![CDATA[SECCON CTF 2014: QR (Easy) Write-up]]></title>
+    <link href="http://yous.be/2014/12/07/seccon-ctf-2014-qr-easy-write-up/"/>
+    <updated>2014-12-07T19:02:51+09:00</updated>
+    <id>http://yous.be/2014/12/07/seccon-ctf-2014-qr-easy-write-up</id>
+    <content type="html"><![CDATA[<h2>QR200 - QR (Easy)</h2>
+
+<blockquote><p>Funniest joke in the world(?):<br/>
+&ldquo;Last night, I had a dream I was eating QR cakes&hellip;.<br/>
+but when I woke up, half my QR code was gone!&rdquo;</p>
+
+<p><img src="http://yous.be/images/2014/12/07/DSC01964_s.JPG" alt="QR (Easy)" /></p>
+
+<hr />
+
+<p>世界一面白いジョーク：<br/>
+昨晩フランネルケーキを食べる夢を見たんだけど、<br/>
+朝起きたらQRコードが半分なくなってたんだ！</p></blockquote>
+
+<!-- more -->
+
+
+<h2>First Look</h2>
+
+<p>At first, we need clean image based on the image above.</p>
+
+<p><img src="http://yous.be/images/2014/12/07/skeleton_qr.png" alt="Skeleton QR code" /></p>
+
+<p>The size of this QR code is 29x29 and the size of version <em>V</em> is <em>N &times; N</em> with <em>N = 17 + 4V</em>, so this is version 3.</p>
+
+<h2>Format Information</h2>
+
+<p><img src="http://yous.be/images/2014/12/07/qr_format_information.png" alt="Format information" /></p>
+
+<p>Note that the area indicates format information of QR code. Actually the format information is 15 bits long and the area has last 8 bits.</p>
+
+<p><img src="http://yous.be/images/2014/12/07/format_information_bits.png" alt="Format information bits" /></p>
+
+<p>Searching <a href="http://www.thonky.com/qr-code-tutorial/format-version-tables/#list-of-all-format-information-strings">the list of all format information strings</a>, we can find out that the type information bits are <code>001001110111110</code>. So this QR code has ECC level H and mask pattern 1.</p>
+
+<h2>Off the Mask</h2>
+
+<p>According to <a href="http://www.thonky.com/qr-code-tutorial/mask-patterns/">QR Mask Patterns Explained</a>, mask number 1 has formula <code>(row) mod 2 == 0</code>. Note that the row number start from 0. So we have to switch the bit of the row of which the coordinate is 0, 2, 4, &hellip;, 28.</p>
+
+<p>Also there are fixed patterns in QR code, so we have to switch bits of data section only. See the data area and the bit order.</p>
+
+<p><img src="http://yous.be/images/2014/12/07/QR_Ver3_Codeword_Ordering.svg" alt="QR Ver3 Codeword Ordering" /><br/>
+(via <a href="http://commons.wikimedia.org/wiki/File:QR_Ver3_Codeword_Ordering.svg">wikipedia.org</a>)</p>
+
+<p>So, the raw D1&ndash;D26 are:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">D1</span>  <span class="o">=</span> <span class="mb">0b11101100</span>
+</span><span class='line'><span class="no">D14</span> <span class="o">=</span> <span class="mb">0b10000010</span>
+</span><span class='line'><span class="no">D2</span>  <span class="o">=</span> <span class="mb">0b11111000</span>
+</span><span class='line'><span class="no">D15</span> <span class="o">=</span> <span class="mb">0b10010101</span>
+</span><span class='line'><span class="no">D3</span>  <span class="o">=</span> <span class="mb">0b00110110</span>
+</span><span class='line'><span class="no">D16</span> <span class="o">=</span> <span class="mb">0b00111101</span>
+</span><span class='line'><span class="no">D4</span>  <span class="o">=</span> <span class="mb">0b01110110</span>
+</span><span class='line'><span class="no">D17</span> <span class="o">=</span> <span class="mb">0b01100010</span>
+</span><span class='line'><span class="no">D5</span>  <span class="o">=</span> <span class="mb">0b00100010</span>
+</span><span class='line'><span class="no">D18</span> <span class="o">=</span> <span class="mb">0b11101001</span>
+</span><span class='line'><span class="no">D6</span>  <span class="o">=</span> <span class="mb">0b11110001</span>
+</span><span class='line'><span class="no">D19</span> <span class="o">=</span> <span class="mb">0b10100001</span>
+</span><span class='line'><span class="no">D7</span>  <span class="o">=</span> <span class="mb">0b00110111</span>
+</span><span class='line'><span class="no">D20</span> <span class="o">=</span> <span class="mb">0b11100101</span>
+</span><span class='line'><span class="no">D8</span>  <span class="o">=</span> <span class="mb">0b01010010</span>
+</span><span class='line'><span class="no">D21</span> <span class="o">=</span> <span class="mb">0b11010101</span>
+</span><span class='line'><span class="no">D9</span>  <span class="o">=</span> <span class="mb">0b00010111</span>
+</span><span class='line'><span class="no">D22</span> <span class="o">=</span> <span class="mb">0b00101101</span>
+</span><span class='line'><span class="no">D10</span> <span class="o">=</span> <span class="mb">0b11011110</span>
+</span><span class='line'><span class="no">D23</span> <span class="o">=</span> <span class="mb">0b10010111</span>
+</span><span class='line'><span class="no">D11</span> <span class="o">=</span> <span class="mb">0b01000100</span>
+</span><span class='line'><span class="no">D24</span> <span class="o">=</span> <span class="mb">0b10001011</span>
+</span><span class='line'><span class="no">D12</span> <span class="o">=</span> <span class="mb">0b01010100</span>
+</span><span class='line'><span class="no">D25</span> <span class="o">=</span> <span class="mb">0b01111000</span>
+</span><span class='line'><span class="no">D13</span> <span class="o">=</span> <span class="mb">0b11001101</span>
+</span><span class='line'><span class="no">D26</span> <span class="o">=</span> <span class="mb">0b11000110</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>After masking off,</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="no">D1</span>  <span class="o">=</span> <span class="mb">0b00100000</span>
+</span><span class='line'><span class="no">D14</span> <span class="o">=</span> <span class="mb">0b01001110</span>
+</span><span class='line'><span class="no">D2</span>  <span class="o">=</span> <span class="mb">0b00110100</span>
+</span><span class='line'><span class="no">D15</span> <span class="o">=</span> <span class="mb">0b01011001</span>
+</span><span class='line'><span class="no">D3</span>  <span class="o">=</span> <span class="mb">0b11111010</span>
+</span><span class='line'><span class="no">D16</span> <span class="o">=</span> <span class="mb">0b00001110</span>
+</span><span class='line'><span class="no">D4</span>  <span class="o">=</span> <span class="mb">0b01000101</span>
+</span><span class='line'><span class="no">D17</span> <span class="o">=</span> <span class="mb">0b01010001</span>
+</span><span class='line'><span class="no">D5</span>  <span class="o">=</span> <span class="mb">0b00010001</span>
+</span><span class='line'><span class="no">D18</span> <span class="o">=</span> <span class="mb">0b11011010</span>
+</span><span class='line'><span class="no">D6</span>  <span class="o">=</span> <span class="mb">0b00111101</span>
+</span><span class='line'><span class="no">D19</span> <span class="o">=</span> <span class="mb">0b10010010</span>
+</span><span class='line'><span class="no">D7</span>  <span class="o">=</span> <span class="mb">0b00000100</span>
+</span><span class='line'><span class="no">D20</span> <span class="o">=</span> <span class="mb">0b11010101</span>
+</span><span class='line'><span class="no">D8</span>  <span class="o">=</span> <span class="mb">0b10011110</span>
+</span><span class='line'><span class="no">D21</span> <span class="o">=</span> <span class="mb">0b00011001</span>
+</span><span class='line'><span class="no">D9</span>  <span class="o">=</span> <span class="mb">0b11010100</span>
+</span><span class='line'><span class="no">D22</span> <span class="o">=</span> <span class="mb">0b00010001</span>
+</span><span class='line'><span class="no">D10</span> <span class="o">=</span> <span class="mb">0b00010100</span>
+</span><span class='line'><span class="no">D23</span> <span class="o">=</span> <span class="mb">0b00001110</span>
+</span><span class='line'><span class="no">D11</span> <span class="o">=</span> <span class="mb">0b11011101</span>
+</span><span class='line'><span class="no">D24</span> <span class="o">=</span> <span class="mb">0b00010010</span>
+</span><span class='line'><span class="no">D12</span> <span class="o">=</span> <span class="mb">0b11010010</span>
+</span><span class='line'><span class="no">D25</span> <span class="o">=</span> <span class="mb">0b00011111</span>
+</span><span class='line'><span class="no">D13</span> <span class="o">=</span> <span class="mb">0b01010100</span>
+</span><span class='line'><span class="no">D26</span> <span class="o">=</span> <span class="mb">0b01000000</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Now we can start decoding the data.</p>
+
+<h2>Data Decoding</h2>
+
+<p>There are <a href="http://www.thonky.com/qr-code-tutorial/data-encoding/#step-3-add-the-mode-indicator">mode indicators</a> for decoding:</p>
+
+<ul>
+<li><code>0001</code>: Numeric Mode (10 bits per 3 digits)</li>
+<li><code>0010</code>: Alphanumeric Mode (11 bits per 2 characters)</li>
+<li><code>0100</code>: Byte Mode (8 bits per character)</li>
+<li><code>1000</code>: Kanji Mode (13 bits per character)</li>
+<li><code>0111</code>: ECI Mode</li>
+</ul>
+
+
+<p><a href="http://www.thonky.com/qr-code-tutorial/data-encoding/#step-4-add-the-character-count-indicator">Character count indicator</a> follows after a mode indicator.</p>
+
+<ul>
+<li>Version 1&ndash;9
+
+<ul>
+<li>Numeric mode: 10 bits</li>
+<li>Alphanumeric mode: 9 bits</li>
+<li>Byte mode: 8 bits</li>
+<li>Kanji mode: 8 bits</li>
+</ul>
+</li>
+<li>Version 10&ndash;26
+
+<ul>
+<li>Numeric mode: 12 bits</li>
+<li>Alphanumeric mode: 11 bits</li>
+<li>Byte mode: 16 bits</li>
+<li>Kanji mode: 10 bits</li>
+</ul>
+</li>
+<li>Version 27&ndash;40
+
+<ul>
+<li>Numeric mode: 14 bits</li>
+<li>Alphanumeric mode: 13 bits</li>
+<li>Byte mode: 16 bits</li>
+<li>Kanji mode: 12 bits</li>
+</ul>
+</li>
+</ul>
+
+
+<p>See the encoding process for each mode:</p>
+
+<ul>
+<li><a href="http://www.thonky.com/qr-code-tutorial/numeric-mode-encoding/">Numeric Mode Encoding</a></li>
+<li><a href="http://www.thonky.com/qr-code-tutorial/alphanumeric-mode-encoding/">Alphanumeric Mode Encoding</a></li>
+<li><a href="http://www.thonky.com/qr-code-tutorial/byte-mode-encoding/">Byte Mode Encoding</a></li>
+<li><a href="http://www.thonky.com/qr-code-tutorial/kanji-mode-encoding/">Kanji Mode Encoding</a></li>
+</ul>
+
+
+<p>Let&rsquo;s start with above data D1&ndash;D26:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<span class='line-number'>2</span>
+<span class='line-number'>3</span>
+<span class='line-number'>4</span>
+<span class='line-number'>5</span>
+<span class='line-number'>6</span>
+<span class='line-number'>7</span>
+<span class='line-number'>8</span>
+<span class='line-number'>9</span>
+<span class='line-number'>10</span>
+<span class='line-number'>11</span>
+<span class='line-number'>12</span>
+<span class='line-number'>13</span>
+<span class='line-number'>14</span>
+<span class='line-number'>15</span>
+<span class='line-number'>16</span>
+<span class='line-number'>17</span>
+<span class='line-number'>18</span>
+<span class='line-number'>19</span>
+<span class='line-number'>20</span>
+<span class='line-number'>21</span>
+<span class='line-number'>22</span>
+<span class='line-number'>23</span>
+<span class='line-number'>24</span>
+<span class='line-number'>25</span>
+<span class='line-number'>26</span>
+<span class='line-number'>27</span>
+<span class='line-number'>28</span>
+<span class='line-number'>29</span>
+<span class='line-number'>30</span>
+<span class='line-number'>31</span>
+<span class='line-number'>32</span>
+<span class='line-number'>33</span>
+<span class='line-number'>34</span>
+<span class='line-number'>35</span>
+<span class='line-number'>36</span>
+<span class='line-number'>37</span>
+<span class='line-number'>38</span>
+<span class='line-number'>39</span>
+<span class='line-number'>40</span>
+<span class='line-number'>41</span>
+<span class='line-number'>42</span>
+<span class='line-number'>43</span>
+<span class='line-number'>44</span>
+<span class='line-number'>45</span>
+<span class='line-number'>46</span>
+<span class='line-number'>47</span>
+<span class='line-number'>48</span>
+<span class='line-number'>49</span>
+<span class='line-number'>50</span>
+<span class='line-number'>51</span>
+<span class='line-number'>52</span>
+<span class='line-number'>53</span>
+<span class='line-number'>54</span>
+<span class='line-number'>55</span>
+<span class='line-number'>56</span>
+<span class='line-number'>57</span>
+<span class='line-number'>58</span>
+<span class='line-number'>59</span>
+<span class='line-number'>60</span>
+<span class='line-number'>61</span>
+<span class='line-number'>62</span>
+<span class='line-number'>63</span>
+<span class='line-number'>64</span>
+<span class='line-number'>65</span>
+<span class='line-number'>66</span>
+<span class='line-number'>67</span>
+</pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;00100000&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;00110100&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;11111010&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;01000101&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;00010001&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;00111101&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;00000100&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;10011110&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;11010100&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;00010100&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;11011101&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;11010010&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;01010100&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;01001110&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;01011001&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;00001110&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;01010001&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;11011010&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;10010010&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;11010101&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;00011001&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;00010001&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;00001110&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;00010010&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;00011111&#39;</span> <span class="p">\</span>
+</span><span class='line'>       <span class="s1">&#39;01000000&#39;</span>
+</span><span class='line'><span class="n">alphanumeric</span> <span class="o">=</span> <span class="s1">&#39;0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:&#39;</span><span class="o">.</span><span class="n">chars</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+</span><span class='line'>  <span class="n">str</span><span class="o">.</span><span class="n">slice!</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="k">def</span> <span class="nf">kanji</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;=</span> <span class="mh">0x1740</span>
+</span><span class='line'>    <span class="p">(</span><span class="mh">0xC140</span> <span class="o">+</span> <span class="n">num</span> <span class="o">/</span> <span class="mh">0xC0</span> <span class="o">*</span> <span class="mh">0x100</span> <span class="o">+</span> <span class="n">num</span> <span class="o">%</span> <span class="mh">0xC0</span><span class="p">)</span>
+</span><span class='line'>      <span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="no">Encoding</span><span class="o">::</span><span class="no">Shift_JIS</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="no">Encoding</span><span class="o">::</span><span class="no">UTF_8</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="p">(</span><span class="mh">0x8140</span> <span class="o">+</span> <span class="n">num</span> <span class="o">/</span> <span class="mh">0xC0</span> <span class="o">*</span> <span class="mh">0x100</span> <span class="o">+</span> <span class="n">num</span> <span class="o">%</span> <span class="mh">0xC0</span><span class="p">)</span>
+</span><span class='line'>      <span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="no">Encoding</span><span class="o">::</span><span class="no">Shift_JIS</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="no">Encoding</span><span class="o">::</span><span class="no">UTF_8</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span><span class='line'>
+</span><span class='line'><span class="kp">loop</span> <span class="k">do</span>
+</span><span class='line'>  <span class="k">case</span> <span class="n">mode</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+</span><span class='line'>  <span class="k">when</span> <span class="s1">&#39;0010&#39;</span> <span class="c1"># Alphanumeric</span>
+</span><span class='line'>    <span class="n">count</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>    <span class="p">(</span><span class="n">count</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
+</span><span class='line'>      <span class="n">chunk</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>      <span class="nb">print</span> <span class="n">alphanumeric</span><span class="o">[</span><span class="n">chunk</span> <span class="o">/</span> <span class="mi">45</span><span class="o">]</span> <span class="o">+</span> <span class="n">alphanumeric</span><span class="o">[</span><span class="n">chunk</span> <span class="o">%</span> <span class="mi">45</span><span class="o">]</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>    <span class="nb">print</span> <span class="n">alphanumeric</span><span class="o">[</span><span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">]</span> <span class="k">if</span> <span class="n">count</span><span class="o">.</span><span class="n">odd?</span>
+</span><span class='line'>  <span class="k">when</span> <span class="s1">&#39;0100&#39;</span> <span class="c1"># Byte</span>
+</span><span class='line'>    <span class="n">count</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">count</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
+</span><span class='line'>      <span class="nb">print</span> <span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">chr</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">when</span> <span class="s1">&#39;1000&#39;</span> <span class="c1"># Kanji</span>
+</span><span class='line'>    <span class="n">count</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</span><span class='line'>    <span class="n">count</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
+</span><span class='line'>      <span class="nb">print</span> <span class="n">kanji</span><span class="p">(</span><span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+</span><span class='line'>    <span class="k">end</span>
+</span><span class='line'>  <span class="k">when</span> <span class="s1">&#39;0000&#39;</span> <span class="c1"># Terminate</span>
+</span><span class='line'>    <span class="k">break</span>
+</span><span class='line'>  <span class="k">else</span>
+</span><span class='line'>    <span class="nb">fail</span> <span class="s2">&quot;Unhandled mode </span><span class="si">#{</span><span class="n">mode</span><span class="si">}</span><span class="s2">&quot;</span>
+</span><span class='line'>  <span class="k">end</span>
+</span><span class='line'><span class="k">end</span>
+</span></code></pre></td></tr></table></div></figure>
+
+
+<p>Fortunately, the QR code contains alphanumeric encoding and byte encoding only. You can get the flag by running above code with Ruby:</p>
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+</pre></td><td class='code'><pre><code class=''><span class='line'>SECCON{PSwIQ9d9GjKTdD8H}</span></code></pre></td></tr></table></div></figure>
+
+
+<h2>References</h2>
+
+<ul>
+<li><a href="http://en.wikipedia.org/wiki/QR_code">QR code on Wikipedia</a></li>
+<li><a href="http://www.thonky.com/qr-code-tutorial/">QR Code Tutorial</a> by <a href="http://www.thonky.com">Thonky</a></li>
+<li><a href="http://www.ams.org/samplings/feature-column/fc-2013-02">How to Read QR Symbols Without Your Mobile Telephone</a> by Bill Casselman</li>
+</ul>
+
+]]></content>
+  </entry>
   
   <entry>
     <title type="html"><![CDATA[Automatically Quit Vim if Actual Files are Closed]]></title>
@@ -2853,362 +3312,6 @@ index 50e9404..76102db 100644
 <blockquote><p><a href="https://itunes.apple.com/us/app/paper-stories-from-facebook/id794163692">페이스북 Paper</a>가 나온 지 하루가 지났고 대부분의 리뷰가 <a href="https://news.ycombinator.com/item?id=7171808">다소 갈리고 있다</a>. 나는 페이스북의 열성적 팬은 아니지만, Paper의 디자인과 디테일에 쏟은 관심은 비길 데 없으며 이는 다른 디자이너들과 공유할 가치가 있다.</p></blockquote>
 
 <p>Paper 앱의 애니메이션을 총 23종의 GIF 파일로 기록하고 리뷰해 놓았다. Paper 앱이 출시되고 꽤 시간이 지났지만 앱을 사용하면서 눈치채지 못했던 점이 많아 지금이라도 공유한다.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Octopress에서 Facebook Open Graph와 Twitter Cards 지원하기]]></title>
-    <link href="http://yous.be/2014/02/24/support-facebook-open-graph-and-twitter-cards-on-octopress/"/>
-    <updated>2014-02-24T21:50:36+09:00</updated>
-    <id>http://yous.be/2014/02/24/support-facebook-open-graph-and-twitter-cards-on-octopress</id>
-    <content type="html"><![CDATA[<p>블로그에 글을 쓰고 나면 트위터나 페이스북에 링크를 공유하곤 하는데 페이스북의 미리보기가 적절히 표시되지 않고 있다는 사실을 깨달았다. 또한 트위터도 그와 비슷한 기능을 제공하는데, 둘 다 지원하면 좋겠다는 생각을 했다. 이를 제대로 지원하려면 <a href="https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#tags">Facebook Open Graph tags</a>와 <a href="https://dev.twitter.com/docs/cards">Twitter Cards</a>에 대해 알아야 한다. 웹 페이지에 적절한 <a href="http://en.wikipedia.org/wiki/Meta_element">메타 태그</a>를 추가해 주면 페이스북과 트위터에서 인식하고 올바른, 작성자가 의도한 미리보기를 보여준다. 기본적으로 Zac Clancy가 쓴 <a href="http://blackglasses.me/2013/09/19/twitter-cards-facebook-open-graph-and-octopress/">Octopress에서 이 두 가지를 지원하는 글</a>에 상세히 설명되어 있다.</p>
-
-<!-- more -->
-
-
-<h2><a id="facebook-open-graph-tags"></a>Facebook Open Graph Tags</h2>
-
-<p><img src="http://yous.be/images/2014/02/24/facebook_open_graph.png" title="Facebook Open Graph" ></p>
-
-<p>페이스북에 웹 페이지가 제대로 인식되게 하려면 <a href="https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#tags">Open Graph 태그</a>를 이용해야 한다. 기본적으로 채워야 할 태그들은 다음과 같다:</p>
-
-<ul>
-<li><code>og:title</code>: 사이트 이름 등의 브랜드를 제외한 글 제목이다.</li>
-<li><code>og:site_name</code>: 웹 사이트의 이름이다. URL이 아니라 이름이다. (예: &ldquo;imdb.com&#8221;이 아닌 &#8220;IMDb&rdquo;)</li>
-<li><code>og:url</code>: 글의 고유 식별자가 된다. 검색 엔진 최적화를 위해 사용된 <a href="http://en.wikipedia.org/wiki/Canonical_link_element">표준(canonical) URL</a>과 연결되어야 하며, 어떤 세션 변수나 사용자 식별 인자나 카운터를 포함하지 않아야 한다. 만약 이 부분을 잘못 사용하게 되면, &lsquo;좋아요&#8217;와 &#8216;공유&#8217;의 수가 이 URL로 합해지지 않고 이 URL의 모든 변형으로 흩어질 것이다.</li>
-<li><code>og:description</code>: 내용 일부를 상세히 설명한 글로, 보통 2~4문장이다. 이 태그는 선택 가능하지만 사람들이 읽고 공유하는 비율을 높일 수 있다.</li>
-<li><code>og:image</code>: 연관된 이미지다. 최소 1200x630 픽셀 크기의 이미지 사용을 추천한다.</li>
-<li><code>fb:app_id</code>: 페이스북이 사이트의 신원을 파악할 수 있게 해 주는 고유 ID다. Facebook Insights가 제대로 동작하는 데에 중요하다. 자세한 내용은 <a href="https://developers.facebook.com/docs/insights/">Insights 문서</a>에서 확인할 수 있다.</li>
-</ul>
-
-
-<p>다른 종류의 태그를 더 추가할 수도 있다:</p>
-
-<ul>
-<li><code>og:type</code>: 페이스북의 뉴스피드는 당신의 글을 미디어 종류에 따라 다르게 보여준다.<a href="http://ogp.me/#types">일반적으로 쓰이는 오브젝트 타입</a>은 이미 정의되어 있다. 만약 오브젝트 타입을 설정하지 않으면 기본 타입으로 <code>website</code>가 쓰인다. Open Graph를 통해 당신만의 타입을 정할 수도 있다.</li>
-<li><code>og:locale</code>: 리소스의 언어다. 기본 설정은 <code>en_US</code>다. <code>og:locale:alternate</code>를 통해 다른 언어도 가능하다는 것을 나타낼 수 있다. 예제와 추가 정보는 <a href="https://developers.facebook.com/docs/internationalization/">국제화</a>와 <a href="https://developers.facebook.com/docs/technical-guides/opengraph/internationalization/">Open Graph 국제화</a> 페이지를 보라.</li>
-<li><code>article:author</code>: <a href="https://developers.facebook.com/docs/reference/opengraph/object-type/article">글의 저자들로 통하는 링크</a>다. 링크 주소는 뉴스피드에 나타났을 때 저자를 팔로우 할 수 있는 페이스북 프로필이나 페이스북 페이지가 될 수 있다. (저자들은 사람들이 팔로우 할 수 있게 <a href="https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#follow">팔로우</a> 기능을 켜 두어야 한다.)</li>
-<li><code>article:publisher</code>: <a href="https://developers.facebook.com/docs/reference/opengraph/object-type/article">글의 발행인으로 통하는 링크</a>다. 링크 주소는 페이스북 페이지여야 한다. 페이스북은 발행인이 뉴스피드에 표시되었을 때 그것을 &lsquo;좋아요&rsquo; 하는 기능을 제공할 수 있다. 이 태그는 미디어 발행인만 쓸 수 있다.</li>
-</ul>
-
-
-<h2><a id="twitter-cards"></a>Twitter Cards</h2>
-
-<p><a href="https://dev.twitter.com/docs/cards">Twitter Cards</a>는 트윗 자체에 링크의 내용을 보여주는 &lsquo;카드&#8217;를 추가하는 기능이다.</p>
-
-<p><img src="http://yous.be/images/2014/02/24/twitter_card_summary.png" title="Twitter Summary Card" ></p>
-
-<p>카드의 종류는 7개가 있으며 원하는 용도에 따라 적절히 사용할 수 있다.</p>
-
-<ul>
-<li><a href="https://dev.twitter.com/docs/cards/types/summary-card">Summary Card</a>: 기본 카드. 제목, 설명, 섬네일, 트위터 계정을 포함하고 있다.</li>
-<li><a href="https://dev.twitter.com/docs/cards/large-image-summary-card">Summary Card with Large Image</a>: Summary Card와 비슷하지만 이미지를 강조할 수 있다.</li>
-<li><a href="https://dev.twitter.com/docs/cards/types/photo-card">Photo Card</a>: 트윗 형태의 사진 카드.</li>
-<li><a href="https://dev.twitter.com/docs/cards/types/gallery-card">Gallery Card</a>: 여러 사진을 강조하기 위한 카드다.</li>
-<li><a href="https://dev.twitter.com/docs/cards/types/app-card">App Card</a>: 애플리케이션 정보를 제공하기 위한 카드다.</li>
-<li><a href="https://dev.twitter.com/docs/cards/types/player-card">Player Card</a>: 트윗 형태의 비디오/오디오/미디어 재생 카드다.</li>
-<li><a href="https://dev.twitter.com/docs/cards/types/product-card">Product Card</a>: 상품 내용을 더 잘 나타내기 위한 트윗 카드다.</li>
-</ul>
-
-
-<p>트위터는 <a href="https://cards-dev.twitter.com/validator">카드 검사 도구</a>를 직접 제공하고 있으므로 각 종류의 카드가 어떻게 보이는지, 자신의 사이트가 제대로 인식되는지 테스트 해볼 수 있다.</p>
-
-<h2><a id="support-in-octopress"></a>Octopress에서 지원하기</h2>
-
-<p>페이스북 Open Graph를 위한 설정 값을 <code>_config.yml</code>에 추가한다.</p>
-
-<figure class='code'><figcaption><span>_config.yml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">...</span>
-</span><span class='line'><span class="c1"># Facebook Insights / Open Graph</span>
-</span><span class='line'><span class="l-Scalar-Plain">facebook_app_id</span><span class="p-Indicator">:</span>
-</span><span class='line'><span class="l-Scalar-Plain">facebook_page</span><span class="p-Indicator">:</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>페이스북 App ID는 <a href="https://www.facebook.com/insights/">페이스북 인사이트</a>에서 &lsquo;웹사이트를 위한 인사이트&rsquo; 버튼을 눌러 얻을 수 있다. 페이스북 페이지 주소는 <code>article:author</code>에 사용될 정보지만 입력하지 않아도 된다. 트위터는 <code>_config.yml</code>의 <code>twitter_user</code> 값을 이용해 메타 태그를 입력한다. 이 역시 입력하지 않아도 된다.</p>
-
-<p>Octopress에서 사이트에 메타 태그를 추가하는 방법은 간단하다. 일단 <code>source/_includes/custom/head.html</code> 파일에 다음 코드를 추가하자.</p>
-
-<figure class='code'><figcaption><span>source/_includes/custom/head.html</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-<span class='line-number'>27</span>
-<span class='line-number'>28</span>
-<span class='line-number'>29</span>
-<span class='line-number'>30</span>
-<span class='line-number'>31</span>
-<span class='line-number'>32</span>
-<span class='line-number'>33</span>
-<span class='line-number'>34</span>
-<span class='line-number'>35</span>
-<span class='line-number'>36</span>
-<span class='line-number'>37</span>
-<span class='line-number'>38</span>
-<span class='line-number'>39</span>
-<span class='line-number'>40</span>
-<span class='line-number'>41</span>
-<span class='line-number'>42</span>
-<span class='line-number'>43</span>
-<span class='line-number'>44</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'>...
-</span><span class='line'><span class="c">&lt;!-- Social media content metadata --&gt;</span>
-</span><span class='line'>{% if site.facebook_app_id %}
-</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">&quot;fb:admins&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ site.facebook_app_id }}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">&quot;og:title&quot;</span> <span class="na">content=</span><span class="s">&quot;{% if page.title %}{{ page.title }}{% else %}{{ site.title }}{% endif %}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">&quot;og:site_name&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ site.title }}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">&quot;og:url&quot;</span> <span class="na">content=</span><span class="s">&quot;{% if canonical %}{{ canonical }}{% else %}{{ site.url }}{% endif %}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">&quot;og:description&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ description | strip_html | condense_spaces | truncate:200 }}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  {% if site.facebook_page %}
-</span><span class='line'>    <span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">&quot;article:author&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ site.facebook_page }}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  {% endif %}
-</span><span class='line'>  {% if page.facebook.image %}
-</span><span class='line'>    <span class="nt">&lt;meta</span> <span class="na">property=</span><span class="s">&quot;og:image&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ page.facebook.image }}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  {% endif %}
-</span><span class='line'>{% endif %}
-</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:card&quot;</span> <span class="na">content=</span><span class="s">&quot;{% if page.twitter_card.type %}{{ page.twitter_card.type }}{% else %}summary{% endif %}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>{% if site.twitter_user %}
-</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:site&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ site.twitter_user }}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>{% endif %}
-</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:title&quot;</span> <span class="na">content=</span><span class="s">&quot;{% if page.title %}{{ page.title | truncate:70 }}{% else %}{{ site.title | truncate:70 }}{% endif %}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:description&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ description | strip_html | condense_spaces | truncate:200 }}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>{% if page.twitter_card.creator %}
-</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:creator&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ page.twitter_card.creator }}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>{% elsif site.twitter_user %}
-</span><span class='line'>  <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:creator&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ site.twitter_user }}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>{% endif %}
-</span><span class='line'>{% if page.twitter_card.image %}
-</span><span class='line'>  {% if page.twitter_card.type == &#39;gallery&#39; %}
-</span><span class='line'>    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:image0&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ page.twitter_card.image }}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:image1&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ page.twitter_card.image1 }}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:image2&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ page.twitter_card.image2 }}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:image3&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ page.twitter_card.image3 }}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>  {% else %}
-</span><span class='line'>    <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:image:src&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ page.twitter_card.image }}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>    {% if page.twitter_card.type == &#39;photo&#39; %}
-</span><span class='line'>      {% if page.twitter_card.width %}
-</span><span class='line'>        <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:image:width&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ page.twitter_card.width }}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>      {% endif %}
-</span><span class='line'>      {% if page.twitter_card.height %}
-</span><span class='line'>        <span class="nt">&lt;meta</span> <span class="na">name=</span><span class="s">&quot;twitter:image:height&quot;</span> <span class="na">content=</span><span class="s">&quot;{{ page.twitter_card.height }}&quot;</span><span class="nt">&gt;</span>
-</span><span class='line'>      {% endif %}
-</span><span class='line'>    {% endif %}
-</span><span class='line'>  {% endif %}
-</span><span class='line'>{% endif %}
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>페이스북에 링크를 첨부해 상태를 올리면 메타 태그 기반으로 미리보기를 생성해 준다. 다만 트위터의 경우 사이트 등록이 필요하다. <a href="https://cards-dev.twitter.com/validator">카드 검사 도구</a> 페이지에서 사이트가 검사에 통과하면 도메인 인증 요청을 보낼 수 있다. 이 요청이 통과되면 트위터에서 사이트 링크를 트위터 카드로 만들어 보여준다.</p>
-
-<p>추가로 설정 가능한 몇 가지 옵션에 대해 설명하겠다.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span>
-</span><span class='line'><span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
-</span><span class='line'><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&quot;An</span><span class="nv"> </span><span class="s">example</span><span class="nv"> </span><span class="s">post&quot;</span>
-</span><span class='line'><span class="l-Scalar-Plain">date</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2014-02-24</span>
-</span><span class='line'><span class="l-Scalar-Plain">comments</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
-</span><span class='line'><span class="l-Scalar-Plain">categories</span><span class="p-Indicator">:</span>
-</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">Example</span>
-</span><span class='line'><span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">This is an example post.</span>
-</span><span class='line'><span class="l-Scalar-Plain">facebook</span><span class="p-Indicator">:</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">image</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://example.com/path/to/image.png</span>
-</span><span class='line'><span class="l-Scalar-Plain">twitter_card</span><span class="p-Indicator">:</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">creator</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">twitter</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">summary_large_image</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">image</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://example.com/path/to/image.png</span>
-</span><span class='line'><span class="nn">---</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>글에 <code>description</code> 태그를 사용하면 그 값이 description으로 사용된다. 만약 없다면 글 앞부분이 사용된다. <code>facebook</code> 태그 아래에 <code>image</code> 태그를 사용하면 페이스북의 미리보기 이미지로 사용된다. <code>twitter_card</code> 태그 아래의 <code>image</code>도 마찬가지이다. 추가로 <code>twitter_card</code> 태그 아래에 <code>type</code>을 명시할 수 있고, <code>creator</code> 태그를 사용하면 <code>_config.yml</code>의 <code>twitter_user</code> 대신 그 값을 사용한다. <code>facebook</code> 태그와 <code>twitter_card</code> 태그 모두 추가 옵션으로 입력하지 않아도 관계없다.</p>
-
-<p>위 코드가 모든 트위터 카드를 지원하는 것은 아니다. 기본적으로 <code>twitter_card</code>의 <code>image</code> 태그를 입력하면 <code>summary</code>, <code>summary_large_image</code>, <code>photo</code> 타입을 사용할 수 있다. <code>photo</code> 타입은 추가적인 태그를 사용할 수 있다.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span>
-</span><span class='line'><span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
-</span><span class='line'><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&quot;An</span><span class="nv"> </span><span class="s">example</span><span class="nv"> </span><span class="s">post&quot;</span>
-</span><span class='line'><span class="l-Scalar-Plain">date</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2014-02-24</span>
-</span><span class='line'><span class="l-Scalar-Plain">comments</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
-</span><span class='line'><span class="l-Scalar-Plain">categories</span><span class="p-Indicator">:</span>
-</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">Example</span>
-</span><span class='line'><span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">This is an example post.</span>
-</span><span class='line'><span class="l-Scalar-Plain">twitter_card</span><span class="p-Indicator">:</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">photo</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">image</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://example.com/path/to/image.png</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">width</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">640</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">height</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">960</span>
-</span><span class='line'><span class="nn">---</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p><code>width</code> 태그와 <code>height</code> 태그는 사진의 크기를 나타내며 이 두 태그의 입력은 옵션이다. 자세한 사항은 <a href="https://dev.twitter.com/docs/cards/types/photo-card">Photo Card</a> 페이지에서 확인하길 바란다.</p>
-
-<p><code>gallery</code> 타입의 경우 추가로 필요한 태그가 있으며 예제는 다음과 같다:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span>
-</span><span class='line'><span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
-</span><span class='line'><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&quot;An</span><span class="nv"> </span><span class="s">example</span><span class="nv"> </span><span class="s">post&quot;</span>
-</span><span class='line'><span class="l-Scalar-Plain">date</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">2014-02-24</span>
-</span><span class='line'><span class="l-Scalar-Plain">comments</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">false</span>
-</span><span class='line'><span class="l-Scalar-Plain">categories</span><span class="p-Indicator">:</span>
-</span><span class='line'>    <span class="p-Indicator">-</span> <span class="l-Scalar-Plain">Example</span>
-</span><span class='line'><span class="l-Scalar-Plain">description</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">This is an example post.</span>
-</span><span class='line'><span class="l-Scalar-Plain">twitter_card</span><span class="p-Indicator">:</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">type</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">gallery</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">image</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://example.com/path/to/image.png</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">image1</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://example.com/path/to/image1.png</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">image2</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://example.com/path/to/image2.png</span>
-</span><span class='line'>    <span class="l-Scalar-Plain">image3</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://example.com/path/to/image3.png</span>
-</span><span class='line'><span class="nn">---</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>원래 <a href="https://dev.twitter.com/docs/cards/types/gallery-card">Gallery Card</a>에 쓰이는 태그는 <code>image0</code>부터 <code>image3</code>까지지만 편의를 위해 <code>image0</code>은 <code>image</code> 태그로 대신했다. 이미지 4장의 주소가 모두 필요하다. 이 외의 카드 종류들은 필요로 하는 태그의 종류가 많고 일일이 입력하기에도 불편할 것 같아 구현하지 않았다.</p>
-]]></content>
-  </entry>
-  
-  <entry>
-    <title type="html"><![CDATA[Apple's SSL/TLS bug &rarr;]]></title>
-    <link href="http://yous.be/2014/02/23/apples-ssl-tls-bug/"/>
-    <updated>2014-02-23T04:59:18+09:00</updated>
-    <id>http://yous.be/2014/02/23/apples-ssl-tls-bug</id>
-    <content type="html"><![CDATA[<p>iOS 7.0.6, iOS 6.1.6, Apple TV 6.0.2가 <a href="http://9to5mac.com/2014/02/21/apple-releases-ios-7-0-6-ios-6-1-6-with-fixes/">배포됐다</a>. 애플에서 공개한 iOS 7.0.6의 <a href="http://support.apple.com/kb/HT6147">보안 문제</a>는 다음과 같다.</p>
-
-<blockquote><p>Impact: An attacker with a privileged network position may capture or modify data in sessions protected by SSL/TLS</p>
-
-<p>Description: Secure Transport failed to validate the authenticity of the connection. This issue was addressed by restoring missing validation steps.</p></blockquote>
-
-<p>그런데 이 문제의 원인이 된 <a href="http://opensource.apple.com/source/Security/Security-55471/libsecurity_ssl/lib/sslKeyExchange.c">소스 코드</a>가 흥미롭다. Adam Langley의 <a href="https://www.imperialviolet.org/2014/02/22/applebug.html">이 버그에 관한 글</a>에 따르면 실제 소스는 이렇다:</p>
-
-<figure class='code'><figcaption><span>sslKeyExchange.c</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-<span class='line-number'>22</span>
-<span class='line-number'>23</span>
-<span class='line-number'>24</span>
-<span class='line-number'>25</span>
-<span class='line-number'>26</span>
-</pre></td><td class='code'><pre><code class='c'><span class='line'><span class="k">static</span> <span class="n">OSStatus</span>
-</span><span class='line'><span class="nf">SSLVerifySignedServerKeyExchange</span><span class="p">(</span><span class="n">SSLContext</span> <span class="o">*</span><span class="n">ctx</span><span class="p">,</span> <span class="kt">bool</span> <span class="n">isRsa</span><span class="p">,</span> <span class="n">SSLBuffer</span> <span class="n">signedParams</span><span class="p">,</span>
-</span><span class='line'>                                 <span class="kt">uint8_t</span> <span class="o">*</span><span class="n">signature</span><span class="p">,</span> <span class="n">UInt16</span> <span class="n">signatureLen</span><span class="p">)</span>
-</span><span class='line'><span class="p">{</span>
-</span><span class='line'>    <span class="n">OSStatus</span>        <span class="n">err</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">...</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">err</span> <span class="o">=</span> <span class="n">ReadyHash</span><span class="p">(</span><span class="o">&amp;</span><span class="n">SSLHashSHA1</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">err</span> <span class="o">=</span> <span class="n">SSLHashSHA1</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">clientRandom</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">err</span> <span class="o">=</span> <span class="n">SSLHashSHA1</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">serverRandom</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">err</span> <span class="o">=</span> <span class="n">SSLHashSHA1</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">signedParams</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
-</span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
-</span><span class='line'>    <span class="k">if</span> <span class="p">((</span><span class="n">err</span> <span class="o">=</span> <span class="n">SSLHashSHA1</span><span class="p">.</span><span class="n">final</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">hashOut</span><span class="p">))</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">)</span>
-</span><span class='line'>        <span class="k">goto</span> <span class="n">fail</span><span class="p">;</span>
-</span><span class='line'>    <span class="p">...</span>
-</span><span class='line'>
-</span><span class='line'><span class="nl">fail</span><span class="p">:</span>
-</span><span class='line'>    <span class="n">SSLFreeBuffer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">signedHashes</span><span class="p">);</span>
-</span><span class='line'>    <span class="n">SSLFreeBuffer</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hashCtx</span><span class="p">);</span>
-</span><span class='line'>    <span class="k">return</span> <span class="n">err</span><span class="p">;</span>
-</span><span class='line'>
-</span><span class='line'><span class="p">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>단지 <code>goto fail;</code> 라인이 하나 더 있어서 <code>if</code>문과 관계 없이 두 번째 <code>goto</code>문이 실행되어 signature verification을 무조건 통과하게 된다.</p>
-
-<blockquote><p>Note the two <code>goto fail</code> lines in a row. The first one is correctly bound to the if statement but the second, despite the indentation, isn&rsquo;t conditional at all. The code will always jump to the end from that second goto, <code>err</code> will contain a successful value because the SHA1 update operation was successful and so the signature verification will never fail.</p></blockquote>
-
-<p>또한 OS X 10.9.1에는 아직 <a href="http://9to5mac.com/2014/02/22/apple-patched-a-major-ssl-bug-in-ios-yesterday-but-os-x-is-still-at-risk/">이 문제</a>가 있는 것으로 보인다.</p>
 ]]></content>
   </entry>
   
