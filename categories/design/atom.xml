@@ -4,7 +4,7 @@
   <title><![CDATA[Category: design | Yous]]></title>
   <link href="http://yous.be/categories/design/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-12-17T06:45:32+09:00</updated>
+  <updated>2014-12-17T07:05:05+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -68,7 +68,7 @@
     <id>http://yous.be/2014/07/16/introducing-source-han-sans-an-open-source-pan-cjk-typeface</id>
     <content type="html"><![CDATA[<blockquote><p>Adobe, in partnership with Google, is pleased to announce the release of <a href="http://adobe.ly/TkSHS">Source Han Sans</a>, a new open source Pan-CJK typeface family that is now available on Typekit for desktop use.</p>
 
-<p><img src="http://typekit.files.wordpress.com/2014/07/multi-language-sample-v3.jpg?w=800&amp;h=408" alt="Multi-language sample" /></p>
+<p><img src="http://typekit.files.wordpress.com/2014/07/multi-language-sample-v3.jpg?w=800&amp;h=408" title="Multi-language sample" alt="Multi-language sample" /></p>
 
 <p>More information on Google&rsquo;s Noto Sans CJK family is available on their <a href="http://goo.gl/yhFcim">blog</a>.</p></blockquote>
 ]]></content>

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: android | Yous]]></title>
   <link href="http://yous.be/categories/android/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-12-17T06:45:32+09:00</updated>
+  <updated>2014-12-17T07:05:05+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -20,7 +20,7 @@
     <id>http://yous.be/2014/05/15/how-to-configure-proguard-using-gradle</id>
     <content type="html"><![CDATA[<h2><a id="gradle"></a>Gradle</h2>
 
-<p><img src="http://www.gradle.org/img/gradle_logo.gif" alt="Gradle" /></p>
+<p><img src="http://www.gradle.org/img/gradle_logo.gif" title="Gradle" alt="Gradle" /></p>
 
 <p>최근 <a href="http://developer.android.com/sdk/installing/studio.html">Android Studio</a>를 통해 개발을 진행하게 되면서, 자연스럽게 <a href="http://www.gradle.org">Gradle</a>을 사용하게 되었다. <code>.gradle</code> 확장자를 가진 파일을 통해 빌드 설정을 자유롭게 조정할 수 있다. 이 글에서는 Gradle을 이용해 배포 APK를 생성하는 방법과 함께 <a href="http://proguard.sourceforge.net">ProGuard</a>를 사용법을 공유하겠다.</p>
 

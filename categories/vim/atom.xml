@@ -4,7 +4,7 @@
   <title><![CDATA[Category: vim | Yous]]></title>
   <link href="http://yous.be/categories/vim/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-12-17T06:45:32+09:00</updated>
+  <updated>2014-12-17T07:05:05+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -18,7 +18,7 @@
     <link href="http://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed/"/>
     <updated>2014-11-30T18:02:45+09:00</updated>
     <id>http://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed</id>
-    <content type="html"><![CDATA[<p><img src="http://yous.be/images/2014/11/30/vim.png" alt="Vim" /></p>
+    <content type="html"><![CDATA[<p><img src="http://yous.be/images/2014/11/30/vim.png" title="Vim" alt="Vim" /></p>
 
 <h2>Sidebar</h2>
 

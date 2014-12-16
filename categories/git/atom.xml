@@ -4,7 +4,7 @@
   <title><![CDATA[Category: git | Yous]]></title>
   <link href="http://yous.be/categories/git/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-12-17T06:45:32+09:00</updated>
+  <updated>2014-12-17T07:05:05+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -18,7 +18,7 @@
     <link href="http://yous.be/2014/09/03/how-to-write-a-git-commit-message/"/>
     <updated>2014-09-03T22:12:47+09:00</updated>
     <id>http://yous.be/2014/09/03/how-to-write-a-git-commit-message</id>
-    <content type="html"><![CDATA[<p><a href="http://xkcd.com/1296/"><img src="http://imgs.xkcd.com/comics/git_commit.png" alt="Git Commit" /></a></p>
+    <content type="html"><![CDATA[<p><a href="http://xkcd.com/1296/"><img src="http://imgs.xkcd.com/comics/git_commit.png" title="Git Commit" alt="Git Commit" /></a></p>
 
 <blockquote><h2>The seven rules of a great git commit message</h2>
 

@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ctf | Yous]]></title>
   <link href="http://yous.be/categories/ctf/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-12-17T06:45:32+09:00</updated>
+  <updated>2014-12-17T07:05:05+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -121,17 +121,17 @@ but when I woke up, half my QR code was gone!&rdquo;</p>
 
 <p>At first, we need clean image based on the image above.</p>
 
-<p><img src="http://yous.be/images/2014/12/07/skeleton_qr.png" alt="Skeleton QR code" /></p>
+<p><img src="http://yous.be/images/2014/12/07/skeleton_qr.png" title="Skeleton QR code" alt="Skeleton QR code" /></p>
 
 <p>The size of this QR code is 29x29 and the size of version <em>V</em> is <em>N &times; N</em> with <em>N = 17 + 4V</em>, so this is version 3.</p>
 
 <h2>Format Information</h2>
 
-<p><img src="http://yous.be/images/2014/12/07/qr_format_information.png" alt="Format information" /></p>
+<p><img src="http://yous.be/images/2014/12/07/qr_format_information.png" title="Format information" alt="Format information" /></p>
 
 <p>Note that the area indicates format information of QR code. Actually the format information is 15 bits long and the area has last 8 bits.</p>
 
-<p><img src="http://yous.be/images/2014/12/07/format_information_bits.png" alt="Format information bits" /></p>
+<p><img src="http://yous.be/images/2014/12/07/format_information_bits.png" title="Format information bits" alt="Format information bits" /></p>
 
 <p>Searching <a href="http://www.thonky.com/qr-code-tutorial/format-version-tables/#list-of-all-format-information-strings">the list of all format information strings</a>, we can find out that the type information bits are <code>001001110111110</code>. So this QR code has ECC level H and mask pattern 1.</p>
 
@@ -141,7 +141,7 @@ but when I woke up, half my QR code was gone!&rdquo;</p>
 
 <p>Also there are fixed patterns in QR code, so we have to switch bits of data section only. See the data area and the bit order.</p>
 
-<p><img src="http://yous.be/images/2014/12/07/QR_Ver3_Codeword_Ordering.svg" alt="QR Ver3 Codeword Ordering" /><br/>
+<p><img src="http://yous.be/images/2014/12/07/QR_Ver3_Codeword_Ordering.svg" title="QR Ver3 Codeword Ordering" alt="QR Ver3 Codeword Ordering" /><br/>
 (via <a href="http://commons.wikimedia.org/wiki/File:QR_Ver3_Codeword_Ordering.svg">wikipedia.org</a>)</p>
 
 <p>So, the raw D1&ndash;D26 are:</p>

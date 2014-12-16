@@ -4,7 +4,7 @@
   <title><![CDATA[Yous]]></title>
   <link href="http://yous.be/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2014-12-17T06:45:32+09:00</updated>
+  <updated>2014-12-17T07:05:05+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -121,17 +121,17 @@ but when I woke up, half my QR code was gone!&rdquo;</p>
 
 <p>At first, we need clean image based on the image above.</p>
 
-<p><img src="http://yous.be/images/2014/12/07/skeleton_qr.png" alt="Skeleton QR code" /></p>
+<p><img src="http://yous.be/images/2014/12/07/skeleton_qr.png" title="Skeleton QR code" alt="Skeleton QR code" /></p>
 
 <p>The size of this QR code is 29x29 and the size of version <em>V</em> is <em>N &times; N</em> with <em>N = 17 + 4V</em>, so this is version 3.</p>
 
 <h2>Format Information</h2>
 
-<p><img src="http://yous.be/images/2014/12/07/qr_format_information.png" alt="Format information" /></p>
+<p><img src="http://yous.be/images/2014/12/07/qr_format_information.png" title="Format information" alt="Format information" /></p>
 
 <p>Note that the area indicates format information of QR code. Actually the format information is 15 bits long and the area has last 8 bits.</p>
 
-<p><img src="http://yous.be/images/2014/12/07/format_information_bits.png" alt="Format information bits" /></p>
+<p><img src="http://yous.be/images/2014/12/07/format_information_bits.png" title="Format information bits" alt="Format information bits" /></p>
 
 <p>Searching <a href="http://www.thonky.com/qr-code-tutorial/format-version-tables/#list-of-all-format-information-strings">the list of all format information strings</a>, we can find out that the type information bits are <code>001001110111110</code>. So this QR code has ECC level H and mask pattern 1.</p>
 
@@ -141,7 +141,7 @@ but when I woke up, half my QR code was gone!&rdquo;</p>
 
 <p>Also there are fixed patterns in QR code, so we have to switch bits of data section only. See the data area and the bit order.</p>
 
-<p><img src="http://yous.be/images/2014/12/07/QR_Ver3_Codeword_Ordering.svg" alt="QR Ver3 Codeword Ordering" /><br/>
+<p><img src="http://yous.be/images/2014/12/07/QR_Ver3_Codeword_Ordering.svg" title="QR Ver3 Codeword Ordering" alt="QR Ver3 Codeword Ordering" /><br/>
 (via <a href="http://commons.wikimedia.org/wiki/File:QR_Ver3_Codeword_Ordering.svg">wikipedia.org</a>)</p>
 
 <p>So, the raw D1&ndash;D26 are:</p>
@@ -477,7 +477,7 @@ but when I woke up, half my QR code was gone!&rdquo;</p>
     <link href="http://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed/"/>
     <updated>2014-11-30T18:02:45+09:00</updated>
     <id>http://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed</id>
-    <content type="html"><![CDATA[<p><img src="http://yous.be/images/2014/11/30/vim.png" alt="Vim" /></p>
+    <content type="html"><![CDATA[<p><img src="http://yous.be/images/2014/11/30/vim.png" title="Vim" alt="Vim" /></p>
 
 <h2>Sidebar</h2>
 
@@ -712,7 +712,7 @@ but when I woke up, half my QR code was gone!&rdquo;</p>
     <link href="http://yous.be/2014/09/03/how-to-write-a-git-commit-message/"/>
     <updated>2014-09-03T22:12:47+09:00</updated>
     <id>http://yous.be/2014/09/03/how-to-write-a-git-commit-message</id>
-    <content type="html"><![CDATA[<p><a href="http://xkcd.com/1296/"><img src="http://imgs.xkcd.com/comics/git_commit.png" alt="Git Commit" /></a></p>
+    <content type="html"><![CDATA[<p><a href="http://xkcd.com/1296/"><img src="http://imgs.xkcd.com/comics/git_commit.png" title="Git Commit" alt="Git Commit" /></a></p>
 
 <blockquote><h2>The seven rules of a great git commit message</h2>
 
@@ -797,7 +797,7 @@ but when I woke up, half my QR code was gone!&rdquo;</p>
 
 <p>Zdziarski said the service that raises the most concern is known as com.apple.mobile.file_relay. It dishes out a staggering amount of data&mdash;including account data for e-mail, Twitter, iCloud, and other services, a full copy of the address book including deleted entries, the user cache folder, logs of geographic positions, and a complete dump of the user photo album&mdash;all without requiring a backup password to be entered. He said two other services dubbed com.apple.pcapd and com.apple.mobile.house_arrest may have legitimate uses for app developers or support people but can also be used to spy on users by government agencies or even jilted ex-lovers. The Pcapd service, for instance, allows people to wirelessly monitor all network traffic traveling into and out of the device, even when it&rsquo;s not running in a special developer or support mode. House_arrest, meanwhile, allows the copying of sensitive files and documents from Twitter, Facebook, and many other applications.</p>
 
-<p><img src="http://cdn.arstechnica.net/wp-content/uploads/2014/07/pcapd1.jpg" alt="com.apple.pcapd" /></p>
+<p><img src="http://cdn.arstechnica.net/wp-content/uploads/2014/07/pcapd1.jpg" title="com.apple.pcapd" alt="com.apple.pcapd" /></p>
 
 <p>Slides of Zdziarski&rsquo;s talk, titled <strong>Identifying Back Doors, Attack Points, and Surveillance Mechanisms in iOS Devices</strong> are <a href="http://www.zdziarski.com/blog/wp-content/uploads/2014/07/iOS_Backdoors_Attack_Points_Surveillance_Mechanisms.pdf">here</a>.</p></blockquote>
 
@@ -814,7 +814,7 @@ but when I woke up, half my QR code was gone!&rdquo;</p>
     <id>http://yous.be/2014/07/18/using-keybase</id>
     <content type="html"><![CDATA[<h2><a id="keybase"></a>Keybase</h2>
 
-<p><img src="https://keybase.io/images/logo.png" alt="Keybase" /></p>
+<p><img src="https://keybase.io/images/logo.png" title="Keybase" alt="Keybase" /></p>
 
 <blockquote><p>Keybase will be a public directory of publicly auditable public keys. All paired, for convenience, with unique usernames.</p></blockquote>
 
@@ -1005,7 +1005,7 @@ but when I woke up, half my QR code was gone!&rdquo;</p>
     <id>http://yous.be/2014/07/16/introducing-source-han-sans-an-open-source-pan-cjk-typeface</id>
     <content type="html"><![CDATA[<blockquote><p>Adobe, in partnership with Google, is pleased to announce the release of <a href="http://adobe.ly/TkSHS">Source Han Sans</a>, a new open source Pan-CJK typeface family that is now available on Typekit for desktop use.</p>
 
-<p><img src="http://typekit.files.wordpress.com/2014/07/multi-language-sample-v3.jpg?w=800&amp;h=408" alt="Multi-language sample" /></p>
+<p><img src="http://typekit.files.wordpress.com/2014/07/multi-language-sample-v3.jpg?w=800&amp;h=408" title="Multi-language sample" alt="Multi-language sample" /></p>
 
 <p>More information on Google&rsquo;s Noto Sans CJK family is available on their <a href="http://goo.gl/yhFcim">blog</a>.</p></blockquote>
 ]]></content>
@@ -1220,7 +1220,7 @@ index 50e9404..76102db 100644
     <id>http://yous.be/2014/05/15/how-to-configure-proguard-using-gradle</id>
     <content type="html"><![CDATA[<h2><a id="gradle"></a>Gradle</h2>
 
-<p><img src="http://www.gradle.org/img/gradle_logo.gif" alt="Gradle" /></p>
+<p><img src="http://www.gradle.org/img/gradle_logo.gif" title="Gradle" alt="Gradle" /></p>
 
 <p>최근 <a href="http://developer.android.com/sdk/installing/studio.html">Android Studio</a>를 통해 개발을 진행하게 되면서, 자연스럽게 <a href="http://www.gradle.org">Gradle</a>을 사용하게 되었다. <code>.gradle</code> 확장자를 가진 파일을 통해 빌드 설정을 자유롭게 조정할 수 있다. 이 글에서는 Gradle을 이용해 배포 APK를 생성하는 방법과 함께 <a href="http://proguard.sourceforge.net">ProGuard</a>를 사용법을 공유하겠다.</p>
 
