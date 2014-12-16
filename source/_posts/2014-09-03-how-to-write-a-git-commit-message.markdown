@@ -15,7 +15,7 @@ facebook:
     image: http://imgs.xkcd.com/comics/git_commit.png
 ---
 
-[![Git Commit](http://imgs.xkcd.com/comics/git_commit.png)](http://xkcd.com/1296/)
+[![Git Commit](http://imgs.xkcd.com/comics/git_commit.png "Git Commit")](http://xkcd.com/1296/)
 
 > ## The seven rules of a great git commit message
 >

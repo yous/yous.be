@@ -17,6 +17,6 @@ twitter_card:
 
 > Adobe, in partnership with Google, is pleased to announce the release of [Source Han Sans](http://adobe.ly/TkSHS), a new open source Pan-CJK typeface family that is now available on Typekit for desktop use.
 >
-> ![Multi-language sample](http://typekit.files.wordpress.com/2014/07/multi-language-sample-v3.jpg?w=800&h=408)
+> ![Multi-language sample](http://typekit.files.wordpress.com/2014/07/multi-language-sample-v3.jpg?w=800&h=408 "Multi-language sample")
 >
 > More information on Google's Noto Sans CJK family is available on their [blog](http://goo.gl/yhFcim).

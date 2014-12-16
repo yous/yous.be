@@ -17,7 +17,7 @@ facebook:
 ## <a id="keybase"></a>Keybase
 
 
-![Keybase](https://keybase.io/images/logo.png)
+![Keybase](https://keybase.io/images/logo.png "Keybase")
 
 > Keybase will be a public directory of publicly auditable public keys. All paired, for convenience, with unique usernames.
 
