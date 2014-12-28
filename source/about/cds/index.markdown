@@ -306,3 +306,5 @@ footer: false
 297. 기린 --- 사랑과 행복
 298. Pe2ny --- born to be blue
 299. LOCO --- LOCOMOTIVE
+300. The Quiett --- The Real Me (Remastered)
+301. SOUL DIVE --- SIN
