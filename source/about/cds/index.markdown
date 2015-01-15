@@ -308,4 +308,4 @@ footer: false
 299. LOCO --- LOCOMOTIVE
 300. The Quiett --- The Real Me (Remastered)
 301. SOUL DIVE --- SIN
-302. Avenged Sevenfold --- Hail to the King
+302. Avenged Sevenfold --- Hail to the King (Deluxe Edition)
