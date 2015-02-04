@@ -4,7 +4,7 @@
   <title><![CDATA[Category: git | Yous]]></title>
   <link href="http://yous.be/categories/git/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2015-01-16T04:36:48+09:00</updated>
+  <updated>2015-02-04T20:07:05+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -56,7 +56,7 @@
 
 <p>나는 Android Studio에서는 파일 저장 시 모든 줄 끝 공백을 지우고, Vim에서는 줄 끝 공백에 하이라이트를 입혀 쓰고 있다.</p>
 
-<figure class='code'><figcaption><span>.vimrc</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>

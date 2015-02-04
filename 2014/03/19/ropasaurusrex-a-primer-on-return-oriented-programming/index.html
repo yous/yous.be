@@ -206,41 +206,42 @@
 <span class='line-number'>33</span>
 <span class='line-number'>34</span>
 <span class='line-number'>35</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>+----------------------+
+</pre></td><td class='code'><pre><code class='text'><span class='line'>+----------------------+
 </span><span class='line'>|         ...          | (높은 주소)
 </span><span class='line'>+----------------------+
 </span><span class='line'>
-</span><span class='line'>+----------------------+ &lt;-- 'A'의 스택 프레임 시작
-</span><span class='line'>|   [return address]   | &lt;-- 'A'를 호출한 주소
+</span><span class='line'>+----------------------+ &lt;-- &#39;A&#39;의 스택 프레임 시작
+</span><span class='line'>|   [return address]   | &lt;-- &#39;A&#39;를 호출한 주소
 </span><span class='line'>+----------------------+
 </span><span class='line'>|   [frame pointer]    |
 </span><span class='line'>+----------------------+
 </span><span class='line'>|   [local variables]  |
 </span><span class='line'>+----------------------+
 </span><span class='line'>
-</span><span class='line'>+----------------------+ &lt;-- 'B'의 스택 프레임 시작
+</span><span class='line'>+----------------------+ &lt;-- &#39;B&#39;의 스택 프레임 시작
 </span><span class='line'>|         2 (parameter)|
 </span><span class='line'>+----------------------+
 </span><span class='line'>|         1 (parameter)|
 </span><span class='line'>+----------------------+
-</span><span class='line'>|   [return address]   | &lt;-- 'B'가 반환되는 주소
+</span><span class='line'>|   [return address]   | &lt;-- &#39;B&#39;가 반환되는 주소
 </span><span class='line'>+----------------------+
 </span><span class='line'>|   [frame pointer]    |
 </span><span class='line'>+----------------------+
 </span><span class='line'>|   [local variables]  |
 </span><span class='line'>+----------------------+
 </span><span class='line'>
-</span><span class='line'>+----------------------+ &lt;-- 'C'의 스택 프레임 시작
+</span><span class='line'>+----------------------+ &lt;-- &#39;C&#39;의 스택 프레임 시작
 </span><span class='line'>|         4 (parameter)|
 </span><span class='line'>+----------------------+
 </span><span class='line'>|         3 (parameter)|
 </span><span class='line'>+----------------------+
-</span><span class='line'>|   [return address]   | &lt;-- 'C'가 반환되는 주소
+</span><span class='line'>|   [return address]   | &lt;-- &#39;C&#39;가 반환되는 주소
 </span><span class='line'>+----------------------+
 </span><span class='line'>
 </span><span class='line'>+----------------------+
 </span><span class='line'>|         ...          | (낮은 주소)
-</span><span class='line'>+----------------------+</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>+----------------------+
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>당신이 이 수준에서 숨쉬듯이 생각하는 사람이 아니라면 이건 꽤 어려운 (눈을 끄는?) 것이기 때문에 조금 설명하도록 하겠다. 매번 당신이 함수를 호출할 때, 새로운 &ldquo;스택 프레임&#8221;이 만들어진다. &#8220;프레임&#8221;은 단순히 말해 함수가 자신을 위해 스택에 할당한 메모리다. 사실은 할당조차 하지 않으며, 그저 끝에 뭔가 추가하고 <code>esp</code> 레지스터를 업데이트 한다. 그러면 이것이 호출하는 모든 함수는 자신의 스택 프레임이 어디에서 시작해야 하는지 알게 된다(<code>esp</code>, 스택 포인터이며 이는 기본적으로 변수다).</p>
@@ -274,13 +275,14 @@
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>          ...            &lt;-- 모른다, 영역은 상관 없다. (높은 주소)
+</pre></td><td class='code'><pre><code class='text'><span class='line'>          ...            &lt;-- 모른다, 영역은 상관 없다. (높은 주소)
 </span><span class='line'>+----------------------+
 </span><span class='line'>|      [seconds]       |
 </span><span class='line'>+----------------------+
 </span><span class='line'>|   [return address]   | &lt;-- esp는 여기를 가리킨다.
 </span><span class='line'>+----------------------+
-</span><span class='line'>          ...            &lt;-- 할당되지 않았다, 영역은 상관 없다. (낮은 주소)</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>          ...            &lt;-- 할당되지 않았다, 영역은 상관 없다. (낮은 주소)
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p><code>sleep()</code>이 시작하는 순간, 스택 프레임은 지금 보이는 게 다다. 이 스택 프레임은 프레임 포인터를 저장할 수도 있고 (젠장, 말 안 하기로 해 놓고 두 번이나 말해버렸다; 다시는 언급하지 않을 것을 맹세한다) <code>esp</code>에서 몇 바이트 뺌으로써 (즉, <code>esp</code> 포인터를 더 낮은 주소로 만듦으로써) 지역 변수를 위한 공간을 확보할 수도 있다. <code>esp</code> 아래에 새 프레임을 만드는 다른 함수를 호출할 수도 있다. 이 스택 프레임은 여러 가지 다양한 일을 할 수 있다; 그게 무엇인지 간에, <code>sleep()</code>이 시작하면, 스택 프레임은 이 함수의 세계를 만들어낸다.</p>
@@ -294,13 +296,14 @@
 <span class='line-number'>5</span>
 <span class='line-number'>6</span>
 <span class='line-number'>7</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>          ...            &lt;-- 모른다, 영역은 상관 없다. (높은 주소)
+</pre></td><td class='code'><pre><code class='text'><span class='line'>          ...            &lt;-- 모른다, 영역은 상관 없다. (높은 주소)
 </span><span class='line'>+----------------------+
 </span><span class='line'>|      [seconds]       | &lt;-- esp는 여기를 가리킨다.
 </span><span class='line'>+----------------------+
 </span><span class='line'>| [old return address] | &lt;-- 할당되지 않았다, 영역은 상관 없다. 이제 여기부터 시작한다.
 </span><span class='line'>+----------------------+
-</span><span class='line'>          ...            (낮은 주소)</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>          ...            (낮은 주소)
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>당연히 호출한 함수는 <code>sleep()</code>이 반환하고 나면 <code>esp</code>에 4를 더해 &ldquo;seconds&#8221;를 스택에서 지운다 (나중에 똑같은 일을 하기 위해 어떻게 <code>pop/pop/ret</code>을 사용해야 하는지 이야기할 것이다).</p>
@@ -323,7 +326,7 @@
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
 <span class='line-number'>12</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>          ...            &lt;-- 모른다, 영역은 상관 없다. (높은 주소)
+</pre></td><td class='code'><pre><code class='text'><span class='line'>          ...            &lt;-- 모른다, 영역은 상관 없다. (높은 주소)
 </span><span class='line'>+----------------------+
 </span><span class='line'>|      [seconds]       |
 </span><span class='line'>+----------------------+
@@ -334,7 +337,8 @@
 </span><span class='line'>|                      |
 </span><span class='line'>|                      |
 </span><span class='line'>+----------------------+
-</span><span class='line'>          ...            (낮은 주소)</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>          ...            (낮은 주소)
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>변수 <code>buf</code>의 길이는 16바이트다. 만약 프로그램이 buf의 17번째 바이트(즉, <code>buf[16]</code>)에 쓰려고 하면 어떻게 될까? 에, 반환 주소의 마지막 바이트&mdash;<a href="https://en.wikipedia.org/wiki/Endianness">리틀 엔디언</a>&mdash;에 쓰게 된다. 18번째 바이트는 반환 주소의 끝에서 두 번째 바이트에 쓰게 되고, 그런 방식이다. 이렇게 우리는 우리가 원하는 곳으로 반환 주소를 바꿀 수 있다. <em>원하는 곳 어디든</em>. 함수가 반환하면, 어디로 가겠는가? 뭐, 아마 그건 가야 할 곳으로 가고 있다고 생각할 것이다&mdash;완벽한 세계에서는, 그럴 것이다&mdash;하지만 아니다! 이 경우에는, 공격자가 원하는 곳 어디로든지 갈 수 있다. 공격자가 <a href="https://en.wikipedia.org/wiki/Zero_page">0</a>으로 점프하라고 하면, 0으로 점프하고 크래시를 일으킬 것이다. 공격자가 <code>0x41414141</code>(&ldquo;AAAA&rdquo;)로 점프하라고 하면, 그리로 점프하고 아마도 크래시를 일으킬 것이다. 공격자가 스택으로 점프하라고 하면&hellip; 음, 이건 좀 복잡해진다&hellip;</p>
@@ -366,7 +370,7 @@
 <span class='line-number'>13</span>
 <span class='line-number'>14</span>
 <span class='line-number'>15</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>.text:080483F4vulnerable_function proc near
+</pre></td><td class='code'><pre><code class='text'><span class='line'>.text:080483F4vulnerable_function proc near
 </span><span class='line'>.text:080483F4
 </span><span class='line'>.text:080483F4buf             = byte ptr -88h
 </span><span class='line'>.text:080483F4
@@ -380,7 +384,8 @@
 </span><span class='line'>.text:08048416         call    _read
 </span><span class='line'>.text:0804841B         leave
 </span><span class='line'>.text:0804841C         retn
-</span><span class='line'>.text:0804841Cvulnerable_function endp</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>.text:0804841Cvulnerable_function endp
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>어셈블리를 모른다면, 좀 벅차보일 것이다. 하지만 사실 간단하다. 같은 함수의 C 코드다:</p>
@@ -614,23 +619,24 @@
 <span class='line-number'>15</span>
 <span class='line-number'>16</span>
 <span class='line-number'>17</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>+----------------------+
+</pre></td><td class='code'><pre><code class='text'><span class='line'>+----------------------+
 </span><span class='line'>|         ...          | - 상관 없다, 다른 함수들이 여기 올 것이다.
 </span><span class='line'>+----------------------+
 </span><span class='line'>
 </span><span class='line'>+----------------------+ &lt;-- read()의 스택 프레임 시작
-</span><span class='line'>|     size_t count     | - count, strlen("cat /etc/passwd")
+</span><span class='line'>|     size_t count     | - count, strlen(&quot;cat /etc/passwd&quot;)
 </span><span class='line'>+----------------------+
 </span><span class='line'>|      void *buf       | - 쓸 수 있는(writable) memory, 0x08049530
 </span><span class='line'>+----------------------+
-</span><span class='line'>|        int fd        | - 'stdin' (0)이어야 한다.
+</span><span class='line'>|        int fd        | - &#39;stdin&#39; (0)이어야 한다.
 </span><span class='line'>+----------------------+
-</span><span class='line'>|   [return address]   | - 'read'가 반환할 곳
+</span><span class='line'>|   [return address]   | - &#39;read&#39;가 반환할 곳
 </span><span class='line'>+----------------------+
 </span><span class='line'>
 </span><span class='line'>+----------------------+
 </span><span class='line'>|         ...          | - 상관 없다, read()가 지역 변수를 위해 사용할 것이다.
-</span><span class='line'>+----------------------+</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>+----------------------+
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>익스플로잇을 이렇게 업데이트 하자 (설명은 주석에 있다):</p>
@@ -803,17 +809,18 @@
 <span class='line-number'>9</span>
 <span class='line-number'>10</span>
 <span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>+----------------------+
+</pre></td><td class='code'><pre><code class='text'><span class='line'>+----------------------+
 </span><span class='line'>|         ...          | - 상관 없다, 다른 함수들이 여기 올 것이다.
 </span><span class='line'>+----------------------+
 </span><span class='line'>
 </span><span class='line'>+----------------------+ &lt;-- system()의 스택 프레임 시작
 </span><span class='line'>|      void *arg       | - buffer, 0x08049530
 </span><span class='line'>+----------------------+
-</span><span class='line'>|   [return address]   | - 'system'이 반환되는 주소
+</span><span class='line'>|   [return address]   | - &#39;system&#39;이 반환되는 주소
 </span><span class='line'>+----------------------+
 </span><span class='line'>|         ...          | - 상관 없다, system() 지역 변수를 위해 사용할 것이다.
-</span><span class='line'>+----------------------+</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>+----------------------+
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>이제 이걸 <code>read()</code> 프레임 위에 쌓으면 제법 괜찮아 보인다:</p>
@@ -841,7 +848,7 @@
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
 <span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>+----------------------+
+</pre></td><td class='code'><pre><code class='text'><span class='line'>+----------------------+
 </span><span class='line'>|         ...          |
 </span><span class='line'>+----------------------+
 </span><span class='line'>
@@ -863,7 +870,8 @@
 </span><span class='line'>
 </span><span class='line'>+----------------------+
 </span><span class='line'>|         ...          |
-</span><span class='line'>+----------------------+</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>+----------------------+
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p><code>read()</code>가 반환하는 순간, 스택 포인터의 위치는 위에 나타낸 대로다. <code>read()</code>가 반환하면, 반환 주소를 스택에서 뽑아 그리로 점프한다. 반환하면 스택은 이렇게 보일 것이다:</p>
@@ -891,7 +899,7 @@
 <span class='line-number'>21</span>
 <span class='line-number'>22</span>
 <span class='line-number'>23</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>+----------------------+
+</pre></td><td class='code'><pre><code class='text'><span class='line'>+----------------------+
 </span><span class='line'>|         ...          |
 </span><span class='line'>+----------------------+
 </span><span class='line'>
@@ -913,7 +921,8 @@
 </span><span class='line'>
 </span><span class='line'>+----------------------+
 </span><span class='line'>|         ...          |
-</span><span class='line'>+----------------------+</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>+----------------------+
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>어라, 이건 좋지 않다! <code>system()</code>에 진입할 때, 스택 포인터는 우리가 원하는 <code>system()</code> 프레임 바닥이 아닌 <code>read()</code> 프레임의 안쪽을 가리키고 있다. 어떻게 해야 할까?</p>
@@ -949,7 +958,7 @@
 <span class='line-number'>25</span>
 <span class='line-number'>26</span>
 <span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>+----------------------+
+</pre></td><td class='code'><pre><code class='text'><span class='line'>+----------------------+
 </span><span class='line'>|         ...          |
 </span><span class='line'>+----------------------+
 </span><span class='line'>
@@ -970,12 +979,13 @@
 </span><span class='line'>+----------------------+
 </span><span class='line'>|        int fd        | &lt;-- 스택 포인터
 </span><span class='line'>+----------------------+
-</span><span class='line'>| [address of "pppr"]  |
+</span><span class='line'>| [address of &quot;pppr&quot;]  |
 </span><span class='line'>+----------------------+
 </span><span class='line'>
 </span><span class='line'>+----------------------+
 </span><span class='line'>|         ...          |
-</span><span class='line'>+----------------------+</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>+----------------------+
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>&ldquo;pop/pop/pop/ret&#8221;이 실행되고, 반환하기 직전엔 다음과 같다:</p>
@@ -1007,7 +1017,7 @@
 <span class='line-number'>25</span>
 <span class='line-number'>26</span>
 <span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>+----------------------+
+</pre></td><td class='code'><pre><code class='text'><span class='line'>+----------------------+
 </span><span class='line'>|         ...          |
 </span><span class='line'>+----------------------+
 </span><span class='line'>
@@ -1028,12 +1038,13 @@
 </span><span class='line'>+----------------------+
 </span><span class='line'>|        int fd        |
 </span><span class='line'>+----------------------+
-</span><span class='line'>| [address of "pppr"]  |
+</span><span class='line'>| [address of &quot;pppr&quot;]  |
 </span><span class='line'>+----------------------+
 </span><span class='line'>
 </span><span class='line'>+----------------------+
 </span><span class='line'>|         ...          |
-</span><span class='line'>+----------------------+</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>+----------------------+
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>반환하고 나면, 정확히 우리가 원하는 것을 얻을 수 있다:</p>
@@ -1065,7 +1076,7 @@
 <span class='line-number'>25</span>
 <span class='line-number'>26</span>
 <span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>+----------------------+
+</pre></td><td class='code'><pre><code class='text'><span class='line'>+----------------------+
 </span><span class='line'>|         ...          |
 </span><span class='line'>+----------------------+
 </span><span class='line'>
@@ -1086,12 +1097,13 @@
 </span><span class='line'>+----------------------+
 </span><span class='line'>|        int fd        |
 </span><span class='line'>+----------------------+
-</span><span class='line'>| [address of "pppr"]  |
+</span><span class='line'>| [address of &quot;pppr&quot;]  |
 </span><span class='line'>+----------------------+
 </span><span class='line'>
 </span><span class='line'>+----------------------+
 </span><span class='line'>|         ...          |
-</span><span class='line'>+----------------------+</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>+----------------------+
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p><code>pop/pop/pop/ret</code>은 <code>objdump</code>를 이용하면 어렵지 않게 찾을 수 있다:</p>
@@ -1146,7 +1158,7 @@
 <span class='line-number'>25</span>
 <span class='line-number'>26</span>
 <span class='line-number'>27</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>+----------------------+
+</pre></td><td class='code'><pre><code class='text'><span class='line'>+----------------------+
 </span><span class='line'>|         ...          |
 </span><span class='line'>+----------------------+
 </span><span class='line'>
@@ -1167,12 +1179,13 @@
 </span><span class='line'>+----------------------+
 </span><span class='line'>|        int fd        | - 0 (stdin)
 </span><span class='line'>+----------------------+
-</span><span class='line'>| [address of "pppr"]  | - 0x080484b6
+</span><span class='line'>| [address of &quot;pppr&quot;]  | - 0x080484b6
 </span><span class='line'>+----------------------+
 </span><span class='line'>
 </span><span class='line'>+----------------------+
 </span><span class='line'>|         ...          |
-</span><span class='line'>+----------------------+</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>+----------------------+
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>원격 서버에서 보내는 걸 받기 위해 <code>s.read()</code>를 익스플로잇 마지막에 추가하자. 현재 익스플로잇은 다음과 같다:</p>
@@ -1478,7 +1491,7 @@
 <span class='line-number'>53</span>
 <span class='line-number'>54</span>
 <span class='line-number'>55</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>+----------------------+
+</pre></td><td class='code'><pre><code class='text'><span class='line'>+----------------------+
 </span><span class='line'>|         ...          |
 </span><span class='line'>+----------------------+
 </span><span class='line'>
@@ -1499,7 +1512,7 @@
 </span><span class='line'>+----------------------+
 </span><span class='line'>|        int fd        | - 0 (stdin)
 </span><span class='line'>+----------------------+
-</span><span class='line'>| [address of "pppr"]  |
+</span><span class='line'>| [address of &quot;pppr&quot;]  |
 </span><span class='line'>+----------------------+
 </span><span class='line'>
 </span><span class='line'>+----------------------+ &lt;-- pop/pop/pop/ret의 프레임 [4]
@@ -1513,7 +1526,7 @@
 </span><span class='line'>+----------------------+
 </span><span class='line'>|        int fd        | - 1 (stdout)
 </span><span class='line'>+----------------------+
-</span><span class='line'>| [address of "pppr"]  |
+</span><span class='line'>| [address of &quot;pppr&quot;]  |
 </span><span class='line'>+----------------------+
 </span><span class='line'>
 </span><span class='line'>+----------------------+ &lt;-- pop/pop/pop/ret의 프레임 [2]
@@ -1527,12 +1540,13 @@
 </span><span class='line'>+----------------------+
 </span><span class='line'>|        int fd        | - 0 (stdin)
 </span><span class='line'>+----------------------+
-</span><span class='line'>| [address of "pppr"]  |
+</span><span class='line'>| [address of &quot;pppr&quot;]  |
 </span><span class='line'>+----------------------+
 </span><span class='line'>
 </span><span class='line'>+----------------------+
 </span><span class='line'>|         ...          |
-</span><span class='line'>+----------------------+</span></code></pre></td></tr></table></div></figure>
+</span><span class='line'>+----------------------+
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>오 이런, 이게 대체 뭐야?</p>

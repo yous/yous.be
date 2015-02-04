@@ -192,7 +192,7 @@
 
 <p>나는 Android Studio에서는 파일 저장 시 모든 줄 끝 공백을 지우고, Vim에서는 줄 끝 공백에 하이라이트를 입혀 쓰고 있다.</p>
 
-<figure class='code'><figcaption><span>.vimrc</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -266,7 +266,8 @@
 <p>원리는 간단하다. 현재 페이지 URL에 <code>status</code>나 <code>statuses</code>가 포함되어 있으면 트윗을 열고, 그렇지 않으면 계정을 보여 준다. 아래 코드를 북마크 해두고, 필요할 때 눌러주면 된다.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>javascript:var%20url=document.URL;var%20match=url.match(/status(?:es)?%5C/(%5Cd+)/i);var%20tweetbotUrl;if(match==null)%7BtweetbotUrl=url.replace(/https?:%5C/%5C/(mobile%5C.)?twitter%5C.com%5C//i,%22tweetbot:///user_profile/%22)%7Delse%7BtweetbotUrl=%22tweetbot:///status/%22+match[1]%7Dwindow.location=tweetbotUrl;</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>javascript:var%20url=document.URL;var%20match=url.match(/status(?:es)?%5C/(%5Cd+)/i);var%20tweetbotUrl;if(match==null)%7BtweetbotUrl=url.replace(/https?:%5C/%5C/(mobile%5C.)?twitter%5C.com%5C//i,%22tweetbot:///user_profile/%22)%7Delse%7BtweetbotUrl=%22tweetbot:///status/%22+match[1]%7Dwindow.location=tweetbotUrl;
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>기기에 Tweetbot 2와 Tweetbot 3가 모두 깔려 있을 때 Tweetbot 2로 열리는 점은 아쉽다.</p>

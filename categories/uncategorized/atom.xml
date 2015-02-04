@@ -4,7 +4,7 @@
   <title><![CDATA[Category: uncategorized | Yous]]></title>
   <link href="http://yous.be/categories/uncategorized/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2015-01-16T04:36:48+09:00</updated>
+  <updated>2015-02-04T20:07:05+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -26,8 +26,7 @@
 
 
 
-<figure class='code'><figcaption><span> (test.js)</span> <a href='http://yous.be/downloads/code/test.js'>download</a></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -139,7 +138,7 @@ end</code></pre></noscript></div>
 
 
 
-<figure class='code'><figcaption><span>Testing PHP (syntax_test.php)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -202,7 +201,7 @@ end</code></pre></noscript></div>
 
 
 
-<figure class='code'><figcaption><span>Testing Objective C (Cocoa1AppDelegate.m)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -249,7 +248,7 @@ end</code></pre></noscript></div>
 
 
 
-<figure class='code'><figcaption><span>Testing Haskel (syntax_test.hs)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -334,7 +333,7 @@ end</code></pre></noscript></div>
 
 
 
-<figure class='code'><figcaption><span>Testing Bash (syntax_test.sh)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -391,7 +390,7 @@ end</code></pre></noscript></div>
 
 
 
-<figure class='code'><figcaption><span>Testing Python (syntax_test.py)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -530,7 +529,7 @@ end</code></pre></noscript></div>
 
 
 
-<figure class='code'><figcaption><span>Testing Perl (syntax_test.pl)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -601,7 +600,7 @@ end</code></pre></noscript></div>
 
 
 
-<figure class='code'><figcaption><span>Testing Java (syntax_test.java)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -640,7 +639,7 @@ end</code></pre></noscript></div>
 
 
 
-<figure class='code'><figcaption><span>Test C (syntax_test.c)</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -710,7 +709,7 @@ end</code></pre></noscript></div>
 
 
 
-<figure class='code'><figcaption><span>Coffeescript Tricks</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -725,7 +724,7 @@ end</code></pre></noscript></div>
 
 
 
-<figure class='code'><figcaption><span>Test Ruby String Interpolation</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='ruby'><span class='line'><span class="nb">puts</span> <span class="s2">&quot;a</span><span class="si">#{</span><span class="s2">&quot;b</span><span class="si">#{</span><span class="s2">&quot;c</span><span class="si">#{</span><span class="s2">&quot;d&quot;</span><span class="si">}</span><span class="s2">&quot;</span><span class="si">}</span><span class="s2">&quot;</span><span class="si">}</span><span class="s2">&quot;</span>
 </span></code></pre></td></tr></table></div></figure>
 

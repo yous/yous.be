@@ -4,7 +4,7 @@
   <title><![CDATA[Category: ios | Yous]]></title>
   <link href="http://yous.be/categories/ios/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2015-01-16T04:36:48+09:00</updated>
+  <updated>2015-02-04T20:07:05+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -69,7 +69,8 @@
 <p>원리는 간단하다. 현재 페이지 URL에 <code>status</code>나 <code>statuses</code>가 포함되어 있으면 트윗을 열고, 그렇지 않으면 계정을 보여 준다. 아래 코드를 북마크 해두고, 필요할 때 눌러주면 된다.</p>
 
 <figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class=''><span class='line'>javascript:var%20url=document.URL;var%20match=url.match(/status(?:es)?%5C/(%5Cd+)/i);var%20tweetbotUrl;if(match==null)%7BtweetbotUrl=url.replace(/https?:%5C/%5C/(mobile%5C.)?twitter%5C.com%5C//i,%22tweetbot:///user_profile/%22)%7Delse%7BtweetbotUrl=%22tweetbot:///status/%22+match[1]%7Dwindow.location=tweetbotUrl;</span></code></pre></td></tr></table></div></figure>
+</pre></td><td class='code'><pre><code class='text'><span class='line'>javascript:var%20url=document.URL;var%20match=url.match(/status(?:es)?%5C/(%5Cd+)/i);var%20tweetbotUrl;if(match==null)%7BtweetbotUrl=url.replace(/https?:%5C/%5C/(mobile%5C.)?twitter%5C.com%5C//i,%22tweetbot:///user_profile/%22)%7Delse%7BtweetbotUrl=%22tweetbot:///status/%22+match[1]%7Dwindow.location=tweetbotUrl;
+</span></code></pre></td></tr></table></div></figure>
 
 
 <p>기기에 Tweetbot 2와 Tweetbot 3가 모두 깔려 있을 때 Tweetbot 2로 열리는 점은 아쉽다.</p>
@@ -89,9 +90,9 @@
 
 <p>Description: Secure Transport failed to validate the authenticity of the connection. This issue was addressed by restoring missing validation steps.</p></blockquote>
 
-<p>그런데 이 문제의 원인이 된 <a href="http://opensource.apple.com/source/Security/Security-55471/libsecurity_ssl/lib/sslKeyExchange.c">소스 코드</a>가 흥미롭다. Adam Langley의 <a href="https://www.imperialviolet.org/2014/02/22/applebug.html">이 버그에 관한 글</a>에 따르면 실제 소스는 이렇다:</p>
+<p>그런데 이 문제의 원인이 된 <a href="http://opensource.apple.com/source/Security/Security-55471/libsecurity_ssl/lib/sslKeyExchange.c">소스 코드</a>가 흥미롭다. Adam Langley의 <a href="https://www.imperialviolet.org/2014/02/22/applebug.html">이 버그에 관한 글</a>에 따르면 실제 소스(sslKeyExchange.c)는 이렇다:</p>
 
-<figure class='code'><figcaption><span>sslKeyExchange.c</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -174,7 +175,7 @@
 
 <p><a href="http://www.apple.com/kr/itunes/">iTunes</a>에는 앨범별 임의 재생을 이용해 음악을 들을 수 있는 기능이 있습니다.</p>
 
-<p><img class="center" src="http://yous.be/images/2013/02/19/1.png" title="iTunes" alt="iTunes"></p>
+<p><img src="http://yous.be/images/2013/02/19/1.png" title="iTunes" alt="iTunes" /></p>
 
 <p>개인적으로 아티스트가 앨범의 곡 배치 또한 잘 생각해서 만들어야 한다고 생각하고, 또 그렇게 만든다고 믿는 편입니다. 그래서 보통 앨범에 있는 곡들을 1번 트랙부터 순서대로 들으려는 경향이 있습니다.</p>
 
@@ -217,11 +218,11 @@
 
 <p>확장자는 <a href="http://ko.wikipedia.org/wiki/%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0_%EB%A6%AC%EC%8A%A4%ED%8A%B8">plist</a>지만 그냥 메모장으로 열어도 편집할 수 있을 것입니다. 이 파일에는 <code>설정</code> - <code>음악</code>에서 볼 수 있는 모든 정보를 담고 있습니다.</p>
 
-<p><img class="center" src="http://yous.be/images/2013/02/19/2.png" title="설정 - 음악" alt="설정 - 음악"></p>
+<p><img src="http://yous.be/images/2013/02/19/2.png" title="설정 - 음악" alt="설정 - 음악" /></p>
 
 <p>위 사진에서 보이는 것들의 정보를 가지고 있다고 생각하시면 됩니다. 소스를 직접 봅시다.</p>
 
-<figure class='code'><figcaption><span>Music.plist</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -533,7 +534,7 @@
 
 <p>아래는 수정한 <code>Music.plist</code>의 최종 결과입니다.</p>
 
-<figure class='code'><figcaption><span>Music.plist</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -830,8 +831,8 @@
 
 <p>원본 <code>Music.plist</code>는 따로 백업해 두고, 변경한 <code>Music.plist</code>를 넣습니다. 그리고 리스프링 할 필요도 없이 <code>설정</code> - <code>음악</code>으로 들어가면 다음과 같은 화면을 볼 수 있습니다! 우리가 임의 재생 설정을 추가했습니다!</p>
 
-<p style="text-align:center;"><img src="http://yous.be/images/2013/02/19/3.png" title="설정 - 음악" alt="설정 - 음악">
-<img src="http://yous.be/images/2013/02/19/4.png" title="설정 - 음악 - 임의 재생" alt="설정 - 음악 - 임의 재생"></p>
+<p><img src="http://yous.be/images/2013/02/19/3.png" title="설정 - 음악" alt="설정 - 음악" />
+<img src="http://yous.be/images/2013/02/19/4.png" title="설정 - 음악 - 임의 재생" alt="설정 - 음악 - 임의 재생" /></p>
 
 <p>우선 모든 노래 중 아무 곡이나 재생한 후 <code>설정</code> - <code>음악</code> - <code>임의 재생</code>에 들어가서 <code>앨범별</code>을 선택하면 현재 노래 순서가 바뀐 것을 확인할 수 있습니다. <code>앨범별</code>을 선택하는 순간 아이폰에서 재생 순서를 전부 만들어 놓는 것 같습니다.</p>
 

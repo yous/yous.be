@@ -4,7 +4,7 @@
   <title><![CDATA[Category: android | Yous]]></title>
   <link href="http://yous.be/categories/android/atom.xml" rel="self"/>
   <link href="http://yous.be/"/>
-  <updated>2015-01-16T04:36:48+09:00</updated>
+  <updated>2015-02-04T20:07:05+09:00</updated>
   <id>http://yous.be/</id>
   <author>
     <name><![CDATA[Yous]]></name>
@@ -372,7 +372,7 @@
 
 <p><code>ACCESS_WIFI_STATE</code> permission must be added to <code>AndroidManifest.xml</code>.</p>
 
-<figure class='code'><figcaption><span>AndroidManifest.xml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.ACCESS_WIFI_STATE&quot;</span> <span class="nt">/&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -390,7 +390,7 @@
 
 <p>This is more complicated. As WiFi case, we have to add <code>ACCESS_NETWORK_STATE</code> permission.</p>
 
-<figure class='code'><figcaption><span>AndroidManifest.xml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.ACCESS_NETWORK_STATE&quot;</span> <span class="nt">/&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -537,7 +537,7 @@
 
 <p><code>CHANGE_WIFI_STATE</code> permission must be added to <code>AndroidManifest.xml</code>.</p>
 
-<figure class='code'><figcaption><span>AndroidManifest.xml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.CHANGE_WIFI_STATE&quot;</span> <span class="nt">/&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 
@@ -616,7 +616,7 @@
 
 <p>It requires to <code>CHANGE_NETWORK_STATE</code> permission.</p>
 
-<figure class='code'><figcaption><span>AndroidManifest.xml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 </pre></td><td class='code'><pre><code class='xml'><span class='line'><span class="nt">&lt;uses-permission</span> <span class="na">android:name=</span><span class="s">&quot;android.permission.CHANGE_NETWORK_STATE&quot;</span> <span class="nt">/&gt;</span>
 </span></code></pre></td></tr></table></div></figure>
 

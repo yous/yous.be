@@ -147,11 +147,11 @@
 
 <p>I usually use Tomorrow Night Eighties of <a href="https://github.com/chriskempson/tomorrow-theme">Tomorrow Theme</a> in <a href="http://www.vim.org">Vim</a>, <a href="http://www.iterm2.com">iTerm2</a>, <a href="http://www.jetbrains.com/idea/">IntelliJ IDEA</a> (<a href="http://developer.android.com/sdk/installing/studio.html">Android Studio</a>). You can take a look of Tomorrow Theme.</p>
 
-<p><img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png" title="Tomorrow Night" alt="Tomorrow Night">
-<img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow.png" title="Tomorrow" alt="Tomorrow">
-<img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Eighties.png" title="Tomorrow Night Eighties" alt="Tomorrow Night Eighties">
-<img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Blue.png" title="Tomorrow Night Blue" alt="Tomorrow Night Blue">
-<img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png" title="Tomorrow Night Bright" alt="Tomorrow Night Bright"></p>
+<p><img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png" title="Tomorrow Night" alt="Tomorrow Night" />
+<img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow.png" title="Tomorrow" alt="Tomorrow" />
+<img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Eighties.png" title="Tomorrow Night Eighties" alt="Tomorrow Night Eighties" />
+<img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Blue.png" title="Tomorrow Night Blue" alt="Tomorrow Night Blue" />
+<img src="https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png" title="Tomorrow Night Bright" alt="Tomorrow Night Bright" /></p>
 
 <p>So I made scss files for Octopress that overrides colors of <code>.highlight</code> and <code>.gist</code> class elements. Usual code blocks and embedded gists are properly highlighted. The <a href="/2013/12/03/syntax-highlighting-test/">demo</a> and the <a href="https://github.com/yous/yous.github.io/tree/source/sass/custom">code</a> are available.</p>
 
@@ -195,8 +195,7 @@
 
 
 
-<figure class='code'><figcaption><span> (test.js)</span> <a href='/downloads/code/test.js'>download</a></figcaption>
-<div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -350,7 +349,7 @@ end</code></pre></noscript></div>
 
 <p>그리고 <code>_config.yml</code>을 수정해 줍니다.</p>
 
-<figure class='code'><figcaption><span>_config.yml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 </pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="c1"># url: http://yoursite.com</span>
 </span><span class='line'><span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://yoursite.com/blog</span>
@@ -359,7 +358,12 @@ end</code></pre></noscript></div>
 
 <p>추가로, <code>/blog</code>를 하위 디렉토리로 사용했을 때, Archives와 Categories, 그리고 포스트 경로들이 <code>http://yoursite.com/blog/blog/...</code>의 형태로 생성됩니다. 중복된 <code>/blog</code>를 지우기 위해 다음과 같이 설정을 변경해 줍니다.</p>
 
-<figure class='code'><figcaption><span>_config.yml</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<ul>
+<li><code>_config.yml</code>:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -372,9 +376,12 @@ end</code></pre></noscript></div>
 </span></code></pre></td></tr></table></div></figure>
 
 
+<ul>
+<li><code>source/_includes/custom/navigation.html</code>:</li>
+</ul>
 
 
-<figure class='code'><figcaption><span>source/_includes/custom/navigation.html</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -387,7 +394,12 @@ end</code></pre></noscript></div>
 
 <p>그리고, <code>source/blog/archives</code> 폴더를 <code>source/archives</code>로 옮겨주시기 바랍니다.</p>
 
-<figure class='code'><figcaption><span>source/index.html</span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
+<ul>
+<li><code>source/index.html</code>:</li>
+</ul>
+
+
+<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
 <span class='line-number'>2</span>
 <span class='line-number'>3</span>
 <span class='line-number'>4</span>
@@ -442,7 +454,7 @@ end</code></pre></noscript></div>
 
 <p><a href="http://www.apple.com/kr/itunes/">iTunes</a>에는 앨범별 임의 재생을 이용해 음악을 들을 수 있는 기능이 있습니다.</p>
 
-<p><img class="center" src="/images/2013/02/19/1.png" title="iTunes" alt="iTunes"></p>
+<p><img src="/images/2013/02/19/1.png" title="iTunes" alt="iTunes" /></p>
 
 <p>개인적으로 아티스트가 앨범의 곡 배치 또한 잘 생각해서 만들어야 한다고 생각하고, 또 그렇게 만든다고 믿는 편입니다. 그래서 보통 앨범에 있는 곡들을 1번 트랙부터 순서대로 들으려는 경향이 있습니다.</p>
 
