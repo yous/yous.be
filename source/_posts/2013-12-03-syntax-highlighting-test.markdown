@@ -14,7 +14,28 @@ So guys
 whats up
 ```
 
-{% include_code test.js lang:js %}
+``` js
+/**
+sample javascript from xui
+*/
+
+var undefined,
+    xui,
+    window     = this,
+    string     = new String('string'),
+    document   = window.document,
+    simpleExpr = /^#?([\w-]+)$/,
+    idExpr     = /^#/,
+    tagExpr    = /<([\w:]+)/,
+    slice      = function (e) { return [].slice.call(e, 0); };
+    try { var a = slice(document.documentElement.childNodes)[0].nodeType; }
+    catch(e){ slice = function (e) { var ret=[]; for (var i=0; e[i]; i++)
+        ret.push(e[i]); return ret; }; }
+
+window.x$ = window.xui = xui = function(q, context) {
+    return new xui.fn.find(q, context);
+};
+```
 
 ``` html
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
@@ -43,7 +64,7 @@ whats up
 
 <!-- more -->
 
-``` php Testing PHP (syntax_test.php)
+``` php
 <?php
 require_once($GLOBALS['g_campsiteDir']. "/$ADMIN_DIR/country/common.php");
 require_once($GLOBALS['g_campsiteDir']. "/classes/SimplePager.php");
@@ -75,7 +96,7 @@ echo camp_html_breadcrumbs($crumbs);
 </table>
 ```
 
-``` objc Testing Objective C (Cocoa1AppDelegate.m)
+``` objc
 #import "Cocoa1AppDelegate.h"
 
 @implementation Cocoa1AppDelegate
@@ -99,7 +120,7 @@ echo camp_html_breadcrumbs($crumbs);
 @end
 ```
 
-``` haskell Testing Haskel (syntax_test.hs)
+``` haskell
 {-# LANGUAGE OverloadedStrings #-}
 module Main where
 
@@ -142,7 +163,7 @@ sass = getResourceString >>> unixFilter "sass" ["-s", "--scss"]
                          >>> arr compressCss
 ```
 
-``` sh Testing Bash (syntax_test.sh)
+``` sh
 #!/bin/bash
 
 cd $ROOT_DIR
@@ -171,7 +192,7 @@ case "$PLATFORM" in
     ;;
 ```
 
-``` python Testing Python (syntax_test.py)
+``` python
 # test python (sample from offlineimap)
 
 class ExitNotifyThread(Thread):
@@ -241,7 +262,7 @@ class ExitNotifyThread(Thread):
         return self.exitmessage
 ```
 
-``` perl Testing Perl (syntax_test.pl)
+``` perl
 #!perl -w
 
 # Time-stamp: <2002/04/06, 13:12:13 (EST), maverick, csvformat.pl>
@@ -277,7 +298,7 @@ while(<F>)
 close F;
 ```
 
-``` java Testing Java (syntax_test.java)
+``` java
 import java.util.Map;
 import java.util.TreeSet;
 
@@ -297,7 +318,7 @@ public class GetEnv {
 }
 ```
 
-``` c Test C (syntax_test.c)
+``` c
 #define UNICODE
 #include <windows.h>
 
@@ -328,7 +349,7 @@ int main(int argc, char **argv) {
 
 {% gist 4321346 %}
 
-``` coffeescript Coffeescript Tricks
+``` coffeescript
 # Given an alphabet:
 alphabet = 'abcdefghijklmnopqrstuvwxyz'
 
@@ -336,6 +357,6 @@ alphabet = 'abcdefghijklmnopqrstuvwxyz'
 console.log letter for in alphabet[4..8]
 ```
 
-``` ruby Test Ruby String Interpolation
+``` ruby
 puts "a#{"b#{"c#{"d"}"}"}"
 ```

@@ -34,7 +34,7 @@ Then we can see some trailing whitespace in `inview-324b8fb59c14da0d5ca1fe2c3119
 
 Add this code to your `.vimrc`:
 
-``` vim .vimrc
+``` vim
 highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace //

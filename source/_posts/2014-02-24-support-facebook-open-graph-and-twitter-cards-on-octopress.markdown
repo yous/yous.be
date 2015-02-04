@@ -24,7 +24,7 @@ twitter_card:
 
 ## <a id="facebook-open-graph-tags"></a>Facebook Open Graph Tags
 
-{% img /images/2014/02/24/facebook_open_graph.png Facebook Open Graph %}
+![Facebook Open Graph](/images/2014/02/24/facebook_open_graph.png "Facebook Open Graph")
 
 페이스북에 웹 페이지가 제대로 인식되게 하려면 [Open Graph 태그][Facebook Open Graph tags]를 이용해야 한다. 기본적으로 채워야 할 태그들은 다음과 같다:
 
@@ -56,7 +56,7 @@ twitter_card:
 
 [Twitter Cards][]는 트윗 자체에 링크의 내용을 보여주는 '카드'를 추가하는 기능이다.
 
-{% img /images/2014/02/24/twitter_card_summary.png Twitter Summary Card %}
+![Twitter Summary Card](/images/2014/02/24/twitter_card_summary.png "Twitter Summary Card")
 
 카드의 종류는 7개가 있으며 원하는 용도에 따라 적절히 사용할 수 있다.
 
@@ -84,7 +84,7 @@ twitter_card:
 
 페이스북 Open Graph를 위한 설정 값을 `_config.yml`에 추가한다.
 
-``` yaml _config.yml
+``` yaml
 ...
 # Facebook Insights / Open Graph
 facebook_app_id:
@@ -98,7 +98,7 @@ facebook_page:
 Octopress에서 사이트에 메타 태그를 추가하는 방법은 간단하다. 일단 `source/_includes/custom/head.html` 파일에 다음 코드를 추가하자.
 
 {% raw %}
-``` html source/_includes/custom/head.html
+``` html
 ...
 <!-- Social media content metadata -->
 {% if site.facebook_app_id %}

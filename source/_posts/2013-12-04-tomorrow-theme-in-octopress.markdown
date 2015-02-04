@@ -24,11 +24,11 @@ I usually use Tomorrow Night Eighties of [Tomorrow Theme][] in [Vim][], [iTerm2]
 [IntelliJ IDEA]: http://www.jetbrains.com/idea/
 [Android Studio]: http://developer.android.com/sdk/installing/studio.html
 
-{% img https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png Tomorrow Night %}
-{% img https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow.png Tomorrow %}
-{% img https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Eighties.png Tomorrow Night Eighties %}
-{% img https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Blue.png Tomorrow Night Blue %}
-{% img https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png Tomorrow Night Bright %}
+![Tomorrow Night](https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png "Tomorrow Night")
+![Tomorrow](https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow.png "Tomorrow")
+![Tomorrow Night Eighties](https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Eighties.png "Tomorrow Night Eighties")
+![Tomorrow Night Blue](https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Blue.png "Tomorrow Night Blue")
+![Tomorrow Night Bright](https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png "Tomorrow Night Bright")
 
 So I made scss files for Octopress that overrides colors of `.highlight` and `.gist` class elements. Usual code blocks and embedded gists are properly highlighted. The [demo][Syntax Highlighting Test] and the [code][yous.github.io/sass/custom] are available.
 
@@ -60,7 +60,7 @@ So I made scss files for Octopress that overrides colors of `.highlight` and `.g
 
 - Default `sass/partial/_syntax.scss` adds `box-shadow` and `text-shadow` to line numbers, also `box-shadow` to code block and gist. I removed these attributes and it is just can be done by overriding style in `sass/custom/_styles.scss`.
 
-``` scss sass/custom/_styles.scss
+``` scss
 .highlight .line-numbers, html .gist .gist-file .gist-syntax .highlight .line_numbers {
   @include box-shadow(none);
   text-shadow: none;

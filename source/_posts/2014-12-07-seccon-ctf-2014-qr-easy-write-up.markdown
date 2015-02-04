@@ -230,7 +230,7 @@ end
 
 Fortunately, the QR code contains alphanumeric encoding and byte encoding only. You can get the flag by running above code with Ruby:
 
-``` plain
+``` text
 SECCON{PSwIQ9d9GjKTdD8H}
 ```
 

@@ -35,7 +35,7 @@ facebook:
 
 열심히 곱셈을 하는 문제입니다.
 
-``` plain
+``` text
 n * n 의 (10 <= n <= 30) 격자와, 자연수 x 가 주어집니다
 
 n * n 격자 안에서 x 개의 인접한 수들의 곱의 최대값을 구하시오(수평, 수직, 대각선, 역대각선 모두 포함)
@@ -150,7 +150,7 @@ end
 
 20 스테이지까지 통과하면 Flag를 받을 수 있습니다:
 
-``` plain
+``` text
 크리스마스의 행복도 곱하기가 되길 바라며...
 
 
@@ -173,7 +173,7 @@ Flag는 `I_L0VE_S6nta, I_L0Ve_Father, I_L0VE_Y0U...`입니다.
 
 ![Matahari](/images/2014/12/26/Matahari.jpg "Matahari")
 
-``` plain
+``` text
 WELC OME TO CHRI ST
 MAS CTF PAS SIS ####
 #MAT AHAR IZ ZA NG#
@@ -187,7 +187,7 @@ Flag는 `MATAHARIZZANG`입니다.
 
 Board를 보면 트위터 아이디 [@kruby808](https://twitter.com/kruby808)이 보입니다. 들어가서 트윗을 보면 좋아하는 뮤직비디오의 주소(<http://www.youtube.com/watch?v=KEDCy1NA8H0>)를 얻을 수 있습니다. 이를 이용해 `kruby808` 계정의 비밀번호를 찾읍시다.
 
-``` plain
+``` text
 id : kruby808
 pw : th1s_IS_n0T_FL4G
 ```
@@ -225,7 +225,7 @@ Digest::MD5.hexdigest('1aacesz')
 
 각각 거짓, 참이어서 `$_SESSION['id']`에 `1aacesz`가 들어가게 됩니다. Flag 메뉴에 들어가면 Flag를 볼 수 있습니다:
 
-``` plain
+``` text
 Flag:{UP_down_UP_UP_down}
 
 Your level : Null
@@ -299,7 +299,7 @@ Flag는 `snow_is_commmming`입니다.
 
 Clue를 봅시다:
 
-``` plain
+``` text
 CREATE TABLE `table_name` (
 
 `no` int NOT NULL,
@@ -311,13 +311,13 @@ CREATE TABLE `table_name` (
 
 Letter는 아까와 같지만 4번 항목만 `Secret :)`이라는 메시지와 함께 가려져 있습니다. 일단 괄호를 쓸 수 없습니다. 시도 끝에 like를 사용한 쿼리를 하나 만들었습니다:
 
-``` plain
+``` text
 ?letter=-1 or letter like "%%" and no=4
 ```
 
 여기에서 4번 글의 길이를 알아낼 수 있는데요, like의 와일드카드 `_`를 사용하면 됩니다. 길이가 맞지 않으면 `존재하지 않는 글입니다` 메시지가 나오고, 길이가 맞으면 `Secret :)`을 볼 수 있습니다.
 
-``` plain
+``` text
 ?letter=-1 or letter like "_" and no=4
 ?letter=-1 or letter like "__" and no=4
 ?letter=-1 or letter like "___" and no=4
@@ -336,7 +336,7 @@ end
 
 끝까지 돌렸다면 아마 아래와 같은 결과가 나왔을 것입니다만, 다 나오기 전에 게싱했습니다.
 
-``` plain
+``` text
 그
 날
 는
@@ -442,7 +442,7 @@ end
 
 20문제를 풀게 되면 다음과 같은 메시지를 받을 수 있습니다:
 
-``` plain
+``` text
 Congratz! You are Dynamic algorithm master
 The Flag is christmas{Rac_reKrei$her_!s_so_cute_@lligat0r!}
 ```

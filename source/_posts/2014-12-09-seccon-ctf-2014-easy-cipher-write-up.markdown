@@ -48,12 +48,12 @@ puts str.join
 
 Just run with Ruby:
 
-``` plain
+``` text
 Welcome to the SECCON 2014 online CTF.The SECCON is the biggest hacker contest in Japan.Oops, you want to know the flag, don't you?Here you are.SECCON{W31C0M 70 7H3 53CC0N ZOIA}Have fun!
 ```
 
 Finally the flag is:
 
-``` plain
+``` text
 SECCON{W31C0M 70 7H3 53CC0N ZOIA}
 ```

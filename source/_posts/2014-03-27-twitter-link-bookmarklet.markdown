@@ -35,7 +35,7 @@ window.location = tweetbotUrl;
 
 원리는 간단하다. 현재 페이지 URL에 `status`나 `statuses`가 포함되어 있으면 트윗을 열고, 그렇지 않으면 계정을 보여 준다. 아래 코드를 북마크 해두고, 필요할 때 눌러주면 된다.
 
-``` plain
+``` text
 javascript:var%20url=document.URL;var%20match=url.match(/status(?:es)?%5C/(%5Cd+)/i);var%20tweetbotUrl;if(match==null)%7BtweetbotUrl=url.replace(/https?:%5C/%5C/(mobile%5C.)?twitter%5C.com%5C//i,%22tweetbot:///user_profile/%22)%7Delse%7BtweetbotUrl=%22tweetbot:///status/%22+match[1]%7Dwindow.location=tweetbotUrl;
 ```
 

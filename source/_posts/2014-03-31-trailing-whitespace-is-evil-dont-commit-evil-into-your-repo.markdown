@@ -28,7 +28,7 @@ external-url: http://codeimpossible.com/2012/04/02/Trailing-whitespace-is-evil-D
 
 나는 Android Studio에서는 파일 저장 시 모든 줄 끝 공백을 지우고, Vim에서는 줄 끝 공백에 하이라이트를 입혀 쓰고 있다.
 
-``` vim .vimrc
+``` vim
 highlight ExtraWhitespace ctermbg=red guibg=red
 autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace //

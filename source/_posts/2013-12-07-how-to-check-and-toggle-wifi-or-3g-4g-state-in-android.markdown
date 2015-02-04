@@ -31,7 +31,7 @@ At some point, we want to know whether the device is connected to network so tha
 
 `ACCESS_WIFI_STATE` permission must be added to `AndroidManifest.xml`.
 
-``` xml AndroidManifest.xml
+``` xml
 <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 ```
 
@@ -48,7 +48,7 @@ boolean wifiEnabled = wifiManager.isWifiEnabled();
 
 This is more complicated. As WiFi case, we have to add `ACCESS_NETWORK_STATE` permission.
 
-``` xml AndroidManifest.xml
+``` xml
 <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 ```
 
@@ -161,7 +161,7 @@ boolean mobileConnected = mobileInfo.getState() == NetworkInfo.State.CONNECTED;
 
 `CHANGE_WIFI_STATE` permission must be added to `AndroidManifest.xml`.
 
-``` xml AndroidManifest.xml
+``` xml
 <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
 ```
 
@@ -212,7 +212,7 @@ private void setMobileDataEnabled(Context context, boolean enabled) {
 
 It requires to `CHANGE_NETWORK_STATE` permission.
 
-``` xml AndroidManifest.xml
+``` xml
 <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
 ```
 
