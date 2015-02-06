@@ -234,3 +234,21 @@
         }
     }
 }
+
+
+
+/**
+ * Pagination
+ */
+.pagination {
+    text-align: center;
+    @extend %clearfix;
+
+    .previous {
+        float: left;
+    }
+
+    .next {
+        float: right;
+    }
+}
