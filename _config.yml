@@ -8,6 +8,10 @@ url: "http://yous.be" # the base hostname & protocol for your site
 twitter_username:
 github_username: yous
 
+# Plugins
+gems:
+  - jekyll-redirect-from
+
 # Build settings
 markdown: redcarpet
 excerpt_separator: "<!-- more -->"

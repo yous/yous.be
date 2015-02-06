@@ -1,3 +1,10 @@
+GIT
+  remote: git://github.com/jekyll/jekyll-redirect-from.git
+  revision: 831345e37a79cac50ccb7a25fe2c2b5b855272a0
+  specs:
+    jekyll-redirect-from (0.6.2)
+      jekyll (>= 2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -68,3 +75,4 @@ PLATFORMS
 
 DEPENDENCIES
   jekyll (>= 3.0.0.beta1)
+  jekyll-redirect-from!
