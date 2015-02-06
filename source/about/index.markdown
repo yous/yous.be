@@ -15,7 +15,7 @@ twitter_card:
 
 ChaYoung You ([Resume](/resume/en.pdf))
 
-{% img /images/about/Super-Hexagon.png %}
+![](/images/about/Super-Hexagon.png)
 
 ## <a id="contact"></a>Contact
 

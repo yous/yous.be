@@ -46,7 +46,7 @@ To use this plugin, install `jekyll-redirect-from` gem by select one option from
 
 Then add it to your `_config.yml`:
 
-``` yaml _config.yml
+``` yaml
 gems:
     - jekyll-redirect-from
 ```
