@@ -10,7 +10,7 @@ layout: default
         <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
         <h1>
-          <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}{% if post.external-url %} &rarr;{% endif %}</a>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}{% if post.external-url %} &rarr;{% endif %}</a>
         </h1>
 
         <div class="post-content">

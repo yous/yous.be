@@ -169,19 +169,35 @@
     font-size: 20px;
 }
 
-.post-list,
+.post-list {
+    margin-left: 0;
+    list-style: none;
+
+    .post-link:hover {
+        text-decoration: none;
+    }
+
+    > li {
+        margin-bottom: $spacing-unit;
+
+        &:not(:first-child) {
+            border-top: 4px solid $grey-color-light;
+            padding-top: $spacing-unit;
+        }
+    }
+}
+
 .post-archives {
     margin-left: 0;
     list-style: none;
 
+    .post-link {
+        font-size: 24px;
+    }
+
     > li {
         margin-bottom: $spacing-unit;
     }
-}
-
-.post-list > li:not(:first-child) {
-    border-top: 4px solid $grey-color-light;
-    padding-top: $spacing-unit;
 }
 
 .post-meta {
@@ -190,8 +206,11 @@
 }
 
 .post-link {
-    display: block;
-    font-size: 24px;
+    color: $text-color;
+
+    &:hover {
+        color: $brand-color;
+    }
 }
 
 
