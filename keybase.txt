@@ -1,0 +1,76 @@
+==================================================================
+https://keybase.io/yous
+--------------------------------------------------------------------
+
+I hereby claim:
+
+  * I am an admin of http://yous.be
+  * I am yous (https://keybase.io/yous) on keybase.
+  * I have a public key with fingerprint 1BF1 AFE8 682E 45A2 11FF  2C0E 891B 7A9E 1D5A 400A
+
+To claim this, I am signing this object:
+
+{
+    "body": {
+        "client": {
+            "name": "keybase.io node.js client",
+            "version": "0.4.11"
+        },
+        "key": {
+            "fingerprint": "1bf1afe8682e45a211ff2c0e891b7a9e1d5a400a",
+            "host": "keybase.io",
+            "key_id": "891B7A9E1D5A400A",
+            "uid": "764ab7a46e95ac9fe18cbffb77a4bb00",
+            "username": "yous"
+        },
+        "merkle_root": {
+            "ctime": 1405684748,
+            "hash": "41c22c7a9743cfc41a51bd4d979f81ca7f46e3b62ec8789360bffb920d013abe06ac1c7c15d37d35ec4b10fba198e6695655ebb969c099ef69a61a3e7a4ff603",
+            "seqno": 29626
+        },
+        "service": {
+            "hostname": "yous.be",
+            "protocol": "http:"
+        },
+        "type": "web_service_binding",
+        "version": 1
+    },
+    "ctime": 1405684780,
+    "expire_in": 157680000,
+    "prev": "5be20792e86b2762518d17373bce7b76a93f8464b027ac40ff85bbc26477a15e",
+    "seqno": 7,
+    "tag": "signature"
+}
+
+with the aforementioned key, yielding the PGP signature:
+
+-----BEGIN PGP MESSAGE-----
+Version: GnuPG/MacGPG2 v2.0.22 (Darwin)
+
+owFdkn9oVlUYx9+9mmw2x/qjkTHD3YSItrdz7j33nHtei3grE0uL9WZDab6dc+5z
+tqvbe9/uvVut8YLQMCola4m/goEVWVCDEPyjiPpH0hIREX8gLjGcJkrBYtnc7Nyx
+yLp/nfs8n+f7fJ/znO2L5mWyNU+dvJkbH/mmrebHKzJTPFzfOmjJ0B+w8oOW6gmg
+nKSnsugFK29tggEpYsgF4dJy6ENuY7x0jmm1+iGKg7BsKJQjOYytamvKp9U6KHdB
+VImCVMzCUmOhwaOeDcQVNsZa2wqBx7FkggP2XUEQEkazO4yT/7S1ZjVLgW+ihn+c
+FfgK/KRbMHzB5PpmE4wSYZQIBe4KxTVgT0mtJTMxKRFKwRiiuZkGwr449doL0aYe
+KEVhODuxSoI0jQlyqUcY8YwbEXebAoKVbSvjlBFHaUWwcLH0ic8Z1x5WgmnT2ZHU
+BuUxjzsUpc25jXyEHSEBUaGwYgq7vsN8xwVFJEZaCsw9oJS71HVBSk65QpyDplxQ
+LBww7rWmyDH2Y3ilHFp5m1ObVtPfqD9QkNpOb+y2wXISDF6JwiRUYY8JdidJJZ+O
+mwxUUuhVkKW58pL8OCj7ZlW3LxMb9H9X4aFWC16rBBGUgpRwGfWQ+dI+0G80XQk2
+Ytw2K5Y2o7aLPR8zhzlSAZOMCu5oj1Aikc2EIkhrz5VS2ZSYDWEX/h2QGZ+iy0jG
+QVdZJH0RWNW3aprnZ2qymQV3ZNPXmllY1/jPE566WpsZef4UKxwJWy52bjv9/vnm
+h1/f3xFe3J1beWm6enTRzOpPd+6qRZNTbyxzf79a91XxWvbN5Zt7nvl6eu2jWyfu
+9JLsexuGGl5u3/7tC4d2dD50NLlvw/jmbQceSNYenJh0xn8eHqy/9dvOplUnTp5e
+cmLd99UFoqs+d6X9wq9PbBwFeWbxupHO3XvPvj1d/POTprqRvVvWfD58oGXVi4+M
+eedG563/6dxy/7OPZMv5++8+fGN0/dk/PmgvPtswNtaxsqNxV37/d1uXqMYfrk9N
+qFttz614rHZoesc9T++5q9KbzD/y7l9bMu80f7n6eMOameLlQzfv3Vda1rZvcviU
+eOlC0xe/9H84dGOh/+BM4djBvwE=
+=V2YO
+-----END PGP MESSAGE-----
+
+And finally, I am proving ownership of this host by posting or
+appending to this document.
+
+View my publicly-auditable identity here: https://keybase.io/yous
+
+==================================================================
