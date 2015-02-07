@@ -11,9 +11,13 @@ layout: default
       <li>
         <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}</span>
 
-        <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}{% if post.external-url %} &rarr;{% endif %}</a>
-        </h2>
+        <h1>
+          <a href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}{% if post.external-url %} &rarr;{% endif %}</a>
+        </h1>
+
+        <div class="post-content">
+          {{ post.excerpt }}
+        </div>
       </li>
     {% endfor %}
   </ul>
