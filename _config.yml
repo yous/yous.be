@@ -16,6 +16,7 @@ facebook_image: http://yous.be/images/about/Super-Hexagon.png
 # Plugins
 gems:
   - jekyll-redirect-from
+  - jekyll-sitemap
 
 # Build settings
 markdown: redcarpet
