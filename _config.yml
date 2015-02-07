@@ -2,11 +2,16 @@
 title: Yous
 author: Yous
 email:
-description: for hackers.
+description: Blog for hackers.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://yous.be" # the base hostname & protocol for your site
+
+# Social media
 twitter_username:
+twitter_image: http://yous.be/images/about/Super-Hexagon.png
 github_username: yous
+facebook_app_id: 100001802412550
+facebook_image: http://yous.be/images/about/Super-Hexagon.png
 
 # Plugins
 gems:
