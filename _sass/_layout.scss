@@ -169,13 +169,19 @@
     font-size: 20px;
 }
 
-.post-list {
+.post-list,
+.post-archives {
     margin-left: 0;
     list-style: none;
 
     > li {
         margin-bottom: $spacing-unit;
     }
+}
+
+.post-list > li:not(:first-child) {
+    border-top: 4px solid $grey-color-light;
+    padding-top: $spacing-unit;
 }
 
 .post-meta {
