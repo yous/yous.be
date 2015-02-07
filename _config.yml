@@ -1,8 +1,8 @@
 # Site settings
 title: Yous
+author: Yous
 email:
-description: > # this means to ignore newlines until "baseurl:"
-  for hackers.
+description: for hackers.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://yous.be" # the base hostname & protocol for your site
 twitter_username:
