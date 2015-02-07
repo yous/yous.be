@@ -5,6 +5,10 @@ email:
 description: Blog for hackers.
 baseurl: "" # the subpath of your site, e.g. /blog/
 url: "http://yous.be" # the base hostname & protocol for your site
+exclude:
+  - Gemfile
+  - Gemfile.lock
+  - README.md
 
 # Social media
 twitter_username:
