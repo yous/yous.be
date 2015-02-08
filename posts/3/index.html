@@ -1,631 +1,326 @@
-
 <!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
+<html>
+
+  <head>
   <meta charset="utf-8">
-  <title>Yous</title>
-  <meta name="author" content="Yous">
-
-  
-  <meta name="description" content="Blog for hackers.">
-  
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://yous.be/posts/3">
+  
+  
+  <title>Yous</title>
+  <meta name="description" content="Blog for hackers.">
+  
+
+  <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://yous.be/posts/3/">
+  <link rel="alternate" type="application/rss+xml" title="Yous" href="http://yous.be/atom.xml">
   <link href="/favicon.png" rel="icon">
   <link href="/apple-touch-icon.png" rel="apple-touch-icon">
   <link href="/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76">
   <link href="/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120">
   <link href="/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Yous" type="application/atom+xml">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
-<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
-<!--- MathJax Configuration -->
-<!--<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
-<!-- Social media content metadata -->
-
-  <meta property="fb:admins" content="100001802412550">
-  <meta property="og:title" content="Yous">
-  <meta property="og:site_name" content="Yous">
-  <meta property="og:url" content="http://yous.be/posts/3">
-  <meta property="og:description" content="Blog for hackers.">
+  
+    <meta property="fb:admins" content="100001802412550">
+    <meta property="og:title" content="Yous">
+    <meta property="og:site_name" content="Yous">
+    <meta property="og:url" content="http://yous.be/posts/3/">
+    <meta property="og:description" content="Blog for hackers.">
+    
+    
+      <meta property="og:image" content="http://yous.be/images/about/Super-Hexagon.png">
+    
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:title" content="Yous">
+  <meta name="twitter:description" content="Blog for hackers.">
   
   
-    <meta property="og:image" content="http://yous.be/images/about/Super-Hexagon.png">
+    <meta name="twitter:image:src" content="http://yous.be/images/about/Super-Hexagon.png">
   
-
-<meta name="twitter:card" content="summary">
-
-<meta name="twitter:title" content="Yous">
-<meta name="twitter:description" content="Blog for hackers.">
-
-
-  <meta name="twitter:image:src" content="http://yous.be/images/about/Super-Hexagon.png">
-
-
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-43111808-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
 </head>
 
-<body   class="collapse-sidebar sidebar-footer" >
-  <header role="banner"><hgroup>
-  <h1><a href="/">Yous</a></h1>
-  
-    <h2>for hackers.</h2>
-  
-</hgroup>
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Yous</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        <a class="page-link" href="/about/">About</a>
+<a class="page-link" href="/archives/">Archives</a>
+
+      </div>
+    </nav>
+
+  </div>
 
 </header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-  
-  
-  
-  
-<ul class="subscription">
-  <li><a href="https://github.com/yous" rel="subscribe-github" title="@yous on GitHub">GitHub</a></li>
-</ul>
-  
-  
-  
-<ul class="subscription">
-  <li><a href="https://bitbucket.org/yous" rel="subscribe-bitbucket" title="@yous on Bitbucket">Bitbucket</a></li>
-</ul>
-  
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="sitesearch" value="yous.be" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/archives">Archives</a></li>
-  <li><a href="/about">About</a></li>
-  <li><a href="http://lyrics.yous.be">Lyrics</a></li>
-</ul>
 
-</nav>
-  <div id="main">
-    <div id="content">
-      <div class="blog-index">
-  
-  
-  
-    <article>
-      
-  <header>
+
+    <div class="page-content">
+      <div class="wrapper">
+        <div class="home">
+
+  <ul class="post-list">
     
-      <h1 class="entry-title"><a href="/2014/07/16/introducing-source-han-sans-an-open-source-pan-cjk-typeface/">Introducing Source Han Sans: An open source Pan-CJK typeface &rarr;</a></h1>
-    
-    
-      <p class="meta">
+      <li>
+        <header class="post-header">
+          <h1 class="post-title">
+            <a class="post-link" href="/2014/07/16/introducing-source-han-sans-an-open-source-pan-cjk-typeface/">Introducing Source Han Sans: An open source Pan-CJK typeface &rarr;</a>
+          </h1>
+
+          <p class="post-meta">Jul 16, 2014</p>
+        </header>
+
+        <div class="post-content">
+          <blockquote>
+<p>Adobe, in partnership with Google, is pleased to announce the release of <a href="http://adobe.ly/TkSHS">Source Han Sans</a>, a new open source Pan-CJK typeface family that is now available on Typekit for desktop use.</p>
+
+<p><img src="http://typekit.files.wordpress.com/2014/07/multi-language-sample-v3.jpg?w=800&amp;h=408" alt="Multi-language sample" title="Multi-language sample"></p>
+
+<p>More information on Google&rsquo;s Noto Sans CJK family is available on their <a href="http://goo.gl/yhFcim">blog</a>.</p>
+</blockquote>
+
+        </div>
         
-
-
-
-
-<time class='entry-date' datetime='2014-07-16T16:04:27+09:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>16</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>4:04 pm</span></time>
-        
-      </p>
+      </li>
     
-  </header>
+      <li>
+        <header class="post-header">
+          <h1 class="post-title">
+            <a class="post-link" href="/2014/07/09/move-to-jekyll-redirect-from/">Move to 'jekyll-redirect-from'</a>
+          </h1>
 
+          <p class="post-meta">Jul 9, 2014</p>
+        </header>
 
-  <div class="entry-content"><blockquote><p>Adobe, in partnership with Google, is pleased to announce the release of <a href="http://adobe.ly/TkSHS">Source Han Sans</a>, a new open source Pan-CJK typeface family that is now available on Typekit for desktop use.</p>
-
-<p><img src="http://typekit.files.wordpress.com/2014/07/multi-language-sample-v3.jpg?w=800&amp;h=408" title="Multi-language sample" alt="Multi-language sample" /></p>
-
-<p>More information on Google&rsquo;s Noto Sans CJK family is available on their <a href="http://goo.gl/yhFcim">blog</a>.</p></blockquote>
-</div>
-  
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/07/09/move-to-jekyll-redirect-from/">Move to &#8216;jekyll-redirect-from&#8217;</a></h1>
-    
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-07-09T15:41:31+09:00'><span class='date'><span class='date-month'>Jul</span> <span class='date-day'>9</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>3:41 pm</span></time>
-        
-      </p>
-    
-  </header>
-
-
-  <div class="entry-content"><h2><a id="problems-with-jekyll-alias-generator"></a>Problems with jekyll_alias_generator</h2>
+        <div class="post-content">
+          <h2><a id="problems-with-jekyll-alias-generator"></a>Problems with jekyll_alias_generator</h2>
 
 <p>I wrote <a href="/2014/05/23/how-to-add-redirects-to-post-url-on-octopress/">&ldquo;How to Add Redirects to Post URL on Octopress&rdquo;</a> few month ago. Now <a href="https://github.com/imathis/octopress/commit/72ea6042e33f0b92e4923c3af00e923f19472573">Octopress is compatible</a> with <a href="http://jekyllrb.com">Jekyll</a> 2.0, and some plugins don&rsquo;t seem to work. Current Octopress uses Jekyll <a href="https://github.com/imathis/octopress/blob/4fdae37e4294618084f652c99c0c06ba7663ac07/Gemfile.lock#L26">2.0.3</a> and when I run <code>rake generate</code>, I see an error:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>/path/to/jekyll/lib/jekyll/static_file.rb:40:in <span class="sb">`</span>stat<span class="err">&#39;</span>: Not a directory @ rb_file_s_stat - /path/to/generated/alias/index.html/ <span class="o">(</span>Errno::ENOTDIR<span class="o">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">/path/to/jekyll/lib/jekyll/static_file.rb:40:in <span class="sb">`</span>stat<span class="err">&#39;</span>: Not a directory @ rb_file_s_stat - /path/to/generated/alias/index.html/ <span class="o">(</span>Errno::ENOTDIR<span class="o">)</span>
+</code></pre></div>
 <p>So I make <a href="https://github.com/yous/jekyll_alias_generator/commit/7de96759bdd7a2c27fa2d4d603c6c1f585fd2abc">this commit</a>:</p>
 
-<div><script src='https://gist.github.com/30d45925d0b100052f6d.js'></script>
-<noscript><pre><code>diff --git a/_plugins/alias_generator.rb b/_plugins/alias_generator.rb
-index 1d24cd8..50e9404 100644
---- a/_plugins/alias_generator.rb
-+++ b/_plugins/alias_generator.rb
-@@ -70,9 +70,10 @@ module Jekyll
-           file.write(alias_template(destination_path))
-         end
- 
--        (alias_index_path.split(&#39;/&#39;).size + 1).times do |sections|
-+        alias_index_path.split(&#39;/&#39;).size.times do |sections|
-           @site.static_files &lt;&lt; Jekyll::AliasFile.new(@site, @site.dest, alias_index_path.split(&#39;/&#39;)[0, sections].join(&#39;/&#39;), &#39;&#39;)
-         end
-+        @site.static_files &lt;&lt; Jekyll::AliasFile.new(@site, @site.dest, alias_dir, alias_file)
-       end
-     end
- </code></pre></noscript></div>
-
+<script src="https://gist.github.com/30d45925d0b100052f6d.js"> </script>
 
 <p>But it seems that there is <a href="https://github.com/tsmango/jekyll_alias_generator/issues/12">another problem</a> with latest Jekyll, so I make <a href="https://github.com/yous/jekyll_alias_generator/commit/59a72029307a730014a020dcb3f73506f80ddab5">another commit</a>:</p>
 
-<div><script src='https://gist.github.com/ceb181878cf15b529e6d.js'></script>
-<noscript><pre><code>diff --git a/_plugins/alias_generator.rb b/_plugins/alias_generator.rb
-index 50e9404..76102db 100644
---- a/_plugins/alias_generator.rb
-+++ b/_plugins/alias_generator.rb
-@@ -56,13 +56,13 @@ module Jekyll
-       alias_paths.compact!
- 
-       alias_paths.flatten.each do |alias_path|
--        alias_path = alias_path.to_s
-+        alias_path = File.join(&#39;/&#39;, alias_path.to_s)
- 
-         alias_dir  = File.extname(alias_path).empty? ? alias_path : File.dirname(alias_path)
-         alias_file = File.extname(alias_path).empty? ? &quot;index.html&quot; : File.basename(alias_path)
- 
--        fs_path_to_dir   = File.join(@site.dest, alias_dir)
--        alias_index_path = File.join(alias_dir, alias_file)
-+        fs_path_to_dir = File.join(@site.dest, alias_dir)
-+        alias_sections = alias_dir.split(&#39;/&#39;)[1..-1]
- 
-         FileUtils.mkdir_p(fs_path_to_dir)
- 
-@@ -70,8 +70,8 @@ module Jekyll
-           file.write(alias_template(destination_path))
-         end
- 
--        alias_index_path.split(&#39;/&#39;).size.times do |sections|
--          @site.static_files &lt;&lt; Jekyll::AliasFile.new(@site, @site.dest, alias_index_path.split(&#39;/&#39;)[0, sections].join(&#39;/&#39;), &#39;&#39;)
-+        alias_sections.size.times do |sections|
-+          @site.static_files &lt;&lt; Jekyll::AliasFile.new(@site, @site.dest, alias_sections[0, sections + 1].join(&#39;/&#39;), &#39;&#39;)
-         end
-         @site.static_files &lt;&lt; Jekyll::AliasFile.new(@site, @site.dest, alias_dir, alias_file)
-       end</code></pre></noscript></div>
-
+<script src="https://gist.github.com/ceb181878cf15b529e6d.js"> </script>
 
 <p>To say the result first, I had <a href="https://github.com/yous/yous.github.io/commit/2cf44cbe21b499c89dc8ac68f6f170add52f9d6e">no luck</a>. The alias directories are generated, every <code>index.html</code> file under each directory won&rsquo;t. By looking at diff of <code>sitemap.xml</code>, the plugin seems to generate wrong paths. I&rsquo;m pretty newbie to Jekyll and how Octopress works with it. Also this is a plugin for Jekyll, not Octopress. So if you have any fix for this problem, please make pull requests to <a href="https://github.com/tsmango/jekyll_alias_generator/pulls">jekyll_alias_generator</a> or just <a href="/about/#contact">contact me</a>.</p>
 
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2014/07/09/move-to-jekyll-redirect-from/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/05/23/how-to-add-redirects-to-post-url-on-octopress/">How to Add Redirects to Post URL on Octopress</a></h1>
-    
-    
-      <p class="meta">
+        </div>
         
-
-
-
-
-<time class='entry-date' datetime='2014-05-23T14:56:44+09:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>23</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>2:56 pm</span></time>
+          <a href="/2014/07/09/move-to-jekyll-redirect-from/">Read on &rarr;</a>
         
-      </p>
+      </li>
     
-  </header>
+      <li>
+        <header class="post-header">
+          <h1 class="post-title">
+            <a class="post-link" href="/2014/05/23/how-to-add-redirects-to-post-url-on-octopress/">How to Add Redirects to Post URL on Octopress</a>
+          </h1>
 
+          <p class="post-meta">May 23, 2014</p>
+        </header>
 
-  <div class="entry-content"><p>When I write a new post on <a href="http://octopress.org">Octopress</a>, I share the link of it to somewhere doesn&rsquo;t support <a href="http://en.wikipedia.org/wiki/Hyperlink">hyperlinks</a>. Since people can&rsquo;t click the link, they should copy and paste or just type it letter by letter. I wanted to make it easier, so I maded short url for every post.</p>
+        <div class="post-content">
+          <p>When I write a new post on <a href="http://octopress.org">Octopress</a>, I share the link of it to somewhere doesn&rsquo;t support <a href="http://en.wikipedia.org/wiki/Hyperlink">hyperlinks</a>. Since people can&rsquo;t click the link, they should copy and paste or just type it letter by letter. I wanted to make it easier, so I maded short url for every post.</p>
 
 <h2><a id="alias-generator-for-posts"></a>Alias Generator for Posts</h2>
 
 <p>There is a <a href="http://jekyllrb.com">Jekyll</a> plugin that <a href="https://github.com/tsmango/jekyll_alias_generator">generates redirect pages for posts with aliases</a>. Octopress is based on Jekyll and this plugin has no compatibility problem. Its source is on GitHub, so I just added it as submodule:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>git submodule add git@github.com:tsmango/jekyll_alias_generator plugins/jekyll_alias_generator
-</span></code></pre></td></tr></table></div></figure>
-
-
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>git submodule add git@github.com:tsmango/jekyll_alias_generator plugins/jekyll_alias_generator
+</code></pre></div>
 <p>In your <code>_config.yml</code>, you may have this line:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="l-Scalar-Plain">plugins</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">plugins</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="l-Scalar-Plain">plugins</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">plugins</span>
+</code></pre></div>
 <p>Then it reads <code>plugins</code> directory and <code>alias_generator.rb</code> in <code>plugins/jekyll_alias_generator/_plugins/</code> directory is also loaded, so you can use and manage it!</p>
 
 <h2><a id="how-to-use"></a>How to Use</h2>
 
 <p>This plugin checks <code>alias</code> inside every post&rsquo;s YAML Front Matter. Just place the path of the alias:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span>
-</span><span class='line'><span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
-</span><span class='line'><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&quot;How</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Add</span><span class="nv"> </span><span class="s">Redirects</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Post</span><span class="nv"> </span><span class="s">URL</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Octopress&quot;</span>
-</span><span class='line'><span class="l-Scalar-Plain">alias</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/p/20140523</span>
-</span><span class='line'><span class="nn">---</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="nn">---</span>
+<span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
+<span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&quot;How</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Add</span><span class="nv"> </span><span class="s">Redirects</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Post</span><span class="nv"> </span><span class="s">URL</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Octopress&quot;</span>
+<span class="l-Scalar-Plain">alias</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/p/20140523</span>
+<span class="nn">---</span>
+</code></pre></div>
 <p>Multiple aliases are also available:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="nn">---</span>
-</span><span class='line'><span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
-</span><span class='line'><span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&quot;How</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Add</span><span class="nv"> </span><span class="s">Redirects</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Post</span><span class="nv"> </span><span class="s">URL</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Octopress&quot;</span>
-</span><span class='line'><span class="l-Scalar-Plain">alias</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">/one-alias/index.html</span><span class="p-Indicator">,</span> <span class="nv">/another-alias/index.html</span><span class="p-Indicator">]</span>
-</span><span class='line'><span class="nn">---</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="nn">---</span>
+<span class="l-Scalar-Plain">layout</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">post</span>
+<span class="l-Scalar-Plain">title</span><span class="p-Indicator">:</span> <span class="s">&quot;How</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Add</span><span class="nv"> </span><span class="s">Redirects</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">Post</span><span class="nv"> </span><span class="s">URL</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">Octopress&quot;</span>
+<span class="l-Scalar-Plain">alias</span><span class="p-Indicator">:</span> <span class="p-Indicator">[</span><span class="nv">/one-alias/index.html</span><span class="p-Indicator">,</span> <span class="nv">/another-alias/index.html</span><span class="p-Indicator">]</span>
+<span class="nn">---</span>
+</code></pre></div>
 <p>When I <code>rake generate</code>, the plugin generates static html file at <code>/p/20140523/index.html</code>:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="cp">&lt;!DOCTYPE html&gt;</span>
-</span><span class='line'><span class="nt">&lt;html&gt;</span>
-</span><span class='line'><span class="nt">&lt;head&gt;</span>
-</span><span class='line'><span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;canonical&quot;</span> <span class="na">href=</span><span class="s">&quot;/2014/05/23/how-to-add-redirects-to-post-url-on-octopress/&quot;</span><span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;content-type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html; charset=utf-8&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;refresh&quot;</span> <span class="na">content=</span><span class="s">&quot;0;url=/2014/05/23/how-to-add-redirects-to-post-url-on-octopress/&quot;</span> <span class="nt">/&gt;</span>
-</span><span class='line'><span class="nt">&lt;/head&gt;</span>
-</span><span class='line'><span class="nt">&lt;/html&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="cp">&lt;!DOCTYPE html&gt;</span>
+<span class="nt">&lt;html&gt;</span>
+<span class="nt">&lt;head&gt;</span>
+<span class="nt">&lt;link</span> <span class="na">rel=</span><span class="s">&quot;canonical&quot;</span> <span class="na">href=</span><span class="s">&quot;/2014/05/23/how-to-add-redirects-to-post-url-on-octopress/&quot;</span><span class="nt">/&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;content-type&quot;</span> <span class="na">content=</span><span class="s">&quot;text/html; charset=utf-8&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;meta</span> <span class="na">http-equiv=</span><span class="s">&quot;refresh&quot;</span> <span class="na">content=</span><span class="s">&quot;0;url=/2014/05/23/how-to-add-redirects-to-post-url-on-octopress/&quot;</span> <span class="nt">/&gt;</span>
+<span class="nt">&lt;/head&gt;</span>
+<span class="nt">&lt;/html&gt;</span>
+</code></pre></div>
 <p>When you go to <a href="/p/20140523">/p/20140523</a>, it will redirect here. It also has <a href="http://en.wikipedia.org/wiki/Canonical_link_element">canonical link</a>, so it won&rsquo;t affect search engine or web analysis services.</p>
-</div>
-  
-  
 
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/05/15/how-to-configure-proguard-using-gradle/">Gradle 환경에서 ProGuard 사용하기</a></h1>
-    
-    
-      <p class="meta">
+        </div>
         
-
-
-
-
-<time class='entry-date' datetime='2014-05-15T18:11:13+09:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>15</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>6:11 pm</span></time>
-        
-      </p>
+      </li>
     
-  </header>
+      <li>
+        <header class="post-header">
+          <h1 class="post-title">
+            <a class="post-link" href="/2014/05/15/how-to-configure-proguard-using-gradle/">Gradle 환경에서 ProGuard 사용하기</a>
+          </h1>
 
+          <p class="post-meta">May 15, 2014</p>
+        </header>
 
-  <div class="entry-content"><h2><a id="gradle"></a>Gradle</h2>
+        <div class="post-content">
+          <h2><a id="gradle"></a>Gradle</h2>
 
-<p><img src="http://www.gradle.org/img/gradle_logo.gif" title="Gradle" alt="Gradle" /></p>
+<p><img src="http://www.gradle.org/img/gradle_logo.gif" alt="Gradle" title="Gradle"></p>
 
 <p>최근 <a href="http://developer.android.com/sdk/installing/studio.html">Android Studio</a>를 통해 개발을 진행하게 되면서, 자연스럽게 <a href="http://www.gradle.org">Gradle</a>을 사용하게 되었다. <code>.gradle</code> 확장자를 가진 파일을 통해 빌드 설정을 자유롭게 조정할 수 있다. 이 글에서는 Gradle을 이용해 배포 APK를 생성하는 방법과 함께 <a href="http://proguard.sourceforge.net">ProGuard</a>를 사용법을 공유하겠다.</p>
 
 <h2><a id="how-to-create-release-apk-using-gradle"></a>Gradle 환경에서 배포 APK 생성하기</h2>
 
 <p>배포 APK에는 서명이 되어 있어야 하는데, 이를 위해서는 keystore 파일과 그 암호, 키 별칭, 키 암호가 필요하다. 디버그 APK에도 서명을 하지만, <a href="http://developer.android.com/tools/publishing/app-signing.html#debugmode">알려진 keystore 암호와 키 별칭, 키 암호</a>를 사용한다. 배포 APK의 서명을 위해 프로젝트의 <code>build.gradle</code> 파일에 다음 코드를 추가하면 된다.</p>
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">android</span> <span class="o">{</span>
+    <span class="c1">// ...</span>
 
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">android</span> <span class="o">{</span>
-</span><span class='line'>    <span class="c1">// ...</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">signingConfigs</span> <span class="o">{</span>
-</span><span class='line'>        <span class="n">release</span> <span class="o">{</span>
-</span><span class='line'>            <span class="n">storeFile</span> <span class="nf">file</span><span class="o">(</span><span class="s2">&quot;YOUR_KEYSTORE_PATH&quot;</span><span class="o">)</span>
-</span><span class='line'>            <span class="n">storePassword</span> <span class="s2">&quot;YOUR_KEYSTORE_PASSWORD&quot;</span>
-</span><span class='line'>            <span class="n">keyAlias</span> <span class="s2">&quot;YOUR_KEY_ALIAS&quot;</span>
-</span><span class='line'>            <span class="n">keyPassword</span> <span class="s2">&quot;YOUR_KEY_PASSWORD&quot;</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'>
-</span><span class='line'>    <span class="n">buildTypes</span> <span class="o">{</span>
-</span><span class='line'>        <span class="n">release</span> <span class="o">{</span>
-</span><span class='line'>            <span class="n">signingConfig</span> <span class="n">signingConfigs</span><span class="o">.</span><span class="na">release</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
+    <span class="n">signingConfigs</span> <span class="o">{</span>
+        <span class="n">release</span> <span class="o">{</span>
+            <span class="n">storeFile</span> <span class="nf">file</span><span class="o">(</span><span class="s2">&quot;YOUR_KEYSTORE_PATH&quot;</span><span class="o">)</span>
+            <span class="n">storePassword</span> <span class="s2">&quot;YOUR_KEYSTORE_PASSWORD&quot;</span>
+            <span class="n">keyAlias</span> <span class="s2">&quot;YOUR_KEY_ALIAS&quot;</span>
+            <span class="n">keyPassword</span> <span class="s2">&quot;YOUR_KEY_PASSWORD&quot;</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
 
-
+    <span class="n">buildTypes</span> <span class="o">{</span>
+        <span class="n">release</span> <span class="o">{</span>
+            <span class="n">signingConfig</span> <span class="n">signingConfigs</span><span class="o">.</span><span class="na">release</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
 <p>이때 <code>buildTypes</code> 아래의 <code>debug</code> 항목은 굳이 명시하지 않아도 <a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Build-Types">기본적으로 생성</a>되며, 이 <code>buildType</code>은 <a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Signing-Configurations">디버그 keystore와 키를 사용하도록 설정</a>되어 있다.</p>
 
 <p>다만 이 때 <code>build.gradle</code> 파일에 keystore 암호와 키 암호가 평문으로 들어가게 되는데, 소스를 공개하고 있는 등의 이유로 이를 피하고 싶다면 각각의 항목을 쉘 프롬프트에서 입력받을 수 있다:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">signingConfigs</span> <span class="o">{</span>
-</span><span class='line'>    <span class="n">release</span> <span class="o">{</span>
-</span><span class='line'>        <span class="n">storeFile</span> <span class="nf">file</span><span class="o">(</span><span class="n">console</span><span class="o">.</span><span class="na">readLine</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter keystore path: &quot;</span><span class="o">))</span>
-</span><span class='line'>        <span class="n">storePassword</span> <span class="k">new</span> <span class="nf">String</span><span class="o">(</span><span class="n">console</span><span class="o">.</span><span class="na">readPassword</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter keystore password: &quot;</span><span class="o">))</span>
-</span><span class='line'>        <span class="n">keyAlias</span> <span class="n">console</span><span class="o">.</span><span class="na">readLine</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter key alias: &quot;</span><span class="o">)</span>
-</span><span class='line'>        <span class="n">keyPassword</span> <span class="k">new</span> <span class="nf">String</span><span class="o">(</span><span class="n">console</span><span class="o">.</span><span class="na">readPassword</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter key password: &quot;</span><span class="o">))</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">signingConfigs</span> <span class="o">{</span>
+    <span class="n">release</span> <span class="o">{</span>
+        <span class="n">storeFile</span> <span class="nf">file</span><span class="o">(</span><span class="n">console</span><span class="o">.</span><span class="na">readLine</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter keystore path: &quot;</span><span class="o">))</span>
+        <span class="n">storePassword</span> <span class="k">new</span> <span class="nf">String</span><span class="o">(</span><span class="n">console</span><span class="o">.</span><span class="na">readPassword</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter keystore password: &quot;</span><span class="o">))</span>
+        <span class="n">keyAlias</span> <span class="n">console</span><span class="o">.</span><span class="na">readLine</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter key alias: &quot;</span><span class="o">)</span>
+        <span class="n">keyPassword</span> <span class="k">new</span> <span class="nf">String</span><span class="o">(</span><span class="n">console</span><span class="o">.</span><span class="na">readPassword</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter key password: &quot;</span><span class="o">))</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
 <p>그러나 이는 <a href="http://stackoverflow.com/questions/18328730/how-to-create-a-release-signed-apk-file-using-gradle#19210105">IDE를 통해 디버그 APK를 생성할 때 크래시</a>를 내며, 이는 그때 코드의 <code>console</code>이 <code>null</code>이라서 발생하는 오류다. 이를 해결한 최종 코드는 다음과 같다:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">signingConfigs</span> <span class="o">{</span>
-</span><span class='line'>    <span class="n">release</span> <span class="o">{</span>
-</span><span class='line'>        <span class="kd">final</span> <span class="n">Console</span> <span class="n">console</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">console</span><span class="o">();</span>
-</span><span class='line'>        <span class="k">if</span> <span class="o">(</span><span class="n">console</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
-</span><span class='line'>            <span class="n">storeFile</span> <span class="nf">file</span><span class="o">(</span><span class="n">console</span><span class="o">.</span><span class="na">readLine</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter keystore path: &quot;</span><span class="o">))</span>
-</span><span class='line'>            <span class="n">storePassword</span> <span class="k">new</span> <span class="nf">String</span><span class="o">(</span><span class="n">console</span><span class="o">.</span><span class="na">readPassword</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter keystore password: &quot;</span><span class="o">))</span>
-</span><span class='line'>            <span class="n">keyAlias</span> <span class="n">console</span><span class="o">.</span><span class="na">readLine</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter key alias: &quot;</span><span class="o">)</span>
-</span><span class='line'>            <span class="n">keyPassword</span> <span class="k">new</span> <span class="nf">String</span><span class="o">(</span><span class="n">console</span><span class="o">.</span><span class="na">readPassword</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter key password: &quot;</span><span class="o">))</span>
-</span><span class='line'>        <span class="o">}</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">signingConfigs</span> <span class="o">{</span>
+    <span class="n">release</span> <span class="o">{</span>
+        <span class="kd">final</span> <span class="n">Console</span> <span class="n">console</span> <span class="o">=</span> <span class="n">System</span><span class="o">.</span><span class="na">console</span><span class="o">();</span>
+        <span class="k">if</span> <span class="o">(</span><span class="n">console</span> <span class="o">!=</span> <span class="kc">null</span><span class="o">)</span> <span class="o">{</span>
+            <span class="n">storeFile</span> <span class="nf">file</span><span class="o">(</span><span class="n">console</span><span class="o">.</span><span class="na">readLine</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter keystore path: &quot;</span><span class="o">))</span>
+            <span class="n">storePassword</span> <span class="k">new</span> <span class="nf">String</span><span class="o">(</span><span class="n">console</span><span class="o">.</span><span class="na">readPassword</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter keystore password: &quot;</span><span class="o">))</span>
+            <span class="n">keyAlias</span> <span class="n">console</span><span class="o">.</span><span class="na">readLine</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter key alias: &quot;</span><span class="o">)</span>
+            <span class="n">keyPassword</span> <span class="k">new</span> <span class="nf">String</span><span class="o">(</span><span class="n">console</span><span class="o">.</span><span class="na">readPassword</span><span class="o">(</span><span class="s2">&quot;\n\$ Enter key password: &quot;</span><span class="o">))</span>
+        <span class="o">}</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
 <p>디버그 APK와 배포 APK의 패키지 이름이 같으면 APK의 서명이 서로 달라 개발과 디버깅에 어려움이 있다. 이를 해결하기 위해서 <code>buildTypes</code> 아래에 <code>debug</code> 항목을 선언하여 디버그 APK의 패키지 이름을 바꿀 수 있고, 추가로 버전명도 바꿀 수 있다:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-</pre></td><td class='code'><pre><code class='groovy'><span class='line'><span class="n">buildTypes</span> <span class="o">{</span>
-</span><span class='line'>    <span class="n">debug</span> <span class="o">{</span>
-</span><span class='line'>        <span class="n">packageNameSuffix</span> <span class="s1">&#39;.debug&#39;</span>
-</span><span class='line'>        <span class="n">versionNameSuffix</span> <span class="s1">&#39;-debug&#39;</span>
-</span><span class='line'>    <span class="o">}</span>
-</span><span class='line'><span class="o">}</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<div class="highlight"><pre><code class="language-groovy" data-lang="groovy"><span class="n">buildTypes</span> <span class="o">{</span>
+    <span class="n">debug</span> <span class="o">{</span>
+        <span class="n">packageNameSuffix</span> <span class="s1">&#39;.debug&#39;</span>
+        <span class="n">versionNameSuffix</span> <span class="s1">&#39;-debug&#39;</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</code></pre></div>
 <p>이제 터미널에서 다음 명령을 실행하면 디버그 APK와 배포 APK를 각각 얻을 수 있다. 물론 디버그 APK는 IDE로도 생성할 수 있다.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'><span class="nv">$ </span>./gradlew assembleDebug
-</span><span class='line'><span class="nv">$ </span>./gradlew assembleRelease
-</span></code></pre></td></tr></table></div></figure>
-
-
+<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>./gradlew assembleDebug
+<span class="nv">$ </span>./gradlew assembleRelease
+</code></pre></div>
 <p>Gradle은 <a href="http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Android-tasks">캐멀케이스 단축키를 지원</a>해서 <code>aR</code>에 해당하는 다른 명령이 없는 한 <code>assembleRelease</code> 대신 <code>aR</code>을 사용할 수 있다.</p>
 
-</div>
-  
-  
-    <footer>
-      <a rel="full-article" href="/2014/05/15/how-to-configure-proguard-using-gradle/">Read on &rarr;</a>
-    </footer>
-  
-
-
-    </article>
-  
-  
-    <article>
-      
-  <header>
-    
-      <h1 class="entry-title"><a href="/2014/05/12/layout-inflation-as-intended/">Layout Inflation as Intended &rarr;</a></h1>
-    
-    
-      <p class="meta">
+        </div>
         
-
-
-
-
-<time class='entry-date' datetime='2014-05-12T07:17:37+09:00'><span class='date'><span class='date-month'>May</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>7:17 am</span></time>
+          <a href="/2014/05/15/how-to-configure-proguard-using-gradle/">Read on &rarr;</a>
         
-      </p>
+      </li>
     
-  </header>
+      <li>
+        <header class="post-header">
+          <h1 class="post-title">
+            <a class="post-link" href="/2014/05/11/layout-inflation-as-intended/">Layout Inflation as Intended &rarr;</a>
+          </h1>
 
+          <p class="post-meta">May 11, 2014</p>
+        </header>
 
-  <div class="entry-content"><p>안드로이드 개발을 하다 보면 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html">LayoutInflater</a>의 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup)">inflate(int, ViewGroup)</a>와 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup,%20boolean)">inflate(int, ViewGroup, boolean)</a>는 꽤 익숙하다. 하지만 다음 두 줄의 코드가 어떻게 다른지 아는 사람은 그리 많지 않을 것 같다. 실제로 <a href="http://tools.android.com/tips/lint">Android Lint</a>는 한쪽 코드는 피하도록 권하고 있다.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='java'><span class='line'><span class="n">inflater</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">my_layout</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
-</span><span class='line'><span class="n">inflater</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">my_layout</span><span class="o">,</span> <span class="n">parent</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+        <div class="post-content">
+          <p>안드로이드 개발을 하다 보면 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html">LayoutInflater</a>의 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup)">inflate(int, ViewGroup)</a>와 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup,%20boolean)">inflate(int, ViewGroup, boolean)</a>는 꽤 익숙하다. 하지만 다음 두 줄의 코드가 어떻게 다른지 아는 사람은 그리 많지 않을 것 같다. 실제로 <a href="http://tools.android.com/tips/lint">Android Lint</a>는 한쪽 코드는 피하도록 권하고 있다.</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">inflater</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">my_layout</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+<span class="n">inflater</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">my_layout</span><span class="o">,</span> <span class="n">parent</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+</code></pre></div>
 <p><a href="http://www.doubleencore.com/author/daves/">Dave Smith</a>가 이 두 코드의 비교와 함께, <a href="http://www.doubleencore.com/2013/05/layout-inflation-as-intended/">바른 Layout Inflation 방법</a>에 대해 설명한 글이 있어 소개한다.</p>
-</div>
-  
-  
 
+        </div>
+        
+      </li>
+    
+  </ul>
 
-    </article>
-  
   <div class="pagination">
-    
-      <a class="prev" href="/posts/4">&larr; Older</a>
-    
-    <a href="/archives">Blog Archives</a>
-    
-    <a class="next" href="/posts/2">Newer &rarr;</a>
-    
-  </div>
-</div>
-<aside class="sidebar">
   
-    
+    <a class="previous" href="/posts/4/">&laquo; Older</a>
   
-</aside>
 
+  
+    <a class="next" href="/posts/2/">Newer &raquo;</a>
+  
+</div>
+
+
+</div>
+
+      </div>
     </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <p>
+      Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a><br />
+      Copyright &copy; 2015 - <a href="/about/">Yous</a> - <a href="/atom.xml">RSS</a>
+    </p>
+
   </div>
-  <footer role="contentinfo"><p>
-  Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a><br />
-  Copyright &copy; 2015 - <a href="/about">Yous</a> -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
-</p>
 
 </footer>
-  
-
-<script type="text/javascript">
-      var disqus_shortname = 'yousbe';
-      
-        
-        var disqus_script = 'count.js';
-      
-    (function () {
-      var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-      dsq.src = '//' + disqus_shortname + '.disqus.com/' + disqus_script;
-      (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-    }());
-</script>
 
 
+  </body>
 
-
-
-
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id; js.async = true;
-  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = '//platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-
-</body>
 </html>

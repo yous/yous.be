@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
+  
+  
+  <title>Layout Inflation as Intended</title>
+  <meta name="description" content="바른 Layout Inflation 방법에 대해 설명해 놓은 Dave Smith의 글이 있어 소개한다.">
+  <meta name="keywords" content="android, layout, inflate, inflation, root, parent, container, null">
+
+  <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://yous.be/2014/05/11/layout-inflation-as-intended/">
+  <link rel="alternate" type="application/rss+xml" title="Yous" href="http://yous.be/atom.xml">
+  <link href="/favicon.png" rel="icon">
+  <link href="/apple-touch-icon.png" rel="apple-touch-icon">
+  <link href="/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76">
+  <link href="/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120">
+  <link href="/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
+  
+    <meta property="fb:admins" content="100001802412550">
+    <meta property="og:title" content="Layout Inflation as Intended">
+    <meta property="og:site_name" content="Yous">
+    <meta property="og:url" content="http://yous.be/2014/05/11/layout-inflation-as-intended/">
+    <meta property="og:description" content="바른 Layout Inflation 방법에 대해 설명해 놓은 Dave Smith의 글이 있어 소개한다.">
+    
+    
+      <meta property="og:image" content="http://yous.be/images/about/Super-Hexagon.png">
+    
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:title" content="Layout Inflation as Intended">
+  <meta name="twitter:description" content="바른 Layout Inflation 방법에 대해 설명해 놓은 Dave Smith의 글이 있어 소개한다.">
+  
+  
+    <meta name="twitter:image:src" content="http://yous.be/images/about/Super-Hexagon.png">
+  
+</head>
+
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Yous</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        <a class="page-link" href="/about/">About</a>
+<a class="page-link" href="/archives/">Archives</a>
+
+      </div>
+    </nav>
+
+  </div>
+
+</header>
+
+
+    <div class="page-content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
+    
+      <h1 class="post-title" itemprop="name headline"><a href="http://www.doubleencore.com/2013/05/layout-inflation-as-intended/">Layout Inflation as Intended &rarr;</a></h1>
+    
+    <p class="post-meta"><time datetime="2014-05-11T22:17:37+00:00" itemprop="datePublished">May 11, 2014</time></p>
+  </header>
+
+  <div class="post-content" itemprop="articleBody">
+    <p>안드로이드 개발을 하다 보면 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html">LayoutInflater</a>의 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup)">inflate(int, ViewGroup)</a>와 <a href="http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup,%20boolean)">inflate(int, ViewGroup, boolean)</a>는 꽤 익숙하다. 하지만 다음 두 줄의 코드가 어떻게 다른지 아는 사람은 그리 많지 않을 것 같다. 실제로 <a href="http://tools.android.com/tips/lint">Android Lint</a>는 한쪽 코드는 피하도록 권하고 있다.</p>
+<div class="highlight"><pre><code class="language-java" data-lang="java"><span class="n">inflater</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">my_layout</span><span class="o">,</span> <span class="kc">null</span><span class="o">);</span>
+<span class="n">inflater</span><span class="o">.</span><span class="na">inflate</span><span class="o">(</span><span class="n">R</span><span class="o">.</span><span class="na">layout</span><span class="o">.</span><span class="na">my_layout</span><span class="o">,</span> <span class="n">parent</span><span class="o">,</span> <span class="kc">false</span><span class="o">);</span>
+</code></pre></div>
+<p><a href="http://www.doubleencore.com/author/daves/">Dave Smith</a>가 이 두 코드의 비교와 함께, <a href="http://www.doubleencore.com/2013/05/layout-inflation-as-intended/">바른 Layout Inflation 방법</a>에 대해 설명한 글이 있어 소개한다.</p>
+
+  </div>
+
+</article>
+
+      </div>
+    </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <p>
+      Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a><br />
+      Copyright &copy; 2015 - <a href="/about/">Yous</a> - <a href="/atom.xml">RSS</a>
+    </p>
+
+  </div>
+
+</footer>
+
+
+  </body>
+
+</html>

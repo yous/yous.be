@@ -1,332 +1,152 @@
-
 <!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
+<html>
+
+  <head>
   <meta charset="utf-8">
-  <title>Octopress in a subdirectory: /blog - Yous</title>
-  <meta name="author" content="Yous">
-
-  
-  <meta name="description" content="Blog for hackers.">
-  <meta name="keywords" content="octopress, subdirectory">
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://yous.be/2013/08/12/octopress-in-a-subdirectory">
+  
+  
+  <title>Octopress in a subdirectory: /blog</title>
+  <meta name="description" content="Blog for hackers.">
+  <meta name="keywords" content="octopress, subdirectory">
+
+  <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://yous.be/2013/08/12/octopress-in-a-subdirectory/">
+  <link rel="alternate" type="application/rss+xml" title="Yous" href="http://yous.be/atom.xml">
   <link href="/favicon.png" rel="icon">
   <link href="/apple-touch-icon.png" rel="apple-touch-icon">
   <link href="/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76">
   <link href="/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120">
   <link href="/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Yous" type="application/atom+xml">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
-<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
-<!--- MathJax Configuration -->
-<!--<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
-<!-- Social media content metadata -->
-
-  <meta property="fb:admins" content="100001802412550">
-  <meta property="og:title" content="Octopress in a subdirectory: /blog">
-  <meta property="og:site_name" content="Yous">
-  <meta property="og:url" content="http://yous.be/2013/08/12/octopress-in-a-subdirectory">
-  <meta property="og:description" content="Blog for hackers.">
+  
+    <meta property="fb:admins" content="100001802412550">
+    <meta property="og:title" content="Octopress in a subdirectory: /blog">
+    <meta property="og:site_name" content="Yous">
+    <meta property="og:url" content="http://yous.be/2013/08/12/octopress-in-a-subdirectory/">
+    <meta property="og:description" content="Blog for hackers.">
+    
+    
+      <meta property="og:image" content="http://yous.be/images/about/Super-Hexagon.png">
+    
+  
+  <meta name="twitter:card" content="summary">
+  
+  <meta name="twitter:title" content="Octopress in a subdirectory: /blog">
+  <meta name="twitter:description" content="Blog for hackers.">
   
   
-    <meta property="og:image" content="http://yous.be/images/about/Super-Hexagon.png">
+    <meta name="twitter:image:src" content="http://yous.be/images/about/Super-Hexagon.png">
   
-
-<meta name="twitter:card" content="summary">
-
-<meta name="twitter:title" content="Octopress in a subdirectory: /blog">
-<meta name="twitter:description" content="Blog for hackers.">
-
-
-  <meta name="twitter:image:src" content="http://yous.be/images/about/Super-Hexagon.png">
-
-
-  
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-43111808-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
 </head>
 
-<body   class="collapse-sidebar sidebar-footer" >
-  <header role="banner"><hgroup>
-  <h1><a href="/">Yous</a></h1>
-  
-    <h2>for hackers.</h2>
-  
-</hgroup>
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Yous</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        <a class="page-link" href="/about/">About</a>
+<a class="page-link" href="/archives/">Archives</a>
+
+      </div>
+    </nav>
+
+  </div>
 
 </header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-  
-  
-  
-  
-<ul class="subscription">
-  <li><a href="https://github.com/yous" rel="subscribe-github" title="@yous on GitHub">GitHub</a></li>
-</ul>
-  
-  
-  
-<ul class="subscription">
-  <li><a href="https://bitbucket.org/yous" rel="subscribe-bitbucket" title="@yous on Bitbucket">Bitbucket</a></li>
-</ul>
-  
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="sitesearch" value="yous.be" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/archives">Archives</a></li>
-  <li><a href="/about">About</a></li>
-  <li><a href="http://lyrics.yous.be">Lyrics</a></li>
-</ul>
 
-</nav>
-  <div id="main">
-    <div id="content">
-      <div>
-<article class="hentry" role="article">
-  
-  <header>
+
+    <div class="page-content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
     
-      
-        <h1 class="entry-title">Octopress in a subdirectory: /blog</h1>
-      
+      <h1 class="post-title" itemprop="name headline">Octopress in a subdirectory: /blog</h1>
     
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2013-08-12T06:08:00+09:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>6:08 am</span></time>
-        
-      </p>
-    
+    <p class="post-meta"><time datetime="2013-08-12T06:08:00+00:00" itemprop="datePublished">Aug 12, 2013</time></p>
   </header>
 
+  <div class="post-content" itemprop="articleBody">
+    <p>Octopress 블로그를 사이트 루트가 아닌 하위 디렉토리에서 제공하고 싶을 때, 터미널에서 다음과 같이 실행해 줍니다.</p>
+<div class="highlight"><pre><code class="language-sh" data-lang="sh">rake set_root_dir<span class="o">[</span>/blog<span class="o">]</span>
 
-<div class="entry-content"><p>Octopress 블로그를 사이트 루트가 아닌 하위 디렉토리에서 제공하고 싶을 때, 터미널에서 다음과 같이 실행해 줍니다.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='sh'><span class='line'>rake set_root_dir<span class="o">[</span>/blog<span class="o">]</span>
-</span><span class='line'>
-</span><span class='line'><span class="c"># To go back to publishing to the document root</span>
-</span><span class='line'>rake set_root_dir<span class="o">[</span>/<span class="o">]</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<span class="c"># To go back to publishing to the document root</span>
+rake set_root_dir<span class="o">[</span>/<span class="o">]</span>
+</code></pre></div>
 <p>그리고 <code>_config.yml</code>을 수정해 줍니다.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="c1"># url: http://yoursite.com</span>
-</span><span class='line'><span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://yoursite.com/blog</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># url: http://yoursite.com</span>
+<span class="l-Scalar-Plain">url</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">http://yoursite.com/blog</span>
+</code></pre></div>
 <p>추가로, <code>/blog</code>를 하위 디렉토리로 사용했을 때, Archives와 Categories, 그리고 포스트 경로들이 <code>http://yoursite.com/blog/blog/...</code>의 형태로 생성됩니다. 중복된 <code>/blog</code>를 지우기 위해 다음과 같이 설정을 변경해 줍니다.</p>
 
 <ul>
 <li><code>_config.yml</code>:</li>
 </ul>
+<div class="highlight"><pre><code class="language-yaml" data-lang="yaml"><span class="c1"># permalink: /blog/:year/:month/:day/:title/</span>
+<span class="l-Scalar-Plain">permalink</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/:year/:month/:day/:title/</span>
 
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-</pre></td><td class='code'><pre><code class='yaml'><span class='line'><span class="c1"># permalink: /blog/:year/:month/:day/:title/</span>
-</span><span class='line'><span class="l-Scalar-Plain">permalink</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">/:year/:month/:day/:title/</span>
-</span><span class='line'>
-</span><span class='line'><span class="c1"># category_dir: blog/categories</span>
-</span><span class='line'><span class="l-Scalar-Plain">category_dir</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">categories</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<span class="c1"># category_dir: blog/categories</span>
+<span class="l-Scalar-Plain">category_dir</span><span class="p-Indicator">:</span> <span class="l-Scalar-Plain">categories</span>
+</code></pre></div>
 <ul>
 <li><code>source/_includes/custom/navigation.html</code>:</li>
 </ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--</span>
-</span><span class='line'><span class="c">&lt;li&gt;&lt;a href=&quot;/blog/archives&quot;&gt;Archives&lt;/a&gt;&lt;/li&gt;</span>
-</span><span class='line'><span class="c">--&gt;</span>
-</span><span class='line'><span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/archives&quot;</span><span class="nt">&gt;</span>Archives<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="c">&lt;!--</span>
+<span class="c">&lt;li&gt;&lt;a href=&quot;/blog/archives&quot;&gt;Archives&lt;/a&gt;&lt;/li&gt;</span>
+<span class="c">--&gt;</span>
+<span class="nt">&lt;li&gt;&lt;a</span> <span class="na">href=</span><span class="s">&quot;/archives&quot;</span><span class="nt">&gt;</span>Archives<span class="nt">&lt;/a&gt;&lt;/li&gt;</span>
+</code></pre></div>
 <p>그리고, <code>source/blog/archives</code> 폴더를 <code>source/archives</code>로 옮겨주시기 바랍니다.</p>
 
 <ul>
 <li><code>source/index.html</code>:</li>
 </ul>
-
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-</pre></td><td class='code'><pre><code class='html'><span class='line'><span class="c">&lt;!--</span>
-</span><span class='line'><span class="c">&lt;a href=&quot;/blog/archives&quot;&gt;Blog Archives&lt;/a&gt;</span>
-</span><span class='line'><span class="c">--&gt;</span>
-</span><span class='line'><span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/archives&quot;</span><span class="nt">&gt;</span>Blog Archives<span class="nt">&lt;/a&gt;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<div class="highlight"><pre><code class="language-html" data-lang="html"><span class="c">&lt;!--</span>
+<span class="c">&lt;a href=&quot;/blog/archives&quot;&gt;Blog Archives&lt;/a&gt;</span>
+<span class="c">--&gt;</span>
+<span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&quot;/archives&quot;</span><span class="nt">&gt;</span>Blog Archives<span class="nt">&lt;/a&gt;</span>
+</code></pre></div>
 <p>사용중인 테마에 따라 추가적인 수정 사항이 있을 수 있습니다.</p>
-</div>
 
+  </div>
 
-  <footer>
-    <p class="meta">
-      
-  
-
-
-
-  <span class="byline author vcard">Authored by <span class="fn">
-  
-    Yous
-  
-  </span></span>
-
-
-      
-
-
-
-
-<time class='entry-date' datetime='2013-08-12T06:08:00+09:00'><span class='date'><span class='date-month'>Aug</span> <span class='date-day'>12</span><span class='date-suffix'>th</span>, <span class='date-year'>2013</span></span> <span class='time'>6:08 am</span></time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/categories/octopress/'>octopress</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://yous.be/2013/08/12/octopress-in-a-subdirectory/" data-via="" data-counturl="http://yous.be/2013/08/12/octopress-in-a-subdirectory/" >Tweet</a>
-  
-  
-  
-    <div class="fb-like" data-layout="button_count" data-send="false" data-width="300" data-show-faces="false"></div>
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/2013/02/19/ios-6.1-music-album-shuffle/" title="Previous Post: iOS 6.1에서 앨범별 임의 재생으로 음악 듣기">&laquo; iOS 6.1에서 앨범별 임의 재생으로 음악 듣기</a>
-      
-      
-        <a class="basic-alignment right" href="/2013/12/03/syntax-highlighting-test/" title="Next Post: Syntax Highlighting Test">Syntax Highlighting Test &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
-
-</div>
-
-<aside class="sidebar">
-  
-    
-  
-</aside>
-
-
+      </div>
     </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <p>
+      Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a><br />
+      Copyright &copy; 2015 - <a href="/about/">Yous</a> - <a href="/atom.xml">RSS</a>
+    </p>
+
   </div>
-  <footer role="contentinfo"><p>
-  Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a><br />
-  Copyright &copy; 2015 - <a href="/about">Yous</a> -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
-</p>
 
 </footer>
-  
 
 
+  </body>
 
-
-
-
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id; js.async = true;
-  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = '//platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-
-</body>
 </html>

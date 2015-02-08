@@ -1,151 +1,94 @@
-
 <!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
+<html>
+
+  <head>
   <meta charset="utf-8">
-  <title>Automatically Quit Vim if Actual Files are Closed - Yous</title>
-  <meta name="author" content="Yous">
-
-  
-  <meta name="description" content="How to close Vim automatically when remaining windows aren't important.">
-  <meta name="keywords" content="vim, auto, quit, help, quickfix, nerdtree, taglist">
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed">
+  
+  
+  <title>Automatically Quit Vim if Actual Files are Closed</title>
+  <meta name="description" content="How to close Vim automatically when remaining windows aren't important.">
+  <meta name="keywords" content="vim, auto, quit, help, quickfix, nerdtree, taglist">
+
+  <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed/">
+  <link rel="alternate" type="application/rss+xml" title="Yous" href="http://yous.be/atom.xml">
   <link href="/favicon.png" rel="icon">
   <link href="/apple-touch-icon.png" rel="apple-touch-icon">
   <link href="/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76">
   <link href="/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120">
   <link href="/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Yous" type="application/atom+xml">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
-<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
-<!--- MathJax Configuration -->
-<!--<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
-<!-- Social media content metadata -->
-
-  <meta property="fb:admins" content="100001802412550">
-  <meta property="og:title" content="Automatically Quit Vim if Actual Files are Closed">
-  <meta property="og:site_name" content="Yous">
-  <meta property="og:url" content="http://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed">
-  <meta property="og:description" content="How to close Vim automatically when remaining windows aren't important.">
   
-  
-    <meta property="og:image" content="http://yous.be/images/2014/11/30/vim.png">
-  
-
-<meta name="twitter:card" content="summary">
-
-<meta name="twitter:title" content="Automatically Quit Vim if Actual Files are Closed">
-<meta name="twitter:description" content="How to close Vim automatically when remaining windows aren't important.">
-
-
-  
-    <meta name="twitter:image:src" content="http://yous.be/images/2014/11/30/vim.png">
+    <meta property="fb:admins" content="100001802412550">
+    <meta property="og:title" content="Automatically Quit Vim if Actual Files are Closed">
+    <meta property="og:site_name" content="Yous">
+    <meta property="og:url" content="http://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed/">
+    <meta property="og:description" content="How to close Vim automatically when remaining windows aren't important.">
+    
+    
+      <meta property="og:image" content="http://yous.be/images/2014/11/30/vim.png">
     
   
-
-
+  <meta name="twitter:card" content="summary">
   
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-43111808-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
+  <meta name="twitter:title" content="Automatically Quit Vim if Actual Files are Closed">
+  <meta name="twitter:description" content="How to close Vim automatically when remaining windows aren't important.">
+  
+  
+    
+      <meta name="twitter:image:src" content="http://yous.be/images/2014/11/30/vim.png">
+      
+    
+  
 </head>
 
-<body   class="collapse-sidebar sidebar-footer" >
-  <header role="banner"><hgroup>
-  <h1><a href="/">Yous</a></h1>
-  
-    <h2>for hackers.</h2>
-  
-</hgroup>
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Yous</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        <a class="page-link" href="/about/">About</a>
+<a class="page-link" href="/archives/">Archives</a>
+
+      </div>
+    </nav>
+
+  </div>
 
 </header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-  
-  
-  
-  
-<ul class="subscription">
-  <li><a href="https://github.com/yous" rel="subscribe-github" title="@yous on GitHub">GitHub</a></li>
-</ul>
-  
-  
-  
-<ul class="subscription">
-  <li><a href="https://bitbucket.org/yous" rel="subscribe-bitbucket" title="@yous on Bitbucket">Bitbucket</a></li>
-</ul>
-  
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="sitesearch" value="yous.be" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/archives">Archives</a></li>
-  <li><a href="/about">About</a></li>
-  <li><a href="http://lyrics.yous.be">Lyrics</a></li>
-</ul>
 
-</nav>
-  <div id="main">
-    <div id="content">
-      <div>
-<article class="hentry" role="article">
-  
-  <header>
+
+    <div class="page-content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
     
-      
-        <h1 class="entry-title">Automatically Quit Vim if Actual Files are Closed</h1>
-      
+      <h1 class="post-title" itemprop="name headline">Automatically Quit Vim if Actual Files are Closed</h1>
     
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-11-30T18:02:45+09:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>6:02 pm</span></time>
-        
-      </p>
-    
+    <p class="post-meta"><time datetime="2014-11-30T09:02:45+00:00" itemprop="datePublished">Nov 30, 2014</time></p>
   </header>
 
-
-<div class="entry-content"><p><img src="/images/2014/11/30/vim.png" title="Vim" alt="Vim" /></p>
+  <div class="post-content" itemprop="articleBody">
+    <p><img src="/images/2014/11/30/vim.png" alt="Vim" title="Vim"></p>
 
 <h2>Sidebar</h2>
 
@@ -156,16 +99,11 @@
 <h2>Getting into the Problem</h2>
 
 <p>But as one of the Vim users, I close it within a few minutes or even a few seconds after I opened it. I want to keep quitting Vim easy. Using <code>:qa</code> everytime doesn&rsquo;t make sence. Actually, <a href="https://github.com/scrooloose/nerdtree#faq">NERDTree gives us a tip</a> to close Vim if the only window left open is a NERDTree:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">autocmd</span> bufenter * <span class="k">if</span> <span class="p">(</span>winnr<span class="p">(</span><span class="s2">&quot;$&quot;</span><span class="p">)</span> <span class="p">==</span> <span class="m">1</span> &amp;&amp; exists<span class="p">(</span><span class="s2">&quot;b:NERDTreeType&quot;</span><span class="p">)</span> &amp;&amp; <span class="k">b</span>:NERDTreeType <span class="p">==</span> <span class="s2">&quot;primary&quot;</span><span class="p">)</span> <span class="p">|</span> <span class="k">q</span> <span class="p">|</span> <span class="k">endif</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>If I close the last window when a NERDTree exists, Vim automatically closes. But what if we have Tag List window also? <code>winnr("$")</code> returns the current window count, so the above code triggers only when the window count is 1. So Vim will quit automatically only when NERDTree is the last window.</p>
+<div class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">autocmd</span> bufenter * <span class="k">if</span> <span class="p">(</span>winnr<span class="p">(</span><span class="s2">&quot;$&quot;</span><span class="p">)</span> <span class="p">==</span> <span class="m">1</span> &amp;&amp; exists<span class="p">(</span><span class="s2">&quot;b:NERDTreeType&quot;</span><span class="p">)</span> &amp;&amp; <span class="k">b</span>:NERDTreeType <span class="p">==</span> <span class="s2">&quot;primary&quot;</span><span class="p">)</span> <span class="p">|</span> <span class="k">q</span> <span class="p">|</span> <span class="k">endif</span>
+</code></pre></div>
+<p>If I close the last window when a NERDTree exists, Vim automatically closes. But what if we have Tag List window also? <code>winnr(&quot;$&quot;)</code> returns the current window count, so the above code triggers only when the window count is 1. So Vim will quit automatically only when NERDTree is the last window.</p>
 
 <!-- more -->
-
 
 <h2>Not Interesting Buffer</h2>
 
@@ -174,251 +112,103 @@
 <ol>
 <li><p>Help</p>
 
-<p> We can look up documentation of Vim itself or its plugins by <code>:help</code> or <code>:h</code> command. This is one of the most powerful features of Vim, but these windows aren&rsquo;t editable and we don&rsquo;t need them while quitting Vim.</p></li>
+<p>We can look up documentation of Vim itself or its plugins by <code>:help</code> or <code>:h</code> command. This is one of the most powerful features of Vim, but these windows aren&rsquo;t editable and we don&rsquo;t need them while quitting Vim.</p></li>
 <li><p>QuickFix</p>
 
-<p> Some plugins like <a href="https://github.com/scrooloose/syntastic">Syntastic</a> or <a href="https://github.com/ngmy/vim-rubocop">Vim RuboCop</a> show errors on QuickFix window and Vim supports navigating them with <code>:cnext</code> and <code>:cprev</code>. There windows aren&rsquo;t needed also.</p></li>
+<p>Some plugins like <a href="https://github.com/scrooloose/syntastic">Syntastic</a> or <a href="https://github.com/ngmy/vim-rubocop">Vim RuboCop</a> show errors on QuickFix window and Vim supports navigating them with <code>:cnext</code> and <code>:cprev</code>. There windows aren&rsquo;t needed also.</p></li>
 <li><p>NERDTree and Tag List</p>
 
-<p> Here is where we started.</p></li>
+<p>Here is where we started.</p></li>
 </ol>
-
 
 <h2>Investigate the Buffer</h2>
 
-<p>Vim buffers have its type. Help and QuickFix buffers also have it so we&rsquo;re ready to go. See <code>'buftype'</code> documentation:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'>                      *<span class="s1">&#39;buftype&#39;</span>* *<span class="s1">&#39;bt&#39;</span>* *E382*
-</span><span class='line'><span class="s1">&#39;buftype&#39;</span> <span class="s1">&#39;bt&#39;</span>        string <span class="p">(</span>default: <span class="s2">&quot;&quot;</span><span class="p">)</span>
-</span><span class='line'>          local <span class="k">to</span> buffer
-</span><span class='line'>          {not <span class="k">in</span> Vi}
-</span><span class='line'>          {not available when compiled without the <span class="p">|+</span>quickfix<span class="p">|</span>
-</span><span class='line'>          feature}
-</span><span class='line'>  The value of this <span class="k">option</span> specifies the type of <span class="k">a</span> buffer:
-</span><span class='line'>    <span class="p">&lt;</span>empty<span class="p">&gt;</span>   normal buffer
-</span><span class='line'>    nofile    buffer which <span class="k">is</span> not related <span class="k">to</span> <span class="k">a</span> <span class="k">file</span> and will not be
-</span><span class='line'>          written
-</span><span class='line'>    <span class="nb">nowrite</span>   buffer which will not be written
-</span><span class='line'>    acwrite   buffer which will always be written with <span class="nb">BufWriteCmd</span>
-</span><span class='line'>          autocommands. {not available when compiled without the
-</span><span class='line'>          <span class="p">|+</span><span class="k">autocmd</span><span class="p">|</span> feature}
-</span><span class='line'>    quickfix  quickfix buffer<span class="p">,</span> contains <span class="nb">list</span> of errors <span class="p">|</span>:<span class="k">cwindow</span><span class="p">|</span>
-</span><span class='line'>          or <span class="nb">list</span> of locations <span class="p">|</span>:<span class="k">lwindow</span><span class="p">|</span>
-</span><span class='line'>    help      help buffer <span class="p">(</span>you are not supposed <span class="k">to</span> <span class="k">set</span> this
-</span><span class='line'>          manually<span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<p>Vim buffers have its type. Help and QuickFix buffers also have it so we&rsquo;re ready to go. See <code>&#39;buftype&#39;</code> documentation:</p>
+<div class="highlight"><pre><code class="language-vim" data-lang="vim">                        *<span class="s1">&#39;buftype&#39;</span>* *<span class="s1">&#39;bt&#39;</span>* *E382*
+<span class="s1">&#39;buftype&#39;</span> <span class="s1">&#39;bt&#39;</span>      string <span class="p">(</span>default: <span class="s2">&quot;&quot;</span><span class="p">)</span>
+            local <span class="k">to</span> buffer
+            {not <span class="k">in</span> Vi}
+            {not available when compiled without the <span class="p">|+</span>quickfix<span class="p">|</span>
+            feature}
+    The value of this <span class="k">option</span> specifies the type of <span class="k">a</span> buffer:
+      <span class="p">&lt;</span>empty<span class="p">&gt;</span>   normal buffer
+      nofile    buffer which <span class="k">is</span> not related <span class="k">to</span> <span class="k">a</span> <span class="k">file</span> and will not be
+            written
+      <span class="nb">nowrite</span>   buffer which will not be written
+      acwrite   buffer which will always be written with <span class="nb">BufWriteCmd</span>
+            autocommands. {not available when compiled without the
+            <span class="p">|+</span><span class="k">autocmd</span><span class="p">|</span> feature}
+      quickfix  quickfix buffer<span class="p">,</span> contains <span class="nb">list</span> of errors <span class="p">|</span>:<span class="k">cwindow</span><span class="p">|</span>
+            or <span class="nb">list</span> of locations <span class="p">|</span>:<span class="k">lwindow</span><span class="p">|</span>
+      help      help buffer <span class="p">(</span>you are not supposed <span class="k">to</span> <span class="k">set</span> this
+            manually<span class="p">)</span>
+</code></pre></div>
 <p>Because <code>quickfix</code> and <code>help</code> type is already exists, all we have to do is retrieve that value. This code returns the buftype of current buffer:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'>getbufvar<span class="p">(</span>winbufnr<span class="p">(</span><span class="m">0</span><span class="p">),</span> <span class="s1">&#39;&amp;buftype&#39;</span><span class="p">)</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<div class="highlight"><pre><code class="language-vim" data-lang="vim">getbufvar<span class="p">(</span>winbufnr<span class="p">(</span><span class="m">0</span><span class="p">),</span> <span class="s1">&#39;&amp;buftype&#39;</span><span class="p">)</span>
+</code></pre></div>
 <p>Note that <code>winbufnr(0)</code> returns the number of the buffer in the current window.</p>
 
 <p>For NERDTree and Tag List, we check the name of the buffer.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'>bufname<span class="p">(</span>winbufnr<span class="p">(</span><span class="m">0</span><span class="p">))</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<div class="highlight"><pre><code class="language-vim" data-lang="vim">bufname<span class="p">(</span>winbufnr<span class="p">(</span><span class="m">0</span><span class="p">))</span>
+</code></pre></div>
 <p>NERDTree has <code>t:NERDTreeBufName</code> for this, Tag List has same name for every buffer; <code>__Tag_List__</code>.</p>
 
 <p>So we can check whether the current buffer is NERDTree or not with this:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'>exists<span class="p">(</span><span class="s1">&#39;t:NERDTreeBufName&#39;</span><span class="p">)</span> &amp;&amp; bufname<span class="p">(</span>winbufnr<span class="p">(</span><span class="m">0</span><span class="p">))</span> <span class="p">==</span> <span class="k">t</span>:NERDTreeBufName
-</span></code></pre></td></tr></table></div></figure>
-
-
+<div class="highlight"><pre><code class="language-vim" data-lang="vim">exists<span class="p">(</span><span class="s1">&#39;t:NERDTreeBufName&#39;</span><span class="p">)</span> &amp;&amp; bufname<span class="p">(</span>winbufnr<span class="p">(</span><span class="m">0</span><span class="p">))</span> <span class="p">==</span> <span class="k">t</span>:NERDTreeBufName
+</code></pre></div>
 <p>For Tag List:</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'>bufname<span class="p">(</span>winbufnr<span class="p">(</span><span class="m">0</span><span class="p">))</span> <span class="p">==</span> <span class="s1">&#39;__Tag_List__&#39;</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
+<div class="highlight"><pre><code class="language-vim" data-lang="vim">bufname<span class="p">(</span>winbufnr<span class="p">(</span><span class="m">0</span><span class="p">))</span> <span class="p">==</span> <span class="s1">&#39;__Tag_List__&#39;</span>
+</code></pre></div>
 <h2>Automatically Quit Vim</h2>
 
 <p>We can check the current buffer is important or not. Then how can we check that for every buffer? Now do some basic programming.</p>
-
-<figure class='code'><figcaption><span></span></figcaption><div class="highlight"><table><tr><td class="gutter"><pre class="line-numbers"><span class='line-number'>1</span>
-<span class='line-number'>2</span>
-<span class='line-number'>3</span>
-<span class='line-number'>4</span>
-<span class='line-number'>5</span>
-<span class='line-number'>6</span>
-<span class='line-number'>7</span>
-<span class='line-number'>8</span>
-<span class='line-number'>9</span>
-<span class='line-number'>10</span>
-<span class='line-number'>11</span>
-<span class='line-number'>12</span>
-<span class='line-number'>13</span>
-<span class='line-number'>14</span>
-<span class='line-number'>15</span>
-<span class='line-number'>16</span>
-<span class='line-number'>17</span>
-<span class='line-number'>18</span>
-<span class='line-number'>19</span>
-<span class='line-number'>20</span>
-<span class='line-number'>21</span>
-</pre></td><td class='code'><pre><code class='vim'><span class='line'><span class="k">function</span><span class="p">!</span> CheckLeftBuffers<span class="p">()</span>
-</span><span class='line'>  <span class="k">if</span> tabpagenr<span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">)</span> <span class="p">==</span> <span class="m">1</span>
-</span><span class='line'>    <span class="k">let</span> <span class="k">i</span> <span class="p">=</span> <span class="m">1</span>
-</span><span class='line'>    <span class="k">while</span> <span class="k">i</span> <span class="p">&lt;=</span> winnr<span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">)</span>
-</span><span class='line'>      <span class="k">if</span> getbufvar<span class="p">(</span>winbufnr<span class="p">(</span><span class="k">i</span><span class="p">),</span> <span class="s1">&#39;&amp;buftype&#39;</span><span class="p">)</span> <span class="p">==</span> <span class="s1">&#39;help&#39;</span> <span class="p">||</span>
-</span><span class='line'>          \ getbufvar<span class="p">(</span>winbufnr<span class="p">(</span><span class="k">i</span><span class="p">),</span> <span class="s1">&#39;&amp;buftype&#39;</span><span class="p">)</span> <span class="p">==</span> <span class="s1">&#39;quickfix&#39;</span> <span class="p">||</span>
-</span><span class='line'>          \ exists<span class="p">(</span><span class="s1">&#39;t:NERDTreeBufName&#39;</span><span class="p">)</span> &amp;&amp;
-</span><span class='line'>          \   bufname<span class="p">(</span>winbufnr<span class="p">(</span><span class="k">i</span><span class="p">))</span> <span class="p">==</span> <span class="k">t</span>:NERDTreeBufName <span class="p">||</span>
-</span><span class='line'>          \ bufname<span class="p">(</span>winbufnr<span class="p">(</span><span class="k">i</span><span class="p">))</span> <span class="p">==</span> <span class="s1">&#39;__Tag_List__&#39;</span>
-</span><span class='line'>        <span class="k">let</span> <span class="k">i</span> <span class="p">+=</span> <span class="m">1</span>
-</span><span class='line'>      <span class="k">else</span>
-</span><span class='line'>        <span class="k">break</span>
-</span><span class='line'>      <span class="k">endif</span>
-</span><span class='line'>    <span class="k">endwhile</span>
-</span><span class='line'>    <span class="k">if</span> <span class="k">i</span> <span class="p">==</span> winnr<span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">)</span> <span class="p">+</span> <span class="m">1</span>
-</span><span class='line'>      <span class="k">qall</span>
-</span><span class='line'>    <span class="k">endif</span>
-</span><span class='line'>    unlet <span class="k">i</span>
-</span><span class='line'>  <span class="k">endif</span>
-</span><span class='line'><span class="k">endfunction</span>
-</span><span class='line'><span class="k">autocmd</span> <span class="nb">BufEnter</span> * <span class="k">call</span> CheckLeftBuffers<span class="p">()</span>
-</span></code></pre></td></tr></table></div></figure>
-
-
-<p>Note that <code>CheckLeftBuffers()</code> will check buffers only when the tab page count is 1. It iterates every window and check its <code>'buftype'</code> is <code>'help'</code> or <code>'quickfix'</code>. If every window is Help window or QuickFix window, <code>i</code> becomes <code>winnr('$') + 1</code>. Then we&rsquo;re safe to quit all windows by calling <code>qall</code>. Finally we add <code>CheckLeftBuffers()</code> to <code>BufEnter *</code>, so it&rsquo;ll be called on everytime we close a window&mdash;<strong>on the fly!</strong></p>
+<div class="highlight"><pre><code class="language-vim" data-lang="vim"><span class="k">function</span><span class="p">!</span> CheckLeftBuffers<span class="p">()</span>
+  <span class="k">if</span> tabpagenr<span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">)</span> <span class="p">==</span> <span class="m">1</span>
+    <span class="k">let</span> <span class="k">i</span> <span class="p">=</span> <span class="m">1</span>
+    <span class="k">while</span> <span class="k">i</span> <span class="p">&lt;=</span> winnr<span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">)</span>
+      <span class="k">if</span> getbufvar<span class="p">(</span>winbufnr<span class="p">(</span><span class="k">i</span><span class="p">),</span> <span class="s1">&#39;&amp;buftype&#39;</span><span class="p">)</span> <span class="p">==</span> <span class="s1">&#39;help&#39;</span> <span class="p">||</span>
+          \ getbufvar<span class="p">(</span>winbufnr<span class="p">(</span><span class="k">i</span><span class="p">),</span> <span class="s1">&#39;&amp;buftype&#39;</span><span class="p">)</span> <span class="p">==</span> <span class="s1">&#39;quickfix&#39;</span> <span class="p">||</span>
+          \ exists<span class="p">(</span><span class="s1">&#39;t:NERDTreeBufName&#39;</span><span class="p">)</span> &amp;&amp;
+          \   bufname<span class="p">(</span>winbufnr<span class="p">(</span><span class="k">i</span><span class="p">))</span> <span class="p">==</span> <span class="k">t</span>:NERDTreeBufName <span class="p">||</span>
+          \ bufname<span class="p">(</span>winbufnr<span class="p">(</span><span class="k">i</span><span class="p">))</span> <span class="p">==</span> <span class="s1">&#39;__Tag_List__&#39;</span>
+        <span class="k">let</span> <span class="k">i</span> <span class="p">+=</span> <span class="m">1</span>
+      <span class="k">else</span>
+        <span class="k">break</span>
+      <span class="k">endif</span>
+    <span class="k">endwhile</span>
+    <span class="k">if</span> <span class="k">i</span> <span class="p">==</span> winnr<span class="p">(</span><span class="s1">&#39;$&#39;</span><span class="p">)</span> <span class="p">+</span> <span class="m">1</span>
+      <span class="k">qall</span>
+    <span class="k">endif</span>
+    unlet <span class="k">i</span>
+  <span class="k">endif</span>
+<span class="k">endfunction</span>
+<span class="k">autocmd</span> <span class="nb">BufEnter</span> * <span class="k">call</span> CheckLeftBuffers<span class="p">()</span>
+</code></pre></div>
+<p>Note that <code>CheckLeftBuffers()</code> will check buffers only when the tab page count is 1. It iterates every window and check its <code>&#39;buftype&#39;</code> is <code>&#39;help&#39;</code> or <code>&#39;quickfix&#39;</code>. If every window is Help window or QuickFix window, <code>i</code> becomes <code>winnr(&#39;$&#39;) + 1</code>. Then we&rsquo;re safe to quit all windows by calling <code>qall</code>. Finally we add <code>CheckLeftBuffers()</code> to <code>BufEnter *</code>, so it&rsquo;ll be called on everytime we close a window&mdash;<strong>on the fly!</strong></p>
 
 <p>You can see my actual <a href="https://github.com/yous/dotfiles/commit/735976604471bb6186d3867a30c421c839ad3ad4">vimrc commit</a> and also check out my <a href="https://github.com/yous/dotfiles">dotfiles repo</a>!</p>
-</div>
 
+  </div>
 
-  <footer>
-    <p class="meta">
-      
-  
-
-
-
-  <span class="byline author vcard">Authored by <span class="fn">
-  
-    Yous
-  
-  </span></span>
-
-
-      
-
-
-
-
-<time class='entry-date' datetime='2014-11-30T18:02:45+09:00'><span class='date'><span class='date-month'>Nov</span> <span class='date-day'>30</span><span class='date-suffix'>th</span>, <span class='date-year'>2014</span></span> <span class='time'>6:02 pm</span></time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/categories/vim/'>vim</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed/" data-via="" data-counturl="http://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed/" >Tweet</a>
-  
-  
-  
-    <div class="fb-like" data-layout="button_count" data-send="false" data-width="300" data-show-faces="false"></div>
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/2014/10/26/on-becoming-an-expert-c-programmer/" title="Previous Post: On becoming an expert C programmer">&laquo; On becoming an expert C programmer</a>
-      
-      
-        <a class="basic-alignment right" href="/2014/12/07/seccon-ctf-2014-qr-easy-write-up/" title="Next Post: SECCON CTF 2014: QR (Easy) Write-up">SECCON CTF 2014: QR (Easy) Write-up &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
-
-</div>
-
-<aside class="sidebar">
-  
-    
-  
-</aside>
-
-
+      </div>
     </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <p>
+      Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a><br />
+      Copyright &copy; 2015 - <a href="/about/">Yous</a> - <a href="/atom.xml">RSS</a>
+    </p>
+
   </div>
-  <footer role="contentinfo"><p>
-  Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a><br />
-  Copyright &copy; 2015 - <a href="/about">Yous</a> -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
-</p>
 
 </footer>
-  
 
 
+  </body>
 
-
-
-
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id; js.async = true;
-  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = '//platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-
-</body>
 </html>

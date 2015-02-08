@@ -1,155 +1,101 @@
-
 <!DOCTYPE html>
-<!--[if IEMobile 7 ]><html class="no-js iem7"><![endif]-->
-<!--[if lt IE 9]><html class="no-js lte-ie8"><![endif]-->
-<!--[if (gt IE 8)|(gt IEMobile 7)|!(IEMobile)|!(IE)]><!--><html class="no-js" lang="en"><!--<![endif]-->
-<head>
+<html>
+
+  <head>
   <meta charset="utf-8">
-  <title>How to Write a Git Commit Message - Yous</title>
-  <meta name="author" content="Yous">
-
-  
-  <meta name="description" content="The seven rules of a great git commit message.">
-  <meta name="keywords" content="git, commit, commit message">
-
-  <!-- http://t.co/dKP3o1e -->
-  <meta name="HandheldFriendly" content="True">
-  <meta name="MobileOptimized" content="320">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   
-  <link rel="canonical" href="http://yous.be/2014/09/03/how-to-write-a-git-commit-message">
+  
+  
+  <title>How to Write a Git Commit Message</title>
+  <meta name="description" content="The seven rules of a great git commit message.">
+  <meta name="keywords" content="git, commit, commit message">
+
+  <link href='http://fonts.googleapis.com/css?family=Bitter:400,700,400italic' rel='stylesheet' type='text/css'>
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="canonical" href="http://yous.be/2014/09/03/how-to-write-a-git-commit-message/">
+  <link rel="alternate" type="application/rss+xml" title="Yous" href="http://yous.be/atom.xml">
   <link href="/favicon.png" rel="icon">
   <link href="/apple-touch-icon.png" rel="apple-touch-icon">
   <link href="/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76">
   <link href="/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120">
   <link href="/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152">
-  <link href="/stylesheets/screen.css" media="screen, projection" rel="stylesheet" type="text/css">
-  <link href="/atom.xml" rel="alternate" title="Yous" type="application/atom+xml">
-  <script src="/javascripts/modernizr-2.0.js"></script>
-  <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-  <script>!window.jQuery && document.write(unescape('%3Cscript src="/javascripts/libs/jquery.min.js"%3E%3C/script%3E'))</script>
-  <script src="/javascripts/octopress.js" type="text/javascript"></script>
-  <!--Fonts from Google"s Web font directory at http://google.com/webfonts -->
-<link href="//fonts.googleapis.com/css?family=PT+Serif:regular,italic,bold,bolditalic" rel="stylesheet" type="text/css">
-<link href="//fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css">
-<link href="//fonts.googleapis.com/css?family=Fjalla+One" rel="stylesheet" type="text/css">
-<!--- MathJax Configuration -->
-<!--<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
-<!-- Social media content metadata -->
-
-  <meta property="fb:admins" content="100001802412550">
-  <meta property="og:title" content="How to Write a Git Commit Message">
-  <meta property="og:site_name" content="Yous">
-  <meta property="og:url" content="http://yous.be/2014/09/03/how-to-write-a-git-commit-message">
-  <meta property="og:description" content="The seven rules of a great git commit message.">
   
-  
-    <meta property="og:image" content="http://imgs.xkcd.com/comics/git_commit.png">
-  
-
-<meta name="twitter:card" content="summary">
-
-<meta name="twitter:title" content="How to Write a Git Commit Message">
-<meta name="twitter:description" content="The seven rules of a great git commit message.">
-
-
-  
-    <meta name="twitter:image:src" content="http://imgs.xkcd.com/comics/git_commit.png">
+    <meta property="fb:admins" content="100001802412550">
+    <meta property="og:title" content="How to Write a Git Commit Message">
+    <meta property="og:site_name" content="Yous">
+    <meta property="og:url" content="http://yous.be/2014/09/03/how-to-write-a-git-commit-message/">
+    <meta property="og:description" content="The seven rules of a great git commit message.">
+    
+    
+      <meta property="og:image" content="http://imgs.xkcd.com/comics/git_commit.png">
     
   
-
-
+  <meta name="twitter:card" content="summary">
   
-  <script type="text/javascript">
-    var _gaq = _gaq || [];
-    _gaq.push(['_setAccount', 'UA-43111808-1']);
-    _gaq.push(['_trackPageview']);
-
-    (function() {
-      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-      ga.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'stats.g.doubleclick.net/dc.js';
-      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-    })();
-  </script>
-
-
+  <meta name="twitter:title" content="How to Write a Git Commit Message">
+  <meta name="twitter:description" content="The seven rules of a great git commit message.">
+  
+  
+    
+      <meta name="twitter:image:src" content="http://imgs.xkcd.com/comics/git_commit.png">
+      
+    
+  
 </head>
 
-<body   class="collapse-sidebar sidebar-footer" >
-  <header role="banner"><hgroup>
-  <h1><a href="/">Yous</a></h1>
-  
-    <h2>for hackers.</h2>
-  
-</hgroup>
+
+  <body>
+
+    <header class="site-header">
+
+  <div class="wrapper">
+
+    <a class="site-title" href="/">Yous</a>
+
+    <nav class="site-nav">
+      <a href="#" class="menu-icon">
+        <svg viewBox="0 0 18 15">
+          <path fill="#424242" d="M18,1.484c0,0.82-0.665,1.484-1.484,1.484H1.484C0.665,2.969,0,2.304,0,1.484l0,0C0,0.665,0.665,0,1.484,0 h15.031C17.335,0,18,0.665,18,1.484L18,1.484z"/>
+          <path fill="#424242" d="M18,7.516C18,8.335,17.335,9,16.516,9H1.484C0.665,9,0,8.335,0,7.516l0,0c0-0.82,0.665-1.484,1.484-1.484 h15.031C17.335,6.031,18,6.696,18,7.516L18,7.516z"/>
+          <path fill="#424242" d="M18,13.516C18,14.335,17.335,15,16.516,15H1.484C0.665,15,0,14.335,0,13.516l0,0 c0-0.82,0.665-1.484,1.484-1.484h15.031C17.335,12.031,18,12.696,18,13.516L18,13.516z"/>
+        </svg>
+      </a>
+
+      <div class="trigger">
+        <a class="page-link" href="/about/">About</a>
+<a class="page-link" href="/archives/">Archives</a>
+
+      </div>
+    </nav>
+
+  </div>
 
 </header>
-  <nav role="navigation"><ul class="subscription" data-subscription="rss">
-  <li><a href="/atom.xml" rel="subscribe-rss" title="subscribe via RSS">RSS</a></li>
-  
-</ul>
-  
-  
-  
-  
-  
-<ul class="subscription">
-  <li><a href="https://github.com/yous" rel="subscribe-github" title="@yous on GitHub">GitHub</a></li>
-</ul>
-  
-  
-  
-<ul class="subscription">
-  <li><a href="https://bitbucket.org/yous" rel="subscribe-bitbucket" title="@yous on Bitbucket">Bitbucket</a></li>
-</ul>
-  
-  
-<form action="http://google.com/search" method="get">
-  <fieldset role="search">
-    <input type="hidden" name="sitesearch" value="yous.be" />
-    <input class="search" type="text" name="q" results="0" placeholder="Search"/>
-  </fieldset>
-</form>
-  
-<ul class="main-navigation">
-  <li><a href="/">Blog</a></li>
-  <li><a href="/archives">Archives</a></li>
-  <li><a href="/about">About</a></li>
-  <li><a href="http://lyrics.yous.be">Lyrics</a></li>
-</ul>
 
-</nav>
-  <div id="main">
-    <div id="content">
-      <div>
-<article class="hentry" role="article">
-  
-  <header>
+
+    <div class="page-content">
+      <div class="wrapper">
+        <article class="post" itemscope itemtype="http://schema.org/BlogPosting">
+
+  <header class="post-header">
     
-      
-        <h1 class="entry-title"><a href="http://chris.beams.io/posts/git-commit/">How to Write a Git Commit Message &rarr;</a></h1>
-      
+      <h1 class="post-title" itemprop="name headline"><a href="http://chris.beams.io/posts/git-commit/">How to Write a Git Commit Message &rarr;</a></h1>
     
-    
-      <p class="meta">
-        
-
-
-
-
-<time class='entry-date' datetime='2014-09-03T22:12:47+09:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>10:12 pm</span></time>
-        
-      </p>
-    
+    <p class="post-meta"><time datetime="2014-09-03T13:12:47+00:00" itemprop="datePublished">Sep 3, 2014</time></p>
   </header>
 
+  <div class="post-content" itemprop="articleBody">
+    <p><a href="http://xkcd.com/1296/"><img src="http://imgs.xkcd.com/comics/git_commit.png" alt="Git Commit" title="Git Commit"></a></p>
 
-<div class="entry-content"><p><a href="http://xkcd.com/1296/"><img src="http://imgs.xkcd.com/comics/git_commit.png" title="Git Commit" alt="Git Commit" /></a></p>
+<blockquote>
+<h2>The seven rules of a great git commit message</h2>
 
-<blockquote><h2>The seven rules of a great git commit message</h2>
-
-<blockquote><p>Keep in mind: <a href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">This</a> <a href="http://www.git-scm.com/book/en/Distributed-Git-Contributing-to-a-Project#Commit-Guidelines">has</a> <a href="https://github.com/torvalds/subsurface/blob/master/README#L82-109">all</a> <a href="http://who-t.blogspot.co.at/2009/12/on-commit-messages.html">been</a> <a href="https://github.com/erlang/otp/wiki/writing-good-commit-messages">said</a> <a href="https://github.com/spring-projects/spring-framework/blob/30bce7/CONTRIBUTING.md#format-commit-messages">before</a>.</p></blockquote>
+<blockquote>
+<p>Keep in mind: <a href="http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html">This</a> <a href="http://www.git-scm.com/book/en/Distributed-Git-Contributing-to-a-Project#Commit-Guidelines">has</a> <a href="https://github.com/torvalds/subsurface/blob/master/README#L82-109">all</a> <a href="http://who-t.blogspot.co.at/2009/12/on-commit-messages.html">been</a> <a href="https://github.com/erlang/otp/wiki/writing-good-commit-messages">said</a> <a href="https://github.com/spring-projects/spring-framework/blob/30bce7/CONTRIBUTING.md#format-commit-messages">before</a>.</p>
+</blockquote>
 
 <ol>
 <li><a href="http://chris.beams.io/posts/git-commit/#separate">Separate subject from body with a blank line</a></li>
@@ -161,114 +107,28 @@
 <li><a href="http://chris.beams.io/posts/git-commit/#why-not-how">Use the body to explain <em>what</em> and <em>why</em> vs. <em>how</em></a></li>
 </ol>
 </blockquote>
-</div>
 
+  </div>
 
-  <footer>
-    <p class="meta">
-      
-  
-
-
-
-  <span class="byline author vcard">Authored by <span class="fn">
-  
-    Yous
-  
-  </span></span>
-
-
-      
-
-
-
-
-<time class='entry-date' datetime='2014-09-03T22:12:47+09:00'><span class='date'><span class='date-month'>Sep</span> <span class='date-day'>3</span><span class='date-suffix'>rd</span>, <span class='date-year'>2014</span></span> <span class='time'>10:12 pm</span></time>
-      
-
-<span class="categories">
-  
-    <a class='category' href='/categories/git/'>git</a>
-  
-</span>
-
-
-    </p>
-    
-      <div class="sharing">
-  
-  <a href="//twitter.com/share" class="twitter-share-button" data-url="http://yous.be/2014/09/03/how-to-write-a-git-commit-message/" data-via="" data-counturl="http://yous.be/2014/09/03/how-to-write-a-git-commit-message/" >Tweet</a>
-  
-  
-  
-    <div class="fb-like" data-layout="button_count" data-send="false" data-width="300" data-show-faces="false"></div>
-  
-</div>
-
-    
-    <p class="meta">
-      
-        <a class="basic-alignment left" href="/2014/08/05/zsh-no-matches-found/" title="Previous Post: zsh: no matches found">&laquo; zsh: no matches found</a>
-      
-      
-        <a class="basic-alignment right" href="/2014/09/21/yet-another-hex-word/" title="Next Post: Yet Another Hex Word">Yet Another Hex Word &raquo;</a>
-      
-    </p>
-  </footer>
 </article>
 
-
-</div>
-
-<aside class="sidebar">
-  
-    
-  
-</aside>
-
-
+      </div>
     </div>
+
+    <footer class="site-footer">
+
+  <div class="wrapper">
+
+    <p>
+      Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a><br />
+      Copyright &copy; 2015 - <a href="/about/">Yous</a> - <a href="/atom.xml">RSS</a>
+    </p>
+
   </div>
-  <footer role="contentinfo"><p>
-  Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a><br />
-  Copyright &copy; 2015 - <a href="/about">Yous</a> -
-  <span class="credit">Powered by <a href="http://octopress.org">Octopress</a> | Themed with <a href="https://github.com/lucaslew/whitespace">Whitespace</a></span>
-</p>
 
 </footer>
-  
 
 
+  </body>
 
-
-
-
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-  var js, fjs = d.getElementsByTagName(s)[0];
-  if (d.getElementById(id)) {return;}
-  js = d.createElement(s); js.id = id; js.async = true;
-  js.src = "//connect.facebook.net/en_US/all.js#appId=212934732101925&xfbml=1";
-  fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-
-
-
-
-  <script type="text/javascript">
-    (function(){
-      var twitterWidgets = document.createElement('script');
-      twitterWidgets.type = 'text/javascript';
-      twitterWidgets.async = true;
-      twitterWidgets.src = '//platform.twitter.com/widgets.js';
-      document.getElementsByTagName('head')[0].appendChild(twitterWidgets);
-    })();
-  </script>
-
-
-
-
-
-</body>
 </html>
