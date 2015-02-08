@@ -243,10 +243,10 @@ pre {
   font-size: 14px;
   color: #828282; }
 
-.post-link {
+.post-link, .post-link:visited {
   color: #111; }
-  .post-link:hover {
-    color: #2568ba; }
+.post-link:hover {
+  color: #2568ba; }
 
 /**
  * Posts
