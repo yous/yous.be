@@ -10,7 +10,7 @@ before_script:
   - git config --global user.name "ChaYoung You"
   - git config --global user.email "yousbe@gmail.com"
 script:
-  - git clone -b master --depth 1 --quiet git@github.com:yous/yous.github.io.git _site
+  - git clone -b master --depth 1 --quiet https://${TOKEN}@github.com/yous/yous.github.io.git _site
   - jekyll build
 after_success:
   - cd _site
