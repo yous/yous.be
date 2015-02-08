@@ -1,0 +1,19 @@
+language: ruby
+rvm:
+  - 2.2
+env:
+  - secure: "GCs3CeCtbdy4mcLw+OsI8gXhq/H4em2bs97cjuw6x+ma+Zr+X7NyBeGDjYQ0xmqjfWpw7HjgVRdLS7k/TY6HQMJUL78K4OoLShcDO3+5JveBlpioxVeU3Pwkfw1Ztmnno3NIk7qdjcWg7IK85fMvTaqM6pv6GjrvFZ+lXP/oTTE="
+before_install:
+  - gem update --system
+  - gem update --remote bundler
+before_script:
+  - git config --global user.name "ChaYoung You"
+  - git config --global user.email "yousbe@gmail.com"
+script:
+  - git clone -b master --depth 1 --quiet git@github.com:yous/yous.github.io.git _site
+  - jekyll build
+after_success:
+  - cd _site
+  - git add -A
+  - git commit -m "Site updated at $(date -u +'%Y-%m-%d %H:%M:%S %Z)"
+  - git push https://${TOKEN}@github.com/yous/yous.github.io.git master --quiet
