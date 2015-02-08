@@ -11,7 +11,7 @@ before_script:
   - git config --global user.email "yousbe@gmail.com"
 script:
   - git clone -b master --depth 1 --quiet https://${TOKEN}@github.com/yous/yous.github.io.git _site
-  - jekyll build
+  - bundle exec jekyll build
 after_success:
   - cd _site
   - git add -A
