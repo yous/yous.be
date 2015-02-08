@@ -216,6 +216,17 @@
     text-align: center;
     @extend %clearfix;
 
+    a {
+        &,
+        &:visited {
+            color: $grey-color;
+        }
+
+        &:hover {
+            color: $brand-color;
+        }
+    }
+
     .previous {
         float: left;
     }
