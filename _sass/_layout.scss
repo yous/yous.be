@@ -157,6 +157,24 @@
     }
 }
 
+.post-continue {
+    a {
+        padding: 8px 15px;
+        text-decoration: none;
+
+        &,
+        &:visited {
+            color: $grey-color;
+            background-color: $grey-color-light;
+        }
+
+        &:hover {
+            color: white;
+            background-color: $brand-color;
+        }
+    }
+}
+
 
 
 /**
