@@ -21,6 +21,7 @@ facebook_image: http://yous.be/images/about/Super-Hexagon.png
 
 # Plugins
 gems:
+  - jekyll-archives
   - jekyll-redirect-from
   - jekyll-sitemap
 
@@ -44,3 +45,11 @@ redcarpet:
     - superscript
     - footnotes
     - smart
+
+# jekyll-archives
+jekyll-archives:
+  enabled:
+    - categories
+  layout: category_archives
+  permalinks:
+    category: /categories/:name/
