@@ -147,7 +147,10 @@
 }
 
 .post-link {
-    color: $text-color;
+    &,
+    &:visited {
+        color: $text-color;
+    }
 
     &:hover {
         color: $brand-color;
