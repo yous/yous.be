@@ -5,8 +5,8 @@
     <description>Blog for hackers.</description>
     <link>http://yous.be/</link>
     <atom:link href="http://yous.be/atom.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 08 Feb 2015 17:08:35 +0000</pubDate>
-    <lastBuildDate>Sun, 08 Feb 2015 17:08:35 +0000</lastBuildDate>
+    <pubDate>Mon, 09 Feb 2015 17:56:47 +0900</pubDate>
+    <lastBuildDate>Mon, 09 Feb 2015 17:56:47 +0900</lastBuildDate>
     <generator>Jekyll v3.0.0-beta1</generator>
     
       <item>
@@ -582,9 +582,9 @@ Hint2: its IP Address in Decimal. therefore =&amp;gt; &lt;a href=&quot;http://98
 
 &lt;p&gt;Flag는 &lt;code&gt;ASKY_ALWAYS!&lt;/code&gt;입니다.&lt;/p&gt;
 </description>
-        <pubDate>Thu, 25 Dec 2014 15:41:26 +0000</pubDate>
-        <link>http://yous.be/2014/12/25/christmasctf-2014-write-up/</link>
-        <guid isPermaLink="true">http://yous.be/2014/12/25/christmasctf-2014-write-up/</guid>
+        <pubDate>Fri, 26 Dec 2014 00:41:26 +0900</pubDate>
+        <link>http://yous.be/2014/12/26/christmasctf-2014-write-up/</link>
+        <guid isPermaLink="true">http://yous.be/2014/12/26/christmasctf-2014-write-up/</guid>
         
         
         <category>CTF</category>
@@ -636,9 +636,9 @@ Hint2: its IP Address in Decimal. therefore =&amp;gt; &lt;a href=&quot;http://98
 &lt;p&gt;Finally the flag is:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;SECCON{W31C0M 70 7H3 53CC0N ZOIA}
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-        <pubDate>Mon, 08 Dec 2014 15:11:30 +0000</pubDate>
-        <link>http://yous.be/2014/12/08/seccon-ctf-2014-easy-cipher-write-up/</link>
-        <guid isPermaLink="true">http://yous.be/2014/12/08/seccon-ctf-2014-easy-cipher-write-up/</guid>
+        <pubDate>Tue, 09 Dec 2014 00:11:30 +0900</pubDate>
+        <link>http://yous.be/2014/12/09/seccon-ctf-2014-easy-cipher-write-up/</link>
+        <guid isPermaLink="true">http://yous.be/2014/12/09/seccon-ctf-2014-easy-cipher-write-up/</guid>
         
         
         <category>CTF</category>
@@ -882,7 +882,7 @@ but when I woke up, half my QR code was gone!&amp;rdquo;&lt;/p&gt;
 &lt;li&gt;&lt;a href=&quot;http://www.ams.org/samplings/feature-column/fc-2013-02&quot;&gt;How to Read QR Symbols Without Your Mobile Telephone&lt;/a&gt; by Bill Casselman&lt;/li&gt;
 &lt;/ul&gt;
 </description>
-        <pubDate>Sun, 07 Dec 2014 10:02:51 +0000</pubDate>
+        <pubDate>Sun, 07 Dec 2014 19:02:51 +0900</pubDate>
         <link>http://yous.be/2014/12/07/seccon-ctf-2014-qr-easy-write-up/</link>
         <guid isPermaLink="true">http://yous.be/2014/12/07/seccon-ctf-2014-qr-easy-write-up/</guid>
         
@@ -995,7 +995,7 @@ but when I woke up, half my QR code was gone!&amp;rdquo;&lt;/p&gt;
 
 &lt;p&gt;You can see my actual &lt;a href=&quot;https://github.com/yous/dotfiles/commit/735976604471bb6186d3867a30c421c839ad3ad4&quot;&gt;vimrc commit&lt;/a&gt; and also check out my &lt;a href=&quot;https://github.com/yous/dotfiles&quot;&gt;dotfiles repo&lt;/a&gt;!&lt;/p&gt;
 </description>
-        <pubDate>Sun, 30 Nov 2014 09:02:45 +0000</pubDate>
+        <pubDate>Sun, 30 Nov 2014 18:02:45 +0900</pubDate>
         <link>http://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed/</link>
         <guid isPermaLink="true">http://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed/</guid>
         
@@ -1018,7 +1018,7 @@ but when I woke up, half my QR code was gone!&amp;rdquo;&lt;/p&gt;
 &lt;/blockquote&gt;
 &lt;/blockquote&gt;
 </description>
-        <pubDate>Sun, 26 Oct 2014 13:21:30 +0000</pubDate>
+        <pubDate>Sun, 26 Oct 2014 22:21:30 +0900</pubDate>
         <link>http://yous.be/2014/10/26/on-becoming-an-expert-c-programmer/</link>
         <guid isPermaLink="true">http://yous.be/2014/10/26/on-becoming-an-expert-c-programmer/</guid>
         
@@ -1072,9 +1072,9 @@ but when I woke up, half my QR code was gone!&amp;rdquo;&lt;/p&gt;
 &lt;img src=&quot;/images/2014/09/21/f01ded.svg&quot; alt=&quot;#f01ded&quot; title=&quot;#f01ded&quot;&gt;
 &lt;img src=&quot;/images/2014/09/21/faceb00c.svg&quot; alt=&quot;#faceb00c&quot; title=&quot;#faceb00c&quot;&gt;&lt;/p&gt;
 </description>
-        <pubDate>Sat, 20 Sep 2014 20:59:49 +0000</pubDate>
-        <link>http://yous.be/2014/09/20/yet-another-hex-word/</link>
-        <guid isPermaLink="true">http://yous.be/2014/09/20/yet-another-hex-word/</guid>
+        <pubDate>Sun, 21 Sep 2014 05:59:49 +0900</pubDate>
+        <link>http://yous.be/2014/09/21/yet-another-hex-word/</link>
+        <guid isPermaLink="true">http://yous.be/2014/09/21/yet-another-hex-word/</guid>
         
         
         <category>Design</category>
@@ -1105,7 +1105,7 @@ but when I woke up, half my QR code was gone!&amp;rdquo;&lt;/p&gt;
 &lt;/ol&gt;
 &lt;/blockquote&gt;
 </description>
-        <pubDate>Wed, 03 Sep 2014 13:12:47 +0000</pubDate>
+        <pubDate>Wed, 03 Sep 2014 22:12:47 +0900</pubDate>
         <link>http://yous.be/2014/09/03/how-to-write-a-git-commit-message/</link>
         <guid isPermaLink="true">http://yous.be/2014/09/03/how-to-write-a-git-commit-message/</guid>
         
@@ -1142,7 +1142,7 @@ but when I woke up, half my QR code was gone!&amp;rdquo;&lt;/p&gt;
 &lt;p&gt;Aliasing &lt;code&gt;git&lt;/code&gt; is also useful:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nb&quot;&gt;alias &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;git&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;noglob git&amp;quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-        <pubDate>Tue, 05 Aug 2014 05:31:03 +0000</pubDate>
+        <pubDate>Tue, 05 Aug 2014 14:31:03 +0900</pubDate>
         <link>http://yous.be/2014/08/05/zsh-no-matches-found/</link>
         <guid isPermaLink="true">http://yous.be/2014/08/05/zsh-no-matches-found/</guid>
         
@@ -1173,7 +1173,7 @@ but when I woke up, half my QR code was gone!&amp;rdquo;&lt;/p&gt;
 &lt;p&gt;Each of these diagnostic capabilities requires the user to have unlocked their device and agreed to trust another computer. Any data transmitted between the iOS device and trusted computer is encrypted with keys not shared with Apple. For users who have enabled iTunes Wi-Fi Sync on a trusted computer, these services may also be accessed wirelessly by that computer.&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
-        <pubDate>Tue, 22 Jul 2014 13:19:14 +0000</pubDate>
+        <pubDate>Tue, 22 Jul 2014 22:19:14 +0900</pubDate>
         <link>http://yous.be/2014/07/22/undocumented-ios-functions-allow-monitoring-of-personal-data-expert-says/</link>
         <guid isPermaLink="true">http://yous.be/2014/07/22/undocumented-ios-functions-allow-monitoring-of-personal-data-expert-says/</guid>
         
@@ -1287,9 +1287,9 @@ Date:   Fri Jul &lt;span class=&quot;m&quot;&gt;18&lt;/span&gt; 21:29:14 &lt;spa
 
 &lt;p&gt;So, now feel free to contact me via &lt;a href=&quot;https://keybase.io/yous&quot;&gt;keybase.io/yous&lt;/a&gt; and other &lt;a href=&quot;/about&quot;&gt;contacts&lt;/a&gt;. The source of this site is available on &lt;a href=&quot;https://github.com/yous/yous.github.io&quot;&gt;GitHub&lt;/a&gt;, forks and pull requests are welcome!&lt;/p&gt;
 </description>
-        <pubDate>Thu, 17 Jul 2014 18:21:09 +0000</pubDate>
-        <link>http://yous.be/2014/07/17/using-keybase/</link>
-        <guid isPermaLink="true">http://yous.be/2014/07/17/using-keybase/</guid>
+        <pubDate>Fri, 18 Jul 2014 03:21:09 +0900</pubDate>
+        <link>http://yous.be/2014/07/18/using-keybase/</link>
+        <guid isPermaLink="true">http://yous.be/2014/07/18/using-keybase/</guid>
         
         
         <category>Technology</category>
@@ -1308,7 +1308,7 @@ Date:   Fri Jul &lt;span class=&quot;m&quot;&gt;18&lt;/span&gt; 21:29:14 &lt;spa
 &lt;p&gt;More information on Google&amp;rsquo;s Noto Sans CJK family is available on their &lt;a href=&quot;http://goo.gl/yhFcim&quot;&gt;blog&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
-        <pubDate>Wed, 16 Jul 2014 07:04:27 +0000</pubDate>
+        <pubDate>Wed, 16 Jul 2014 16:04:27 +0900</pubDate>
         <link>http://yous.be/2014/07/16/introducing-source-han-sans-an-open-source-pan-cjk-typeface/</link>
         <guid isPermaLink="true">http://yous.be/2014/07/16/introducing-source-han-sans-an-open-source-pan-cjk-typeface/</guid>
         
@@ -1363,7 +1363,7 @@ Date:   Fri Jul &lt;span class=&quot;m&quot;&gt;18&lt;/span&gt; 21:29:14 &lt;spa
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Note that &lt;code&gt;/path/to/alias/&lt;/code&gt; will generate a &lt;code&gt;/path/to/alias/index.html&lt;/code&gt;, while &lt;code&gt;/path/to/alias&lt;/code&gt; will generate a &lt;code&gt;/path/to/alias&lt;/code&gt;.&lt;/p&gt;
 </description>
-        <pubDate>Wed, 09 Jul 2014 06:41:31 +0000</pubDate>
+        <pubDate>Wed, 09 Jul 2014 15:41:31 +0900</pubDate>
         <link>http://yous.be/2014/07/09/move-to-jekyll-redirect-from/</link>
         <guid isPermaLink="true">http://yous.be/2014/07/09/move-to-jekyll-redirect-from/</guid>
         
@@ -1416,7 +1416,7 @@ Date:   Fri Jul &lt;span class=&quot;m&quot;&gt;18&lt;/span&gt; 21:29:14 &lt;spa
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;When you go to &lt;a href=&quot;/p/20140523&quot;&gt;/p/20140523&lt;/a&gt;, it will redirect here. It also has &lt;a href=&quot;http://en.wikipedia.org/wiki/Canonical_link_element&quot;&gt;canonical link&lt;/a&gt;, so it won&amp;rsquo;t affect search engine or web analysis services.&lt;/p&gt;
 </description>
-        <pubDate>Fri, 23 May 2014 05:56:44 +0000</pubDate>
+        <pubDate>Fri, 23 May 2014 14:56:44 +0900</pubDate>
         <link>http://yous.be/2014/05/23/how-to-add-redirects-to-post-url-on-octopress/</link>
         <guid isPermaLink="true">http://yous.be/2014/05/23/how-to-add-redirects-to-post-url-on-octopress/</guid>
         
@@ -1577,7 +1577,7 @@ Date:   Fri Jul &lt;span class=&quot;m&quot;&gt;18&lt;/span&gt; 21:29:14 &lt;spa
 &lt;li&gt;&lt;a href=&quot;http://novafactory.net/archives/2845&quot;&gt;Gradle - Progaurd 사용하기(proguard rule)&lt;/a&gt; by &lt;a href=&quot;https://plus.google.com/113131691466488717287&quot;&gt;Nova&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
-        <pubDate>Thu, 15 May 2014 09:11:13 +0000</pubDate>
+        <pubDate>Thu, 15 May 2014 18:11:13 +0900</pubDate>
         <link>http://yous.be/2014/05/15/how-to-configure-proguard-using-gradle/</link>
         <guid isPermaLink="true">http://yous.be/2014/05/15/how-to-configure-proguard-using-gradle/</guid>
         
@@ -1596,9 +1596,9 @@ Date:   Fri Jul &lt;span class=&quot;m&quot;&gt;18&lt;/span&gt; 21:29:14 &lt;spa
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;&lt;a href=&quot;http://www.doubleencore.com/author/daves/&quot;&gt;Dave Smith&lt;/a&gt;가 이 두 코드의 비교와 함께, &lt;a href=&quot;http://www.doubleencore.com/2013/05/layout-inflation-as-intended/&quot;&gt;바른 Layout Inflation 방법&lt;/a&gt;에 대해 설명한 글이 있어 소개한다.&lt;/p&gt;
 </description>
-        <pubDate>Sun, 11 May 2014 22:17:37 +0000</pubDate>
-        <link>http://yous.be/2014/05/11/layout-inflation-as-intended/</link>
-        <guid isPermaLink="true">http://yous.be/2014/05/11/layout-inflation-as-intended/</guid>
+        <pubDate>Mon, 12 May 2014 07:17:37 +0900</pubDate>
+        <link>http://yous.be/2014/05/12/layout-inflation-as-intended/</link>
+        <guid isPermaLink="true">http://yous.be/2014/05/12/layout-inflation-as-intended/</guid>
         
         
         <category>Android</category>
@@ -1614,9 +1614,9 @@ Date:   Fri Jul &lt;span class=&quot;m&quot;&gt;18&lt;/span&gt; 21:29:14 &lt;spa
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;이 문제의 원인이 무엇인지, 어떻게 이 Exception을 피할지, 그리고 &lt;a href=&quot;http://developer.android.com/reference/android/support/v4/app/FragmentTransaction.html#commitAllowingStateLoss()&quot;&gt;commitAllowingStateLoss()&lt;/a&gt;가 왜 마지막 수단이 되어야 하는지 잘 설명한 글이 있어 소개한다. &lt;a href=&quot;http://www.androiddesignpatterns.com/about/&quot;&gt;Alex Lockwood&lt;/a&gt;가 쓴 &lt;a href=&quot;http://www.androiddesignpatterns.com/2013/08/fragment-transaction-commit-state-loss.html&quot;&gt;Fragment Transaction과 Activity State Loss&lt;/a&gt;에 관한 글이다.&lt;/p&gt;
 </description>
-        <pubDate>Wed, 02 Apr 2014 15:03:50 +0000</pubDate>
-        <link>http://yous.be/2014/04/02/fragment-transaction-and-activity-state-loss/</link>
-        <guid isPermaLink="true">http://yous.be/2014/04/02/fragment-transaction-and-activity-state-loss/</guid>
+        <pubDate>Thu, 03 Apr 2014 00:03:50 +0900</pubDate>
+        <link>http://yous.be/2014/04/03/fragment-transaction-and-activity-state-loss/</link>
+        <guid isPermaLink="true">http://yous.be/2014/04/03/fragment-transaction-and-activity-state-loss/</guid>
         
         
         <category>Android</category>
@@ -1652,7 +1652,7 @@ Date:   Fri Jul &lt;span class=&quot;m&quot;&gt;18&lt;/span&gt; 21:29:14 &lt;spa
   &lt;span class=&quot;k&quot;&gt;autocmd&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;BufWinLeave&lt;/span&gt; * &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; clearmatches&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-        <pubDate>Mon, 31 Mar 2014 11:57:09 +0000</pubDate>
+        <pubDate>Mon, 31 Mar 2014 20:57:09 +0900</pubDate>
         <link>http://yous.be/2014/03/31/trailing-whitespace-is-evil-dont-commit-evil-into-your-repo/</link>
         <guid isPermaLink="true">http://yous.be/2014/03/31/trailing-whitespace-is-evil-dont-commit-evil-into-your-repo/</guid>
         
@@ -1686,7 +1686,7 @@ Date:   Fri Jul &lt;span class=&quot;m&quot;&gt;18&lt;/span&gt; 21:29:14 &lt;spa
 
 &lt;p&gt;via &lt;a href=&quot;http://yoonjiman.net/2014/03/25/twitter-profile-bookmarklet/&quot;&gt;Yoon Jiman&lt;/a&gt;&lt;/p&gt;
 </description>
-        <pubDate>Thu, 27 Mar 2014 01:18:57 +0000</pubDate>
+        <pubDate>Thu, 27 Mar 2014 10:18:57 +0900</pubDate>
         <link>http://yous.be/2014/03/27/twitter-link-bookmarklet/</link>
         <guid isPermaLink="true">http://yous.be/2014/03/27/twitter-link-bookmarklet/</guid>
         
@@ -1707,7 +1707,7 @@ Date:   Fri Jul &lt;span class=&quot;m&quot;&gt;18&lt;/span&gt; 21:29:14 &lt;spa
 &lt;p&gt;이것보단 global 옵션을 사용하는 것이 낫다. &lt;code&gt;git config --global core.excludesfile ~/.gitignore&lt;/code&gt;를 실행해라. 그러면 거기에 &lt;code&gt;*.sw?&lt;/code&gt;을, 어쩌면 &lt;code&gt;*~&lt;/code&gt;도 넣을 수 있다. 난 &lt;code&gt;.DS_Store&lt;/code&gt;를 추가할 텐데, Windows 개발자들은 여기 신경 쓸 필요가 없기 때문이다. 그리고 그들은 아마 &lt;code&gt;Thumbs.db&lt;/code&gt;를 추가해야 할 것이다.&lt;/p&gt;
 &lt;/blockquote&gt;
 </description>
-        <pubDate>Tue, 25 Mar 2014 11:49:32 +0000</pubDate>
+        <pubDate>Tue, 25 Mar 2014 20:49:32 +0900</pubDate>
         <link>http://yous.be/2014/03/25/global-git-ignore/</link>
         <guid isPermaLink="true">http://yous.be/2014/03/25/global-git-ignore/</guid>
         
@@ -2629,7 +2629,7 @@ ron
 &lt;/ol&gt;
 &lt;/div&gt;
 </description>
-        <pubDate>Wed, 19 Mar 2014 11:44:03 +0000</pubDate>
+        <pubDate>Wed, 19 Mar 2014 20:44:03 +0900</pubDate>
         <link>http://yous.be/2014/03/19/ropasaurusrex-a-primer-on-return-oriented-programming/</link>
         <guid isPermaLink="true">http://yous.be/2014/03/19/ropasaurusrex-a-primer-on-return-oriented-programming/</guid>
         
