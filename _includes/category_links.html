@@ -1,0 +1,13 @@
+{% if post.categories %}
+  {% assign categories = post.categories %}
+{% elsif page.categories %}
+  {% assign categories = page.categories %}
+{% endif %}
+{% for category in categories %}
+  {% assign no_comma = forloop.last %}
+  {% for archive in site.archives %}
+    {% if archive.type == "category" and archive.title == category %}
+      <a href="{{ archive.url | prepend: site.baseurl }}">{{ archive.title }}</a>{% unless no_comma %},{% endunless %}
+    {% endif %}
+  {% endfor %}
+{% endfor %}

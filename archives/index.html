@@ -9,7 +9,7 @@ layout: default
   <ul class="post-archives">
     {% for post in site.posts %}
       <li>
-        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}{% if post.categories %} • {{ post.categories | category_links }}{% endif %}</span>
+        <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}{% if post.categories %} • {% include category_links.html %}{% endif %}</span>
 
         <h2>
           <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}{% if post.external-url %} &rarr;{% endif %}</a>
