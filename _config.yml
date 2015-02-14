@@ -18,6 +18,7 @@ twitter_image: http://yous.be/images/about/Super-Hexagon.png
 github_username: yous
 facebook_app_id: 100001802412550
 facebook_image: http://yous.be/images/about/Super-Hexagon.png
+google_analytics_id: UA-43111808-1
 
 # Plugins
 gems:
