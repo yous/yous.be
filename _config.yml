@@ -54,3 +54,9 @@ jekyll-archives:
   layout: category_archives
   permalinks:
     category: /categories/:name/
+
+# jekyll-compress-html
+compress_html:
+  clippings: all
+  comments: ["<!-- ", " -->"]
+  endings: all
