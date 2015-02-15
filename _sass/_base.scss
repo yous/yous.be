@@ -123,6 +123,18 @@ blockquote {
 
 
 /**
+ * Rules
+ */
+hr {
+    height: 4px;
+    margin: $spacing-unit / 2 0;
+    border: 0;
+    background-color: $grey-color-light;
+}
+
+
+
+/**
  * Code formatting
  */
 pre,
