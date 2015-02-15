@@ -16,6 +16,7 @@ external-url: http://blog.brianlovin.com/design-details-paper-by-facebook
 [Brian Lovin]: http://blog.brianlovin.com/
 [external-url]: http://blog.brianlovin.com/design-details-paper-by-facebook
 
+<!-- [Paper by Facebook][] has been out for a day now and the reviews are, for the most part, [quited divided][]. I haven't been an avid Facebook user for some time, but the design and attention to detail on Paper is unmatched, and is worth sharing with other designers. -->
 > [페이스북 Paper][Paper by Facebook]가 나온 지 하루가 지났고 대부분의 리뷰가 [다소 갈리고 있다][quite divided]. 나는 페이스북의 열성적 팬은 아니지만, Paper의 디자인과 디테일에 쏟은 관심은 비길 데 없으며 이는 다른 디자이너들과 공유할 가치가 있다.
 
 [Paper by Facebook]: https://itunes.apple.com/us/app/paper-stories-from-facebook/id794163692
