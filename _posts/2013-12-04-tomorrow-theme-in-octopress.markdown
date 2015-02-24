@@ -33,7 +33,7 @@ I usually use Tomorrow Night Eighties of [Tomorrow Theme][] in [Vim][], [iTerm2]
 So I made scss files for Octopress that overrides colors of `.highlight` and `.gist` class elements. Usual code blocks and embedded gists are properly highlighted. The [demo][Syntax Highlighting Test] and the [code][yous.github.io/sass/custom] are available.
 
 [Syntax Highlighting Test]: /2013/12/03/syntax-highlighting-test/
-[yous.github.io/sass/custom]: https://github.com/yous/yous.github.io/tree/source/sass/custom
+[yous.github.io/sass/custom]: https://github.com/yous/yous.github.io/tree/octopress/sass/custom
 
 <!-- more -->
 
