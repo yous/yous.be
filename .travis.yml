@@ -2,7 +2,8 @@ language: ruby
 rvm:
   - 2.2
 env:
-  - secure: "GCs3CeCtbdy4mcLw+OsI8gXhq/H4em2bs97cjuw6x+ma+Zr+X7NyBeGDjYQ0xmqjfWpw7HjgVRdLS7k/TY6HQMJUL78K4OoLShcDO3+5JveBlpioxVeU3Pwkfw1Ztmnno3NIk7qdjcWg7IK85fMvTaqM6pv6GjrvFZ+lXP/oTTE="
+  global:
+    - secure: "GCs3CeCtbdy4mcLw+OsI8gXhq/H4em2bs97cjuw6x+ma+Zr+X7NyBeGDjYQ0xmqjfWpw7HjgVRdLS7k/TY6HQMJUL78K4OoLShcDO3+5JveBlpioxVeU3Pwkfw1Ztmnno3NIk7qdjcWg7IK85fMvTaqM6pv6GjrvFZ+lXP/oTTE="
 before_install:
   - gem update --system
   - gem update --remote bundler
