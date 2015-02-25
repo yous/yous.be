@@ -18,5 +18,5 @@ script:
 after_success:
   - cd _site
   - git add -A
-  - git commit -m "Site updated at $(date -u +'%Y-%m-%d %H:%M:%S %Z')"
+  - git commit -m "Updated to $TRAVIS_COMMIT at $(date -u +'%Y-%m-%d %H:%M:%S %Z')"
   - git push https://${TOKEN}@github.com/yous/yous.github.io.git master --quiet
