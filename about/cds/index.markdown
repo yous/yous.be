@@ -309,3 +309,6 @@ footer: false
 300. The Quiett --- The Real Me (Remastered)
 301. SOUL DIVE --- SIN
 302. Avenged Sevenfold --- Hail to the King (Deluxe Edition)
+303. Mad Clown --- Piece Of Mine
+304. 수다쟁이 --- 북가좌동 349-17
+305. JJK --- 고결한 충돌
