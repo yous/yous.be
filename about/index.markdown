@@ -29,7 +29,7 @@ ChaYoung You ([Resume](/resume/en.pdf))
 - [zsh-themes](https://github.com/yous/zsh-themes) --- Custom Zsh themes.
 - [aheui.vim](https://github.com/yous/aheui.vim) --- Vim syntax highlighting for Aheui.
 - [pad_monster_book](https://github.com/yous/pad_monster_book) --- The monster book for Puzzle & Dragons.
-- [YousList](https://github.com/yous/YousList) --- Adblock Plus filter.
+- [YousList](https://github.com/yous/YousList) --- Block filter for Adblock Plus and µBlock.
 - [Dwaet](https://github.com/yous/dwaet) --- No doet, it's dwaet.
 - [Sawarineko](https://github.com/yous/sawarineko) --- Get your Nya!
 - [BaseHangul](https://github.com/yous/basehangul) --- Human-readable binary encoding, [BaseHangul](https://basehangul.github.io) for Ruby.
