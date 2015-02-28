@@ -41,10 +41,12 @@ ChaYoung You ([Resume](/resume/en.pdf))
 
 ## <a id="blog"></a>Blog
 
-- [Yous](http://yous.be)  
+- [Yous](http://yous.be)
+
     What you see now. Hosted on [GitHub Pages][] and all articles are written using [Markdown][]. The source is available in [GitHub repo][yous.github.io].
 
-- [Yous Lyrics](http://lyrics.yous.be)  
+- [Yous Lyrics](http://lyrics.yous.be)
+
     Favorite lyric quotes blog hosted on [Tumblr](https://www.tumblr.com).
 
 ## <a id="interests"></a>Interests
