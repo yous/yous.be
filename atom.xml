@@ -5,8 +5,8 @@
     <description>Blog for hackers.</description>
     <link>http://yous.be/</link>
     <atom:link href="http://yous.be/atom.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 25 Feb 2015 21:49:36 +0900</pubDate>
-    <lastBuildDate>Wed, 25 Feb 2015 21:49:36 +0900</lastBuildDate>
+    <pubDate>Sat, 28 Feb 2015 15:45:36 +0900</pubDate>
+    <lastBuildDate>Sat, 28 Feb 2015 15:45:36 +0900</lastBuildDate>
     <generator>Jekyll v3.0.0-beta1</generator>
     
       <item>
@@ -994,6 +994,11 @@ but when I woke up, half my QR code was gone!&amp;rdquo;&lt;/p&gt;
 &lt;p&gt;Note that &lt;code&gt;CheckLeftBuffers()&lt;/code&gt; will check buffers only when the tab page count is 1. It iterates every window and check its &lt;code&gt;&amp;#39;buftype&amp;#39;&lt;/code&gt; is &lt;code&gt;&amp;#39;help&amp;#39;&lt;/code&gt; or &lt;code&gt;&amp;#39;quickfix&amp;#39;&lt;/code&gt;. If every window is Help window or QuickFix window, &lt;code&gt;i&lt;/code&gt; becomes &lt;code&gt;winnr(&amp;#39;$&amp;#39;) + 1&lt;/code&gt;. Then we&amp;rsquo;re safe to quit all windows by calling &lt;code&gt;qall&lt;/code&gt;. Finally we add &lt;code&gt;CheckLeftBuffers()&lt;/code&gt; to &lt;code&gt;BufEnter *&lt;/code&gt;, so it&amp;rsquo;ll be called on everytime we close a window&amp;mdash;&lt;strong&gt;on the fly!&lt;/strong&gt;&lt;/p&gt;
 
 &lt;p&gt;You can see my actual &lt;a href=&quot;https://github.com/yous/dotfiles/commit/735976604471bb6186d3867a30c421c839ad3ad4&quot;&gt;vimrc commit&lt;/a&gt; and also check out my &lt;a href=&quot;https://github.com/yous/dotfiles&quot;&gt;dotfiles repo&lt;/a&gt;!&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;: In gVim, executing &lt;code&gt;qall&lt;/code&gt; won&amp;rsquo;t work. You can use this line instead of &lt;code&gt;qall&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;&lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; feedkeys&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;:qall\&amp;lt;CR&amp;gt;&amp;quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&amp;#39;n&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This will work with other Vim distributions. If it doesn&amp;rsquo;t or if you have another problems, feel free to &lt;a href=&quot;https://github.com/yous/dotfiles/issues/new&quot;&gt;make an issue&lt;/a&gt; or &lt;a href=&quot;/about/&quot;&gt;contact me&lt;/a&gt;.&lt;/p&gt;
 </description>
         <pubDate>Sun, 30 Nov 2014 18:02:45 +0900</pubDate>
         <link>http://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed/</link>
