@@ -134,3 +134,11 @@ autocmd BufEnter * call CheckLeftBuffers()
 Note that `CheckLeftBuffers()` will check buffers only when the tab page count is 1. It iterates every window and check its `'buftype'` is `'help'` or `'quickfix'`. If every window is Help window or QuickFix window, `i` becomes `winnr('$') + 1`. Then we're safe to quit all windows by calling `qall`. Finally we add `CheckLeftBuffers()` to `BufEnter *`, so it'll be called on everytime we close a window---**on the fly!**
 
 You can see my actual [vimrc commit](https://github.com/yous/dotfiles/commit/735976604471bb6186d3867a30c421c839ad3ad4) and also check out my [dotfiles repo](https://github.com/yous/dotfiles)!
+
+**Update**: In gVim, executing `qall` won't work. You can use this line instead of `qall`:
+
+``` vim
+call feedkeys(":qall\<CR>", 'n')
+```
+
+This will work with other Vim distributions. If it doesn't or if you have another problems, feel free to [make an issue](https://github.com/yous/dotfiles/issues/new) or [contact me]({{ "/about/" | prepend: site.baseurl }}).
