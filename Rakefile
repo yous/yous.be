@@ -1,3 +1,6 @@
+require 'rspec/core/rake_task'
+RSpec::Core::RakeTask.new(:spec)
+
 desc 'Create a new post'
 task :post, :title do |t, args|
   if args.title
