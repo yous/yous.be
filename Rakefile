@@ -27,7 +27,7 @@ task :post, :title do |t, args|
     f.puts 'categories: '
     f.puts 'description: '
     f.puts 'keywords: '
-    f.puts "redirect_from: /p/#{time.strftime('%Y%m%d')}"
+    f.puts "redirect_from: /p/#{time.strftime('%Y%m%d')}/"
     f.puts '---'
   end
 end
