@@ -18,7 +18,7 @@ I downloaded the syllabus of each course I registered before the start of the se
 
 ## Comparing binary files
 
-I just wanted to check whether two binary files are the same or not, no matter the difference is.
+I just wanted to check whether two binary files are the same or not, no matter what the difference is.
 
 ### Windows
 
