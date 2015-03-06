@@ -50,71 +50,71 @@
 <span class="no">D25</span> <span class="o">=</span> <span class="mb">0b00011111</span>
 <span class="no">D13</span> <span class="o">=</span> <span class="mb">0b01010100</span>
 <span class="no">D26</span> <span class="o">=</span> <span class="mb">0b01000000</span>
-</code></pre></div><p>Now we can start decoding the data.<h2>Data Decoding</h2><p>There are <a href="http://www.thonky.com/qr-code-tutorial/data-encoding/#step-3-add-the-mode-indicator">mode indicators</a> for decoding:<ul><li><code>0001</code>: Numeric Mode (10 bits per 3 digits)<li><code>0010</code>: Alphanumeric Mode (11 bits per 2 characters)<li><code>0100</code>: Byte Mode (8 bits per character)<li><code>1000</code>: Kanji Mode (13 bits per character)<li><code>0111</code>: ECI Mode</ul><p><a href="http://www.thonky.com/qr-code-tutorial/data-encoding/#step-4-add-the-character-count-indicator">Character count indicator</a> follows after a mode indicator.<ul><li>Version 1&ndash;9<ul><li>Numeric mode: 10 bits<li>Alphanumeric mode: 9 bits<li>Byte mode: 8 bits<li>Kanji mode: 8 bits</ul><li>Version 10&ndash;26<ul><li>Numeric mode: 12 bits<li>Alphanumeric mode: 11 bits<li>Byte mode: 16 bits<li>Kanji mode: 10 bits</ul><li>Version 27&ndash;40<ul><li>Numeric mode: 14 bits<li>Alphanumeric mode: 13 bits<li>Byte mode: 16 bits<li>Kanji mode: 12 bits</ul></ul><p>See the encoding process for each mode:<ul><li><a href="http://www.thonky.com/qr-code-tutorial/numeric-mode-encoding/">Numeric Mode Encoding</a><li><a href="http://www.thonky.com/qr-code-tutorial/alphanumeric-mode-encoding/">Alphanumeric Mode Encoding</a><li><a href="http://www.thonky.com/qr-code-tutorial/byte-mode-encoding/">Byte Mode Encoding</a><li><a href="http://www.thonky.com/qr-code-tutorial/kanji-mode-encoding/">Kanji Mode Encoding</a></ul><p>Let&rsquo;s start with above data D1&ndash;D26:<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">data</span> <span class="o">=</span> <span class="s1">&#39;00100000&#39;</span> <span class="p">\</span>
-       <span class="s1">&#39;00110100&#39;</span> <span class="p">\</span>
-       <span class="s1">&#39;11111010&#39;</span> <span class="p">\</span>
-       <span class="s1">&#39;01000101&#39;</span> <span class="p">\</span>
-       <span class="s1">&#39;00010001&#39;</span> <span class="p">\</span>
-       <span class="s1">&#39;00111101&#39;</span> <span class="p">\</span>
-       <span class="s1">&#39;00000100&#39;</span> <span class="p">\</span>
-       <span class="s1">&#39;10011110&#39;</span> <span class="p">\</span>
-       <span class="s1">&#39;11010100&#39;</span> <span class="p">\</span>
-       <span class="s1">&#39;00010100&#39;</span> <span class="p">\</span>
-       <span class="s1">&#39;11011101&#39;</span> <span class="p">\</span>
-       <span class="s1">&#39;11010010&#39;</span> <span class="p">\</span>
-       <span class="s1">&#39;01010100&#39;</span> <span class="p">\</span>
-       <span class="s1">&#39;01001110&#39;</span> <span class="p">\</span>
-       <span class="s1">&#39;01011001&#39;</span> <span class="p">\</span>
-       <span class="s1">&#39;00001110&#39;</span> <span class="p">\</span>
-       <span class="s1">&#39;01010001&#39;</span> <span class="p">\</span>
-       <span class="s1">&#39;11011010&#39;</span> <span class="p">\</span>
-       <span class="s1">&#39;10010010&#39;</span> <span class="p">\</span>
-       <span class="s1">&#39;11010101&#39;</span> <span class="p">\</span>
-       <span class="s1">&#39;00011001&#39;</span> <span class="p">\</span>
-       <span class="s1">&#39;00010001&#39;</span> <span class="p">\</span>
-       <span class="s1">&#39;00001110&#39;</span> <span class="p">\</span>
-       <span class="s1">&#39;00010010&#39;</span> <span class="p">\</span>
-       <span class="s1">&#39;00011111&#39;</span> <span class="p">\</span>
-       <span class="s1">&#39;01000000&#39;</span>
-<span class="n">alphanumeric</span> <span class="o">=</span> <span class="s1">&#39;0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:&#39;</span><span class="o">.</span><span class="n">chars</span>
+</code></pre></div><p>Now we can start decoding the data.<h2>Data Decoding</h2><p>There are <a href="http://www.thonky.com/qr-code-tutorial/data-encoding/#step-3-add-the-mode-indicator">mode indicators</a> for decoding:<ul><li><code>0001</code>: Numeric Mode (10 bits per 3 digits)<li><code>0010</code>: Alphanumeric Mode (11 bits per 2 characters)<li><code>0100</code>: Byte Mode (8 bits per character)<li><code>1000</code>: Kanji Mode (13 bits per character)<li><code>0111</code>: ECI Mode</ul><p><a href="http://www.thonky.com/qr-code-tutorial/data-encoding/#step-4-add-the-character-count-indicator">Character count indicator</a> follows after a mode indicator.<ul><li>Version 1&ndash;9<ul><li>Numeric mode: 10 bits<li>Alphanumeric mode: 9 bits<li>Byte mode: 8 bits<li>Kanji mode: 8 bits</ul><li>Version 10&ndash;26<ul><li>Numeric mode: 12 bits<li>Alphanumeric mode: 11 bits<li>Byte mode: 16 bits<li>Kanji mode: 10 bits</ul><li>Version 27&ndash;40<ul><li>Numeric mode: 14 bits<li>Alphanumeric mode: 13 bits<li>Byte mode: 16 bits<li>Kanji mode: 12 bits</ul></ul><p>See the encoding process for each mode:<ul><li><a href="http://www.thonky.com/qr-code-tutorial/numeric-mode-encoding/">Numeric Mode Encoding</a><li><a href="http://www.thonky.com/qr-code-tutorial/alphanumeric-mode-encoding/">Alphanumeric Mode Encoding</a><li><a href="http://www.thonky.com/qr-code-tutorial/byte-mode-encoding/">Byte Mode Encoding</a><li><a href="http://www.thonky.com/qr-code-tutorial/kanji-mode-encoding/">Kanji Mode Encoding</a></ul><p>Let&rsquo;s start with above data D1&ndash;D26:<div class="highlight"><pre><code class="language-ruby" data-lang="ruby"><span class="n">data</span> <span class="o">=</span> <span class="s1">'00100000'</span> <span class="p">\</span>
+       <span class="s1">'00110100'</span> <span class="p">\</span>
+       <span class="s1">'11111010'</span> <span class="p">\</span>
+       <span class="s1">'01000101'</span> <span class="p">\</span>
+       <span class="s1">'00010001'</span> <span class="p">\</span>
+       <span class="s1">'00111101'</span> <span class="p">\</span>
+       <span class="s1">'00000100'</span> <span class="p">\</span>
+       <span class="s1">'10011110'</span> <span class="p">\</span>
+       <span class="s1">'11010100'</span> <span class="p">\</span>
+       <span class="s1">'00010100'</span> <span class="p">\</span>
+       <span class="s1">'11011101'</span> <span class="p">\</span>
+       <span class="s1">'11010010'</span> <span class="p">\</span>
+       <span class="s1">'01010100'</span> <span class="p">\</span>
+       <span class="s1">'01001110'</span> <span class="p">\</span>
+       <span class="s1">'01011001'</span> <span class="p">\</span>
+       <span class="s1">'00001110'</span> <span class="p">\</span>
+       <span class="s1">'01010001'</span> <span class="p">\</span>
+       <span class="s1">'11011010'</span> <span class="p">\</span>
+       <span class="s1">'10010010'</span> <span class="p">\</span>
+       <span class="s1">'11010101'</span> <span class="p">\</span>
+       <span class="s1">'00011001'</span> <span class="p">\</span>
+       <span class="s1">'00010001'</span> <span class="p">\</span>
+       <span class="s1">'00001110'</span> <span class="p">\</span>
+       <span class="s1">'00010010'</span> <span class="p">\</span>
+       <span class="s1">'00011111'</span> <span class="p">\</span>
+       <span class="s1">'01000000'</span>
+<span class="n">alphanumeric</span> <span class="o">=</span> <span class="s1">'0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ $%*+-./:'</span><span class="p">.</span><span class="nf">chars</span>
 
 <span class="k">def</span> <span class="nf">read</span><span class="p">(</span><span class="n">str</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
-  <span class="n">str</span><span class="o">.</span><span class="n">slice!</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
+  <span class="n">str</span><span class="p">.</span><span class="nf">slice!</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">size</span><span class="p">)</span>
 <span class="k">end</span>
 
 <span class="k">def</span> <span class="nf">kanji</span><span class="p">(</span><span class="n">num</span><span class="p">)</span>
   <span class="k">if</span> <span class="n">num</span> <span class="o">&gt;=</span> <span class="mh">0x1740</span>
     <span class="p">(</span><span class="mh">0xC140</span> <span class="o">+</span> <span class="n">num</span> <span class="o">/</span> <span class="mh">0xC0</span> <span class="o">*</span> <span class="mh">0x100</span> <span class="o">+</span> <span class="n">num</span> <span class="o">%</span> <span class="mh">0xC0</span><span class="p">)</span>
-      <span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="no">Encoding</span><span class="o">::</span><span class="no">Shift_JIS</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="no">Encoding</span><span class="o">::</span><span class="no">UTF_8</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">chr</span><span class="p">(</span><span class="no">Encoding</span><span class="o">::</span><span class="no">Shift_JIS</span><span class="p">).</span><span class="nf">encode</span><span class="p">(</span><span class="no">Encoding</span><span class="o">::</span><span class="no">UTF_8</span><span class="p">)</span>
   <span class="k">else</span>
     <span class="p">(</span><span class="mh">0x8140</span> <span class="o">+</span> <span class="n">num</span> <span class="o">/</span> <span class="mh">0xC0</span> <span class="o">*</span> <span class="mh">0x100</span> <span class="o">+</span> <span class="n">num</span> <span class="o">%</span> <span class="mh">0xC0</span><span class="p">)</span>
-      <span class="o">.</span><span class="n">chr</span><span class="p">(</span><span class="no">Encoding</span><span class="o">::</span><span class="no">Shift_JIS</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="no">Encoding</span><span class="o">::</span><span class="no">UTF_8</span><span class="p">)</span>
+      <span class="p">.</span><span class="nf">chr</span><span class="p">(</span><span class="no">Encoding</span><span class="o">::</span><span class="no">Shift_JIS</span><span class="p">).</span><span class="nf">encode</span><span class="p">(</span><span class="no">Encoding</span><span class="o">::</span><span class="no">UTF_8</span><span class="p">)</span>
   <span class="k">end</span>
 <span class="k">end</span>
 
 <span class="kp">loop</span> <span class="k">do</span>
   <span class="k">case</span> <span class="n">mode</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
-  <span class="k">when</span> <span class="s1">&#39;0010&#39;</span> <span class="c1"># Alphanumeric</span>
-    <span class="n">count</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">9</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-    <span class="p">(</span><span class="n">count</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
-      <span class="n">chunk</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-      <span class="nb">print</span> <span class="n">alphanumeric</span><span class="o">[</span><span class="n">chunk</span> <span class="o">/</span> <span class="mi">45</span><span class="o">]</span> <span class="o">+</span> <span class="n">alphanumeric</span><span class="o">[</span><span class="n">chunk</span> <span class="o">%</span> <span class="mi">45</span><span class="o">]</span>
+  <span class="k">when</span> <span class="s1">'0010'</span> <span class="c1"># Alphanumeric</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">9</span><span class="p">).</span><span class="nf">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="p">(</span><span class="n">count</span> <span class="o">/</span> <span class="mi">2</span><span class="p">).</span><span class="nf">times</span> <span class="k">do</span>
+      <span class="n">chunk</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">11</span><span class="p">).</span><span class="nf">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+      <span class="nb">print</span> <span class="n">alphanumeric</span><span class="p">[</span><span class="n">chunk</span> <span class="o">/</span> <span class="mi">45</span><span class="p">]</span> <span class="o">+</span> <span class="n">alphanumeric</span><span class="p">[</span><span class="n">chunk</span> <span class="o">%</span> <span class="mi">45</span><span class="p">]</span>
     <span class="k">end</span>
-    <span class="nb">print</span> <span class="n">alphanumeric</span><span class="o">[</span><span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">11</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">]</span> <span class="k">if</span> <span class="n">count</span><span class="o">.</span><span class="n">odd?</span>
-  <span class="k">when</span> <span class="s1">&#39;0100&#39;</span> <span class="c1"># Byte</span>
-    <span class="n">count</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">count</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
-      <span class="nb">print</span> <span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="o">.</span><span class="n">chr</span>
+    <span class="nb">print</span> <span class="n">alphanumeric</span><span class="p">[</span><span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">11</span><span class="p">).</span><span class="nf">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)]</span> <span class="k">if</span> <span class="n">count</span><span class="p">.</span><span class="nf">odd?</span>
+  <span class="k">when</span> <span class="s1">'0100'</span> <span class="c1"># Byte</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">8</span><span class="p">).</span><span class="nf">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">count</span><span class="p">.</span><span class="nf">times</span> <span class="k">do</span>
+      <span class="nb">print</span> <span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">8</span><span class="p">).</span><span class="nf">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">).</span><span class="nf">chr</span>
     <span class="k">end</span>
-  <span class="k">when</span> <span class="s1">&#39;1000&#39;</span> <span class="c1"># Kanji</span>
-    <span class="n">count</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">8</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-    <span class="n">count</span><span class="o">.</span><span class="n">times</span> <span class="k">do</span>
-      <span class="nb">print</span> <span class="n">kanji</span><span class="p">(</span><span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">13</span><span class="p">)</span><span class="o">.</span><span class="n">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+  <span class="k">when</span> <span class="s1">'1000'</span> <span class="c1"># Kanji</span>
+    <span class="n">count</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">8</span><span class="p">).</span><span class="nf">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">count</span><span class="p">.</span><span class="nf">times</span> <span class="k">do</span>
+      <span class="nb">print</span> <span class="n">kanji</span><span class="p">(</span><span class="n">read</span><span class="p">(</span><span class="n">data</span><span class="p">,</span> <span class="mi">13</span><span class="p">).</span><span class="nf">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
     <span class="k">end</span>
-  <span class="k">when</span> <span class="s1">&#39;0000&#39;</span> <span class="c1"># Terminate</span>
+  <span class="k">when</span> <span class="s1">'0000'</span> <span class="c1"># Terminate</span>
     <span class="k">break</span>
   <span class="k">else</span>
-    <span class="nb">fail</span> <span class="s2">&quot;Unhandled mode </span><span class="si">#{</span><span class="n">mode</span><span class="si">}</span><span class="s2">&quot;</span>
+    <span class="nb">fail</span> <span class="s2">"Unhandled mode </span><span class="si">#{</span><span class="n">mode</span><span class="si">}</span><span class="s2">"</span>
   <span class="k">end</span>
 <span class="k">end</span>
 </code></pre></div><p>Fortunately, the QR code contains alphanumeric encoding and byte encoding only. You can get the flag by running above code with Ruby:<div class="highlight"><pre><code class="language-text" data-lang="text">SECCON{PSwIQ9d9GjKTdD8H}
