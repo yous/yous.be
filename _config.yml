@@ -24,6 +24,8 @@ google_analytics_id: UA-43111808-1
 # Plugins
 gems:
   - jekyll-archives
+  - jekyll-gist
+  - jekyll-paginate
   - jekyll-redirect-from
   - jekyll-sitemap
 
