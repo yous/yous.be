@@ -5,13 +5,6 @@ GIT
     jekyll-archives (2.0.0)
       jekyll (>= 2.4)
 
-GIT
-  remote: git://github.com/jekyll/jekyll-redirect-from.git
-  revision: 831345e37a79cac50ccb7a25fe2c2b5b855272a0
-  specs:
-    jekyll-redirect-from (0.6.2)
-      jekyll (>= 2.0)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -19,9 +12,9 @@ GEM
       timers (~> 4.0.0)
     colorator (0.1)
     diff-lcs (1.2.5)
-    ffi (1.9.6)
+    ffi (1.9.8)
     hitimes (1.2.2)
-    jekyll (3.0.0.beta2)
+    jekyll (3.0.0.pre.beta2)
       colorator (~> 0.1)
       jekyll-sass-converter (~> 1.0)
       jekyll-watch (~> 1.1)
@@ -30,16 +23,18 @@ GEM
       mercenary (~> 0.3.3)
       rouge (~> 1.7)
       safe_yaml (~> 1.0)
-    jekyll-gist (1.1.0)
+    jekyll-gist (1.2.1)
     jekyll-paginate (1.1.0)
+    jekyll-redirect-from (0.7.0)
+      jekyll (>= 2.0)
     jekyll-sass-converter (1.3.0)
       sass (~> 3.2)
-    jekyll-sitemap (0.8.0)
+    jekyll-sitemap (0.8.1)
     jekyll-watch (1.2.1)
       listen (~> 2.7)
     kramdown (1.6.0)
     liquid (3.0.1)
-    listen (2.8.5)
+    listen (2.9.0)
       celluloid (>= 0.15.2)
       rb-fsevent (>= 0.9.3)
       rb-inotify (>= 0.9)
@@ -54,7 +49,7 @@ GEM
       rspec-core (~> 3.2.0)
       rspec-expectations (~> 3.2.0)
       rspec-mocks (~> 3.2.0)
-    rspec-core (3.2.1)
+    rspec-core (3.2.2)
       rspec-support (~> 3.2.0)
     rspec-expectations (3.2.0)
       diff-lcs (>= 1.2.0, < 2.0)
@@ -72,12 +67,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  jekyll (= 3.0.0.beta2)
+  jekyll (>= 3.0.0.pre.beta2)
   jekyll-archives (>= 2.0.0)!
   jekyll-gist (~> 1.0)
   jekyll-paginate (~> 1.0)
-  jekyll-redirect-from!
-  jekyll-sitemap (>= 0.8.0)
+  jekyll-redirect-from (~> 0.7)
+  jekyll-sitemap (~> 0.8)
   rake (~> 10.1)
   redcarpet (~> 3.2)
   rspec (~> 3.0)
