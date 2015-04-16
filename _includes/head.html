@@ -10,7 +10,6 @@
   <meta name="description" content="{{ description }}">
   {% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}">{% endif %}
 
-  <link href="//fonts.googleapis.com/css?family=Bitter:400,700,400italic" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
   <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/atom.xml" | prepend: site.baseurl | prepend: site.url }}">
@@ -57,5 +56,6 @@
   {% elsif site.twitter_image %}
     <meta name="twitter:image:src" content="{{ site.twitter_image }}">
   {% endif %}
+  {% include fonts.html %}
   {% include analytics.html %}
 </head>
