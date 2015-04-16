@@ -14,7 +14,7 @@ facebook:
     image: http://yous.be/images/2014/12/26/christmasctf-1.png
 ---
 
-![ChristmasCTF](/images/2014/12/26/christmasctf-1.png "ChristmasCTF")
+![ChristmasCTF](/images/2014/12/26/christmasctf-1_800.png "ChristmasCTF")
 
 <!-- more -->
 
