@@ -39,6 +39,16 @@
             margin-right: 20px;
         }
     }
+
+    @include media-query($on-palm) {
+        .page-link {
+            padding: 5px 10px;
+
+            &:not(:last-child) {
+                margin-right: 0;
+            }
+        }
+    }
 }
 
 
