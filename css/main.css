@@ -183,6 +183,11 @@ pre {
     line-height: 1.5; }
     .site-nav .page-link:not(:last-child) {
       margin-right: 20px; }
+  @media screen and (max-width: 600px) {
+    .site-nav .page-link {
+      padding: 5px 10px; }
+      .site-nav .page-link:not(:last-child) {
+        margin-right: 0; } }
 
 /**
  * Site footer
