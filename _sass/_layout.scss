@@ -42,11 +42,12 @@
 
     @include media-query($on-palm) {
         .page-link {
-            padding: 5px 10px;
+            padding: 20px 0;
 
             &:not(:last-child) {
                 margin-right: 0;
             }
+            margin-left: 20px;
         }
     }
 }
