@@ -216,7 +216,8 @@ pre {
         padding: 5px 10px;
         margin-left: 20px; }
         .site-nav .page-link:not(:last-child) {
-          margin-right: 0; } }
+          margin-right: 0;
+          margin-bottom: 5px; } }
 
 /**
  * Site footer
