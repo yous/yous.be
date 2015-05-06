@@ -5,9 +5,254 @@
     <description>Blog for hackers.</description>
     <link>http://yous.be/</link>
     <atom:link href="http://yous.be/atom.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 17 Apr 2015 11:40:01 +0900</pubDate>
-    <lastBuildDate>Fri, 17 Apr 2015 11:40:01 +0900</lastBuildDate>
+    <pubDate>Wed, 06 May 2015 18:23:15 +0900</pubDate>
+    <lastBuildDate>Wed, 06 May 2015 18:23:15 +0900</lastBuildDate>
     <generator>Jekyll v3.0.0.pre.beta2</generator>
+    
+      <item>
+        
+        <title>Using Pinpoint with Docker</title>
+        
+        <description>&lt;p&gt;&lt;img src=&quot;/images/2015/05/05/logo.png&quot; alt=&quot;Pinpoint&quot; title=&quot;Pinpoint&quot;&gt;&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;&lt;a href=&quot;https://github.com/naver/pinpoint&quot;&gt;&lt;strong&gt;Pinpoint&lt;/strong&gt;&lt;/a&gt; is an open source APM
+(Application Performance Management) tool for large-scale distributed systems
+written in Java.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;h2&gt;Preliminary&lt;/h2&gt;
+
+&lt;p&gt;In this post, our goal is to run a sample Pinpoint instance with QuickStart
+scripts. You can find them on &lt;a href=&quot;https://github.com/naver/pinpoint/tree/master/quickstart&quot;&gt;GitHub&lt;/a&gt;.
+Also note that we&amp;rsquo;re going to use &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Requirements&lt;/h2&gt;
+
+&lt;p&gt;First things first, install Docker.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;wget -qO- https://get.docker.com/ | sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;You can verify &lt;code&gt;docker&lt;/code&gt; is installed correctly.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;sudo docker run hello-world
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;For more details, see the &lt;a href=&quot;https://docs.docker.com/installation/#installation&quot;&gt;installation guides&lt;/a&gt;
+of Docker.&lt;/p&gt;
+
+&lt;h2&gt;Look into the Dockerfile&lt;/h2&gt;
+
+&lt;p&gt;In fact, I already made a Dockerfile for Pinpoint. You can see on
+&lt;a href=&quot;https://github.com/yous/pinpoint-docker&quot;&gt;yous/pinpoint-docker&lt;/a&gt;. From now on,
+I&amp;rsquo;ll describe the Dockerfile line by line.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-dockerfile&quot; data-lang=&quot;dockerfile&quot;&gt;FROM debian
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.docker.com/reference/builder/#from&quot;&gt;&lt;code&gt;FROM&lt;/code&gt;&lt;/a&gt; instruction sets the
+base image of the Docker. We use lateste debian image.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-dockerfile&quot; data-lang=&quot;dockerfile&quot;&gt;RUN echo &#39;deb http://http.debian.net/debian/ wheezy contrib&#39; &amp;gt;&amp;gt; /etc/apt/sources.list
+RUN apt-get update
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.docker.com/reference/builder/#run&quot;&gt;&lt;code&gt;RUN&lt;/code&gt;&lt;/a&gt; instruction executes
+commands in Docker. We add &lt;code&gt;http://http.debian.net/debian/ wheezy contrib&lt;/code&gt; to
+the &lt;code&gt;/etc/apt/sources.list&lt;/code&gt; for &lt;code&gt;java-package&lt;/code&gt; package, and then run
+&lt;code&gt;apt-get update&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-dockerfile&quot; data-lang=&quot;dockerfile&quot;&gt;RUN DEBIAN_FRONTEND=noninteractive apt-get install -y git wget curl procps net-tools
+RUN DEBIAN_FRONTEND=noninteractive apt-get install -y java-package fakeroot
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;In this section, we install basic tools like &lt;code&gt;git&lt;/code&gt;, &lt;code&gt;wget&lt;/code&gt;, &lt;code&gt;curl&lt;/code&gt;. Also
+&lt;code&gt;procps&lt;/code&gt; contains &lt;code&gt;ps&lt;/code&gt;, &lt;code&gt;net-tools&lt;/code&gt; contains &lt;code&gt;netstat&lt;/code&gt; which is used by
+QuickStart scripts later.&lt;/p&gt;
+
+&lt;p&gt;Note the &lt;code&gt;DEBIAN_FRONTEND=noninteractive&lt;/code&gt;, this is only for the
+&lt;code&gt;apt-get install&lt;/code&gt; while building a Docker image, and this suppresses warning
+messages of &lt;code&gt;apt-get install&lt;/code&gt;. Also we can set &lt;code&gt;DEBIAN_FRONTEND&lt;/code&gt; with:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-dockerfile&quot; data-lang=&quot;dockerfile&quot;&gt;ENV DEBIAN_FRONTEND noninteractive
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;But we won&amp;rsquo;t add this line because when &lt;code&gt;ENV&lt;/code&gt; sets, it will remain even after it
+finished the build. This is bad when we run the Docker image by
+&lt;code&gt;docker run -i -t ... bash&lt;/code&gt;, the Docker is interactive, but the
+&lt;code&gt;DEBIAN_FRONTEND&lt;/code&gt; is set wrong. So we&amp;rsquo;ll only set it inline. You can see the
+information on &lt;a href=&quot;https://github.com/docker/docker/issues/4032&quot;&gt;docker/docker#4032&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-dockerfile&quot; data-lang=&quot;dockerfile&quot;&gt;RUN useradd pinpoint -m
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;As &lt;a href=&quot;https://github.com/naver/pinpoint/blob/master/doc/installation.md&quot;&gt;installation guide of Pinpoint&lt;/a&gt;
+indicates, we need to install JDK 6 and JDK 7+. To install Java, we need a
+non-root user. So we add a user &lt;code&gt;pinpoint&lt;/code&gt; and create its home directory by
+passing &lt;code&gt;-m&lt;/code&gt;. Adding a user is needed to install Java.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-dockerfile&quot; data-lang=&quot;dockerfile&quot;&gt;WORKDIR /home/pinpoint
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.docker.com/reference/builder/#workdir&quot;&gt;&lt;code&gt;WORKDIR&lt;/code&gt;&lt;/a&gt; instruction sets
+the working directory for Docker. After this line, any &lt;code&gt;RUN&lt;/code&gt; instructions are
+runned in this working directory.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-dockerfile&quot; data-lang=&quot;dockerfile&quot;&gt;RUN wget --no-cookies --header &quot;Cookie: oraclelicense=accept-securebackup-cookie&quot; \
+  http://download.oracle.com/otn-pub/java/jdk/6u45-b06/jdk-6u45-linux-x64.bin
+RUN chown pinpoint jdk-6u45-linux-x64.bin
+RUN su pinpoint -c &#39;yes | fakeroot make-jpkg jdk-6u45-linux-x64.bin&#39;
+RUN rm jdk-6u45-linux-x64.bin
+RUN dpkg -i oracle-j2sdk1.6_1.6.0+update45_amd64.deb
+RUN rm oracle-j2sdk1.6_1.6.0+update45_amd64.deb
+
+RUN wget --no-cookies --header &quot;Cookie: oraclelicense=accept-securebackup-cookie&quot; \
+  http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-linux-x64.tar.gz
+RUN chown pinpoint jdk-7u79-linux-x64.tar.gz
+RUN su pinpoint -c &#39;yes | fakeroot make-jpkg jdk-7u79-linux-x64.tar.gz&#39;
+RUN rm jdk-7u79-linux-x64.tar.gz
+RUN dpkg -i oracle-j2sdk1.7_1.7.0+update79_amd64.deb
+RUN rm oracle-j2sdk1.7_1.7.0+update79_amd64.deb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now we install Java SE 6 and then Java SE 7 on the Docker. The &lt;code&gt;wget&lt;/code&gt; script is
+from &lt;a href=&quot;http://stackoverflow.com/a/10959815/3108885&quot;&gt;&amp;ldquo;How to automate download and installation of Java JDK on Linux?&amp;rdquo;&lt;/a&gt;.
+Running &lt;code&gt;fakeroot make-jpkg ...&lt;/code&gt; and &lt;code&gt;dpkg -i ...&lt;/code&gt; installs Java.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-dockerfile&quot; data-lang=&quot;dockerfile&quot;&gt;ENV JAVA_6_HOME /usr/lib/jvm/j2sdk1.6-oracle
+ENV JAVA_7_HOME /usr/lib/jvm/j2sdk1.7-oracle
+ENV JAVA_HOME /usr/lib/jvm/j2sdk1.7-oracle
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;For the requirements of Pinpoint, we set &lt;code&gt;JAVA_6_HOME&lt;/code&gt;, &lt;code&gt;JAVA_7_HOME&lt;/code&gt; and
+&lt;code&gt;JAVA_HOME&lt;/code&gt; environment variables.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-dockerfile&quot; data-lang=&quot;dockerfile&quot;&gt;WORKDIR /usr/local/apache-maven
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now we&amp;rsquo;re going to install Maven.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-dockerfile&quot; data-lang=&quot;dockerfile&quot;&gt;ADD http://mirror.apache-kr.org/maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz ./
+ADD http://www.apache.org/dist//maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz.md5 ./
+ADD http://www.apache.org/dist//maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz.asc ./
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;&lt;a href=&quot;https://docs.docker.com/reference/builder/#add&quot;&gt;&lt;code&gt;ADD&lt;/code&gt;&lt;/a&gt; instructions copies new
+files, directories, or remote file from URL to the specified path. Above lines
+just download Maven files from Apache mirror.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-dockerfile&quot; data-lang=&quot;dockerfile&quot;&gt;RUN [ $(md5sum apache-maven-3.2.5-bin.tar.gz | grep --only-matching -m 1 &#39;^[0-9a-f]*&#39;) = $(cat apache-maven-3.2.5-bin.tar.gz.md5) ]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This matches MD5 hash checksum of &lt;code&gt;apache-maven-3.2.5-bin.tar.gz&lt;/code&gt; with
+&lt;code&gt;apache-maven-3.2.5-bin-tar.gz.md5&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-dockerfile&quot; data-lang=&quot;dockerfile&quot;&gt;RUN gpg --keyserver pgp.mit.edu --recv-key BB617866
+RUN gpg --verify apache-maven-3.2.5-bin.tar.gz.asc apache-maven-3.2.5-bin.tar.gz
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This verifies signature for &lt;code&gt;apache-maven-3.2.5-bin.tar.gz&lt;/code&gt; with
+&lt;code&gt;apache-maven-3.2.5-bin.tar.gz.asc&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-dockerfile&quot; data-lang=&quot;dockerfile&quot;&gt;RUN tar -zxf apache-maven-3.2.5-bin.tar.gz
+ENV PATH $PATH:/usr/local/apache-maven/apache-maven-3.2.5/bin
+RUN rm apache-maven-3.2.5-bin.tar.gz apache-maven-3.2.5-bin.tar.gz.md5 apache-maven-3.2.5-bin.tar.gz.asc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now we install Maven 3.2.5 on the Docker. Note that we have to add the path of
+Maven to the &lt;code&gt;PATH&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-dockerfile&quot; data-lang=&quot;dockerfile&quot;&gt;RUN git clone https://github.com/naver/pinpoint.git /pinpoint
+WORKDIR /pinpoint
+RUN mvn install -Dmaven.test.skip=true
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;All requirements are installed, so we clone Pinpoint to the &lt;code&gt;/pinpoint&lt;/code&gt; and
+install it.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-dockerfile&quot; data-lang=&quot;dockerfile&quot;&gt;WORKDIR quickstart/hbase
+ADD http://archive.apache.org/dist/hbase/hbase-0.94.25/hbase-0.94.25.tar.gz ./
+RUN tar -zxf hbase-0.94.25.tar.gz
+RUN rm hbase-0.94.25.tar.gz
+RUN ln -s hbase-0.94.25 hbase
+RUN cp ../conf/hbase/hbase-site.xml hbase-0.94.25/conf/
+RUN chmod +x hbase-0.94.25/bin/start-hbase.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;After installation of Pinpoint, we install HBase 0.94.25 as
+&lt;a href=&quot;https://github.com/naver/pinpoint/blob/master/quickstart/bin/start-hbase.sh&quot;&gt;&lt;code&gt;quickstart/bin/start-hbase.sh&lt;/code&gt;&lt;/a&gt;
+of Pinpoint does it.&lt;/p&gt;
+
+&lt;h2&gt;Running Docker&lt;/h2&gt;
+
+&lt;p&gt;You can pull the Docker image:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;docker pull yous/pinpoint
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then run the image:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;docker run -i -t yous/pinpoint bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Also if you want to remove the container after Docker exits, use:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;docker run -i -t --rm yous/pinpoint bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This makes you can check some requirements like &lt;code&gt;which java&lt;/code&gt;, but you can&amp;rsquo;t run
+QuickStart scripts successfully. Since the scripts check the program name in the
+result of &lt;code&gt;netstat&lt;/code&gt;, we should pass some option. See &lt;a href=&quot;https://github.com/docker/docker/issues/7276&quot;&gt;docker/docker#7276&lt;/a&gt;
+for details.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;docker run -i -t --cap-add SYS_PTRACE --security-opt apparmor:unconfined &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  yous/pinpoint bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Also, note that we are going to use port 28080, 28081 and 28082 in QuickStart.
+So binding a container&amp;rsquo;s port to a specific port is needed. &lt;code&gt;-p&lt;/code&gt; flag will do
+it. See &lt;a href=&quot;https://docs.docker.com/userguide/dockerlinks/&quot;&gt;Linking Containers Together&lt;/a&gt;
+for details.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;docker run -i -t -p 28080:28080 -p 28081:28081 -p 28082:28082 &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  --cap-add SYS_PTRACE --security-opt apparmor:unconfined yous/pinpoint bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;QuickStart&lt;/h2&gt;
+
+&lt;p&gt;We built a Docker image for Pinpoint, so now we can run QuickStart scripts. As
+mentioned in &lt;a href=&quot;https://github.com/naver/pinpoint/blob/master/quickstart/README.md&quot;&gt;QuickStart&lt;/a&gt;
+of Pinpoint, we run several scripts.&lt;/p&gt;
+
+&lt;h3&gt;Install &amp;amp; Start HBase&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Download &amp;amp; Start: &lt;code&gt;quickstart/bin/start-hbase.sh&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Initialize Tables: &lt;code&gt;quickstart/bin/init-hbase.sh&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Start Pinpoint Daemons&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Collector: &lt;code&gt;quickstart/bin/start-collector.sh&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2015/05/05/quickstart-start-collector.png&quot; alt=&quot;start-collector.sh&quot; title=&quot;start-collector.sh&quot;&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;Web UI: &lt;code&gt;quickstart/bin/start-web.sh&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2015/05/05/quickstart-start-web.png&quot; alt=&quot;start-web.sh&quot; title=&quot;start-web.sh&quot;&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;TestApp: &lt;code&gt;quickstart/bin/start-testapp.sh&lt;/code&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2015/05/05/quickstart-start-testapp.png&quot; alt=&quot;start-testapp.sh&quot; title=&quot;start-testapp.sh&quot;&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;Once HBase and the 3 daemons are running, visit the following addresses to test
+out your Pinpoint instance.&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;Web UI: &lt;a href=&quot;http://localhost:28080&quot;&gt;http://localhost:28080&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2015/05/05/quickstart-web-ui.png&quot; alt=&quot;Web UI&quot; title=&quot;Web UI&quot;&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;TestApp: &lt;a href=&quot;http://localhost:28081&quot;&gt;http://localhost:28081&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2015/05/05/quickstart-testapp.png&quot; alt=&quot;TestApp&quot; title=&quot;TestApp&quot;&gt;&lt;/p&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3&gt;Stopping&lt;/h3&gt;
+
+&lt;ul&gt;
+&lt;li&gt;HBase: &lt;code&gt;quickstart/bin/stop-hbase.sh&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Collector: &lt;code&gt;quickstart/bin/stop-collector.sh&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;Web UI: &lt;code&gt;quickstart/bin/stop-web.sh&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;TestApp: &lt;code&gt;quickstart/bin/stop-testapp.sh&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h2&gt;Summary&lt;/h2&gt;
+
+&lt;p&gt;You can run Pinpoint on Docker by:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;docker pull yous/pinpoint
+docker run -i -t -p 28080:28080 -p 28081:28081 -p 28082:28082 &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+  --cap-add SYS_PTRACE --security-opt apparmor:unconfined yous/pinpoint bash
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Inside the Docker, run:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;quickstart/bin/start-hbase.sh
+quickstart/bin/init-hbase.sh
+quickstart/bin/start-collector.sh
+quickstart/bin/start-web.sh
+quickstart/bin/start-testapp.sh
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then you can access &lt;a href=&quot;http://localhost:28080&quot;&gt;http://localhost:28080&lt;/a&gt; for Web UI and
+&lt;a href=&quot;http://localhost:28081&quot;&gt;http://localhost:28081&lt;/a&gt; for TestApp.&lt;/p&gt;
+
+&lt;p&gt;Note again, you can see my Dockerfile on &lt;a href=&quot;https://github.com/yous/pinpoint-docker&quot;&gt;yous/pinpoint-docker&lt;/a&gt;.
+Any issues and pull requests are welcome!&lt;/p&gt;
+</description>
+        <pubDate>Tue, 05 May 2015 12:12:07 +0900</pubDate>
+        <link>http://yous.be/2015/05/05/using-pinpoint-with-docker/</link>
+        <guid isPermaLink="true">http://yous.be/2015/05/05/using-pinpoint-with-docker/</guid>
+        
+        
+        <category>Technology</category>
+        
+      </item>
     
       <item>
         
@@ -1740,31 +1985,6 @@ autocmd &lt;span class=&quot;nb&quot;&gt;InsertLeave&lt;/span&gt; * &lt;span cla
         
         
         <category>iOS</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>Global Git Ignore &amp;rarr;</title>
-        
-        <description>&lt;p&gt;&lt;a href=&quot;http://usevim.com&quot;&gt;usevim&lt;/a&gt;의 &lt;a href=&quot;http://twitter.com/#!/alex_young&quot;&gt;Alex Young&lt;/a&gt;이 쓴 &lt;a href=&quot;http://usevim.com/2013/10/04/gitglobal-ignore/&quot;&gt;global gitignore에 관한 글&lt;/a&gt;이다.&lt;/p&gt;
-
-&lt;!-- For years I dumped this into my `.gitignore` files: `*.sw?`. Then I realised that some people don&#39;t use Vim, and therefore probably don&#39;t want to see my editor-specific `.gitignore` entries. Different editors handle swap and recovery files different ways, so it seems redundant to force these settings on everyone. --&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;나는 몇 년간 &lt;code&gt;.gitignore&lt;/code&gt;에 &lt;code&gt;*.sw?&lt;/code&gt;을 넣어 왔는데, Vim을 쓰지 않는 사람들은 특정 편집기를 위한 &lt;code&gt;.gitignore&lt;/code&gt; 항목을 보고 싶지 않아 할 수도 있다는 걸 깨달았다. 편집기들은 임시 파일과 복구 파일을 각자 다른 방식으로 관리하기 때문에 이 설정을 모두에게 강요하는 것은 과해 보인다.&lt;/p&gt;
-
-&lt;!-- A better approach is to use a global option. Run `git config --global core.excludesfile ~/.gitignore`. Then you can add `*.sw?`, and perhaps `*~` as well. I like to add `.DS_Store` because Windows developers don&#39;t need to worry about that nonsense, and they should probably add `Thumbs.db`. --&gt;
-
-&lt;p&gt;이것보단 global 옵션을 사용하는 것이 낫다. &lt;code&gt;git config --global core.excludesfile ~/.gitignore&lt;/code&gt;를 실행해라. 그러면 거기에 &lt;code&gt;*.sw?&lt;/code&gt;을, 어쩌면 &lt;code&gt;*~&lt;/code&gt;도 넣을 수 있다. 난 &lt;code&gt;.DS_Store&lt;/code&gt;를 추가할 텐데, Windows 개발자들은 여기 신경 쓸 필요가 없기 때문이다. 그리고 그들은 아마 &lt;code&gt;Thumbs.db&lt;/code&gt;를 추가해야 할 것이다.&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-        <pubDate>Tue, 25 Mar 2014 20:49:32 +0900</pubDate>
-        <link>http://yous.be/2014/03/25/global-git-ignore/</link>
-        <guid isPermaLink="true">http://yous.be/2014/03/25/global-git-ignore/</guid>
-        
-        
-        <category>Git</category>
         
       </item>
     
