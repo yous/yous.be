@@ -5,9 +5,59 @@
     <description>Blog for hackers.</description>
     <link>http://yous.be/</link>
     <atom:link href="http://yous.be/atom.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Wed, 06 May 2015 18:23:15 +0900</pubDate>
-    <lastBuildDate>Wed, 06 May 2015 18:23:15 +0900</lastBuildDate>
+    <pubDate>Fri, 08 May 2015 10:48:44 +0900</pubDate>
+    <lastBuildDate>Fri, 08 May 2015 10:48:44 +0900</lastBuildDate>
     <generator>Jekyll v3.0.0.pre.beta2</generator>
+    
+      <item>
+        
+        <title>Revive the Tmux Sessions</title>
+        
+        <description>&lt;p&gt;On the previous day, I accidently removed &lt;code&gt;/tmp/tmux-1000/&lt;/code&gt; directory. At first,
+there seems no problem with Tmux. But when I created another SSH connection, I
+saw this error message:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;tmux attach
+no sessions
+&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;tmux list-sessions
+failed to connect to server
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;But the Tmux prosesses were still there:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;ps -ef | grep tmux
+59277 16305  0 May06 pts/0    00:00:00 tmux attach
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then I immediately noticed that the removing &lt;code&gt;/tmp/tmux-1000/&lt;/code&gt; things made the
+problem. And thankfully Tmux provides workaround. From the &lt;code&gt;tmux&lt;/code&gt; manpage:&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;-L socket-name&lt;/p&gt;
+
+&lt;p&gt;tmux stores the server socket in a directory under /tmp (or
+TMPDIR if set); the default socket is named default.  This
+option allows a different socket name to be specified, allowing
+several independent tmux servers to be run.  Unlike -S a full
+path is not necessary: the sockets are all created in the same
+directory.&lt;/p&gt;
+
+&lt;p&gt;If the socket is accidentally removed, the SIGUSR1 signal may
+be sent to the tmux server process to recreate it.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Now we can revive our Tmux sessions by sending a signal to recreate sockets:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;killall -s SIGUSR1 tmux
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;More simply, since the number of &lt;code&gt;SIGUSR1&lt;/code&gt; is 10:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;killall -10 tmux
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then we can do &lt;code&gt;tmux attach&lt;/code&gt; successfully. Yay!&lt;/p&gt;
+</description>
+        <pubDate>Fri, 08 May 2015 09:36:46 +0900</pubDate>
+        <link>http://yous.be/2015/05/08/revive-the-tmux-sessions/</link>
+        <guid isPermaLink="true">http://yous.be/2015/05/08/revive-the-tmux-sessions/</guid>
+        
+        
+        <category>Technology</category>
+        
+      </item>
     
       <item>
         
@@ -1951,40 +2001,6 @@ autocmd &lt;span class=&quot;nb&quot;&gt;InsertLeave&lt;/span&gt; * &lt;span cla
         
         
         <category>Git</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>Twitter Link Bookmarklet &amp;rarr;</title>
-        
-        <description>&lt;p&gt;&lt;a href=&quot;http://davebradford.com/about/&quot;&gt;Dave Bradford&lt;/a&gt;의 트위터에 관한 팁 &lt;a href=&quot;http://davebradford.com/blog/twitter-profile-bookmarklet/&quot;&gt;Twitter Profile Bookmarklet&lt;/a&gt;을 봤다. 직접 써 보니 기능이 추가됐으면 더 좋을 것 같아 추가했다.&lt;/p&gt;
-
-&lt;p&gt;일단, 원글에 있는 코드의 기능은 간단하다. 모바일 사파리를 통해 트위터 계정을 보다가 북마크 버튼을 한 번 누르면 &lt;a href=&quot;http://tapbots.com/software/tweetbot/&quot;&gt;Tweetbot&lt;/a&gt;에서 볼 수 있게 된다. 여기에 브라우저를 통해 &amp;lsquo;트윗&amp;#39;을 보고 있다면 Tweetbot으로 바로 그 트윗을 볼 수 있게 기능을 추가했다. OS X에서도 동일하게 작동한다.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-javascript&quot; data-lang=&quot;javascript&quot;&gt;&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;document&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;URL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;match&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;match&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/status&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;(?:&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;es&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;)?\/(\d&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;+&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;kd&quot;&gt;var&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tweetbotUrl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;match&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;tweetbotUrl&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;replace&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/https&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;?&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\/\/(&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;mobile&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\.)?&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;twitter&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\.&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;com&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\/&lt;/span&gt;&lt;span class=&quot;sr&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;tweetbot:///user_profile/&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;nx&quot;&gt;tweetbotUrl&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;tweetbot:///status/&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;match&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
-&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;nb&quot;&gt;window&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;location&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nx&quot;&gt;tweetbotUrl&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;원리는 간단하다. 현재 페이지 URL에 &lt;code&gt;status&lt;/code&gt;나 &lt;code&gt;statuses&lt;/code&gt;가 포함되어 있으면 트윗을 열고, 그렇지 않으면 계정을 보여 준다. 아래 코드를 북마크 해두고, 필요할 때 눌러주면 된다.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-text&quot; data-lang=&quot;text&quot;&gt;javascript:var%20url=document.URL;var%20match=url.match(/status(?:es)?%5C/(%5Cd+)/i);var%20tweetbotUrl;if(match==null)%7BtweetbotUrl=url.replace(/https?:%5C/%5C/(mobile%5C.)?twitter%5C.com%5C//i,%22tweetbot:///user_profile/%22)%7Delse%7BtweetbotUrl=%22tweetbot:///status/%22+match[1]%7Dwindow.location=tweetbotUrl;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;기기에 Tweetbot 2와 Tweetbot 3가 모두 깔려 있을 때 Tweetbot 2로 열리는 점은 아쉽다.&lt;/p&gt;
-
-&lt;p&gt;via &lt;a href=&quot;http://yoonjiman.net/2014/03/25/twitter-profile-bookmarklet/&quot;&gt;Yoon Jiman&lt;/a&gt;&lt;/p&gt;
-</description>
-        <pubDate>Thu, 27 Mar 2014 10:18:57 +0900</pubDate>
-        <link>http://yous.be/2014/03/27/twitter-link-bookmarklet/</link>
-        <guid isPermaLink="true">http://yous.be/2014/03/27/twitter-link-bookmarklet/</guid>
-        
-        
-        <category>iOS</category>
         
       </item>
     
