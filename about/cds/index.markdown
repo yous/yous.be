@@ -317,3 +317,9 @@ footer: false
 308. Don Malik & Mild Beats --- 탯줄
 309. Pento --- Adam
 310. Olltii --- 졸업
+311. 검정치마 --- Hollywood
+312. Deepflow --- 양화
+313. SAN E --- 양치기 소년
+314. Kendrick Lamar --- To Pimp A Butterfly
+315. Brown Eyes --- Brown Eyes (Reissued)
+316. Brown Eyes --- Reason 4 Breathing? (Reissued)
