@@ -13,7 +13,7 @@ twitter_card:
 
 ## <a id="yous"></a>Yous
 
-ChaYoung You ([Resume](/resume/en.pdf))
+Chayoung You ([Resume](/resume/en.pdf))
 
 ![](/images/about/Super-Hexagon.png)
 
