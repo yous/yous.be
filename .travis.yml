@@ -11,8 +11,8 @@ before_install:
   - gem update --remote bundler
 before_script:
   - export TZ="Asia/Seoul"
-  - git config --global user.name "ChaYoung You"
-  - git config --global user.email "yousbe@gmail.com"
+  - git config --global user.name "$(git --no-pager show --no-patch --format='%an')"
+  - git config --global user.email "$(git --no-pager show --no-patch --format='%ae')"
 script:
   - git clone -b master --depth 1 --quiet https://${TOKEN}@github.com/yous/yous.github.io.git _site
   - bundle exec jekyll build
