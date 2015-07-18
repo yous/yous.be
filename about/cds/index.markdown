@@ -323,3 +323,8 @@ footer: false
 314. Kendrick Lamar --- To Pimp A Butterfly
 315. Brown Eyes --- Brown Eyes (Reissued)
 316. Brown Eyes --- Reason 4 Breathing? (Reissued)
+317. yankie --- Andre
+318. JAYT --- Delivery Man
+319. CODE KUNST --- Crumple
+320. DOK2 --- MULTILLIONAIRE
+321. A$AP Rocky --- AT.LONG.LAST.A$AP
