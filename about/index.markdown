@@ -6,16 +6,16 @@ sharing: false
 footer: false
 description: About Yous - contact, projects, interests, likes, etc.
 facebook:
-    image: http://yous.be/images/about/Super-Hexagon.png
+    image: http://yous.be/images/about/yous.png
 twitter_card:
-    image: http://yous.be/images/about/Super-Hexagon.png
+    image: http://yous.be/images/about/yous.png
 ---
 
 ## <a id="yous"></a>Yous
 
 Chayoung You ([Resume](/resume/en.pdf))
 
-![](/images/about/Super-Hexagon.png)
+<img src="/images/about/yous.png" width="200px" height="200px" />
 
 ## <a id="contact"></a>Contact
 
