@@ -12,7 +12,7 @@ GEM
       timers (~> 4.0.0)
     colorator (0.1)
     diff-lcs (1.2.5)
-    ffi (1.9.9)
+    ffi (1.9.10)
     hitimes (1.2.2)
     jekyll (3.0.0.pre.beta8)
       colorator (~> 0.1)
@@ -32,8 +32,8 @@ GEM
     jekyll-sitemap (0.8.1)
     jekyll-watch (1.2.1)
       listen (~> 2.7)
-    kramdown (1.7.0)
-    liquid (3.0.3)
+    kramdown (1.8.0)
+    liquid (3.0.6)
     listen (2.10.1)
       celluloid (~> 0.16.0)
       rb-fsevent (>= 0.9.3)
@@ -44,22 +44,22 @@ GEM
     rb-inotify (0.9.5)
       ffi (>= 0.5.0)
     redcarpet (3.3.2)
-    rouge (1.9.0)
+    rouge (1.9.1)
     rspec (3.3.0)
       rspec-core (~> 3.3.0)
       rspec-expectations (~> 3.3.0)
       rspec-mocks (~> 3.3.0)
-    rspec-core (3.3.1)
+    rspec-core (3.3.2)
       rspec-support (~> 3.3.0)
-    rspec-expectations (3.3.0)
+    rspec-expectations (3.3.1)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.3.0)
-    rspec-mocks (3.3.1)
+    rspec-mocks (3.3.2)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.3.0)
     rspec-support (3.3.0)
     safe_yaml (1.0.4)
-    sass (3.4.15)
+    sass (3.4.16)
     timers (4.0.1)
       hitimes
 
@@ -78,4 +78,4 @@ DEPENDENCIES
   rspec (~> 3.0)
 
 BUNDLED WITH
-   1.10.5
+   1.10.6
