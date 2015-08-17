@@ -328,3 +328,7 @@ footer: false
 319. CODE KUNST --- Crumple
 320. DOK2 --- MULTILLIONAIRE
 321. A$AP Rocky --- AT.LONG.LAST.A$AP
+322. Eluphant --- Man On The Moon
+323. DOPLAMINGO --- Spectrum Range
+324. DCLAT --- SUMO
+325. PEEJAY --- WALKIN' vol. 1
