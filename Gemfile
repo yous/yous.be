@@ -11,4 +11,5 @@ gem 'redcarpet', '~> 3.2'
 group :test do
   gem 'rake', '~> 10.1'
   gem 'rspec', '~> 3.0'
+  gem 'html-proofer', '~> 2.0'
 end

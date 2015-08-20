@@ -1,6 +1,16 @@
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new(:spec)
 
+require 'html/proofer'
+desc 'Validate HTML files'
+task :proof do
+  HTML::Proofer.new('_site', {
+    check_favicon: true,
+    check_html: true,
+    href_ignore: ['localhost']
+  }).run
+end
+
 desc 'Create a new post'
 task :post, :title do |t, args|
   if args.title
