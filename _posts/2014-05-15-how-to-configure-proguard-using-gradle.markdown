@@ -9,14 +9,14 @@ categories:
 keywords: gradle, proguard, signed, release, apk, android studio, actionbarsherlock, crashlytics, google play services sdk
 redirect_from: /p/20140515/
 facebook:
-    image: http://www.gradle.org/img/gradle_logo.gif
+    image: http://yous.be/images/2014/05/15/gradle_logo.gif
 twitter_card:
-    image: http://www.gradle.org/img/gradle_logo.gif
+    image: http://yous.be/images/2014/05/15/gradle_logo.gif
 ---
 
 ## <a id="gradle"></a>Gradle
 
-![Gradle](http://www.gradle.org/img/gradle_logo.gif "Gradle")
+![Gradle](/images/2014/05/15/gradle_logo.gif "Gradle")
 
 최근 [Android Studio][]를 통해 개발을 진행하게 되면서, 자연스럽게 [Gradle][]을 사용하게 되었다. `.gradle` 확장자를 가진 파일을 통해 빌드 설정을 자유롭게 조정할 수 있다. 이 글에서는 Gradle을 이용해 배포 APK를 생성하는 방법과 함께 [ProGuard][]를 사용법을 공유하겠다.
 
