@@ -56,7 +56,30 @@ So I made scss files for Octopress that overrides colors of `.highlight` and `.g
 
 [weird]: http://devspade.com/blog/2013/08/06/fixing-gist-embeds-in-octopress/
 
-{% gist 8474011 %}
+``` diff
+@@ -1,10 +1,10 @@
+ .highlight, html .gist .gist-file .gist-syntax .gist-highlight {
+-  table td.code { width: 100%; }
++  table td.code, td.line-data { width: 100%; }
+   border: 1px solid $pre-border !important;
+ }
+ .highlight .line-numbers, html .gist .gist-file .gist-syntax .highlight .line_numbers {
+   text-align: right;
+-  font-size: 13px;
++  font-size: 13px !important;
+   line-height: 1.45em;
+   @if $solarized == light {
+     background: lighten($base03, 1) $noise-bg !important;
+@@ -69,7 +69,7 @@ html .gist .gist-file {
+       &:hover { color: $base1 !important; }
+     }
+     a[href*='#file'] {
+-      position: absolute; top: 0; left:0; right:-10px;
++      position: absolute; top: 0; left:0; right:0;
+       color: #474747 !important;
+       @extend .code-title;
+       &:hover { color: $link-color !important; }
+```
 
 - Default `sass/partial/_syntax.scss` adds `box-shadow` and `text-shadow` to line numbers, also `box-shadow` to code block and gist. I removed these attributes and it is just can be done by overriding style in `sass/custom/_styles.scss`.
 
@@ -76,4 +99,26 @@ figure.code, .gist-file {
 [commit]: https://github.com/lucaslew/whitespace/commit/b047f268c804808fb8e2d6a17cbfe8669b9da6b4
 [Whitespace]: https://github.com/lucaslew/whitespace
 
-{% gist 7795229 %}
+``` diff
+@@ -166,20 +166,6 @@ article {
+   
+ }
+ 
+-figure.code {
+-  .highlight {
+-    background: #212C3B !important;
+-
+-    .gutter {
+-      display: none;
+-    }
+-  }
+-}
+-
+-.pre-code, html .gist .gist-file .gist-syntax .highlight pre, .highlight code {
+-  background: #212C3B !important;
+-}
+-
+ aside {
+   display: none;
+ }
+```

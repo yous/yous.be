@@ -23,11 +23,61 @@ I wrote ["How to Add Redirects to Post URL on Octopress"]({% post_url 2014-05-23
 
 So I make [this commit](https://github.com/yous/jekyll_alias_generator/commit/7de96759bdd7a2c27fa2d4d603c6c1f585fd2abc):
 
-{% gist 30d45925d0b100052f6d %}
+``` diff
+diff --git a/_plugins/alias_generator.rb b/_plugins/alias_generator.rb
+index 1d24cd8..50e9404 100644
+--- a/_plugins/alias_generator.rb
++++ b/_plugins/alias_generator.rb
+@@ -70,9 +70,10 @@ module Jekyll
+           file.write(alias_template(destination_path))
+         end
+ 
+-        (alias_index_path.split('/').size + 1).times do |sections|
++        alias_index_path.split('/').size.times do |sections|
+           @site.static_files << Jekyll::AliasFile.new(@site, @site.dest, alias_index_path.split('/')[0, sections].join('/'), '')
+         end
++        @site.static_files << Jekyll::AliasFile.new(@site, @site.dest, alias_dir, alias_file)
+       end
+     end
+ 
+```
 
 But it seems that there is [another problem](https://github.com/tsmango/jekyll_alias_generator/issues/12) with latest Jekyll, so I make [another commit](https://github.com/yous/jekyll_alias_generator/commit/59a72029307a730014a020dcb3f73506f80ddab5):
 
-{% gist ceb181878cf15b529e6d %}
+``` diff
+diff --git a/_plugins/alias_generator.rb b/_plugins/alias_generator.rb
+index 50e9404..76102db 100644
+--- a/_plugins/alias_generator.rb
++++ b/_plugins/alias_generator.rb
+@@ -56,13 +56,13 @@ module Jekyll
+       alias_paths.compact!
+ 
+       alias_paths.flatten.each do |alias_path|
+-        alias_path = alias_path.to_s
++        alias_path = File.join('/', alias_path.to_s)
+ 
+         alias_dir  = File.extname(alias_path).empty? ? alias_path : File.dirname(alias_path)
+         alias_file = File.extname(alias_path).empty? ? "index.html" : File.basename(alias_path)
+ 
+-        fs_path_to_dir   = File.join(@site.dest, alias_dir)
+-        alias_index_path = File.join(alias_dir, alias_file)
++        fs_path_to_dir = File.join(@site.dest, alias_dir)
++        alias_sections = alias_dir.split('/')[1..-1]
+ 
+         FileUtils.mkdir_p(fs_path_to_dir)
+ 
+@@ -70,8 +70,8 @@ module Jekyll
+           file.write(alias_template(destination_path))
+         end
+ 
+-        alias_index_path.split('/').size.times do |sections|
+-          @site.static_files << Jekyll::AliasFile.new(@site, @site.dest, alias_index_path.split('/')[0, sections].join('/'), '')
++        alias_sections.size.times do |sections|
++          @site.static_files << Jekyll::AliasFile.new(@site, @site.dest, alias_sections[0, sections + 1].join('/'), '')
+         end
+         @site.static_files << Jekyll::AliasFile.new(@site, @site.dest, alias_dir, alias_file)
+       end
+```
 
 To say the result first, I had [no luck](https://github.com/yous/yous.github.io/commit/2cf44cbe21b499c89dc8ac68f6f170add52f9d6e). The alias directories are generated, every `index.html` file under each directory won't. By looking at diff of `sitemap.xml`, the plugin seems to generate wrong paths. I'm pretty newbie to Jekyll and how Octopress works with it. Also this is a plugin for Jekyll, not Octopress. So if you have any fix for this problem, please make pull requests to [jekyll_alias_generator](https://github.com/tsmango/jekyll_alias_generator/pulls) or just [contact me](/about/#contact).
 
