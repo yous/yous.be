@@ -6,7 +6,7 @@ desc 'Validate HTML files'
 task :proof do
   HTML::Proofer.new('_site', {
     check_html: true,
-    href_ignore: ['localhost']
+    href_ignore: [/localhost/]
   }).run
 end
 
