@@ -5,7 +5,7 @@ date: 2014-09-21 05:59:49 +0900
 comments: false
 categories:
     - Design
-description: Yet Another Hex Word"
+description: Yet Another Hex Word
 keywords: hex, word, color
 redirect_from: /p/20140921/
 ---
