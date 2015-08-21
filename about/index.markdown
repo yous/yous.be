@@ -41,7 +41,7 @@ Chayoung You ([Resume](/resume/en.pdf))
 
 ## <a id="blog"></a>Blog
 
-- [Yous](http://yous.be)
+- [Yous]({{ site.url }})
 
     What you see now. Hosted on [GitHub Pages][] and all articles are written using [Markdown][]. The source is available in [GitHub repo][yous.github.io].
 

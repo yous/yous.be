@@ -28,7 +28,7 @@ I just created my [Keybase][]. You can see my PGP public key on [keybase.io/yous
 
 ## <a id="keybase-proof"></a>Keybase Proof
 
-Keybase provides several ways to prove own identity of a Twitter account, a GitHub account, websites and a bitcoin address. Still it can be done on the browser, also you can use [command line](https://keybase.io/docs/command_line) for it. I proved [my GitHub](https://github.com/yous) by [keybase.md](https://gist.github.com/yous/149b0775d2ff02eac323) and [this site](http://yous.be) by [keybase.txt](http://yous.be/keybase.txt). Also you can check it with command line like:
+Keybase provides several ways to prove own identity of a Twitter account, a GitHub account, websites and a bitcoin address. Still it can be done on the browser, also you can use [command line](https://keybase.io/docs/command_line) for it. I proved [my GitHub](https://github.com/yous) by [keybase.md](https://gist.github.com/yous/149b0775d2ff02eac323) and [this site]({{ site.url }}) by [keybase.txt](http://yous.be/keybase.txt). Also you can check it with command line like:
 
 ``` sh
 $ keybase id yous
