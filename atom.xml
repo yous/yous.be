@@ -5,8 +5,8 @@
     <description>Blog for hackers.</description>
     <link>http://yous.be/</link>
     <atom:link href="http://yous.be/atom.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 20 Aug 2015 19:25:07 +0900</pubDate>
-    <lastBuildDate>Thu, 20 Aug 2015 19:25:07 +0900</lastBuildDate>
+    <pubDate>Fri, 21 Aug 2015 23:24:23 +0900</pubDate>
+    <lastBuildDate>Fri, 21 Aug 2015 23:24:23 +0900</lastBuildDate>
     <generator>Jekyll v3.0.0.pre.beta8</generator>
     
       <item>
@@ -1664,13 +1664,57 @@ Date:   Fri Jul 18 21:29:14 2014 +0900
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;/path/to/jekyll/lib/jekyll/static_file.rb:40:in &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;stat&lt;span class=&quot;s1&quot;&gt;&#39;: Not a directory @ rb_file_s_stat - /path/to/generated/alias/index.html/ (Errno::ENOTDIR)
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;So I make &lt;a href=&quot;https://github.com/yous/jekyll_alias_generator/commit/7de96759bdd7a2c27fa2d4d603c6c1f585fd2abc&quot;&gt;this commit&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-diff&quot; data-lang=&quot;diff&quot;&gt;&lt;span class=&quot;gh&quot;&gt;diff --git a/_plugins/alias_generator.rb b/_plugins/alias_generator.rb
+index 1d24cd8..50e9404 100644
+&lt;/span&gt;&lt;span class=&quot;gd&quot;&gt;--- a/_plugins/alias_generator.rb
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+++ b/_plugins/alias_generator.rb
+&lt;/span&gt;&lt;span class=&quot;gu&quot;&gt;@@ -70,9 +70,10 @@ module Jekyll
+&lt;/span&gt;           file.write(alias_template(destination_path))
+         end
 
-&lt;script src=&quot;https://gist.github.com/30d45925d0b100052f6d.js&quot;&gt; &lt;/script&gt;
+&lt;span class=&quot;gd&quot;&gt;-        (alias_index_path.split(&#39;/&#39;).size + 1).times do |sections|
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+        alias_index_path.split(&#39;/&#39;).size.times do |sections|
+&lt;/span&gt;           @site.static_files &amp;lt;&amp;lt; Jekyll::AliasFile.new(@site, @site.dest, alias_index_path.split(&#39;/&#39;)[0, sections].join(&#39;/&#39;), &#39;&#39;)
+         end
+&lt;span class=&quot;gi&quot;&gt;+        @site.static_files &amp;lt;&amp;lt; Jekyll::AliasFile.new(@site, @site.dest, alias_dir, alias_file)
+&lt;/span&gt;       end
+     end
 
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;But it seems that there is &lt;a href=&quot;https://github.com/tsmango/jekyll_alias_generator/issues/12&quot;&gt;another problem&lt;/a&gt; with latest Jekyll, so I make &lt;a href=&quot;https://github.com/yous/jekyll_alias_generator/commit/59a72029307a730014a020dcb3f73506f80ddab5&quot;&gt;another commit&lt;/a&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-diff&quot; data-lang=&quot;diff&quot;&gt;&lt;span class=&quot;gh&quot;&gt;diff --git a/_plugins/alias_generator.rb b/_plugins/alias_generator.rb
+index 50e9404..76102db 100644
+&lt;/span&gt;&lt;span class=&quot;gd&quot;&gt;--- a/_plugins/alias_generator.rb
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+++ b/_plugins/alias_generator.rb
+&lt;/span&gt;&lt;span class=&quot;gu&quot;&gt;@@ -56,13 +56,13 @@ module Jekyll
+&lt;/span&gt;       alias_paths.compact!
 
-&lt;script src=&quot;https://gist.github.com/ceb181878cf15b529e6d.js&quot;&gt; &lt;/script&gt;
+       alias_paths.flatten.each do |alias_path|
+&lt;span class=&quot;gd&quot;&gt;-        alias_path = alias_path.to_s
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+        alias_path = File.join(&#39;/&#39;, alias_path.to_s)
+&lt;/span&gt;
+         alias_dir  = File.extname(alias_path).empty? ? alias_path : File.dirname(alias_path)
+         alias_file = File.extname(alias_path).empty? ? &quot;index.html&quot; : File.basename(alias_path)
 
+&lt;span class=&quot;gd&quot;&gt;-        fs_path_to_dir   = File.join(@site.dest, alias_dir)
+-        alias_index_path = File.join(alias_dir, alias_file)
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+        fs_path_to_dir = File.join(@site.dest, alias_dir)
++        alias_sections = alias_dir.split(&#39;/&#39;)[1..-1]
+&lt;/span&gt;
+         FileUtils.mkdir_p(fs_path_to_dir)
+
+&lt;span class=&quot;gu&quot;&gt;@@ -70,8 +70,8 @@ module Jekyll
+&lt;/span&gt;           file.write(alias_template(destination_path))
+         end
+
+&lt;span class=&quot;gd&quot;&gt;-        alias_index_path.split(&#39;/&#39;).size.times do |sections|
+-          @site.static_files &amp;lt;&amp;lt; Jekyll::AliasFile.new(@site, @site.dest, alias_index_path.split(&#39;/&#39;)[0, sections].join(&#39;/&#39;), &#39;&#39;)
+&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+        alias_sections.size.times do |sections|
++          @site.static_files &amp;lt;&amp;lt; Jekyll::AliasFile.new(@site, @site.dest, alias_sections[0, sections + 1].join(&#39;/&#39;), &#39;&#39;)
+&lt;/span&gt;         end
+         @site.static_files &amp;lt;&amp;lt; Jekyll::AliasFile.new(@site, @site.dest, alias_dir, alias_file)
+       end
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;To say the result first, I had &lt;a href=&quot;https://github.com/yous/yous.github.io/commit/2cf44cbe21b499c89dc8ac68f6f170add52f9d6e&quot;&gt;no luck&lt;/a&gt;. The alias directories are generated, every &lt;code&gt;index.html&lt;/code&gt; file under each directory won&amp;rsquo;t. By looking at diff of &lt;code&gt;sitemap.xml&lt;/code&gt;, the plugin seems to generate wrong paths. I&amp;rsquo;m pretty newbie to Jekyll and how Octopress works with it. Also this is a plugin for Jekyll, not Octopress. So if you have any fix for this problem, please make pull requests to &lt;a href=&quot;https://github.com/tsmango/jekyll_alias_generator/pulls&quot;&gt;jekyll_alias_generator&lt;/a&gt; or just &lt;a href=&quot;/about/#contact&quot;&gt;contact me&lt;/a&gt;.&lt;/p&gt;
 
 &lt;!-- more --&gt;
@@ -1768,7 +1812,7 @@ Date:   Fri Jul 18 21:29:14 2014 +0900
         
         <description>&lt;h2&gt;&lt;a id=&quot;gradle&quot;&gt;&lt;/a&gt;Gradle&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://www.gradle.org/img/gradle_logo.gif&quot; alt=&quot;Gradle&quot; title=&quot;Gradle&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/2014/05/15/gradle_logo.gif&quot; alt=&quot;Gradle&quot; title=&quot;Gradle&quot;&gt;&lt;/p&gt;
 
 &lt;p&gt;최근 &lt;a href=&quot;http://developer.android.com/sdk/installing/studio.html&quot;&gt;Android Studio&lt;/a&gt;를 통해 개발을 진행하게 되면서, 자연스럽게 &lt;a href=&quot;http://www.gradle.org&quot;&gt;Gradle&lt;/a&gt;을 사용하게 되었다. &lt;code&gt;.gradle&lt;/code&gt; 확장자를 가진 파일을 통해 빌드 설정을 자유롭게 조정할 수 있다. 이 글에서는 Gradle을 이용해 배포 APK를 생성하는 방법과 함께 &lt;a href=&quot;http://proguard.sourceforge.net&quot;&gt;ProGuard&lt;/a&gt;를 사용법을 공유하겠다.&lt;/p&gt;
 

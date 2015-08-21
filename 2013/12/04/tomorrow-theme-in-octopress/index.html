@@ -3,7 +3,29 @@
 </span><span class="k">@import</span> <span class="s2">"tomorrow/tomorrow-night-eighties"</span><span class="p">;</span>
 <span class="c1">// @import "tomorrow/tomorrow-night-blue";
 // @import "tomorrow/tomorrow-night-bright";
-</span></code></pre></div><h2><a id="fixes"></a>Fixes</h2><ul><li>With default <code>sass/partial/_syntax.scss</code>, embedded gist code looks <a href="http://devspade.com/blog/2013/08/06/fixing-gist-embeds-in-octopress/">weird</a>. To fix them, we should override some styles.</ul><script src="https://gist.github.com/8474011.js"> </script><ul><li>Default <code>sass/partial/_syntax.scss</code> adds <code>box-shadow</code> and <code>text-shadow</code> to line numbers, also <code>box-shadow</code> to code block and gist. I removed these attributes and it is just can be done by overriding style in <code>sass/custom/_styles.scss</code>.</ul><div class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="nc">.highlight</span> <span class="nc">.line-numbers</span><span class="o">,</span> <span class="nt">html</span> <span class="nc">.gist</span> <span class="nc">.gist-file</span> <span class="nc">.gist-syntax</span> <span class="nc">.highlight</span> <span class="nc">.line_numbers</span> <span class="p">{</span>
+</span></code></pre></div><h2><a id="fixes"></a>Fixes</h2><ul><li>With default <code>sass/partial/_syntax.scss</code>, embedded gist code looks <a href="http://devspade.com/blog/2013/08/06/fixing-gist-embeds-in-octopress/">weird</a>. To fix them, we should override some styles.</ul><div class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gu">@@ -1,10 +1,10 @@
+</span> .highlight, html .gist .gist-file .gist-syntax .gist-highlight {
+<span class="gd">-  table td.code { width: 100%; }
+</span><span class="gi">+  table td.code, td.line-data { width: 100%; }
+</span>   border: 1px solid $pre-border !important;
+ }
+ .highlight .line-numbers, html .gist .gist-file .gist-syntax .highlight .line_numbers {
+   text-align: right;
+<span class="gd">-  font-size: 13px;
+</span><span class="gi">+  font-size: 13px !important;
+</span>   line-height: 1.45em;
+   @if $solarized == light {
+     background: lighten($base03, 1) $noise-bg !important;
+<span class="gu">@@ -69,7 +69,7 @@ html .gist .gist-file {
+</span>       &amp;:hover { color: $base1 !important; }
+     }
+     a[href*='#file'] {
+<span class="gd">-      position: absolute; top: 0; left:0; right:-10px;
+</span><span class="gi">+      position: absolute; top: 0; left:0; right:0;
+</span>       color: #474747 !important;
+       @extend .code-title;
+       &amp;:hover { color: $link-color !important; }
+</code></pre></div><ul><li>Default <code>sass/partial/_syntax.scss</code> adds <code>box-shadow</code> and <code>text-shadow</code> to line numbers, also <code>box-shadow</code> to code block and gist. I removed these attributes and it is just can be done by overriding style in <code>sass/custom/_styles.scss</code>.</ul><div class="highlight"><pre><code class="language-scss" data-lang="scss"><span class="nc">.highlight</span> <span class="nc">.line-numbers</span><span class="o">,</span> <span class="nt">html</span> <span class="nc">.gist</span> <span class="nc">.gist-file</span> <span class="nc">.gist-syntax</span> <span class="nc">.highlight</span> <span class="nc">.line_numbers</span> <span class="p">{</span>
   <span class="k">@include</span> <span class="nd">box-shadow</span><span class="p">(</span><span class="nb">none</span><span class="p">);</span>
   <span class="nl">text-shadow</span><span class="p">:</span> <span class="nb">none</span><span class="p">;</span>
 <span class="p">}</span>
@@ -11,4 +33,25 @@
 <span class="nt">figure</span><span class="nc">.code</span><span class="o">,</span> <span class="nc">.gist-file</span> <span class="p">{</span>
   <span class="k">@include</span> <span class="nd">box-shadow</span><span class="p">(</span><span class="nb">none</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre></div><ul><li><strong>This issue was fixed by this <a href="https://github.com/lucaslew/whitespace/commit/b047f268c804808fb8e2d6a17cbfe8669b9da6b4">commit</a>.</strong> This blog uses <a href="https://github.com/lucaslew/whitespace">Whitespace</a> theme. I found some problems that it overrides colors of code block to dark blue and it hides line numbers. To fix these problems, remove lines in <code>sass/custom/_styles.scss</code>.</ul><script src="https://gist.github.com/7795229.js"> </script></div></article></div></div><footer class="site-footer"><div class="wrapper"><p> Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a><br /> &copy; 2013&ndash;2015 - <a href="/about/">Yous</a> - <a href="/atom.xml">RSS</a></div></footer>
+</code></pre></div><ul><li><strong>This issue was fixed by this <a href="https://github.com/lucaslew/whitespace/commit/b047f268c804808fb8e2d6a17cbfe8669b9da6b4">commit</a>.</strong> This blog uses <a href="https://github.com/lucaslew/whitespace">Whitespace</a> theme. I found some problems that it overrides colors of code block to dark blue and it hides line numbers. To fix these problems, remove lines in <code>sass/custom/_styles.scss</code>.</ul><div class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gu">@@ -166,20 +166,6 @@ article {
+</span>
+ }
+
+-figure.code {
+<span class="gd">-  .highlight {
+-    background: #212C3B !important;
+</span>-
+<span class="gd">-    .gutter {
+-      display: none;
+-    }
+-  }
+</span>-}
+-
+-.pre-code, html .gist .gist-file .gist-syntax .highlight pre, .highlight code {
+<span class="gd">-  background: #212C3B !important;
+</span>-}
+-
+ aside {
+   display: none;
+ }
+</code></pre></div></div></article></div></div><footer class="site-footer"><div class="wrapper"><p> Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a><br /> &copy; 2013&ndash;2015 - <a href="/about/">Yous</a> - <a href="/atom.xml">RSS</a></div></footer>
