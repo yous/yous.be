@@ -10,12 +10,12 @@ keywords: git, commit, commit message
 redirect_from: /p/20140903/
 external-url: http://chris.beams.io/posts/git-commit/
 twitter_card:
-    image: http://imgs.xkcd.com/comics/git_commit.png
+    image: http://yous.be/images/2014/09/03/git_commit.png
 facebook:
-    image: http://imgs.xkcd.com/comics/git_commit.png
+    image: http://yous.be/images/2014/09/03/git_commit.png
 ---
 
-[![Git Commit](http://imgs.xkcd.com/comics/git_commit.png "Git Commit")](http://xkcd.com/1296/)
+[![Git Commit](http://yous.be/images/2014/09/03/git_commit.png "Git Commit")](http://xkcd.com/1296/)
 
 > ## The seven rules of a great git commit message
 >

@@ -10,9 +10,9 @@ keywords: ios, back door, com.apple.mobile.file_relay, com.apple.pcapd, com.appl
 redirect_from: /p/20140722/
 external-url: http://arstechnica.com/security/2014/07/undocumented-ios-functions-allow-monitoring-of-personal-data-expert-says/
 twitter_card:
-    image: http://cdn.arstechnica.net/wp-content/uploads/2014/07/pcapd1.jpg
+    image: http://yous.be/images/2014/07/22/pcapd1.jpg
 facebook:
-    image: http://cdn.arstechnica.net/wp-content/uploads/2014/07/pcapd1.jpg
+    image: http://yous.be/images/2014/07/22/pcapd1.jpg
 ---
 
 > "Backdoor" can be abused by gov't agents and ex-lovers to gain persistent access.
@@ -21,7 +21,7 @@ facebook:
 >
 > Zdziarski said the service that raises the most concern is known as com.apple.mobile.file_relay. It dishes out a staggering amount of data---including account data for e-mail, Twitter, iCloud, and other services, a full copy of the address book including deleted entries, the user cache folder, logs of geographic positions, and a complete dump of the user photo album---all without requiring a backup password to be entered. He said two other services dubbed com.apple.pcapd and com.apple.mobile.house_arrest may have legitimate uses for app developers or support people but can also be used to spy on users by government agencies or even jilted ex-lovers. The Pcapd service, for instance, allows people to wirelessly monitor all network traffic traveling into and out of the device, even when it's not running in a special developer or support mode. House_arrest, meanwhile, allows the copying of sensitive files and documents from Twitter, Facebook, and many other applications.
 >
-> ![com.apple.pcapd](http://cdn.arstechnica.net/wp-content/uploads/2014/07/pcapd1.jpg "com.apple.pcapd")
+> ![com.apple.pcapd](/images/2014/07/22/pcapd1.jpg "com.apple.pcapd")
 >
 > Slides of Zdziarski's talk, titled **Identifying Back Doors, Attack Points, and Surveillance Mechanisms in iOS Devices** are [here](http://www.zdziarski.com/blog/wp-content/uploads/2014/07/iOS_Backdoors_Attack_Points_Surveillance_Mechanisms.pdf).
 

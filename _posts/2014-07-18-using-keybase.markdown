@@ -9,15 +9,15 @@ description: I just created my Keybase. You can see my PGP public key on https:/
 keywords: keybase
 redirect_from: /p/20140718/
 twitter_card:
-    image: https://keybase.io/images/logo.png
+    image: http://yous.be/images/2014/07/18/logo.png
 facebook:
-    image: https://keybase.io/images/logo.png
+    image: http://yous.be/images/2014/07/18/logo.png
 ---
 
 ## <a id="keybase"></a>Keybase
 
 
-![Keybase](https://keybase.io/images/logo.png "Keybase")
+![Keybase](/images/2014/07/18/logo.png "Keybase")
 
 > Keybase will be a public directory of publicly auditable public keys. All paired, for convenience, with unique usernames.
 

@@ -9,9 +9,9 @@ categories:
 keywords: octopress, tomorrow theme
 redirect_from: /p/20131204/
 facebook:
-    image: https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png
+    image: http://yous.be/images/2013/12/04/Tomorrow-Night.png
 twitter_card:
-    image: https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png
+    image: http://yous.be/images/2013/12/04/Tomorrow-Night.png
 ---
 
 ## <a id="tomorrow-theme"></a>Tomorrow Theme
@@ -24,11 +24,11 @@ I usually use Tomorrow Night Eighties of [Tomorrow Theme][] in [Vim][], [iTerm2]
 [IntelliJ IDEA]: http://www.jetbrains.com/idea/
 [Android Studio]: http://developer.android.com/sdk/installing/studio.html
 
-![Tomorrow Night](https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night.png "Tomorrow Night")
-![Tomorrow](https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow.png "Tomorrow")
-![Tomorrow Night Eighties](https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Eighties.png "Tomorrow Night Eighties")
-![Tomorrow Night Blue](https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Blue.png "Tomorrow Night Blue")
-![Tomorrow Night Bright](https://github.com/ChrisKempson/Tomorrow-Theme/raw/master/Images/Tomorrow-Night-Bright.png "Tomorrow Night Bright")
+![Tomorrow Night](/images/2013/12/04/Tomorrow-Night.png "Tomorrow Night")
+![Tomorrow](/images/2013/12/04/Tomorrow.png "Tomorrow")
+![Tomorrow Night Eighties](/images/2013/12/04/Tomorrow-Night-Eighties.png "Tomorrow Night Eighties")
+![Tomorrow Night Blue](/images/2013/12/04/Tomorrow-Night-Blue.png "Tomorrow Night Blue")
+![Tomorrow Night Bright](/images/2013/12/04/Tomorrow-Night-Bright.png "Tomorrow Night Bright")
 
 So I made scss files for Octopress that overrides colors of `.highlight` and `.gist` class elements. Usual code blocks and embedded gists are properly highlighted. The [demo][Syntax Highlighting Test] and the [code][yous.github.io/sass/custom] are available.
 
