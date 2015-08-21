@@ -15,7 +15,7 @@ twitter_card:
 
 Chayoung You ([Resume](/resume/en.pdf))
 
-<img src="/images/about/yous.png" width="200px" height="200px" />
+<img src="/images/about/yous.png" alt="Yous" width="200px" height="200px" />
 
 ## <a id="contact"></a>Contact
 
