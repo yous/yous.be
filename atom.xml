@@ -5,8 +5,8 @@
     <description>Blog for hackers.</description>
     <link>https://yous.be/</link>
     <atom:link href="https://yous.be/atom.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 22 Aug 2015 03:48:41 +0900</pubDate>
-    <lastBuildDate>Sat, 22 Aug 2015 03:48:41 +0900</lastBuildDate>
+    <pubDate>Sat, 22 Aug 2015 03:57:06 +0900</pubDate>
+    <lastBuildDate>Sat, 22 Aug 2015 03:57:06 +0900</lastBuildDate>
     <generator>Jekyll v3.0.0.pre.beta8</generator>
     
       <item>
@@ -1422,7 +1422,7 @@ autocmd &lt;span class=&quot;nb&quot;&gt;BufEnter&lt;/span&gt; * &lt;span class=
         
         <title>How to Write a Git Commit Message &amp;rarr;</title>
         
-        <description>&lt;p&gt;&lt;a href=&quot;http://xkcd.com/1296/&quot;&gt;&lt;img src=&quot;http://yous.be/images/2014/09/03/git_commit.png&quot; alt=&quot;Git Commit&quot; title=&quot;Git Commit&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+        <description>&lt;p&gt;&lt;a href=&quot;http://xkcd.com/1296/&quot;&gt;&lt;img src=&quot;/images/2014/09/03/git_commit.png&quot; alt=&quot;Git Commit&quot; title=&quot;Git Commit&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;h2&gt;The seven rules of a great git commit message&lt;/h2&gt;
