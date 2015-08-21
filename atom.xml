@@ -5,8 +5,8 @@
     <description>Blog for hackers.</description>
     <link>https://yous.be/</link>
     <atom:link href="https://yous.be/atom.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 22 Aug 2015 00:01:45 +0900</pubDate>
-    <lastBuildDate>Sat, 22 Aug 2015 00:01:45 +0900</lastBuildDate>
+    <pubDate>Sat, 22 Aug 2015 03:48:41 +0900</pubDate>
+    <lastBuildDate>Sat, 22 Aug 2015 03:48:41 +0900</lastBuildDate>
     <generator>Jekyll v3.0.0.pre.beta8</generator>
     
       <item>
@@ -1422,7 +1422,7 @@ autocmd &lt;span class=&quot;nb&quot;&gt;BufEnter&lt;/span&gt; * &lt;span class=
         
         <title>How to Write a Git Commit Message &amp;rarr;</title>
         
-        <description>&lt;p&gt;&lt;a href=&quot;http://xkcd.com/1296/&quot;&gt;&lt;img src=&quot;http://imgs.xkcd.com/comics/git_commit.png&quot; alt=&quot;Git Commit&quot; title=&quot;Git Commit&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+        <description>&lt;p&gt;&lt;a href=&quot;http://xkcd.com/1296/&quot;&gt;&lt;img src=&quot;http://yous.be/images/2014/09/03/git_commit.png&quot; alt=&quot;Git Commit&quot; title=&quot;Git Commit&quot;&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;h2&gt;The seven rules of a great git commit message&lt;/h2&gt;
@@ -1499,7 +1499,7 @@ autocmd &lt;span class=&quot;nb&quot;&gt;BufEnter&lt;/span&gt; * &lt;span class=
 
 &lt;p&gt;Zdziarski said the service that raises the most concern is known as com.apple.mobile.file_relay. It dishes out a staggering amount of data&amp;mdash;including account data for e-mail, Twitter, iCloud, and other services, a full copy of the address book including deleted entries, the user cache folder, logs of geographic positions, and a complete dump of the user photo album&amp;mdash;all without requiring a backup password to be entered. He said two other services dubbed com.apple.pcapd and com.apple.mobile.house_arrest may have legitimate uses for app developers or support people but can also be used to spy on users by government agencies or even jilted ex-lovers. The Pcapd service, for instance, allows people to wirelessly monitor all network traffic traveling into and out of the device, even when it&amp;rsquo;s not running in a special developer or support mode. House_arrest, meanwhile, allows the copying of sensitive files and documents from Twitter, Facebook, and many other applications.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://cdn.arstechnica.net/wp-content/uploads/2014/07/pcapd1.jpg&quot; alt=&quot;com.apple.pcapd&quot; title=&quot;com.apple.pcapd&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/2014/07/22/pcapd1.jpg&quot; alt=&quot;com.apple.pcapd&quot; title=&quot;com.apple.pcapd&quot;&gt;&lt;/p&gt;
 
 &lt;p&gt;Slides of Zdziarski&amp;rsquo;s talk, titled &lt;strong&gt;Identifying Back Doors, Attack Points, and Surveillance Mechanisms in iOS Devices&lt;/strong&gt; are &lt;a href=&quot;http://www.zdziarski.com/blog/wp-content/uploads/2014/07/iOS_Backdoors_Attack_Points_Surveillance_Mechanisms.pdf&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -1525,7 +1525,7 @@ autocmd &lt;span class=&quot;nb&quot;&gt;BufEnter&lt;/span&gt; * &lt;span class=
         
         <description>&lt;h2&gt;&lt;a id=&quot;keybase&quot;&gt;&lt;/a&gt;Keybase&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;https://keybase.io/images/logo.png&quot; alt=&quot;Keybase&quot; title=&quot;Keybase&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/2014/07/18/logo.png&quot; alt=&quot;Keybase&quot; title=&quot;Keybase&quot;&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
 &lt;p&gt;Keybase will be a public directory of publicly auditable public keys. All paired, for convenience, with unique usernames.&lt;/p&gt;
@@ -1640,7 +1640,7 @@ Date:   Fri Jul 18 21:29:14 2014 +0900
         <description>&lt;blockquote&gt;
 &lt;p&gt;Adobe, in partnership with Google, is pleased to announce the release of &lt;a href=&quot;http://adobe.ly/TkSHS&quot;&gt;Source Han Sans&lt;/a&gt;, a new open source Pan-CJK typeface family that is now available on Typekit for desktop use.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;http://typekit.files.wordpress.com/2014/07/multi-language-sample-v3.jpg?w=800&amp;amp;h=408&quot; alt=&quot;Multi-language sample&quot; title=&quot;Multi-language sample&quot;&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/2014/07/16/multi-language-sample-v3.jpg&quot; alt=&quot;Multi-language sample&quot; title=&quot;Multi-language sample&quot;&gt;&lt;/p&gt;
 
 &lt;p&gt;More information on Google&amp;rsquo;s Noto Sans CJK family is available on their &lt;a href=&quot;http://goo.gl/yhFcim&quot;&gt;blog&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
