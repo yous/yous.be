@@ -52,9 +52,10 @@ So I made scss files for Octopress that overrides colors of `.highlight` and `.g
 
 ## <a id="fixes"></a>Fixes
 
-- With default `sass/partial/_syntax.scss`, embedded gist code looks [weird][]. To fix them, we should override some styles.
+- With default `sass/partial/_syntax.scss`, embedded gist code looks [weird][] ([archive](weird-archive)). To fix them, we should override some styles.
 
 [weird]: http://devspade.com/blog/2013/08/06/fixing-gist-embeds-in-octopress/
+[weird-archive]: https://web.archive.org/web/20150812112659/http://devspade.com/blog/2013/08/06/fixing-gist-embeds-in-octopress/
 
 ``` diff
 @@ -1,10 +1,10 @@
