@@ -5,8 +5,8 @@
     <description>Blog for hackers.</description>
     <link>https://yous.be/</link>
     <atom:link href="https://yous.be/atom.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 22 Aug 2015 03:57:06 +0900</pubDate>
-    <lastBuildDate>Sat, 22 Aug 2015 03:57:06 +0900</lastBuildDate>
+    <pubDate>Sun, 30 Aug 2015 23:57:08 +0900</pubDate>
+    <lastBuildDate>Sun, 30 Aug 2015 23:57:08 +0900</lastBuildDate>
     <generator>Jekyll v3.0.0.pre.beta8</generator>
     
       <item>
@@ -1501,7 +1501,7 @@ autocmd &lt;span class=&quot;nb&quot;&gt;BufEnter&lt;/span&gt; * &lt;span class=
 
 &lt;p&gt;&lt;img src=&quot;/images/2014/07/22/pcapd1.jpg&quot; alt=&quot;com.apple.pcapd&quot; title=&quot;com.apple.pcapd&quot;&gt;&lt;/p&gt;
 
-&lt;p&gt;Slides of Zdziarski&amp;rsquo;s talk, titled &lt;strong&gt;Identifying Back Doors, Attack Points, and Surveillance Mechanisms in iOS Devices&lt;/strong&gt; are &lt;a href=&quot;http://www.zdziarski.com/blog/wp-content/uploads/2014/07/iOS_Backdoors_Attack_Points_Surveillance_Mechanisms.pdf&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Slides of Zdziarski&amp;rsquo;s talk, titled &lt;strong&gt;Identifying Back Doors, Attack Points, and Surveillance Mechanisms in iOS Devices&lt;/strong&gt; are &lt;a href=&quot;https://pentest.com/ios_backdoors_attack_points_surveillance_mechanisms.pdf&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;p&gt;Also check the page about &lt;a href=&quot;http://support.apple.com/kb/HT6331&quot;&gt;iOS: About diagnostic capabilities&lt;/a&gt; on Apple Support:&lt;/p&gt;

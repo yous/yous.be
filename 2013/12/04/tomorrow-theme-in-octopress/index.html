@@ -3,7 +3,7 @@
 </span><span class="k">@import</span> <span class="s2">"tomorrow/tomorrow-night-eighties"</span><span class="p">;</span>
 <span class="c1">// @import "tomorrow/tomorrow-night-blue";
 // @import "tomorrow/tomorrow-night-bright";
-</span></code></pre></div><h2><a id="fixes"></a>Fixes</h2><ul><li>With default <code>sass/partial/_syntax.scss</code>, embedded gist code looks <a href="http://devspade.com/blog/2013/08/06/fixing-gist-embeds-in-octopress/">weird</a>. To fix them, we should override some styles.</ul><div class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gu">@@ -1,10 +1,10 @@
+</span></code></pre></div><h2><a id="fixes"></a>Fixes</h2><ul><li>With default <code>sass/partial/_syntax.scss</code>, embedded gist code looks <a href="http://devspade.com/blog/2013/08/06/fixing-gist-embeds-in-octopress/">weird</a> (<a href="weird-archive">archive</a>). To fix them, we should override some styles.</ul><div class="highlight"><pre><code class="language-diff" data-lang="diff"><span class="gu">@@ -1,10 +1,10 @@
 </span> .highlight, html .gist .gist-file .gist-syntax .gist-highlight {
 <span class="gd">-  table td.code { width: 100%; }
 </span><span class="gi">+  table td.code, td.line-data { width: 100%; }
