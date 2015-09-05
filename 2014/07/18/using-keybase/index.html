@@ -1,56 +1,8 @@
-<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>Using Keybase</title><meta name="description" content="I just created my Keybase. You can see my PGP public key on https://keybase.io/yous and get the key via https://keybase.io/yous/key.asc."><meta name="keywords" content="keybase"><link rel="stylesheet" href="/css/main.css"><link rel="canonical" href="https://yous.be/2014/07/18/using-keybase/"><link rel="alternate" type="application/rss+xml" title="Yous" href="https://yous.be/atom.xml"><link href="/favicon.png" rel="icon"><link href="/apple-touch-icon.png" rel="apple-touch-icon"><link href="/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76"><link href="/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120"><link href="/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152"><link href="/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180"><meta property="fb:admins" content="100001802412550"><meta property="og:title" content="Using Keybase"><meta property="og:site_name" content="Yous"><meta property="og:url" content="https://yous.be/2014/07/18/using-keybase/"><meta property="og:description" content="I just created my Keybase. You can see my PGP public key on https://keybase.io/yous and get the key via https://keybase.io/yous/key.asc."><meta property="og:image" content="http://yous.be/images/2014/07/18/logo.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="Using Keybase"><meta name="twitter:description" content="I just created my Keybase. You can see my PGP public key on https://keybase.io/yous and get the key via https://keybase.io/yous/key.asc."><meta name="twitter:image:src" content="http://yous.be/images/2014/07/18/logo.png"> <script type="text/javascript"> WebFontConfig = { google: { families: [ 'Bitter:400,700,400italic:latin' ] } }; (function() { var wf = document.createElement('script'); wf.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js'; wf.type = 'text/javascript'; wf.async = 'true'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wf, s); })(); </script> <script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-43111808-1', 'auto'); ga('send', 'pageview'); </script><body><header class="site-header"><div class="wrapper"> <a class="site-title" href="/">Yous</a><nav class="site-nav"> <a class="page-link" href="/about/">About</a> <a class="page-link" href="/archives/">Archives</a></nav></div></header><div class="page-content"><div class="wrapper"><article class="post" itemscope itemtype="http://schema.org/BlogPosting"><header class="post-header"><h1 class="post-title" itemprop="name headline">Using Keybase</h1><p class="post-meta"><time datetime="2014-07-18T03:21:09+09:00" itemprop="datePublished">Jul 18, 2014</time> • <a href="/categories/technology/">Technology</a></header><div class="post-content" itemprop="articleBody"><h2><a id="keybase"></a>Keybase</h2><p><img src="/images/2014/07/18/logo.png" alt="Keybase" title="Keybase"><blockquote><p>Keybase will be a public directory of publicly auditable public keys. All paired, for convenience, with unique usernames.</blockquote><p>I just created my <a href="https://keybase.io">Keybase</a>. You can see my PGP public key on <a href="https://keybase.io/yous">keybase.io/yous</a> and get the key via <code>https://keybase.io/yous/key.asc</code>. Anyone can encrypt messages using my public key and then I could decrypt it using my private key and see the message with safety. All of these can be done in browser, in <a href="https://keybase.io">Keybase</a>.<h2><a id="keybase-proof"></a>Keybase Proof</h2><p>Keybase provides several ways to prove own identity of a Twitter account, a GitHub account, websites and a bitcoin address. Still it can be done on the browser, also you can use <a href="https://keybase.io/docs/command_line">command line</a> for it. I proved <a href="https://github.com/yous">my GitHub</a> by <a href="https://gist.github.com/yous/149b0775d2ff02eac323">keybase.md</a> and <a href="https://yous.be">this site</a> by <a href="http://yous.be/keybase.txt">keybase.txt</a>. Also you can check it with command line like:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="gp">$ </span>keybase id yous
-✔ public key fingerprint: 1BF1 AFE8 682E 45A2 11FF 2C0E 891B 7A9E 1D5A 400A
-✔ <span class="s2">"yous"</span> on github: https://gist.github.com/149b0775d2ff02eac323
-✔ admin of yous.be via HTTP: http://yous.be/keybase.txt
-</code></pre></div><h2><a id="directory-signing"></a>Directory Signing</h2><p>Command line program of Keybase provides <code>dir</code> command to sign or verify directory. First you should install command line, see the <a href="https://keybase.io/docs/command_line/installation">installation docs</a>. If you already have an account, just run <code>keybase login</code>. You can also signup with <code>keybase signup</code> in terminal.<p>At first, you should change directory to sign:<div class="highlight"><pre><code class="language-sh" data-lang="sh">~ <span class="nv">$ </span><span class="nb">cd </span>Dropbox/Public
-~/Dropbox/Public <span class="nv">$ </span>keybase dir sign
-info: Success! Wrote SIGNED.md from 224 found items
-</code></pre></div><p>then <code>~/Dropbox/Public/SIGNED.md</code> is generated. On same directory, veryfing directory is also possible with:<div class="highlight"><pre><code class="language-sh" data-lang="sh">~/Dropbox/Public <span class="nv">$ </span>keybase dir verify
-info: Valid signature from keybase user yous
-✔ public key fingerprint: 1BF1 AFE8 682E 45A2 11FF 2C0E 891B 7A9E 1D5A 400A
-✔ <span class="s2">"yous"</span> on github: https://gist.github.com/149b0775d2ff02eac323
-✔ admin of yous.be via HTTP: http://yous.be/keybase.txt
-info: Signed 4 minutes ago <span class="o">(</span>Fri Jul 18 2014 20:06:31 GMT+0900 <span class="o">(</span>KST<span class="o">))</span>
-info: Success! 1 signature<span class="o">(</span>s<span class="o">)</span> verified; 224 items checked
-</code></pre></div><h2><a id="using-custom-email"></a>Using Custom Email</h2><p>When you create public key on <a href="https://keybase.io">Keybase</a>, default UID has name as <code>keybase.io/&lt;username&gt;</code> and email as <code>&lt;username&gt;@keybase.io</code>. You can add UID with your real name and regular email. From <a href="http://superuser.com/questions/293184/one-gnupg-pgp-key-pair-two-emails">One GnuPG/PGP key pair, two emails?</a>:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="gp">$ </span>gpg --edit-key &lt;username&gt;@keybase.io
-<span class="gp">gpg&gt; </span>adduid
-Real name: &lt;name&gt;
-Email address: &lt;email&gt;
-Comment: &lt;comment or Return to none&gt;
-Change <span class="o">(</span>N<span class="o">)</span>ame, <span class="o">(</span>C<span class="o">)</span>omment, <span class="o">(</span>E<span class="o">)</span>mail or <span class="o">(</span>O<span class="o">)</span>kay/<span class="o">(</span>Q<span class="o">)</span>uit? o
-Enter passphrase: &lt;passphrase&gt;
-<span class="gp">gpg&gt; </span>uid &lt;uid&gt;
-<span class="gp">gpg&gt; </span>trust
-Your decision? 5
-Do you really want to <span class="nb">set </span>this key to ultimate trust? <span class="o">(</span>y/N<span class="o">)</span> y
-<span class="gp">gpg&gt; </span>save
-</code></pre></div><h2><a id="signing-commits"></a>Signing Commits</h2><p>All the crypto of Keybase is performed with GPG, you can sign your tags and your commits. To setup your signing key, you need to get your key id by:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="gp">$ </span>gpg --list-secret-keys | grep <span class="s2">"^sec"</span>
-sec   4096R/1D5A400A 2014-07-16
-</code></pre></div><p>The <code>1D5A400A</code> part is your key id. Then simply you can set your signing key by:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="gp">$ </span>git config --global user.signingkey 1D5A400A
-</code></pre></div><p>Also<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="gp">$ </span>git config --global commit.gpgsign <span class="nb">true</span>
-</code></pre></div><p>makes Git to sign every commits:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="gp">$ </span>mkdir tmp <span class="o">&amp;&amp;</span> <span class="nb">cd </span>tmp
-<span class="gp">$ </span>git init
-<span class="gp">$ </span><span class="nb">echo </span>foo &gt; foo
-<span class="gp">$ </span>git add foo
-<span class="gp">$ </span>git commit -m <span class="s2">"Test commit of foo"</span>
-
-You need a passphrase to unlock the secret key <span class="k">for
-</span>user: <span class="s2">"John Doe &lt;john.doe@example.com&gt;"</span>
-2048-bit RSA key, ID E79FBC2D, created 2014-07-16 <span class="o">(</span>main key ID 1D5A400A<span class="o">)</span>
-
-<span class="o">[</span>master <span class="o">(</span>root-commit<span class="o">)</span> 6cdfc26] Test commit of foo
- 1 file changed, 1 insertion<span class="o">(</span>+<span class="o">)</span>
- create mode 100644 foo
-</code></pre></div><p>After adding signed commits, you can see the signature of commits by using <code>--show-signature</code> option:<div class="highlight"><pre><code class="language-sh" data-lang="sh"><span class="gp">$ </span>git log --show-signature
-commit 6cdfc26eb2273fed14181fe4a09b6240323b8930
-gpg: Signature made 금  7/18 21:29:24 2014 KST using RSA key ID E79FBC2D
-gpg: Good signature from <span class="s2">"John Doe &lt;john.doe@example.com&gt;"</span>
-gpg:                 aka <span class="s2">"keybase.io/jdoe &lt;jdoe@keybase.io&gt;"</span>
-Author: John Doe &lt;john.doe@example.com&gt;
-Date:   Fri Jul 18 21:29:14 2014 +0900
-
-    Test commit of foo
-
- foo | 1 +
- 1 file changed, 1 insertion<span class="o">(</span>+<span class="o">)</span>
-</code></pre></div><p>For more information, see <a href="http://mikegerwitz.com/papers/git-horror-story">A Git Horror Story: Repository Integrity With Signed Commits</a> by Mike Gerwitz.<h2><a id="contact-me"></a>Contact Me</h2><p>So, now feel free to contact me via <a href="https://keybase.io/yous">keybase.io/yous</a> and other <a href="/about">contacts</a>. The source of this site is available on <a href="https://github.com/yous/yous.github.io">GitHub</a>, forks and pull requests are welcome!</div></article></div></div><footer class="site-footer"><div class="wrapper"><p> Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a><br /> &copy; 2013&ndash;2015 - <a href="/about/">Yous</a> - <a href="/atom.xml">RSS</a></div></footer>
+<!DOCTYPE html>
+<meta charset=utf-8>
+<title>Redirecting...</title>
+<link rel=canonical href="/2014/07/17/using-keybase/">
+<meta http-equiv=refresh content="0; url=/2014/07/17/using-keybase/">
+<h1>Redirecting...</h1>
+<a href="/2014/07/17/using-keybase/">Click here if you are not redirected.</a>
+<script>location='/2014/07/17/using-keybase/'</script>
