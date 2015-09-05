@@ -1,21 +1,48 @@
+RSpec::Matchers.define :be_utc_post do
+  match do |actual|
+    expect(actual.date.zone).to eq('UTC')
+  end
+  failure_message do |actual|
+    "expected #{actual.date} to have UTC timezone"
+  end
+end
+
+RSpec::Matchers.define :have_utc_filename do
+  match do |actual|
+    date = actual.date.utc
+    year = date.strftime('%Y')
+    month = date.strftime('%m')
+    day = date.strftime('%d')
+
+    expect(actual.name)
+      .to eq("#{year}-#{month}-#{day}-#{actual.slug}#{actual.ext}")
+  end
+  failure_message do |actual|
+    "expected #{actual.name} to have UTC date"
+  end
+end
+
+RSpec::Matchers.define :have_utc_url do
+  match do |actual|
+    date = actual.date.utc
+    year = date.strftime('%Y')
+    month = date.strftime('%m')
+    day = date.strftime('%d')
+
+    expect(actual.url).to eq("/#{year}/#{month}/#{day}/#{actual.slug}/")
+  end
+  failure_message do |actual|
+    "expected #{actual.url} to have UTC date"
+  end
+end
+
 RSpec.describe '_site' do
   include JekyllHelper
 
-  context 'timezone' do
-    it 'uses KST instead of UTC' do
-      [
-        %w(2013 02 19 ios-6.1-music-album-shuffle index.html),
-        %w(2013 12 03 syntax-highlighting-test index.html),
-        %w(2014 02 23 apples-ssl-tls-bug index.html),
-        %w(2014 04 03 fragment-transaction-and-activity-state-loss index.html),
-        %w(2014 05 12 layout-inflation-as-intended index.html),
-        %w(2014 07 18 using-keybase index.html),
-        %w(2014 09 21 yet-another-hex-word index.html),
-        %w(2014 12 09 seccon-ctf-2014-easy-cipher-write-up index.html),
-        %w(2014 12 26 christmasctf-2014-write-up index.html)
-      ].each do |post_dirs|
-        expect(File.exist?(dest_dir(post_dirs))).to be_truthy
-      end
+  describe 'timezone' do
+    it 'uses UTC instead of local timezone' do
+      expect(site.posts)
+        .to all(be_utc_post.and have_utc_filename.and have_utc_url)
     end
   end
 end

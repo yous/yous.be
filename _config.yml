@@ -12,6 +12,7 @@ exclude:
   - Rakefile
   - spec
   - vendor
+timezone: UTC
 
 # Social media
 twitter_username:

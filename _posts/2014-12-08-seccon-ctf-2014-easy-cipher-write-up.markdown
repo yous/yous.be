@@ -7,7 +7,10 @@ categories:
     - CTF
 description: "Write-up of SECCON CTF 2014: Easy Cipher."
 keywords: seccon, seccon ctf 2014, cipher, write-up
-redirect_from: /p/20141209/
+redirect_from:
+    - /p/20141209/
+    - /2014/12/09/seccon-ctf-2014-easy-cipher-write-up/
+    - /p/20141208/
 ---
 
 ## Crypto100 - Easy Cipher

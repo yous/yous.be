@@ -7,17 +7,20 @@ categories:
     - Technology
 description: I just created my Keybase. You can see my PGP public key on https://keybase.io/yous and get the key via https://keybase.io/yous/key.asc.
 keywords: keybase
-redirect_from: /p/20140718/
+redirect_from:
+    - /p/20140718/
+    - /2014/07/18/using-keybase/
+    - /p/20140717/
 twitter_card:
-    image: http://yous.be/images/2014/07/18/logo.png
+    image: http://yous.be/images/2014/07/17/logo.png
 facebook:
-    image: http://yous.be/images/2014/07/18/logo.png
+    image: http://yous.be/images/2014/07/17/logo.png
 ---
 
 ## <a id="keybase"></a>Keybase
 
 
-![Keybase](/images/2014/07/18/logo.png "Keybase")
+![Keybase](/images/2014/07/17/logo.png "Keybase")
 
 > Keybase will be a public directory of publicly auditable public keys. All paired, for convenience, with unique usernames.
 

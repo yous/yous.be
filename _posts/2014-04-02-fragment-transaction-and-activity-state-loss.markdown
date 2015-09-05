@@ -7,7 +7,10 @@ description: FragmentTransaction을 commit 했을 때 나타나는 IllegalStateE
 categories:
     - Android
 keywords: android, fragment, transaction, commit, state, loss, commitallowingstateloss
-redirect_from: /p/20140403/
+redirect_from:
+    - /p/20140403/
+    - /2014/04/03/fragment-transaction-and-activity-state-loss/
+    - /p/20140402/
 external-url: http://www.androiddesignpatterns.com/2013/08/fragment-transaction-commit-state-loss.html
 ---
 

@@ -6,7 +6,10 @@ comments: false
 categories:
     - Uncategorized
 keywords: syntax, highlighting
-redirect_from: /p/20131203/
+redirect_from:
+    - /p/20131203/
+    - /2013/12/03/syntax-highlighting-test/
+    - /p/20131202/
 ---
 
 ```

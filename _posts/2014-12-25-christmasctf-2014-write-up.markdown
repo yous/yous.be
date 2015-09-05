@@ -7,14 +7,17 @@ categories:
     - CTF
 description: Write-up of ChristmasCTF 2014.
 keywords: christmasctf, write-up
-redirect_from: /p/20141226/
+redirect_from:
+    - /p/20141226/
+    - /2014/12/26/christmasctf-2014-write-up/
+    - /p/20141225/
 twitter_card:
-    image: http://yous.be/images/2014/12/26/christmasctf-1.png
+    image: http://yous.be/images/2014/12/25/christmasctf-1.png
 facebook:
-    image: http://yous.be/images/2014/12/26/christmasctf-1.png
+    image: http://yous.be/images/2014/12/25/christmasctf-1.png
 ---
 
-![ChristmasCTF](/images/2014/12/26/christmasctf-1_800.png "ChristmasCTF")
+![ChristmasCTF](/images/2014/12/25/christmasctf-1_800.png "ChristmasCTF")
 
 <!-- more -->
 
@@ -165,13 +168,13 @@ Flag는 `I_L0VE_S6nta, I_L0Ve_Father, I_L0VE_Y0U...`입니다.
 > 악보에 숨겨진 Kevin의 메세지를 찾으시오.  
 > * Authkey has to be Uppercase
 >
-> ![e11369defdb6e1a58fe1931b2cdac372bca8b05a4c5ffebd681f093b82c0fcb5.jpg](/images/2014/12/26/e11369defdb6e1a58fe1931b2cdac372bca8b05a4c5ffebd681f093b82c0fcb5.jpg "e11369defdb6e1a58fe1931b2cdac372bca8b05a4c5ffebd681f093b82c0fcb5.jpg")
+> ![e11369defdb6e1a58fe1931b2cdac372bca8b05a4c5ffebd681f093b82c0fcb5.jpg](/images/2014/12/25/e11369defdb6e1a58fe1931b2cdac372bca8b05a4c5ffebd681f093b82c0fcb5.jpg "e11369defdb6e1a58fe1931b2cdac372bca8b05a4c5ffebd681f093b82c0fcb5.jpg")
 
 꽤나 수상한 악보입니다. 아랫줄을 보면 박자도 맞지 않고 음도 제멋대로입니다. [CODEGATE 2009 예선전 Prob9](http://webhacking.tistory.com/6) 문제를 참고하여 주시기 바랍니다.
 
 마타하리라는 암호라고 하는데, 정보가 확실하진 않으나 해당 글의 WELCOME TO까지 완벽히 동일합니다. 아래 표를 보고 직접 해독합니다:
 
-![Matahari](/images/2014/12/26/Matahari.jpg "Matahari")
+![Matahari](/images/2014/12/25/Matahari.jpg "Matahari")
 
 ``` text
 WELC OME TO CHRI ST
@@ -638,6 +641,6 @@ xor.close
 
 그렇게 얻은 이미지는 아래와 같습니다:
 
-![k3y_xor.png](/images/2014/12/26/k3y_xor.png "k3y_xor.png")
+![k3y_xor.png](/images/2014/12/25/k3y_xor.png "k3y_xor.png")
 
 Flag는 `ASKY_ALWAYS!`입니다.

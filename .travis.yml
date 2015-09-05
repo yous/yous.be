@@ -10,7 +10,6 @@ before_install:
   - gem update --system
   - gem update --remote bundler
 before_script:
-  - export TZ="Asia/Seoul"
   - git config --global user.name "$(git --no-pager show --no-patch --format='%an')"
   - git config --global user.email "$(git --no-pager show --no-patch --format='%ae')"
 script:

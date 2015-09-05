@@ -19,7 +19,7 @@ task :post, :title do |t, args|
     title = $stdin.gets.chomp
   end
   time = Time.now
-  slug = "#{time.strftime('%Y-%m-%d')}-#{title.downcase.gsub(/[^\w]+/, '-')}"
+  slug = "#{time.utc.strftime('%Y-%m-%d')}-#{title.downcase.gsub(/[^\w]+/, '-')}"
   filename = File.join(File.dirname(__FILE__), '_posts', slug + '.markdown')
 
   if File.exist?(filename)
