@@ -4,14 +4,15 @@ RSpec::Core::RakeTask.new(:spec)
 require 'html/proofer'
 desc 'Validate HTML files'
 task :proof do
-  HTML::Proofer.new('_site', {
+  HTML::Proofer.new(
+    '_site',
     check_html: true,
     href_ignore: [/localhost/]
-  }).run
+  ).run
 end
 
 desc 'Create a new post'
-task :post, :title do |t, args|
+task :post, :title do |_t, args|
   if args.title
     title = args.title
   else
