@@ -14,7 +14,7 @@ before_script:
   - git config --global user.email "$(git --no-pager show --no-patch --format='%ae')"
 script:
   - git clone -b master --depth 1 --quiet https://${TOKEN}@github.com/yous/yous.github.io.git _site
-  - bundle exec jekyll build --full-rebuild
+  - rm -r _site/*
   - bundle exec rake spec
 after_success:
   - cd _site
