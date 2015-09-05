@@ -63,7 +63,7 @@ window.x$ = window.xui = xui = function(q, context) {
 </body></html>
 ```
 
-{% gist 2219214 %}
+{% gist imathis/2219214 %}
 
 <!-- more -->
 
@@ -350,7 +350,7 @@ int main(int argc, char **argv) {
 }
 ```
 
-{% gist 4321346 %}
+{% gist parkr/4321346 %}
 
 ``` coffeescript
 # Given an alphabet:
