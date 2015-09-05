@@ -5,9 +5,136 @@
     <description>Blog for hackers.</description>
     <link>https://yous.be/</link>
     <atom:link href="https://yous.be/atom.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 05 Sep 2015 12:28:11 +0000</pubDate>
-    <lastBuildDate>Sat, 05 Sep 2015 12:28:11 +0000</lastBuildDate>
+    <pubDate>Sat, 05 Sep 2015 17:09:49 +0000</pubDate>
+    <lastBuildDate>Sat, 05 Sep 2015 17:09:49 +0000</lastBuildDate>
     <generator>Jekyll v3.0.0.pre.beta8</generator>
+    
+      <item>
+        
+        <title>Moving Timezone to UTC in Jekyll</title>
+        
+        <description>&lt;p&gt;At the very first, I haven&amp;rsquo;t think about the timezone of my blog. I had used to
+generate my blog on my local machine and deploy manually. At that time every
+content is released based on KST timezone, which is GMT+9.&lt;/p&gt;
+
+&lt;p&gt;Right after that I tried to deploy my blog through Travis CI, I realized that
+something went wrong. Travis CI uses UTC by default, so the URL of every post
+between 0AM and 9AM was shifted by one day backward. I
+&lt;a href=&quot;https://github.com/yous/yous.github.io/commit/0bd96e27320a82c9fee0d1413c744300d1e1af08&quot;&gt;had to modify&lt;/a&gt;
+&lt;code&gt;/etc/timezone&lt;/code&gt; or set environment variable &lt;code&gt;TZ&lt;/code&gt; to restore the URLs.&lt;/p&gt;
+
+&lt;p&gt;Yes, this can solve the problem I faced. But should I really use the KST for
+this whole blog? It&amp;rsquo;ll be nice if I can show the time based on timezone of each
+client, but I won&amp;rsquo;t be able to handle the date part of the post URL as well. So
+I decided to move the timezone of this site to UTC, global standard at least.&lt;/p&gt;
+
+&lt;p&gt;First I should write some tests for the migration since I want to change URLs by
+only one push. You can access current posts by using &lt;code&gt;jekyll&lt;/code&gt; gem. Place
+&lt;code&gt;spec/support/jekyll_helper.rb&lt;/code&gt; with:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;jekyll&#39;&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;module&lt;/span&gt; &lt;span class=&quot;nn&quot;&gt;JekyllHelper&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;site&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;vi&quot;&gt;@site&lt;/span&gt;
+      &lt;span class=&quot;vi&quot;&gt;@site&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;Jekyll&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;new&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
+        &lt;span class=&quot;no&quot;&gt;Jekyll&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;configuration&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;serving&#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;full_rebuild&#39;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&amp;gt;&lt;/span&gt; &lt;span class=&quot;kp&quot;&gt;true&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+      &lt;span class=&quot;vi&quot;&gt;@site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;process&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Note &lt;code&gt;@site.process&lt;/code&gt;. This makes you be able to access &lt;code&gt;@site.posts&lt;/code&gt;. The basic
+test is simple. I placed this on &lt;code&gt;spec/site_spec.rb&lt;/code&gt;:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;RSpec&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;describe&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;_site&#39;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;kp&quot;&gt;include&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;JekyllHelper&lt;/span&gt;
+
+  &lt;span class=&quot;n&quot;&gt;describe&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;timezone&#39;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;it&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;uses UTC instead of local timezone&#39;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+      &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;site&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;posts&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+        &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;all&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;be_utc_post&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;have_utc_filename&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;and&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;have_utc_url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;So, what&amp;rsquo;s the &lt;code&gt;be_utc_post&lt;/code&gt;, &lt;code&gt;have_utc_filename&lt;/code&gt;, and &lt;code&gt;have_utc_url&lt;/code&gt;? Each of
+them is RSpec custom matcher. I separated the validation into three parts.&lt;/p&gt;
+
+&lt;ol&gt;
+&lt;li&gt;Does the &lt;code&gt;date&lt;/code&gt; object of the post have UTC timezone?&lt;/li&gt;
+&lt;li&gt;Does the post have filename with the UTC date?&lt;/li&gt;
+&lt;li&gt;Does the generated URL have the UTC date?&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;So the each matcher is like following:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;no&quot;&gt;RSpec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Matchers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;define&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:be_utc_post&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;match&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;actual&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;actual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;zone&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;UTC&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;failure_message&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;actual&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;expected &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;actual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; to have UTC timezone&quot;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;no&quot;&gt;RSpec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Matchers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;define&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:have_utc_filename&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;match&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;actual&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;date&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;actual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;utc&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;year&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;strftime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;%Y&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;month&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;strftime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;%m&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;day&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;strftime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;%d&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;actual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+      &lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;year&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;day&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;actual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;slug&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;actual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ext&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;failure_message&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;actual&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;expected &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;actual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; to have UTC date&quot;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;no&quot;&gt;RSpec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Matchers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;define&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:have_utc_url&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;match&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;actual&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;date&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;actual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;utc&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;year&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;strftime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;%Y&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;month&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;strftime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;%m&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;day&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;date&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;strftime&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;%d&#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+    &lt;span class=&quot;n&quot;&gt;expect&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;actual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;eq&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;year&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;month&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;day&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;actual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;slug&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;failure_message&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;actual&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+    &lt;span class=&quot;s2&quot;&gt;&quot;expected &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;actual&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;url&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt; to have UTC date&quot;&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Note that &lt;code&gt;&amp;quot;/#{year}/#{month}/#{day}/#{actual.slug}/&amp;quot;&lt;/code&gt; is based on my
+&lt;code&gt;permalink&lt;/code&gt; setting of &lt;code&gt;_config.yml&lt;/code&gt; in Jekyll, so you may have to change the
+template appropriately.&lt;/p&gt;
+
+&lt;p&gt;Tests are ready, so now we start migrating. See &amp;lsquo;Time Zone&amp;rsquo; part of
+&lt;a href=&quot;http://jekyllrb.com/docs/configuration/#global-configuration&quot;&gt;the documentation of Jekyll configuration&lt;/a&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+&lt;p&gt;Set the time zone for site generation. This sets the &lt;code&gt;TZ&lt;/code&gt; environment
+variable, which Ruby uses to handle time and date creation and manipulation.
+Any entry from the &lt;a href=&quot;http://en.wikipedia.org/wiki/Tz_database&quot;&gt;IANA Time Zone Database&lt;/a&gt;
+is valid, e.g. &lt;code&gt;America/New_York&lt;/code&gt;. A list of all available values can be found
+&lt;a href=&quot;http://en.wikipedia.org/wiki/List_of_tz_database_time_zones&quot;&gt;here&lt;/a&gt;. The
+default is the local time zone, as set by your operating system.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;So when you add &lt;code&gt;timezone: UTC&lt;/code&gt; to your &lt;code&gt;_config.yml&lt;/code&gt;, you&amp;rsquo;re almost done!
+Remained things are boring file renames and making backward redirect links,
+using &lt;a href=&quot;https://github.com/jekyll/jekyll-redirect-from&quot;&gt;jekyll-redirect-from&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;You can see the full changes on
+&lt;a href=&quot;https://github.com/yous/yous.github.io/commit/4aae28ea371af67cb099a249f2c4f7a5bb1be723&quot;&gt;this commit&lt;/a&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 05 Sep 2015 12:39:19 +0000</pubDate>
+        <link>https://yous.be/2015/09/05/moving-timezone-to-utc-in-jekyll/</link>
+        <guid isPermaLink="true">https://yous.be/2015/09/05/moving-timezone-to-utc-in-jekyll/</guid>
+        
+        
+        <category>Jekyll</category>
+        
+      </item>
     
       <item>
         
@@ -2001,50 +2128,6 @@ index 50e9404..76102db 100644
         
         
         <category>Android</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>Trailing whitespace is evil. Don&#39;t commit evil into your repo. &amp;rarr;</title>
-        
-        <description>&lt;p&gt;&lt;a href=&quot;http://codeimpossible.com/about.html&quot;&gt;Jared Barboza&lt;/a&gt;가 쓴 &lt;a href=&quot;http://codeimpossible.com/2012/04/02/Trailing-whitespace-is-evil-Don-t-commit-evil-into-your-repo-/&quot;&gt;줄 끝 공백에 관한 글&lt;/a&gt;이다.&lt;/p&gt;
-
-&lt;!-- **Lately, I’ve beeen working on a lot of projects with different people/languages/editors, most of us were new git’ers and each project had a real problem with trailing whitespace.** --&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;&lt;strong&gt;난 최근에 다양한 사람/언어/편집기와 함께 많은 프로젝트를 진행해 왔다. 우리들 대부분은 Git 초보자였고, 각 프로젝트는 줄 끝 공백에 관한 문제가 있었다.&lt;/strong&gt;&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;경력 있는 개발자로만 이루어진 팀이라고 해도 이런 문제는 발생하기 마련이다.&lt;/p&gt;
-
-&lt;!-- Trailing whitespace issues can cause a lot of problems when they get into your repository. It leads to falsey diffs which claim lines have been changed when in fact the only thing that changed was spacing. --&gt;
-
-&lt;blockquote&gt;
-&lt;p&gt;줄 끝 공백은 당신의 저장소에서 상당히 많은 문제를 일으킬 수 있다. 실제로 바뀐 것은 공백일 뿐인데도 그 줄에 변경 사항이 있다는 잘못된 diff를 만든다.&lt;/p&gt;
-
-&lt;!-- This can make finding what actually changed in a file later on in the development cycle next to impossible. Most open source project leads know this and a lot of them will reject pull requests that fail to trim whitespace (or have other --&gt;
-
-&lt;p&gt;이는 개발 과정에서 나중에 실제 파일의 변경 사항이 무엇이었는지 찾기 불가능하게 만든다. 대부분의 오픈 소스 프로젝트 대표들은 이를 알고 있고, 그들 대부분은 줄 끝 공백을 없애지 않은 풀 리퀘스트를 거절할 것이다.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;이후 글에서는 Visual Studio와 Sublime Text 2에서 줄 끝 공백을 제거하는 방법과 git hook을 통해 커밋에 줄 끝 공백이 포함되지 않도록 하는 방법을 소개하고 있다.&lt;/p&gt;
-
-&lt;p&gt;나는 Android Studio에서는 파일 저장 시 모든 줄 끝 공백을 지우고, Vim에서는 줄 끝 공백에 하이라이트를 입혀 쓰고 있다.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-vim&quot; data-lang=&quot;vim&quot;&gt;highlight ExtraWhitespace ctermbg&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;red&lt;/span&gt; guibg&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;red&lt;/span&gt;
-autocmd &lt;span class=&quot;nb&quot;&gt;BufWinEnter&lt;/span&gt; * &lt;span class=&quot;k&quot;&gt;match&lt;/span&gt; ExtraWhitespace &lt;span class=&quot;sr&quot;&gt;/\s\+$/&lt;/span&gt;
-autocmd &lt;span class=&quot;nb&quot;&gt;InsertEnter&lt;/span&gt; * &lt;span class=&quot;k&quot;&gt;match&lt;/span&gt; ExtraWhitespace &lt;span class=&quot;sr&quot;&gt;//&lt;/span&gt;
-autocmd &lt;span class=&quot;nb&quot;&gt;InsertLeave&lt;/span&gt; * &lt;span class=&quot;k&quot;&gt;match&lt;/span&gt; ExtraWhitespace &lt;span class=&quot;sr&quot;&gt;/\s\+$/&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; version &lt;span class=&quot;p&quot;&gt;&amp;gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;702&lt;/span&gt;
-  autocmd &lt;span class=&quot;nb&quot;&gt;BufWinLeave&lt;/span&gt; * &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; clearmatches&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;</description>
-        <pubDate>Mon, 31 Mar 2014 11:57:09 +0000</pubDate>
-        <link>https://yous.be/2014/03/31/trailing-whitespace-is-evil-dont-commit-evil-into-your-repo/</link>
-        <guid isPermaLink="true">https://yous.be/2014/03/31/trailing-whitespace-is-evil-dont-commit-evil-into-your-repo/</guid>
-        
-        
-        <category>Git</category>
         
       </item>
     
