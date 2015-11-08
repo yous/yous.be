@@ -44,8 +44,9 @@ RSpec.describe '_site' do
 
   describe 'timezone' do
     it 'uses UTC instead of local timezone' do
-      expect(site.posts)
-        .to all(be_utc_post.and have_utc_filename.and have_utc_url)
+      expect(site.posts.docs).to all(be_utc_post)
+      expect(site.posts.docs).to all(have_utc_filename)
+      expect(site.posts.docs).to all(have_utc_url)
     end
   end
 end
