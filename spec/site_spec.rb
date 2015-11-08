@@ -13,12 +13,14 @@ RSpec::Matchers.define :have_utc_filename do
     year = date.strftime('%Y')
     month = date.strftime('%m')
     day = date.strftime('%d')
+    slug = actual.data['slug']
+    ext = actual.data['ext']
 
-    expect(actual.name)
-      .to eq("#{year}-#{month}-#{day}-#{actual.slug}#{actual.ext}")
+    expect(actual.basename)
+      .to eq("#{year}-#{month}-#{day}-#{slug}#{ext}")
   end
   failure_message do |actual|
-    "expected #{actual.name} to have UTC date"
+    "expected #{actual.basename} to have UTC date"
   end
 end
 
@@ -28,8 +30,9 @@ RSpec::Matchers.define :have_utc_url do
     year = date.strftime('%Y')
     month = date.strftime('%m')
     day = date.strftime('%d')
+    slug = Jekyll::Utils.slugify(actual.data['slug'])
 
-    expect(actual.url).to eq("/#{year}/#{month}/#{day}/#{actual.slug}/")
+    expect(actual.url).to eq("/#{year}/#{month}/#{day}/#{slug}/")
   end
   failure_message do |actual|
     "expected #{actual.url} to have UTC date"
