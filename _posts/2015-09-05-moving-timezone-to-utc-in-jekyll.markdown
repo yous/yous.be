@@ -52,8 +52,9 @@ RSpec.describe '_site' do
 
   describe 'timezone' do
     it 'uses UTC instead of local timezone' do
-      expect(site.posts)
-        .to all(be_utc_post.and have_utc_filename.and have_utc_url)
+      expect(site.posts).to all(be_utc_post)
+      expect(site.posts).to all(have_utc_filename)
+      expect(site.posts).to all(have_utc_url)
     end
   end
 end
@@ -111,6 +112,66 @@ end
 Note that `"/#{year}/#{month}/#{day}/#{actual.slug}/"` is based on my
 `permalink` setting of `_config.yml` in Jekyll, so you may have to change the
 template appropriately.
+
+**Update**: Jekyll released 3.0.0, and there were some changes on
+`Jekyll::Post`. Following code is updated version of spec code. Also you can
+track the file on
+[GitHub](https://github.com/yous/yous.github.io/blob/source/spec/site_spec.rb).
+
+``` ruby
+RSpec::Matchers.define :be_utc_post do
+  match do |actual|
+    expect(actual.date.zone).to eq('UTC')
+  end
+  failure_message do |actual|
+    "expected #{actual.date} to have UTC timezone"
+  end
+end
+
+RSpec::Matchers.define :have_utc_filename do
+  match do |actual|
+    date = actual.date.utc
+    year = date.strftime('%Y')
+    month = date.strftime('%m')
+    day = date.strftime('%d')
+    slug = actual.data['slug']
+    ext = actual.data['ext']
+
+    expect(actual.basename)
+      .to eq("#{year}-#{month}-#{day}-#{slug}#{ext}")
+  end
+  failure_message do |actual|
+    "expected #{actual.basename} to have UTC date"
+  end
+end
+
+RSpec::Matchers.define :have_utc_url do
+  match do |actual|
+    date = actual.date.utc
+    year = date.strftime('%Y')
+    month = date.strftime('%m')
+    day = date.strftime('%d')
+    slug = Jekyll::Utils.slugify(actual.data['slug'])
+
+    expect(actual.url).to eq("/#{year}/#{month}/#{day}/#{slug}/")
+  end
+  failure_message do |actual|
+    "expected #{actual.url} to have UTC date"
+  end
+end
+
+RSpec.describe '_site' do
+  include JekyllHelper
+
+  describe 'timezone' do
+    it 'uses UTC instead of local timezone' do
+      expect(site.posts.docs).to all(be_utc_post)
+      expect(site.posts.docs).to all(have_utc_filename)
+      expect(site.posts.docs).to all(have_utc_url)
+    end
+  end
+end
+```
 
 Tests are ready, so now we start migrating. See 'Time Zone' part of
 [the documentation of Jekyll configuration](http://jekyllrb.com/docs/configuration/#global-configuration).
