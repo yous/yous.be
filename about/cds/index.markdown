@@ -340,3 +340,6 @@ footer: false
 331. IU --- CHAT-SHIRE
 332. 개리 --- 2002
 333. Verbal Jint & Sanchez --- 여자
+334. 박재범(Jay Park) --- WORLDWIDE
+335. Dynamic Duo --- Grand Carnival
+336. 태연 --- I
