@@ -35,7 +35,7 @@ markdown: redcarpet
 excerpt_separator: "<!-- more -->"
 
 # Outputting
-permalink: /:year/:month/:day/:title/
+permalink: /:year/:month/:day/:slug/
 paginate_path: /posts/:num/
 paginate: 5
 
