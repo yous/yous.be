@@ -30,9 +30,10 @@ RSpec::Matchers.define :have_utc_url do
     year = date.strftime('%Y')
     month = date.strftime('%m')
     day = date.strftime('%d')
-    slug = Jekyll::Utils.slugify(actual.data['slug'])
+    title = Jekyll::Utils.slugify(actual.data['slug'],
+                                  mode: 'pretty', cased: true)
 
-    expect(actual.url).to eq("/#{year}/#{month}/#{day}/#{slug}/")
+    expect(actual.url).to eq("/#{year}/#{month}/#{day}/#{title}/")
   end
   failure_message do |actual|
     "expected #{actual.url} to have UTC date"
