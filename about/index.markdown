@@ -29,7 +29,7 @@ Chayoung You
 - [zsh-themes](https://github.com/yous/zsh-themes) --- Custom Zsh themes.
 - [aheui.vim](https://github.com/yous/aheui.vim) --- Vim syntax highlighting for Aheui.
 - [pad_monster_book](https://github.com/yous/pad_monster_book) --- The monster book for Puzzle & Dragons.
-- [YousList](https://github.com/yous/YousList) --- Block filter for Adblock Plus and uBlock.
+- [YousList](https://github.com/yous/YousList) --- Block filter for Adblock Plus, uBlock Origin, uBlock and 1Blocker.
 - [Dwaet](https://github.com/yous/dwaet) --- No doet, it's dwaet.
 - [Sawarineko](https://github.com/yous/sawarineko) --- Get your Nya!
 - [BaseHangul](https://github.com/yous/basehangul) --- Human-readable binary encoding, [BaseHangul](https://basehangul.github.io) for Ruby.
@@ -54,12 +54,13 @@ Chayoung You
 - [Ruby](https://www.ruby-lang.org)
 - [Ruby on Rails](http://rubyonrails.org)
 - [Android](http://www.android.com)
+- [Vim](http://www.vim.org)
 - Security
     - [GoN](http://gon.kaist.ac.kr)
 
 ## <a id="education"></a>Education
 
-[Korea Advanced Institute of Science and Technology](http://www.kaist.ac.kr), Undergraduate of Mathematical Sciences and Computer Science, 2011--Present
+[KAIST](http://www.kaist.ac.kr), Undergraduate of Mathematical Sciences and Computer Science, 2011--Present
 
 ## <a id="likes"></a>Likes
 
