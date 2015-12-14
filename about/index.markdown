@@ -13,7 +13,7 @@ twitter_card:
 
 ## <a id="yous"></a>Yous
 
-Chayoung You ([Resume](/resume/en.pdf))
+Chayoung You
 
 <img src="/images/about/yous.png" alt="Yous" width="200px" height="200px" />
 
