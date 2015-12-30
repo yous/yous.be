@@ -1,9 +1,4 @@
-{% if post.categories %}
-  {% assign categories = post.categories %}
-{% elsif page.categories %}
-  {% assign categories = page.categories %}
-{% endif %}
-{% for category in categories %}
+{% for category in include.categories %}
   {% assign no_comma = forloop.last %}
   {% for archive in site.archives %}
     {% if archive.type == "category" and archive.title == category %}

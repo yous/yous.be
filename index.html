@@ -12,7 +12,7 @@ layout: default
             <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}{% if post.external-url %} &rarr;{% endif %}</a>
           </h1>
 
-          <p class="post-meta">{{ post.date | date: "%b %-d, %Y" }}{% if post.categories %} • {% include category_links.html %}{% endif %}</p>
+          <p class="post-meta">{{ post.date | date: "%b %-d, %Y" }}{% if post.categories %} • {% include category_links.html categories=post.categories %}{% endif %}</p>
         </header>
 
         <div class="post-content">
