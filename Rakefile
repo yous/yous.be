@@ -34,9 +34,9 @@ task :post, :title do |_t, args|
     f.puts "title: \"#{title}\""
     f.puts "date: #{time.strftime('%Y-%m-%d %H:%M:%S %z')}"
     f.puts 'comments: false'
-    f.puts 'categories: '
-    f.puts 'description: '
-    f.puts 'keywords: '
+    f.puts 'categories:'
+    f.puts 'description:'
+    f.puts 'keywords:'
     f.puts "redirect_from: /p/#{time.strftime('%Y%m%d')}/"
     f.puts '---'
   end
