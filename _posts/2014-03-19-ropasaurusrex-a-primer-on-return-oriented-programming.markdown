@@ -74,7 +74,7 @@ ROP를 이용하면 실행 가능한 메모리 영역(executable memory)에 있�
 <!-- The simple idea is, let's say function `A()` calls function `B()` with two parameters, 1 and 2. Then `B()` calls `C()` with two parameters, 3 and 4. When you're in `C()`, the stack looks like this: -->
 아이디어를 간단하게 설명하자면, 함수 `A()`가 함수 `B()`를 두 개의 인자 1, 2와 함께 호출한다고 하자. 그리고 `B()`는 `C()`를 두 개의 인자 3, 4와 함께 호출한다고 하자. `C()`가 실행 중일 때, 스택은 이렇게 보일 것이다.
 
-<!-- ``` text
+<!-- 
 +----------------------+
 |         ...          | (higher addresses)
 +----------------------+
@@ -110,7 +110,7 @@ ROP를 이용하면 실행 가능한 메모리 영역(executable memory)에 있�
 +----------------------+
 |         ...          | (lower addresses)
 +----------------------+
-``` -->
+ -->
 ``` text
 +----------------------+
 |         ...          | (높은 주소)
@@ -187,7 +187,7 @@ ROP를 이해하기 위해 이해해야 하는 가장 중요한 건, 함수의 �
 <!-- Let's say you call the `sleep()` function, and get to the first line; its stack frame is going to look like this: -->
 당신이 `sleep()` 함수를 호출하고, 첫 번째 줄에 왔다고 하자. 그 스택 프레임은 이렇게 생겼을 것이다.
 
-<!-- ``` text
+<!-- 
           ...            <-- don't know, don't care territory (higher addresses)
 +----------------------+
 |      [seconds]       |
@@ -195,7 +195,7 @@ ROP를 이해하기 위해 이해해야 하는 가장 중요한 건, 함수의 �
 |   [return address]   | <-- esp points here
 +----------------------+
           ...            <-- not allocated, don't care territory (lower addresses)
-``` -->
+ -->
 ``` text
           ...            <-- 모른다, 영역은 상관 없다. (높은 주소)
 +----------------------+
@@ -212,7 +212,7 @@ ROP를 이해하기 위해 이해해야 하는 가장 중요한 건, 함수의 �
 <!-- When `sleep()` returns, it winds up looking like this: -->
 `sleep()`이 반환하면, 결국 이렇게 생겼을 것이다.
 
-<!-- ``` text
+<!-- 
           ...            <-- don't know, don't care territory (higher addresses)
 +----------------------+
 |      [seconds]       | <-- esp points here
@@ -220,7 +220,7 @@ ROP를 이해하기 위해 이해해야 하는 가장 중요한 건, 함수의 �
 | [old return address] | <-- not allocated, don't care territory starts here now
 +----------------------+
           ...            (lower addresses)
-``` -->
+ -->
 ``` text
           ...            <-- 모른다, 영역은 상관 없다. (높은 주소)
 +----------------------+
@@ -243,7 +243,7 @@ ROP를 이해하기 위해 이해해야 하는 가장 중요한 건, 함수의 �
 <!-- ...well, since you asked, let me tell you. We've all heard of a "stack overflow", which involves overwriting a variable on the stack. What's that mean? Well, let's say we have a frame that looks like this: -->
 ...뭐, 당신이 궁금해 하니 말하겠다. 우리 모두 "스택 오버플로"에 대해 들어봤다. 그건 스택에 있는 변수를 덮어쓰는 것과 관련이 있다. 그게 무슨 뜻이냐? 뭐, 이런 스택 프레임이 있다고 하자.
 
-<!-- ``` text
+<!-- 
           ...            <-- don't know, don't care territory (higher addresses)
 +----------------------+
 |      [seconds]       |
@@ -256,7 +256,7 @@ ROP를 이해하기 위해 이해해야 하는 가장 중요한 건, 함수의 �
 |                      |
 +----------------------+
           ...            (lower addresses)
-``` -->
+ -->
 ``` text
           ...            <-- 모른다, 영역은 상관 없다. (높은 주소)
 +----------------------+
@@ -512,7 +512,7 @@ ssize_t read(int fd, void *buf, size_t count);
 <!-- This means that, when you enter the `read()` function, you want the stack to look like this: -->
 당신이 `read()` 함수에 진입했을 때, 이런 스택을 원할 것이다.
 
-<!-- ``` text
+<!-- 
 +----------------------+
 |         ...          | - doesn't matter, other funcs will go here
 +----------------------+
@@ -530,7 +530,7 @@ ssize_t read(int fd, void *buf, size_t count);
 +----------------------+
 |         ...          | - doesn't matter, read() will use for locals
 +----------------------+
-``` -->
+ -->
 ``` text
 +----------------------+
 |         ...          | - 상관 없다. 다른 함수들이 여기 올 것이다.
@@ -661,7 +661,7 @@ Program terminated with signal 11, Segmentation fault.
 <!-- Because `system()` only takes one argument, building the stackframe is pretty easy: -->
 `system()`은 인자를 하나만 받으므로, 스택 프레임을 만드는 건 쉬운 편이다.
 
-<!-- ``` text
+<!-- 
 +----------------------+
 |         ...          | - doesn't matter, other funcs will go here
 +----------------------+
@@ -673,7 +673,7 @@ Program terminated with signal 11, Segmentation fault.
 +----------------------+
 |         ...          | - doesn't matter, system() will use for locals
 +----------------------+
-``` -->
+ -->
 ``` text
 +----------------------+
 |         ...          | - 상관 없다. 다른 함수들이 여기 올 것이다.
@@ -691,7 +691,7 @@ Program terminated with signal 11, Segmentation fault.
 <!-- Now if we stack this on top of our `read()` frame, things are looking pretty good: -->
 이제 이걸 `read()` 프레임 위에 쌓으면 제법 괜찮아 보인다.
 
-<!-- ``` text
+<!-- 
 +----------------------+
 |         ...          |
 +----------------------+
@@ -715,7 +715,7 @@ Program terminated with signal 11, Segmentation fault.
 +----------------------+
 |         ...          |
 +----------------------+
-``` -->
+ -->
 ``` text
 +----------------------+
 |         ...          |
@@ -745,7 +745,7 @@ Program terminated with signal 11, Segmentation fault.
 <!-- At the moment that `read()` returns, the stack pointer is in the location shown above. When it returns, it pops `read()`'s return address off the stack and jumps to it. When it does, this is what the stack looks like when `read()` returns: -->
 `read()`가 반환하는 순간, 스택 포인터의 위치는 위에 나타낸 대로다. `read()`가 반환하면, 반환 주소를 스택에서 뽑아 그리로 점프한다. 반환하면 스택은 이렇게 보일 것이다.
 
-<!-- ``` text
+<!-- 
 +----------------------+
 |         ...          |
 +----------------------+
@@ -769,7 +769,7 @@ Program terminated with signal 11, Segmentation fault.
 +----------------------+
 |         ...          |
 +----------------------+
-``` -->
+ -->
 ``` text
 +----------------------+
 |         ...          |
@@ -805,7 +805,7 @@ Program terminated with signal 11, Segmentation fault.
 <!-- `pop/pop/pop/ret` is a construct that we use to remove the stuff we don't want off the stack. Since `read()` has three arguments, we need to pop all three of them off the stack, then return. To demonstrate, here's what the stack looks like immediately after `read()` returns to a `pop/pop/pop/ret`: -->
 스택에서 원하지 않는 것들을 지우기 위해 `pop/pop/pop/ret`을 사용한다. `read()`는 인자를 3개 받으므로, 우린 스택에서 그 셋을 모두 뽑은 다음 반환해야 한다. 설명을 위해 `read()`가 `pop/pop/pop/ret`으로 반환한 직후의 스택을 그려보자면 이렇다.
 
-<!-- ``` text
+<!-- 
 +----------------------+
 |         ...          |
 +----------------------+
@@ -833,7 +833,7 @@ Program terminated with signal 11, Segmentation fault.
 +----------------------+
 |         ...          |
 +----------------------+
-``` -->
+ -->
 ``` text
 +----------------------+
 |         ...          |
@@ -867,7 +867,7 @@ Program terminated with signal 11, Segmentation fault.
 <!-- After "pop/pop/pop/ret" runs, but before it returns, we get this: -->
 "pop/pop/pop/ret"이 실행되고, 반환하기 직전엔 다음과 같다.
 
-<!-- ``` text
+<!-- 
 +----------------------+
 |         ...          |
 +----------------------+
@@ -895,7 +895,7 @@ Program terminated with signal 11, Segmentation fault.
 +----------------------+
 |         ...          |
 +----------------------+
-``` -->
+ -->
 ``` text
 +----------------------+
 |         ...          |
@@ -929,7 +929,7 @@ Program terminated with signal 11, Segmentation fault.
 <!-- Then when it returns, we're exactly where we want to be: -->
 반환하고 나면, 정확히 우리가 원하는 것을 얻을 수 있다.
 
-<!-- ``` text
+<!-- 
 +----------------------+
 |         ...          |
 +----------------------+
@@ -957,7 +957,7 @@ Program terminated with signal 11, Segmentation fault.
 +----------------------+
 |         ...          |
 +----------------------+
-``` -->
+ -->
 ``` text
 +----------------------+
 |         ...          |
@@ -1010,7 +1010,7 @@ $ objdump -d ./ropasaurusrex | egrep 'pop|ret'
 <!-- So now, if we want a triple `pop` and a `ret` (to remove the three arguments that `read()` used), we want the address `0x80484b6`, so we set up our stack like this: -->
 이제 우리는 `read()`가 사용한 세 개의 인자를 지울 세 개의 `pop`과 `ret`이 필요하면 주소 `0x80484b6`을 사용하면 될 것이다. 그러면 스택은 이렇게 될 것이다.
 
-<!-- ``` text
+<!-- 
 +----------------------+
 |         ...          |
 +----------------------+
@@ -1038,7 +1038,7 @@ $ objdump -d ./ropasaurusrex | egrep 'pop|ret'
 +----------------------+
 |         ...          |
 +----------------------+
-``` -->
+ -->
 ``` text
 +----------------------+
 |         ...          |
@@ -1247,7 +1247,7 @@ $1 = {<text variable, no debug info>} 0xb7f48110 <read>
 <!-- Let's just go for broke now and get this working! Here's the stack frame we want: -->
 잠시 멈추고 이걸 이해해 보자! 이건 우리가 원하는 스택 프레임일 것이다.
 
-<!-- ``` text
+<!-- 
 +----------------------+
 |         ...          |
 +----------------------+
@@ -1303,7 +1303,7 @@ $1 = {<text variable, no debug info>} 0xb7f48110 <read>
 +----------------------+
 |         ...          |
 +----------------------+
-``` -->
+ -->
 ``` text
 +----------------------+
 |         ...          |
