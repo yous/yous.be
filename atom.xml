@@ -5,9 +5,87 @@
     <description>Blog for hackers.</description>
     <link>https://yous.be/</link>
     <atom:link href="https://yous.be/atom.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Thu, 31 Dec 2015 21:00:29 +0000</pubDate>
-    <lastBuildDate>Thu, 31 Dec 2015 21:00:29 +0000</lastBuildDate>
+    <pubDate>Fri, 01 Jan 2016 17:08:34 +0000</pubDate>
+    <lastBuildDate>Fri, 01 Jan 2016 17:08:34 +0000</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
+    
+      <item>
+        
+        <title>Switching RVM to chruby</title>
+        
+        <description>&lt;p&gt;I&amp;rsquo;ve found RVM&amp;rsquo;s gemsets are no longer useful to me. I used to make a separate
+gemset for each project by placing &lt;code&gt;.ruby-version&lt;/code&gt; and &lt;code&gt;.ruby-gemset&lt;/code&gt; file in
+each project directory. But whenever a Ruby release come out, I repeated
+uninstalling previous version and then clean installing new version. So I
+decided to move to &lt;a href=&quot;https://github.com/postmodern/chruby&quot;&gt;chruby&lt;/a&gt;, smaller and
+simpler one.&lt;/p&gt;
+
+&lt;h2&gt;Goodbye, RVM&lt;/h2&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;rvm implode
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Also if you have additional script lines loading RVM, remove them. I left them
+to make it work only if RVM is installed.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;o&quot;&gt;[[&lt;/span&gt; -s &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/.rvm/scripts/rvm/&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$HOME&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/.rvm/scripts/rvm&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Installing ruby-install&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/postmodern/ruby-install&quot;&gt;ruby-install&lt;/a&gt; handles installations
+of various Rubies.&lt;/p&gt;
+
+&lt;p&gt;If you&amp;rsquo;re on OS X:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;brew install ruby-install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Otherwise:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;wget -O ruby-install-0.6.0.tar.gz
+https://github.com/postmodern/ruby-install/archive/v0.6.0.tar.gz
+tar -xzvf ruby-install-0.6.0.tar.gz
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;ruby-install-0.6.0/
+sudo make install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Installing chruby&lt;/h2&gt;
+
+&lt;p&gt;If you&amp;rsquo;re on OS X:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;brew install chruby
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you&amp;rsquo;re on Arch Linux:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;yaourt -S chruby
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Otherwise:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;wget -O chruby-0.3.9.tar.gz
+https://github.com/postmodern/chruby/archive/v0.3.9.tar.gz
+tar -xzvf chruby-0.3.9.tar.gz
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;chruby-0.3.9/
+sudo make install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then all I need to do is to load it from startup script, &lt;code&gt;~/.*shrc&lt;/code&gt;.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; -e /usr/local/share/chruby/chruby.sh &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then
+  &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; /usr/local/share/chruby/chruby.sh
+  &lt;span class=&quot;nb&quot;&gt;source&lt;/span&gt; /usr/local/share/chruby/auto.sh
+&lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The &lt;code&gt;auto.sh&lt;/code&gt; is for auto-switching the current version of Ruby according to
+&lt;code&gt;.ruby-version&lt;/code&gt; file of the current directory. This is optional.&lt;/p&gt;
+
+&lt;p&gt;chruby provides ways to &lt;a href=&quot;https://github.com/postmodern/chruby#migrating&quot;&gt;migrate Rubies from another Ruby
+manager&lt;/a&gt;, but I started from
+scratch, so installed latest Ruby using ruby-install.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;ruby-install ruby 2.3.0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then &lt;code&gt;which ruby&lt;/code&gt; will points to some path under &lt;code&gt;~/.rubies&lt;/code&gt; directory.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;which ruby
+~/.rubies/ruby-2.3.0/bin/ruby
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Now it&amp;rsquo;s possible to auto-switch the Ruby version with &lt;code&gt;.ruby-version&lt;/code&gt; file or
+manually with chruby commands like &lt;code&gt;chruby ruby-2.3.0&lt;/code&gt; or &lt;code&gt;chruby system&lt;/code&gt;, etc.&lt;/p&gt;
+</description>
+        <pubDate>Fri, 01 Jan 2016 11:26:07 +0000</pubDate>
+        <link>https://yous.be/2016/01/01/switching-rvm-to-chruby/</link>
+        <guid isPermaLink="true">https://yous.be/2016/01/01/switching-rvm-to-chruby/</guid>
+        
+        
+        <category>Ruby</category>
+        
+      </item>
     
       <item>
         
@@ -2599,25 +2677,6 @@ index 50e9404..76102db 100644
         <pubDate>Thu, 15 May 2014 09:11:13 +0000</pubDate>
         <link>https://yous.be/2014/05/15/how-to-configure-proguard-using-gradle/</link>
         <guid isPermaLink="true">https://yous.be/2014/05/15/how-to-configure-proguard-using-gradle/</guid>
-        
-        
-        <category>Android</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>Layout Inflation as Intended &amp;rarr;</title>
-        
-        <description>&lt;p&gt;안드로이드 개발을 하다 보면 &lt;a href=&quot;http://developer.android.com/reference/android/view/LayoutInflater.html&quot;&gt;LayoutInflater&lt;/a&gt;의 &lt;a href=&quot;http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup)&quot;&gt;inflate(int, ViewGroup)&lt;/a&gt;와 &lt;a href=&quot;http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup,%20boolean)&quot;&gt;inflate(int, ViewGroup, boolean)&lt;/a&gt;는 꽤 익숙하다. 하지만 다음 두 줄의 코드가 어떻게 다른지 아는 사람은 그리 많지 않을 것 같다. 실제로 &lt;a href=&quot;http://tools.android.com/tips/lint&quot;&gt;Android Lint&lt;/a&gt;는 한쪽 코드는 피하도록 권하고 있다.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-java&quot; data-lang=&quot;java&quot;&gt;&lt;span class=&quot;n&quot;&gt;inflater&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;inflate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;my_layout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;inflater&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;inflate&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;R&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;layout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;my_layout&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;parent&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;);&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;a href=&quot;http://www.doubleencore.com/author/daves/&quot;&gt;Dave Smith&lt;/a&gt;가 이 두 코드의 비교와 함께, &lt;a href=&quot;http://www.doubleencore.com/2013/05/layout-inflation-as-intended/&quot;&gt;바른 Layout Inflation 방법&lt;/a&gt;에 대해 설명한 글이 있어 소개한다.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 11 May 2014 22:17:37 +0000</pubDate>
-        <link>https://yous.be/2014/05/11/layout-inflation-as-intended/</link>
-        <guid isPermaLink="true">https://yous.be/2014/05/11/layout-inflation-as-intended/</guid>
         
         
         <category>Android</category>

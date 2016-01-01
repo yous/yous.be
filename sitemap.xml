@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://yous.be/2016/01/01/switching-rvm-to-chruby/</loc>
+    <lastmod>2016-01-01T11:26:07+00:00</lastmod>
+  </url>
+  <url>
     <loc>https://yous.be/2015/12/30/32c3-ctf-2015-libdroid-write-up/</loc>
     <lastmod>2015-12-30T16:59:51+00:00</lastmod>
   </url>
@@ -270,5 +274,8 @@
     </url>
     <url>
       <loc>https://yous.be/2015/12/30/32c3-ctf-2015-libdroid-write-up/</loc>
+    </url>
+    <url>
+      <loc>https://yous.be/2016/01/01/switching-rvm-to-chruby/</loc>
     </url>
 </urlset>
