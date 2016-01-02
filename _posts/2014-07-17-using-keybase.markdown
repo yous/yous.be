@@ -44,7 +44,7 @@ $ keybase id yous
 
 ## <a id="directory-signing"></a>Directory Signing
 
-Command line program of Keybase provides `dir` command to sign or verify directory. First you should install command line, see the [installation docs](https://keybase.io/docs/command_line/installation). If you already have an account, just run `keybase login`. You can also signup with `keybase signup` in terminal.
+Command line program of Keybase provides `dir` command to sign or verify directory. First you should install command line, see the [installation docs](https://keybase.io/download). If you already have an account, just run `keybase login`. You can also signup with `keybase signup` in terminal.
 
 At first, you should change directory to sign:
 

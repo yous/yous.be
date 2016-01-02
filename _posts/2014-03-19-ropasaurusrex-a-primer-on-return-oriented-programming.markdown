@@ -358,8 +358,8 @@ ron@debian-x86 ~ $ gdb ./ropasaurusrex core
 <!-- If you want to do this "better" (by which I mean, slower), check out Metasploit's [pattern_create.rb][] and [pattern_offset.rb][]. They're great when guessing is a slow process, but for the purpose of this challenge it was so quick to guess and check that I didn't bother. -->
 이걸 좀 더 "잘"(내 뜻은, 더 천천히) 하고 싶으면, Metasploit의 [pattern_create.rb][]와 [pattern_offset.rb][]를 보라. 이건 추측이 오래 걸리는 작업일 때 굉장히 좋지만, 이 문제의 경우에는 추측과 확인이 빨라 나는 쓰지 않았다.
 
-[pattern_create.rb]: https://github.com/rapid7/metasploit-framework/blob/master/tools/pattern_create.rb
-[pattern_offset.rb]: https://github.com/rapid7/metasploit-framework/blob/master/tools/pattern_offset.rb
+[pattern_create.rb]: https://github.com/rapid7/metasploit-framework/blob/master/tools/exploit/pattern_create.rb
+[pattern_offset.rb]: https://github.com/rapid7/metasploit-framework/blob/master/tools/exploit/pattern_offset.rb
 
 <!-- ## Starting to write an exploit -->
 ## <a id="starting-to-write-an-exploit"></a>익스플로잇 제작 시작하기

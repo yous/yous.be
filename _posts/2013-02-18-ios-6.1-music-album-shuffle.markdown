@@ -18,11 +18,11 @@ twitter_card:
 
 ## 목차
 
-1. [앨범별 임의 재생](#shuffle-by-album)
-2. [방법](#how-to)
-3. [결론](#conclusion)
-4. [단점](#short)
-5. [iOS 6.1.2 업데이트](#ios-6-1-2)
+1. [앨범별 임의 재생]({% post_url 2013-02-18-ios-6.1-music-album-shuffle %}#shuffle-by-album)
+2. [방법]({% post_url 2013-02-18-ios-6.1-music-album-shuffle %}#how-to)
+3. [결론]({% post_url 2013-02-18-ios-6.1-music-album-shuffle %}#conclusion)
+4. [단점]({% post_url 2013-02-18-ios-6.1-music-album-shuffle %}#short)
+5. [iOS 6.1.2 업데이트]({% post_url 2013-02-18-ios-6.1-music-album-shuffle %}#ios-6-1-2)
 
 ## <a id="shuffle-by-album"></a>앨범별 임의 재생
 
