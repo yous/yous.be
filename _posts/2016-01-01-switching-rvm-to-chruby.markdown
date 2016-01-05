@@ -41,6 +41,12 @@ If you're on OS X:
 brew install ruby-install
 ```
 
+If you're on Arch Linux:
+
+``` sh
+yaourt -S ruby-install
+```
+
 Otherwise:
 
 ``` sh
