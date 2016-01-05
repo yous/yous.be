@@ -5,8 +5,8 @@
     <description>Blog for hackers.</description>
     <link>https://yous.be/</link>
     <atom:link href="https://yous.be/atom.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 04 Jan 2016 12:03:24 +0000</pubDate>
-    <lastBuildDate>Mon, 04 Jan 2016 12:03:24 +0000</lastBuildDate>
+    <pubDate>Tue, 05 Jan 2016 07:18:28 +0000</pubDate>
+    <lastBuildDate>Tue, 05 Jan 2016 07:18:28 +0000</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -35,6 +35,9 @@ of various Rubies.&lt;/p&gt;
 &lt;p&gt;If you&amp;rsquo;re on OS X:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;brew install ruby-install
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;If you&amp;rsquo;re on Arch Linux:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;yaourt -S ruby-install
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Otherwise:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;wget -O ruby-install-0.6.0.tar.gz
 https://github.com/postmodern/ruby-install/archive/v0.6.0.tar.gz
@@ -46,9 +49,6 @@ sudo make install
 
 &lt;p&gt;If you&amp;rsquo;re on OS X:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;brew install chruby
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;If you&amp;rsquo;re on Arch Linux:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;yaourt -S chruby
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Otherwise:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;wget -O chruby-0.3.9.tar.gz
