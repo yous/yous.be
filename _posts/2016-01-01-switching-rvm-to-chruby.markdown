@@ -65,12 +65,6 @@ If you're on OS X:
 brew install chruby
 ```
 
-If you're on Arch Linux:
-
-``` sh
-yaourt -S chruby
-```
-
 Otherwise:
 
 ``` sh
