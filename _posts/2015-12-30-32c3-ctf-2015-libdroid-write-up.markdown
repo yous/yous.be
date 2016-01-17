@@ -6,7 +6,7 @@ comments: false
 categories:
     - CTF
 description: "Write-up of 32C3 CTF 2015: libdroid."
-keywords: 32c3, 32c3 ctf 2015, android, write-up
+keywords: 32c3, 32c3 ctf 2015, libdroid, android, write-up
 redirect_from: /p/20151230/
 twitter_card:
     image: http://yous.be/images/2015/12/30/jd-gui.png
