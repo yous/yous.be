@@ -5,8 +5,8 @@
     <description>Blog for hackers.</description>
     <link>https://yous.be/</link>
     <atom:link href="https://yous.be/atom.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sun, 17 Jan 2016 21:25:22 +0000</pubDate>
-    <lastBuildDate>Sun, 17 Jan 2016 21:25:22 +0000</lastBuildDate>
+    <pubDate>Sun, 17 Jan 2016 21:39:02 +0000</pubDate>
+    <lastBuildDate>Sun, 17 Jan 2016 21:39:02 +0000</lastBuildDate>
     <generator>Jekyll v3.0.1</generator>
     
       <item>
@@ -894,7 +894,7 @@ RUN gpg --verify apache-maven-3.2.5-bin.tar.gz.asc apache-maven-3.2.5-bin.tar.gz
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;This verifies signature for &lt;code&gt;apache-maven-3.2.5-bin.tar.gz&lt;/code&gt; with
 &lt;code&gt;apache-maven-3.2.5-bin.tar.gz.asc&lt;/code&gt;.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-dockerfile&quot; data-lang=&quot;dockerfile&quot;&gt;RUN tar -zxf apache-maven-3.2.5-bin.tar.gz
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-dockerfile&quot; data-lang=&quot;dockerfile&quot;&gt;RUN tar -xf apache-maven-3.2.5-bin.tar.gz
 ENV PATH $PATH:/usr/local/apache-maven/apache-maven-3.2.5/bin
 RUN rm apache-maven-3.2.5-bin.tar.gz apache-maven-3.2.5-bin.tar.gz.md5 apache-maven-3.2.5-bin.tar.gz.asc
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
@@ -908,7 +908,7 @@ RUN mvn install -Dmaven.test.skip=true
 install it.&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-dockerfile&quot; data-lang=&quot;dockerfile&quot;&gt;WORKDIR quickstart/hbase
 ADD http://archive.apache.org/dist/hbase/hbase-0.94.25/hbase-0.94.25.tar.gz ./
-RUN tar -zxf hbase-0.94.25.tar.gz
+RUN tar -xf hbase-0.94.25.tar.gz
 RUN rm hbase-0.94.25.tar.gz
 RUN ln -s hbase-0.94.25 hbase
 RUN cp ../conf/hbase/hbase-site.xml hbase-0.94.25/conf/
@@ -933,15 +933,14 @@ of Pinpoint does it.&lt;/p&gt;
 QuickStart scripts successfully. Since the scripts check the program name in the
 result of &lt;code&gt;netstat&lt;/code&gt;, we should pass some option. See &lt;a href=&quot;https://github.com/docker/docker/issues/7276&quot;&gt;docker/docker#7276&lt;/a&gt;
 for details.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;docker run -i -t --cap-add SYS_PTRACE --security-opt apparmor:unconfined &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-  yous/pinpoint bash
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;docker run -i -t --cap-add SYS_PTRACE yous/pinpoint bash
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Also, note that we are going to use port 28080, 28081 and 28082 in QuickStart.
 So binding a container&amp;rsquo;s port to a specific port is needed. &lt;code&gt;-p&lt;/code&gt; flag will do
 it. See &lt;a href=&quot;https://docs.docker.com/userguide/dockerlinks/&quot;&gt;Linking Containers Together&lt;/a&gt;
 for details.&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;docker run -i -t -p 28080:28080 -p 28081:28081 -p 28082:28082 &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-  --cap-add SYS_PTRACE --security-opt apparmor:unconfined yous/pinpoint bash
+  --cap-add SYS_PTRACE yous/pinpoint bash
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;h2&gt;QuickStart&lt;/h2&gt;
 
@@ -996,7 +995,7 @@ out your Pinpoint instance.&lt;/p&gt;
 &lt;p&gt;You can run Pinpoint on Docker by:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;docker pull yous/pinpoint
 docker run -i -t -p 28080:28080 -p 28081:28081 -p 28082:28082 &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
-  --cap-add SYS_PTRACE --security-opt apparmor:unconfined yous/pinpoint bash
+  --cap-add SYS_PTRACE yous/pinpoint bash
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Inside the Docker, run:&lt;/p&gt;
 &lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;quickstart/bin/start-hbase.sh
