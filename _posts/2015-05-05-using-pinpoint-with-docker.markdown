@@ -229,8 +229,7 @@ result of `netstat`, we should pass some option. See [docker/docker#7276](https:
 for details.
 
 ``` sh
-docker run -i -t --cap-add SYS_PTRACE --security-opt apparmor:unconfined \
-  yous/pinpoint bash
+docker run -i -t --cap-add SYS_PTRACE yous/pinpoint bash
 ```
 
 Also, note that we are going to use port 28080, 28081 and 28082 in QuickStart.
@@ -240,7 +239,7 @@ for details.
 
 ``` sh
 docker run -i -t -p 28080:28080 -p 28081:28081 -p 28082:28082 \
-  --cap-add SYS_PTRACE --security-opt apparmor:unconfined yous/pinpoint bash
+  --cap-add SYS_PTRACE yous/pinpoint bash
 ```
 
 ## QuickStart
@@ -290,7 +289,7 @@ You can run Pinpoint on Docker by:
 ``` sh
 docker pull yous/pinpoint
 docker run -i -t -p 28080:28080 -p 28081:28081 -p 28082:28082 \
-  --cap-add SYS_PTRACE --security-opt apparmor:unconfined yous/pinpoint bash
+  --cap-add SYS_PTRACE yous/pinpoint bash
 ```
 
 Inside the Docker, run:
