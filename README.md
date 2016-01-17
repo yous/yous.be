@@ -1,6 +1,7 @@
 # Yous
 
 [![Build Status](https://travis-ci.org/yous/yous.github.io.svg?branch=source)](https://travis-ci.org/yous/yous.github.io)
+[![Dependency Status](https://gemnasium.com/yous/yous.github.io.svg)](https://gemnasium.com/yous/yous.github.io)
 
 Blog for hackers.
 
