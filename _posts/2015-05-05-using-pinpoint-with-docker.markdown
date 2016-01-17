@@ -172,7 +172,7 @@ This verifies signature for `apache-maven-3.2.5-bin.tar.gz` with
 `apache-maven-3.2.5-bin.tar.gz.asc`.
 
 ``` dockerfile
-RUN tar -zxf apache-maven-3.2.5-bin.tar.gz
+RUN tar -xf apache-maven-3.2.5-bin.tar.gz
 ENV PATH $PATH:/usr/local/apache-maven/apache-maven-3.2.5/bin
 RUN rm apache-maven-3.2.5-bin.tar.gz apache-maven-3.2.5-bin.tar.gz.md5 apache-maven-3.2.5-bin.tar.gz.asc
 ```
@@ -192,7 +192,7 @@ install it.
 ``` dockerfile
 WORKDIR quickstart/hbase
 ADD http://archive.apache.org/dist/hbase/hbase-0.94.25/hbase-0.94.25.tar.gz ./
-RUN tar -zxf hbase-0.94.25.tar.gz
+RUN tar -xf hbase-0.94.25.tar.gz
 RUN rm hbase-0.94.25.tar.gz
 RUN ln -s hbase-0.94.25 hbase
 RUN cp ../conf/hbase/hbase-site.xml hbase-0.94.25/conf/
