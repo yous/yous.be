@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'jekyll', '~> 3.0'
 gem 'jekyll-archives', '~> 2.1'
-gem 'jekyll-gist', '~> 1.3'
+gem 'jekyll-gist', '~> 1.4'
 gem 'jekyll-paginate', '~> 1.1'
 gem 'jekyll-redirect-from', '~> 0.9'
 gem 'jekyll-sitemap', '~> 0.9'
