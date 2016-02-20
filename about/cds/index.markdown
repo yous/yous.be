@@ -343,3 +343,10 @@ footer: false
 334. 박재범(Jay Park) --- WORLDWIDE
 335. Dynamic Duo --- Grand Carnival
 336. 태연 --- I
+337. amazarashi --- 夕日信仰ヒガシズム
+338. Verbal Jint --- Go Hard Part.1 : 양가치
+339. ZICO --- Gallery
+340. Illinit --- Made in &rsquo;98
+341. BUMKEY --- U-Turn
+342. ZICO --- ZICO SPECIAL EDITION
+343. 넉살 --- 작은 것들의 신
