@@ -5,7 +5,7 @@ gem 'jekyll-archives', '~> 2.1'
 gem 'jekyll-gist', '~> 1.4'
 gem 'jekyll-paginate', '~> 1.1'
 gem 'jekyll-redirect-from', '~> 0.9'
-gem 'jekyll-sitemap', '~> 0.9'
+gem 'jekyll-sitemap', '~> 0.10'
 gem 'redcarpet', '~> 3.3.4'
 
 group :test do
