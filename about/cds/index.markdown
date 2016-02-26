@@ -350,3 +350,5 @@ footer: false
 341. BUMKEY --- U-Turn
 342. ZICO --- ZICO SPECIAL EDITION
 343. 넉살 --- 작은 것들의 신
+344. amazarashi --- 世界収束二一一六(初回生産限定盤A)
+345. amazarashi --- 夕日信仰ヒガシズム(初回生産限定盤)
