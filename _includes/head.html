@@ -5,14 +5,14 @@
 
   {% capture title %}{% if page.title %}{{ page.title | escape }}{% else %}{{ site.title | escape }}{% endif %}{% endcapture %}
   {% capture canonical %}{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}{% endcapture %}
-  {% capture description %}{% if page.description %}{{ page.description }}{% else %}{{ site.description }}{% endif %}{% endcapture %}
+  {% capture description %}{% if page.description %}{{ page.description | escape }}{% else %}{{ site.description | escape }}{% endif %}{% endcapture %}
   <title>{{ title }}</title>
   <meta name="description" content="{{ description }}">
   {% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}">{% endif %}
 
   <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
   <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title }}" href="{{ "/atom.xml" | prepend: site.baseurl | prepend: site.url }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/atom.xml" | prepend: site.baseurl | prepend: site.url }}">
   <link href="{{ "/favicon.png" | prepend: site.baseurl }}" rel="icon">
   <link href="{{ "/apple-touch-icon.png" | prepend: site.baseurl }}" rel="apple-touch-icon">
   <link href="{{ "/apple-touch-icon-76x76.png" | prepend: site.baseurl }}" rel="apple-touch-icon" sizes="76x76">
@@ -22,7 +22,7 @@
   {% if site.facebook_app_id %}
     <meta property="fb:admins" content="{{ site.facebook_app_id }}">
     <meta property="og:title" content="{{ title }}">
-    <meta property="og:site_name" content="{{ site.title }}">
+    <meta property="og:site_name" content="{{ site.title | escape }}">
     <meta property="og:url" content="{{ canonical }}">
     <meta property="og:description" content="{{ description }}">
     {% if site.facebook_page %}<meta property="article:author" content="{{ site.facebook_page }}">{% endif %}

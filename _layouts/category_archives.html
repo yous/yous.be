@@ -3,7 +3,7 @@ layout: default
 ---
 <div class="home">
 
-  <h1 class="page-heading">Archive of {{ page.type }} '{{ page.title }}'</h1>
+  <h1 class="page-heading">Archive of {{ page.type }} '{{ page.title | escape }}'</h1>
 
   <ul class="post-archives">
     {% for post in page.posts %}
@@ -11,7 +11,7 @@ layout: default
         <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}{% if post.categories %} • {% include category_links.html categories=post.categories %}{% endif %}</span>
 
         <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title }}{% if post.external-url %} &rarr;{% endif %}</a>
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title | escape }}{% if post.external-url %} &rarr;{% endif %}</a>
         </h2>
       </li>
     {% endfor %}

@@ -5,7 +5,7 @@ date: 2014-07-22 22:19:14 +0900
 comments: false
 categories:
     - iOS
-description: "&#34;Backdoor&#34; can be abused by gov't agents and ex-lovers to gain persistent access."
+description: "\"Backdoor\" can be abused by gov't agents and ex-lovers to gain persistent access."
 keywords: ios, back door, com.apple.mobile.file_relay, com.apple.pcapd, com.apple.mobile.house_arrest, diagnostic capabilities
 redirect_from: /p/20140722/
 external-url: http://arstechnica.com/security/2014/07/undocumented-ios-functions-allow-monitoring-of-personal-data-expert-says/
