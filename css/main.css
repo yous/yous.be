@@ -11,7 +11,7 @@ dl, dd, ol, ul, figure {
  * Basic styling
  */
 body {
-  font: 300 16px/1.5 Bitter, "Apple SD Gothic Neo", AppleGothic, NanumBarunGothic, "Malgun Gothic", Dotum, sans-serif;
+  font: 400 16px/1.5 Bitter, "Apple SD Gothic Neo", AppleGothic, NanumBarunGothic, "Malgun Gothic", Dotum, sans-serif;
   color: #111;
   background-color: #fdfdfd;
   -webkit-text-size-adjust: 100%;
@@ -60,7 +60,7 @@ li > ol {
  * Headings
  */
 h1, h2, h3, h4, h5, h6 {
-  font-weight: 300; }
+  font-weight: 400; }
   h1 code, h2 code, h3 code, h4 code, h5 code, h6 code {
     font-size: inherit; }
 
@@ -146,17 +146,6 @@ pre {
   clear: both; }
 
 /**
- * Icons
- */
-.icon > svg {
-  display: inline-block;
-  width: 16px;
-  height: 16px;
-  vertical-align: middle; }
-  .icon > svg path {
-    fill: #828282; }
-
-/**
  * Site header
  */
 .site-header {
@@ -166,6 +155,7 @@ pre {
 
 .site-title {
   font-size: 26px;
+  font-weight: 300;
   line-height: 56px;
   letter-spacing: -1px;
   margin-bottom: 0;
@@ -298,6 +288,8 @@ pre {
  */
 .highlight {
   background: #fff; }
+  .highlighter-rouge .highlight {
+    background: #eef; }
   .highlight .c {
     color: #998;
     font-style: italic; }
