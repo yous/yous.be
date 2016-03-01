@@ -3,8 +3,6 @@ layout: page
 title: "CDs"
 date: 2014-02-17 18:19
 comments: false
-sharing: false
-footer: false
 ---
 
 1. Epik High --- Pieces, Part one

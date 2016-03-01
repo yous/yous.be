@@ -2,8 +2,6 @@
 layout: page
 title: "About"
 comments: false
-sharing: false
-footer: false
 description: About Yous - contact, projects, interests, likes, etc.
 facebook:
     image: http://yous.be/images/about/yous.png
