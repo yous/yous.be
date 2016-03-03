@@ -6,7 +6,7 @@ I hereby claim:
 
   * I am an admin of https://yous.be
   * I am yous (https://keybase.io/yous) on keybase.
-  * I have a public key with fingerprint 1BF1 AFE8 682E 45A2 11FF  2C0E 891B 7A9E 1D5A 400A
+  * I have a public key ASAM_GZuyxC0w8E3FU2Zl60gQZY9prk_M_GtkwzZZRRFjwo
 
 To do so, I am signing this object:
 
@@ -14,17 +14,10 @@ To do so, I am signing this object:
     "body": {
         "key": {
             "eldest_kid": "01016c9b245995eec4f091e0341e8b5a28fefae282d7ca66fa02880ecda7241cce190a",
-            "fingerprint": "1bf1afe8682e45a211ff2c0e891b7a9e1d5a400a",
             "host": "keybase.io",
-            "key_id": "891b7a9e1d5a400a",
-            "kid": "01016c9b245995eec4f091e0341e8b5a28fefae282d7ca66fa02880ecda7241cce190a",
+            "kid": "01200cfc666ecb10b4c3c137154d9997ad2041963da6b93f33f1ad930cd96514458f0a",
             "uid": "764ab7a46e95ac9fe18cbffb77a4bb00",
             "username": "yous"
-        },
-        "revoke": {
-            "sig_ids": [
-                "a1890b45217283269ae8813a098ca814aa895fbb6e5ec018eeda80762cae4cba0f"
-            ]
         },
         "service": {
             "hostname": "yous.be",
@@ -33,37 +26,25 @@ To do so, I am signing this object:
         "type": "web_service_binding",
         "version": 1
     },
-    "ctime": 1453557728,
-    "expire_in": 157680000,
-    "prev": "41cb601c07a2a02438d0c5d3aeefa31b3daa9a17e63abe43cb89777e9f889ce3",
-    "seqno": 25,
+    "client": {
+        "name": "keybase.io go client",
+        "version": "1.0.3"
+    },
+    "ctime": 1456973698,
+    "expire_in": 504576000,
+    "merkle_root": {
+        "ctime": 1456973662,
+        "hash": "ee6091c42842d8908d58850a5ee0f8919a0830c8b5be90eb30f9088135b187629d042fa698f65a6eb843936a0006dfa721541b0c524cd013ebcfd2513379a687",
+        "seqno": 399640
+    },
+    "prev": "9d995cb3ef65f0eafc46fa9dc2c2726bfdd5c1b194f8b11a265945ba5be8072c",
+    "seqno": 29,
     "tag": "signature"
 }
 
 which yields the signature:
 
------BEGIN PGP MESSAGE-----
-Comment: GPGTools - https://gpgtools.org
-
-owGtkltoVEcYx3e9JGYl4otig7cMKNbGdeZcZw6JlwcjNZGiVLFp62Zmznc2h9U9
-656T1SgSRLy9eKlGfPOGoFLaomwqQSTUEEFtQGmhKWIpoaQ+tBF8SMAYnLMg+OCj
-8zLMx//7ff/5z5yunZ5IJZt/n0yPXry7KvnohUhsv3rsxQEkArcLOQdQDiob7HIh
-jDI530UOwgQTSzKhGSZjJoA0PMwIYN0gQIXJNeqBx0GjmmtLblkexxqlGKTLbc0g
-UgJhmKMG5Pn5LBQLRT8fKSwRHuEeUItqYCgKIZ6nSQyUEWFzBsQ1uYErjR1BGHco
-c4KHkPYDVVOHTMXeB/Qf2XdnBWdbBleDDAuYySXzgFApPE/YqiYExrEwhGKe7wal
-7go6Q3SwARWhFOQgzjT0s8pwiJyvESeUYWGYGrE1qmsW40Ap0TlmVHJKDM4pMz0h
-LDBBYkIBXE6xbWmSgyEFxx76VrHVtJIvK/A4ofcmpwUoO4ViEAUy2KWKHVFUCJ3Y
-UNRViFV7QWRU//cxICP8vKveRrWUoBj6QR45REll5MdEYpi6adrKagOCfQW/CBk/
-Vpi2RbFa8SAoKabKTFiYSGxzTWVp6NTF0nR1DipnnQjd5ZxxYoOlcwGGLgVltm0D
-8yhlEnQUX2lPPkCOZiqjPKuYKrU8jzqLgA6mTiQXzkgkU4mqmdPiX5tI1cx995Vb
-hqunVrQkqtpWjV5no0tbe9C1cv+c+w+fVk3Inn9O7fy/s37dF2ZqaNv5xsPmjc/T
-G05eX9L9atnPh76a/l92yuvorrk1MhHNWHDzyZFZ7b1vfnTOXb46WP9Lzew9OwqL
-ykPjf+Z6Z7Yta3g0Z/HkN1my5rMtTc8GckeHX/87fHfqwY4R1vtXeuS3ptt9D3vX
-DjR3nzle9+W6U9FYeX1tqrHlZvLJnbnzUsduZ/y6H9qHxv4+O/5rU/WRUusnQVvf
-+NSsgZ6+werHDxLOpiWXt+1fulKvnXa/TmscvfB8a7l19cKNyyfPP51HTp/4brjK
-SfZjAx3eXBafXrrQf+UPVt/809jgxMt77XfmX3kL
-=O4d9
------END PGP MESSAGE-----
+g6Rib2R5hqhkZXRhY2hlZMOpaGFzaF90eXBlCqNrZXnEIwEgDPxmbssQtMPBNxVNmZetIEGWPaa5PzPxrZMM2WUURY8Kp3BheWxvYWTFAut7ImJvZHkiOnsia2V5Ijp7ImVsZGVzdF9raWQiOiIwMTAxNmM5YjI0NTk5NWVlYzRmMDkxZTAzNDFlOGI1YTI4ZmVmYWUyODJkN2NhNjZmYTAyODgwZWNkYTcyNDFjY2UxOTBhIiwiaG9zdCI6ImtleWJhc2UuaW8iLCJraWQiOiIwMTIwMGNmYzY2NmVjYjEwYjRjM2MxMzcxNTRkOTk5N2FkMjA0MTk2M2RhNmI5M2YzM2YxYWQ5MzBjZDk2NTE0NDU4ZjBhIiwidWlkIjoiNzY0YWI3YTQ2ZTk1YWM5ZmUxOGNiZmZiNzdhNGJiMDAiLCJ1c2VybmFtZSI6InlvdXMifSwic2VydmljZSI6eyJob3N0bmFtZSI6InlvdXMuYmUiLCJwcm90b2NvbCI6Imh0dHBzOiJ9LCJ0eXBlIjoid2ViX3NlcnZpY2VfYmluZGluZyIsInZlcnNpb24iOjF9LCJjbGllbnQiOnsibmFtZSI6ImtleWJhc2UuaW8gZ28gY2xpZW50IiwidmVyc2lvbiI6IjEuMC4zIn0sImN0aW1lIjoxNDU2OTczNjk4LCJleHBpcmVfaW4iOjUwNDU3NjAwMCwibWVya2xlX3Jvb3QiOnsiY3RpbWUiOjE0NTY5NzM2NjIsImhhc2giOiJlZTYwOTFjNDI4NDJkODkwOGQ1ODg1MGE1ZWUwZjg5MTlhMDgzMGM4YjViZTkwZWIzMGY5MDg4MTM1YjE4NzYyOWQwNDJmYTY5OGY2NWE2ZWI4NDM5MzZhMDAwNmRmYTcyMTU0MWIwYzUyNGNkMDEzZWJjZmQyNTEzMzc5YTY4NyIsInNlcW5vIjozOTk2NDB9LCJwcmV2IjoiOWQ5OTVjYjNlZjY1ZjBlYWZjNDZmYTlkYzJjMjcyNmJmZGQ1YzFiMTk0ZjhiMTFhMjY1OTQ1YmE1YmU4MDcyYyIsInNlcW5vIjoyOSwidGFnIjoic2lnbmF0dXJlIn2jc2lnxEBcILPbVcGl388MI2GadLYOevYnEjuge82M75cCctNO5dCwtx3DJZ65RAFt3VjBXuefl7Hxto1gqAk45LlIEiwGqHNpZ190eXBlIKN0YWfNAgKndmVyc2lvbgE=
 
 And finally, I am proving ownership of this host by posting or
 appending to this document.
