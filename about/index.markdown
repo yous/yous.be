@@ -74,7 +74,7 @@ Chayoung You
     - [regexcrossword.com](http://regexcrossword.com)
 - Games
     - Rhythm games
-        - jubeat
+        - [jubeat](https://ubit.info/yous/)
         - [jubeat plus](https://itunes.apple.com/jp/app/jubeat-plus/id395192484?mt=8)
         - [Deemo](http://www.rayark.com/g/deemo/)
         - [SOUND VOLTEX II](http://p.eagate.573.jp/game/sdvx/ii/p/)
