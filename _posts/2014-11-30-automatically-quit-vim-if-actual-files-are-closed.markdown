@@ -135,10 +135,18 @@ Note that `CheckLeftBuffers()` will check buffers only when the tab page count i
 
 You can see my actual [vimrc commit](https://github.com/yous/dotfiles/commit/735976604471bb6186d3867a30c421c839ad3ad4) and also check out my [dotfiles repo](https://github.com/yous/dotfiles)!
 
-**Update**: In gVim, executing `qall` won't work. You can use this line instead of `qall`:
+- **Update**: In gVim, executing `qall` won't work. You can use this line instead of `qall`:
 
-``` vim
-call feedkeys(":qall\<CR>", 'n')
-```
+    ``` vim
+    call feedkeys(":qall\<CR>", 'n')
+    ```
+
+- **Update**: If you have multiple tabs open, `qall` will close all buffers left.
+You may want to close only the current tab with `:q`, then you can use the
+`only` command:
+
+    ``` vim
+    call feedkeys(":only\<CR>:q\<CR>", 'n')
+    ```
 
 This will work with other Vim distributions. If it doesn't or if you have another problems, feel free to [make an issue](https://github.com/yous/dotfiles/issues/new) or [contact me]({{ "/about/" | prepend: site.baseurl }}).
