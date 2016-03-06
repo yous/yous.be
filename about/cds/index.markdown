@@ -350,3 +350,7 @@ comments: false
 343. 넉살 --- 작은 것들의 신
 344. amazarashi --- 世界収束二一一六(初回生産限定盤A)
 345. amazarashi --- 夕日信仰ヒガシズム(初回生産限定盤)
+346. The Quiett --- Q TRAIN (REMASTER EDITION)
+347. Hwaji --- ZISSOU
+348. 염따 --- 살아숨셔
+349. SCARY'P & EX8ER --- 8 (Eight)
