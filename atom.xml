@@ -5,9 +5,102 @@
     <description>Blog for hackers.</description>
     <link>https://yous.be/</link>
     <atom:link href="https://yous.be/atom.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Sat, 16 Apr 2016 09:12:53 +0000</pubDate>
-    <lastBuildDate>Sat, 16 Apr 2016 09:12:53 +0000</lastBuildDate>
+    <pubDate>Sat, 16 Apr 2016 14:17:26 +0000</pubDate>
+    <lastBuildDate>Sat, 16 Apr 2016 14:17:26 +0000</lastBuildDate>
     <generator>Jekyll v3.1.2</generator>
+    
+      <item>
+        
+        <title>Installing Ruby 1.8.7 on OS X El Capitan</title>
+        
+        <description>&lt;h2&gt;A bug in Ruby 1.8.7&lt;/h2&gt;
+
+&lt;p&gt;There is a bug in Ruby 1.8.7&amp;rsquo;s exponentiation. See
+&lt;a href=&quot;http://stackoverflow.com/questions/12009799/exponentiation-in-ruby-1-8-7-returns-wrong-answers&quot;&gt;&amp;ldquo;Exponentiation in Ruby 1.8.7 Returns Wrong Answers&amp;rdquo;&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-irb&quot; data-lang=&quot;irb&quot;&gt;&amp;gt;&amp;gt; 2 ** 62
+=&amp;gt; 4611686018427387904
+&amp;gt;&amp;gt; 2 ** 63
+=&amp;gt; -9223372036854775808
+&amp;gt;&amp;gt; 2 ** 64
+=&amp;gt; 0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Note that following gives the correct result:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-irb&quot; data-lang=&quot;irb&quot;&gt;&amp;gt;&amp;gt; 2 ** 62 * 2
+=&amp;gt; 9223372036854775808
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;h2&gt;Supporting an ancient Ruby&lt;/h2&gt;
+
+&lt;p&gt;Seeing this bug, I wanted to reproduce this by myself, so I just tried to
+install Ruby 1.8.7 on OS X 10.11.4. As I&amp;rsquo;m using
+&lt;a href=&quot;https://github.com/postmodern/chruby&quot;&gt;chruby&lt;/a&gt;, I used
+&lt;a href=&quot;https://github.com/postmodern/ruby-install&quot;&gt;ruby-install&lt;/a&gt;.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;ruby-install ruby 1.8.7
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;But there are several errors:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;...
+gcc -I. -I../.. -I../../. -I../.././ext/openssl -DRUBY_EXTCONF_H&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;extconf.h&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt; -I/usr/local/opt/openssl/include -I/usr/local/opt/readline/include -I/usr/local/opt/libyaml/include -I/usr/local/opt/gdbm/include  -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE   -fno-common -g -O2 -pipe -fno-common   -c ossl.c
+ossl.c:118:1: error: unknown &lt;span class=&quot;nb&quot;&gt;type &lt;/span&gt;name &lt;span class=&quot;s1&quot;&gt;&#39;STACK&#39;&lt;/span&gt;; did you mean &lt;span class=&quot;s1&quot;&gt;&#39;_STACK&#39;&lt;/span&gt;?
+OSSL_IMPL_SK2ARY&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;x509, X509&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+^
+ossl.c:95:22: note: expanded from macro &lt;span class=&quot;s1&quot;&gt;&#39;OSSL_IMPL_SK2ARY&#39;&lt;/span&gt;
+ossl_##name##_sk2ary&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;STACK &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;sk&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;                 &lt;span class=&quot;se&quot;&gt;\&lt;/span&gt;
+                     ^
+/usr/local/opt/openssl/include/openssl/stack.h:72:3: note: &lt;span class=&quot;s1&quot;&gt;&#39;_STACK&#39;&lt;/span&gt; declared here
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; _STACK;                       /&lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; Use STACK_OF&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;...&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; instead &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;/
+  ^
+...
+4 errors generated.
+make[1]: &lt;span class=&quot;k&quot;&gt;***&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;ossl.o] Error 1
+make: &lt;span class=&quot;k&quot;&gt;***&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;all] Error 1
+!!! Compiling ruby 1.8.7 failed!
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This is because of the version of OpenSSL used for compilation is too high for
+Ruby 1.8.7, see
+&lt;a href=&quot;https://github.com/rbenv/ruby-build/issues/445&quot;&gt;rbenv/ruby-build#445&lt;/a&gt;. After
+some searching about OpenSSL and Ruby 1.8.7, I found that RVM is using
+openssl098 for Ruby 1.8.7 compilation. But, unfortunately, they decided to
+remove it from homebrew/versions tap because of deprecation and security issues.
+See
+&lt;a href=&quot;https://github.com/Homebrew/homebrew-versions/issues/1150&quot;&gt;Homebrew/homebrew-versions#1150&lt;/a&gt;
+for the issue and
+&lt;a href=&quot;https://github.com/Homebrew/homebrew-versions/commit/4e169f22cc48e61e2ed6e2f80a5414fe281db335&quot;&gt;the commit&lt;/a&gt;
+removing openssl098.&lt;/p&gt;
+
+&lt;h2&gt;Building Ruby 1.8.7&lt;/h2&gt;
+
+&lt;p&gt;As I just wanted to reproduce a bug, I used the &lt;code&gt;openssl098.rb&lt;/code&gt; right before the
+removal.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;brew install https://github.com/Homebrew/homebrew-versions/raw/586b7e9012a3ed1f9df6c43d0483c65549349289/openssl098.rb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Then we can provide &lt;code&gt;--with-openssl-dir&lt;/code&gt; option to ruby-install.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;ruby-install ruby 1.8.7 -- --with-openssl-dir&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/usr/local/opt/openssl098
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;It&amp;rsquo;ll be successful! You can use Ruby 1.8.7 on OS X El Capitan.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;ruby --version
+ruby 1.8.7 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;2008-05-31 patchlevel 0&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;i686-darwin15.4.0]
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Finally I was able to reproduce the bug.&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-irb&quot; data-lang=&quot;irb&quot;&gt;&amp;gt;&amp;gt; 2 ** 62
+=&amp;gt; 4611686018427387904
+&amp;gt;&amp;gt; 2 ** 63
+=&amp;gt; -9223372036854775808
+&amp;gt;&amp;gt; 2 ** 64
+=&amp;gt; 0
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Also, for Ruby 1.8.7-p374, you don&amp;rsquo;t need openssl098, but you may need X11. If
+you don&amp;rsquo;t need tk, then try the following command:&lt;/p&gt;
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;ruby-install ruby 1.8.7-p374 -- --without-tk
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;This version of Ruby 1.8.7 still has the same bug.&lt;/p&gt;
+</description>
+        <pubDate>Sat, 16 Apr 2016 13:08:13 +0000</pubDate>
+        <link>https://yous.be/2016/04/16/installing-ruby-1-8-7-on-os-x-el-capitan/</link>
+        <guid isPermaLink="true">https://yous.be/2016/04/16/installing-ruby-1-8-7-on-os-x-el-capitan/</guid>
+        
+        
+        <category>Ruby</category>
+        
+      </item>
     
       <item>
         
@@ -2526,167 +2619,6 @@ index 50e9404..76102db 100644
         
         
         <category>Octopress</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>Gradle 환경에서 ProGuard 사용하기</title>
-        
-        <description>&lt;h2&gt;&lt;a id=&quot;gradle&quot;&gt;&lt;/a&gt;Gradle&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/2014/05/15/gradle_logo.gif&quot; alt=&quot;Gradle&quot; title=&quot;Gradle&quot;&gt;&lt;/p&gt;
-
-&lt;p&gt;최근 &lt;a href=&quot;http://developer.android.com/sdk/installing/studio.html&quot;&gt;Android Studio&lt;/a&gt;를 통해 개발을 진행하게 되면서, 자연스럽게 &lt;a href=&quot;http://www.gradle.org&quot;&gt;Gradle&lt;/a&gt;을 사용하게 되었다. &lt;code&gt;.gradle&lt;/code&gt; 확장자를 가진 파일을 통해 빌드 설정을 자유롭게 조정할 수 있다. 이 글에서는 Gradle을 이용해 배포 APK를 생성하는 방법과 함께 &lt;a href=&quot;http://proguard.sourceforge.net&quot;&gt;ProGuard&lt;/a&gt;를 사용법을 공유하겠다.&lt;/p&gt;
-
-&lt;h2&gt;&lt;a id=&quot;how-to-create-release-apk-using-gradle&quot;&gt;&lt;/a&gt;Gradle 환경에서 배포 APK 생성하기&lt;/h2&gt;
-
-&lt;p&gt;배포 APK에는 서명이 되어 있어야 하는데, 이를 위해서는 keystore 파일과 그 암호, 키 별칭, 키 암호가 필요하다. 디버그 APK에도 서명을 하지만, &lt;a href=&quot;http://developer.android.com/tools/publishing/app-signing.html#debugmode&quot;&gt;알려진 keystore 암호와 키 별칭, 키 암호&lt;/a&gt;를 사용한다. 배포 APK의 서명을 위해 프로젝트의 &lt;code&gt;build.gradle&lt;/code&gt; 파일에 다음 코드를 추가하면 된다.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;android&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;c1&quot;&gt;// ...&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;signingConfigs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;release&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;storeFile&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;YOUR_KEYSTORE_PATH&quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;storePassword&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;YOUR_KEYSTORE_PASSWORD&quot;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;keyAlias&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;YOUR_KEY_ALIAS&quot;&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;keyPassword&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;YOUR_KEY_PASSWORD&quot;&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-
-    &lt;span class=&quot;n&quot;&gt;buildTypes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;release&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;signingConfig&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;signingConfigs&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;release&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;이때 &lt;code&gt;buildTypes&lt;/code&gt; 아래의 &lt;code&gt;debug&lt;/code&gt; 항목은 굳이 명시하지 않아도 &lt;a href=&quot;http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Build-Types&quot;&gt;기본적으로 생성&lt;/a&gt;되며, 이 &lt;code&gt;buildType&lt;/code&gt;은 &lt;a href=&quot;http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Signing-Configurations&quot;&gt;디버그 keystore와 키를 사용하도록 설정&lt;/a&gt;되어 있다.&lt;/p&gt;
-
-&lt;p&gt;다만 이 때 &lt;code&gt;build.gradle&lt;/code&gt; 파일에 keystore 암호와 키 암호가 평문으로 들어가게 되는데, 소스를 공개하고 있는 등의 이유로 이를 피하고 싶다면 각각의 항목을 쉘 프롬프트에서 입력받을 수 있다:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;signingConfigs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;release&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;storeFile&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;readLine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;\n\$ Enter keystore path: &quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;storePassword&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;readPassword&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;\n\$ Enter keystore password: &quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;keyAlias&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;readLine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;\n\$ Enter key alias: &quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;keyPassword&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;readPassword&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;\n\$ Enter key password: &quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;그러나 이는 &lt;a href=&quot;http://stackoverflow.com/questions/18328730/how-to-create-a-release-signed-apk-file-using-gradle#19210105&quot;&gt;IDE를 통해 디버그 APK를 생성할 때 크래시&lt;/a&gt;를 내며, 이는 그때 코드의 &lt;code&gt;console&lt;/code&gt;이 &lt;code&gt;null&lt;/code&gt;이라서 발생하는 오류다. 이를 해결한 최종 코드는 다음과 같다:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;signingConfigs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;release&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;kd&quot;&gt;final&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;Console&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;console&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;System&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;();&lt;/span&gt;
-        &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;console&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;null&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;storeFile&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;file&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;readLine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;\n\$ Enter keystore path: &quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;storePassword&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;readPassword&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;\n\$ Enter keystore password: &quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;keyAlias&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;readLine&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;\n\$ Enter key alias: &quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-            &lt;span class=&quot;n&quot;&gt;keyPassword&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;new&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;String&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;console&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;na&quot;&gt;readPassword&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;\n\$ Enter key password: &quot;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-        &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;디버그 APK와 배포 APK의 패키지 이름이 같으면 APK의 서명이 서로 달라 개발과 디버깅에 어려움이 있다. 이를 해결하기 위해서 &lt;code&gt;buildTypes&lt;/code&gt; 아래에 &lt;code&gt;debug&lt;/code&gt; 항목을 선언하여 디버그 APK의 패키지 이름을 바꿀 수 있고, 추가로 버전명도 바꿀 수 있다:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;buildTypes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;debug&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;packageNameSuffix&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;.debug&#39;&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;versionNameSuffix&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;-debug&#39;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;이제 터미널에서 다음 명령을 실행하면 디버그 APK와 배포 APK를 각각 얻을 수 있다. 물론 디버그 APK는 IDE로도 생성할 수 있다.&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-sh&quot; data-lang=&quot;sh&quot;&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;./gradlew assembleDebug
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;./gradlew assembleRelease
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Gradle은 &lt;a href=&quot;http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Android-tasks&quot;&gt;캐멀케이스 단축키를 지원&lt;/a&gt;해서 &lt;code&gt;aR&lt;/code&gt;에 해당하는 다른 명령이 없는 한 &lt;code&gt;assembleRelease&lt;/code&gt; 대신 &lt;code&gt;aR&lt;/code&gt;을 사용할 수 있다.&lt;/p&gt;
-
-&lt;!-- more --&gt;
-
-&lt;h2&gt;&lt;a id=&quot;how-to-use-proguard&quot;&gt;&lt;/a&gt;ProGuard 사용하기&lt;/h2&gt;
-
-&lt;p&gt;배포 APK를 생성할 때 ProGuard를 사용할 수도 있는데, &lt;code&gt;build.gradle&lt;/code&gt;에 다음 코드를 추가하면 된다:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;buildTypes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;release&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;runProguard&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;proguardFile&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getDefaultProguardFile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;proguard-android.txt&#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;code&gt;getDefaultProguardFile()&lt;/code&gt;는 &lt;a href=&quot;http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Running-ProGuard&quot;&gt;SDK에 위치한 해당 이름의 파일을 가져와 적용&lt;/a&gt;한다. &lt;code&gt;proguard-android.txt&lt;/code&gt;와 &lt;code&gt;proguard-android-optimize.txt&lt;/code&gt;가 있으며 &lt;a href=&quot;http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Running-ProGuard&quot;&gt;앞의 것은 최적화를 수행하지 않고, 뒤의 것은 최적화를 수행&lt;/a&gt;한다.&lt;/p&gt;
-
-&lt;p&gt;추가적인 다른 &lt;code&gt;proguardFile&lt;/code&gt;을 더 적용하고 싶다면 &lt;code&gt;proguardFiles&lt;/code&gt;를 사용하면 된다:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-groovy&quot; data-lang=&quot;groovy&quot;&gt;&lt;span class=&quot;n&quot;&gt;buildTypes&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-    &lt;span class=&quot;n&quot;&gt;release&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;runProguard&lt;/span&gt; &lt;span class=&quot;kc&quot;&gt;true&lt;/span&gt;
-        &lt;span class=&quot;n&quot;&gt;proguardFiles&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;getDefaultProguardFile&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&#39;proguard-android.txt&#39;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&#39;proguard-project.txt&#39;&lt;/span&gt;
-    &lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;다른 라이브러리 프로젝트를 가져다 사용하고 있을 경우, ProGuard 사용에 있어 주의해야 할 경우가 생긴다.&lt;/p&gt;
-
-&lt;h3&gt;&lt;a id=&quot;actionbarsherlock&quot;&gt;&lt;/a&gt;ActionBarSherlock&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;http://actionbarsherlock.com&quot;&gt;ActionBarSherlock&lt;/a&gt;의 경우 ProGuard를 사용할 때, &lt;a href=&quot;http://actionbarsherlock.com/faq.html&quot;&gt;다음 규칙을 추가하라고 명시&lt;/a&gt;하고 있다:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;-keep class android.support.v4.app.** { *; }
--keep interface android.support.v4.app.** { *; }
--keep class com.actionbarsherlock.** { *; }
--keep interface com.actionbarsherlock.** { *; }
-
--keepattributes *Annotation*
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;&lt;a id=&quot;crashlytics&quot;&gt;&lt;/a&gt;Crashlytics&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://www.crashlytics.com&quot;&gt;Crashlytics&lt;/a&gt;는 이미 ProGuard를 사용한 라이브러리들을 다시 ProGuard가 검사할 필요 없게 해서 &lt;a href=&quot;http://www.crashlytics.com/blog/mastering-proguard-for-building-lightweight-android-code/&quot;&gt;빌드 시간을 줄이는 팁&lt;/a&gt;을 제공하고 있다:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;-libraryjars libs
--keep class com.crashlytics.** { *; }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;&lt;a href=&quot;http://developer.android.com/tools/support-library/&quot;&gt;Android Support Library&lt;/a&gt;는 이미 소스가 공개되어 있기 때문에 코드 난독화가 필요하지 않다:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;-libraryjars libs
--keep class android.support.v4.app.** { *; }
--keep interface android.support.v4.app.** { *; }
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;ProGuard를 이용해 코드 난독화 작업을 거치게 되면, 소스 파일의 줄 번호가 바뀌게 되어 Crashlytics의 스택 트레이스에서 정보를 얻기 어려울 수 있다. &lt;a href=&quot;http://support.crashlytics.com/knowledgebase/articles/202926-android-studio-and-intellij-with-proguard&quot;&gt;소스 파일의 줄 번호 정보를 유지&lt;/a&gt;하려면 다음 문장을 추가한다:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;-keepattributes SourceFile,LineNumberTable
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;다만 이 코드 때문에 난독화가 덜 되는 것 같다는 생각이 든다면, 파일 이름을 모두 &lt;code&gt;&amp;quot;SourceFile&amp;quot;&lt;/code&gt; 문자열로 &lt;a href=&quot;http://proguard.sourceforge.net/manual/examples.html#stacktrace&quot;&gt;바꿀 수도 있다&lt;/a&gt;:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;-renamesourcefileattribute SourceFile
--keepattributes SourceFile,LineNumberTable
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h3&gt;&lt;a id=&quot;google-play-services-sdk&quot;&gt;&lt;/a&gt;Google Play Services SDK&lt;/h3&gt;
-
-&lt;p&gt;&lt;a href=&quot;https://developer.android.com/google/play-services/index.html&quot;&gt;Google Play Services SDK&lt;/a&gt; 또한 필요한 클래스가 사라지는 것을 방지하기 위한 &lt;a href=&quot;https://developer.android.com/google/play-services/setup.html#Proguard&quot;&gt;ProGuard 규칙&lt;/a&gt;을 제공하고 있다:&lt;/p&gt;
-&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-&quot; data-lang=&quot;&quot;&gt;-keep class * extends java.util.ListResourceBundle {
-    protected Object[][] getContents();
-}
-
--keep public class com.google.android.gms.common.internal.safeparcel.SafeParcelable {
-    public static final *** NULL;
-}
-
--keepnames @com.google.android.gms.common.annotation.KeepName class *
--keepclassmembernames class * {
-    @com.google.android.gms.common.annotation.KeepName *;
-}
-
--keepnames class * implements android.os.Parcelable {
-    public static final ** CREATOR;
-}
-&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
-&lt;h2&gt;&lt;a id=&quot;see-also&quot;&gt;&lt;/a&gt;참고 목록&lt;/h2&gt;
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://tools.android.com/tech-docs/new-build-system/user-guide&quot;&gt;Gradle Plugin User Guide&lt;/a&gt; by &lt;a href=&quot;http://tools.android.com&quot;&gt;Android Tools Project Site&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.crashlytics.com/blog/mastering-proguard-for-building-lightweight-android-code/&quot;&gt;Mastering ProGuard for Building Lightweight Android Code&lt;/a&gt; by &lt;a href=&quot;https://www.crashlytics.com&quot;&gt;Crashlytics&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://proguard.sourceforge.net/manual/index.html&quot;&gt;ProGuard Manual&lt;/a&gt; by &lt;a href=&quot;http://proguard.sourceforge.net&quot;&gt;ProGuard&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://novafactory.net/archives/2845&quot;&gt;Gradle - Progaurd 사용하기(proguard rule)&lt;/a&gt; by &lt;a href=&quot;https://plus.google.com/113131691466488717287&quot;&gt;Nova&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Thu, 15 May 2014 09:11:13 +0000</pubDate>
-        <link>https://yous.be/2014/05/15/how-to-configure-proguard-using-gradle/</link>
-        <guid isPermaLink="true">https://yous.be/2014/05/15/how-to-configure-proguard-using-gradle/</guid>
-        
-        
-        <category>Android</category>
         
       </item>
     

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>https://yous.be/2016/04/16/installing-ruby-1-8-7-on-os-x-el-capitan/</loc>
+<lastmod>2016-04-16T13:08:13+00:00</lastmod>
+</url>
+<url>
 <loc>https://yous.be/2016/01/01/switching-rvm-to-chruby/</loc>
 <lastmod>2016-01-01T11:26:07+00:00</lastmod>
 </url>
@@ -172,5 +176,8 @@
 </url>
 <url>
 <loc>https://yous.be/posts/7/</loc>
+</url>
+<url>
+<loc>https://yous.be/posts/8/</loc>
 </url>
 </urlset>
