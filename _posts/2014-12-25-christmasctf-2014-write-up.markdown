@@ -197,7 +197,7 @@ pw : th1s_IS_n0T_FL4G
 
 로그인을 하면 Flag 메뉴에서 볼 수 있던 level이 10에서 9로 올라갔음을 알 수 있습니다. 더불어 Board 메뉴에서 관리자가 쓴 글을 읽을 수 있습니다.
 
-``` php
+``` php?start_inline=1
 if((!preg_match("/[a-f0-9]{32}/",$_COOKIE['session_chk'])) || (strlen($_COOKIE['session_chk']) != 32)) exit('No Cheat!');
 
 if(strtolower("dev_" . $_COOKIE['session_chk']) == strtolower("dev_" . md5($_COOKIE['user_id']))) exit("개발중입니다");
@@ -221,7 +221,7 @@ Digest::MD5.hexdigest('1aacesz')
 
 그리고 쿠키를 만들어 `user_id`에는 좀전의 `1aacesz`를, 하지만 `session_chk`에는 `00000000000000000000000000000001`을 넣습니다. 이때 두 번째 조건과 세 번째 조건은 아래와 같습니다:
 
-``` php
+``` php?start_inline=1
 "dev_00000000000000000000000000000001" == "dev_1a8c7efd14576c4ebd90c2214ecea5cd"
 "00000000000000000000000000000001" == "1a8c7efd14576c4ebd90c2214ecea5cd"
 ```
@@ -246,7 +246,7 @@ Flag 버튼을 누르면 `http://web-prob.dkserver.wo.tc/letter_4f1ad94372c166c3
 
 이 파일의 주석을 보아야 하는 것 같습니다. 하지만 PHP 파일이라서 보이지 않는 거겠죠. 메뉴의 Clue를 봅시다.
 
-``` php
+``` php?start_inline=1
 if(preg_match("/[a-zA-Z]/",$_GET[letter])) exit("No Hack");
 
 elseif(strlen($_GET[letter])>5) exit("No Hack");
@@ -302,7 +302,7 @@ Flag는 `snow_is_commmming`입니다.
 
 Clue를 봅시다:
 
-``` text
+``` sql
 CREATE TABLE `table_name` (
 
 `no` int NOT NULL,
@@ -314,13 +314,13 @@ CREATE TABLE `table_name` (
 
 Letter는 아까와 같지만 4번 항목만 `Secret :)`이라는 메시지와 함께 가려져 있습니다. 일단 괄호를 쓸 수 없습니다. 시도 끝에 like를 사용한 쿼리를 하나 만들었습니다:
 
-``` text
+``` sql
 ?letter=-1 or letter like "%%" and no=4
 ```
 
 여기에서 4번 글의 길이를 알아낼 수 있는데요, like의 와일드카드 `_`를 사용하면 됩니다. 길이가 맞지 않으면 `존재하지 않는 글입니다` 메시지가 나오고, 길이가 맞으면 `Secret :)`을 볼 수 있습니다.
 
-``` text
+``` sql
 ?letter=-1 or letter like "_" and no=4
 ?letter=-1 or letter like "__" and no=4
 ?letter=-1 or letter like "___" and no=4
@@ -534,7 +534,7 @@ for($i=$a;$i<count($flag_array);$i++){ $flag_array[$i] = chr($flag_array[$i]); }
 
 일단 라틴 알파벳들은 보기 쉬운 알파벳들로 바꾸고, 계산 작업을 수행해 줍니다.
 
-``` php
+``` php?start_inline=1
 $_a = array(0);
 $_a[a] = 4;
 $_a[c] = 17;
@@ -554,7 +554,7 @@ if (chr(109) != $b[2]) exit("wrong");
 
 `$flag_array`의 경우 주석 때문에 가운데 영역이 주석 처리됩니다.
 
-``` php
+``` php?start_inline=1
 $flag_array = array(
     7,
     111,
@@ -566,7 +566,7 @@ $flag_array = array(
 
 첫 번째 `for` 문은 한 줄로 끝나는 것으로, 다음 줄부터는 들여 쓰는 것이 아닙니다. `$i`도 `for` 문이 끝났으므로 `5`로 값이 고정되어 있습니다. 또한 `$_GET[flag]`가 아닌 `$_GET[fIag]`가 있는 것에 주의하시기 바랍니다.
 
-``` php
+``` php?start_inline=1
 for ($i = 1; $i < count($flag_array); $i++) { $flag_array[$i] = chr($flag_array[$i]); }
 for ($count = 5; $count < 10; $count++) {
     if ($_GET[flag][$count].$_GET[fIag][$count - 5] != $flag_array[$count - 5].$_GET[fIag][$count - 4]) exit("wrong");
@@ -575,7 +575,7 @@ for ($count = 5; $count < 10; $count++) {
 
 위 코드로부터 아래의 것들을 유추할 수 있습니다.
 
-``` php
+``` php?start_inline=1
 $_GET[flag][5] = "7";
 $_GET[flag][6] = "o";
 $_GET[flag][7] = "_";
@@ -585,7 +585,7 @@ $_GET[flag][9] = "0";
 
 그 다음은 `$flag_len`입니다:
 
-``` php
+``` php?start_inline=1
 $flag_len = strlen($_GET[flag]);
 $length_chk = 1;
 while ($flag_len > 1) $length_chk += $flag_len -= 1;
@@ -594,7 +594,7 @@ if (($length_chk < 110) || ($length_chk > 130)) exit("wrong");
 
 `$_GET[flag]`가 16글자가 되어야 한다는 사실을 알 수 있습니다.
 
-``` php
+``` php?start_inline=1
 $stage3 = substr($_GET[flag], -7);
 $stage3_1 = substr($stage3, 0, 6);
 $stage3_2 = substr($stage3, 1, 6);
