@@ -257,23 +257,23 @@ of Pinpoint, we run several scripts.
 
 - Collector: `quickstart/bin/start-collector.sh`
 
-    ![start-collector.sh](/images/2015/05/05/quickstart-start-collector.png "start-collector.sh")
+  ![start-collector.sh](/images/2015/05/05/quickstart-start-collector.png "start-collector.sh")
 - Web UI: `quickstart/bin/start-web.sh`
 
-    ![start-web.sh](/images/2015/05/05/quickstart-start-web.png "start-web.sh")
+  ![start-web.sh](/images/2015/05/05/quickstart-start-web.png "start-web.sh")
 - TestApp: `quickstart/bin/start-testapp.sh`
 
-    ![start-testapp.sh](/images/2015/05/05/quickstart-start-testapp.png "start-testapp.sh")
+  ![start-testapp.sh](/images/2015/05/05/quickstart-start-testapp.png "start-testapp.sh")
 
 Once HBase and the 3 daemons are running, visit the following addresses to test
 out your Pinpoint instance.
 
 - Web UI: <http://localhost:28080>
 
-    ![Web UI](/images/2015/05/05/quickstart-web-ui.png "Web UI")
+  ![Web UI](/images/2015/05/05/quickstart-web-ui.png "Web UI")
 - TestApp: <http://localhost:28081>
 
-    ![TestApp](/images/2015/05/05/quickstart-testapp.png "TestApp")
+  ![TestApp](/images/2015/05/05/quickstart-testapp.png "TestApp")
 
 ### Stopping
 

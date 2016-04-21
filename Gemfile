@@ -6,7 +6,6 @@ gem 'jekyll-gist', '~> 1.4'
 gem 'jekyll-paginate', '~> 1.1'
 gem 'jekyll-redirect-from', '~> 0.10'
 gem 'jekyll-sitemap', '~> 0.10'
-gem 'redcarpet', '~> 3.3.4'
 
 group :test do
   gem 'rake', '~> 10.1'

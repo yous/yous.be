@@ -40,15 +40,15 @@ There are some types of window which isn't important while quitting Vim.
 
 1. Help
 
-    We can look up documentation of Vim itself or its plugins by `:help` or `:h` command. This is one of the most powerful features of Vim, but these windows aren't editable and we don't need them while quitting Vim.
+   We can look up documentation of Vim itself or its plugins by `:help` or `:h` command. This is one of the most powerful features of Vim, but these windows aren't editable and we don't need them while quitting Vim.
 
 2. QuickFix
 
-    Some plugins like [Syntastic](https://github.com/scrooloose/syntastic) or [Vim RuboCop](https://github.com/ngmy/vim-rubocop) show errors on QuickFix window and Vim supports navigating them with `:cnext` and `:cprev`. There windows aren't needed also.
+   Some plugins like [Syntastic](https://github.com/scrooloose/syntastic) or [Vim RuboCop](https://github.com/ngmy/vim-rubocop) show errors on QuickFix window and Vim supports navigating them with `:cnext` and `:cprev`. There windows aren't needed also.
 
 3. NERDTree and Tag List
 
-    Here is where we started.
+   Here is where we started.
 
 ## Investigate the Buffer
 
@@ -137,16 +137,16 @@ You can see my actual [vimrc commit](https://github.com/yous/dotfiles/commit/735
 
 - **Update**: In gVim, executing `qall` won't work. You can use this line instead of `qall`:
 
-    ``` vim
-    call feedkeys(":qall\<CR>", 'n')
-    ```
+  ``` vim
+  call feedkeys(":qall\<CR>", 'n')
+  ```
 
 - **Update**: If you have multiple tabs open, `qall` will close all buffers left.
 You may want to close only the current tab with `:q`, then you can use the
 `only` command:
 
-    ``` vim
-    call feedkeys(":only\<CR>:q\<CR>", 'n')
-    ```
+  ``` vim
+  call feedkeys(":only\<CR>:q\<CR>", 'n')
+  ```
 
 This will work with other Vim distributions. If it doesn't or if you have another problems, feel free to [make an issue](https://github.com/yous/dotfiles/issues/new) or [contact me]({{ "/about/" | prepend: site.baseurl }}).

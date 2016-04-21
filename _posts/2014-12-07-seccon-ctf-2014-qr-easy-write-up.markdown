@@ -134,20 +134,20 @@ There are [mode indicators](http://www.thonky.com/qr-code-tutorial/data-encoding
 [Character count indicator](http://www.thonky.com/qr-code-tutorial/data-encoding/#step-4-add-the-character-count-indicator) follows after a mode indicator.
 
 - Version 1--9
-    - Numeric mode: 10 bits
-    - Alphanumeric mode: 9 bits
-    - Byte mode: 8 bits
-    - Kanji mode: 8 bits
+  - Numeric mode: 10 bits
+  - Alphanumeric mode: 9 bits
+  - Byte mode: 8 bits
+  - Kanji mode: 8 bits
 - Version 10--26
-    - Numeric mode: 12 bits
-    - Alphanumeric mode: 11 bits
-    - Byte mode: 16 bits
-    - Kanji mode: 10 bits
+  - Numeric mode: 12 bits
+  - Alphanumeric mode: 11 bits
+  - Byte mode: 16 bits
+  - Kanji mode: 10 bits
 - Version 27--40
-    - Numeric mode: 14 bits
-    - Alphanumeric mode: 13 bits
-    - Byte mode: 16 bits
-    - Kanji mode: 12 bits
+  - Numeric mode: 14 bits
+  - Alphanumeric mode: 13 bits
+  - Byte mode: 16 bits
+  - Kanji mode: 12 bits
 
 See the encoding process for each mode:
 

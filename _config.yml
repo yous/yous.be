@@ -38,7 +38,7 @@ gems:
   - jekyll-sitemap
 
 # Build settings
-markdown: redcarpet
+markdown: kramdown
 excerpt_separator: "<!-- more -->"
 
 # Outputting
@@ -47,6 +47,14 @@ paginate_path: /posts/:num/
 paginate: 5
 
 # Markdown settings
+kramdown:
+  auto_ids: false
+  enable_coderay: false
+  entity_output: as_char
+  footnote_nr: 1
+  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  toc_levels: 1..6
+
 redcarpet:
   extensions:
     - no_intra_emphasis

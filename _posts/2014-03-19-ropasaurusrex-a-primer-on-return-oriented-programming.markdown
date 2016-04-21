@@ -43,6 +43,7 @@ CTF 대회에서 문제를 풀다가 [나중에 깨달을 때][hindsight] 가장
 [my writeup of cnot]: https://blog.skullsecurity.org/blog/2013/epic-cnot-writeup-plaidctf
 
 <!-- ## What the heck is ROP? -->
+
 ## <a id="what-the-heck-is-rop"></a>도대체 ROP가 뭐야?
 
 <!-- ROP---return-oriented programming---is a modern name for a classic exploit called "[return into libc][]". The idea is that you found an overflow or other type of vulnerability in a program that lets you take control, but you have no reliable way get your code into executable memory ([DEP][], or data execution prevention, means that you can't run code from anywhere you want anymore). -->
@@ -64,6 +65,7 @@ ROP를 이용하면 실행 가능한 메모리 영역(executable memory)에 있�
 [^1]: 링크가 [바뀌었다](https://wiki.skullsecurity.org/Assembly).
 
 <!-- ## The stack -->
+
 ## <a id="the-stack"></a>스택
 
 <!-- I'm sure you've heard of the stack before. [Stack overflows][]? Smashing the stack? But what's it actually mean? If you already know, feel free to treat this as a quick primer, or to just skip right to the next section. Up to you! -->
@@ -177,6 +179,7 @@ ROP를 이용하면 실행 가능한 메모리 영역(executable memory)에 있�
 [except when they're not]: https://en.wikipedia.org/wiki/X86_calling_conventions#stdcall
 
 <!-- ## Heaven, hell, and stack frames -->
+
 ## <a id="heaven-hell-and-stack-frames"></a>천국, 지옥 그리고 스택 프레임
 
 <!-- The main thing you have to understand to know ROP is this: a function's entire universe is its stack frame. The stack is its god, the parameters are its commandments, local variables are its sins, the saved frame pointer is its bible, and the return address is its heaven (okay, probably hell). It's all right there in the [Book of Inte][], chapter 3, verses 19 - 26 (note: it isn't actually, don't bother looking). -->
@@ -238,6 +241,7 @@ ROP를 이해하기 위해 이해해야 하는 가장 중요한 건, 함수의 �
 제대로 동작하는 시스템에서는, 이게 작동 원리다. 안전한 전제다. "seconds" 값은 스택에 들어갔을 때 스택에만 있을 것이고, 반환 주소는 호출된 장소를 가리키고 있을 것이다. 그럼, 그럼. 달리 어떤 방법으로 그리 갈 수 있을까?
 
 <!-- ## Controlling the stack -->
+
 ## <a id="controlling-the-stack"></a>스택 주무르기
 
 <!-- ...well, since you asked, let me tell you. We've all heard of a "stack overflow", which involves overwriting a variable on the stack. What's that mean? Well, let's say we have a frame that looks like this: -->
@@ -279,6 +283,7 @@ ROP를 이해하기 위해 이해해야 하는 가장 중요한 건, 함수의 �
 [0]: https://en.wikipedia.org/wiki/Zero_page
 
 <!-- ## DEP -->
+
 ## <a id="dep"></a>DEP
 
 <!-- Traditionally, an attacker would change the return address to point to the stack, since the attacker already has the ability to put code on the stack (after all, code is just a bunch of bytes!). But, being that it was such a common and easy way to exploit systems, those assholes at OS companies (just kidding, I love you guys :) ) put a stop to it by introducing data execution prevention, or DEP. On any DEP-enabled system, you can no longer run code on the stack---or, more generally, anywhere an attacker can write---instead, it crashes. -->
@@ -291,6 +296,7 @@ ROP를 이해하기 위해 이해해야 하는 가장 중요한 건, 함수의 �
 음, 이제 그걸 할 것이다. 하지만 먼저, 이 문제가 사용하는 취약점을 보자!
 
 <!-- ## The vulnerability -->
+
 ## <a id="the-vulnerability"></a>취약점
 
 <!-- Here's the vulnerable function, fresh from IDA: -->
@@ -362,6 +368,7 @@ ron@debian-x86 ~ $ gdb ./ropasaurusrex core
 [pattern_offset.rb]: https://github.com/rapid7/metasploit-framework/blob/master/tools/exploit/pattern_offset.rb
 
 <!-- ## Starting to write an exploit -->
+
 ## <a id="starting-to-write-an-exploit"></a>익스플로잇 제작 시작하기
 
 <!-- The first thing you should do is start running `ropasaurusrex` as a network service. The folks who wrote the CTF used [xinetd][] to do this, but we're going to use [netcat][], which is just as good (for our purposes): -->
@@ -429,6 +436,7 @@ Program terminated with signal 11, Segmentation fault.
 이게 익스플로잇의 시작이다!
 
 <!-- ## How to waste time with ASLR -->
+
 ## <a id="how-to-waste-time-with-aslr"></a>어떻게 ASLR로 시간을 낭비하는가
 
 <!-- I called this section 'wasting time', because I didn't realize---at the time---that ASLR was enabled. However, assuming no ASLR actually makes this a much more instructive puzzle. So for now, let's not worry about ASLR---in fact, let's not even _define_ ASLR. That'll come up in the next section. -->
@@ -451,6 +459,7 @@ Program terminated with signal 11, Segmentation fault.
 2. `system()` 함수 실행하기
 
 <!-- ### Getting the string into memory -->
+
 ### <a id="getting-the-string-into-memory"></a>메모리에 문자열 넣기
 
 <!-- Getting the string into memory actually involves two sub-steps: -->
@@ -624,6 +633,7 @@ Program terminated with signal 11, Segmentation fault.
 완벽하다!
 
 <!-- ### Running it -->
+
 ### <a id="running-it"></a>실행하기
 
 <!-- Now that we've written `cat /etc/passwd` into memory, we need to call `system()` and point it at that address. It turns out, if we assume ASLR is off, this is easy. We know that the executable is linked with libc: -->
@@ -1159,6 +1169,7 @@ ron@debian-x86 ~ $ ruby sploit.rb "cat /etc/passwd"
 여기서부터 조금 더 복잡해진다. 가보자!
 
 <!-- ## What is ASLR? -->
+
 ## <a id="what-is-aslr"></a>ASLR이 뭐야?
 
 <!-- ASLR---or address space layout randomization---is a defense implemented on all modern systems (except for FreeBSD) that randomizes the address that libraries are loaded at. As an example, let's run ropasaurusrex twice and get the address of `system()`: -->
@@ -1224,6 +1235,7 @@ $1 = {<text variable, no debug info>} 0xb7f48110 <read>
 보라... `read()`를 가리키는 포인터가 우리가 알고 있는 메모리 주소에 있다! 이걸로 뭘 할지 궁금한가...? 힌트를 하나 주겠다. 우리는 역시 주소를 알고 있는 `write()` 함수를 사용해 임의의 메모리에서 데이터를 가져와 소켓에 쓸 수 있다.
 
 <!-- ## Finally, running some code! -->
+
 ## <a id="finally-running-some-code"></a>드디어, 코드 실행!
 
 <!-- Okay, let's break, this down into steps. We need to: -->
@@ -1389,6 +1401,7 @@ $1 = {<text variable, no debug info>} 0xb7f48110 <read>
 프레임 [6]은 표준적인 `pop/pop/pop/ret` 구조지만 약간 다르다. `pop/pop/pop/ret`의 반환 주소가 실제론 `read()`의 `.plt` 엔트리인 `0x804832c`다. `read()`의 `.plt` 엔트리를 `system()`으로 덮어쓰기 때문에, 이 호출은 실제로 `system()`으로 가게 된다!
 
 <!-- ## Final code -->
+
 ## <a id="final-code"></a>최종 코드
 
 <!-- Whew! That's quite complicated. Here's code that implements the full exploit for ropasaurusrex, bypassing both DEP and ASLR: -->
@@ -1523,6 +1536,7 @@ ron
 ```
 
 <!-- ## Conclusion -->
+
 ## <a id="conclusion"></a>결론
 
 <!-- And that's it! We just wrote a reliable, DEP/ASLR-bypassing exploit for ropasaurusrex. -->

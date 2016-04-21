@@ -29,32 +29,32 @@ url: http://yoursite.com/blog
 
 - `_config.yml`:
 
-    ``` yaml
-    # permalink: /blog/:year/:month/:day/:title/
-    permalink: /:year/:month/:day/:title/
+  ``` yaml
+  # permalink: /blog/:year/:month/:day/:title/
+  permalink: /:year/:month/:day/:title/
 
-    # category_dir: blog/categories
-    category_dir: categories
-    ```
+  # category_dir: blog/categories
+  category_dir: categories
+  ```
 
 - `source/_includes/custom/navigation.html`:
 
-    ``` html
-    <!--
-    <li><a href="{{ root_url }}/blog/archives">Archives</a></li>
-    -->
-    <li><a href="{{ root_url }}/archives">Archives</a></li>
-    ```
+  ``` html
+  <!--
+  <li><a href="{{ root_url }}/blog/archives">Archives</a></li>
+  -->
+  <li><a href="{{ root_url }}/archives">Archives</a></li>
+  ```
 
 그리고, `source/blog/archives` 폴더를 `source/archives`로 옮겨주시기 바랍니다.
 
 - `source/index.html`:
 
-    ``` html
-    <!--
-    <a href="/blog/archives">Blog Archives</a>
-    -->
-    <a href="/archives">Blog Archives</a>
-    ```
+  ``` html
+  <!--
+  <a href="/blog/archives">Blog Archives</a>
+  -->
+  <a href="/archives">Blog Archives</a>
+  ```
 
 사용중인 테마에 따라 추가적인 수정 사항이 있을 수 있습니다.

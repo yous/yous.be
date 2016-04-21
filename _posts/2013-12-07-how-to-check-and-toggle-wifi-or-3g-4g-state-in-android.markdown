@@ -12,14 +12,14 @@ redirect_from: /p/20131207/
 ## Overview
 
 1. [Check if WiFi or 3G/4G is Enabled (by User)]({% post_url 2013-12-07-how-to-check-and-toggle-wifi-or-3g-4g-state-in-android %}#1)
-    1. [WiFi]({% post_url 2013-12-07-how-to-check-and-toggle-wifi-or-3g-4g-state-in-android %}#1-1)
-    2. [3G/4G]({% post_url 2013-12-07-how-to-check-and-toggle-wifi-or-3g-4g-state-in-android %}#1-2)
+   1. [WiFi]({% post_url 2013-12-07-how-to-check-and-toggle-wifi-or-3g-4g-state-in-android %}#1-1)
+   2. [3G/4G]({% post_url 2013-12-07-how-to-check-and-toggle-wifi-or-3g-4g-state-in-android %}#1-2)
 2. [Check if WiFi or 3G/4G is Connected]({% post_url 2013-12-07-how-to-check-and-toggle-wifi-or-3g-4g-state-in-android %}#2)
-    1. [WiFi]({% post_url 2013-12-07-how-to-check-and-toggle-wifi-or-3g-4g-state-in-android %}#2-1)
-    2. [3G/4G]({% post_url 2013-12-07-how-to-check-and-toggle-wifi-or-3g-4g-state-in-android %}#2-2)
+   1. [WiFi]({% post_url 2013-12-07-how-to-check-and-toggle-wifi-or-3g-4g-state-in-android %}#2-1)
+   2. [3G/4G]({% post_url 2013-12-07-how-to-check-and-toggle-wifi-or-3g-4g-state-in-android %}#2-2)
 3. [Toggle WiFi or 3G/4G Programmatically]({% post_url 2013-12-07-how-to-check-and-toggle-wifi-or-3g-4g-state-in-android %}#3)
-    1. [WiFi]({% post_url 2013-12-07-how-to-check-and-toggle-wifi-or-3g-4g-state-in-android %}#3-1)
-    2. [3G/4G]({% post_url 2013-12-07-how-to-check-and-toggle-wifi-or-3g-4g-state-in-android %}#3-2)
+   1. [WiFi]({% post_url 2013-12-07-how-to-check-and-toggle-wifi-or-3g-4g-state-in-android %}#3-1)
+   2. [3G/4G]({% post_url 2013-12-07-how-to-check-and-toggle-wifi-or-3g-4g-state-in-android %}#3-2)
 
 At some point, we want to know whether the device is connected to network so that we can do some network processes. Also we want to know if _user_ make WiFi or 3G/4G disabled on purpose. Both things are able to know.
 
@@ -95,37 +95,37 @@ Also I tested several times with `getState()` and `getReason()`.
 
   When WiFi is connected, mobile data connection automatically closed.
 
-``` java
-mobileInfo.getState()
-// => DISCONNECTED
-mobileInfo.getReason()
-// => "dataDisabled"
-```
+  ``` java
+  mobileInfo.getState()
+  // => DISCONNECTED
+  mobileInfo.getReason()
+  // => "dataDisabled"
+  ```
 
 - Enable WiFi only
 
-``` java
-mobileInfo.getState()
-// => DISCONNECTED
-mobileInfo.getReason()
-// => "specificDisabled"
-```
+  ``` java
+  mobileInfo.getState()
+  // => DISCONNECTED
+  mobileInfo.getReason()
+  // => "specificDisabled"
+  ```
 
 - Enable 3G/4G only
 
-``` java
-mobileInfo.getState()
-// => CONNECTED
-```
+  ``` java
+  mobileInfo.getState()
+  // => CONNECTED
+  ```
 
 - Disable both
 
-``` java
-mobileInfo.getState()
-// => DISCONNECTED
-mobileInfo.getReason()
-// => "specificDisabled"
-```
+  ``` java
+  mobileInfo.getState()
+  // => DISCONNECTED
+  mobileInfo.getReason()
+  // => "specificDisabled"
+  ```
 
 So the code would be like this.
 
