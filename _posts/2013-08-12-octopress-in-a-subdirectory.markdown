@@ -9,7 +9,7 @@ keywords: octopress, subdirectory
 redirect_from: /p/20130812/
 ---
 
-Octopress 블로그를 사이트 루트가 아닌 하위 디렉토리에서 제공하고 싶을 때, 터미널에서 다음과 같이 실행해 줍니다.
+Octopress 블로그를 사이트 루트가 아닌 하위 디렉터리에서 제공하고 싶을 때, 터미널에서 다음과 같이 실행해 줍니다.
 
 ``` sh
 rake set_root_dir[/blog]
@@ -25,7 +25,7 @@ rake set_root_dir[/]
 url: http://yoursite.com/blog
 ```
 
-추가로, `/blog`를 하위 디렉토리로 사용했을 때, Archives와 Categories, 그리고 포스트 경로들이 `http://yoursite.com/blog/blog/...`의 형태로 생성됩니다. 중복된 `/blog`를 지우기 위해 다음과 같이 설정을 변경해 줍니다.
+추가로, `/blog`를 하위 디렉터리로 사용했을 때, Archives와 Categories, 그리고 포스트 경로들이 `http://yoursite.com/blog/blog/...`의 형태로 생성됩니다. 중복된 `/blog`를 지우기 위해 다음과 같이 설정을 변경해 줍니다.
 
 - `_config.yml`:
 
@@ -57,4 +57,4 @@ url: http://yoursite.com/blog
   <a href="/archives">Blog Archives</a>
   ```
 
-사용중인 테마에 따라 추가적인 수정 사항이 있을 수 있습니다.
+사용 중인 테마에 따라 추가적인 수정 사항이 있을 수 있습니다.
