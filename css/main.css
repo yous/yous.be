@@ -287,9 +287,9 @@ pre {
  * Syntax highlighting styles
  */
 .highlight {
-  background: #fff; }
+  background-color: whitesmoke; }
   .highlighter-rouge .highlight {
-    background: #eef; }
+    background-color: whitesmoke; }
   .highlight .c {
     color: #998;
     font-style: italic; }
