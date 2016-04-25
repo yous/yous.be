@@ -24,6 +24,5 @@ the adopted character as
 [チルノ adopted ⑨](http://unicode.org/consortium/adopted-characters.html#b2468).
 
 [I chose '유' (U+C720, HANGUL SYLLABLE YU)](http://unicode.org/consortium/adopted-characters.html#bC720),
-which is my family name written in Korean. And this is one of the first two
-adoptions of hangul character, and the other is
-['꿈'](http://unicode.org/consortium/adopted-characters.html#bAFC8).
+which is my family name written in Korean. And this is one of the first
+adoptions of hangul character.
