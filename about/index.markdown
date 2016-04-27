@@ -31,6 +31,9 @@ Chayoung You
 - [Dwaet](https://github.com/yous/dwaet) --- No doet, it's dwaet.
 - [Sawarineko](https://github.com/yous/sawarineko) --- Get your Nya!
 - [BaseHangul](https://github.com/yous/basehangul) --- Human-readable binary encoding, [BaseHangul](https://basehangul.github.io) for Ruby.
+- [Pinpoint Docker](https://github.com/yous/pinpoint-docker) --- Docker for [Pinpoint](https://github.com/naver/pinpoint).
+- [vanilli.sh](https://github.com/yous/vanilli.sh) --- A lightweight start point of shell configuration.
+- [homebrew-fadedrubies](https://github.com/yous/homebrew-fadedrubies) --- Old Ruby formulae for the Homebrew package manager.
 
 ## <a id="code"></a>Code
 
