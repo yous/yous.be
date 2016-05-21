@@ -38,7 +38,7 @@ twitter_card:
 [Canonical link element]: http://en.wikipedia.org/wiki/Canonical_link_element
 [Insights documentation]: https://developers.facebook.com/docs/insights/
 
-다른 종류의 태그를 더 추가할 수도 있다:
+다른 종류의 태그를 더 추가할 수도 있다.
 
 - `og:type`: 페이스북의 뉴스피드는 당신의 글을 미디어 종류에 따라 다르게 보여준다.[일반적으로 쓰이는 오브젝트 타입][number of different common object types]은 이미 정의되어 있다. 만약 오브젝트 타입을 설정하지 않으면 기본 타입으로 `website`가 쓰인다. Open Graph를 통해 당신만의 타입을 정할 수도 있다.
 - `og:locale`: 리소스의 언어다. 기본 설정은 `en_US`다. `og:locale:alternate`를 통해 다른 언어도 가능하다는 것을 나타낼 수 있다. 예제와 추가 정보는 [국제화][Internationalization]와 [Open Graph 국제화][Open Graph Internationalization] 페이지를 보라.
@@ -191,7 +191,7 @@ twitter_card:
 
 `width` 태그와 `height` 태그는 사진의 크기를 나타내며 이 두 태그의 입력은 옵션이다. 자세한 사항은 [Photo Card][] 페이지에서 확인하길 바란다.
 
-`gallery` 타입의 경우 추가로 필요한 태그가 있으며 예제는 다음과 같다:
+`gallery` 타입의 경우 추가로 필요한 태그가 있으며 예제는 다음과 같다.
 
 ``` yaml
 ---

@@ -82,7 +82,7 @@ x = 6
 answer>
 ```
 
-곱합시다:
+곱합시다.
 
 ``` ruby
 require 'socket'
@@ -151,7 +151,7 @@ loop do
 end
 ```
 
-20 스테이지까지 통과하면 Flag를 받을 수 있습니다:
+20 스테이지까지 통과하면 Flag를 받을 수 있습니다.
 
 ``` text
 크리스마스의 행복도 곱하기가 되길 바라며...
@@ -172,7 +172,7 @@ Flag는 `I_L0VE_S6nta, I_L0Ve_Father, I_L0VE_Y0U...`입니다.
 
 꽤나 수상한 악보입니다. 아랫줄을 보면 박자도 맞지 않고 음도 제멋대로입니다. [CODEGATE 2009 예선전 Prob9](http://webhacking.tistory.com/6) 문제를 참고하여 주시기 바랍니다.
 
-마타하리라는 암호라고 하는데, 정보가 확실하진 않으나 해당 글의 WELCOME TO까지 완벽히 동일합니다. 아래 표를 보고 직접 해독합니다:
+마타하리라는 암호라고 하는데, 정보가 확실하진 않으나 해당 글의 WELCOME TO까지 완벽히 동일합니다. 아래 표를 보고 직접 해독합니다.
 
 ![Matahari](/images/2014/12/25/Matahari.jpg "Matahari")
 
@@ -211,7 +211,7 @@ login 페이지에서 이렇게 자동로그인을 구현했는데 보안에 문
 
 하지만 이 관리자는 `==`를 사용했습니다. PHP에서 `==`를 사용할 경우 양쪽 모두 문자열이더라도 한 쪽이라도 숫자처럼 보이면 양쪽 다 숫자 변환을 한 후 비교합니다.
 
-적당히 MD5의 맨 앞 자리가 숫자가 되는 문자열을 찾습니다:
+적당히 MD5의 맨 앞 자리가 숫자가 되는 문자열을 찾습니다.
 
 ``` ruby
 require 'digest/md5'
@@ -219,14 +219,14 @@ Digest::MD5.hexdigest('1aacesz')
 # => "1a8c7efd14576c4ebd90c2214ecea5cd"
 ```
 
-그리고 쿠키를 만들어 `user_id`에는 좀전의 `1aacesz`를, 하지만 `session_chk`에는 `00000000000000000000000000000001`을 넣습니다. 이때 두 번째 조건과 세 번째 조건은 아래와 같습니다:
+그리고 쿠키를 만들어 `user_id`에는 좀전의 `1aacesz`를, 하지만 `session_chk`에는 `00000000000000000000000000000001`을 넣습니다. 이때 두 번째 조건과 세 번째 조건은 아래와 같습니다.
 
 ``` php?start_inline=1
 "dev_00000000000000000000000000000001" == "dev_1a8c7efd14576c4ebd90c2214ecea5cd"
 "00000000000000000000000000000001" == "1a8c7efd14576c4ebd90c2214ecea5cd"
 ```
 
-각각 거짓, 참이어서 `$_SESSION['id']`에 `1aacesz`가 들어가게 됩니다. Flag 메뉴에 들어가면 Flag를 볼 수 있습니다:
+각각 거짓, 참이어서 `$_SESSION['id']`에 `1aacesz`가 들어가게 됩니다. Flag 메뉴에 들어가면 Flag를 볼 수 있습니다.
 
 ``` text
 Flag:{UP_down_UP_UP_down}
@@ -240,7 +240,7 @@ Flag는 `UP_down_UP_UP_down`입니다.
 
 > [Link](http://web-prob.dkserver.wo.tc/letter_4f1ad94372c166c3cb9632ed5041849a/)
 
-Flag 버튼을 누르면 `http://web-prob.dkserver.wo.tc/letter_4f1ad94372c166c3cb9632ed5041849a/flag.php`로 이동합니다. 다음과 같은 글이 보입니다:
+Flag 버튼을 누르면 `http://web-prob.dkserver.wo.tc/letter_4f1ad94372c166c3cb9632ed5041849a/flag.php`로 이동합니다. 다음과 같은 글이 보입니다.
 
 > 주석에 있지롱 ^_______________________^
 
@@ -254,7 +254,7 @@ elseif(strlen($_GET[letter])>5) exit("No Hack");
 system("head ./letter/" . $_GET[letter]);
 ```
 
-어느 페이지에서 `letter`를 인자로 받고 있는 것 같습니다. Letter 페이지의 Letter 1, Letter 2, Letter 3, Letter 4가 각각 다음과 같은 URL을 갖습니다:
+어느 페이지에서 `letter`를 인자로 받고 있는 것 같습니다. Letter 페이지의 Letter 1, Letter 2, Letter 3, Letter 4가 각각 다음과 같은 URL을 갖습니다.
 
 - `http://web-prob.dkserver.wo.tc/letter_4f1ad94372c166c3cb9632ed5041849a/?letter=1`
 - `http://web-prob.dkserver.wo.tc/letter_4f1ad94372c166c3cb9632ed5041849a/?letter=2`
@@ -267,7 +267,7 @@ system("head ./letter/" . $_GET[letter]);
 
 `http://web-prob.dkserver.wo.tc/letter_4f1ad94372c166c3cb9632ed5041849a/?letter=../*`
 
-소스를 봅니다:
+소스를 봅니다.
 
 ``` php
 ==&gt; ./letter/../css &lt;==
@@ -300,7 +300,7 @@ Flag는 `snow_is_commmming`입니다.
 
 > [Link](http://web-prob.dkserver.wo.tc/sqli_962a035aacf08966ffc7610957ac0c29/)
 
-Clue를 봅시다:
+Clue를 봅시다.
 
 ``` sql
 CREATE TABLE `table_name` (
@@ -312,7 +312,7 @@ CREATE TABLE `table_name` (
 )
 ```
 
-Letter는 아까와 같지만 4번 항목만 `Secret :)`이라는 메시지와 함께 가려져 있습니다. 일단 괄호를 쓸 수 없습니다. 시도 끝에 like를 사용한 쿼리를 하나 만들었습니다:
+Letter는 아까와 같지만 4번 항목만 `Secret :)`이라는 메시지와 함께 가려져 있습니다. 일단 괄호를 쓸 수 없습니다. 시도 끝에 like를 사용한 쿼리를 하나 만들었습니다.
 
 ``` sql
 ?letter=-1 or letter like "%%" and no=4
@@ -327,7 +327,7 @@ Letter는 아까와 같지만 4번 항목만 `Secret :)`이라는 메시지와 �
 ...
 ```
 
-길이는 10글자입니다. 문제는 글의 내용인데요, `"%A%"` 등의 알파벳이 존재하지 않습니다. 처음 등장한 Clue에서 `utf32_unicode_ci`라는 부분을 생각하면 글이 한글로 이루어져 있는 것 같습니다. 마찬가지로 like를 이용해 한글 글자를 빼냅니다:
+길이는 10글자입니다. 문제는 글의 내용인데요, `"%A%"` 등의 알파벳이 존재하지 않습니다. 처음 등장한 Clue에서 `utf32_unicode_ci`라는 부분을 생각하면 글이 한글로 이루어져 있는 것 같습니다. 마찬가지로 like를 이용해 한글 글자를 빼냅니다.
 
 ``` ruby
 require 'net/http'
@@ -337,7 +337,7 @@ require 'net/http'
 end
 ```
 
-끝까지 돌렸다면 아마 아래와 같은 결과가 나왔을 것입니다만, 다 나오기 전에 게싱했습니다.
+끝까지 돌렸다면 아마 아래와 같은 결과가 나왔을 것입니다만, 다 나오기 전에 추측했습니다.
 
 ``` text
 그
@@ -443,7 +443,7 @@ loop do
 end
 ```
 
-20문제를 풀게 되면 다음과 같은 메시지를 받을 수 있습니다:
+20문제를 풀게 되면 다음과 같은 메시지를 받을 수 있습니다.
 
 ``` text
 Congratz! You are Dynamic algorithm master
@@ -464,7 +464,7 @@ Flag는 `Rac_reKrei$her_!s_so_cute_@lligat0r!`입니다.
 
 위 링크에 접근이 되지 않는다면 [이 링크](/downloads/2014/12/26/phpobfuscate_6edfd44ed0290d72e6b9a59f256e8dc0.zip)를 사용해주시기 바랍니다.
 
-압축을 풀면 난독화된 `index.php`가 나옵니다:
+압축을 풀면 난독화된 `index.php`가 나옵니다.
 
 ``` php
 <?php
@@ -583,7 +583,7 @@ $_GET[flag][8] = "d";
 $_GET[flag][9] = "0";
 ```
 
-그 다음은 `$flag_len`입니다:
+그 다음은 `$flag_len`입니다.
 
 ``` php?start_inline=1
 $flag_len = strlen($_GET[flag]);
@@ -639,7 +639,7 @@ xor.write(s.bytes.map { |b| (b ^ 0xFF).chr }.join)
 xor.close
 ```
 
-그렇게 얻은 이미지는 아래와 같습니다:
+그렇게 얻은 이미지는 아래와 같습니다.
 
 ![k3y_xor.png](/images/2014/12/25/k3y_xor.png "k3y_xor.png")
 

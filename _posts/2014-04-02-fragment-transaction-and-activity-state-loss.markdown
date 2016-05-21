@@ -14,7 +14,7 @@ redirect_from:
 external-url: http://www.androiddesignpatterns.com/2013/08/fragment-transaction-commit-state-loss.html
 ---
 
-[FragmentTransaction][]을 [commit()][] 했을 때 Activity의 [onSaveInstanceState(Bundle)][]이 실행된 후라면 다음과 같은 에러 메시지를 보게 된다:
+[FragmentTransaction][]을 [commit()][] 했을 때 Activity의 [onSaveInstanceState(Bundle)][]이 실행된 후라면 다음과 같은 에러 메시지를 보게 된다.
 
 ```
 java.lang.IllegalStateException: Can not perform this action after onSaveInstanceState

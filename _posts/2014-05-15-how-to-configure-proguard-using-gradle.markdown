@@ -56,7 +56,7 @@ android {
 [TOC-Build-Types]: http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Build-Types
 [TOC-Signing-Configurations]: http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Signing-Configurations
 
-다만 이 때 `build.gradle` 파일에 keystore 암호와 키 암호가 평문으로 들어가게 되는데, 소스를 공개하고 있는 등의 이유로 이를 피하고 싶다면 각각의 항목을 쉘 프롬프트에서 입력받을 수 있다:
+다만 이때 `build.gradle` 파일에 keystore 암호와 키 암호가 평문으로 들어가게 되는데, 소스를 공개하고 있는 등의 이유로 이를 피하고 싶다면 각각의 항목을 쉘 프롬프트에서 입력받을 수 있다.
 
 ``` groovy
 signingConfigs {
@@ -69,7 +69,7 @@ signingConfigs {
 }
 ```
 
-그러나 이는 [IDE를 통해 디버그 APK를 생성할 때 크래시][How to create a release signed apk file using Gradle?]를 내며, 이는 그때 코드의 `console`이 `null`이라서 발생하는 오류다. 이를 해결한 최종 코드는 다음과 같다:
+그러나 이는 [IDE를 통해 디버그 APK를 생성할 때 크래시][How to create a release signed apk file using Gradle?]를 내며, 이는 그때 코드의 `console`이 `null`이라서 발생하는 오류다. 이를 해결한 최종 코드는 다음과 같다.
 
 [How to create a release signed apk file using Gradle?]: http://stackoverflow.com/questions/18328730/how-to-create-a-release-signed-apk-file-using-gradle#19210105
 
@@ -87,7 +87,7 @@ signingConfigs {
 }
 ```
 
-디버그 APK와 배포 APK의 패키지 이름이 같으면 APK의 서명이 서로 달라 개발과 디버깅에 어려움이 있다. 이를 해결하기 위해서 `buildTypes` 아래에 `debug` 항목을 선언하여 디버그 APK의 패키지 이름을 바꿀 수 있고, 추가로 버전명도 바꿀 수 있다:
+디버그 APK와 배포 APK의 패키지 이름이 같으면 APK의 서명이 서로 달라 개발과 디버깅에 어려움이 있다. 이를 해결하기 위해서 `buildTypes` 아래에 `debug` 항목을 선언하여 디버그 APK의 패키지 이름을 바꿀 수 있고, 추가로 버전명도 바꿀 수 있다.
 
 ``` groovy
 buildTypes {
@@ -113,7 +113,7 @@ Gradle은 [캐멀케이스 단축키를 지원][TOC-Android-tasks]해서 `aR`에
 
 ## <a id="how-to-use-proguard"></a>ProGuard 사용하기
 
-배포 APK를 생성할 때 ProGuard를 사용할 수도 있는데, `build.gradle`에 다음 코드를 추가하면 된다:
+배포 APK를 생성할 때 ProGuard를 사용할 수도 있는데, `build.gradle`에 다음 코드를 추가하면 된다.
 
 ``` groovy
 buildTypes {
@@ -128,7 +128,7 @@ buildTypes {
 
 [TOC-Running-ProGuard]: http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Running-ProGuard
 
-추가적인 다른 `proguardFile`을 더 적용하고 싶다면 `proguardFiles`를 사용하면 된다:
+추가적인 다른 `proguardFile`을 더 적용하고 싶다면 `proguardFiles`를 사용하면 된다.
 
 ``` groovy
 buildTypes {
@@ -139,11 +139,11 @@ buildTypes {
 }
 ```
 
-다른 라이브러리 프로젝트를 가져다 사용하고 있을 경우, ProGuard 사용에 있어 주의해야 할 경우가 생긴다.
+다른 라이브러리 프로젝트를 가져다 사용하고 있을 경우, ProGuard 사용에 있어 주의해야 한다.
 
 ### <a id="actionbarsherlock"></a>ActionBarSherlock
 
-[ActionBarSherlock][]의 경우 ProGuard를 사용할 때, [다음 규칙을 추가하라고 명시][ActionBarSherlock FAQ]하고 있다:
+[ActionBarSherlock][]의 경우 ProGuard를 사용할 때, [다음 규칙을 추가하라고 명시][ActionBarSherlock FAQ]하고 있다.
 
 [ActionBarSherlock]: http://actionbarsherlock.com
 [ActionBarSherlock FAQ]: http://actionbarsherlock.com/faq.html
@@ -159,7 +159,7 @@ buildTypes {
 
 ### <a id="crashlytics"></a>Crashlytics
 
-[Crashlytics][]는 이미 ProGuard를 사용한 라이브러리들을 다시 ProGuard가 검사할 필요 없게 해서 [빌드 시간을 줄이는 팁][Mastering ProGuard for Building Lightweight Android Code]을 제공하고 있다:
+[Crashlytics][]는 이미 ProGuard를 사용한 라이브러리들을 다시 ProGuard가 검사할 필요 없게 해서 [빌드 시간을 줄이는 팁][Mastering ProGuard for Building Lightweight Android Code]을 제공하고 있다.
 
 [Crashlytics]: https://www.crashlytics.com
 [Mastering ProGuard for Building Lightweight Android Code]: http://www.crashlytics.com/blog/mastering-proguard-for-building-lightweight-android-code/
@@ -169,7 +169,7 @@ buildTypes {
 -keep class com.crashlytics.** { *; }
 ```
 
-[Android Support Library][]는 이미 소스가 공개되어 있기 때문에 코드 난독화가 필요하지 않다:
+[Android Support Library][]는 이미 소스가 공개되어 있기 때문에 코드 난독화가 필요하지 않다.
 
 [Android Support Library]: http://developer.android.com/tools/support-library/
 
@@ -179,7 +179,7 @@ buildTypes {
 -keep interface android.support.v4.app.** { *; }
 ```
 
-ProGuard를 이용해 코드 난독화 작업을 거치게 되면, 소스 파일의 줄 번호가 바뀌게 되어 Crashlytics의 스택 트레이스에서 정보를 얻기 어려울 수 있다. [소스 파일의 줄 번호 정보를 유지][Android Studio and IntelliJ with ProGuard]하려면 다음 문장을 추가한다:
+ProGuard를 이용해 코드 난독화 작업을 거치게 되면, 소스 파일의 줄 번호가 바뀌게 되어 Crashlytics의 스택 트레이스에서 정보를 얻기 어려울 수 있다. [소스 파일의 줄 번호 정보를 유지][Android Studio and IntelliJ with ProGuard]하려면 다음 문장을 추가한다.
 
 [Android Studio and IntelliJ with ProGuard]: http://support.crashlytics.com/knowledgebase/articles/202926-android-studio-and-intellij-with-proguard
 
@@ -187,7 +187,7 @@ ProGuard를 이용해 코드 난독화 작업을 거치게 되면, 소스 파일
 -keepattributes SourceFile,LineNumberTable
 ```
 
-다만 이 코드 때문에 난독화가 덜 되는 것 같다는 생각이 든다면, 파일 이름을 모두 `"SourceFile"` 문자열로 [바꿀 수도 있다][Producing useful obfuscated stack traces]:
+다만 이 코드 때문에 난독화가 덜 되는 것 같다는 생각이 든다면, 파일 이름을 모두 `"SourceFile"` 문자열로 [바꿀 수도 있다][Producing useful obfuscated stack traces].
 
 [Producing useful obfuscated stack traces]: http://proguard.sourceforge.net/manual/examples.html#stacktrace
 
@@ -198,7 +198,7 @@ ProGuard를 이용해 코드 난독화 작업을 거치게 되면, 소스 파일
 
 ### <a id="google-play-services-sdk"></a>Google Play Services SDK
 
-[Google Play Services SDK][] 또한 필요한 클래스가 사라지는 것을 방지하기 위한 [ProGuard 규칙][Create a Proguard Exception]을 제공하고 있다:
+[Google Play Services SDK][] 또한 필요한 클래스가 사라지는 것을 방지하기 위한 [ProGuard 규칙][Create a Proguard Exception]을 제공하고 있다.
 
 [Google Play Services SDK]: https://developer.android.com/google/play-services/index.html
 [Create a Proguard Exception]: https://developer.android.com/google/play-services/setup.html#Proguard
