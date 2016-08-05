@@ -1,13 +1,13 @@
 require 'rspec/core/rake_task'
 RSpec::Core::RakeTask.new(:spec)
 
-require 'html/proofer'
+require 'html-proofer'
 desc 'Validate HTML files'
 task :proof do
-  HTML::Proofer.new(
+  HTMLProofer.check_directory(
     '_site',
     check_html: true,
-    href_ignore: [/localhost/]
+    url_ignore: [/localhost/]
   ).run
 end
 
