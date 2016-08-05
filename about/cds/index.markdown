@@ -357,3 +357,13 @@ comments: false
 350. Owen Ovadoz --- P.O.E.M.
 351. RHYME-A- --- STORY AT NIGHT : 10TH ANNIVERSARY
 352. Snipersound --- One Nation
+353. Jerry.k --- 감정노동
+354. 검정치마 --- 내 고향 서울엔
+355. DEAN --- 130 MOOD : TRBL
+356. Crush --- Interlude
+357. Beenzino --- 12
+358. Sleeq --- Colossus
+359. JUSTHIS --- 2 Many Homes 4 1 Kid
+360. Don Mills --- 미래
+361. Nafla --- new blood EP
+362. Basick --- Nice
