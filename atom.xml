@@ -5,8 +5,8 @@
     <description>Blog for hackers.</description>
     <link>https://yous.be/</link>
     <atom:link href="https://yous.be/atom.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 05 Aug 2016 14:50:55 +0000</pubDate>
-    <lastBuildDate>Fri, 05 Aug 2016 14:50:55 +0000</lastBuildDate>
+    <pubDate>Tue, 16 Aug 2016 08:28:33 +0000</pubDate>
+    <lastBuildDate>Tue, 16 Aug 2016 08:28:33 +0000</lastBuildDate>
     <generator>Jekyll v3.2.1</generator>
     
       <item>
@@ -1531,8 +1531,10 @@ Flag is I_L0VE_S6nta, I_L0Ve_Father, I_L0VE_Y0U...
 
 &lt;blockquote&gt;
   &lt;p&gt;Kevin은 이번 크리스마스에 자신의 여자친구인 Margaretha에게 노래를 선물하기 위해 징글벨을 편곡했다.&lt;br /&gt;
-악보에 숨겨진 Kevin의 메세지를 찾으시오.&lt;br /&gt;
-* Authkey has to be Uppercase&lt;/p&gt;
+악보에 숨겨진 Kevin의 메세지를 찾으시오.&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;Authkey has to be Uppercase&lt;/li&gt;
+  &lt;/ul&gt;
 
   &lt;p&gt;&lt;img src=&quot;/images/2014/12/25/e11369defdb6e1a58fe1931b2cdac372bca8b05a4c5ffebd681f093b82c0fcb5.jpg&quot; alt=&quot;e11369defdb6e1a58fe1931b2cdac372bca8b05a4c5ffebd681f093b82c0fcb5.jpg&quot; title=&quot;e11369defdb6e1a58fe1931b2cdac372bca8b05a4c5ffebd681f093b82c0fcb5.jpg&quot; /&gt;&lt;/p&gt;
 &lt;/blockquote&gt;
@@ -2784,7 +2786,7 @@ Do you really want to &lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;this key
 &lt;span class=&quot;gp&quot;&gt;gpg&amp;gt; &lt;/span&gt;save
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
-&lt;p&gt;## &lt;a id=&quot;signing-commits&quot;&gt;&lt;/a&gt;Signing Commits&lt;/p&gt;
+&lt;h2&gt;&lt;a id=&quot;signing-commits&quot;&gt;&lt;/a&gt;Signing Commits&lt;/h2&gt;
 
 &lt;p&gt;All the crypto of Keybase is performed with GPG, you can sign your tags and your commits. To setup your signing key, you need to get your key id by:&lt;/p&gt;
 

@@ -24,7 +24,7 @@ Enter passphrase: &lt;passphrase&gt;
 Your decision? 5
 Do you really want to <span class="nb">set </span>this key to ultimate trust? <span class="o">(</span>y/N<span class="o">)</span> y
 <span class="gp">gpg&gt; </span>save
-</code></pre></div><p>## <a id="signing-commits"></a>Signing Commits<p>All the crypto of Keybase is performed with GPG, you can sign your tags and your commits. To setup your signing key, you need to get your key id by:<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gpg --list-secret-keys | grep <span class="s2">"^sec"</span>
+</code></pre></div><h2><a id="signing-commits"></a>Signing Commits</h2><p>All the crypto of Keybase is performed with GPG, you can sign your tags and your commits. To setup your signing key, you need to get your key id by:<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>gpg --list-secret-keys | grep <span class="s2">"^sec"</span>
 sec   4096R/1D5A400A 2014-07-16
 </code></pre></div><p>The <code class="highlighter-rouge">1D5A400A</code> part is your key id. Then simply you can set your signing key by:<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>git config --global user.signingkey 1D5A400A
 </code></pre></div><p>Also<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>git config --global commit.gpgsign <span class="nb">true</span>
