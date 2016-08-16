@@ -440,7 +440,7 @@ Program terminated with signal 11, Segmentation fault.
 ## <a id="how-to-waste-time-with-aslr"></a>어떻게 ASLR로 시간을 낭비하는가
 
 <!-- I called this section 'wasting time', because I didn't realize---at the time---that ASLR was enabled. However, assuming no ASLR actually makes this a much more instructive puzzle. So for now, let's not worry about ASLR---in fact, let's not even _define_ ASLR. That'll come up in the next section. -->
-이 섹션을 '시간 낭비'라고 하는 이유는, 내가 ASLR이 적용되어 있다는 것을 그때 깨닫지 못했기 때문이다. 하지만 ASLR이 적용되어 있지 않다고 가정하는 것은 이 문제를 훨씬 교육하기 좋은 퍼즐로 만들어준다. 그러니 지금은 ASLR에 대해 걱정하지 말자. 실제로, ASLR을 _정의_조차 하지 말자. 다음 섹션에 나올 것이다.
+이 섹션을 '시간 낭비'라고 하는 이유는, 내가 ASLR이 적용되어 있다는 것을 그때 깨닫지 못했기 때문이다. 하지만 ASLR이 적용되어 있지 않다고 가정하는 것은 이 문제를 훨씬 교육하기 좋은 퍼즐로 만들어준다. 그러니 지금은 ASLR에 대해 걱정하지 말자. 실제로, ASLR을 _정의조차_ 하지 말자. 다음 섹션에 나올 것이다.
 
 <!-- Okay, so what do we want to do? We have a vulnerable process, and we have the [libc][] shared library. What's the next step? -->
 좋다, 이제 우린 뭘 하고 싶은가? 우린 취약한 프로세스를 가지고 있고, [libc][] 공유 라이브러리도 있다. 다음 단계는 뭔가?
