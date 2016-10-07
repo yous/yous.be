@@ -5,9 +5,66 @@
     <description>Blog for hackers.</description>
     <link>https://yous.be/</link>
     <atom:link href="https://yous.be/atom.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Tue, 16 Aug 2016 08:28:33 +0000</pubDate>
-    <lastBuildDate>Tue, 16 Aug 2016 08:28:33 +0000</lastBuildDate>
-    <generator>Jekyll v3.2.1</generator>
+    <pubDate>Fri, 07 Oct 2016 12:57:29 +0000</pubDate>
+    <lastBuildDate>Fri, 07 Oct 2016 12:57:29 +0000</lastBuildDate>
+    <generator>Jekyll v3.3.0</generator>
+    
+      <item>
+        
+        <title>How to reset window size of Slack on Windows</title>
+        
+        <description>&lt;h2&gt;Slack application&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://slack.com/&quot;&gt;Slack&lt;/a&gt;, you may know. It rocks, and I’m also involved in
+several teams. Their site is great, but more teams, more tabs in my browser. I
+decided to use their Windows app which provides handy shortcuts for switching
+between teams.&lt;/p&gt;
+
+&lt;p&gt;Today I just remotely connected to my Windows desktop from my notebook. But
+then, I realized the Slack window is shrinked. Maybe the reason is my notebook’s
+screen size, but I don’t know. Its content area became too small to read, so I
+wanted its window size back.&lt;/p&gt;
+
+&lt;p&gt;Actually the default window size was my taste, so I wanted to just reset its
+customized window size. And I found it, so here I am to share with you.&lt;/p&gt;
+
+&lt;h2&gt;Resetting Slack’s window size&lt;/h2&gt;
+
+&lt;p&gt;First of all, note that this is not the permanent solution since it’s not a part
+of Slack API or something that is guaranteed by them. My Windows machine is
+64-bit and the version of Slack is 2.2.1.&lt;/p&gt;
+
+&lt;p&gt;&lt;img src=&quot;/images/2016/10/07/slack-2.2.1.png&quot; alt=&quot;Slack 2.2.1&quot; title=&quot;Slack 2.2.1&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;So here is a way to resetting the window size of Slack.&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Quit your Slack application.&lt;/li&gt;
+  &lt;li&gt;Navigate to &lt;code class=&quot;highlighter-rouge&quot;&gt;%APPDATA%\Slack&lt;/code&gt;. The value of &lt;code class=&quot;highlighter-rouge&quot;&gt;%APPDATA%&lt;/code&gt; is something like
+&lt;code class=&quot;highlighter-rouge&quot;&gt;C:\Users\{username}\AppData\Roaming&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Open &lt;code class=&quot;highlighter-rouge&quot;&gt;redux-state.json&lt;/code&gt; to edit.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Find &lt;code class=&quot;highlighter-rouge&quot;&gt;windowSettings&lt;/code&gt; under &lt;code class=&quot;highlighter-rouge&quot;&gt;state&lt;/code&gt;’s &lt;code class=&quot;highlighter-rouge&quot;&gt;app&lt;/code&gt;. Its value would be like:&lt;/p&gt;
+
+    &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;windowSettings\&quot;:{\&quot;size\&quot;:[1152,832],\&quot;position\&quot;:[384,104],\&quot;isMaximized\&quot;&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+  &lt;/li&gt;
+  &lt;li&gt;Delete the whole &lt;code class=&quot;highlighter-rouge&quot;&gt;windowSettings&lt;/code&gt; entry above. If you delete only a part of
+value of &lt;code class=&quot;highlighter-rouge&quot;&gt;windowSettings&lt;/code&gt;, application may crash.&lt;/li&gt;
+  &lt;li&gt;Open Slack again. It will set the default window size automatically.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;Keep calm and use Slack!&lt;/p&gt;
+</description>
+        <pubDate>Fri, 07 Oct 2016 12:07:02 +0000</pubDate>
+        <link>https://yous.be/2016/10/07/how-to-reset-window-size-of-slack-on-windows/</link>
+        <guid isPermaLink="true">https://yous.be/2016/10/07/how-to-reset-window-size-of-slack-on-windows/</guid>
+        
+        
+        <category>Technology</category>
+        
+      </item>
     
       <item>
         
@@ -2875,123 +2932,6 @@ Date:   Fri Jul 18 21:29:14 2014 +0900
         
         
         <category>Design</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>Move to 'jekyll-redirect-from'</title>
-        
-        <description>&lt;h2&gt;&lt;a id=&quot;problems-with-jekyll-alias-generator&quot;&gt;&lt;/a&gt;Problems with jekyll_alias_generator&lt;/h2&gt;
-
-&lt;p&gt;I wrote &lt;a href=&quot;/2014/05/23/how-to-add-redirects-to-post-url-on-octopress/&quot;&gt;“How to Add Redirects to Post URL on Octopress”&lt;/a&gt; few month ago. Now &lt;a href=&quot;https://github.com/imathis/octopress/commit/72ea6042e33f0b92e4923c3af00e923f19472573&quot;&gt;Octopress is compatible&lt;/a&gt; with &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll&lt;/a&gt; 2.0, and some plugins don’t seem to work. Current Octopress uses Jekyll &lt;a href=&quot;https://github.com/imathis/octopress/blob/4fdae37e4294618084f652c99c0c06ba7663ac07/Gemfile.lock#L26&quot;&gt;2.0.3&lt;/a&gt; and when I run &lt;code class=&quot;highlighter-rouge&quot;&gt;rake generate&lt;/code&gt;, I see an error:&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;/path/to/jekyll/lib/jekyll/static_file.rb:40:in &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;stat&lt;span class=&quot;s1&quot;&gt;': Not a directory @ rb_file_s_stat - /path/to/generated/alias/index.html/ (Errno::ENOTDIR)
-&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;So I make &lt;a href=&quot;https://github.com/yous/jekyll_alias_generator/commit/7de96759bdd7a2c27fa2d4d603c6c1f585fd2abc&quot;&gt;this commit&lt;/a&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gh&quot;&gt;diff --git a/_plugins/alias_generator.rb b/_plugins/alias_generator.rb
-index 1d24cd8..50e9404 100644
-&lt;/span&gt;&lt;span class=&quot;gd&quot;&gt;--- a/_plugins/alias_generator.rb
-&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+++ b/_plugins/alias_generator.rb
-&lt;/span&gt;&lt;span class=&quot;gu&quot;&gt;@@ -70,9 +70,10 @@ module Jekyll
-&lt;/span&gt;           file.write(alias_template(destination_path))
-         end
- 
-&lt;span class=&quot;gd&quot;&gt;-        (alias_index_path.split('/').size + 1).times do |sections|
-&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+        alias_index_path.split('/').size.times do |sections|
-&lt;/span&gt;           @site.static_files &amp;lt;&amp;lt; Jekyll::AliasFile.new(@site, @site.dest, alias_index_path.split('/')[0, sections].join('/'), '')
-         end
-&lt;span class=&quot;gi&quot;&gt;+        @site.static_files &amp;lt;&amp;lt; Jekyll::AliasFile.new(@site, @site.dest, alias_dir, alias_file)
-&lt;/span&gt;       end
-     end
- 
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;But it seems that there is &lt;a href=&quot;https://github.com/tsmango/jekyll_alias_generator/issues/12&quot;&gt;another problem&lt;/a&gt; with latest Jekyll, so I make &lt;a href=&quot;https://github.com/yous/jekyll_alias_generator/commit/59a72029307a730014a020dcb3f73506f80ddab5&quot;&gt;another commit&lt;/a&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-diff highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gh&quot;&gt;diff --git a/_plugins/alias_generator.rb b/_plugins/alias_generator.rb
-index 50e9404..76102db 100644
-&lt;/span&gt;&lt;span class=&quot;gd&quot;&gt;--- a/_plugins/alias_generator.rb
-&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+++ b/_plugins/alias_generator.rb
-&lt;/span&gt;&lt;span class=&quot;gu&quot;&gt;@@ -56,13 +56,13 @@ module Jekyll
-&lt;/span&gt;       alias_paths.compact!
- 
-       alias_paths.flatten.each do |alias_path|
-&lt;span class=&quot;gd&quot;&gt;-        alias_path = alias_path.to_s
-&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+        alias_path = File.join('/', alias_path.to_s)
-&lt;/span&gt; 
-         alias_dir  = File.extname(alias_path).empty? ? alias_path : File.dirname(alias_path)
-         alias_file = File.extname(alias_path).empty? ? &quot;index.html&quot; : File.basename(alias_path)
- 
-&lt;span class=&quot;gd&quot;&gt;-        fs_path_to_dir   = File.join(@site.dest, alias_dir)
--        alias_index_path = File.join(alias_dir, alias_file)
-&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+        fs_path_to_dir = File.join(@site.dest, alias_dir)
-+        alias_sections = alias_dir.split('/')[1..-1]
-&lt;/span&gt; 
-         FileUtils.mkdir_p(fs_path_to_dir)
- 
-&lt;span class=&quot;gu&quot;&gt;@@ -70,8 +70,8 @@ module Jekyll
-&lt;/span&gt;           file.write(alias_template(destination_path))
-         end
- 
-&lt;span class=&quot;gd&quot;&gt;-        alias_index_path.split('/').size.times do |sections|
--          @site.static_files &amp;lt;&amp;lt; Jekyll::AliasFile.new(@site, @site.dest, alias_index_path.split('/')[0, sections].join('/'), '')
-&lt;/span&gt;&lt;span class=&quot;gi&quot;&gt;+        alias_sections.size.times do |sections|
-+          @site.static_files &amp;lt;&amp;lt; Jekyll::AliasFile.new(@site, @site.dest, alias_sections[0, sections + 1].join('/'), '')
-&lt;/span&gt;         end
-         @site.static_files &amp;lt;&amp;lt; Jekyll::AliasFile.new(@site, @site.dest, alias_dir, alias_file)
-       end
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;To say the result first, I had &lt;a href=&quot;https://github.com/yous/yous.github.io/commit/2cf44cbe21b499c89dc8ac68f6f170add52f9d6e&quot;&gt;no luck&lt;/a&gt;. The alias directories are generated, every &lt;code class=&quot;highlighter-rouge&quot;&gt;index.html&lt;/code&gt; file under each directory won’t. By looking at diff of &lt;code class=&quot;highlighter-rouge&quot;&gt;sitemap.xml&lt;/code&gt;, the plugin seems to generate wrong paths. I’m pretty newbie to Jekyll and how Octopress works with it. Also this is a plugin for Jekyll, not Octopress. So if you have any fix for this problem, please make pull requests to &lt;a href=&quot;https://github.com/tsmango/jekyll_alias_generator/pulls&quot;&gt;jekyll_alias_generator&lt;/a&gt; or just &lt;a href=&quot;/about/#contact&quot;&gt;contact me&lt;/a&gt;.&lt;/p&gt;
-
-&lt;!-- more --&gt;
-
-&lt;h2&gt;&lt;a id=&quot;jekyll-redirect-from&quot;&gt;&lt;/a&gt;jekyll-redirect-from&lt;/h2&gt;
-
-&lt;p&gt;While searching how to fix this problem, I found &lt;a href=&quot;https://github.com/jekyll/jekyll-redirect-from&quot;&gt;jekyll-redirect-from&lt;/a&gt; served by Jekyll team. What it does is almost completely same with &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll_alias_generator&lt;/code&gt;. Generates alias HTML files when we set &lt;code class=&quot;highlighter-rouge&quot;&gt;redirect_from&lt;/code&gt; key in YAML front matter of the post.&lt;/p&gt;
-
-&lt;p&gt;To use this plugin, install &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll-redirect-from&lt;/code&gt; gem by select one option from below:&lt;/p&gt;
-
-&lt;ul&gt;
-  &lt;li&gt;Add &lt;code class=&quot;highlighter-rouge&quot;&gt;gem 'jekyll-redirect-from'&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;Gemfile&lt;/code&gt; and execute &lt;code class=&quot;highlighter-rouge&quot;&gt;bundle&lt;/code&gt;.&lt;/li&gt;
-  &lt;li&gt;Run &lt;code class=&quot;highlighter-rouge&quot;&gt;gem install jekyll-redirect-from&lt;/code&gt; on terminal.&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;Then add it to your &lt;code class=&quot;highlighter-rouge&quot;&gt;_config.yml&lt;/code&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;gems&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;jekyll-redirect-from&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Ready to add redirects! You can use this by adding &lt;code class=&quot;highlighter-rouge&quot;&gt;redirect_from&lt;/code&gt; to the YAML front matter of your page or post:&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;redirect_from&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/path/to/alias/&lt;/span&gt;
-    &lt;span class=&quot;pi&quot;&gt;-&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/path/to/another/alias&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;You can also specify just one url:&lt;/p&gt;
-
-&lt;div class=&quot;language-yaml highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;redirect_from&lt;/span&gt;&lt;span class=&quot;pi&quot;&gt;:&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;/path/to/alias/&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Note that &lt;code class=&quot;highlighter-rouge&quot;&gt;/path/to/alias/&lt;/code&gt; will generate a &lt;code class=&quot;highlighter-rouge&quot;&gt;/path/to/alias/index.html&lt;/code&gt;, while &lt;code class=&quot;highlighter-rouge&quot;&gt;/path/to/alias&lt;/code&gt; will generate a &lt;code class=&quot;highlighter-rouge&quot;&gt;/path/to/alias&lt;/code&gt;.&lt;/p&gt;
-</description>
-        <pubDate>Wed, 09 Jul 2014 06:41:31 +0000</pubDate>
-        <link>https://yous.be/2014/07/09/move-to-jekyll-redirect-from/</link>
-        <guid isPermaLink="true">https://yous.be/2014/07/09/move-to-jekyll-redirect-from/</guid>
-        
-        
-        <category>Octopress</category>
         
       </item>
     
