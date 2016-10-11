@@ -1,0 +1,437 @@
+<!DOCTYPE html><html><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1"><title>HITCON CTF 2016: ROP write-up</title><meta name="description" content="Write-up of HITCON CTF 2016: ROP."><meta name="keywords" content="hitcon, hitcon ctf 2016, ruby, rubyvm, instructionsequence, reversing, write-up"><link rel="stylesheet" href="/css/main.css"><link rel="canonical" href="https://yous.be/2016/10/11/hitcon-ctf-2016-rop-write-up/"><link rel="alternate" type="application/rss+xml" title="Yous" href="https://yous.be/atom.xml"><link href="/favicon.png" rel="icon"><link href="/apple-touch-icon.png" rel="apple-touch-icon"><link href="/apple-touch-icon-76x76.png" rel="apple-touch-icon" sizes="76x76"><link href="/apple-touch-icon-120x120.png" rel="apple-touch-icon" sizes="120x120"><link href="/apple-touch-icon-152x152.png" rel="apple-touch-icon" sizes="152x152"><link href="/apple-touch-icon-180x180.png" rel="apple-touch-icon" sizes="180x180"><meta property="fb:admins" content="100001802412550"><meta property="og:title" content="HITCON CTF 2016: ROP write-up"><meta property="og:site_name" content="Yous"><meta property="og:url" content="https://yous.be/2016/10/11/hitcon-ctf-2016-rop-write-up/"><meta property="og:description" content="Write-up of HITCON CTF 2016: ROP."><meta property="og:image" content="http://yous.be/images/about/yous.png"><meta name="twitter:card" content="summary"><meta name="twitter:title" content="HITCON CTF 2016: ROP write-up"><meta name="twitter:description" content="Write-up of HITCON CTF 2016: ROP."><meta name="twitter:image:src" content="http://yous.be/images/about/yous.png"> <script type="text/javascript"> WebFontConfig = { google: { families: [ 'Bitter:400,700,400italic:latin' ] } }; (function() { var wf = document.createElement('script'); wf.src = ('https:' == document.location.protocol ? 'https' : 'http') + '://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js'; wf.type = 'text/javascript'; wf.async = 'true'; var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(wf, s); })(); </script> <script> (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){ (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o), m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m) })(window,document,'script','//www.google-analytics.com/analytics.js','ga'); ga('create', 'UA-43111808-1', 'auto'); ga('send', 'pageview'); </script><body><header class="site-header"><div class="wrapper"> <a class="site-title" href="/">Yous</a><nav class="site-nav"> <a class="page-link" href="/about/">About</a> <a class="page-link" href="/archives/">Archives</a></nav></div></header><div class="page-content"><div class="wrapper"><article class="post" itemscope itemtype="http://schema.org/BlogPosting"><header class="post-header"><h1 class="post-title" itemprop="name headline">HITCON CTF 2016: ROP write-up</h1><p class="post-meta"><time datetime="2016-10-11T08:25:35+00:00" itemprop="datePublished">Oct 11, 2016</time> • <a href="/categories/ctf/">CTF</a></header><div class="post-content" itemprop="articleBody"><h2>ROP (Reverse 250)</h2><blockquote><p><strong>Description</strong><p>Who doesn’t like ROP?<br /> Let’s try some new features introduced in 2.3.<p><a href="https://s3-ap-northeast-1.amazonaws.com/hitcon2016qual/rop.iseq_a9ac4b7a1669257d0914ca556a6aa6d14b4a2092">rop.iseq</a><p><strong>Hint</strong><p>None</blockquote><p>If the above link doesn’t work, please use this <a href="/downloads/2016/10/11/rop.iseq_a9ac4b7a1669257d0914ca556a6aa6d14b4a2092">link</a>.<h2>New features?</h2><p>Well, see <a href="https://www.ruby-lang.org/en/news/2015/12/25/ruby-2-3-0-released/">the Ruby 2.3.0 news</a>.<blockquote><p><a href="https://bugs.ruby-lang.org/issues/11788">RubyVM::InstructionSequence#to_binary and .load_from_binary</a> are introduced as experimental features. With these features, we can make a ISeq (bytecode) pre-compilation system.</blockquote><p>Yes, so this is about using <code class="highlighter-rouge">RubyVM::InstructionSequence.load_from_binary</code>. Let’s just start with:<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="no">RubyVM</span><span class="o">::</span><span class="no">InstructionSequence</span><span class="p">.</span><span class="nf">load_from_binary</span><span class="p">(</span><span class="no">File</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="s1">'rop.iseq'</span><span class="p">))</span>
+</code></pre></div><p>But you can face this kind of error:<div class="highlighter-rouge"><pre class="highlight"><code>RuntimeError: unmatched platform
+        from (irb):1:in `load_from_binary'
+        from (irb):1
+        from /usr/bin/irb:11:in `&lt;main&gt;'
+</code></pre></div><p>By checking <code class="highlighter-rouge">strings rop.iseq</code>, we can find <code class="highlighter-rouge">x86_64-linux</code>. So we need Ruby 2.3 on Linux x86_64 platform. You can see the platform by <code class="highlighter-rouge">ruby --version</code>. This is the version of my one:<div class="highlighter-rouge"><pre class="highlight"><code>ruby 2.3.1p112 (2016-04-26 revision 54768) [x86_64-linux]
+</code></pre></div><h2>Disassembling</h2><p>Once the binary is loaded by <code class="highlighter-rouge">.load_from_binary</code>, we can get the instruction sequence as a String by <a href="http://ruby-doc.org/core-2.3.0/RubyVM/InstructionSequence.html#method-i-disasm"><code class="highlighter-rouge">#disasm</code></a>:<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="nb">puts</span> <span class="no">RubyVM</span><span class="o">::</span><span class="no">InstructionSequence</span><span class="p">.</span><span class="nf">load_from_binary</span><span class="p">(</span><span class="no">File</span><span class="p">.</span><span class="nf">read</span><span class="p">(</span><span class="s1">'rop.iseq'</span><span class="p">)).</span><span class="nf">disasm</span>
+</code></pre></div><p>Then you get a readable instruction sequence!<div class="highlighter-rouge"><pre class="highlight"><code>== disasm: #&lt;ISeq:&lt;compiled&gt;@&lt;compiled&gt;&gt;================================
+== catch table
+| catch type: break  st: 0096 ed: 0102 sp: 0000 cont: 0102
+| catch type: break  st: 0239 ed: 0245 sp: 0000 cont: 0245
+|------------------------------------------------------------------------
+local table (size: 3, argc: 0 [opts: 0, rest: -1, post: 0, block: -1, kw: -1@-1, kwrest: -1])
+[ 3] k          [ 2] xs
+0000 trace            1                                               (   1)
+0002 putself
+0003 putstring        "digest"
+0005 opt_send_without_block &lt;callinfo!mid:require, argc:1, FCALL|ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0008 pop
+0009 trace            1                                               (   2)
+0011 putself
+0012 putstring        "prime"
+0014 opt_send_without_block &lt;callinfo!mid:require, argc:1, FCALL|ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0017 pop
+0018 trace            1                                               (   4)
+0020 putspecialobject 3
+0022 putnil
+0023 defineclass      :String, &lt;class:String&gt;, 0
+0027 pop
+0028 trace            1                                               (  22)
+0030 putspecialobject 1
+0032 putobject        :gg
+0034 putiseq          gg
+0036 opt_send_without_block &lt;callinfo!mid:core#define_method, argc:2, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0039 pop
+0040 trace            1                                               (  27)
+0042 putspecialobject 1
+0044 putobject        :f
+0046 putiseq          f
+0048 opt_send_without_block &lt;callinfo!mid:core#define_method, argc:2, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0051 pop
+0052 trace            1                                               (  38)
+0054 getglobal        $stdin
+0056 opt_send_without_block &lt;callinfo!mid:gets, argc:0, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0059 opt_send_without_block &lt;callinfo!mid:chomp, argc:0, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0062 setlocal_OP__WC__0 3
+0064 trace            1                                               (  39)
+0066 getlocal_OP__WC__0 3
+0068 putstring        "-"
+0070 opt_send_without_block &lt;callinfo!mid:split, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0073 setlocal_OP__WC__0 2
+0075 trace            1                                               (  40)
+0077 getlocal_OP__WC__0 2
+0079 opt_size         &lt;callinfo!mid:size, argc:0, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0082 putobject        5
+0084 opt_eq           &lt;callinfo!mid:==, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0087 branchif         94
+0089 putself
+0090 opt_send_without_block &lt;callinfo!mid:gg, argc:0, FCALL|VCALL|ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0093 pop
+0094 trace            1                                               (  41)
+0096 getlocal_OP__WC__0 2
+0098 send             &lt;callinfo!mid:all?, argc:0&gt;, &lt;callcache&gt;, block in &lt;compiled&gt;
+0102 branchif         109
+0104 putself
+0105 opt_send_without_block &lt;callinfo!mid:gg, argc:0, FCALL|VCALL|ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0108 pop
+0109 trace            1                                               (  42)
+0111 getlocal_OP__WC__0 2
+0113 putobject_OP_INT2FIX_O_0_C_
+0114 opt_aref         &lt;callinfo!mid:[], argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0117 putobject        16
+0119 opt_send_without_block &lt;callinfo!mid:to_i, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0122 putobject        31337
+0124 opt_eq           &lt;callinfo!mid:==, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0127 branchif         134
+0129 putself
+0130 opt_send_without_block &lt;callinfo!mid:gg, argc:0, FCALL|VCALL|ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0133 pop
+0134 trace            1                                               (  43)
+0136 getlocal_OP__WC__0 2
+0138 putobject_OP_INT2FIX_O_1_C_
+0139 opt_aref         &lt;callinfo!mid:[], argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0142 opt_send_without_block &lt;callinfo!mid:reverse, argc:0, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0145 putstring        "FACE"
+0147 opt_eq           &lt;callinfo!mid:==, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0150 branchif         157
+0152 putself
+0153 opt_send_without_block &lt;callinfo!mid:gg, argc:0, FCALL|VCALL|ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0156 pop
+0157 trace            1                                               (  44)
+0159 putself
+0160 putobject        217
+0162 getlocal_OP__WC__0 2
+0164 putobject        2
+0166 opt_aref         &lt;callinfo!mid:[], argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0169 putobject        16
+0171 opt_send_without_block &lt;callinfo!mid:to_i, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0174 putobject        314159
+0176 opt_send_without_block &lt;callinfo!mid:f, argc:3, FCALL|ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0179 putobject        28
+0181 opt_send_without_block &lt;callinfo!mid:to_s, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0184 opt_send_without_block &lt;callinfo!mid:upcase, argc:0, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0187 putstring        "48D5"
+0189 opt_eq           &lt;callinfo!mid:==, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0192 branchif         199
+0194 putself
+0195 opt_send_without_block &lt;callinfo!mid:gg, argc:0, FCALL|VCALL|ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0198 pop
+0199 trace            1                                               (  45)
+0201 getlocal_OP__WC__0 2
+0203 putobject        3
+0205 opt_aref         &lt;callinfo!mid:[], argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0208 putobject        10
+0210 opt_send_without_block &lt;callinfo!mid:to_i, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0213 opt_send_without_block &lt;callinfo!mid:prime_division, argc:0, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0216 putobject        :first
+0218 send             &lt;callinfo!mid:map, argc:0, ARGS_BLOCKARG&gt;, &lt;callcache&gt;, nil
+0222 opt_send_without_block &lt;callinfo!mid:sort, argc:0, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0225 duparray         [53, 97]
+0227 opt_eq           &lt;callinfo!mid:==, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0230 branchif         237
+0232 putself
+0233 opt_send_without_block &lt;callinfo!mid:gg, argc:0, FCALL|VCALL|ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0236 pop
+0237 trace            1                                               (  46)
+0239 getlocal_OP__WC__0 2
+0241 send             &lt;callinfo!mid:map, argc:0&gt;, &lt;callcache&gt;, block in &lt;compiled&gt;
+0245 putobject        :^
+0247 opt_send_without_block &lt;callinfo!mid:inject, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0250 opt_send_without_block &lt;callinfo!mid:to_s, argc:0, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0253 opt_send_without_block &lt;callinfo!mid:sha1, argc:0, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0256 putstring        "947d46f8060d9d7025cc5807ab9bf1b3b9143304"
+0258 opt_eq           &lt;callinfo!mid:==, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0261 branchif         268
+0263 putself
+0264 opt_send_without_block &lt;callinfo!mid:gg, argc:0, FCALL|VCALL|ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0267 pop
+0268 trace            1                                               (  48)
+0270 putself
+0271 putobject        "Congratz! flag is "
+0273 putstring        "bce410e85433ba94f0d832d99556f9764b220eeda7e807fe4938a5e6effa7d83c765e1795b6c26af8ad258f6"
+0275 opt_send_without_block &lt;callinfo!mid:dehex, argc:0, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0278 getlocal_OP__WC__0 3
+0280 opt_send_without_block &lt;callinfo!mid:sha1, argc:0, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0283 opt_send_without_block &lt;callinfo!mid:dehex, argc:0, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0286 opt_send_without_block &lt;callinfo!mid:^, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0289 tostring
+0290 concatstrings    2
+0292 opt_send_without_block &lt;callinfo!mid:puts, argc:1, FCALL|ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0295 leave
+== disasm: #&lt;ISeq:&lt;class:String&gt;@&lt;compiled&gt;&gt;============================
+0000 trace            2                                               (   4)
+0002 trace            1                                               (   5)
+0004 putspecialobject 1
+0006 putobject        :^
+0008 putiseq          ^
+0010 opt_send_without_block &lt;callinfo!mid:core#define_method, argc:2, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0013 pop
+0014 trace            1                                               (   9)
+0016 putspecialobject 1
+0018 putobject        :sha1
+0020 putiseq          sha1
+0022 opt_send_without_block &lt;callinfo!mid:core#define_method, argc:2, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0025 pop
+0026 trace            1                                               (  13)
+0028 putspecialobject 1
+0030 putobject        :enhex
+0032 putiseq          enhex
+0034 opt_send_without_block &lt;callinfo!mid:core#define_method, argc:2, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0037 pop
+0038 trace            1                                               (  17)
+0040 putspecialobject 1
+0042 putobject        :dehex
+0044 putiseq          dehex
+0046 opt_send_without_block &lt;callinfo!mid:core#define_method, argc:2, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0049 trace            4                                               (  20)
+0051 leave                                                            (  17)
+== disasm: #&lt;ISeq:^@&lt;compiled&gt;&gt;=========================================
+== catch table
+| catch type: break  st: 0004 ed: 0015 sp: 0000 cont: 0015
+|------------------------------------------------------------------------
+local table (size: 2, argc: 1 [opts: 0, rest: -1, post: 0, block: -1, kw: -1@-1, kwrest: -1])
+[ 2] other&lt;Arg&gt;
+0000 trace            8                                               (   5)
+0002 trace            1                                               (   6)
+0004 putself
+0005 opt_send_without_block &lt;callinfo!mid:bytes, argc:0, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0008 opt_send_without_block &lt;callinfo!mid:map, argc:0, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0011 send             &lt;callinfo!mid:with_index, argc:0&gt;, &lt;callcache&gt;, block in ^
+0015 putstring        "C*"
+0017 opt_send_without_block &lt;callinfo!mid:pack, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0020 trace            16                                              (   7)
+0022 leave                                                            (   6)
+== disasm: #&lt;ISeq:block in ^@&lt;compiled&gt;&gt;================================
+== catch table
+| catch type: redo   st: 0002 ed: 0027 sp: 0000 cont: 0002
+| catch type: next   st: 0002 ed: 0027 sp: 0000 cont: 0027
+|------------------------------------------------------------------------
+local table (size: 3, argc: 2 [opts: 0, rest: -1, post: 0, block: -1, kw: -1@-1, kwrest: -1])
+[ 3] x&lt;Arg&gt;     [ 2] i&lt;Arg&gt;
+0000 trace            256                                             (   6)
+0002 trace            1
+0004 getlocal_OP__WC__0 3
+0006 getlocal_OP__WC__1 2
+0008 getlocal_OP__WC__0 2
+0010 getlocal_OP__WC__1 2
+0012 opt_size         &lt;callinfo!mid:size, argc:0, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0015 opt_mod          &lt;callinfo!mid:%, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0018 opt_aref         &lt;callinfo!mid:[], argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0021 opt_send_without_block &lt;callinfo!mid:ord, argc:0, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0024 opt_send_without_block &lt;callinfo!mid:^, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0027 trace            512
+0029 leave
+== disasm: #&lt;ISeq:sha1@&lt;compiled&gt;&gt;======================================
+0000 trace            8                                               (   9)
+0002 trace            1                                               (  10)
+0004 getinlinecache   13, &lt;is:0&gt;
+0007 getconstant      :Digest
+0009 getconstant      :SHA1
+0011 setinlinecache   &lt;is:0&gt;
+0013 putself
+0014 opt_send_without_block &lt;callinfo!mid:hexdigest, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0017 trace            16                                              (  11)
+0019 leave                                                            (  10)
+== disasm: #&lt;ISeq:enhex@&lt;compiled&gt;&gt;=====================================
+0000 trace            8                                               (  13)
+0002 trace            1                                               (  14)
+0004 putself
+0005 putstring        "H*"
+0007 opt_send_without_block &lt;callinfo!mid:unpack, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0010 putobject_OP_INT2FIX_O_0_C_
+0011 opt_aref         &lt;callinfo!mid:[], argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0014 trace            16                                              (  15)
+0016 leave                                                            (  14)
+== disasm: #&lt;ISeq:dehex@&lt;compiled&gt;&gt;=====================================
+0000 trace            8                                               (  17)
+0002 trace            1                                               (  18)
+0004 putself
+0005 newarray         1
+0007 putstring        "H*"
+0009 opt_send_without_block &lt;callinfo!mid:pack, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0012 trace            16                                              (  19)
+0014 leave                                                            (  18)
+== disasm: #&lt;ISeq:gg@&lt;compiled&gt;&gt;========================================
+0000 trace            8                                               (  22)
+0002 trace            1                                               (  23)
+0004 putself
+0005 putstring        "Invalid Key @_@"
+0007 opt_send_without_block &lt;callinfo!mid:puts, argc:1, FCALL|ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0010 pop
+0011 trace            1                                               (  24)
+0013 putself
+0014 putobject_OP_INT2FIX_O_1_C_
+0015 opt_send_without_block &lt;callinfo!mid:exit, argc:1, FCALL|ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0018 trace            16                                              (  25)
+0020 leave                                                            (  24)
+== disasm: #&lt;ISeq:f@&lt;compiled&gt;&gt;=========================================
+== catch table
+| catch type: break  st: 0021 ed: 0086 sp: 0000 cont: 0086
+| catch type: next   st: 0021 ed: 0086 sp: 0000 cont: 0018
+| catch type: redo   st: 0021 ed: 0086 sp: 0000 cont: 0021
+|------------------------------------------------------------------------
+local table (size: 6, argc: 3 [opts: 0, rest: -1, post: 0, block: -1, kw: -1@-1, kwrest: -1])
+[ 6] a&lt;Arg&gt;     [ 5] b&lt;Arg&gt;     [ 4] m&lt;Arg&gt;     [ 3] s          [ 2] r
+0000 trace            8                                               (  27)
+0002 trace            1                                               (  28)
+0004 putobject_OP_INT2FIX_O_1_C_
+0005 setlocal_OP__WC__0 3
+0007 trace            1                                               (  29)
+0009 getlocal_OP__WC__0 6
+0011 setlocal_OP__WC__0 2
+0013 trace            1                                               (  30)
+0015 jump             75
+0017 putnil
+0018 pop
+0019 jump             75
+0021 trace            1                                               (  31)
+0023 getlocal_OP__WC__0 5
+0025 putobject_OP_INT2FIX_O_0_C_
+0026 opt_aref         &lt;callinfo!mid:[], argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0029 putobject_OP_INT2FIX_O_1_C_
+0030 opt_eq           &lt;callinfo!mid:==, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0033 branchunless     49
+0035 getlocal_OP__WC__0 3
+0037 getlocal_OP__WC__0 2
+0039 opt_mult         &lt;callinfo!mid:*, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0042 getlocal_OP__WC__0 4
+0044 opt_mod          &lt;callinfo!mid:%, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0047 setlocal_OP__WC__0 3
+0049 trace            1                                               (  32)
+0051 getlocal_OP__WC__0 5
+0053 putobject_OP_INT2FIX_O_1_C_
+0054 opt_send_without_block &lt;callinfo!mid:&gt;&gt;, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0057 setlocal_OP__WC__0 5
+0059 trace            1                                               (  33)
+0061 getlocal_OP__WC__0 2
+0063 getlocal_OP__WC__0 2
+0065 opt_mult         &lt;callinfo!mid:*, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0068 getlocal_OP__WC__0 4
+0070 opt_mod          &lt;callinfo!mid:%, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0073 setlocal_OP__WC__0 2
+0075 getlocal_OP__WC__0 5                                             (  30)
+0077 putobject_OP_INT2FIX_O_0_C_
+0078 opt_neq          &lt;callinfo!mid:!=, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;, &lt;callinfo!mid:==, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0083 branchif         21
+0085 putnil
+0086 pop
+0087 trace            1                                               (  35)
+0089 getlocal_OP__WC__0 3
+0091 trace            16                                              (  36)
+0093 leave                                                            (  35)
+== disasm: #&lt;ISeq:block in &lt;compiled&gt;@&lt;compiled&gt;&gt;=======================
+== catch table
+| catch type: redo   st: 0002 ed: 0011 sp: 0000 cont: 0002
+| catch type: next   st: 0002 ed: 0011 sp: 0000 cont: 0011
+|------------------------------------------------------------------------
+local table (size: 2, argc: 1 [opts: 0, rest: -1, post: 0, block: -1, kw: -1@-1, kwrest: -1])
+[ 2] x&lt;Arg&gt;
+0000 trace            256                                             (  41)
+0002 trace            1
+0004 getlocal_OP__WC__0 2
+0006 putobject        /^[0-9A-F]{4}$/
+0008 opt_regexpmatch2 &lt;callinfo!mid:=~, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0011 trace            512
+0013 leave
+== disasm: #&lt;ISeq:block in &lt;compiled&gt;@&lt;compiled&gt;&gt;=======================
+== catch table
+| catch type: redo   st: 0002 ed: 0011 sp: 0000 cont: 0002
+| catch type: next   st: 0002 ed: 0011 sp: 0000 cont: 0011
+|------------------------------------------------------------------------
+local table (size: 2, argc: 1 [opts: 0, rest: -1, post: 0, block: -1, kw: -1@-1, kwrest: -1])
+[ 2] x&lt;Arg&gt;
+0000 trace            256                                             (  46)
+0002 trace            1
+0004 getlocal_OP__WC__0 2
+0006 putobject        16
+0008 opt_send_without_block &lt;callinfo!mid:to_i, argc:1, ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0011 trace            512
+0013 leave
+</code></pre></div><p>Quite long, but this is the summary:<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="k">class</span> <span class="nc">String</span>
+  <span class="k">def</span> <span class="nf">^</span><span class="p">;</span> <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">sha1</span><span class="p">;</span> <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">enhex</span><span class="p">;</span> <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">dehex</span><span class="p">;</span> <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">gg</span><span class="p">;</span> <span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">;</span> <span class="k">end</span>
+
+<span class="c1"># main code</span>
+</code></pre></div><p>Note that the last two blocks are block code for <code class="highlighter-rouge">#all?</code> and <code class="highlighter-rouge">#map</code>.<h2>Rebuilding the code</h2><p>We got the instruction sequence, and we can also compile our own code with the following script:<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="nb">puts</span> <span class="no">RubyVM</span><span class="o">::</span><span class="no">InstructionSequence</span><span class="p">.</span><span class="nf">compile_file</span><span class="p">(</span><span class="s1">'code.rb'</span><span class="p">).</span><span class="nf">disasm</span>
+</code></pre></div><p>For example, create <code class="highlighter-rouge">code.rb</code> with:<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'digest'</span>
+<span class="nb">require</span> <span class="s1">'prime'</span>
+</code></pre></div><p>Then the result of script is:<div class="highlighter-rouge"><pre class="highlight"><code>== disasm: #&lt;ISeq:&lt;main&gt;@code.rb&gt;=======================================
+0000 trace            1                                               (   1)
+0002 putself
+0003 putstring        "digest"
+0005 opt_send_without_block &lt;callinfo!mid:require, argc:1, FCALL|ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0008 pop
+0009 trace            1                                               (   2)
+0011 putself
+0012 putstring        "prime"
+0014 opt_send_without_block &lt;callinfo!mid:require, argc:1, FCALL|ARGS_SIMPLE&gt;, &lt;callcache&gt;
+0017 leave
+</code></pre></div><p>Let me just skip the details of recovering, so here is the original code.<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="nb">require</span> <span class="s1">'digest'</span>
+<span class="nb">require</span> <span class="s1">'prime'</span>
+
+<span class="k">class</span> <span class="nc">String</span>
+  <span class="k">def</span> <span class="nf">^</span><span class="p">(</span><span class="n">other</span><span class="p">)</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">bytes</span><span class="p">.</span><span class="nf">map</span><span class="p">.</span><span class="nf">with_index</span> <span class="p">{</span> <span class="o">|</span><span class="n">x</span><span class="p">,</span> <span class="n">i</span><span class="o">|</span> <span class="n">x</span> <span class="o">^</span> <span class="n">other</span><span class="p">[</span><span class="n">i</span> <span class="o">%</span> <span class="n">other</span><span class="p">.</span><span class="nf">size</span><span class="p">].</span><span class="nf">ord</span> <span class="p">}.</span><span class="nf">pack</span><span class="p">(</span><span class="s1">'C*'</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">sha1</span>
+    <span class="no">Digest</span><span class="o">::</span><span class="no">SHA1</span><span class="p">.</span><span class="nf">hexdigest</span><span class="p">(</span><span class="nb">self</span><span class="p">)</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">enhex</span>
+    <span class="nb">self</span><span class="p">.</span><span class="nf">unpack</span><span class="p">(</span><span class="s1">'H*'</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+  <span class="k">end</span>
+
+  <span class="k">def</span> <span class="nf">dehex</span>
+    <span class="p">[</span><span class="nb">self</span><span class="p">].</span><span class="nf">pack</span><span class="p">(</span><span class="s1">'H*'</span><span class="p">)</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">gg</span>
+  <span class="nb">puts</span> <span class="s1">'Invalid Key @_@'</span>
+  <span class="nb">exit</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="k">end</span>
+
+<span class="k">def</span> <span class="nf">f</span><span class="p">(</span><span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span>
+  <span class="n">s</span> <span class="o">=</span> <span class="mi">1</span>
+  <span class="n">r</span> <span class="o">=</span> <span class="n">a</span>
+  <span class="k">while</span> <span class="n">b</span> <span class="o">!=</span> <span class="mi">0</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="p">(</span><span class="n">s</span> <span class="o">*</span> <span class="n">r</span><span class="p">)</span> <span class="o">%</span> <span class="n">m</span> <span class="k">if</span> <span class="n">b</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="mi">1</span>
+    <span class="n">b</span> <span class="o">=</span> <span class="n">b</span> <span class="o">&gt;&gt;</span> <span class="mi">1</span>
+    <span class="n">r</span> <span class="o">=</span> <span class="p">(</span><span class="n">r</span> <span class="o">*</span> <span class="n">r</span><span class="p">)</span> <span class="o">%</span> <span class="n">m</span>
+  <span class="k">end</span>
+  <span class="n">s</span>
+<span class="k">end</span>
+
+<span class="n">k</span> <span class="o">=</span> <span class="vg">$stdin</span><span class="p">.</span><span class="nf">gets</span><span class="p">.</span><span class="nf">chomp</span>
+<span class="n">xs</span> <span class="o">=</span> <span class="n">k</span><span class="p">.</span><span class="nf">split</span><span class="p">(</span><span class="s1">'-'</span><span class="p">)</span>
+
+<span class="n">gg</span> <span class="k">unless</span> <span class="n">xs</span><span class="p">.</span><span class="nf">size</span> <span class="o">==</span> <span class="mi">5</span>
+<span class="n">gg</span> <span class="k">unless</span> <span class="n">xs</span><span class="p">.</span><span class="nf">all?</span> <span class="p">{</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span> <span class="o">=~</span> <span class="sr">/^[0-9A-F]{4}$/</span> <span class="p">}</span>
+<span class="n">gg</span> <span class="k">unless</span> <span class="n">xs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nf">to_i</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span> <span class="o">==</span> <span class="mi">31337</span>
+<span class="n">gg</span> <span class="k">unless</span> <span class="n">xs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nf">reverse</span> <span class="o">==</span> <span class="s1">'FACE'</span>
+<span class="n">gg</span> <span class="k">unless</span> <span class="n">f</span><span class="p">(</span><span class="mi">217</span><span class="p">,</span> <span class="n">xs</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nf">to_i</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span> <span class="mi">314159</span><span class="p">).</span><span class="nf">to_s</span><span class="p">(</span><span class="mi">28</span><span class="p">).</span><span class="nf">upcase</span> <span class="o">==</span> <span class="s1">'48D5'</span>
+<span class="n">gg</span> <span class="k">unless</span> <span class="n">xs</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="nf">to_i</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="nf">prime_division</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:first</span><span class="p">).</span><span class="nf">sort</span> <span class="o">==</span> <span class="p">[</span><span class="mi">53</span><span class="p">,</span> <span class="mi">97</span><span class="p">]</span>
+<span class="n">gg</span> <span class="k">unless</span> <span class="n">xs</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span><span class="p">.</span><span class="nf">to_i</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span> <span class="p">}.</span><span class="nf">inject</span><span class="p">(</span><span class="ss">:^</span><span class="p">).</span><span class="nf">to_s</span><span class="p">.</span><span class="nf">sha1</span> <span class="o">==</span> <span class="s1">'947d46f8060d9d7025cc5807ab9bf1b3b9143304'</span>
+
+<span class="nb">puts</span> <span class="s2">"Congratz! flag is </span><span class="si">#{</span><span class="s1">'bce410e85433ba94f0d832d99556f9764b220eeda7e807fe4938a5e6effa7d83c765e1795b6c26af8ad258f6'</span><span class="p">.</span><span class="nf">dehex</span> <span class="o">^</span> <span class="n">k</span><span class="p">.</span><span class="nf">sha1</span><span class="p">.</span><span class="nf">dehex</span><span class="si">}</span><span class="s2">"</span>
+</code></pre></div><h2>Finding the answer input</h2><p>See the core part again:<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="n">gg</span> <span class="k">unless</span> <span class="n">xs</span><span class="p">.</span><span class="nf">size</span> <span class="o">==</span> <span class="mi">5</span>
+<span class="n">gg</span> <span class="k">unless</span> <span class="n">xs</span><span class="p">.</span><span class="nf">all?</span> <span class="p">{</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span> <span class="o">=~</span> <span class="sr">/^[0-9A-F]{4}$/</span> <span class="p">}</span>
+<span class="n">gg</span> <span class="k">unless</span> <span class="n">xs</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nf">to_i</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span> <span class="o">==</span> <span class="mi">31337</span>
+<span class="n">gg</span> <span class="k">unless</span> <span class="n">xs</span><span class="p">[</span><span class="mi">1</span><span class="p">].</span><span class="nf">reverse</span> <span class="o">==</span> <span class="s1">'FACE'</span>
+<span class="n">gg</span> <span class="k">unless</span> <span class="n">f</span><span class="p">(</span><span class="mi">217</span><span class="p">,</span> <span class="n">xs</span><span class="p">[</span><span class="mi">2</span><span class="p">].</span><span class="nf">to_i</span><span class="p">(</span><span class="mi">16</span><span class="p">),</span> <span class="mi">314159</span><span class="p">).</span><span class="nf">to_s</span><span class="p">(</span><span class="mi">28</span><span class="p">).</span><span class="nf">upcase</span> <span class="o">==</span> <span class="s1">'48D5'</span>
+<span class="n">gg</span> <span class="k">unless</span> <span class="n">xs</span><span class="p">[</span><span class="mi">3</span><span class="p">].</span><span class="nf">to_i</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="nf">prime_division</span><span class="p">.</span><span class="nf">map</span><span class="p">(</span><span class="o">&amp;</span><span class="ss">:first</span><span class="p">).</span><span class="nf">sort</span> <span class="o">==</span> <span class="p">[</span><span class="mi">53</span><span class="p">,</span> <span class="mi">97</span><span class="p">]</span>
+<span class="n">gg</span> <span class="k">unless</span> <span class="n">xs</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span> <span class="n">x</span><span class="p">.</span><span class="nf">to_i</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span> <span class="p">}.</span><span class="nf">inject</span><span class="p">(</span><span class="ss">:^</span><span class="p">).</span><span class="nf">to_s</span><span class="p">.</span><span class="nf">sha1</span> <span class="o">==</span> <span class="s1">'947d46f8060d9d7025cc5807ab9bf1b3b9143304'</span>
+</code></pre></div><p>By the first two lines, we have to enter <code class="highlighter-rouge">XXXX-XXXX-XXXX-XXXX-XXXX</code> format.<ul><li>31337 is 0x7A69, so the first word is <code class="highlighter-rouge">7A69</code>.<li>The second one is obviously <code class="highlighter-rouge">ECAF</code>.<li><p>For the third word, we can just do a brute force attack.<div class="language-ruby highlighter-rouge"><pre class="highlight"><code><span class="p">(</span><span class="mi">0</span><span class="p">.</span><span class="nf">.</span><span class="o">.</span><span class="mh">0xffff</span><span class="p">).</span><span class="nf">each</span> <span class="k">do</span> <span class="o">|</span><span class="n">x</span><span class="o">|</span>
+  <span class="k">if</span> <span class="n">f</span><span class="p">(</span><span class="mi">217</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="mi">314159</span><span class="p">).</span><span class="nf">to_s</span><span class="p">(</span><span class="mi">28</span><span class="p">).</span><span class="nf">upcase</span> <span class="o">==</span> <span class="s1">'48D5'</span>
+    <span class="nb">puts</span> <span class="n">x</span><span class="p">.</span><span class="nf">to_s</span><span class="p">(</span><span class="mi">16</span><span class="p">).</span><span class="nf">upcase</span>
+    <span class="k">break</span>
+  <span class="k">end</span>
+<span class="k">end</span>
+</code></pre></div><p>This returns <code class="highlighter-rouge">1BD2</code>.<li>53 * 97 = 5141, so the fourth is <code class="highlighter-rouge">5141</code>.<li><p>The SHA1 in the last condition is the same with <code class="highlighter-rouge">'5671'.sha1</code>. So we can get the last word by computing XORs of all previous words and 5671.<pre><code class="language-irb">&gt;&gt; (0x7A69 ^ 0xECAF ^ 0x1BD2 ^ 0x5141 ^ 5671).to_s(16).upcase
+=&gt; "CA72"
+</code></pre></ul><p>So the answer input is <code class="highlighter-rouge">7A69-ECAF-1BD2-5141-CA72</code>.<div class="language-sh highlighter-rouge"><pre class="highlight"><code><span class="gp">$ </span>ruby code.rb
+7A69-ECAF-1BD2-5141-CA72
+Congratz! flag is hitcon<span class="o">{</span>ROP <span class="o">=</span> Ruby Obsecured Programming ^_&lt;<span class="o">}</span>
+</code></pre></div><p>So the flag is <code class="highlighter-rouge">hitcon{ROP = Ruby Obsecured Programming ^_&lt;}</code>.</div></article></div></div><footer class="site-footer"><div class="wrapper"><p> Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a><br /> &copy; 2013&ndash;2016 - <a href="/about/">Yous</a> - <a href="/atom.xml">RSS</a></div></footer>

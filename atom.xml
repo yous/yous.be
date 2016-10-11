@@ -5,9 +5,586 @@
     <description>Blog for hackers.</description>
     <link>https://yous.be/</link>
     <atom:link href="https://yous.be/atom.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Fri, 07 Oct 2016 12:57:29 +0000</pubDate>
-    <lastBuildDate>Fri, 07 Oct 2016 12:57:29 +0000</lastBuildDate>
+    <pubDate>Tue, 11 Oct 2016 11:31:21 +0000</pubDate>
+    <lastBuildDate>Tue, 11 Oct 2016 11:31:21 +0000</lastBuildDate>
     <generator>Jekyll v3.3.0</generator>
+    
+      <item>
+        
+        <title>HITCON CTF 2016: ROP write-up</title>
+        
+        <description>&lt;h2&gt;ROP (Reverse 250)&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;p&gt;Who doesn’t like ROP?&lt;br /&gt;
+Let’s try some new features introduced in 2.3.&lt;/p&gt;
+
+  &lt;p&gt;&lt;a href=&quot;https://s3-ap-northeast-1.amazonaws.com/hitcon2016qual/rop.iseq_a9ac4b7a1669257d0914ca556a6aa6d14b4a2092&quot;&gt;rop.iseq&lt;/a&gt;&lt;/p&gt;
+
+  &lt;p&gt;&lt;strong&gt;Hint&lt;/strong&gt;&lt;/p&gt;
+
+  &lt;p&gt;None&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;If the above link doesn’t work, please use this
+&lt;a href=&quot;/downloads/2016/10/11/rop.iseq_a9ac4b7a1669257d0914ca556a6aa6d14b4a2092&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;New features?&lt;/h2&gt;
+
+&lt;p&gt;Well, see
+&lt;a href=&quot;https://www.ruby-lang.org/en/news/2015/12/25/ruby-2-3-0-released/&quot;&gt;the Ruby 2.3.0 news&lt;/a&gt;.&lt;/p&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;&lt;a href=&quot;https://bugs.ruby-lang.org/issues/11788&quot;&gt;RubyVM::InstructionSequence#to_binary and .load_from_binary&lt;/a&gt;
+are introduced as experimental features. With these features, we can make a
+ISeq (bytecode) pre-compilation system.&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;Yes, so this is about using &lt;code class=&quot;highlighter-rouge&quot;&gt;RubyVM::InstructionSequence.load_from_binary&lt;/code&gt;.
+Let’s just start with:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;RubyVM&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;InstructionSequence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;load_from_binary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'rop.iseq'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;))&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;But you can face this kind of error:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;RuntimeError: unmatched platform
+        from (irb):1:in `load_from_binary'
+        from (irb):1
+        from /usr/bin/irb:11:in `&amp;lt;main&amp;gt;'
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;By checking &lt;code class=&quot;highlighter-rouge&quot;&gt;strings rop.iseq&lt;/code&gt;, we can find &lt;code class=&quot;highlighter-rouge&quot;&gt;x86_64-linux&lt;/code&gt;. So we need Ruby 2.3
+on Linux x86_64 platform. You can see the platform by &lt;code class=&quot;highlighter-rouge&quot;&gt;ruby --version&lt;/code&gt;. This is
+the version of my one:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;ruby 2.3.1p112 (2016-04-26 revision 54768) [x86_64-linux]
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;!-- more --&gt;
+
+&lt;h2&gt;Disassembling&lt;/h2&gt;
+
+&lt;p&gt;Once the binary is loaded by &lt;code class=&quot;highlighter-rouge&quot;&gt;.load_from_binary&lt;/code&gt;, we can get the instruction
+sequence as a String by
+&lt;a href=&quot;http://ruby-doc.org/core-2.3.0/RubyVM/InstructionSequence.html#method-i-disasm&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;#disasm&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;RubyVM&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;InstructionSequence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;load_from_binary&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;File&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;read&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'rop.iseq'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;disasm&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then you get a readable instruction sequence!&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;== disasm: #&amp;lt;ISeq:&amp;lt;compiled&amp;gt;@&amp;lt;compiled&amp;gt;&amp;gt;================================
+== catch table
+| catch type: break  st: 0096 ed: 0102 sp: 0000 cont: 0102
+| catch type: break  st: 0239 ed: 0245 sp: 0000 cont: 0245
+|------------------------------------------------------------------------
+local table (size: 3, argc: 0 [opts: 0, rest: -1, post: 0, block: -1, kw: -1@-1, kwrest: -1])
+[ 3] k          [ 2] xs
+0000 trace            1                                               (   1)
+0002 putself
+0003 putstring        &quot;digest&quot;
+0005 opt_send_without_block &amp;lt;callinfo!mid:require, argc:1, FCALL|ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0008 pop
+0009 trace            1                                               (   2)
+0011 putself
+0012 putstring        &quot;prime&quot;
+0014 opt_send_without_block &amp;lt;callinfo!mid:require, argc:1, FCALL|ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0017 pop
+0018 trace            1                                               (   4)
+0020 putspecialobject 3
+0022 putnil
+0023 defineclass      :String, &amp;lt;class:String&amp;gt;, 0
+0027 pop
+0028 trace            1                                               (  22)
+0030 putspecialobject 1
+0032 putobject        :gg
+0034 putiseq          gg
+0036 opt_send_without_block &amp;lt;callinfo!mid:core#define_method, argc:2, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0039 pop
+0040 trace            1                                               (  27)
+0042 putspecialobject 1
+0044 putobject        :f
+0046 putiseq          f
+0048 opt_send_without_block &amp;lt;callinfo!mid:core#define_method, argc:2, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0051 pop
+0052 trace            1                                               (  38)
+0054 getglobal        $stdin
+0056 opt_send_without_block &amp;lt;callinfo!mid:gets, argc:0, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0059 opt_send_without_block &amp;lt;callinfo!mid:chomp, argc:0, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0062 setlocal_OP__WC__0 3
+0064 trace            1                                               (  39)
+0066 getlocal_OP__WC__0 3
+0068 putstring        &quot;-&quot;
+0070 opt_send_without_block &amp;lt;callinfo!mid:split, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0073 setlocal_OP__WC__0 2
+0075 trace            1                                               (  40)
+0077 getlocal_OP__WC__0 2
+0079 opt_size         &amp;lt;callinfo!mid:size, argc:0, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0082 putobject        5
+0084 opt_eq           &amp;lt;callinfo!mid:==, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0087 branchif         94
+0089 putself
+0090 opt_send_without_block &amp;lt;callinfo!mid:gg, argc:0, FCALL|VCALL|ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0093 pop
+0094 trace            1                                               (  41)
+0096 getlocal_OP__WC__0 2
+0098 send             &amp;lt;callinfo!mid:all?, argc:0&amp;gt;, &amp;lt;callcache&amp;gt;, block in &amp;lt;compiled&amp;gt;
+0102 branchif         109
+0104 putself
+0105 opt_send_without_block &amp;lt;callinfo!mid:gg, argc:0, FCALL|VCALL|ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0108 pop
+0109 trace            1                                               (  42)
+0111 getlocal_OP__WC__0 2
+0113 putobject_OP_INT2FIX_O_0_C_
+0114 opt_aref         &amp;lt;callinfo!mid:[], argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0117 putobject        16
+0119 opt_send_without_block &amp;lt;callinfo!mid:to_i, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0122 putobject        31337
+0124 opt_eq           &amp;lt;callinfo!mid:==, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0127 branchif         134
+0129 putself
+0130 opt_send_without_block &amp;lt;callinfo!mid:gg, argc:0, FCALL|VCALL|ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0133 pop
+0134 trace            1                                               (  43)
+0136 getlocal_OP__WC__0 2
+0138 putobject_OP_INT2FIX_O_1_C_
+0139 opt_aref         &amp;lt;callinfo!mid:[], argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0142 opt_send_without_block &amp;lt;callinfo!mid:reverse, argc:0, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0145 putstring        &quot;FACE&quot;
+0147 opt_eq           &amp;lt;callinfo!mid:==, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0150 branchif         157
+0152 putself
+0153 opt_send_without_block &amp;lt;callinfo!mid:gg, argc:0, FCALL|VCALL|ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0156 pop
+0157 trace            1                                               (  44)
+0159 putself
+0160 putobject        217
+0162 getlocal_OP__WC__0 2
+0164 putobject        2
+0166 opt_aref         &amp;lt;callinfo!mid:[], argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0169 putobject        16
+0171 opt_send_without_block &amp;lt;callinfo!mid:to_i, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0174 putobject        314159
+0176 opt_send_without_block &amp;lt;callinfo!mid:f, argc:3, FCALL|ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0179 putobject        28
+0181 opt_send_without_block &amp;lt;callinfo!mid:to_s, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0184 opt_send_without_block &amp;lt;callinfo!mid:upcase, argc:0, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0187 putstring        &quot;48D5&quot;
+0189 opt_eq           &amp;lt;callinfo!mid:==, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0192 branchif         199
+0194 putself
+0195 opt_send_without_block &amp;lt;callinfo!mid:gg, argc:0, FCALL|VCALL|ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0198 pop
+0199 trace            1                                               (  45)
+0201 getlocal_OP__WC__0 2
+0203 putobject        3
+0205 opt_aref         &amp;lt;callinfo!mid:[], argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0208 putobject        10
+0210 opt_send_without_block &amp;lt;callinfo!mid:to_i, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0213 opt_send_without_block &amp;lt;callinfo!mid:prime_division, argc:0, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0216 putobject        :first
+0218 send             &amp;lt;callinfo!mid:map, argc:0, ARGS_BLOCKARG&amp;gt;, &amp;lt;callcache&amp;gt;, nil
+0222 opt_send_without_block &amp;lt;callinfo!mid:sort, argc:0, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0225 duparray         [53, 97]
+0227 opt_eq           &amp;lt;callinfo!mid:==, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0230 branchif         237
+0232 putself
+0233 opt_send_without_block &amp;lt;callinfo!mid:gg, argc:0, FCALL|VCALL|ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0236 pop
+0237 trace            1                                               (  46)
+0239 getlocal_OP__WC__0 2
+0241 send             &amp;lt;callinfo!mid:map, argc:0&amp;gt;, &amp;lt;callcache&amp;gt;, block in &amp;lt;compiled&amp;gt;
+0245 putobject        :^
+0247 opt_send_without_block &amp;lt;callinfo!mid:inject, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0250 opt_send_without_block &amp;lt;callinfo!mid:to_s, argc:0, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0253 opt_send_without_block &amp;lt;callinfo!mid:sha1, argc:0, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0256 putstring        &quot;947d46f8060d9d7025cc5807ab9bf1b3b9143304&quot;
+0258 opt_eq           &amp;lt;callinfo!mid:==, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0261 branchif         268
+0263 putself
+0264 opt_send_without_block &amp;lt;callinfo!mid:gg, argc:0, FCALL|VCALL|ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0267 pop
+0268 trace            1                                               (  48)
+0270 putself
+0271 putobject        &quot;Congratz! flag is &quot;
+0273 putstring        &quot;bce410e85433ba94f0d832d99556f9764b220eeda7e807fe4938a5e6effa7d83c765e1795b6c26af8ad258f6&quot;
+0275 opt_send_without_block &amp;lt;callinfo!mid:dehex, argc:0, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0278 getlocal_OP__WC__0 3
+0280 opt_send_without_block &amp;lt;callinfo!mid:sha1, argc:0, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0283 opt_send_without_block &amp;lt;callinfo!mid:dehex, argc:0, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0286 opt_send_without_block &amp;lt;callinfo!mid:^, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0289 tostring
+0290 concatstrings    2
+0292 opt_send_without_block &amp;lt;callinfo!mid:puts, argc:1, FCALL|ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0295 leave
+== disasm: #&amp;lt;ISeq:&amp;lt;class:String&amp;gt;@&amp;lt;compiled&amp;gt;&amp;gt;============================
+0000 trace            2                                               (   4)
+0002 trace            1                                               (   5)
+0004 putspecialobject 1
+0006 putobject        :^
+0008 putiseq          ^
+0010 opt_send_without_block &amp;lt;callinfo!mid:core#define_method, argc:2, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0013 pop
+0014 trace            1                                               (   9)
+0016 putspecialobject 1
+0018 putobject        :sha1
+0020 putiseq          sha1
+0022 opt_send_without_block &amp;lt;callinfo!mid:core#define_method, argc:2, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0025 pop
+0026 trace            1                                               (  13)
+0028 putspecialobject 1
+0030 putobject        :enhex
+0032 putiseq          enhex
+0034 opt_send_without_block &amp;lt;callinfo!mid:core#define_method, argc:2, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0037 pop
+0038 trace            1                                               (  17)
+0040 putspecialobject 1
+0042 putobject        :dehex
+0044 putiseq          dehex
+0046 opt_send_without_block &amp;lt;callinfo!mid:core#define_method, argc:2, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0049 trace            4                                               (  20)
+0051 leave                                                            (  17)
+== disasm: #&amp;lt;ISeq:^@&amp;lt;compiled&amp;gt;&amp;gt;=========================================
+== catch table
+| catch type: break  st: 0004 ed: 0015 sp: 0000 cont: 0015
+|------------------------------------------------------------------------
+local table (size: 2, argc: 1 [opts: 0, rest: -1, post: 0, block: -1, kw: -1@-1, kwrest: -1])
+[ 2] other&amp;lt;Arg&amp;gt;
+0000 trace            8                                               (   5)
+0002 trace            1                                               (   6)
+0004 putself
+0005 opt_send_without_block &amp;lt;callinfo!mid:bytes, argc:0, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0008 opt_send_without_block &amp;lt;callinfo!mid:map, argc:0, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0011 send             &amp;lt;callinfo!mid:with_index, argc:0&amp;gt;, &amp;lt;callcache&amp;gt;, block in ^
+0015 putstring        &quot;C*&quot;
+0017 opt_send_without_block &amp;lt;callinfo!mid:pack, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0020 trace            16                                              (   7)
+0022 leave                                                            (   6)
+== disasm: #&amp;lt;ISeq:block in ^@&amp;lt;compiled&amp;gt;&amp;gt;================================
+== catch table
+| catch type: redo   st: 0002 ed: 0027 sp: 0000 cont: 0002
+| catch type: next   st: 0002 ed: 0027 sp: 0000 cont: 0027
+|------------------------------------------------------------------------
+local table (size: 3, argc: 2 [opts: 0, rest: -1, post: 0, block: -1, kw: -1@-1, kwrest: -1])
+[ 3] x&amp;lt;Arg&amp;gt;     [ 2] i&amp;lt;Arg&amp;gt;
+0000 trace            256                                             (   6)
+0002 trace            1
+0004 getlocal_OP__WC__0 3
+0006 getlocal_OP__WC__1 2
+0008 getlocal_OP__WC__0 2
+0010 getlocal_OP__WC__1 2
+0012 opt_size         &amp;lt;callinfo!mid:size, argc:0, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0015 opt_mod          &amp;lt;callinfo!mid:%, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0018 opt_aref         &amp;lt;callinfo!mid:[], argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0021 opt_send_without_block &amp;lt;callinfo!mid:ord, argc:0, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0024 opt_send_without_block &amp;lt;callinfo!mid:^, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0027 trace            512
+0029 leave
+== disasm: #&amp;lt;ISeq:sha1@&amp;lt;compiled&amp;gt;&amp;gt;======================================
+0000 trace            8                                               (   9)
+0002 trace            1                                               (  10)
+0004 getinlinecache   13, &amp;lt;is:0&amp;gt;
+0007 getconstant      :Digest
+0009 getconstant      :SHA1
+0011 setinlinecache   &amp;lt;is:0&amp;gt;
+0013 putself
+0014 opt_send_without_block &amp;lt;callinfo!mid:hexdigest, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0017 trace            16                                              (  11)
+0019 leave                                                            (  10)
+== disasm: #&amp;lt;ISeq:enhex@&amp;lt;compiled&amp;gt;&amp;gt;=====================================
+0000 trace            8                                               (  13)
+0002 trace            1                                               (  14)
+0004 putself
+0005 putstring        &quot;H*&quot;
+0007 opt_send_without_block &amp;lt;callinfo!mid:unpack, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0010 putobject_OP_INT2FIX_O_0_C_
+0011 opt_aref         &amp;lt;callinfo!mid:[], argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0014 trace            16                                              (  15)
+0016 leave                                                            (  14)
+== disasm: #&amp;lt;ISeq:dehex@&amp;lt;compiled&amp;gt;&amp;gt;=====================================
+0000 trace            8                                               (  17)
+0002 trace            1                                               (  18)
+0004 putself
+0005 newarray         1
+0007 putstring        &quot;H*&quot;
+0009 opt_send_without_block &amp;lt;callinfo!mid:pack, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0012 trace            16                                              (  19)
+0014 leave                                                            (  18)
+== disasm: #&amp;lt;ISeq:gg@&amp;lt;compiled&amp;gt;&amp;gt;========================================
+0000 trace            8                                               (  22)
+0002 trace            1                                               (  23)
+0004 putself
+0005 putstring        &quot;Invalid Key @_@&quot;
+0007 opt_send_without_block &amp;lt;callinfo!mid:puts, argc:1, FCALL|ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0010 pop
+0011 trace            1                                               (  24)
+0013 putself
+0014 putobject_OP_INT2FIX_O_1_C_
+0015 opt_send_without_block &amp;lt;callinfo!mid:exit, argc:1, FCALL|ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0018 trace            16                                              (  25)
+0020 leave                                                            (  24)
+== disasm: #&amp;lt;ISeq:f@&amp;lt;compiled&amp;gt;&amp;gt;=========================================
+== catch table
+| catch type: break  st: 0021 ed: 0086 sp: 0000 cont: 0086
+| catch type: next   st: 0021 ed: 0086 sp: 0000 cont: 0018
+| catch type: redo   st: 0021 ed: 0086 sp: 0000 cont: 0021
+|------------------------------------------------------------------------
+local table (size: 6, argc: 3 [opts: 0, rest: -1, post: 0, block: -1, kw: -1@-1, kwrest: -1])
+[ 6] a&amp;lt;Arg&amp;gt;     [ 5] b&amp;lt;Arg&amp;gt;     [ 4] m&amp;lt;Arg&amp;gt;     [ 3] s          [ 2] r
+0000 trace            8                                               (  27)
+0002 trace            1                                               (  28)
+0004 putobject_OP_INT2FIX_O_1_C_
+0005 setlocal_OP__WC__0 3
+0007 trace            1                                               (  29)
+0009 getlocal_OP__WC__0 6
+0011 setlocal_OP__WC__0 2
+0013 trace            1                                               (  30)
+0015 jump             75
+0017 putnil
+0018 pop
+0019 jump             75
+0021 trace            1                                               (  31)
+0023 getlocal_OP__WC__0 5
+0025 putobject_OP_INT2FIX_O_0_C_
+0026 opt_aref         &amp;lt;callinfo!mid:[], argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0029 putobject_OP_INT2FIX_O_1_C_
+0030 opt_eq           &amp;lt;callinfo!mid:==, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0033 branchunless     49
+0035 getlocal_OP__WC__0 3
+0037 getlocal_OP__WC__0 2
+0039 opt_mult         &amp;lt;callinfo!mid:*, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0042 getlocal_OP__WC__0 4
+0044 opt_mod          &amp;lt;callinfo!mid:%, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0047 setlocal_OP__WC__0 3
+0049 trace            1                                               (  32)
+0051 getlocal_OP__WC__0 5
+0053 putobject_OP_INT2FIX_O_1_C_
+0054 opt_send_without_block &amp;lt;callinfo!mid:&amp;gt;&amp;gt;, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0057 setlocal_OP__WC__0 5
+0059 trace            1                                               (  33)
+0061 getlocal_OP__WC__0 2
+0063 getlocal_OP__WC__0 2
+0065 opt_mult         &amp;lt;callinfo!mid:*, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0068 getlocal_OP__WC__0 4
+0070 opt_mod          &amp;lt;callinfo!mid:%, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0073 setlocal_OP__WC__0 2
+0075 getlocal_OP__WC__0 5                                             (  30)
+0077 putobject_OP_INT2FIX_O_0_C_
+0078 opt_neq          &amp;lt;callinfo!mid:!=, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;, &amp;lt;callinfo!mid:==, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0083 branchif         21
+0085 putnil
+0086 pop
+0087 trace            1                                               (  35)
+0089 getlocal_OP__WC__0 3
+0091 trace            16                                              (  36)
+0093 leave                                                            (  35)
+== disasm: #&amp;lt;ISeq:block in &amp;lt;compiled&amp;gt;@&amp;lt;compiled&amp;gt;&amp;gt;=======================
+== catch table
+| catch type: redo   st: 0002 ed: 0011 sp: 0000 cont: 0002
+| catch type: next   st: 0002 ed: 0011 sp: 0000 cont: 0011
+|------------------------------------------------------------------------
+local table (size: 2, argc: 1 [opts: 0, rest: -1, post: 0, block: -1, kw: -1@-1, kwrest: -1])
+[ 2] x&amp;lt;Arg&amp;gt;
+0000 trace            256                                             (  41)
+0002 trace            1
+0004 getlocal_OP__WC__0 2
+0006 putobject        /^[0-9A-F]{4}$/
+0008 opt_regexpmatch2 &amp;lt;callinfo!mid:=~, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0011 trace            512
+0013 leave
+== disasm: #&amp;lt;ISeq:block in &amp;lt;compiled&amp;gt;@&amp;lt;compiled&amp;gt;&amp;gt;=======================
+== catch table
+| catch type: redo   st: 0002 ed: 0011 sp: 0000 cont: 0002
+| catch type: next   st: 0002 ed: 0011 sp: 0000 cont: 0011
+|------------------------------------------------------------------------
+local table (size: 2, argc: 1 [opts: 0, rest: -1, post: 0, block: -1, kw: -1@-1, kwrest: -1])
+[ 2] x&amp;lt;Arg&amp;gt;
+0000 trace            256                                             (  46)
+0002 trace            1
+0004 getlocal_OP__WC__0 2
+0006 putobject        16
+0008 opt_send_without_block &amp;lt;callinfo!mid:to_i, argc:1, ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0011 trace            512
+0013 leave
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Quite long, but this is the summary:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;^&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sha1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;enhex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dehex&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;gg&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;c1&quot;&gt;# main code&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Note that the last two blocks are block code for &lt;code class=&quot;highlighter-rouge&quot;&gt;#all?&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;#map&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2&gt;Rebuilding the code&lt;/h2&gt;
+
+&lt;p&gt;We got the instruction sequence, and we can also compile our own code with the
+following script:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;no&quot;&gt;RubyVM&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;InstructionSequence&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;compile_file&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'code.rb'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;disasm&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;For example, create &lt;code class=&quot;highlighter-rouge&quot;&gt;code.rb&lt;/code&gt; with:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'digest'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'prime'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then the result of script is:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;== disasm: #&amp;lt;ISeq:&amp;lt;main&amp;gt;@code.rb&amp;gt;=======================================
+0000 trace            1                                               (   1)
+0002 putself
+0003 putstring        &quot;digest&quot;
+0005 opt_send_without_block &amp;lt;callinfo!mid:require, argc:1, FCALL|ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0008 pop
+0009 trace            1                                               (   2)
+0011 putself
+0012 putstring        &quot;prime&quot;
+0014 opt_send_without_block &amp;lt;callinfo!mid:require, argc:1, FCALL|ARGS_SIMPLE&amp;gt;, &amp;lt;callcache&amp;gt;
+0017 leave
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Let me just skip the details of recovering, so here is the original code.&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'digest'&lt;/span&gt;
+&lt;span class=&quot;nb&quot;&gt;require&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'prime'&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;class&lt;/span&gt; &lt;span class=&quot;nc&quot;&gt;String&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;^&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;other&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;bytes&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;with_index&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;^&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;other&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;other&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;ord&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;pack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'C*'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;sha1&lt;/span&gt;
+    &lt;span class=&quot;no&quot;&gt;Digest&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;SHA1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;hexdigest&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;enhex&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;unpack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'H*'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+  &lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;dehex&lt;/span&gt;
+    &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;self&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;pack&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'H*'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;gg&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Invalid Key @_@'&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;exit&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;a&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;while&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;!=&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;s&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;b&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;
+    &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;r&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;*&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;r&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;m&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;n&quot;&gt;s&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;k&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;vg&quot;&gt;$stdin&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;gets&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;chomp&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;xs&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;split&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'-'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+
+&lt;span class=&quot;n&quot;&gt;gg&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gg&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;all?&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/^[0-9A-F]{4}$/&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gg&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;31337&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gg&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;reverse&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'FACE'&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gg&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;217&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;314159&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;28&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;upcase&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'48D5'&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gg&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;prime_division&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;sort&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;53&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;97&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gg&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;map&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;inject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:^&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;sha1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'947d46f8060d9d7025cc5807ab9bf1b3b9143304'&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Congratz! flag is &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'bce410e85433ba94f0d832d99556f9764b220eeda7e807fe4938a5e6effa7d83c765e1795b6c26af8ad258f6'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;dehex&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;^&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;k&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;sha1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;dehex&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;h2&gt;Finding the answer input&lt;/h2&gt;
+
+&lt;p&gt;See the core part again:&lt;/p&gt;
+
+&lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;gg&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;size&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;5&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gg&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;all?&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt; &lt;span class=&quot;sr&quot;&gt;/^[0-9A-F]{4}$/&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gg&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;31337&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gg&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;reverse&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'FACE'&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gg&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;217&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;),&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;314159&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;28&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;upcase&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'48D5'&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gg&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;3&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;].&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;10&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;prime_division&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;map&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:first&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;sort&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;53&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;97&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;gg&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;unless&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;xs&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;map&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_i&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;}.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;inject&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;ss&quot;&gt;:^&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;sha1&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'947d46f8060d9d7025cc5807ab9bf1b3b9143304'&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;By the first two lines, we have to enter &lt;code class=&quot;highlighter-rouge&quot;&gt;XXXX-XXXX-XXXX-XXXX-XXXX&lt;/code&gt; format.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;31337 is 0x7A69, so the first word is &lt;code class=&quot;highlighter-rouge&quot;&gt;7A69&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;The second one is obviously &lt;code class=&quot;highlighter-rouge&quot;&gt;ECAF&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;For the third word, we can just do a brute force attack.&lt;/p&gt;
+
+    &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;mh&quot;&gt;0xffff&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;each&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;f&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;217&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;314159&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;28&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;upcase&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'48D5'&lt;/span&gt;
+    &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;x&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;to_s&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;16&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;).&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;upcase&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;break&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+    &lt;/div&gt;
+
+    &lt;p&gt;This returns &lt;code class=&quot;highlighter-rouge&quot;&gt;1BD2&lt;/code&gt;.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;53 * 97 = 5141, so the fourth is &lt;code class=&quot;highlighter-rouge&quot;&gt;5141&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;The SHA1 in the last condition is the same with &lt;code class=&quot;highlighter-rouge&quot;&gt;'5671'.sha1&lt;/code&gt;. So we can get
+the last word by computing XORs of all previous words and 5671.&lt;/p&gt;
+
+    &lt;pre&gt;&lt;code class=&quot;language-irb&quot;&gt;&amp;gt;&amp;gt; (0x7A69 ^ 0xECAF ^ 0x1BD2 ^ 0x5141 ^ 5671).to_s(16).upcase
+=&amp;gt; &quot;CA72&quot;
+&lt;/code&gt;&lt;/pre&gt;
+  &lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So the answer input is &lt;code class=&quot;highlighter-rouge&quot;&gt;7A69-ECAF-1BD2-5141-CA72&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;ruby code.rb
+7A69-ECAF-1BD2-5141-CA72
+Congratz! flag is hitcon&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;ROP &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; Ruby Obsecured Programming ^_&amp;lt;&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;So the flag is &lt;code class=&quot;highlighter-rouge&quot;&gt;hitcon{ROP = Ruby Obsecured Programming ^_&amp;lt;}&lt;/code&gt;.&lt;/p&gt;
+</description>
+        <pubDate>Tue, 11 Oct 2016 08:25:35 +0000</pubDate>
+        <link>https://yous.be/2016/10/11/hitcon-ctf-2016-rop-write-up/</link>
+        <guid isPermaLink="true">https://yous.be/2016/10/11/hitcon-ctf-2016-rop-write-up/</guid>
+        
+        
+        <category>CTF</category>
+        
+      </item>
     
       <item>
         
@@ -2911,27 +3488,6 @@ Date:   Fri Jul 18 21:29:14 2014 +0900
         
         
         <category>Technology</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>Introducing Source Han Sans: An open source Pan-CJK typeface &amp;rarr;</title>
-        
-        <description>&lt;blockquote&gt;
-  &lt;p&gt;Adobe, in partnership with Google, is pleased to announce the release of &lt;a href=&quot;http://adobe.ly/TkSHS&quot;&gt;Source Han Sans&lt;/a&gt;, a new open source Pan-CJK typeface family that is now available on Typekit for desktop use.&lt;/p&gt;
-
-  &lt;p&gt;&lt;img src=&quot;/images/2014/07/16/multi-language-sample-v3.jpg&quot; alt=&quot;Multi-language sample&quot; title=&quot;Multi-language sample&quot; /&gt;&lt;/p&gt;
-
-  &lt;p&gt;More information on Google’s Noto Sans CJK family is available on their &lt;a href=&quot;http://goo.gl/yhFcim&quot;&gt;blog&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-        <pubDate>Wed, 16 Jul 2014 07:04:27 +0000</pubDate>
-        <link>https://yous.be/2014/07/16/introducing-source-han-sans-an-open-source-pan-cjk-typeface/</link>
-        <guid isPermaLink="true">https://yous.be/2014/07/16/introducing-source-han-sans-an-open-source-pan-cjk-typeface/</guid>
-        
-        
-        <category>Design</category>
         
       </item>
     
