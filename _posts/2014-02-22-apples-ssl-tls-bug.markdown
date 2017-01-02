@@ -2,6 +2,7 @@
 layout: post
 title: "Apple's SSL/TLS bug"
 date: 2014-02-23 04:59:18 +0900
+lang: ko
 comments: false
 categories:
     - iOS

@@ -2,6 +2,7 @@
 layout: post
 title: "Gradle 환경에서 ProGuard 사용하기"
 date: 2014-05-15 18:11:13 +0900
+lang: ko
 comments: false
 description: Gradle을 이용해 배포 APK를 생성하는 방법과 함께 ProGuard 사용법을 공유한다.
 categories:

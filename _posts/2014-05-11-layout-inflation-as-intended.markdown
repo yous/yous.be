@@ -2,6 +2,7 @@
 layout: post
 title: "Layout Inflation as Intended"
 date: 2014-05-12 07:17:37 +0900
+lang: ko
 comments: false
 description: 바른 Layout Inflation 방법에 대해 설명해 놓은 Dave Smith의 글이 있어 소개한다.
 categories:

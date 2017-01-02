@@ -2,6 +2,7 @@
 layout: post
 title: "Twitter Link Bookmarklet"
 date: 2014-03-27 10:18:57 +0900
+lang: ko
 comments: false
 description: Dave Bradford의 Twitter Profile Bookmarklet에 추가됐으면 하는 기능이 있어 추가했다.
 categories:

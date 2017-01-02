@@ -2,6 +2,7 @@
 layout: post
 title: "Octopress에서 Facebook Open Graph와 Twitter Cards 지원하기"
 date: 2014-02-24 21:50:36 +0900
+lang: ko
 comments: false
 categories:
     - Octopress

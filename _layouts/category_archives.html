@@ -6,12 +6,15 @@ layout: default
   <h1 class="page-heading">Archive of {{ page.type }} '{{ page.title | escape }}'</h1>
 
   <ul class="post-archives">
+    {% capture site_lang %}{{ site.lang | default: "en" }}{% endcapture %}
     {% for post in page.posts %}
       <li>
         <span class="post-meta">{{ post.date | date: "%b %-d, %Y" }}{% if post.categories %} • {% include category_links.html categories=post.categories %}{% endif %}</span>
 
         <h2>
-          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}">{{ post.title | escape }}{% if post.external-url %} &rarr;{% endif %}</a>
+          {% capture post_lang %}{{ post.lang | default: site_lang }}{% endcapture %}
+          {% capture lang %}{% if post_lang != site_lang %}{{ post_lang }}{% endif %}{% endcapture %}
+          <a class="post-link" href="{{ post.url | prepend: site.baseurl }}"{% if lang != empty %} lang="{{ lang }}"{% endif %}>{{ post.title | escape }}{% if post.external-url %} &rarr;{% endif %}</a>
         </h2>
       </li>
     {% endfor %}

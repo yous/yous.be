@@ -2,6 +2,7 @@
 layout: post
 title: "ChristmasCTF 2014 Write-up"
 date: 2014-12-26 00:41:26 +0900
+lang: ko
 comments: false
 categories:
     - CTF
