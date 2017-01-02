@@ -3,22 +3,22 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  {% capture title %}{{ page.title | default: site.title | escape }}{% endcapture %}
-  {% capture canonical %}{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}{% endcapture %}
-  {% capture description %}{{ page.description | default: site.description | normalize_whitespace | escape }}{% endcapture %}
+  {% assign title = page.title | default: site.title | escape %}
+  {% assign canonical = page.url | replace:'index.html','' | absolute_url %}
+  {% assign description = page.description | default: site.description | normalize_whitespace | escape %}
   <title>{{ title }}</title>
   <meta name="description" content="{{ description }}">
   {% if page.keywords %}<meta name="keywords" content="{{ page.keywords }}">{% endif %}
 
-  <link rel="stylesheet" href="{{ "/css/main.css" | prepend: site.baseurl }}">
-  <link rel="canonical" href="{{ page.url | replace:'index.html','' | prepend: site.baseurl | prepend: site.url }}">
-  <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/atom.xml" | prepend: site.baseurl | prepend: site.url }}">
-  <link href="{{ "/favicon.png" | prepend: site.baseurl }}" rel="icon">
-  <link href="{{ "/apple-touch-icon.png" | prepend: site.baseurl }}" rel="apple-touch-icon">
-  <link href="{{ "/apple-touch-icon-76x76.png" | prepend: site.baseurl }}" rel="apple-touch-icon" sizes="76x76">
-  <link href="{{ "/apple-touch-icon-120x120.png" | prepend: site.baseurl }}" rel="apple-touch-icon" sizes="120x120">
-  <link href="{{ "/apple-touch-icon-152x152.png" | prepend: site.baseurl }}" rel="apple-touch-icon" sizes="152x152">
-  <link href="{{ "/apple-touch-icon-180x180.png" | prepend: site.baseurl }}" rel="apple-touch-icon" sizes="180x180">
+  <link rel="stylesheet" href="{{ "/css/main.css" | relative_url }}">
+  <link rel="canonical" href="{{ canonical }}">
+  <link rel="alternate" type="application/rss+xml" title="{{ site.title | escape }}" href="{{ "/atom.xml" | relative_url }}">
+  <link href="{{ "/favicon.png" | relative_url }}" rel="icon">
+  <link href="{{ "/apple-touch-icon.png" | relative_url }}" rel="apple-touch-icon">
+  <link href="{{ "/apple-touch-icon-76x76.png" | relative_url }}" rel="apple-touch-icon" sizes="76x76">
+  <link href="{{ "/apple-touch-icon-120x120.png" | relative_url }}" rel="apple-touch-icon" sizes="120x120">
+  <link href="{{ "/apple-touch-icon-152x152.png" | relative_url }}" rel="apple-touch-icon" sizes="152x152">
+  <link href="{{ "/apple-touch-icon-180x180.png" | relative_url }}" rel="apple-touch-icon" sizes="180x180">
   {% if site.facebook_app_id %}
     <meta property="fb:admins" content="{{ site.facebook_app_id }}">
     <meta property="og:title" content="{{ title }}">

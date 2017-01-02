@@ -1,14 +1,18 @@
 ---
 layout: default
+title: "Blog Archive"
 ---
+
 <div class="home">
 
-  <h1 class="page-heading">Archive of {{ page.type }} '{{ page.title | escape }}'</h1>
+  <h1 class="page-heading">Blog Archive</h1>
+
+  {{ content }}
 
   {% capture site_lang %}{{ site.lang | default: "en" }}{% endcapture %}
 
   <ul class="post-archives">
-    {% for post in page.posts %}
+    {% for post in site.posts %}
       {% capture post_lang %}{{ post.lang | default: site_lang }}{% endcapture %}
       {% capture lang %}{% if post_lang != site_lang %}{{ post_lang }}{% endif %}{% endcapture %}
 
