@@ -18,6 +18,8 @@ author: Yous
 description: Blog for hackers.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://yous.be" # the base hostname & protocol for your site, e.g. http://example.com
+theme: jekyll-whiteglass
+timezone: UTC
 exclude:
   - Gemfile
   - Gemfile.lock
@@ -25,7 +27,6 @@ exclude:
   - Rakefile
   - spec
   - vendor
-timezone: UTC
 
 # Social media
 twitter_username:
@@ -33,7 +34,7 @@ twitter_image: http://yous.be/images/about/yous.png
 github_username: yous
 facebook_app_id: 100001802412550
 facebook_image: http://yous.be/images/about/yous.png
-google_analytics_id: UA-43111808-1
+google_analytics: UA-43111808-1
 
 # Plugins
 gems:
@@ -51,6 +52,8 @@ excerpt_separator: "<!-- more -->"
 permalink: /:year/:month/:day/:title/
 paginate_path: /posts/:num/
 paginate: 5
+feed:
+  path: atom.xml
 
 # Markdown settings
 kramdown:
