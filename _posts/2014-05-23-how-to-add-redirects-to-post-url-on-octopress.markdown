@@ -2,7 +2,6 @@
 layout: post
 title: "How to Add Redirects to Post URL on Octopress"
 date: 2014-05-23 14:56:44 +0900
-comments: false
 description: Adding redirect urls to post using jekyll_alias_generator on Octopress.
 categories:
     - Octopress

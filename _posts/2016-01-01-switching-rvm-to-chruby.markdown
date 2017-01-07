@@ -2,7 +2,6 @@
 layout: post
 title: "Switching RVM to chruby"
 date: 2016-01-01 11:26:07 +0000
-comments: false
 categories:
     - Ruby
 description: "I've found RVM's gemsets are no longer useful to me."

@@ -2,7 +2,6 @@
 layout: post
 title: "How to Write a Git Commit Message"
 date: 2014-09-03 22:12:47 +0900
-comments: false
 categories:
     - Git
 description: The seven rules of a great git commit message.

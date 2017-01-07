@@ -2,7 +2,6 @@
 layout: post
 title: "SECCON CTF 2014: Easy Cipher Write-up"
 date: 2014-12-09 00:11:30 +0900
-comments: false
 categories:
     - CTF
 description: "Write-up of SECCON CTF 2014: Easy Cipher."

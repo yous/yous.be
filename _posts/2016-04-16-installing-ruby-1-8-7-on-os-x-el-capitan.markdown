@@ -2,7 +2,6 @@
 layout: post
 title: "Installing Ruby 1.8.7 on OS X El Capitan"
 date: 2016-04-16 13:08:13 +0000
-comments: false
 categories:
     - Ruby
 description: "Well… Why would you do that?"

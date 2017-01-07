@@ -2,7 +2,6 @@
 layout: post
 title: "zsh: no matches found"
 date: 2014-08-05 14:31:03 +0900
-comments: false
 categories:
     - Zsh
 description: Zsh allows Filename Generation and Pattern Matching (Globbing) using square brackets and other characters. That may cause problem with shell commands.

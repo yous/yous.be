@@ -2,7 +2,6 @@
 layout: post
 title: "32C3 CTF 2015: libdroid Write-up"
 date: 2015-12-30 16:59:51 +0000
-comments: false
 categories:
     - CTF
 description: "Write-up of 32C3 CTF 2015: libdroid."

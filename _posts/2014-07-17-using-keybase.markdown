@@ -2,7 +2,6 @@
 layout: post
 title: "Using Keybase"
 date: 2014-07-18 03:21:09 +0900
-comments: false
 categories:
     - Technology
 description: I just created my Keybase. You can see my PGP public key on https://keybase.io/yous and get the key via https://keybase.io/yous/key.asc.

@@ -2,7 +2,6 @@
 layout: post
 title: "Automatically Quit Vim if Actual Files are Closed"
 date: 2014-11-30 18:02:45 +0900
-comments: false
 categories:
     - Vim
 description: How to close Vim automatically when remaining windows aren't important.

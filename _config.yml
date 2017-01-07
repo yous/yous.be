@@ -15,7 +15,6 @@
 # in the templates via {{ site.myvariable }}.
 title: Yous
 author: Yous
-email:
 description: Blog for hackers.
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://yous.be" # the base hostname & protocol for your site, e.g. http://example.com

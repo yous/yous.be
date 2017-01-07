@@ -2,7 +2,6 @@
 layout: post
 title: "Unicode Adopt-a-Character"
 date: 2016-04-20 16:25:37 +0000
-comments: false
 categories:
     - Technology
 description: "I just adopted a character \"유\"."

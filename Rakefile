@@ -33,7 +33,6 @@ task :post, :title do |_t, args|
     f.puts 'layout: post'
     f.puts "title: \"#{title}\""
     f.puts "date: #{time.strftime('%Y-%m-%d %H:%M:%S %z')}"
-    f.puts 'comments: false'
     f.puts 'categories:'
     f.puts 'description:'
     f.puts 'keywords:'

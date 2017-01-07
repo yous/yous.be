@@ -2,7 +2,6 @@
 layout: post
 title: "How to reset window size of Slack on Windows"
 date: 2016-10-07 12:07:02 +0000
-comments: false
 categories:
     - Technology
 description: "It shrinked accidently!"

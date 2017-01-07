@@ -2,7 +2,6 @@
 layout: post
 title: "Comparing binary files"
 date: 2015-03-03 19:13:29 +0900
-comments: false
 categories:
     - Technology
 description: How to check whether two binary files are the same or not.

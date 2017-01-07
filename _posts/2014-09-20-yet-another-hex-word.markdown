@@ -2,7 +2,6 @@
 layout: post
 title: "Yet Another Hex Word"
 date: 2014-09-21 05:59:49 +0900
-comments: false
 categories:
     - Design
 description: Yet Another Hex Word

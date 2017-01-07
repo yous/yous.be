@@ -2,7 +2,6 @@
 layout: post
 title: "Move to 'jekyll-redirect-from'"
 date: 2014-07-09 15:41:31 +0900
-comments: false
 categories:
     - Octopress
 description: I had some problems with 'jekyll_alias_generator'. Now I moved to 'jekyll-redirect-from'.

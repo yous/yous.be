@@ -3,7 +3,6 @@ layout: post
 title: "Apple's SSL/TLS bug"
 date: 2014-02-23 04:59:18 +0900
 lang: ko
-comments: false
 categories:
     - iOS
 keywords: ios, 6.1.6, 7.0.6, ssl, tls

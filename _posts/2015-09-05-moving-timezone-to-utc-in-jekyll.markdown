@@ -2,7 +2,6 @@
 layout: post
 title: "Moving Timezone to UTC in Jekyll"
 date: 2015-09-05 12:39:19 +0000
-comments: false
 categories:
     - Jekyll
 description: Migrating every post to UTC timezone.

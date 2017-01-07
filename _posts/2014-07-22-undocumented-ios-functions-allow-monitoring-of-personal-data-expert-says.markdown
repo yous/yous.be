@@ -2,7 +2,6 @@
 layout: post
 title: "Undocumented iOS functions allow monitoring of personal data, expert says"
 date: 2014-07-22 22:19:14 +0900
-comments: false
 categories:
     - iOS
 description: "\"Backdoor\" can be abused by gov't agents and ex-lovers to gain persistent access."

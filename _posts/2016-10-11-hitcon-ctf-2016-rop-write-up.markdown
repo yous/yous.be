@@ -2,7 +2,6 @@
 layout: post
 title: "HITCON CTF 2016: ROP write-up"
 date: 2016-10-11 08:25:35 +0000
-comments: false
 categories:
     - CTF
 description: "Write-up of HITCON CTF 2016: ROP."

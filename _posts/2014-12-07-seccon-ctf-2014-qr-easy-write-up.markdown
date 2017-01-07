@@ -2,7 +2,6 @@
 layout: post
 title: "SECCON CTF 2014: QR (Easy) Write-up"
 date: 2014-12-07 19:02:51 +0900
-comments: false
 categories:
     - CTF
 description: "Write-up of SECCON CTF 2014: QR (Easy)."

@@ -2,7 +2,6 @@
 layout: post
 title: "Using Pinpoint with Docker"
 date: 2015-05-05 12:12:07 +0900
-comments: false
 categories:
     - Technology
 description: How to use Pinpoint with Docker.

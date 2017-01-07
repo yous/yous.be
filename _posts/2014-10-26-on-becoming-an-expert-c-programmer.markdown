@@ -2,7 +2,6 @@
 layout: post
 title: "On becoming an expert C programmer"
 date: 2014-10-26 22:21:30 +0900
-comments: false
 categories:
     - Technology
 description: “Tell me what I should do in order to keep strong feelings towards C.”

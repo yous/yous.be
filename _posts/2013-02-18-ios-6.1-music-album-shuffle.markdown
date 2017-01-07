@@ -3,7 +3,6 @@ layout: post
 title: "iOS 6.1에서 앨범별 임의 재생으로 음악 듣기"
 date: 2013-02-19 03:31:00 +0900
 lang: ko
-comments: false
 categories:
     - iOS
 keywords: ios, shuffle by album, 앨범별 임의 재생

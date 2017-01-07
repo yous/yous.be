@@ -2,7 +2,6 @@
 layout: post
 title: "Revive the Tmux Sessions"
 date: 2015-05-08 09:36:46 +0900
-comments: false
 categories:
     - Technology
 description: Revive the Tmux sessions when it seems dead.

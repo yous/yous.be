@@ -2,7 +2,6 @@
 layout: post
 title: "Introducing Source Han Sans: An open source Pan-CJK typeface"
 date: 2014-07-16 16:04:27 +0900
-comments: false
 categories:
     - Design
 description: Adobe, in partnership with Google, announced the release of Source Han Sans, a new open source Pan-CJK typeface family.
