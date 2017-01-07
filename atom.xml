@@ -1,19 +1,40 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Yous</title>
-    <description>Blog for hackers.</description>
-    <link>https://yous.be/</link>
-    <atom:link href="https://yous.be/atom.xml" rel="self" type="application/rss+xml"/>
-    <pubDate>Mon, 02 Jan 2017 14:49:32 +0000</pubDate>
-    <lastBuildDate>Mon, 02 Jan 2017 14:49:32 +0000</lastBuildDate>
-    <generator>Jekyll v3.3.1</generator>
-    
-      <item>
-        
-        <title>HITCON CTF 2016: ROP write-up</title>
-        
-        <description>&lt;h2&gt;ROP (Reverse 250)&lt;/h2&gt;
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <generator uri="http://jekyllrb.com" version="3.3.1">Jekyll</generator>
+  
+  
+  <link href="https://yous.be/atom.xml" rel="self" type="application/atom+xml" />
+  <link href="https://yous.be/" rel="alternate" type="text/html" />
+  <updated>2017-01-07T16:54:18+00:00</updated>
+  <id>https://yous.be//</id>
+
+  
+    <title type="html">Yous</title>
+  
+
+  
+    <subtitle>Blog for hackers.</subtitle>
+  
+
+  
+    <author>
+        <name>Yous</name>
+      
+      
+    </author>
+  
+
+  
+  
+    <entry>
+      
+      <title type="html">HITCON CTF 2016: ROP write-up</title>
+      
+      <link href="https://yous.be/2016/10/11/hitcon-ctf-2016-rop-write-up/" rel="alternate" type="text/html" title="HITCON CTF 2016: ROP write-up" />
+      <published>2016-10-11T08:25:35+00:00</published>
+      <updated>2016-10-11T08:25:35+00:00</updated>
+      <id>https://yous.be/2016/10/11/hitcon-ctf-2016-rop-write-up</id>
+      <content type="html" xml:base="https://yous.be/2016/10/11/hitcon-ctf-2016-rop-write-up/">&lt;h2&gt;ROP (Reverse 250)&lt;/h2&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/p&gt;
@@ -575,22 +596,47 @@ Congratz! flag is hitcon&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;ROP &lt;sp
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;So the flag is &lt;code class=&quot;highlighter-rouge&quot;&gt;hitcon{ROP = Ruby Obsecured Programming ^_&amp;lt;}&lt;/code&gt;.&lt;/p&gt;
-</description>
-        <pubDate>Tue, 11 Oct 2016 08:25:35 +0000</pubDate>
-        <link>https://yous.be/2016/10/11/hitcon-ctf-2016-rop-write-up/</link>
-        <guid isPermaLink="true">https://yous.be/2016/10/11/hitcon-ctf-2016-rop-write-up/</guid>
-        
-        
-        <category>CTF</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>How to reset window size of Slack on Windows</title>
-        
-        <description>&lt;h2&gt;Slack application&lt;/h2&gt;
+&lt;p&gt;So the flag is &lt;code class=&quot;highlighter-rouge&quot;&gt;hitcon{ROP = Ruby Obsecured Programming ^_&amp;lt;}&lt;/code&gt;.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+        <author>
+            <name>Yous</name>
+          
+          
+        </author>
+      
+
+      
+        <category term="CTF" />
+      
+
+      
+
+      
+        <summary type="html">ROP (Reverse 250) Description Who doesn’t like ROP? Let’s try some new features introduced in 2.3. rop.iseq Hint None If the above link doesn’t work, please use this link. New features? Well, see the Ruby 2.3.0 news. RubyVM::InstructionSequence#to_binary and .load_from_binary are introduced as experimental features. With these features, we can make a ISeq (bytecode) pre-compilation system. Yes, so this is about using RubyVM::InstructionSequence.load_from_binary. Let’s just start with: RubyVM::InstructionSequence.load_from_binary(File.read('rop.iseq')) But you can face this kind of error: RuntimeError: unmatched platform from (irb):1:in `load_from_binary' from (irb):1 from /usr/bin/irb:11:in `&amp;lt;main&amp;gt;' By checking strings rop.iseq, we can find x86_64-linux. So we need Ruby 2.3 on Linux x86_64 platform. You can see the platform by ruby --version. This is the version of my one: ruby 2.3.1p112 (2016-04-26 revision 54768) [x86_64-linux]</summary>
+      
+
+      
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">How to reset window size of Slack on Windows</title>
+      
+      <link href="https://yous.be/2016/10/07/how-to-reset-window-size-of-slack-on-windows/" rel="alternate" type="text/html" title="How to reset window size of Slack on Windows" />
+      <published>2016-10-07T12:07:02+00:00</published>
+      <updated>2016-10-07T12:07:02+00:00</updated>
+      <id>https://yous.be/2016/10/07/how-to-reset-window-size-of-slack-on-windows</id>
+      <content type="html" xml:base="https://yous.be/2016/10/07/how-to-reset-window-size-of-slack-on-windows/">&lt;h2&gt;Slack application&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://slack.com/&quot;&gt;Slack&lt;/a&gt;, you may know. It rocks, and I’m also involved in
 several teams. Their site is great, but more teams, more tabs in my browser. I
@@ -632,22 +678,50 @@ value of &lt;code class=&quot;highlighter-rouge&quot;&gt;windowSettings&lt;/code
   &lt;li&gt;Open Slack again. It will set the default window size automatically.&lt;/li&gt;
 &lt;/ol&gt;
 
-&lt;p&gt;Keep calm and use Slack!&lt;/p&gt;
-</description>
-        <pubDate>Fri, 07 Oct 2016 12:07:02 +0000</pubDate>
-        <link>https://yous.be/2016/10/07/how-to-reset-window-size-of-slack-on-windows/</link>
-        <guid isPermaLink="true">https://yous.be/2016/10/07/how-to-reset-window-size-of-slack-on-windows/</guid>
+&lt;p&gt;Keep calm and use Slack!&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+        <author>
+            <name>Yous</name>
+          
+          
+        </author>
+      
+
+      
+        <category term="Technology" />
+      
+
+      
+
+      
+        <summary type="html">Slack application Slack, you may know. It rocks, and I’m also involved in several teams. Their site is great, but more teams, more tabs in my browser. I decided to use their Windows app which provides handy shortcuts for switching between teams. Today I just remotely connected to my Windows desktop from my notebook. But then, I realized the Slack window is shrinked. Maybe the reason is my notebook’s screen size, but I don’t know. Its content area became too small to read, so I wanted its window size back. Actually the default window size was my taste, so I wanted to just reset its customized window size. And I found it, so here I am to share with you. Resetting Slack’s window size First of all, note that this is not the permanent solution since it’s not a part of Slack API or something that is guaranteed by them. My Windows machine is 64-bit and the version of Slack is 2.2.1. So here is a way to resetting the window size of Slack. Quit your Slack application. Navigate to %APPDATA%\Slack. The value of %APPDATA% is something like C:\Users\{username}\AppData\Roaming. Open redux-state.json to edit. Find windowSettings under state’s app. Its value would be like: \&quot;windowSettings\&quot;:{\&quot;size\&quot;:[1152,832],\&quot;position\&quot;:[384,104],\&quot;isMaximized\&quot;:false} Delete the whole windowSettings entry above. If you delete only a part of value of windowSettings, application may crash. Open Slack again. It will set the default window size automatically. Keep calm and use Slack!</summary>
+      
+
+      
+      
         
-        
-        <category>Technology</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>Unicode Adopt-a-Character</title>
-        
-        <description>&lt;p&gt;Now you can
+        <media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://yous.be/images/2016/10/07/slack-2.2.1.png" />
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">Unicode Adopt-a-Character</title>
+      
+      <link href="https://yous.be/2016/04/20/unicode-adopt-a-character/" rel="alternate" type="text/html" title="Unicode Adopt-a-Character" />
+      <published>2016-04-20T16:25:37+00:00</published>
+      <updated>2016-04-20T16:25:37+00:00</updated>
+      <id>https://yous.be/2016/04/20/unicode-adopt-a-character</id>
+      <content type="html" xml:base="https://yous.be/2016/04/20/unicode-adopt-a-character/">&lt;p&gt;Now you can
 &lt;a href=&quot;http://unicode.org/consortium/adopt-a-character.html&quot;&gt;adopt a character&lt;/a&gt;!&lt;/p&gt;
 
 &lt;ol&gt;
@@ -667,23 +741,47 @@ which is my family name written in Korean. And this is one of the first
 adoptions of hangul character.&lt;/p&gt;
 
 &lt;blockquote class=&quot;twitter-tweet&quot; data-lang=&quot;en&quot;&gt;&lt;p lang=&quot;en&quot; dir=&quot;ltr&quot;&gt;Chayoung You (유차영)is now a Bronze sponsor of HANGUL SYLLABLE YU!&lt;a href=&quot;https://twitter.com/hashtag/UnicodeSponsor?src=hash&quot;&gt;#UnicodeSponsor&lt;/a&gt; &lt;a href=&quot;https://t.co/puZ4jUucBk&quot;&gt;https://t.co/puZ4jUucBk&lt;/a&gt; &lt;a href=&quot;https://t.co/10gKB3lRwH&quot;&gt;pic.twitter.com/10gKB3lRwH&lt;/a&gt;&lt;/p&gt;&amp;mdash; Unicode Consortium (@unicode) &lt;a href=&quot;https://twitter.com/unicode/status/724655810068914177&quot;&gt;April 25, 2016&lt;/a&gt;&lt;/blockquote&gt;
-&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+&lt;script async=&quot;&quot; src=&quot;//platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;</content>
 
-</description>
-        <pubDate>Wed, 20 Apr 2016 16:25:37 +0000</pubDate>
-        <link>https://yous.be/2016/04/20/unicode-adopt-a-character/</link>
-        <guid isPermaLink="true">https://yous.be/2016/04/20/unicode-adopt-a-character/</guid>
-        
-        
-        <category>Technology</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>Installing Ruby 1.8.7 on OS X El Capitan</title>
-        
-        <description>&lt;h2&gt;A bug in Ruby 1.8.7&lt;/h2&gt;
+      
+      
+      
+      
+      
+
+      
+        <author>
+            <name>Yous</name>
+          
+          
+        </author>
+      
+
+      
+        <category term="Technology" />
+      
+
+      
+
+      
+        <summary type="html">Now you can adopt a character! Select your character Make your donation Then you’re done. After the donation, your character along with your name will be listed in Sponsors of Adopted Characters. You support Unicode Consortium by donation while expressing your interests in the adopted character as チルノ adopted ⑨. I chose ‘유’ (U+C720, HANGUL SYLLABLE YU), which is my family name written in Korean. And this is one of the first adoptions of hangul character. Chayoung You (유차영)is now a Bronze sponsor of HANGUL SYLLABLE YU!#UnicodeSponsor https://t.co/puZ4jUucBk pic.twitter.com/10gKB3lRwH&amp;mdash; Unicode Consortium (@unicode) April 25, 2016</summary>
+      
+
+      
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">Installing Ruby 1.8.7 on OS X El Capitan</title>
+      
+      <link href="https://yous.be/2016/04/16/installing-ruby-1-8-7-on-os-x-el-capitan/" rel="alternate" type="text/html" title="Installing Ruby 1.8.7 on OS X El Capitan" />
+      <published>2016-04-16T13:08:13+00:00</published>
+      <updated>2016-04-16T13:08:13+00:00</updated>
+      <id>https://yous.be/2016/04/16/installing-ruby-1-8-7-on-os-x-el-capitan</id>
+      <content type="html" xml:base="https://yous.be/2016/04/16/installing-ruby-1-8-7-on-os-x-el-capitan/">&lt;h2&gt;A bug in Ruby 1.8.7&lt;/h2&gt;
 
 &lt;p&gt;There is a bug in Ruby 1.8.7’s exponentiation. See
 &lt;a href=&quot;http://stackoverflow.com/questions/12009799/exponentiation-in-ruby-1-8-7-returns-wrong-answers&quot;&gt;“Exponentiation in Ruby 1.8.7 Returns Wrong Answers”&lt;/a&gt;.&lt;/p&gt;
@@ -785,22 +883,47 @@ you don’t need tk, then try the following command:&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;This version of Ruby 1.8.7 still has the same bug.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 16 Apr 2016 13:08:13 +0000</pubDate>
-        <link>https://yous.be/2016/04/16/installing-ruby-1-8-7-on-os-x-el-capitan/</link>
-        <guid isPermaLink="true">https://yous.be/2016/04/16/installing-ruby-1-8-7-on-os-x-el-capitan/</guid>
-        
-        
-        <category>Ruby</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>Switching RVM to chruby</title>
-        
-        <description>&lt;p&gt;I’ve found RVM’s gemsets are no longer useful to me. I used to make a separate
+&lt;p&gt;This version of Ruby 1.8.7 still has the same bug.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+        <author>
+            <name>Yous</name>
+          
+          
+        </author>
+      
+
+      
+        <category term="Ruby" />
+      
+
+      
+
+      
+        <summary type="html">A bug in Ruby 1.8.7 There is a bug in Ruby 1.8.7’s exponentiation. See “Exponentiation in Ruby 1.8.7 Returns Wrong Answers”. &amp;gt;&amp;gt; 2 ** 62 =&amp;gt; 4611686018427387904 &amp;gt;&amp;gt; 2 ** 63 =&amp;gt; -9223372036854775808 &amp;gt;&amp;gt; 2 ** 64 =&amp;gt; 0 Note that following gives the correct result: &amp;gt;&amp;gt; 2 ** 62 * 2 =&amp;gt; 9223372036854775808 Supporting an ancient Ruby Seeing this bug, I wanted to reproduce this by myself, so I just tried to install Ruby 1.8.7 on OS X 10.11.4. As I’m using chruby, I used ruby-install. ruby-install ruby 1.8.7 But there are several errors: ... gcc -I. -I../.. -I../../. -I../.././ext/openssl -DRUBY_EXTCONF_H=\&quot;extconf.h\&quot; -I/usr/local/opt/openssl/include -I/usr/local/opt/readline/include -I/usr/local/opt/libyaml/include -I/usr/local/opt/gdbm/include -D_XOPEN_SOURCE -D_DARWIN_C_SOURCE -fno-common -g -O2 -pipe -fno-common -c ossl.c ossl.c:118:1: error: unknown type name 'STACK'; did you mean '_STACK'? OSSL_IMPL_SK2ARY(x509, X509) ^ ossl.c:95:22: note: expanded from macro 'OSSL_IMPL_SK2ARY' ossl_##name##_sk2ary(STACK *sk) \ ^ /usr/local/opt/openssl/include/openssl/stack.h:72:3: note: '_STACK' declared here } _STACK; /* Use STACK_OF(...) instead */ ^ ... 4 errors generated. make[1]: *** [ossl.o] Error 1 make: *** [all] Error 1 !!! Compiling ruby 1.8.7 failed! This is because of the version of OpenSSL used for compilation is too high for Ruby 1.8.7, see rbenv/ruby-build#445. After some searching about OpenSSL and Ruby 1.8.7, I found that RVM is using openssl098 for Ruby 1.8.7 compilation. But, unfortunately, they decided to remove it from homebrew/versions tap because of deprecation and security issues. See Homebrew/homebrew-versions#1150 for the issue and the commit removing openssl098. Building Ruby 1.8.7 As I just wanted to reproduce a bug, I used the openssl098.rb right before the removal. brew install https://github.com/Homebrew/homebrew-versions/raw/586b7e9012a3ed1f9df6c43d0483c65549349289/openssl098.rb Then we can provide --with-openssl-dir option to ruby-install. ruby-install ruby 1.8.7 -- --with-openssl-dir=/usr/local/opt/openssl098 It’ll be successful! You can use Ruby 1.8.7 on OS X El Capitan. $ ruby --version ruby 1.8.7 (2008-05-31 patchlevel 0) [i686-darwin15.4.0] Finally I was able to reproduce the bug. &amp;gt;&amp;gt; 2 ** 62 =&amp;gt; 4611686018427387904 &amp;gt;&amp;gt; 2 ** 63 =&amp;gt; -9223372036854775808 &amp;gt;&amp;gt; 2 ** 64 =&amp;gt; 0 Also, for Ruby 1.8.7-p374, you don’t need openssl098, but you may need X11. If you don’t need tk, then try the following command: ruby-install ruby 1.8.7-p374 -- --without-tk This version of Ruby 1.8.7 still has the same bug.</summary>
+      
+
+      
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">Switching RVM to chruby</title>
+      
+      <link href="https://yous.be/2016/01/01/switching-rvm-to-chruby/" rel="alternate" type="text/html" title="Switching RVM to chruby" />
+      <published>2016-01-01T11:26:07+00:00</published>
+      <updated>2016-01-01T11:26:07+00:00</updated>
+      <id>https://yous.be/2016/01/01/switching-rvm-to-chruby</id>
+      <content type="html" xml:base="https://yous.be/2016/01/01/switching-rvm-to-chruby/">&lt;p&gt;I’ve found RVM’s gemsets are no longer useful to me. I used to make a separate
 gemset for each project by placing &lt;code class=&quot;highlighter-rouge&quot;&gt;.ruby-version&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;.ruby-gemset&lt;/code&gt; file in
 each project directory. But whenever a Ruby release come out, I repeated
 uninstalling previous version and then clean installing new version. So I
@@ -893,22 +1016,47 @@ scratch, so installed latest Ruby using ruby-install.&lt;/p&gt;
 &lt;/div&gt;
 
 &lt;p&gt;Now it’s possible to auto-switch the Ruby version with &lt;code class=&quot;highlighter-rouge&quot;&gt;.ruby-version&lt;/code&gt; file or
-manually with chruby commands like &lt;code class=&quot;highlighter-rouge&quot;&gt;chruby ruby-2.3.0&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;chruby system&lt;/code&gt;, etc.&lt;/p&gt;
-</description>
-        <pubDate>Fri, 01 Jan 2016 11:26:07 +0000</pubDate>
-        <link>https://yous.be/2016/01/01/switching-rvm-to-chruby/</link>
-        <guid isPermaLink="true">https://yous.be/2016/01/01/switching-rvm-to-chruby/</guid>
-        
-        
-        <category>Ruby</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>32C3 CTF 2015: libdroid Write-up</title>
-        
-        <description>&lt;h2&gt;Reversing (150)&lt;/h2&gt;
+manually with chruby commands like &lt;code class=&quot;highlighter-rouge&quot;&gt;chruby ruby-2.3.0&lt;/code&gt; or &lt;code class=&quot;highlighter-rouge&quot;&gt;chruby system&lt;/code&gt;, etc.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+        <author>
+            <name>Yous</name>
+          
+          
+        </author>
+      
+
+      
+        <category term="Ruby" />
+      
+
+      
+
+      
+        <summary type="html">I’ve found RVM’s gemsets are no longer useful to me. I used to make a separate gemset for each project by placing .ruby-version and .ruby-gemset file in each project directory. But whenever a Ruby release come out, I repeated uninstalling previous version and then clean installing new version. So I decided to move to chruby, smaller and simpler one. Goodbye, RVM rvm implode Also if you have additional script lines loading RVM, remove them. I left them to make it work only if RVM is installed. [[ -s &quot;$HOME/.rvm/scripts/rvm/&quot; ]] &amp;amp;&amp;amp; source &quot;$HOME/.rvm/scripts/rvm&quot; Installing ruby-install ruby-install handles installations of various Rubies. If you’re on OS X: brew install ruby-install If you’re on Arch Linux: yaourt -S ruby-install Otherwise: wget -O ruby-install-0.6.0.tar.gz https://github.com/postmodern/ruby-install/archive/v0.6.0.tar.gz tar -xzvf ruby-install-0.6.0.tar.gz cd ruby-install-0.6.0/ sudo make install Installing chruby If you’re on OS X: brew install chruby Otherwise: wget -O chruby-0.3.9.tar.gz https://github.com/postmodern/chruby/archive/v0.3.9.tar.gz tar -xzvf chruby-0.3.9.tar.gz cd chruby-0.3.9/ sudo make install Then all I need to do is to load it from startup script, ~/.*shrc. if [ -e /usr/local/share/chruby/chruby.sh ]; then source /usr/local/share/chruby/chruby.sh source /usr/local/share/chruby/auto.sh fi The auto.sh is for auto-switching the current version of Ruby according to .ruby-version file of the current directory. This is optional. chruby provides ways to migrate Rubies from another Ruby manager, but I started from scratch, so installed latest Ruby using ruby-install. ruby-install ruby 2.3.0 Then which ruby will points to some path under ~/.rubies directory. which ruby ~/.rubies/ruby-2.3.0/bin/ruby Now it’s possible to auto-switch the Ruby version with .ruby-version file or manually with chruby commands like chruby ruby-2.3.0 or chruby system, etc.</summary>
+      
+
+      
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">32C3 CTF 2015: libdroid Write-up</title>
+      
+      <link href="https://yous.be/2015/12/30/32c3-ctf-2015-libdroid-write-up/" rel="alternate" type="text/html" title="32C3 CTF 2015: libdroid Write-up" />
+      <published>2015-12-30T16:59:51+00:00</published>
+      <updated>2015-12-30T16:59:51+00:00</updated>
+      <id>https://yous.be/2015/12/30/32c3-ctf-2015-libdroid-write-up</id>
+      <content type="html" xml:base="https://yous.be/2015/12/30/32c3-ctf-2015-libdroid-write-up/">&lt;h2&gt;Reversing (150)&lt;/h2&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Solves: 17&lt;/p&gt;
@@ -1385,22 +1533,50 @@ Congratulations! The rootkit is sucessfully installed. The Flag is 32C3_this_is_
 &lt;p&gt;So the flag is &lt;code class=&quot;highlighter-rouge&quot;&gt;32C3_this_is_build_for_flag_ship_phones&lt;/code&gt;. If you want to see the
 flag within the application, just press &lt;code class=&quot;highlighter-rouge&quot;&gt;103875&lt;/code&gt; on it.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/2015/12/30/libdroid_flag.jpg&quot; alt=&quot;libdroid Flag&quot; /&gt;&lt;/p&gt;
-</description>
-        <pubDate>Wed, 30 Dec 2015 16:59:51 +0000</pubDate>
-        <link>https://yous.be/2015/12/30/32c3-ctf-2015-libdroid-write-up/</link>
-        <guid isPermaLink="true">https://yous.be/2015/12/30/32c3-ctf-2015-libdroid-write-up/</guid>
+&lt;p&gt;&lt;img src=&quot;/images/2015/12/30/libdroid_flag.jpg&quot; alt=&quot;libdroid Flag&quot; /&gt;&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+        <author>
+            <name>Yous</name>
+          
+          
+        </author>
+      
+
+      
+        <category term="CTF" />
+      
+
+      
+
+      
+        <summary type="html">Reversing (150) Solves: 17 Please install this on your new android phone, enter pass code and get the flag. Hints: Updated the libdroid.apk, this one is now also able to run on a device. No changes to internal logic. If the above link doesn’t work, please use this link.</summary>
+      
+
+      
+      
         
-        
-        <category>CTF</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>Moving Timezone to UTC in Jekyll</title>
-        
-        <description>&lt;p&gt;At the very first, I haven’t think about the timezone of my blog. I had used to
+        <media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://yous.be/images/2015/12/30/jd-gui.png" />
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">Moving Timezone to UTC in Jekyll</title>
+      
+      <link href="https://yous.be/2015/09/05/moving-timezone-to-utc-in-jekyll/" rel="alternate" type="text/html" title="Moving Timezone to UTC in Jekyll" />
+      <published>2015-09-05T12:39:19+00:00</published>
+      <updated>2015-09-05T12:39:19+00:00</updated>
+      <id>https://yous.be/2015/09/05/moving-timezone-to-utc-in-jekyll</id>
+      <content type="html" xml:base="https://yous.be/2015/09/05/moving-timezone-to-utc-in-jekyll/">&lt;p&gt;At the very first, I haven’t think about the timezone of my blog. I had used to
 generate my blog on my local machine and deploy manually. At that time every
 content is released based on KST timezone, which is GMT+9.&lt;/p&gt;
 
@@ -1582,22 +1758,47 @@ Remained things are boring file renames and making backward redirect links,
 using &lt;a href=&quot;https://github.com/jekyll/jekyll-redirect-from&quot;&gt;jekyll-redirect-from&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;You can see the full changes on
-&lt;a href=&quot;https://github.com/yous/yous.github.io/commit/4aae28ea371af67cb099a249f2c4f7a5bb1be723&quot;&gt;this commit&lt;/a&gt;.&lt;/p&gt;
-</description>
-        <pubDate>Sat, 05 Sep 2015 12:39:19 +0000</pubDate>
-        <link>https://yous.be/2015/09/05/moving-timezone-to-utc-in-jekyll/</link>
-        <guid isPermaLink="true">https://yous.be/2015/09/05/moving-timezone-to-utc-in-jekyll/</guid>
-        
-        
-        <category>Jekyll</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>Revive the Tmux Sessions</title>
-        
-        <description>&lt;p&gt;On the previous day, I accidently removed &lt;code class=&quot;highlighter-rouge&quot;&gt;/tmp/tmux-1000/&lt;/code&gt; directory. At first,
+&lt;a href=&quot;https://github.com/yous/yous.github.io/commit/4aae28ea371af67cb099a249f2c4f7a5bb1be723&quot;&gt;this commit&lt;/a&gt;.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+        <author>
+            <name>Yous</name>
+          
+          
+        </author>
+      
+
+      
+        <category term="Jekyll" />
+      
+
+      
+
+      
+        <summary type="html">At the very first, I haven’t think about the timezone of my blog. I had used to generate my blog on my local machine and deploy manually. At that time every content is released based on KST timezone, which is GMT+9. Right after that I tried to deploy my blog through Travis CI, I realized that something went wrong. Travis CI uses UTC by default, so the URL of every post between 0AM and 9AM was shifted by one day backward. I had to modify /etc/timezone or set environment variable TZ to restore the URLs. Yes, this can solve the problem I faced. But should I really use the KST for this whole blog? It’ll be nice if I can show the time based on timezone of each client, but I won’t be able to handle the date part of the post URL as well. So I decided to move the timezone of this site to UTC, global standard at least. First I should write some tests for the migration since I want to change URLs by only one push. You can access current posts by using jekyll gem. Place spec/support/jekyll_helper.rb with: require 'jekyll' module JekyllHelper def site unless @site @site = Jekyll::Site.new( Jekyll.configuration('serving' =&amp;gt; false, 'full_rebuild' =&amp;gt; true)) @site.process end end end Note @site.process. This makes you be able to access @site.posts. The basic test is simple. I placed this on spec/site_spec.rb: RSpec.describe '_site' do include JekyllHelper describe 'timezone' do it 'uses UTC instead of local timezone' do expect(site.posts).to all(be_utc_post) expect(site.posts).to all(have_utc_filename) expect(site.posts).to all(have_utc_url) end end end So, what’s the be_utc_post, have_utc_filename, and have_utc_url? Each of them is RSpec custom matcher. I separated the validation into three parts. Does the date object of the post have UTC timezone? Does the post have filename with the UTC date? Does the generated URL have the UTC date? So the each matcher is like following: RSpec::Matchers.define :be_utc_post do match do |actual| expect(actual.date.zone).to eq('UTC') end failure_message do |actual| &quot;expected #{actual.date} to have UTC timezone&quot; end end RSpec::Matchers.define :have_utc_filename do match do |actual| date = actual.date.utc year = date.strftime('%Y') month = date.strftime('%m') day = date.strftime('%d') expect(actual.name) .to eq(&quot;#{year}-#{month}-#{day}-#{actual.slug}#{actual.ext}&quot;) end failure_message do |actual| &quot;expected #{actual.name} to have UTC date&quot; end end RSpec::Matchers.define :have_utc_url do match do |actual| date = actual.date.utc year = date.strftime('%Y') month = date.strftime('%m') day = date.strftime('%d') expect(actual.url).to eq(&quot;/#{year}/#{month}/#{day}/#{actual.slug}/&quot;) end failure_message do |actual| &quot;expected #{actual.url} to have UTC date&quot; end end Note that &quot;/#{year}/#{month}/#{day}/#{actual.slug}/&quot; is based on my permalink setting of _config.yml in Jekyll, so you may have to change the template appropriately. Update: Jekyll released 3.0.0, and there were some changes on Jekyll::Post. Following code is updated version of spec code. Also you can track the file on GitHub. RSpec::Matchers.define :be_utc_post do match do |actual| expect(actual.date.zone).to eq('UTC') end failure_message do |actual| &quot;expected #{actual.date} to have UTC timezone&quot; end end RSpec::Matchers.define :have_utc_filename do match do |actual| date = actual.date.utc year = date.strftime('%Y') month = date.strftime('%m') day = date.strftime('%d') slug = actual.data['slug'] ext = actual.data['ext'] expect(actual.basename) .to eq(&quot;#{year}-#{month}-#{day}-#{slug}#{ext}&quot;) end failure_message do |actual| &quot;expected #{actual.basename} to have UTC date&quot; end end RSpec::Matchers.define :have_utc_url do match do |actual| date = actual.date.utc year = date.strftime('%Y') month = date.strftime('%m') day = date.strftime('%d') slug = Jekyll::Utils.slugify(actual.data['slug']) expect(actual.url).to eq(&quot;/#{year}/#{month}/#{day}/#{slug}/&quot;) end failure_message do |actual| &quot;expected #{actual.url} to have UTC date&quot; end end RSpec.describe '_site' do include JekyllHelper describe 'timezone' do it 'uses UTC instead of local timezone' do expect(site.posts.docs).to all(be_utc_post) expect(site.posts.docs).to all(have_utc_filename) expect(site.posts.docs).to all(have_utc_url) end end end Tests are ready, so now we start migrating. See ‘Time Zone’ part of the documentation of Jekyll configuration. Set the time zone for site generation. This sets the TZ environment variable, which Ruby uses to handle time and date creation and manipulation. Any entry from the IANA Time Zone Database is valid, e.g. America/New_York. A list of all available values can be found here. The default is the local time zone, as set by your operating system. So when you add timezone: UTC to your _config.yml, you’re almost done! Remained things are boring file renames and making backward redirect links, using jekyll-redirect-from. You can see the full changes on this commit.</summary>
+      
+
+      
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">Revive the Tmux Sessions</title>
+      
+      <link href="https://yous.be/2015/05/08/revive-the-tmux-sessions/" rel="alternate" type="text/html" title="Revive the Tmux Sessions" />
+      <published>2015-05-08T00:36:46+00:00</published>
+      <updated>2015-05-08T00:36:46+00:00</updated>
+      <id>https://yous.be/2015/05/08/revive-the-tmux-sessions</id>
+      <content type="html" xml:base="https://yous.be/2015/05/08/revive-the-tmux-sessions/">&lt;p&gt;On the previous day, I accidently removed &lt;code class=&quot;highlighter-rouge&quot;&gt;/tmp/tmux-1000/&lt;/code&gt; directory. At first,
 there seems no problem with Tmux. But when I created another SSH connection, I
 saw this error message:&lt;/p&gt;
 
@@ -1644,22 +1845,47 @@ be sent to the tmux server process to recreate it.&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;Then we can do &lt;code class=&quot;highlighter-rouge&quot;&gt;tmux attach&lt;/code&gt; successfully. Yay!&lt;/p&gt;
-</description>
-        <pubDate>Fri, 08 May 2015 00:36:46 +0000</pubDate>
-        <link>https://yous.be/2015/05/08/revive-the-tmux-sessions/</link>
-        <guid isPermaLink="true">https://yous.be/2015/05/08/revive-the-tmux-sessions/</guid>
-        
-        
-        <category>Technology</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>Using Pinpoint with Docker</title>
-        
-        <description>&lt;p&gt;&lt;img src=&quot;/images/2015/05/05/logo.png&quot; alt=&quot;Pinpoint&quot; title=&quot;Pinpoint&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;Then we can do &lt;code class=&quot;highlighter-rouge&quot;&gt;tmux attach&lt;/code&gt; successfully. Yay!&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+        <author>
+            <name>Yous</name>
+          
+          
+        </author>
+      
+
+      
+        <category term="Technology" />
+      
+
+      
+
+      
+        <summary type="html">On the previous day, I accidently removed /tmp/tmux-1000/ directory. At first, there seems no problem with Tmux. But when I created another SSH connection, I saw this error message: $ tmux attach no sessions $ tmux list-sessions failed to connect to server But the Tmux prosesses were still there: $ ps -ef | grep tmux 59277 16305 0 May06 pts/0 00:00:00 tmux attach Then I immediately noticed that the removing /tmp/tmux-1000/ things made the problem. And thankfully Tmux provides workaround. From the tmux manpage: -L socket-name tmux stores the server socket in a directory under /tmp (or TMPDIR if set); the default socket is named default. This option allows a different socket name to be specified, allowing several independent tmux servers to be run. Unlike -S a full path is not necessary: the sockets are all created in the same directory. If the socket is accidentally removed, the SIGUSR1 signal may be sent to the tmux server process to recreate it. Now we can revive our Tmux sessions by sending a signal to recreate sockets: killall -s SIGUSR1 tmux More simply, since the number of SIGUSR1 is 10: killall -10 tmux Then we can do tmux attach successfully. Yay!</summary>
+      
+
+      
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">Using Pinpoint with Docker</title>
+      
+      <link href="https://yous.be/2015/05/05/using-pinpoint-with-docker/" rel="alternate" type="text/html" title="Using Pinpoint with Docker" />
+      <published>2015-05-05T03:12:07+00:00</published>
+      <updated>2015-05-05T03:12:07+00:00</updated>
+      <id>https://yous.be/2015/05/05/using-pinpoint-with-docker</id>
+      <content type="html" xml:base="https://yous.be/2015/05/05/using-pinpoint-with-docker/">&lt;p&gt;&lt;img src=&quot;/images/2015/05/05/logo.png&quot; alt=&quot;Pinpoint&quot; title=&quot;Pinpoint&quot; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;&lt;a href=&quot;https://github.com/naver/pinpoint&quot;&gt;&lt;strong&gt;Pinpoint&lt;/strong&gt;&lt;/a&gt; is an open source APM
@@ -1955,22 +2181,50 @@ quickstart/bin/start-testapp.sh
 &lt;a href=&quot;http://localhost:28081&quot;&gt;http://localhost:28081&lt;/a&gt; for TestApp.&lt;/p&gt;
 
 &lt;p&gt;Note again, you can see my Dockerfile on &lt;a href=&quot;https://github.com/yous/pinpoint-docker&quot;&gt;yous/pinpoint-docker&lt;/a&gt;.
-Any issues and pull requests are welcome!&lt;/p&gt;
-</description>
-        <pubDate>Tue, 05 May 2015 03:12:07 +0000</pubDate>
-        <link>https://yous.be/2015/05/05/using-pinpoint-with-docker/</link>
-        <guid isPermaLink="true">https://yous.be/2015/05/05/using-pinpoint-with-docker/</guid>
+Any issues and pull requests are welcome!&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+        <author>
+            <name>Yous</name>
+          
+          
+        </author>
+      
+
+      
+        <category term="Technology" />
+      
+
+      
+
+      
+        <summary type="html">Pinpoint is an open source APM (Application Performance Management) tool for large-scale distributed systems written in Java. Preliminary In this post, our goal is to run a sample Pinpoint instance with QuickStart scripts. You can find them on GitHub. Also note that we’re going to use Docker. Requirements First things first, install Docker. wget -qO- https://get.docker.com/ | sh You can verify docker is installed correctly. sudo docker run hello-world For more details, see the installation guides of Docker. Look into the Dockerfile In fact, I already made a Dockerfile for Pinpoint. You can see on yous/pinpoint-docker. From now on, I’ll describe the Dockerfile line by line.</summary>
+      
+
+      
+      
         
-        
-        <category>Technology</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>Comparing binary files</title>
-        
-        <description>&lt;h2&gt;Seeing differences between files&lt;/h2&gt;
+        <media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://yous.be/images/2015/05/05/logo.png" />
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">Comparing binary files</title>
+      
+      <link href="https://yous.be/2015/03/03/comparing-binary-files/" rel="alternate" type="text/html" title="Comparing binary files" />
+      <published>2015-03-03T10:13:29+00:00</published>
+      <updated>2015-03-03T10:13:29+00:00</updated>
+      <id>https://yous.be/2015/03/03/comparing-binary-files</id>
+      <content type="html" xml:base="https://yous.be/2015/03/03/comparing-binary-files/">&lt;h2&gt;Seeing differences between files&lt;/h2&gt;
 
 &lt;p&gt;As using &lt;a href=&quot;http://git-scm.com/&quot;&gt;Git&lt;/a&gt;, looking changes of files with &lt;code class=&quot;highlighter-rouge&quot;&gt;git diff&lt;/code&gt; is common. Always we can check the status of files with &lt;code class=&quot;highlighter-rouge&quot;&gt;git status&lt;/code&gt;, including whether there is a new file that isn’t added to index, existence of changed files.&lt;/p&gt;
 
@@ -1997,22 +2251,47 @@ Any issues and pull requests are welcome!&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;
 &lt;/div&gt;
 
-&lt;p&gt;When two files are the same, it prints no message and return 0. If they are different, it prints some message and return 1.&lt;/p&gt;
-</description>
-        <pubDate>Tue, 03 Mar 2015 10:13:29 +0000</pubDate>
-        <link>https://yous.be/2015/03/03/comparing-binary-files/</link>
-        <guid isPermaLink="true">https://yous.be/2015/03/03/comparing-binary-files/</guid>
-        
-        
-        <category>Technology</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>ChristmasCTF 2014 Write-up</title>
-        
-        <description>&lt;p&gt;&lt;img src=&quot;/images/2014/12/25/christmasctf-1_800.png&quot; alt=&quot;ChristmasCTF&quot; title=&quot;ChristmasCTF&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;When two files are the same, it prints no message and return 0. If they are different, it prints some message and return 1.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+        <author>
+            <name>Yous</name>
+          
+          
+        </author>
+      
+
+      
+        <category term="Technology" />
+      
+
+      
+
+      
+        <summary type="html">Seeing differences between files As using Git, looking changes of files with git diff is common. Always we can check the status of files with git status, including whether there is a new file that isn’t added to index, existence of changed files. I downloaded the syllabus of each course I registered before the start of the semester. This is the first week of semester, professors introduce their course with the adjusted syllabus. Of course I can access the updated ones, but I can’t sure that the files which already I have are the same with which I downloaded right before. I want to keep the old one and the new one both, avoid just overwriting them. Comparing binary files I just wanted to check whether two binary files are the same or not, no matter what the difference is. Windows You can use fc, file compare, which is Microsoft DOS command. fc /b file1 file2 The /b flag is for a binary comparison. If two files are the same, it prints a message like ‘FC: no differences encountered’, if they’re not, it shows each byte of two files per line. Unix You can use cmp which compares two files byte by byte. cmp file1 file2 When two files are the same, it prints no message and return 0. If they are different, it prints some message and return 1.</summary>
+      
+
+      
+      
+    </entry>
+  
+  
+  
+    <entry xml:lang="ko">
+      
+      <title type="html">ChristmasCTF 2014 Write-up</title>
+      
+      <link href="https://yous.be/2014/12/25/christmasctf-2014-write-up/" rel="alternate" type="text/html" title="ChristmasCTF 2014 Write-up" />
+      <published>2014-12-25T15:41:26+00:00</published>
+      <updated>2014-12-25T15:41:26+00:00</updated>
+      <id>https://yous.be/2014/12/25/christmasctf-2014-write-up</id>
+      <content type="html" xml:base="https://yous.be/2014/12/25/christmasctf-2014-write-up/">&lt;p&gt;&lt;img src=&quot;/images/2014/12/25/christmasctf-1_800.png&quot; alt=&quot;ChristmasCTF&quot; title=&quot;ChristmasCTF&quot; /&gt;&lt;/p&gt;
 
 &lt;!-- more --&gt;
 
@@ -2662,22 +2941,50 @@ Hint2: its IP Address in Decimal. therefore =&amp;gt; http://988087853/k3y.png a
 
 &lt;p&gt;&lt;img src=&quot;/images/2014/12/25/k3y_xor.png&quot; alt=&quot;k3y_xor.png&quot; title=&quot;k3y_xor.png&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;Flag는 &lt;code class=&quot;highlighter-rouge&quot;&gt;ASKY_ALWAYS!&lt;/code&gt;입니다.&lt;/p&gt;
-</description>
-        <pubDate>Thu, 25 Dec 2014 15:41:26 +0000</pubDate>
-        <link>https://yous.be/2014/12/25/christmasctf-2014-write-up/</link>
-        <guid isPermaLink="true">https://yous.be/2014/12/25/christmasctf-2014-write-up/</guid>
+&lt;p&gt;Flag는 &lt;code class=&quot;highlighter-rouge&quot;&gt;ASKY_ALWAYS!&lt;/code&gt;입니다.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+        <author>
+            <name>Yous</name>
+          
+          
+        </author>
+      
+
+      
+        <category term="CTF" />
+      
+
+      
+
+      
+        <summary type="html"></summary>
+      
+
+      
+      
         
-        
-        <category>CTF</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>SECCON CTF 2014: Easy Cipher Write-up</title>
-        
-        <description>&lt;h2&gt;Crypto100 - Easy Cipher&lt;/h2&gt;
+        <media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://yous.be/images/2014/12/25/christmasctf-1.png" />
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">SECCON CTF 2014: Easy Cipher Write-up</title>
+      
+      <link href="https://yous.be/2014/12/08/seccon-ctf-2014-easy-cipher-write-up/" rel="alternate" type="text/html" title="SECCON CTF 2014: Easy Cipher Write-up" />
+      <published>2014-12-08T15:11:30+00:00</published>
+      <updated>2014-12-08T15:11:30+00:00</updated>
+      <id>https://yous.be/2014/12/08/seccon-ctf-2014-easy-cipher-write-up</id>
+      <content type="html" xml:base="https://yous.be/2014/12/08/seccon-ctf-2014-easy-cipher-write-up/">&lt;h2&gt;Crypto100 - Easy Cipher&lt;/h2&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;87 101 108 1100011 0157 6d 0145 040 116 0157 100000 0164 104 1100101 32 0123 69 67 0103 1001111 1001110 040 062 060 49 064 100000 0157 110 6c 0151 1101110 101 040 0103 1010100 70 101110 0124 1101000 101 100000 1010011 1000101 67 0103 4f 4e 100000 105 1110011 040 116 1101000 0145 040 1100010 0151 103 103 0145 1110011 0164 100000 1101000 0141 99 6b 1100101 0162 32 0143 111 1101110 1110100 101 0163 0164 040 0151 0156 040 74 0141 1110000 1100001 0156 056 4f 0157 0160 115 44 040 0171 1101111 117 100000 1110111 0141 0156 1110100 32 0164 6f 32 6b 1101110 1101111 1110111 100000 0164 1101000 0145 040 0146 6c 97 1100111 2c 100000 0144 111 110 100111 116 100000 1111001 6f 117 63 0110 1100101 0162 0145 100000 1111001 111 117 100000 97 114 0145 46 1010011 0105 0103 67 79 1001110 123 87 110011 110001 67 110000 1001101 32 55 060 100000 110111 0110 110011 32 53 51 0103 0103 060 0116 040 5a 0117 73 0101 7d 1001000 0141 1110110 1100101 100000 102 0165 0156 33&lt;/p&gt;
@@ -2725,22 +3032,47 @@ Hint2: its IP Address in Decimal. therefore =&amp;gt; http://988087853/k3y.png a
 
 &lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;SECCON{W31C0M 70 7H3 53CC0N ZOIA}
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Mon, 08 Dec 2014 15:11:30 +0000</pubDate>
-        <link>https://yous.be/2014/12/08/seccon-ctf-2014-easy-cipher-write-up/</link>
-        <guid isPermaLink="true">https://yous.be/2014/12/08/seccon-ctf-2014-easy-cipher-write-up/</guid>
-        
-        
-        <category>CTF</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>SECCON CTF 2014: QR (Easy) Write-up</title>
-        
-        <description>&lt;h2&gt;QR200 - QR (Easy)&lt;/h2&gt;
+&lt;/div&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+        <author>
+            <name>Yous</name>
+          
+          
+        </author>
+      
+
+      
+        <category term="CTF" />
+      
+
+      
+
+      
+        <summary type="html">Crypto100 - Easy Cipher 87 101 108 1100011 0157 6d 0145 040 116 0157 100000 0164 104 1100101 32 0123 69 67 0103 1001111 1001110 040 062 060 49 064 100000 0157 110 6c 0151 1101110 101 040 0103 1010100 70 101110 0124 1101000 101 100000 1010011 1000101 67 0103 4f 4e 100000 105 1110011 040 116 1101000 0145 040 1100010 0151 103 103 0145 1110011 0164 100000 1101000 0141 99 6b 1100101 0162 32 0143 111 1101110 1110100 101 0163 0164 040 0151 0156 040 74 0141 1110000 1100001 0156 056 4f 0157 0160 115 44 040 0171 1101111 117 100000 1110111 0141 0156 1110100 32 0164 6f 32 6b 1101110 1101111 1110111 100000 0164 1101000 0145 040 0146 6c 97 1100111 2c 100000 0144 111 110 100111 116 100000 1111001 6f 117 63 0110 1100101 0162 0145 100000 1111001 111 117 100000 97 114 0145 46 1010011 0105 0103 67 79 1001110 123 87 110011 110001 67 110000 1001101 32 55 060 100000 110111 0110 110011 32 53 51 0103 0103 060 0116 040 5a 0117 73 0101 7d 1001000 0141 1110110 1100101 100000 102 0165 0156 33 It looks like a set of numbers split with space. But there are multiple integer bases. nums = %w(87 101 108 1100011 0157 6d 0145 040 116 0157 100000 0164 104 1100101 32 0123 69 67 0103 1001111 1001110 040 062 060 49 064 100000 0157 110 6c 0151 1101110 101 040 0103 1010100 70 101110 0124 1101000 101 100000 1010011 1000101 67 0103 4f 4e 100000 105 1110011 040 116 1101000 0145 040 1100010 0151 103 103 0145 1110011 0164 100000 1101000 0141 99 6b 1100101 0162 32 0143 111 1101110 1110100 101 0163 0164 040 0151 0156 040 74 0141 1110000 1100001 0156 056 4f 0157 0160 115 44 040 0171 1101111 117 100000 1110111 0141 0156 1110100 32 0164 6f 32 6b 1101110 1101111 1110111 100000 0164 1101000 0145 040 0146 6c 97 1100111 2c 100000 0144 111 110 100111 116 100000 1111001 6f 117 63 0110 1100101 0162 0145 100000 1111001 111 117 100000 97 114 0145 46 1010011 0105 0103 67 79 1001110 123 87 110011 110001 67 110000 1001101 32 55 060 100000 110111 0110 110011 32 53 51 0103 0103 060 0116 040 5a 0117 73 0101 7d 1001000 0141 1110110 1100101 100000 102 0165 0156 33) str = nums.map do |s| ord = if s.size &amp;gt;= 5 s.to_i(2) elsif s =~ /[a-f]/ s.to_i(16) elsif s.start_with?('0') s.to_i(8) else s.to_i end ord.chr end puts str.join Just run with Ruby: Welcome to the SECCON 2014 online CTF.The SECCON is the biggest hacker contest in Japan.Oops, you want to know the flag, don't you?Here you are.SECCON{W31C0M 70 7H3 53CC0N ZOIA}Have fun! Finally the flag is: SECCON{W31C0M 70 7H3 53CC0N ZOIA}</summary>
+      
+
+      
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">SECCON CTF 2014: QR (Easy) Write-up</title>
+      
+      <link href="https://yous.be/2014/12/07/seccon-ctf-2014-qr-easy-write-up/" rel="alternate" type="text/html" title="SECCON CTF 2014: QR (Easy) Write-up" />
+      <published>2014-12-07T10:02:51+00:00</published>
+      <updated>2014-12-07T10:02:51+00:00</updated>
+      <id>https://yous.be/2014/12/07/seccon-ctf-2014-qr-easy-write-up</id>
+      <content type="html" xml:base="https://yous.be/2014/12/07/seccon-ctf-2014-qr-easy-write-up/">&lt;h2&gt;QR200 - QR (Easy)&lt;/h2&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Funniest joke in the world(?):&lt;br /&gt;
@@ -2983,22 +3315,50 @@ but when I woke up, half my QR code was gone!”&lt;/p&gt;
   &lt;li&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/QR_code&quot;&gt;QR code on Wikipedia&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;http://www.thonky.com/qr-code-tutorial/&quot;&gt;QR Code Tutorial&lt;/a&gt; by &lt;a href=&quot;http://www.thonky.com&quot;&gt;Thonky&lt;/a&gt;&lt;/li&gt;
   &lt;li&gt;&lt;a href=&quot;http://www.ams.org/samplings/feature-column/fc-2013-02&quot;&gt;How to Read QR Symbols Without Your Mobile Telephone&lt;/a&gt; by Bill Casselman&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        <pubDate>Sun, 07 Dec 2014 10:02:51 +0000</pubDate>
-        <link>https://yous.be/2014/12/07/seccon-ctf-2014-qr-easy-write-up/</link>
-        <guid isPermaLink="true">https://yous.be/2014/12/07/seccon-ctf-2014-qr-easy-write-up/</guid>
+&lt;/ul&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+        <author>
+            <name>Yous</name>
+          
+          
+        </author>
+      
+
+      
+        <category term="CTF" />
+      
+
+      
+
+      
+        <summary type="html">QR200 - QR (Easy) Funniest joke in the world(?): “Last night, I had a dream I was eating QR cakes…. but when I woke up, half my QR code was gone!” 世界一面白いジョーク： 昨晩フランネルケーキを食べる夢を見たんだけど、 朝起きたらQRコードが半分なくなってたんだ！</summary>
+      
+
+      
+      
         
-        
-        <category>CTF</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>Automatically Quit Vim if Actual Files are Closed</title>
-        
-        <description>&lt;p&gt;&lt;img src=&quot;/images/2014/11/30/vim_800.png&quot; alt=&quot;Vim&quot; title=&quot;Vim&quot; /&gt;&lt;/p&gt;
+        <media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://yous.be/images/2014/12/07/DSC01964_s.JPG" />
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">Automatically Quit Vim if Actual Files are Closed</title>
+      
+      <link href="https://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed/" rel="alternate" type="text/html" title="Automatically Quit Vim if Actual Files are Closed" />
+      <published>2014-11-30T09:02:45+00:00</published>
+      <updated>2014-11-30T09:02:45+00:00</updated>
+      <id>https://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed</id>
+      <content type="html" xml:base="https://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed/">&lt;p&gt;&lt;img src=&quot;/images/2014/11/30/vim_800.png&quot; alt=&quot;Vim&quot; title=&quot;Vim&quot; /&gt;&lt;/p&gt;
 
 &lt;h2&gt;Sidebar&lt;/h2&gt;
 
@@ -3144,22 +3504,50 @@ You may want to close only the current tab with &lt;code class=&quot;highlighter
   &lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;p&gt;This will work with other Vim distributions. If it doesn’t or if you have another problems, feel free to &lt;a href=&quot;https://github.com/yous/dotfiles/issues/new&quot;&gt;make an issue&lt;/a&gt; or &lt;a href=&quot;/about/&quot;&gt;contact me&lt;/a&gt;.&lt;/p&gt;
-</description>
-        <pubDate>Sun, 30 Nov 2014 09:02:45 +0000</pubDate>
-        <link>https://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed/</link>
-        <guid isPermaLink="true">https://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed/</guid>
+&lt;p&gt;This will work with other Vim distributions. If it doesn’t or if you have another problems, feel free to &lt;a href=&quot;https://github.com/yous/dotfiles/issues/new&quot;&gt;make an issue&lt;/a&gt; or &lt;a href=&quot;/about/&quot;&gt;contact me&lt;/a&gt;.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+        <author>
+            <name>Yous</name>
+          
+          
+        </author>
+      
+
+      
+        <category term="Vim" />
+      
+
+      
+
+      
+        <summary type="html">Sidebar Many Vim user use plugins which open sidebar like NERDTree or Tag List. In my case, I always open NERDTree and Tag List on Vim startup. Their file and tag navigation features are extremely handy. We use :q to quit, :q! or ZQ to quit without saving, :wq, :x or ZZ to save and quit. But these commands are applied to only one buffer. NERDTree or Tag List windows are not closed until we close them individually or quit all using :qa. Getting into the Problem But as one of the Vim users, I close it within a few minutes or even a few seconds after I opened it. I want to keep quitting Vim easy. Using :qa everytime doesn’t make sence. Actually, NERDTree gives us a tip to close Vim if the only window left open is a NERDTree: autocmd bufenter * if (winnr(&quot;$&quot;) == 1 &amp;amp;&amp;amp; exists(&quot;b:NERDTreeType&quot;) &amp;amp;&amp;amp; b:NERDTreeType == &quot;primary&quot;) | q | endif If I close the last window when a NERDTree exists, Vim automatically closes. But what if we have Tag List window also? winnr(&quot;$&quot;) returns the current window count, so the above code triggers only when the window count is 1. So Vim will quit automatically only when NERDTree is the last window.</summary>
+      
+
+      
+      
         
-        
-        <category>Vim</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>On becoming an expert C programmer &amp;rarr;</title>
-        
-        <description>&lt;blockquote&gt;
+        <media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://yous.be/images/2014/11/30/vim.png" />
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">On becoming an expert C programmer →</title>
+      
+      <link href="https://yous.be/2014/10/26/on-becoming-an-expert-c-programmer/" rel="alternate" type="text/html" title="On becoming an expert C programmer" />
+      <published>2014-10-26T13:21:30+00:00</published>
+      <updated>2014-10-26T13:21:30+00:00</updated>
+      <id>https://yous.be/2014/10/26/on-becoming-an-expert-c-programmer</id>
+      <content type="html" xml:base="https://yous.be/2014/10/26/on-becoming-an-expert-c-programmer/">&lt;blockquote&gt;
   &lt;p&gt;The following is from an EMail message that I sent to to an individual on 12-Apr-2001. You may find this EMail message useful.&lt;/p&gt;
 
   &lt;p&gt;The Writer asked:&lt;/p&gt;
@@ -3167,22 +3555,47 @@ You may want to close only the current tab with &lt;code class=&quot;highlighter
   &lt;blockquote&gt;
     &lt;p&gt;``I just recently visited your website … Just wanted to say greetings and ask a simple question: Do you think I stand a chance in the C programming field if I keep it up? Tell me what I should do in order to keep strong feelings towards C.’’&lt;/p&gt;
   &lt;/blockquote&gt;
-&lt;/blockquote&gt;
-</description>
-        <pubDate>Sun, 26 Oct 2014 13:21:30 +0000</pubDate>
-        <link>https://yous.be/2014/10/26/on-becoming-an-expert-c-programmer/</link>
-        <guid isPermaLink="true">https://yous.be/2014/10/26/on-becoming-an-expert-c-programmer/</guid>
-        
-        
-        <category>Technology</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>Yet Another Hex Word</title>
-        
-        <description>&lt;p&gt;&lt;img src=&quot;/images/2014/09/20/01de57.svg&quot; alt=&quot;#01de57&quot; title=&quot;#01de57&quot; /&gt;
+&lt;/blockquote&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+        <author>
+            <name>Yous</name>
+          
+          
+        </author>
+      
+
+      
+        <category term="Technology" />
+      
+
+      
+
+      
+        <summary type="html">The following is from an EMail message that I sent to to an individual on 12-Apr-2001. You may find this EMail message useful. The Writer asked: ``I just recently visited your website … Just wanted to say greetings and ask a simple question: Do you think I stand a chance in the C programming field if I keep it up? Tell me what I should do in order to keep strong feelings towards C.’’</summary>
+      
+
+      
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">Yet Another Hex Word</title>
+      
+      <link href="https://yous.be/2014/09/20/yet-another-hex-word/" rel="alternate" type="text/html" title="Yet Another Hex Word" />
+      <published>2014-09-20T20:59:49+00:00</published>
+      <updated>2014-09-20T20:59:49+00:00</updated>
+      <id>https://yous.be/2014/09/20/yet-another-hex-word</id>
+      <content type="html" xml:base="https://yous.be/2014/09/20/yet-another-hex-word/">&lt;p&gt;&lt;img src=&quot;/images/2014/09/20/01de57.svg&quot; alt=&quot;#01de57&quot; title=&quot;#01de57&quot; /&gt;
 &lt;img src=&quot;/images/2014/09/20/0a7.svg&quot; alt=&quot;#0a7&quot; title=&quot;#0a7&quot; /&gt;
 &lt;img src=&quot;/images/2014/09/20/0dd.svg&quot; alt=&quot;#0dd&quot; title=&quot;#0dd&quot; /&gt;
 &lt;img src=&quot;/images/2014/09/20/0ff.svg&quot; alt=&quot;#0ff&quot; title=&quot;#0ff&quot; /&gt;
@@ -3221,22 +3634,47 @@ You may want to close only the current tab with &lt;code class=&quot;highlighter
 &lt;img src=&quot;/images/2014/09/20/effec7.svg&quot; alt=&quot;#effec7&quot; title=&quot;#effec7&quot; /&gt;
 &lt;img src=&quot;/images/2014/09/20/f007ba11.svg&quot; alt=&quot;#f007ba11&quot; title=&quot;#f007ba11&quot; /&gt;
 &lt;img src=&quot;/images/2014/09/20/f01ded.svg&quot; alt=&quot;#f01ded&quot; title=&quot;#f01ded&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/faceb00c.svg&quot; alt=&quot;#faceb00c&quot; title=&quot;#faceb00c&quot; /&gt;&lt;/p&gt;
-</description>
-        <pubDate>Sat, 20 Sep 2014 20:59:49 +0000</pubDate>
-        <link>https://yous.be/2014/09/20/yet-another-hex-word/</link>
-        <guid isPermaLink="true">https://yous.be/2014/09/20/yet-another-hex-word/</guid>
-        
-        
-        <category>Design</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>How to Write a Git Commit Message &amp;rarr;</title>
-        
-        <description>&lt;p&gt;&lt;a href=&quot;http://xkcd.com/1296/&quot;&gt;&lt;img src=&quot;/images/2014/09/03/git_commit.png&quot; alt=&quot;Git Commit&quot; title=&quot;Git Commit&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;img src=&quot;/images/2014/09/20/faceb00c.svg&quot; alt=&quot;#faceb00c&quot; title=&quot;#faceb00c&quot; /&gt;&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+        <author>
+            <name>Yous</name>
+          
+          
+        </author>
+      
+
+      
+        <category term="Design" />
+      
+
+      
+
+      
+        <summary type="html"></summary>
+      
+
+      
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">How to Write a Git Commit Message →</title>
+      
+      <link href="https://yous.be/2014/09/03/how-to-write-a-git-commit-message/" rel="alternate" type="text/html" title="How to Write a Git Commit Message" />
+      <published>2014-09-03T13:12:47+00:00</published>
+      <updated>2014-09-03T13:12:47+00:00</updated>
+      <id>https://yous.be/2014/09/03/how-to-write-a-git-commit-message</id>
+      <content type="html" xml:base="https://yous.be/2014/09/03/how-to-write-a-git-commit-message/">&lt;p&gt;&lt;a href=&quot;http://xkcd.com/1296/&quot;&gt;&lt;img src=&quot;/images/2014/09/03/git_commit.png&quot; alt=&quot;Git Commit&quot; title=&quot;Git Commit&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;h2&gt;The seven rules of a great git commit message&lt;/h2&gt;
@@ -3254,22 +3692,50 @@ You may want to close only the current tab with &lt;code class=&quot;highlighter
     &lt;li&gt;&lt;a href=&quot;http://chris.beams.io/posts/git-commit/#wrap-72&quot;&gt;Wrap the body at 72 characters&lt;/a&gt;&lt;/li&gt;
     &lt;li&gt;&lt;a href=&quot;http://chris.beams.io/posts/git-commit/#why-not-how&quot;&gt;Use the body to explain &lt;em&gt;what&lt;/em&gt; and &lt;em&gt;why&lt;/em&gt; vs. &lt;em&gt;how&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
   &lt;/ol&gt;
-&lt;/blockquote&gt;
-</description>
-        <pubDate>Wed, 03 Sep 2014 13:12:47 +0000</pubDate>
-        <link>https://yous.be/2014/09/03/how-to-write-a-git-commit-message/</link>
-        <guid isPermaLink="true">https://yous.be/2014/09/03/how-to-write-a-git-commit-message/</guid>
+&lt;/blockquote&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+        <author>
+            <name>Yous</name>
+          
+          
+        </author>
+      
+
+      
+        <category term="Git" />
+      
+
+      
+
+      
+        <summary type="html">The seven rules of a great git commit message Keep in mind: This has all been said before. Separate subject from body with a blank line Limit the subject line to 50 characters Capitalize the subject line Do not end the subject line with a period Use the imperative mood in the subject line Wrap the body at 72 characters Use the body to explain what and why vs. how</summary>
+      
+
+      
+      
         
-        
-        <category>Git</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>zsh: no matches found &amp;rarr;</title>
-        
-        <description>&lt;p&gt;With the use of &lt;a href=&quot;http://www.git-scm.com&quot;&gt;Git&lt;/a&gt; or &lt;a href=&quot;http://octopress.org&quot;&gt;Octopress&lt;/a&gt; (typically &lt;a href=&quot;https://github.com/ruby/rake&quot;&gt;Rake&lt;/a&gt;), we type &lt;code class=&quot;highlighter-rouge&quot;&gt;[&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;]&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;^&lt;/code&gt; characters to terminal:&lt;/p&gt;
+        <media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://yous.be/images/2014/09/03/git_commit.png" />
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">zsh: no matches found →</title>
+      
+      <link href="https://yous.be/2014/08/05/zsh-no-matches-found/" rel="alternate" type="text/html" title="zsh: no matches found" />
+      <published>2014-08-05T05:31:03+00:00</published>
+      <updated>2014-08-05T05:31:03+00:00</updated>
+      <id>https://yous.be/2014/08/05/zsh-no-matches-found</id>
+      <content type="html" xml:base="https://yous.be/2014/08/05/zsh-no-matches-found/">&lt;p&gt;With the use of &lt;a href=&quot;http://www.git-scm.com&quot;&gt;Git&lt;/a&gt; or &lt;a href=&quot;http://octopress.org&quot;&gt;Octopress&lt;/a&gt; (typically &lt;a href=&quot;https://github.com/ruby/rake&quot;&gt;Rake&lt;/a&gt;), we type &lt;code class=&quot;highlighter-rouge&quot;&gt;[&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;]&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;^&lt;/code&gt; characters to terminal:&lt;/p&gt;
 
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git reset HEAD^
 &lt;/code&gt;&lt;/pre&gt;
@@ -3309,22 +3775,47 @@ You may want to close only the current tab with &lt;code class=&quot;highlighter
 
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;alias &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;git&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;noglob git&quot;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-</description>
-        <pubDate>Tue, 05 Aug 2014 05:31:03 +0000</pubDate>
-        <link>https://yous.be/2014/08/05/zsh-no-matches-found/</link>
-        <guid isPermaLink="true">https://yous.be/2014/08/05/zsh-no-matches-found/</guid>
-        
-        
-        <category>Zsh</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>Undocumented iOS functions allow monitoring of personal data, expert says &amp;rarr;</title>
-        
-        <description>&lt;blockquote&gt;
+&lt;/div&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+        <author>
+            <name>Yous</name>
+          
+          
+        </author>
+      
+
+      
+        <category term="Zsh" />
+      
+
+      
+
+      
+        <summary type="html">With the use of Git or Octopress (typically Rake), we type [, ], ^ characters to terminal: git reset HEAD^ rake install[classic] Some Zsh users know what would happen when we type that commands: zsh: no matches found: HEAD^ zsh: no matches found: install[classic] This is caused by Zsh: zsh allows Filename Generation and Pattern Matching (Globbing) using square brackets and other characters (explained in the zsh guide, section 5.9). The solution is simple: The solution, found in the zsh FAQ (section 3.4), is simply adding a line in ~/.zshrc that disables globbing for a single command: alias rake=&quot;noglob rake&quot; Aliasing git is also useful: alias git=&quot;noglob git&quot;</summary>
+      
+
+      
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">Undocumented iOS functions allow monitoring of personal data, expert says →</title>
+      
+      <link href="https://yous.be/2014/07/22/undocumented-ios-functions-allow-monitoring-of-personal-data-expert-says/" rel="alternate" type="text/html" title="Undocumented iOS functions allow monitoring of personal data, expert says" />
+      <published>2014-07-22T13:19:14+00:00</published>
+      <updated>2014-07-22T13:19:14+00:00</updated>
+      <id>https://yous.be/2014/07/22/undocumented-ios-functions-allow-monitoring-of-personal-data-expert-says</id>
+      <content type="html" xml:base="https://yous.be/2014/07/22/undocumented-ios-functions-allow-monitoring-of-personal-data-expert-says/">&lt;blockquote&gt;
   &lt;p&gt;“Backdoor” can be abused by gov’t agents and ex-lovers to gain persistent access.&lt;/p&gt;
 
   &lt;p&gt;Apple has endowed iPhones with undocumented functions that allow unauthorized people in privileged positions to wirelessly connect and harvest pictures, text messages, and other sensitive data without entering a password or PIN, a forensic scientist warned over the weekend.&lt;/p&gt;
@@ -3340,22 +3831,50 @@ You may want to close only the current tab with &lt;code class=&quot;highlighter
 
 &lt;blockquote&gt;
   &lt;p&gt;Each of these diagnostic capabilities requires the user to have unlocked their device and agreed to trust another computer. Any data transmitted between the iOS device and trusted computer is encrypted with keys not shared with Apple. For users who have enabled iTunes Wi-Fi Sync on a trusted computer, these services may also be accessed wirelessly by that computer.&lt;/p&gt;
-&lt;/blockquote&gt;
-</description>
-        <pubDate>Tue, 22 Jul 2014 13:19:14 +0000</pubDate>
-        <link>https://yous.be/2014/07/22/undocumented-ios-functions-allow-monitoring-of-personal-data-expert-says/</link>
-        <guid isPermaLink="true">https://yous.be/2014/07/22/undocumented-ios-functions-allow-monitoring-of-personal-data-expert-says/</guid>
+&lt;/blockquote&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+        <author>
+            <name>Yous</name>
+          
+          
+        </author>
+      
+
+      
+        <category term="iOS" />
+      
+
+      
+
+      
+        <summary type="html">“Backdoor” can be abused by gov’t agents and ex-lovers to gain persistent access. Apple has endowed iPhones with undocumented functions that allow unauthorized people in privileged positions to wirelessly connect and harvest pictures, text messages, and other sensitive data without entering a password or PIN, a forensic scientist warned over the weekend. Zdziarski said the service that raises the most concern is known as com.apple.mobile.file_relay. It dishes out a staggering amount of data—including account data for e-mail, Twitter, iCloud, and other services, a full copy of the address book including deleted entries, the user cache folder, logs of geographic positions, and a complete dump of the user photo album—all without requiring a backup password to be entered. He said two other services dubbed com.apple.pcapd and com.apple.mobile.house_arrest may have legitimate uses for app developers or support people but can also be used to spy on users by government agencies or even jilted ex-lovers. The Pcapd service, for instance, allows people to wirelessly monitor all network traffic traveling into and out of the device, even when it’s not running in a special developer or support mode. House_arrest, meanwhile, allows the copying of sensitive files and documents from Twitter, Facebook, and many other applications. Slides of Zdziarski’s talk, titled Identifying Back Doors, Attack Points, and Surveillance Mechanisms in iOS Devices are here. Also check the page about iOS: About diagnostic capabilities on Apple Support: Each of these diagnostic capabilities requires the user to have unlocked their device and agreed to trust another computer. Any data transmitted between the iOS device and trusted computer is encrypted with keys not shared with Apple. For users who have enabled iTunes Wi-Fi Sync on a trusted computer, these services may also be accessed wirelessly by that computer.</summary>
+      
+
+      
+      
         
-        
-        <category>iOS</category>
-        
-      </item>
-    
-      <item>
-        
-        <title>Using Keybase</title>
-        
-        <description>&lt;h2&gt;&lt;a id=&quot;keybase&quot;&gt;&lt;/a&gt;Keybase&lt;/h2&gt;
+        <media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://yous.be/images/2014/07/22/pcapd1.jpg" />
+      
+    </entry>
+  
+  
+  
+    <entry>
+      
+      <title type="html">Using Keybase</title>
+      
+      <link href="https://yous.be/2014/07/17/using-keybase/" rel="alternate" type="text/html" title="Using Keybase" />
+      <published>2014-07-17T18:21:09+00:00</published>
+      <updated>2014-07-17T18:21:09+00:00</updated>
+      <id>https://yous.be/2014/07/17/using-keybase</id>
+      <content type="html" xml:base="https://yous.be/2014/07/17/using-keybase/">&lt;h2&gt;&lt;a id=&quot;keybase&quot;&gt;&lt;/a&gt;Keybase&lt;/h2&gt;
 
 &lt;p&gt;&lt;img src=&quot;/images/2014/07/17/logo.png&quot; alt=&quot;Keybase&quot; title=&quot;Keybase&quot; /&gt;&lt;/p&gt;
 
@@ -3480,16 +3999,38 @@ Date:   Fri Jul 18 21:29:14 2014 +0900
 
 &lt;h2&gt;&lt;a id=&quot;contact-me&quot;&gt;&lt;/a&gt;Contact Me&lt;/h2&gt;
 
-&lt;p&gt;So, now feel free to contact me via &lt;a href=&quot;https://keybase.io/yous&quot;&gt;keybase.io/yous&lt;/a&gt; and other &lt;a href=&quot;/about&quot;&gt;contacts&lt;/a&gt;. The source of this site is available on &lt;a href=&quot;https://github.com/yous/yous.github.io&quot;&gt;GitHub&lt;/a&gt;, forks and pull requests are welcome!&lt;/p&gt;
-</description>
-        <pubDate>Thu, 17 Jul 2014 18:21:09 +0000</pubDate>
-        <link>https://yous.be/2014/07/17/using-keybase/</link>
-        <guid isPermaLink="true">https://yous.be/2014/07/17/using-keybase/</guid>
+&lt;p&gt;So, now feel free to contact me via &lt;a href=&quot;https://keybase.io/yous&quot;&gt;keybase.io/yous&lt;/a&gt; and other &lt;a href=&quot;/about&quot;&gt;contacts&lt;/a&gt;. The source of this site is available on &lt;a href=&quot;https://github.com/yous/yous.github.io&quot;&gt;GitHub&lt;/a&gt;, forks and pull requests are welcome!&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+        <author>
+            <name>Yous</name>
+          
+          
+        </author>
+      
+
+      
+        <category term="Technology" />
+      
+
+      
+
+      
+        <summary type="html">Keybase Keybase will be a public directory of publicly auditable public keys. All paired, for convenience, with unique usernames. I just created my Keybase. You can see my PGP public key on keybase.io/yous and get the key via https://keybase.io/yous/key.asc. Anyone can encrypt messages using my public key and then I could decrypt it using my private key and see the message with safety. All of these can be done in browser, in Keybase. Keybase Proof Keybase provides several ways to prove own identity of a Twitter account, a GitHub account, websites and a bitcoin address. Still it can be done on the browser, also you can use command line for it. I proved my GitHub by keybase.md and this site by keybase.txt. Also you can check it with command line like: $ keybase id yous ✔ public key fingerprint: 1BF1 AFE8 682E 45A2 11FF 2C0E 891B 7A9E 1D5A 400A ✔ &quot;yous&quot; on github: https://gist.github.com/149b0775d2ff02eac323 ✔ admin of yous.be via HTTP: http://yous.be/keybase.txt</summary>
+      
+
+      
+      
         
-        
-        <category>Technology</category>
-        
-      </item>
-    
-  </channel>
-</rss>
+        <media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://yous.be/images/2014/07/17/logo.png" />
+      
+    </entry>
+  
+  
+</feed>
