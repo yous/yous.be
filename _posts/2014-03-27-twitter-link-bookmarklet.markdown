@@ -3,9 +3,9 @@ layout: post
 title: "Twitter Link Bookmarklet"
 date: 2014-03-27 10:18:57 +0900
 lang: ko
-description: Dave Bradford의 Twitter Profile Bookmarklet에 추가됐으면 하는 기능이 있어 추가했다.
 categories:
     - iOS
+description: Dave Bradford의 Twitter Profile Bookmarklet에 추가됐으면 하는 기능이 있어 추가했다.
 keywords: twitter, profile, link, bookmark, bookmarklet, tweetbot
 redirect_from: /p/20140327/
 external-url: http://davebradford.com/blog/twitter-profile-bookmarklet/

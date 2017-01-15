@@ -3,9 +3,9 @@ layout: post
 title: "Fragment Transaction & Activity State Loss"
 date: 2014-04-03 00:03:50 +0900
 lang: ko
-description: FragmentTransaction을 commit 했을 때 나타나는 IllegalStateException의 원인이 무엇인지, 어떻게 이를 피할지, 그리고 commitAllowingStateLoss가 왜 마지막 수단이 되어야 하는지 잘 설명한 글이 있어 소개한다.
 categories:
     - Android
+description: FragmentTransaction을 commit 했을 때 나타나는 IllegalStateException의 원인이 무엇인지, 어떻게 이를 피할지, 그리고 commitAllowingStateLoss가 왜 마지막 수단이 되어야 하는지 잘 설명한 글이 있어 소개한다.
 keywords: android, fragment, transaction, commit, state, loss, commitallowingstateloss
 redirect_from:
     - /p/20140403/

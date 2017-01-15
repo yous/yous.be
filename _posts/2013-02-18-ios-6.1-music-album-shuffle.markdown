@@ -5,6 +5,7 @@ date: 2013-02-19 03:31:00 +0900
 lang: ko
 categories:
     - iOS
+description: "iTunes에 있는 앨범별 임의 재생 기능을 iOS 기기에서도 사용할 수 있습니다."
 keywords: ios, shuffle by album, 앨범별 임의 재생
 redirect_from:
     - /p/20130219/

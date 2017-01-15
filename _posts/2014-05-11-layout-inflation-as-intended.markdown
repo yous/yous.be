@@ -3,9 +3,9 @@ layout: post
 title: "Layout Inflation as Intended"
 date: 2014-05-12 07:17:37 +0900
 lang: ko
-description: 바른 Layout Inflation 방법에 대해 설명해 놓은 Dave Smith의 글이 있어 소개한다.
 categories:
     - Android
+description: 바른 Layout Inflation 방법에 대해 설명해 놓은 Dave Smith의 글이 있어 소개한다.
 keywords: android, layout, inflate, inflation, root, parent, container, null
 redirect_from:
     - /p/20140512/

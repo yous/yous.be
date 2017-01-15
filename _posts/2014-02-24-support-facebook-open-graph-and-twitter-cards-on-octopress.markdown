@@ -5,6 +5,7 @@ date: 2014-02-24 21:50:36 +0900
 lang: ko
 categories:
     - Octopress
+description: "웹 페이지에 적절한 메타 태그를 추가해 주면 페이스북과 트위터에서 인식하고 올바른, 작성자가 의도한 미리보기를 보여준다."
 keywords: octopress, facebook, open graph, twitter, twitter card
 redirect_from: /p/20140224/
 facebook:

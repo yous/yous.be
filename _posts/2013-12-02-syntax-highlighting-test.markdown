@@ -4,6 +4,7 @@ title: "Syntax Highlighting Test"
 date: 2013-12-03 05:40:30 +0900
 categories:
     - Uncategorized
+description: "This is a test post for syntax highlighting."
 keywords: syntax, highlighting
 redirect_from:
     - /p/20131203/

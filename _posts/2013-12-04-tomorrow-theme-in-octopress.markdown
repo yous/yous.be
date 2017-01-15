@@ -5,6 +5,7 @@ date: 2013-12-04 21:00:20 +0900
 categories:
     - Octopress
     - Tomorrow Theme
+description: "This is how to apply Tomorrow Theme to code block in Octopress."
 keywords: octopress, tomorrow theme
 redirect_from: /p/20131204/
 facebook:

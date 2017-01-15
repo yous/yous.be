@@ -5,6 +5,7 @@ date: 2014-02-23 04:59:18 +0900
 lang: ko
 categories:
     - iOS
+description: "애플에서 공개한 iOS 7.0.6 보안 문제의 원인이 흥미롭다."
 keywords: ios, 6.1.6, 7.0.6, ssl, tls
 redirect_from:
     - /p/20140223/

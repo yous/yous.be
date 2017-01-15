@@ -4,6 +4,7 @@ title: "How to Check and Toggle WiFi or 3G/4G State in Android"
 date: 2013-12-07 18:28:05 +0900
 categories:
     - Android
+description: "At some point, we want to know whether the device is connected to network so that we can do some network process."
 keywords: android, wifi, 3g, 4g
 redirect_from: /p/20131207/
 ---

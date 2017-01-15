@@ -3,9 +3,9 @@ layout: post
 title: "ropasaurusrex: return-oriented programming 입문서"
 date: 2014-03-19 20:44:03 +0900
 lang: ko
-description: SkullSecurity의 Ron Bowes가 쓴 return-oriented programming 입문서가 있어 번역했다.
 categories:
     - CTF
+description: SkullSecurity의 Ron Bowes가 쓴 return-oriented programming 입문서가 있어 번역했다.
 keywords: pctf, plaidctf, ropasaurusrex, write-up, rop, return-oriented programming
 redirect_from: /p/20140319/
 external-url: https://blog.skullsecurity.org/2013/ropasaurusrex-a-primer-on-return-oriented-programming

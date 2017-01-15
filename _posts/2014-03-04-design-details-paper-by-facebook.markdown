@@ -3,9 +3,9 @@ layout: post
 title: "Design Details: Paper by Facebook"
 date: 2014-03-04 22:02:47 +0900
 lang: ko
-description: Brian Lovin이 쓴 페이스북 Paper의 디자인 디테일에 관한 글이다.
 categories:
     - Design
+description: Brian Lovin이 쓴 페이스북 Paper의 디자인 디테일에 관한 글이다.
 keywords: design, paper, facebook, ios, animation
 redirect_from: /p/20140304/
 external-url: http://blog.brianlovin.com/design-details-paper-by-facebook

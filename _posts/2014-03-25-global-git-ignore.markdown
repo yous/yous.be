@@ -3,9 +3,9 @@ layout: post
 title: "Global Git Ignore"
 date: 2014-03-25 20:49:32 +0900
 lang: ko
-description: usevim의 Alex Young이 쓴 global gitignore에 관한 글이다.
 categories:
     - Git
+description: usevim의 Alex Young이 쓴 global gitignore에 관한 글이다.
 keywords: git, gitignore, global
 redirect_from: /p/20140325/
 external-url: http://usevim.com/2013/10/04/gitglobal-ignore/

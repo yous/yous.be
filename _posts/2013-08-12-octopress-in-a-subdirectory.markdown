@@ -5,6 +5,7 @@ date: 2013-08-12 06:08
 lang: ko
 categories:
     - Octopress
+description: "Octopress 블로그를 사이트 루트가 아닌 하위 디렉터리에서 제공하는 방법입니다."
 keywords: octopress, subdirectory
 redirect_from: /p/20130812/
 ---
