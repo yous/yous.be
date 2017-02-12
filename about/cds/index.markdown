@@ -370,3 +370,9 @@ comments: false
 363. 장기하와 얼굴들 --- 내 사랑에 노련한 사람이 어딨나요
 364. Radiohead --- A Moon Shaped Pool
 365. The Quiett --- Q Train 2
+366. 브로콜리 너마저 --- 앵콜요청 금지 (EP) (Reissued)
+367. 조휴일 --- My Feet Don't Touch The Ground (AND I'M SO WINDED I CAN'T SING FOR YOU TODAY) (Reissued)
+368. 검정치마 --- 201 (SPECIAL EDITION) (Reissued)
+369. Nell --- 'c'
+370. B-free --- Free From Seoul (DELUXE VERSION)
+371. 김윤아 --- 타인의 고통
