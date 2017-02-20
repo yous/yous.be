@@ -65,7 +65,7 @@ Chayoung You
 
 ## <a id="education"></a>Education
 
-[KAIST](http://www.kaist.ac.kr), Undergraduate of Mathematical Sciences and Computer Science, 2011--Present
+[KAIST](http://www.kaist.ac.kr), Undergraduate of Mathematical Sciences and Computer Science, 2011--2017
 
 ## <a id="likes"></a>Likes
 
