@@ -5,7 +5,7 @@ date: 2017-03-01 09:34:52 +0000
 categories:
     - CTF
 description: "Write-up of Boston Key Party CTF 2017: vimjail."
-keywords: boston key party, boston key party 2017, vim, write-up
+keywords: boston key party, boston key party 2017, rvim, write-up
 redirect_from: /p/20170301/
 ---
 
