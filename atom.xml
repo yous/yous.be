@@ -5,7 +5,7 @@
   
   <link href="https://yous.be/atom.xml" rel="self" type="application/atom+xml" />
   <link href="https://yous.be/" rel="alternate" type="text/html" />
-  <updated>2017-03-01T09:55:40+00:00</updated>
+  <updated>2017-03-01T16:12:54+00:00</updated>
   <id>https://yous.be//</id>
 
   
@@ -996,6 +996,8 @@ customized window size. And I found it, so here I am to share with you.&lt;/p&gt
 
 &lt;h2&gt;Resetting Slack’s window size&lt;/h2&gt;
 
+&lt;h3&gt;Slack 2.2.1&lt;/h3&gt;
+
 &lt;p&gt;First of all, note that this is not the permanent solution since it’s not a part
 of Slack API or something that is guaranteed by them. My Windows machine is
 64-bit and the version of Slack is 2.2.1.&lt;/p&gt;
@@ -1018,6 +1020,20 @@ of Slack API or something that is guaranteed by them. My Windows machine is
   &lt;/li&gt;
   &lt;li&gt;Delete the whole &lt;code class=&quot;highlighter-rouge&quot;&gt;windowSettings&lt;/code&gt; entry above. If you delete only a part of
 value of &lt;code class=&quot;highlighter-rouge&quot;&gt;windowSettings&lt;/code&gt;, application may crash.&lt;/li&gt;
+  &lt;li&gt;Open Slack again. It will set the default window size automatically.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;h3&gt;Slack 2.4.1&lt;/h3&gt;
+
+&lt;p&gt;With updates of Slack, settings related to window were separated and moved to
+another location. Here is a way to resetting the window size:&lt;/p&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;Quit your Slack application.&lt;/li&gt;
+  &lt;li&gt;Navigate to &lt;code class=&quot;highlighter-rouge&quot;&gt;%APPDATA%\Slack\storage&lt;/code&gt;. The value of &lt;code class=&quot;highlighter-rouge&quot;&gt;%APPDATA%&lt;/code&gt; is something
+like &lt;code class=&quot;highlighter-rouge&quot;&gt;C:\Users\{username}\AppData\Roaming&lt;/code&gt;.&lt;/li&gt;
+  &lt;li&gt;Open &lt;code class=&quot;highlighter-rouge&quot;&gt;slack-windowFrame&lt;/code&gt; to edit.&lt;/li&gt;
+  &lt;li&gt;Delete the whole content, but do not delete the file itself.&lt;/li&gt;
   &lt;li&gt;Open Slack again. It will set the default window size automatically.&lt;/li&gt;
 &lt;/ol&gt;
 
@@ -1044,7 +1060,7 @@ value of &lt;code class=&quot;highlighter-rouge&quot;&gt;windowSettings&lt;/code
       
 
       
-        <summary type="html">Slack application Slack, you may know. It rocks, and I’m also involved in several teams. Their site is great, but more teams, more tabs in my browser. I decided to use their Windows app which provides handy shortcuts for switching between teams. Today I just remotely connected to my Windows desktop from my notebook. But then, I realized the Slack window is shrinked. Maybe the reason is my notebook’s screen size, but I don’t know. Its content area became too small to read, so I wanted its window size back. Actually the default window size was my taste, so I wanted to just reset its customized window size. And I found it, so here I am to share with you. Resetting Slack’s window size First of all, note that this is not the permanent solution since it’s not a part of Slack API or something that is guaranteed by them. My Windows machine is 64-bit and the version of Slack is 2.2.1. So here is a way to resetting the window size of Slack. Quit your Slack application. Navigate to %APPDATA%\Slack. The value of %APPDATA% is something like C:\Users\{username}\AppData\Roaming. Open redux-state.json to edit. Find windowSettings under state’s app. Its value would be like: \&quot;windowSettings\&quot;:{\&quot;size\&quot;:[1152,832],\&quot;position\&quot;:[384,104],\&quot;isMaximized\&quot;:false} Delete the whole windowSettings entry above. If you delete only a part of value of windowSettings, application may crash. Open Slack again. It will set the default window size automatically. Keep calm and use Slack!</summary>
+        <summary type="html">Slack application Slack, you may know. It rocks, and I’m also involved in several teams. Their site is great, but more teams, more tabs in my browser. I decided to use their Windows app which provides handy shortcuts for switching between teams. Today I just remotely connected to my Windows desktop from my notebook. But then, I realized the Slack window is shrinked. Maybe the reason is my notebook’s screen size, but I don’t know. Its content area became too small to read, so I wanted its window size back. Actually the default window size was my taste, so I wanted to just reset its customized window size. And I found it, so here I am to share with you. Resetting Slack’s window size Slack 2.2.1 First of all, note that this is not the permanent solution since it’s not a part of Slack API or something that is guaranteed by them. My Windows machine is 64-bit and the version of Slack is 2.2.1. So here is a way to resetting the window size of Slack. Quit your Slack application. Navigate to %APPDATA%\Slack. The value of %APPDATA% is something like C:\Users\{username}\AppData\Roaming. Open redux-state.json to edit. Find windowSettings under state’s app. Its value would be like: \&quot;windowSettings\&quot;:{\&quot;size\&quot;:[1152,832],\&quot;position\&quot;:[384,104],\&quot;isMaximized\&quot;:false} Delete the whole windowSettings entry above. If you delete only a part of value of windowSettings, application may crash. Open Slack again. It will set the default window size automatically. Slack 2.4.1 With updates of Slack, settings related to window were separated and moved to another location. Here is a way to resetting the window size: Quit your Slack application. Navigate to %APPDATA%\Slack\storage. The value of %APPDATA% is something like C:\Users\{username}\AppData\Roaming. Open slack-windowFrame to edit. Delete the whole content, but do not delete the file itself. Open Slack again. It will set the default window size automatically. Keep calm and use Slack!</summary>
       
 
       
