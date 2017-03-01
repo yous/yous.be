@@ -30,6 +30,8 @@ customized window size. And I found it, so here I am to share with you.
 
 ## Resetting Slack's window size
 
+### Slack 2.2.1
+
 First of all, note that this is not the permanent solution since it's not a part
 of Slack API or something that is guaranteed by them. My Windows machine is
 64-bit and the version of Slack is 2.2.1.
@@ -50,5 +52,17 @@ So here is a way to resetting the window size of Slack.
 5. Delete the whole `windowSettings` entry above. If you delete only a part of
    value of `windowSettings`, application may crash.
 6. Open Slack again. It will set the default window size automatically.
+
+### Slack 2.4.1
+
+With updates of Slack, settings related to window were separated and moved to
+another location. Here is a way to resetting the window size:
+
+1. Quit your Slack application.
+2. Navigate to `%APPDATA%\Slack\storage`. The value of `%APPDATA%` is something
+   like `C:\Users\{username}\AppData\Roaming`.
+3. Open `slack-windowFrame` to edit.
+4. Delete the whole content, but do not delete the file itself.
+5. Open Slack again. It will set the default window size automatically.
 
 Keep calm and use Slack!
