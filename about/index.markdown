@@ -22,22 +22,22 @@ Chayoung You
 
 ## <a id="projects"></a>Projects
 
-- [스터디 헬퍼](https://play.google.com/store/apps/details?id=kr.co.tamseng.StudyHelper)
-- [Raheui](https://github.com/yous/raheui) --- Aheui interpreter in Ruby.
-- [lime](https://github.com/yous/lime) --- Simple standalone Zsh theme.
-- [aheui.vim](https://github.com/yous/aheui.vim) --- Vim syntax highlighting for Aheui.
-- [pad_monster_book](https://github.com/yous/pad_monster_book) --- The monster book for Puzzle & Dragons.
-- [YousList](https://github.com/yous/YousList) --- Block filter for Adblock Plus, uBlock Origin, uBlock and 1Blocker.
-- [Dwaet](https://github.com/yous/dwaet) --- No doet, it's dwaet.
-- [Sawarineko](https://github.com/yous/sawarineko) --- Get your Nya!
-- [BaseHangul](https://github.com/yous/basehangul) --- Human-readable binary encoding, [BaseHangul](https://basehangul.github.io) for Ruby.
-- [Pinpoint Docker](https://github.com/yous/pinpoint-docker) --- Docker for [Pinpoint](https://github.com/naver/pinpoint).
-- [vanilli.sh](https://github.com/yous/vanilli.sh) --- A lightweight start point of shell configuration.
-- [homebrew-fadedrubies](https://github.com/yous/homebrew-fadedrubies) --- Old Ruby formulae for the Homebrew package manager.
-- [TweetDeck Image Extension](https://github.com/yous/tweetdeck_image_extension) ([Chrome Web Store](https://chrome.google.com/webstore/detail/tweetdeck-image-extension/pnbmleebcgilngfaiijcijbogkeiglml)) --- Support additional image preview for [TweetDeck](https://tweetdeck.twitter.com).
-- [Arcus Docker](https://github.com/yous/arcus-docker) --- Docker for [Arcus Cache Cloud](https://github.com/naver/arcus).
-- [vim-open-color](https://github.com/yous/vim-open-color) --- Dark Vim color scheme using [Open Color](https://yeun.github.io/open-color/).
 - [whiteglass](https://github.com/yous/whiteglass) --- Minimal, responsive Jekyll theme for hackers.
+- [vim-open-color](https://github.com/yous/vim-open-color) --- Dark Vim color scheme using [Open Color](https://yeun.github.io/open-color/).
+- [Arcus Docker](https://github.com/yous/arcus-docker) --- Docker for [Arcus Cache Cloud](https://github.com/naver/arcus).
+- [TweetDeck Image Extension](https://github.com/yous/tweetdeck_image_extension) ([Chrome Web Store](https://chrome.google.com/webstore/detail/tweetdeck-image-extension/pnbmleebcgilngfaiijcijbogkeiglml)) --- Support additional image preview for [TweetDeck](https://tweetdeck.twitter.com).
+- [homebrew-fadedrubies](https://github.com/yous/homebrew-fadedrubies) --- Old Ruby formulae for the Homebrew package manager.
+- [vanilli.sh](https://github.com/yous/vanilli.sh) --- A lightweight start point of shell configuration.
+- [Pinpoint Docker](https://github.com/yous/pinpoint-docker) --- Docker for [Pinpoint](https://github.com/naver/pinpoint).
+- [BaseHangul](https://github.com/yous/basehangul) --- Human-readable binary encoding, [BaseHangul](https://basehangul.github.io) for Ruby.
+- [Sawarineko](https://github.com/yous/sawarineko) --- Get your Nya!
+- [Dwaet](https://github.com/yous/dwaet) --- No doet, it's dwaet.
+- [YousList](https://github.com/yous/YousList) --- Block filter for Adblock Plus, uBlock Origin, uBlock and 1Blocker.
+- [pad_monster_book](https://github.com/yous/pad_monster_book) --- The monster book for Puzzle & Dragons.
+- [aheui.vim](https://github.com/yous/aheui.vim) --- Vim syntax highlighting for Aheui.
+- [lime](https://github.com/yous/lime) --- Simple standalone Zsh theme.
+- [Raheui](https://github.com/yous/raheui) --- Aheui interpreter in Ruby.
+- [스터디 헬퍼](https://play.google.com/store/apps/details?id=kr.co.tamseng.StudyHelper)
 
 ## <a id="code"></a>Code
 
