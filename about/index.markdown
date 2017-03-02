@@ -57,6 +57,15 @@ Chayoung You
 
     Favorite lyric quotes blog hosted on [Tumblr](https://www.tumblr.com).
 
+## <a id="experiences"></a>Experiences
+
+- Researcher, [RTst](http://rtst.co.kr), 2017.02--Current
+- Korean Translator Moderator, [Twitter](https://twitter.com), 2016.01--Current
+- Freelance Translator, [Lionbridge](http://www.lionbridge.com), 2015.11--Current
+- Web Developer, GoldSpoon, 2015.06--2016.07
+- Android Developer, [Tamseng](http://tamseng.co.kr), 2013.07--2014.12
+- KAIST CERT, 2012.01--2013.03
+
 ## <a id="interests"></a>Interests
 
 - [Ruby](https://www.ruby-lang.org)
