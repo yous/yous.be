@@ -48,7 +48,10 @@ Chayoung You
 
 - [Yous]({{ site.url }})
 
-    What you see now. Hosted on [GitHub Pages][] and all articles are written using [Markdown][]. The source is available in [GitHub repo][yous.github.io].
+    What you see now. Hosted on [GitHub Pages](https://pages.github.com) and all
+    articles are written using
+    [Markdown](http://daringfireball.net/projects/markdown/). The source is
+    available in [GitHub repo](https://github.com/yous/yous.github.io).
 
 - [Yous Lyrics](http://lyrics.yous.be)
 
@@ -57,7 +60,6 @@ Chayoung You
 ## <a id="interests"></a>Interests
 
 - [Ruby](https://www.ruby-lang.org)
-- [Ruby on Rails](http://rubyonrails.org)
 - [Android](http://www.android.com)
 - [Vim](http://www.vim.org)
 - Security
@@ -65,13 +67,12 @@ Chayoung You
 
 ## <a id="education"></a>Education
 
-[KAIST](http://www.kaist.ac.kr), Undergraduate of Mathematical Sciences and Computer Science, 2011--2017
+- [KAIST](http://www.kaist.ac.kr), Undergraduate of Mathematical Sciences and Computer Science, 2011--2017
 
 ## <a id="likes"></a>Likes
 
 - Music
     - Collecting [CDs](/about/cds/)
-    - Korean Hip-Hop
 - [Evangelion](http://www.evangelion.co.jp)
     - [evangelion.jp](http://evangelion.jp) ([GitHub](https://github.com/yous/evangelion.jp))
     - [asuka.moe](http://asuka.moe) ([GitHub](https://github.com/yous/asuka.moe))
@@ -80,15 +81,6 @@ Chayoung You
     - [A Regular Crossword](http://web.mit.edu/puzzle/www/2013/coinheist.com/rubik/a_regular_crossword/index.html)
     - [regexcrossword.com](http://regexcrossword.com)
 - Games
-    - Rhythm games
-        - [jubeat](https://ubit.info/yous/)
-        - [jubeat plus](https://itunes.apple.com/jp/app/jubeat-plus/id395192484?mt=8)
-        - [Deemo](http://www.rayark.com/g/deemo/)
-        - [SOUND VOLTEX II](http://p.eagate.573.jp/game/sdvx/ii/p/)
     - [Super Hexagon](http://superhexagon.com)
     - [Monument Valley](http://www.monumentvalleygame.com)
     - [Portal 2](http://www.thinkwithportals.com)
-
-[GitHub Pages]: http://pages.github.com
-[Markdown]: http://daringfireball.net/projects/markdown/
-[yous.github.io]: https://github.com/yous/yous.github.io
