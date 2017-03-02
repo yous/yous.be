@@ -66,6 +66,13 @@ Chayoung You
 - Android Developer, [Tamseng](http://tamseng.co.kr), 2013.07--2014.12
 - KAIST CERT, 2012.01--2013.03
 
+## <a id="activities"></a>Activities
+
+- ChristmasCTF 2014, the 2nd place, 2014.12.25
+- DEF CON 20 Hacking Conference, KAIST GoN, Las Vegas, 2012.07.26--29
+- The 11th KAIST-POSTECH Science War, Pohang, Korea, 2012
+- The 10th POSTECH-KAIST Science War, Daejeon, Korea, 2011
+
 ## <a id="interests"></a>Interests
 
 - [Ruby](https://www.ruby-lang.org)
