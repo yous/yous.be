@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <generator uri="http://jekyllrb.com" version="3.4.0">Jekyll</generator>
+  <generator uri="http://jekyllrb.com" version="3.4.1">Jekyll</generator>
   
   
   <link href="https://yous.be/atom.xml" rel="self" type="application/atom+xml" />
   <link href="https://yous.be/" rel="alternate" type="text/html" />
-  <updated>2017-03-02T06:17:33+00:00</updated>
+  <updated>2017-03-07T12:58:01+00:00</updated>
   <id>https://yous.be//</id>
 
   
@@ -24,6 +24,118 @@
     </author>
   
 
+  
+  
+    <entry>
+      
+      <title type="html">Pushing git repository to multiple remotes</title>
+      
+      <link href="https://yous.be/2017/03/07/pushing-git-repository-to-multiple-remotes/" rel="alternate" type="text/html" title="Pushing git repository to multiple remotes" />
+      <published>2017-03-07T12:26:59+00:00</published>
+      <updated>2017-03-07T12:26:59+00:00</updated>
+      <id>https://yous.be/2017/03/07/pushing-git-repository-to-multiple-remotes</id>
+      <content type="html" xml:base="https://yous.be/2017/03/07/pushing-git-repository-to-multiple-remotes/">&lt;p&gt;I’m currently managing my dotfiles repository on both of
+&lt;a href=&quot;https://github.com/yous/dotfiles&quot;&gt;GitHub&lt;/a&gt; and
+&lt;a href=&quot;https://bitbucket.org/yous/dotfiles&quot;&gt;Bitbucket&lt;/a&gt;. These two repositories are the
+same, but I don’t want to remove one of them. I mainly use GitHub for hosting
+code now, but the first place I uploaded my dotfiles to was Bitbucket.&lt;/p&gt;
+
+&lt;p&gt;I want to keep the HEAD of two remote repositories be the same, so when I push
+code to my dotfiles, the both of them must be updated at the same time.&lt;/p&gt;
+
+&lt;h2&gt;Default git config&lt;/h2&gt;
+
+&lt;p&gt;First, clone or init the repository.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git clone https://github.com/yous/dotfiles.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Then, as you know, the origin will be set to
+&lt;code class=&quot;highlighter-rouge&quot;&gt;https://github.com/yous/dotfiles.git&lt;/code&gt;. This is the content of &lt;code class=&quot;highlighter-rouge&quot;&gt;.git/config&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-gitconfig&quot;&gt;[core]
+	# ...
+[remote &quot;origin&quot;]
+	url = https://github.com/yous/dotfiles.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+[branch &quot;master&quot;]
+	# ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Note that there is the &lt;code class=&quot;highlighter-rouge&quot;&gt;url&lt;/code&gt; attribute under &lt;code class=&quot;highlighter-rouge&quot;&gt;remote &quot;origin&quot;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;h2&gt;git remote set-url&lt;/h2&gt;
+
+&lt;p&gt;Now we’re going to run &lt;code class=&quot;highlighter-rouge&quot;&gt;git remote set-url&lt;/code&gt; twice so that the repository will
+have two push remote URLs. Setting &lt;em&gt;push&lt;/em&gt; remote URL is slightly different from
+plaing &lt;code class=&quot;highlighter-rouge&quot;&gt;git remote set-url &amp;lt;name&amp;gt; &amp;lt;newurl&amp;gt;&lt;/code&gt;. See &lt;code class=&quot;highlighter-rouge&quot;&gt;man git-remote&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-man&quot;&gt;set-url
+    Changes URLs for the remote. Sets first URL for remote &amp;lt;name&amp;gt; that
+    matches regex &amp;lt;oldurl&amp;gt; (first URL if no &amp;lt;oldurl&amp;gt; is given) to
+    &amp;lt;newurl&amp;gt;. If &amp;lt;oldurl&amp;gt; doesn't match any URL, an error occurs and
+    nothing is changed.
+
+    With --push, push URLs are manipulated instead of fetch URLs.
+
+    With --add, instead of changing existing URLs, new URL is added.
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;So we need to run &lt;code class=&quot;highlighter-rouge&quot;&gt;git remote set-url --push &amp;lt;name&amp;gt; &amp;lt;newurl&amp;gt;&lt;/code&gt;. Moreover, we need
+two push URL, so the second command should be
+&lt;code class=&quot;highlighter-rouge&quot;&gt;git remote set-url --add --push &amp;lt;name&amp;gt; &amp;lt;newurl&amp;gt;&lt;/code&gt;. It’s okay to specify
+&lt;code class=&quot;highlighter-rouge&quot;&gt;--add --push&lt;/code&gt; to the first command, too.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git remote &lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;-url --add --push origin https://github.com/yous/dotfiles.git
+git remote &lt;span class=&quot;nb&quot;&gt;set&lt;/span&gt;-url --add --push origin https://bitbucket.org/yous/dotfiles.git
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;Now, the content of &lt;code class=&quot;highlighter-rouge&quot;&gt;.git/config&lt;/code&gt; would be like this:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-gitconfig&quot;&gt;[core]
+	# ...
+[remote &quot;origin&quot;]
+	url = https://github.com/yous/dotfiles.git
+	fetch = +refs/heads/*:refs/remotes/origin/*
+	pushurl = https://github.com/yous/dotfiles.git
+	pushurl = https://bitbucket.org/yous/dotfiles.git
+[branch &quot;master&quot;]
+	# ...
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;All done! Note that there are two &lt;code class=&quot;highlighter-rouge&quot;&gt;pushurl&lt;/code&gt;s under &lt;code class=&quot;highlighter-rouge&quot;&gt;remote &quot;origin&quot;&lt;/code&gt;. Now
+&lt;code class=&quot;highlighter-rouge&quot;&gt;git push&lt;/code&gt; automatically pushes to the both push remote URLs.&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+        <author>
+            <name>Yous</name>
+          
+          
+        </author>
+      
+
+      
+        <category term="Git" />
+      
+
+      
+
+      
+        <summary type="html">I’m currently managing my dotfiles repository on both of GitHub and Bitbucket. These two repositories are the same, but I don’t want to remove one of them. I mainly use GitHub for hosting code now, but the first place I uploaded my dotfiles to was Bitbucket. I want to keep the HEAD of two remote repositories be the same, so when I push code to my dotfiles, the both of them must be updated at the same time. Default git config First, clone or init the repository. git clone https://github.com/yous/dotfiles.git Then, as you know, the origin will be set to https://github.com/yous/dotfiles.git. This is the content of .git/config: [core] # ... [remote &quot;origin&quot;] url = https://github.com/yous/dotfiles.git fetch = +refs/heads/*:refs/remotes/origin/* [branch &quot;master&quot;] # ... Note that there is the url attribute under remote &quot;origin&quot;. git remote set-url Now we’re going to run git remote set-url twice so that the repository will have two push remote URLs. Setting push remote URL is slightly different from plaing git remote set-url &amp;lt;name&amp;gt; &amp;lt;newurl&amp;gt;. See man git-remote: set-url Changes URLs for the remote. Sets first URL for remote &amp;lt;name&amp;gt; that matches regex &amp;lt;oldurl&amp;gt; (first URL if no &amp;lt;oldurl&amp;gt; is given) to &amp;lt;newurl&amp;gt;. If &amp;lt;oldurl&amp;gt; doesn't match any URL, an error occurs and nothing is changed. With --push, push URLs are manipulated instead of fetch URLs. With --add, instead of changing existing URLs, new URL is added. So we need to run git remote set-url --push &amp;lt;name&amp;gt; &amp;lt;newurl&amp;gt;. Moreover, we need two push URL, so the second command should be git remote set-url --add --push &amp;lt;name&amp;gt; &amp;lt;newurl&amp;gt;. It’s okay to specify --add --push to the first command, too. git remote set-url --add --push origin https://github.com/yous/dotfiles.git git remote set-url --add --push origin https://bitbucket.org/yous/dotfiles.git Now, the content of .git/config would be like this: [core] # ... [remote &quot;origin&quot;] url = https://github.com/yous/dotfiles.git fetch = +refs/heads/*:refs/remotes/origin/* pushurl = https://github.com/yous/dotfiles.git pushurl = https://bitbucket.org/yous/dotfiles.git [branch &quot;master&quot;] # ... All done! Note that there are two pushurls under remote &quot;origin&quot;. Now git push automatically pushes to the both push remote URLs.</summary>
+      
+
+      
+      
+    </entry>
+  
   
   
     <entry>
@@ -4081,86 +4193,6 @@ You may want to close only the current tab with &lt;code class=&quot;highlighter
       
         
         <media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://yous.be/images/2014/09/03/git_commit.png" />
-      
-    </entry>
-  
-  
-  
-    <entry>
-      
-      <title type="html">zsh: no matches found →</title>
-      
-      <link href="https://yous.be/2014/08/05/zsh-no-matches-found/" rel="alternate" type="text/html" title="zsh: no matches found" />
-      <published>2014-08-05T05:31:03+00:00</published>
-      <updated>2014-08-05T05:31:03+00:00</updated>
-      <id>https://yous.be/2014/08/05/zsh-no-matches-found</id>
-      <content type="html" xml:base="https://yous.be/2014/08/05/zsh-no-matches-found/">&lt;p&gt;With the use of &lt;a href=&quot;http://www.git-scm.com&quot;&gt;Git&lt;/a&gt; or &lt;a href=&quot;http://octopress.org&quot;&gt;Octopress&lt;/a&gt; (typically &lt;a href=&quot;https://github.com/ruby/rake&quot;&gt;Rake&lt;/a&gt;), we type &lt;code class=&quot;highlighter-rouge&quot;&gt;[&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;]&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;^&lt;/code&gt; characters to terminal:&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;git reset HEAD^
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;rake install[classic]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Some &lt;a href=&quot;http://www.zsh.org&quot;&gt;Zsh&lt;/a&gt; users know what would happen when we type that commands:&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;zsh: no matches found: HEAD^
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;zsh: no matches found: install[classic]
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;This is caused by Zsh:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;zsh allows Filename Generation and Pattern Matching (Globbing) using square brackets and other characters (explained in the &lt;a href=&quot;http://zsh.sourceforge.net/Guide/zshguide05.html&quot;&gt;zsh guide&lt;/a&gt;, section 5.9).&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;p&gt;The solution is simple:&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;p&gt;The solution, found in the &lt;a href=&quot;http://zsh.sourceforge.net/FAQ/zshfaq03.html&quot;&gt;zsh FAQ&lt;/a&gt; (section 3.4), is simply adding a line in ~/.zshrc that disables globbing for a single command:&lt;/p&gt;
-&lt;/blockquote&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;alias &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;rake&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;noglob rake&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;Aliasing &lt;code class=&quot;highlighter-rouge&quot;&gt;git&lt;/code&gt; is also useful:&lt;/p&gt;
-
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;alias &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;git&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;noglob git&quot;&lt;/span&gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;</content>
-
-      
-      
-      
-      
-      
-
-      
-        <author>
-            <name>Yous</name>
-          
-          
-        </author>
-      
-
-      
-        <category term="Zsh" />
-      
-
-      
-
-      
-        <summary type="html">With the use of Git or Octopress (typically Rake), we type [, ], ^ characters to terminal: git reset HEAD^ rake install[classic] Some Zsh users know what would happen when we type that commands: zsh: no matches found: HEAD^ zsh: no matches found: install[classic] This is caused by Zsh: zsh allows Filename Generation and Pattern Matching (Globbing) using square brackets and other characters (explained in the zsh guide, section 5.9). The solution is simple: The solution, found in the zsh FAQ (section 3.4), is simply adding a line in ~/.zshrc that disables globbing for a single command: alias rake=&quot;noglob rake&quot; Aliasing git is also useful: alias git=&quot;noglob git&quot;</summary>
-      
-
-      
       
     </entry>
   
