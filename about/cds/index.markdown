@@ -376,3 +376,10 @@ comments: false
 369. Nell --- 'c'
 370. B-free --- Free From Seoul (DELUXE VERSION)
 371. 김윤아 --- 타인의 고통
+372. 태연 --- My Voice (DELUXE EDITION)
+373. Glen Check --- Haute Couture (Reissued)
+374. Glen Check --- Youth! (Reissued)
+375. 옥상달빛 --- 28 (Reissued)
+376. 옥상달빛 --- 월월월월금
+377. Code Kunst --- Muggle's Mansion
+378. IU --- Palette
