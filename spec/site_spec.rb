@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 RSpec::Matchers.define :be_utc_post do
   match do |actual|
     expect(actual.date.zone).to eq('UTC')
