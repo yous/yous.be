@@ -5,7 +5,7 @@ rvm:
   - 2.3.4
 env:
   global:
-    - secure: fTRLueIhgf6WKpZN7Mfkr/ARCVdGr9wRD7UOoDSOjrlGp41X2x0MnBzrzgl7PH8VwwVO8Gf5hA4Ddotl6R2fOiZROtmPifIp28BQiJlgNIVuAb9Ua8PeSNt1GZQPDDMdTL/HCUoIWg5FQbHtjlGUpV04pJeQhjbdTZIThQFFtvc=
+    - secure: "VXyH6cv6n1aFDxpZqSknZuA9rxrPOlBenGgNpmO9oU4IiTpswW0ZzcY1lDbjw3fDMYhwW/6SsyPiWdpEK4nnKRmRLtwNU3qJLjyi9eICKegMaQ46+kBdycIOoUkAAyM4SZS9wEB9uEfEn/sk+zqXmuoaFgsZmLyB8+ETvEayp1s="
 before_install:
   - gem update --system
   - gem update --remote bundler
