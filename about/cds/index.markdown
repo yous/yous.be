@@ -384,3 +384,7 @@ comments: false
 377. Code Kunst --- Muggle's Mansion
 378. IU --- Palette
 379. NEON GENESIS EVANGELION III
+380. Ignito --- Gaia
+381. Dok2 --- Reborn
+382. 짙은 --- Uni-verse
+383. Idiotape --- Dystopian
