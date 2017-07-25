@@ -37,7 +37,7 @@ facebook_image: http://yous.be/images/about/yous.png
 google_analytics: UA-43111808-1
 
 # Plugins
-gems:
+plugins:
   - jekyll-archives
   - jekyll-gist
   - jekyll-paginate
