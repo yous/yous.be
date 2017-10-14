@@ -388,3 +388,9 @@ comments: false
 381. Dok2 --- Reborn
 382. 짙은 --- Uni-verse
 383. Idiotape --- Dystopian
+384. 아이유(IU) --- 꽃갈피 둘 : 리메이크 앨범
+385. BewhY --- The Blind Star
+386. VMC --- Visty Boyz
+387. 가을방학 --- 가을방학
+388. 10cm --- 4.0
+389. JAY-Z --- 4:44
