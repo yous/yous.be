@@ -5,7 +5,7 @@
   
   <link href="https://yous.be/atom.xml" rel="self" type="application/atom+xml" />
   <link href="https://yous.be/" rel="alternate" type="text/html" />
-  <updated>2017-11-03T15:29:48+00:00</updated>
+  <updated>2017-11-14T08:03:10+00:00</updated>
   <id>https://yous.be//</id>
 
   
@@ -24,6 +24,262 @@
     </author>
   
 
+  
+  
+    <entry>
+      
+      <title type="html">How to make a bootable USB with GRUB2 and ISO</title>
+      
+      <link href="https://yous.be/2017/11/14/how-to-make-a-bootable-usb-with-grub2-and-iso/" rel="alternate" type="text/html" title="How to make a bootable USB with GRUB2 and ISO" />
+      <published>2017-11-14T03:23:14+00:00</published>
+      <updated>2017-11-14T03:23:14+00:00</updated>
+      <id>https://yous.be/2017/11/14/how-to-make-a-bootable-usb-with-grub2-and-iso</id>
+      <content type="html" xml:base="https://yous.be/2017/11/14/how-to-make-a-bootable-usb-with-grub2-and-iso/">&lt;p&gt;Do you have multiple ISO files to install, with quite enough storage of USB stick? You’ll want to install all of them with a single USB stick. Here’s how.&lt;/p&gt;
+
+&lt;h2&gt;Formatting USB disk&lt;/h2&gt;
+
+&lt;p&gt;First, plug in your USB stick and find it from your Linux machine:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;fdisk &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt;
+Disk /dev/sda: 20 GiB, 21474836480 bytes, 41943040 sectors
+Units: sectors of 1 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 512 &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 512 bytes
+Sector size &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;logical/physical&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: 512 bytes / 512 bytes
+I/O size &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;minimum/optimal&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: 512 bytes / 512 bytes
+Disklabel &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;: dos
+Disk identifier: 0x4d149927
+
+Device     Boot    Start      End  Sectors  Size Id Type
+/dev/sda1  &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt;        2048 39845887 39843840   19G 83 Linux
+/dev/sda2       39847934 41940991  2093058 1022M  5 Extended
+/dev/sda5       39847936 41940991  2093056 1022M 82 Linux swap / Solaris
+
+
+Disk /dev/sdb: 14.6 GiB, 15664676864 bytes, 30595072 sectors
+Units: sectors of 1 &lt;span class=&quot;k&quot;&gt;*&lt;/span&gt; 512 &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; 512 bytes
+Sector size &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;logical/physical&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: 512 bytes / 512 bytes
+I/O size &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;minimum/optimal&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: 512 bytes / 512 bytes
+Disklabel &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt;: gpt
+Disk identifier: 4788154A-7BD2-4A06-945B-5980E828C8C5
+
+Device      Start      End  Sectors  Size Type
+/dev/sdb1      40   409639   409600  200M EFI System
+/dev/sdb2  411648 30593023 30181376 14.4G Microsoft basic data
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;In my case, it’s &lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/sdb&lt;/code&gt;. Let’s format it with &lt;code class=&quot;highlighter-rouge&quot;&gt;fdisk&lt;/code&gt;. When you run &lt;code class=&quot;highlighter-rouge&quot;&gt;fdisk /dev/sdb&lt;/code&gt;, you can print help menu:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;fdisk /dev/sdb
+
+Welcome to fdisk &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;util-linux 2.27.1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+Changes will remain &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;memory only, &lt;span class=&quot;k&quot;&gt;until &lt;/span&gt;you decide to write them.
+Be careful before using the write command.
+
+
+Command &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;m &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: m
+
+Help:
+
+  Generic
+   d   delete a partition
+   F   list free unpartitioned space
+   l   list known partition types
+   n   add a new partition
+   p   print the partition table
+   t   change a partition &lt;span class=&quot;nb&quot;&gt;type
+   &lt;/span&gt;v   verify the partition table
+   i   print information about a partition
+
+  Misc
+   m   print this menu
+   x   extra functionality &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;experts only&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+
+  Script
+   I   load disk layout from sfdisk script file
+   O   dump disk layout to sfdisk script file
+
+  Save &amp;amp; Exit
+   w   write table to disk and &lt;span class=&quot;nb&quot;&gt;exit
+   &lt;/span&gt;q   quit without saving changes
+
+  Create a new label
+   g   create a new empty GPT partition table
+   G   create a new empty SGI &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;IRIX&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt; partition table
+   o   create a new empty DOS partition table
+   s   create a new empty Sun partition table
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now we can start!&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;fdisk /dev/sdb
+
+Welcome to fdisk &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;util-linux 2.27.1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+Changes will remain &lt;span class=&quot;k&quot;&gt;in &lt;/span&gt;memory only, &lt;span class=&quot;k&quot;&gt;until &lt;/span&gt;you decide to write them.
+Be careful before using the write command.
+
+
+Command &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;m &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: o
+Created a new DOS disklabel with disk identifier 0x8c9faeb0.
+
+Command &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;m &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: n
+Partition &lt;span class=&quot;nb&quot;&gt;type
+   &lt;/span&gt;p   primary &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;0 primary, 0 extended, 4 free&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+   e   extended &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;container &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;logical partitions&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+Select &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;default p&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
+
+Using default response p.
+Partition number &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;1-4, default 1&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
+First sector &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;2048-30595071, default 2048&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
+Last sector, +sectors or +size&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;K,M,G,T,P&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;2048-30595071, default 30595071&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;:
+
+Created a new partition 1 of &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'Linux'&lt;/span&gt; and of size 14.6 GiB.
+
+Command &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;m &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: t
+Selected partition 1
+Partition &lt;span class=&quot;nb&quot;&gt;type&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;type &lt;/span&gt;L to list all types&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: c
+Changed &lt;span class=&quot;nb&quot;&gt;type &lt;/span&gt;of partition &lt;span class=&quot;s1&quot;&gt;'Linux'&lt;/span&gt; to &lt;span class=&quot;s1&quot;&gt;'W95 FAT32 (LBA)'&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;.&lt;/span&gt;
+
+Command &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;m &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: a
+Selected partition 1
+The bootable flag on partition 1 is enabled now.
+
+Command &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;m &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;help&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;: w
+The partition table has been altered.
+Calling ioctl&lt;span class=&quot;o&quot;&gt;()&lt;/span&gt; to re-read partition table.
+Syncing disks.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We’ve just created one bootable FAT partition, and that’ll be &lt;code class=&quot;highlighter-rouge&quot;&gt;/dev/sdb1&lt;/code&gt;. Let’s
+create an MS-DOS filesystem in it. This will take a while.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;mkfs.vfat &lt;span class=&quot;nt&quot;&gt;-F&lt;/span&gt; 32 /dev/sdb1
+mkfs.fat 3.0.28 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;2015-05-16&lt;span class=&quot;o&quot;&gt;)&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Now you can mount that partition and we’re ready to install GRUB2 in it.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;make /mnt/usb
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;mount /dev/sdb1 /mnt/usb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2&gt;Installing GRUB2&lt;/h2&gt;
+
+&lt;p&gt;Since we’re installing GRUB2 into USB stick, we specify &lt;code class=&quot;highlighter-rouge&quot;&gt;--removable&lt;/code&gt; flag. Also
+specify &lt;code class=&quot;highlighter-rouge&quot;&gt;--boot-directory&lt;/code&gt; so that GRUB2 is installed to there instead of
+&lt;code class=&quot;highlighter-rouge&quot;&gt;/boot/grub&lt;/code&gt;.&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;grub-install &lt;span class=&quot;nt&quot;&gt;--removable&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--boot-directory&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;/mnt/usb/boot /dev/sdb
+Installing &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;i386-pc platform.
+Installation finished. No error reported.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We’ll add &lt;code class=&quot;highlighter-rouge&quot;&gt;grub.cfg&lt;/code&gt; file under &lt;code class=&quot;highlighter-rouge&quot;&gt;/mnt/usb/boot/grub/&lt;/code&gt; directory. It defines
+selectable menus and the booting method of each entry. This time I’ll add Ubuntu
+Desktop ISO for i386 platform.&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-grub&quot;&gt;set timeout=5
+set default=0
+
+menuentry &quot;Ubuntu Desktop 16.04.3 LTS i386&quot; {
+  set isofile=&quot;/iso/ubuntu-16.04.3-desktop-i386.iso&quot;
+  loopback loop $isofile
+  linux (loop)/casper/vmlinuz boot=casper file=/preseed/ubuntu.seed iso-scan/filename=$isofile noeject noprompt splash --
+  initrd (loop)/casper/initrd.lz
+}
+
+menuentry &quot;Ubuntu Desktop 16.04.3 LTS amd64&quot; {
+  set isofile=&quot;/iso/ubuntu-16.04.3-desktop-amd64.iso&quot;
+  loopback loop $isofile
+  linux (loop)/casper/vmlinuz.efi boot=casper file=/preseed/ubuntu.seed iso-scan/filename=$isofile noeject noprompt splash --
+  initrd (loop)/casper/initrd.lz
+}
+
+menuentry &quot;Ubuntu Server 16.04.3 LTS i386&quot; {
+  set isofile=&quot;/iso/ubuntu-16.04.3-server-i386.iso&quot;
+  loopback loop $isofile
+  linux (loop)/install/vmlinuz boot=casper file=/preseed/ubuntu-server.seed iso-scan/filename=$isofile noeject noprompt splash --
+  initrd (loop)/install/initrd.gz
+}
+
+menuentry &quot;Ubuntu Server 16.04.3 LTS amd64&quot; {
+  set isofile=&quot;/iso/ubuntu-16.04.3-server-amd64.iso&quot;
+  loopback loop $isofile
+  linux (loop)/install/vmlinuz boot=casper file=/preseed/ubuntu-server.seed iso-scan/filename=$isofile noeject noprompt splash --
+  initrd (loop)/install/initrd.gz
+}
+
+menuentry &quot;Linux Mint 18.2 Cinnamon 32-bit&quot; {
+  set isofile=&quot;/iso/linuxmint-18.2-cinnamon-32bit.iso&quot;
+  loopback loop $isofile
+  linux (loop)/casper/vmlinuz boot=casper file=/preseed/linuxmint.seed iso-scan/filename=$isofile noeject noprompt splash --
+  initrd (loop)/casper/initrd.lz
+}
+
+menuentry &quot;Custom ELF&quot; {
+  elffile=&quot;/elf/custom.elf&quot;
+  multiboot $elffile
+}
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;In the first menuentry, &lt;code class=&quot;highlighter-rouge&quot;&gt;isofile&lt;/code&gt; points to
+&lt;code class=&quot;highlighter-rouge&quot;&gt;/iso/ubuntu-16.04.3-desktop-i386.iso&lt;/code&gt;, and it’s relative path of the USB stick.
+Create &lt;code class=&quot;highlighter-rouge&quot;&gt;/mnt/usb/iso/&lt;/code&gt; directory, and put the ISO files under there.&lt;/p&gt;
+
+&lt;p&gt;You may need to look inside of ISO file to find where is &lt;code class=&quot;highlighter-rouge&quot;&gt;vmlinuz*&lt;/code&gt; and
+&lt;code class=&quot;highlighter-rouge&quot;&gt;initrd.*&lt;/code&gt; files. Try this:&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;isoinfo &lt;span class=&quot;nt&quot;&gt;-l&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; myimage.iso
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;As the similar way, you can also make it to boot from ELF file. Just put the ELF
+file that supports
+&lt;a href=&quot;https://www.gnu.org/software/grub/manual/multiboot/multiboot.html&quot;&gt;Multiboot&lt;/a&gt;
+under &lt;code class=&quot;highlighter-rouge&quot;&gt;/mnt/usb/elf/&lt;/code&gt; directory, and edit the menuentry properly.&lt;/p&gt;
+
+&lt;p&gt;After editing is done, unmount the disk and use it right away!&lt;/p&gt;
+
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;umount /dev/sdb1
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h2&gt;Troubleshooting&lt;/h2&gt;
+
+&lt;p&gt;If your screen goes black on boot, try with &lt;code class=&quot;highlighter-rouge&quot;&gt;nomodeset&lt;/code&gt;:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&quot;language-grub&quot;&gt;linux ... noeject noprompt splash nomodeset --
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;h2&gt;See also&lt;/h2&gt;
+
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://help.ubuntu.com/community/Grub2/ISOBoot/Examples&quot;&gt;Grub2/ISOBoot/Examples&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;http://manpages.ubuntu.com/manpages/xenial/man7/casper.7.html&quot;&gt;Ubuntu Manpage: casper&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+        <author>
+            <name>Yous</name>
+          
+          
+        </author>
+      
+
+      
+
+      
+
+      
+        <summary type="html">Do you have multiple ISO files to install, with quite enough storage of USB stick? You’ll want to install all of them with a single USB stick. Here’s how. Formatting USB disk First, plug in your USB stick and find it from your Linux machine: $ sudo fdisk -l Disk /dev/sda: 20 GiB, 21474836480 bytes, 41943040 sectors Units: sectors of 1 * 512 = 512 bytes Sector size (logical/physical): 512 bytes / 512 bytes I/O size (minimum/optimal): 512 bytes / 512 bytes Disklabel type: dos Disk identifier: 0x4d149927 Device Boot Start End Sectors Size Id Type /dev/sda1 * 2048 39845887 39843840 19G 83 Linux /dev/sda2 39847934 41940991 2093058 1022M 5 Extended /dev/sda5 39847936 41940991 2093056 1022M 82 Linux swap / Solaris Disk /dev/sdb: 14.6 GiB, 15664676864 bytes, 30595072 sectors Units: sectors of 1 * 512 = 512 bytes Sector size (logical/physical): 512 bytes / 512 bytes I/O size (minimum/optimal): 512 bytes / 512 bytes Disklabel type: gpt Disk identifier: 4788154A-7BD2-4A06-945B-5980E828C8C5 Device Start End Sectors Size Type /dev/sdb1 40 409639 409600 200M EFI System /dev/sdb2 411648 30593023 30181376 14.4G Microsoft basic data In my case, it’s /dev/sdb. Let’s format it with fdisk. When you run fdisk /dev/sdb, you can print help menu: $ sudo fdisk /dev/sdb Welcome to fdisk (util-linux 2.27.1). Changes will remain in memory only, until you decide to write them. Be careful before using the write command. Command (m for help): m Help: Generic d delete a partition F list free unpartitioned space l list known partition types n add a new partition p print the partition table t change a partition type v verify the partition table i print information about a partition Misc m print this menu x extra functionality (experts only) Script I load disk layout from sfdisk script file O dump disk layout to sfdisk script file Save &amp;amp; Exit w write table to disk and exit q quit without saving changes Create a new label g create a new empty GPT partition table G create a new empty SGI (IRIX) partition table o create a new empty DOS partition table s create a new empty Sun partition table Now we can start! $ sudo fdisk /dev/sdb Welcome to fdisk (util-linux 2.27.1). Changes will remain in memory only, until you decide to write them. Be careful before using the write command. Command (m for help): o Created a new DOS disklabel with disk identifier 0x8c9faeb0. Command (m for help): n Partition type p primary (0 primary, 0 extended, 4 free) e extended (container for logical partitions) Select (default p): Using default response p. Partition number (1-4, default 1): First sector (2048-30595071, default 2048): Last sector, +sectors or +size{K,M,G,T,P} (2048-30595071, default 30595071): Created a new partition 1 of type 'Linux' and of size 14.6 GiB. Command (m for help): t Selected partition 1 Partition type (type L to list all types): c Changed type of partition 'Linux' to 'W95 FAT32 (LBA)'. Command (m for help): a Selected partition 1 The bootable flag on partition 1 is enabled now. Command (m for help): w The partition table has been altered. Calling ioctl() to re-read partition table. Syncing disks. We’ve just created one bootable FAT partition, and that’ll be /dev/sdb1. Let’s create an MS-DOS filesystem in it. This will take a while. $ sudo mkfs.vfat -F 32 /dev/sdb1 mkfs.fat 3.0.28 (2015-05-16) Now you can mount that partition and we’re ready to install GRUB2 in it. sudo make /mnt/usb sudo mount /dev/sdb1 /mnt/usb Installing GRUB2 Since we’re installing GRUB2 into USB stick, we specify --removable flag. Also specify --boot-directory so that GRUB2 is installed to there instead of /boot/grub. $ sudo grub-install --removable --boot-directory=/mnt/usb/boot /dev/sdb Installing for i386-pc platform. Installation finished. No error reported. We’ll add grub.cfg file under /mnt/usb/boot/grub/ directory. It defines selectable menus and the booting method of each entry. This time I’ll add Ubuntu Desktop ISO for i386 platform. set timeout=5 set default=0 menuentry &quot;Ubuntu Desktop 16.04.3 LTS i386&quot; { set isofile=&quot;/iso/ubuntu-16.04.3-desktop-i386.iso&quot; loopback loop $isofile linux (loop)/casper/vmlinuz boot=casper file=/preseed/ubuntu.seed iso-scan/filename=$isofile noeject noprompt splash -- initrd (loop)/casper/initrd.lz } menuentry &quot;Ubuntu Desktop 16.04.3 LTS amd64&quot; { set isofile=&quot;/iso/ubuntu-16.04.3-desktop-amd64.iso&quot; loopback loop $isofile linux (loop)/casper/vmlinuz.efi boot=casper file=/preseed/ubuntu.seed iso-scan/filename=$isofile noeject noprompt splash -- initrd (loop)/casper/initrd.lz } menuentry &quot;Ubuntu Server 16.04.3 LTS i386&quot; { set isofile=&quot;/iso/ubuntu-16.04.3-server-i386.iso&quot; loopback loop $isofile linux (loop)/install/vmlinuz boot=casper file=/preseed/ubuntu-server.seed iso-scan/filename=$isofile noeject noprompt splash -- initrd (loop)/install/initrd.gz } menuentry &quot;Ubuntu Server 16.04.3 LTS amd64&quot; { set isofile=&quot;/iso/ubuntu-16.04.3-server-amd64.iso&quot; loopback loop $isofile linux (loop)/install/vmlinuz boot=casper file=/preseed/ubuntu-server.seed iso-scan/filename=$isofile noeject noprompt splash -- initrd (loop)/install/initrd.gz } menuentry &quot;Linux Mint 18.2 Cinnamon 32-bit&quot; { set isofile=&quot;/iso/linuxmint-18.2-cinnamon-32bit.iso&quot; loopback loop $isofile linux (loop)/casper/vmlinuz boot=casper file=/preseed/linuxmint.seed iso-scan/filename=$isofile noeject noprompt splash -- initrd (loop)/casper/initrd.lz } menuentry &quot;Custom ELF&quot; { elffile=&quot;/elf/custom.elf&quot; multiboot $elffile } In the first menuentry, isofile points to /iso/ubuntu-16.04.3-desktop-i386.iso, and it’s relative path of the USB stick. Create /mnt/usb/iso/ directory, and put the ISO files under there. You may need to look inside of ISO file to find where is vmlinuz* and initrd.* files. Try this: isoinfo -l -i myimage.iso As the similar way, you can also make it to boot from ELF file. Just put the ELF file that supports Multiboot under /mnt/usb/elf/ directory, and edit the menuentry properly. After editing is done, unmount the disk and use it right away! sudo umount /dev/sdb1 Troubleshooting If your screen goes black on boot, try with nomodeset: linux ... noeject noprompt splash nomodeset -- See also Grub2/ISOBoot/Examples Ubuntu Manpage: casper</summary>
+      
+
+      
+      
+    </entry>
+  
   
   
     <entry>
@@ -4011,67 +4267,6 @@ You may want to close only the current tab with &lt;code class=&quot;highlighter
       
 
       
-      
-    </entry>
-  
-  
-  
-    <entry>
-      
-      <title type="html">How to Write a Git Commit Message →</title>
-      
-      <link href="https://yous.be/2014/09/03/how-to-write-a-git-commit-message/" rel="alternate" type="text/html" title="How to Write a Git Commit Message" />
-      <published>2014-09-03T13:12:47+00:00</published>
-      <updated>2014-09-03T13:12:47+00:00</updated>
-      <id>https://yous.be/2014/09/03/how-to-write-a-git-commit-message</id>
-      <content type="html" xml:base="https://yous.be/2014/09/03/how-to-write-a-git-commit-message/">&lt;p&gt;&lt;a href=&quot;http://xkcd.com/1296/&quot;&gt;&lt;img src=&quot;/images/2014/09/03/git_commit.png&quot; alt=&quot;Git Commit&quot; title=&quot;Git Commit&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
-
-&lt;blockquote&gt;
-  &lt;h2&gt;The seven rules of a great git commit message&lt;/h2&gt;
-
-  &lt;blockquote&gt;
-    &lt;p&gt;Keep in mind: &lt;a href=&quot;http://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html&quot;&gt;This&lt;/a&gt; &lt;a href=&quot;http://www.git-scm.com/book/en/Distributed-Git-Contributing-to-a-Project#Commit-Guidelines&quot;&gt;has&lt;/a&gt; &lt;a href=&quot;https://github.com/torvalds/subsurface/blob/master/README#L82-109&quot;&gt;all&lt;/a&gt; &lt;a href=&quot;http://who-t.blogspot.co.at/2009/12/on-commit-messages.html&quot;&gt;been&lt;/a&gt; &lt;a href=&quot;https://github.com/erlang/otp/wiki/writing-good-commit-messages&quot;&gt;said&lt;/a&gt; &lt;a href=&quot;https://github.com/spring-projects/spring-framework/blob/30bce7/CONTRIBUTING.md#format-commit-messages&quot;&gt;before&lt;/a&gt;.&lt;/p&gt;
-  &lt;/blockquote&gt;
-
-  &lt;ol&gt;
-    &lt;li&gt;&lt;a href=&quot;http://chris.beams.io/posts/git-commit/#separate&quot;&gt;Separate subject from body with a blank line&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;http://chris.beams.io/posts/git-commit/#limit-50&quot;&gt;Limit the subject line to 50 characters&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;http://chris.beams.io/posts/git-commit/#capitalize&quot;&gt;Capitalize the subject line&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;http://chris.beams.io/posts/git-commit/#end&quot;&gt;Do not end the subject line with a period&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;http://chris.beams.io/posts/git-commit/#imperative&quot;&gt;Use the imperative mood in the subject line&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;http://chris.beams.io/posts/git-commit/#wrap-72&quot;&gt;Wrap the body at 72 characters&lt;/a&gt;&lt;/li&gt;
-    &lt;li&gt;&lt;a href=&quot;http://chris.beams.io/posts/git-commit/#why-not-how&quot;&gt;Use the body to explain &lt;em&gt;what&lt;/em&gt; and &lt;em&gt;why&lt;/em&gt; vs. &lt;em&gt;how&lt;/em&gt;&lt;/a&gt;&lt;/li&gt;
-  &lt;/ol&gt;
-&lt;/blockquote&gt;</content>
-
-      
-      
-      
-      
-      
-
-      
-        <author>
-            <name>Yous</name>
-          
-          
-        </author>
-      
-
-      
-        <category term="Git" />
-      
-
-      
-
-      
-        <summary type="html">The seven rules of a great git commit message Keep in mind: This has all been said before. Separate subject from body with a blank line Limit the subject line to 50 characters Capitalize the subject line Do not end the subject line with a period Use the imperative mood in the subject line Wrap the body at 72 characters Use the body to explain what and why vs. how</summary>
-      
-
-      
-      
-        
-        <media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="http://yous.be/images/2014/09/03/git_commit.png" />
       
     </entry>
   
