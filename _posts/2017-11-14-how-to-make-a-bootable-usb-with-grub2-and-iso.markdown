@@ -3,8 +3,9 @@ layout: post
 title: "How to make a bootable USB with GRUB2 and ISO"
 date: 2017-11-14 03:23:14 +0000
 categories:
-description:
-keywords:
+    - Linux
+description: "Put ISO files into your USB stick and boot from it!"
+keywords: usb, grub, grub2, iso, elf
 redirect_from: /p/20171114/
 ---
 
