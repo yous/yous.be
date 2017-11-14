@@ -137,7 +137,7 @@ mkfs.fat 3.0.28 (2015-05-16)
 Now you can mount that partition and we're ready to install GRUB2 in it.
 
 ``` sh
-sudo make /mnt/usb
+sudo mkdir /mnt/usb
 sudo mount /dev/sdb1 /mnt/usb
 ```
 
