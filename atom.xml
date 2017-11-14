@@ -5,7 +5,7 @@
   
   <link href="https://yous.be/atom.xml" rel="self" type="application/atom+xml" />
   <link href="https://yous.be/" rel="alternate" type="text/html" />
-  <updated>2017-11-14T08:03:10+00:00</updated>
+  <updated>2017-11-14T08:11:43+00:00</updated>
   <id>https://yous.be//</id>
 
   
@@ -268,6 +268,8 @@ under &lt;code class=&quot;highlighter-rouge&quot;&gt;/mnt/usb/elf/&lt;/code&gt;
         </author>
       
 
+      
+        <category term="Linux" />
       
 
       
