@@ -98,7 +98,7 @@ Calling ioctl<span class="o">()</span> to re-read partition table.
 Syncing disks.
 </code></pre></div></div><p>We’ve just created one bootable FAT partition, and that’ll be <code class="highlighter-rouge">/dev/sdb1</code>. Let’s create an MS-DOS filesystem in it. This will take a while.<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>mkfs.vfat <span class="nt">-F</span> 32 /dev/sdb1
 mkfs.fat 3.0.28 <span class="o">(</span>2015-05-16<span class="o">)</span>
-</code></pre></div></div><p>Now you can mount that partition and we’re ready to install GRUB2 in it.<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>make /mnt/usb
+</code></pre></div></div><p>Now you can mount that partition and we’re ready to install GRUB2 in it.<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">sudo </span>mkdir /mnt/usb
 <span class="nb">sudo </span>mount /dev/sdb1 /mnt/usb
 </code></pre></div></div><h2>Installing GRUB2</h2><p>Since we’re installing GRUB2 into USB stick, we specify <code class="highlighter-rouge">--removable</code> flag. Also specify <code class="highlighter-rouge">--boot-directory</code> so that GRUB2 is installed to there instead of <code class="highlighter-rouge">/boot/grub</code>.<div class="language-sh highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nv">$ </span><span class="nb">sudo </span>grub-install <span class="nt">--removable</span> <span class="nt">--boot-directory</span><span class="o">=</span>/mnt/usb/boot /dev/sdb
 Installing <span class="k">for </span>i386-pc platform.
