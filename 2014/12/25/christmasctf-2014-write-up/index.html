@@ -151,8 +151,8 @@ Your level : Null
 <span class="o">==&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="o">./</span><span class="nx">letter</span><span class="o">/../</span><span class="nx">inc</span> <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span><span class="o">==</span>
 
 <span class="o">==&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="o">./</span><span class="nx">letter</span><span class="o">/../</span><span class="nx">index</span><span class="o">.</span><span class="nx">php</span> <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span><span class="o">==</span>
-<span class="o">&lt;!--?</span><span class="nx">php</span> <span class="k">include</span><span class="p">(</span><span class="s2">"inc/5f0c2baaa2c0426eed9a958e3fe0ff94.php"</span><span class="p">);</span> <span class="c1">// header ?--&gt;
-</span><span class="o">&lt;!--?</span><span class="nx">php</span> <span class="nv">$page</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">'page'</span><span class="p">];</span>
+<span class="o">&lt;!--?</span><span class="nx">php</span> <span class="k">include</span><span class="p">(</span><span class="s2">"inc/5f0c2baaa2c0426eed9a958e3fe0ff94.php"</span><span class="p">);</span> <span class="c1">// header ?--&gt;</span>
+<span class="o">&lt;!--?</span><span class="nx">php</span> <span class="nv">$page</span> <span class="o">=</span> <span class="nv">$_GET</span><span class="p">[</span><span class="s1">'page'</span><span class="p">];</span>
 <span class="k">if</span><span class="p">(</span><span class="nv">$page</span> <span class="o">==</span> <span class="s2">"photo"</span><span class="p">){</span> <span class="o">?--&gt;</span>
 </code></pre></div></div><p>Flag는 <code class="highlighter-rouge">snow_is_commmming</code>입니다.<h2><a id="a-letter-to-her-2"></a>A Letter To Her 2 - WEB500</h2><blockquote><p><a href="http://web-prob.dkserver.wo.tc/sqli_962a035aacf08966ffc7610957ac0c29/">Link</a></blockquote><p>Clue를 봅시다.<div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="nv">`table_name`</span> <span class="p">(</span>
 
@@ -224,10 +224,10 @@ Your level : Null
 The Flag is christmas{Rac_reKrei$her_!s_so_cute_@lligat0r!}
 </code></pre></div></div><p>Flag는 <code class="highlighter-rouge">Rac_reKrei$her_!s_so_cute_@lligat0r!</code>입니다.<h2><a id="php-obfuscate"></a>PHP Obfuscate - WEB500</h2><blockquote><p>PHP Version 5.2.12에서 테스트했습니다<p>의도하지 않은 풀이가 존재할 경우에 christmasctf@gmail.com 로 메일을 보내주세요!<p>답 처리 해드립니다 :)<p><a href="http://goo.gl/ml28eF">http://goo.gl/ml28eF</a></blockquote><p>위 링크에 접근이 되지 않는다면 <a href="/downloads/2014/12/26/phpobfuscate_6edfd44ed0290d72e6b9a59f256e8dc0.zip">이 링크</a>를 사용해주시기 바랍니다.<p>압축을 풀면 난독화된 <code class="highlighter-rouge">index.php</code>가 나옵니다.<div class="language-php highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;?php</span>
 
-<span class="c1">////////////////////////
-//          stage1         //
-////////////////////////
-</span>
+<span class="c1">////////////////////////</span>
+<span class="c1">//          stage1         //</span>
+<span class="c1">////////////////////////</span>
+
 <span class="nv">$á</span><span class="o">=</span><span class="k">array</span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
 <span class="nv">$$a</span><span class="o">=~</span><span class="nv">$á</span><span class="p">[</span><span class="mi">0</span><span class="p">];</span>
 <span class="nv">$a</span><span class="o">+=</span><span class="nv">$$a</span><span class="o">*</span><span class="nv">$$a</span><span class="p">;</span>
@@ -334,4 +334,4 @@ The Flag is christmas{Rac_reKrei$her_!s_so_cute_@lligat0r!}
 <span class="n">xor</span> <span class="o">=</span> <span class="no">File</span><span class="p">.</span><span class="nf">open</span><span class="p">(</span><span class="s1">'k3y_xor.png'</span><span class="p">,</span> <span class="s1">'wb'</span><span class="p">)</span>
 <span class="n">xor</span><span class="p">.</span><span class="nf">write</span><span class="p">(</span><span class="n">s</span><span class="p">.</span><span class="nf">bytes</span><span class="p">.</span><span class="nf">map</span> <span class="p">{</span> <span class="o">|</span><span class="n">b</span><span class="o">|</span> <span class="p">(</span><span class="n">b</span> <span class="o">^</span> <span class="mh">0xFF</span><span class="p">).</span><span class="nf">chr</span> <span class="p">}.</span><span class="nf">join</span><span class="p">)</span>
 <span class="n">xor</span><span class="p">.</span><span class="nf">close</span>
-</code></pre></div></div><p>그렇게 얻은 이미지는 아래와 같습니다.<p><img src="/images/2014/12/25/k3y_xor.png" alt="k3y_xor.png" title="k3y_xor.png" /><p>Flag는 <code class="highlighter-rouge">ASKY_ALWAYS!</code>입니다.</div></article></div></main><footer class="site-footer"><div class="wrapper"><p> Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a><br /> &copy; 2013&ndash;2017 - <a href="/about/">Yous</a> - Powered by <a href="https://jekyllrb.com">Jekyll</a> &amp; <a href="https://github.com/yous/whiteglass">whiteglass</a> - Subscribe via <a href="https://yous.be/atom.xml">RSS</a></div></footer>
+</code></pre></div></div><p>그렇게 얻은 이미지는 아래와 같습니다.<p><img src="/images/2014/12/25/k3y_xor.png" alt="k3y_xor.png" title="k3y_xor.png" /><p>Flag는 <code class="highlighter-rouge">ASKY_ALWAYS!</code>입니다.</div></article></div></main><footer class="site-footer"><div class="wrapper"><p> Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a><br /> &copy; 2013&ndash;2018 - <a href="/about/">Yous</a> - Powered by <a href="https://jekyllrb.com">Jekyll</a> &amp; <a href="https://github.com/yous/whiteglass">whiteglass</a> - Subscribe via <a href="https://yous.be/atom.xml">RSS</a></div></footer>

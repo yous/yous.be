@@ -88,8 +88,8 @@ end</pre></noscript> <script src="https://gist.github.com/imathis/2219214.js"> <
 
 <span class="k">-</span> <span class="p">(</span><span class="kt">void</span><span class="p">)</span><span class="nf">applicationDidFinishLaunching</span><span class="p">:(</span><span class="n">NSNotification</span> <span class="o">*</span><span class="p">)</span><span class="nv">aNotification</span>
 <span class="p">{</span>
-    <span class="c1">// Insert code here to initialize your application
-</span>    <span class="n">model</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Cocoa1Model</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">];</span>
+    <span class="c1">// Insert code here to initialize your application</span>
+    <span class="n">model</span> <span class="o">=</span> <span class="p">[[</span><span class="n">Cocoa1Model</span> <span class="nf">alloc</span><span class="p">]</span> <span class="nf">init</span><span class="p">];</span>
 <span class="p">}</span>
 
 <span class="k">-</span> <span class="p">(</span><span class="n">IBAction</span><span class="p">)</span><span class="nf">getSiteContents</span><span class="p">:(</span><span class="n">id</span><span class="p">)</span><span class="nv">sender</span> <span class="p">{</span>
@@ -119,7 +119,7 @@ end</pre></noscript> <script src="https://gist.github.com/imathis/2219214.js"> <
 <span class="n">main</span> <span class="o">=</span> <span class="n">hakyll</span> <span class="o">$</span> <span class="kr">do</span>
 
     <span class="n">route</span>   <span class="s">"css/*"</span> <span class="o">$</span> <span class="n">setExtension</span> <span class="s">"css"</span>
-    <span class="n">compile</span> <span class="s">"css/*"</span> <span class="o">$</span> <span class="n">byExtension</span> <span class="p">(</span><span class="ne">error</span> <span class="s">"Not a (S)CSS file"</span><span class="p">)</span>
+    <span class="n">compile</span> <span class="s">"css/*"</span> <span class="o">$</span> <span class="n">byExtension</span> <span class="p">(</span><span class="n">error</span> <span class="s">"Not a (S)CSS file"</span><span class="p">)</span>
         <span class="p">[</span> <span class="p">(</span><span class="s">".css"</span><span class="p">,</span>  <span class="n">compressCssCompiler</span><span class="p">)</span>
         <span class="p">,</span> <span class="p">(</span><span class="s">".scss"</span><span class="p">,</span> <span class="n">sass</span><span class="p">)</span>
         <span class="p">]</span>
@@ -159,7 +159,7 @@ end</pre></noscript> <script src="https://gist.github.com/imathis/2219214.js"> <
             <span class="k">then</span> <span class="c"># no difference with current backup</span>
                 logger <span class="s2">"</span><span class="nv">$LOG_PREFIX</span><span class="s2">: crontab live settings match stored "</span><span class="se">\</span>
                     <span class="s2">"settings; no restore required"</span>
-                rm ~/tmp/crontab-conflict-arch
+                <span class="nb">rm</span> ~/tmp/crontab-conflict-arch
             <span class="k">else</span> <span class="c"># current crontab settings in file do not match live settings</span>
                 crontab <span class="nv">$ROOT_DIR</span>/<span class="nv">$CONF_DIR</span>/cron/crontab-current-arch
                 logger <span class="s2">"</span><span class="nv">$LOG_PREFIX</span><span class="s2">: crontab stored settings conflict with "</span><span class="se">\</span>
@@ -288,8 +288,8 @@ end</pre></noscript> <script src="https://gist.github.com/imathis/2219214.js"> <
 #include &lt;windows.h&gt;
 </span>
 <span class="kt">int</span> <span class="nf">main</span><span class="p">(</span><span class="kt">int</span> <span class="n">argc</span><span class="p">,</span> <span class="kt">char</span> <span class="o">**</span><span class="n">argv</span><span class="p">)</span> <span class="p">{</span>
-  <span class="kt">int</span> <span class="n">speed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">speed1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">speed2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 1-20
-</span>  <span class="n">printf</span><span class="p">(</span><span class="s">"Set Mouse Speed by Maverick</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
+  <span class="kt">int</span> <span class="n">speed</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">speed1</span> <span class="o">=</span> <span class="mi">0</span><span class="p">,</span> <span class="n">speed2</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="c1">// 1-20</span>
+  <span class="n">printf</span><span class="p">(</span><span class="s">"Set Mouse Speed by Maverick</span><span class="se">\n</span><span class="s">"</span><span class="p">);</span>
 
   <span class="n">SystemParametersInfo</span><span class="p">(</span><span class="n">SPI_GETMOUSESPEED</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">speed</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
   <span class="n">printf</span><span class="p">(</span><span class="s">"Current speed: %2d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">speed</span><span class="p">);</span>
@@ -298,13 +298,13 @@ end</pre></noscript> <script src="https://gist.github.com/imathis/2219214.js"> <
   <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&gt;=</span> <span class="mi">2</span><span class="p">)</span> <span class="n">sscanf</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span> <span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">speed1</span><span class="p">);</span>
   <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">&gt;=</span> <span class="mi">3</span><span class="p">)</span> <span class="n">sscanf</span><span class="p">(</span><span class="n">argv</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span> <span class="s">"%d"</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">speed2</span><span class="p">);</span>
 
-  <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">// set speed to first value
-</span>    <span class="n">speed</span> <span class="o">=</span> <span class="n">speed1</span><span class="p">;</span>
-  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">speed</span> <span class="o">==</span> <span class="n">speed1</span> <span class="o">||</span> <span class="n">speed</span> <span class="o">==</span> <span class="n">speed2</span><span class="p">)</span> <span class="c1">// alternate
-</span>    <span class="n">speed</span> <span class="o">=</span> <span class="n">speed1</span> <span class="o">+</span> <span class="n">speed2</span> <span class="o">-</span> <span class="n">speed</span><span class="p">;</span>
+  <span class="k">if</span> <span class="p">(</span><span class="n">argc</span> <span class="o">==</span> <span class="mi">2</span><span class="p">)</span> <span class="c1">// set speed to first value</span>
+    <span class="n">speed</span> <span class="o">=</span> <span class="n">speed1</span><span class="p">;</span>
+  <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">speed</span> <span class="o">==</span> <span class="n">speed1</span> <span class="o">||</span> <span class="n">speed</span> <span class="o">==</span> <span class="n">speed2</span><span class="p">)</span> <span class="c1">// alternate</span>
+    <span class="n">speed</span> <span class="o">=</span> <span class="n">speed1</span> <span class="o">+</span> <span class="n">speed2</span> <span class="o">-</span> <span class="n">speed</span><span class="p">;</span>
   <span class="k">else</span>
-    <span class="n">speed</span> <span class="o">=</span> <span class="n">speed1</span><span class="p">;</span>  <span class="c1">// start with first value
-</span>
+    <span class="n">speed</span> <span class="o">=</span> <span class="n">speed1</span><span class="p">;</span>  <span class="c1">// start with first value</span>
+
   <span class="n">SystemParametersInfo</span><span class="p">(</span><span class="n">SPI_SETMOUSESPEED</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span>  <span class="n">speed</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
   <span class="n">SystemParametersInfo</span><span class="p">(</span><span class="n">SPI_GETMOUSESPEED</span><span class="p">,</span> <span class="mi">0</span><span class="p">,</span> <span class="o">&amp;</span><span class="n">speed</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
   <span class="n">printf</span><span class="p">(</span><span class="s">"New speed:     %2d</span><span class="se">\n</span><span class="s">"</span><span class="p">,</span> <span class="n">speed</span><span class="p">);</span>
@@ -323,4 +323,4 @@ end</pre></noscript> <script src="https://gist.github.com/imathis/2219214.js"> <
 <span class="c1"># Iterate over part of the alphabet:</span>
 <span class="nx">console</span><span class="p">.</span><span class="na">log</span> <span class="nx">letter</span> <span class="k">for</span> <span class="k">in</span> <span class="nx">alphabet</span><span class="p">[</span><span class="mi">4</span><span class="p">..</span><span class="mi">8</span><span class="p">]</span>
 </code></pre></div></div><div class="language-ruby highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nb">puts</span> <span class="s2">"a</span><span class="si">#{</span><span class="s2">"b</span><span class="si">#{</span><span class="s2">"c</span><span class="si">#{</span><span class="s2">"d"</span><span class="si">}</span><span class="s2">"</span><span class="si">}</span><span class="s2">"</span><span class="si">}</span><span class="s2">"</span>
-</code></pre></div></div></div></article></div></main><footer class="site-footer"><div class="wrapper"><p> Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a><br /> &copy; 2013&ndash;2017 - <a href="/about/">Yous</a> - Powered by <a href="https://jekyllrb.com">Jekyll</a> &amp; <a href="https://github.com/yous/whiteglass">whiteglass</a> - Subscribe via <a href="https://yous.be/atom.xml">RSS</a></div></footer>
+</code></pre></div></div></div></article></div></main><footer class="site-footer"><div class="wrapper"><p> Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a><br /> &copy; 2013&ndash;2018 - <a href="/about/">Yous</a> - Powered by <a href="https://jekyllrb.com">Jekyll</a> &amp; <a href="https://github.com/yous/whiteglass">whiteglass</a> - Subscribe via <a href="https://yous.be/atom.xml">RSS</a></div></footer>

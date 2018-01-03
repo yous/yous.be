@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <generator uri="http://jekyllrb.com" version="3.6.2">Jekyll</generator>
+  <generator uri="http://jekyllrb.com" version="3.7.0">Jekyll</generator>
   
   
   <link href="https://yous.be/atom.xml" rel="self" type="application/atom+xml" />
   <link href="https://yous.be/" rel="alternate" type="text/html" />
-  <updated>2017-12-19T16:01:08+00:00</updated>
+  <updated>2018-01-03T02:36:29+00:00</updated>
   <id>https://yous.be//</id>
 
   
@@ -157,7 +157,7 @@ mkfs.fat 3.0.28 &lt;span class=&quot;o&quot;&gt;(&lt;/span&gt;2015-05-16&lt;span
 
 &lt;p&gt;Now you can mount that partition and we’re ready to install GRUB2 in it.&lt;/p&gt;
 
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;mkdir /mnt/usb
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo mkdir&lt;/span&gt; /mnt/usb
 &lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;mount /dev/sdb1 /mnt/usb
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -1545,7 +1545,7 @@ removing openssl098.&lt;/p&gt;
 &lt;p&gt;As I just wanted to reproduce a bug, I used the &lt;code class=&quot;highlighter-rouge&quot;&gt;openssl098.rb&lt;/code&gt; right before the
 removal.&lt;/p&gt;
 
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew install https://github.com/Homebrew/homebrew-versions/raw/586b7e9012a3ed1f9df6c43d0483c65549349289/openssl098.rb
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;https://github.com/Homebrew/homebrew-versions/raw/586b7e9012a3ed1f9df6c43d0483c65549349289/openssl098.rb
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Then we can provide &lt;code class=&quot;highlighter-rouge&quot;&gt;--with-openssl-dir&lt;/code&gt; option to ruby-install.&lt;/p&gt;
@@ -1640,7 +1640,7 @@ of various Rubies.&lt;/p&gt;
 
 &lt;p&gt;If you’re on OS X:&lt;/p&gt;
 
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew install ruby-install
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;ruby-install
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;If you’re on Arch Linux:&lt;/p&gt;
@@ -1654,14 +1654,14 @@ of various Rubies.&lt;/p&gt;
 https://github.com/postmodern/ruby-install/archive/v0.6.0.tar.gz
 &lt;span class=&quot;nb&quot;&gt;tar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-xzvf&lt;/span&gt; ruby-install-0.6.0.tar.gz
 &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;ruby-install-0.6.0/
-&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;make install
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;make &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;h2&gt;Installing chruby&lt;/h2&gt;
 
 &lt;p&gt;If you’re on OS X:&lt;/p&gt;
 
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew install chruby
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;brew &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;chruby
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Otherwise:&lt;/p&gt;
@@ -1670,7 +1670,7 @@ https://github.com/postmodern/ruby-install/archive/v0.6.0.tar.gz
 https://github.com/postmodern/chruby/archive/v0.3.9.tar.gz
 &lt;span class=&quot;nb&quot;&gt;tar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-xzvf&lt;/span&gt; chruby-0.3.9.tar.gz
 &lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;chruby-0.3.9/
-&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;make install
+&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;make &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Then all I need to do is to load it from startup script, &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.*shrc&lt;/code&gt;.&lt;/p&gt;
@@ -2598,8 +2598,8 @@ commands in Docker. We add &lt;code class=&quot;highlighter-rouge&quot;&gt;http:
 the &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/apt/sources.list&lt;/code&gt; for &lt;code class=&quot;highlighter-rouge&quot;&gt;java-package&lt;/code&gt; package, and then run
 &lt;code class=&quot;highlighter-rouge&quot;&gt;apt-get update&lt;/code&gt;.&lt;/p&gt;
 
-&lt;div class=&quot;language-dockerfile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;DEBIAN_FRONTEND&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;noninteractive apt-get install &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; git wget curl procps net-tools
-&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;DEBIAN_FRONTEND&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;noninteractive apt-get install &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; java-package fakeroot
+&lt;div class=&quot;language-dockerfile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;DEBIAN_FRONTEND&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;noninteractive apt-get &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; git wget curl procps net-tools
+&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;DEBIAN_FRONTEND&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;noninteractive apt-get &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-y&lt;/span&gt; java-package fakeroot
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;In this section, we install basic tools like &lt;code class=&quot;highlighter-rouge&quot;&gt;git&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;wget&lt;/code&gt;, &lt;code class=&quot;highlighter-rouge&quot;&gt;curl&lt;/code&gt;. Also
@@ -2636,19 +2636,19 @@ runned in this working directory.&lt;/p&gt;
 
 &lt;div class=&quot;language-dockerfile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;wget &lt;span class=&quot;nt&quot;&gt;--no-cookies&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--header&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Cookie: oraclelicense=accept-securebackup-cookie&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\
 &lt;/span&gt;  http://download.oracle.com/otn-pub/java/jdk/6u45-b06/jdk-6u45-linux-x64.bin
-&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;chown pinpoint jdk-6u45-linux-x64.bin
+&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;chown &lt;/span&gt;pinpoint jdk-6u45-linux-x64.bin
 &lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;su pinpoint &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'yes | fakeroot make-jpkg jdk-6u45-linux-x64.bin'&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;rm jdk-6u45-linux-x64.bin
+&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;rm &lt;/span&gt;jdk-6u45-linux-x64.bin
 &lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;dpkg &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; oracle-j2sdk1.6_1.6.0+update45_amd64.deb
-&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;rm oracle-j2sdk1.6_1.6.0+update45_amd64.deb
+&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;rm &lt;/span&gt;oracle-j2sdk1.6_1.6.0+update45_amd64.deb
 
 &lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;wget &lt;span class=&quot;nt&quot;&gt;--no-cookies&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--header&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Cookie: oraclelicense=accept-securebackup-cookie&quot;&lt;/span&gt; &lt;span class=&quot;se&quot;&gt;\
 &lt;/span&gt;  http://download.oracle.com/otn-pub/java/jdk/7u79-b15/jdk-7u79-linux-x64.tar.gz
-&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;chown pinpoint jdk-7u79-linux-x64.tar.gz
+&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;chown &lt;/span&gt;pinpoint jdk-7u79-linux-x64.tar.gz
 &lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;su pinpoint &lt;span class=&quot;nt&quot;&gt;-c&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'yes | fakeroot make-jpkg jdk-7u79-linux-x64.tar.gz'&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;rm jdk-7u79-linux-x64.tar.gz
+&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;rm &lt;/span&gt;jdk-7u79-linux-x64.tar.gz
 &lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;dpkg &lt;span class=&quot;nt&quot;&gt;-i&lt;/span&gt; oracle-j2sdk1.7_1.7.0+update79_amd64.deb
-&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;rm oracle-j2sdk1.7_1.7.0+update79_amd64.deb
+&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;rm &lt;/span&gt;oracle-j2sdk1.7_1.7.0+update79_amd64.deb
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Now we install Java SE 6 and then Java SE 7 on the Docker. The &lt;code class=&quot;highlighter-rouge&quot;&gt;wget&lt;/code&gt; script is
@@ -2677,7 +2677,7 @@ Running &lt;code class=&quot;highlighter-rouge&quot;&gt;fakeroot make-jpkg ...&l
 files, directories, or remote file from URL to the specified path. Above lines
 just download Maven files from Apache mirror.&lt;/p&gt;
 
-&lt;div class=&quot;language-dockerfile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;md5sum apache-maven-3.2.5-bin.tar.gz | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--only-matching&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; 1 &lt;span class=&quot;s1&quot;&gt;'^[0-9a-f]*'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;apache-maven-3.2.5-bin.tar.gz.md5&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;div class=&quot;language-dockerfile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;md5sum &lt;/span&gt;apache-maven-3.2.5-bin.tar.gz | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--only-matching&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; 1 &lt;span class=&quot;s1&quot;&gt;'^[0-9a-f]*'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;apache-maven-3.2.5-bin.tar.gz.md5&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;This matches MD5 hash checksum of &lt;code class=&quot;highlighter-rouge&quot;&gt;apache-maven-3.2.5-bin.tar.gz&lt;/code&gt; with
@@ -2692,7 +2692,7 @@ just download Maven files from Apache mirror.&lt;/p&gt;
 
 &lt;div class=&quot;language-dockerfile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;tar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-xf&lt;/span&gt; apache-maven-3.2.5-bin.tar.gz
 &lt;span class=&quot;k&quot;&gt;ENV&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; PATH $PATH:/usr/local/apache-maven/apache-maven-3.2.5/bin&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;rm apache-maven-3.2.5-bin.tar.gz apache-maven-3.2.5-bin.tar.gz.md5 apache-maven-3.2.5-bin.tar.gz.asc
+&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;rm &lt;/span&gt;apache-maven-3.2.5-bin.tar.gz apache-maven-3.2.5-bin.tar.gz.md5 apache-maven-3.2.5-bin.tar.gz.asc
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Now we install Maven 3.2.5 on the Docker. Note that we have to add the path of
@@ -2700,7 +2700,7 @@ Maven to the &lt;code class=&quot;highlighter-rouge&quot;&gt;PATH&lt;/code&gt;.&
 
 &lt;div class=&quot;language-dockerfile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;git clone https://github.com/naver/pinpoint.git /pinpoint
 &lt;span class=&quot;k&quot;&gt;WORKDIR&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; /pinpoint&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;mvn install &lt;span class=&quot;nt&quot;&gt;-Dmaven&lt;/span&gt;.test.skip&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;mvn &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Dmaven&lt;/span&gt;.test.skip&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;All requirements are installed, so we clone Pinpoint to the &lt;code class=&quot;highlighter-rouge&quot;&gt;/pinpoint&lt;/code&gt; and
@@ -2709,10 +2709,10 @@ install it.&lt;/p&gt;
 &lt;div class=&quot;language-dockerfile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;WORKDIR&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; quickstart/hbase&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;ADD&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; http://archive.apache.org/dist/hbase/hbase-0.94.25/hbase-0.94.25.tar.gz ./&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;tar&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-xf&lt;/span&gt; hbase-0.94.25.tar.gz
-&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;rm hbase-0.94.25.tar.gz
-&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;ln &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; hbase-0.94.25 hbase
-&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;cp ../conf/hbase/hbase-site.xml hbase-0.94.25/conf/
-&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;chmod +x hbase-0.94.25/bin/start-hbase.sh
+&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;rm &lt;/span&gt;hbase-0.94.25.tar.gz
+&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;ln&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; hbase-0.94.25 hbase
+&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cp&lt;/span&gt; ../conf/hbase/hbase-site.xml hbase-0.94.25/conf/
+&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;chmod&lt;/span&gt; +x hbase-0.94.25/bin/start-hbase.sh
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;After installation of Pinpoint, we install HBase 0.94.25 as
@@ -3219,8 +3219,8 @@ Your level : Null
 &lt;span class=&quot;o&quot;&gt;==&amp;amp;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;gt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;./&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;letter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/../&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;inc&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;lt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;
 
 &lt;span class=&quot;o&quot;&gt;==&amp;amp;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;gt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;./&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;letter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/../&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;index&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;php&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;lt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;
-&lt;span class=&quot;o&quot;&gt;&amp;lt;!--?&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;inc/5f0c2baaa2c0426eed9a958e3fe0ff94.php&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// header ?--&amp;gt;
-&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;&amp;lt;!--?&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;php&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$page&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$_GET&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'page'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;!--?&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;php&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;include&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;inc/5f0c2baaa2c0426eed9a958e3fe0ff94.php&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt; &lt;span class=&quot;c1&quot;&gt;// header ?--&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;&amp;lt;!--?&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;php&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$page&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;$_GET&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'page'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$page&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;photo&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;){&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;?--&amp;gt;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
@@ -3397,10 +3397,10 @@ The Flag is christmas{Rac_reKrei$her_!s_so_cute_@lligat0r!}
 
 &lt;div class=&quot;language-php highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;cp&quot;&gt;&amp;lt;?php&lt;/span&gt;
 
-&lt;span class=&quot;c1&quot;&gt;////////////////////////
-//          stage1         //
-////////////////////////
-&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;////////////////////////&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;//          stage1         //&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;////////////////////////&lt;/span&gt;
+
 &lt;span class=&quot;nv&quot;&gt;$á&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;array&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;);&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;$$a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=~&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$á&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;];&lt;/span&gt;
 &lt;span class=&quot;nv&quot;&gt;$a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;+=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$$a&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;*&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$$a&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;
