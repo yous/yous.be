@@ -47,6 +47,8 @@ plugins:
 # Build settings
 markdown: kramdown
 excerpt_separator: "<!-- more -->"
+sass:
+  style: compressed
 
 # Outputting
 permalink: /:year/:month/:day/:title/
