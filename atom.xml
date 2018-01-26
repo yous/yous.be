@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <generator uri="http://jekyllrb.com" version="3.7.0">Jekyll</generator>
+  <generator uri="http://jekyllrb.com" version="3.7.2">Jekyll</generator>
   
   
   <link href="https://yous.be/atom.xml" rel="self" type="application/atom+xml" />
   <link href="https://yous.be/" rel="alternate" type="text/html" />
-  <updated>2018-01-17T06:53:19+00:00</updated>
+  <updated>2018-01-26T03:28:58+00:00</updated>
   <id>https://yous.be//</id>
 
   
