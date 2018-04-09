@@ -23,7 +23,7 @@ Chayoung You
 ## <a id="projects"></a>Projects
 
 - [whiteglass](https://github.com/yous/whiteglass) --- Minimal, responsive Jekyll theme for hackers.
-- [vim-open-color](https://github.com/yous/vim-open-color) --- Dark Vim color scheme using [Open Color](https://yeun.github.io/open-color/).
+- [vim-open-color](https://github.com/yous/vim-open-color) --- Vim color scheme using [Open Color](https://yeun.github.io/open-color/).
 - [Arcus Docker](https://github.com/yous/arcus-docker) --- Docker for [Arcus Cache Cloud](https://github.com/naver/arcus).
 - [TweetDeck Image Extension](https://github.com/yous/tweetdeck_image_extension) ([Chrome Web Store](https://chrome.google.com/webstore/detail/tweetdeck-image-extension/pnbmleebcgilngfaiijcijbogkeiglml)) --- Support additional image preview for [TweetDeck](https://tweetdeck.twitter.com).
 - [homebrew-fadedrubies](https://github.com/yous/homebrew-fadedrubies) --- Old Ruby formulae for the Homebrew package manager.
@@ -32,7 +32,7 @@ Chayoung You
 - [BaseHangul](https://github.com/yous/basehangul) --- Human-readable binary encoding, [BaseHangul](https://basehangul.github.io) for Ruby.
 - [Sawarineko](https://github.com/yous/sawarineko) --- Get your Nya!
 - [Dwaet](https://github.com/yous/dwaet) --- No doet, it's dwaet.
-- [YousList](https://github.com/yous/YousList) --- Block filter for Adblock Plus, uBlock Origin, uBlock and 1Blocker.
+- [YousList](https://github.com/yous/YousList) --- Block filter for Adblock Plus, uBlock Origin, uBlock, 1Blocker, AdAway, and AdGuard.
 - [pad_monster_book](https://github.com/yous/pad_monster_book) --- The monster book for Puzzle & Dragons.
 - [aheui.vim](https://github.com/yous/aheui.vim) --- Vim syntax highlighting for Aheui.
 - [lime](https://github.com/yous/lime) --- Simple standalone Zsh theme.
