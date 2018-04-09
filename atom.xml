@@ -5,7 +5,7 @@
   
   <link href="https://yous.be/atom.xml" rel="self" type="application/atom+xml" />
   <link href="https://yous.be/" rel="alternate" type="text/html" />
-  <updated>2018-04-08T06:45:32+00:00</updated>
+  <updated>2018-04-09T09:19:27+00:00</updated>
   <id>https://yous.be//</id>
 
   
@@ -30,7 +30,9 @@
       
       <title type="html">How to make a bootable USB with GRUB2 and ISO</title>
       
+      
       <link href="https://yous.be/2017/11/14/how-to-make-a-bootable-usb-with-grub2-and-iso/" rel="alternate" type="text/html" title="How to make a bootable USB with GRUB2 and ISO" />
+      
       <published>2017-11-14T03:23:14+00:00</published>
       <updated>2017-11-14T03:23:14+00:00</updated>
       <id>https://yous.be/2017/11/14/how-to-make-a-bootable-usb-with-grub2-and-iso</id>
@@ -288,7 +290,9 @@ under &lt;code class=&quot;highlighter-rouge&quot;&gt;/mnt/usb/elf/&lt;/code&gt;
       
       <title type="html">Pushing git repository to multiple remotes</title>
       
+      
       <link href="https://yous.be/2017/03/07/pushing-git-repository-to-multiple-remotes/" rel="alternate" type="text/html" title="Pushing git repository to multiple remotes" />
+      
       <published>2017-03-07T12:26:59+00:00</published>
       <updated>2017-03-07T12:26:59+00:00</updated>
       <id>https://yous.be/2017/03/07/pushing-git-repository-to-multiple-remotes</id>
@@ -398,7 +402,9 @@ git remote set-url &lt;span class=&quot;nt&quot;&gt;--add&lt;/span&gt; &lt;span 
       
       <title type="html">Boston Key Party CTF 2017: vimjail write-up</title>
       
+      
       <link href="https://yous.be/2017/03/01/boston-key-party-ctf-2017-vimjail-write-up/" rel="alternate" type="text/html" title="Boston Key Party CTF 2017: vimjail write-up" />
+      
       <published>2017-03-01T09:34:52+00:00</published>
       <updated>2017-03-01T09:34:52+00:00</updated>
       <id>https://yous.be/2017/03/01/boston-key-party-ctf-2017-vimjail-write-up</id>
@@ -573,7 +579,9 @@ that worked!&lt;/p&gt;
       
       <title type="html">33C3 CTF 2016: pdfmaker write-up</title>
       
+      
       <link href="https://yous.be/2017/02/20/33c3-ctf-2016-pdfmaker-write-up/" rel="alternate" type="text/html" title="33C3 CTF 2016: pdfmaker write-up" />
+      
       <published>2017-02-20T02:21:38+00:00</published>
       <updated>2017-02-20T02:21:38+00:00</updated>
       <id>https://yous.be/2017/02/20/33c3-ctf-2016-pdfmaker-write-up</id>
@@ -726,7 +734,9 @@ on compilation.&lt;/p&gt;
       
       <title type="html">HITCON CTF 2016: ROP write-up</title>
       
+      
       <link href="https://yous.be/2016/10/11/hitcon-ctf-2016-rop-write-up/" rel="alternate" type="text/html" title="HITCON CTF 2016: ROP write-up" />
+      
       <published>2016-10-11T08:25:35+00:00</published>
       <updated>2016-10-11T08:25:35+00:00</updated>
       <id>https://yous.be/2016/10/11/hitcon-ctf-2016-rop-write-up</id>
@@ -1315,7 +1325,9 @@ Congratz! flag is hitcon&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;ROP &lt;sp
       
       <title type="html">How to reset window size of Slack on Windows</title>
       
+      
       <link href="https://yous.be/2016/10/07/how-to-reset-window-size-of-slack-on-windows/" rel="alternate" type="text/html" title="How to reset window size of Slack on Windows" />
+      
       <published>2016-10-07T12:07:02+00:00</published>
       <updated>2016-10-07T12:07:02+00:00</updated>
       <id>https://yous.be/2016/10/07/how-to-reset-window-size-of-slack-on-windows</id>
@@ -1415,7 +1427,9 @@ like &lt;code class=&quot;highlighter-rouge&quot;&gt;C:\Users\{username}\AppData
       
       <title type="html">Unicode Adopt-a-Character</title>
       
+      
       <link href="https://yous.be/2016/04/20/unicode-adopt-a-character/" rel="alternate" type="text/html" title="Unicode Adopt-a-Character" />
+      
       <published>2016-04-20T16:25:37+00:00</published>
       <updated>2016-04-20T16:25:37+00:00</updated>
       <id>https://yous.be/2016/04/20/unicode-adopt-a-character</id>
@@ -1475,7 +1489,9 @@ adoptions of hangul character.&lt;/p&gt;
       
       <title type="html">Installing Ruby 1.8.7 on OS X El Capitan</title>
       
+      
       <link href="https://yous.be/2016/04/16/installing-ruby-1-8-7-on-os-x-el-capitan/" rel="alternate" type="text/html" title="Installing Ruby 1.8.7 on OS X El Capitan" />
+      
       <published>2016-04-16T13:08:13+00:00</published>
       <updated>2016-04-16T13:08:13+00:00</updated>
       <id>https://yous.be/2016/04/16/installing-ruby-1-8-7-on-os-x-el-capitan</id>
@@ -1611,7 +1627,9 @@ you don’t need tk, then try the following command:&lt;/p&gt;
       
       <title type="html">Switching RVM to chruby</title>
       
+      
       <link href="https://yous.be/2016/01/01/switching-rvm-to-chruby/" rel="alternate" type="text/html" title="Switching RVM to chruby" />
+      
       <published>2016-01-01T11:26:07+00:00</published>
       <updated>2016-01-01T11:26:07+00:00</updated>
       <id>https://yous.be/2016/01/01/switching-rvm-to-chruby</id>
@@ -1734,7 +1752,9 @@ manually with chruby commands like &lt;code class=&quot;highlighter-rouge&quot;&
       
       <title type="html">32C3 CTF 2015: libdroid Write-up</title>
       
+      
       <link href="https://yous.be/2015/12/30/32c3-ctf-2015-libdroid-write-up/" rel="alternate" type="text/html" title="32C3 CTF 2015: libdroid Write-up" />
+      
       <published>2015-12-30T16:59:51+00:00</published>
       <updated>2015-12-30T16:59:51+00:00</updated>
       <id>https://yous.be/2015/12/30/32c3-ctf-2015-libdroid-write-up</id>
@@ -2241,7 +2261,9 @@ flag within the application, just press &lt;code class=&quot;highlighter-rouge&q
       
       <title type="html">Moving Timezone to UTC in Jekyll</title>
       
+      
       <link href="https://yous.be/2015/09/05/moving-timezone-to-utc-in-jekyll/" rel="alternate" type="text/html" title="Moving Timezone to UTC in Jekyll" />
+      
       <published>2015-09-05T12:39:19+00:00</published>
       <updated>2015-09-05T12:39:19+00:00</updated>
       <id>https://yous.be/2015/09/05/moving-timezone-to-utc-in-jekyll</id>
@@ -2459,7 +2481,9 @@ using &lt;a href=&quot;https://github.com/jekyll/jekyll-redirect-from&quot;&gt;j
       
       <title type="html">Revive the Tmux Sessions</title>
       
+      
       <link href="https://yous.be/2015/05/08/revive-the-tmux-sessions/" rel="alternate" type="text/html" title="Revive the Tmux Sessions" />
+      
       <published>2015-05-08T00:36:46+00:00</published>
       <updated>2015-05-08T00:36:46+00:00</updated>
       <id>https://yous.be/2015/05/08/revive-the-tmux-sessions</id>
@@ -2542,7 +2566,9 @@ be sent to the tmux server process to recreate it.&lt;/p&gt;
       
       <title type="html">Using Pinpoint with Docker</title>
       
+      
       <link href="https://yous.be/2015/05/05/using-pinpoint-with-docker/" rel="alternate" type="text/html" title="Using Pinpoint with Docker" />
+      
       <published>2015-05-05T03:12:07+00:00</published>
       <updated>2015-05-05T03:12:07+00:00</updated>
       <id>https://yous.be/2015/05/05/using-pinpoint-with-docker</id>
@@ -2872,7 +2898,9 @@ Any issues and pull requests are welcome!&lt;/p&gt;</content>
       
       <title type="html">Comparing binary files</title>
       
+      
       <link href="https://yous.be/2015/03/03/comparing-binary-files/" rel="alternate" type="text/html" title="Comparing binary files" />
+      
       <published>2015-03-03T10:13:29+00:00</published>
       <updated>2015-03-03T10:13:29+00:00</updated>
       <id>https://yous.be/2015/03/03/comparing-binary-files</id>
@@ -2938,7 +2966,9 @@ Any issues and pull requests are welcome!&lt;/p&gt;</content>
       
       <title type="html">ChristmasCTF 2014 Write-up</title>
       
+      
       <link href="https://yous.be/2014/12/25/christmasctf-2014-write-up/" rel="alternate" type="text/html" title="ChristmasCTF 2014 Write-up" />
+      
       <published>2014-12-25T15:41:26+00:00</published>
       <updated>2014-12-25T15:41:26+00:00</updated>
       <id>https://yous.be/2014/12/25/christmasctf-2014-write-up</id>
@@ -3604,7 +3634,9 @@ Hint2: its IP Address in Decimal. therefore =&amp;gt; http://988087853/k3y.png a
       
       <title type="html">SECCON CTF 2014: Easy Cipher Write-up</title>
       
+      
       <link href="https://yous.be/2014/12/08/seccon-ctf-2014-easy-cipher-write-up/" rel="alternate" type="text/html" title="SECCON CTF 2014: Easy Cipher Write-up" />
+      
       <published>2014-12-08T15:11:30+00:00</published>
       <updated>2014-12-08T15:11:30+00:00</updated>
       <id>https://yous.be/2014/12/08/seccon-ctf-2014-easy-cipher-write-up</id>
@@ -3689,7 +3721,9 @@ Hint2: its IP Address in Decimal. therefore =&amp;gt; http://988087853/k3y.png a
       
       <title type="html">SECCON CTF 2014: QR (Easy) Write-up</title>
       
+      
       <link href="https://yous.be/2014/12/07/seccon-ctf-2014-qr-easy-write-up/" rel="alternate" type="text/html" title="SECCON CTF 2014: QR (Easy) Write-up" />
+      
       <published>2014-12-07T10:02:51+00:00</published>
       <updated>2014-12-07T10:02:51+00:00</updated>
       <id>https://yous.be/2014/12/07/seccon-ctf-2014-qr-easy-write-up</id>
@@ -3971,7 +4005,9 @@ but when I woke up, half my QR code was gone!”&lt;/p&gt;
       
       <title type="html">Automatically Quit Vim if Actual Files are Closed</title>
       
+      
       <link href="https://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed/" rel="alternate" type="text/html" title="Automatically Quit Vim if Actual Files are Closed" />
+      
       <published>2014-11-30T09:02:45+00:00</published>
       <updated>2014-11-30T09:02:45+00:00</updated>
       <id>https://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed</id>
@@ -4151,7 +4187,10 @@ You may want to close only the current tab with &lt;code class=&quot;highlighter
       
       <title type="html">On becoming an expert C programmer →</title>
       
-      <link href="https://yous.be/2014/10/26/on-becoming-an-expert-c-programmer/" rel="alternate" type="text/html" title="On becoming an expert C programmer" />
+      
+      <link href="http://www.isthe.com/chongo/tech/comp/c/expert.html" rel="alternate" type="text/html" />
+      <link href="https://yous.be/2014/10/26/on-becoming-an-expert-c-programmer/" rel="related" type="text/html" title="On becoming an expert C programmer" />
+      
       <published>2014-10-26T13:21:30+00:00</published>
       <updated>2014-10-26T13:21:30+00:00</updated>
       <id>https://yous.be/2014/10/26/on-becoming-an-expert-c-programmer</id>
@@ -4199,7 +4238,9 @@ You may want to close only the current tab with &lt;code class=&quot;highlighter
       
       <title type="html">Yet Another Hex Word</title>
       
+      
       <link href="https://yous.be/2014/09/20/yet-another-hex-word/" rel="alternate" type="text/html" title="Yet Another Hex Word" />
+      
       <published>2014-09-20T20:59:49+00:00</published>
       <updated>2014-09-20T20:59:49+00:00</updated>
       <id>https://yous.be/2014/09/20/yet-another-hex-word</id>
