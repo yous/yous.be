@@ -30,10 +30,7 @@ Chayoung You
 - [vanilli.sh](https://github.com/yous/vanilli.sh) --- A lightweight start point of shell configuration.
 - [Pinpoint Docker](https://github.com/yous/pinpoint-docker) --- Docker for [Pinpoint](https://github.com/naver/pinpoint).
 - [BaseHangul](https://github.com/yous/basehangul) --- Human-readable binary encoding, [BaseHangul](https://basehangul.github.io) for Ruby.
-- [Sawarineko](https://github.com/yous/sawarineko) --- Get your Nya!
-- [Dwaet](https://github.com/yous/dwaet) --- No doet, it's dwaet.
-- [YousList](https://github.com/yous/YousList) --- Block filter for Adblock Plus, uBlock Origin, uBlock, 1Blocker, AdAway, and AdGuard.
-- [pad_monster_book](https://github.com/yous/pad_monster_book) --- The monster book for Puzzle & Dragons.
+- [YousList](https://github.com/yous/YousList) --- Block filter for Adblock Plus, uBlock Origin, 1Blocker, AdAway, and AdGuard.
 - [aheui.vim](https://github.com/yous/aheui.vim) --- Vim syntax highlighting for Aheui.
 - [lime](https://github.com/yous/lime) --- Simple standalone Zsh theme.
 - [Raheui](https://github.com/yous/raheui) --- Aheui interpreter in Ruby.
@@ -51,11 +48,7 @@ Chayoung You
     What you see now. Hosted on [GitHub Pages](https://pages.github.com) and all
     articles are written using
     [Markdown](http://daringfireball.net/projects/markdown/). The source is
-    available in [GitHub repo](https://github.com/yous/yous.github.io).
-
-- [Yous Lyrics](http://lyrics.yous.be)
-
-    Favorite lyric quotes blog hosted on [Tumblr](https://www.tumblr.com).
+    available on [GitHub repository](https://github.com/yous/yous.github.io).
 
 ## <a id="experiences"></a>Experiences
 
@@ -65,6 +58,7 @@ Chayoung You
 - Web Developer, GoldSpoon, 2015.06--2016.07
 - Android Developer, [Tamseng](http://tamseng.co.kr), 2013.07--2014.12
 - KAIST CERT, 2012.01--2013.03
+- KAIST GoN, 2011--Current
 
 ## <a id="activities"></a>Activities
 
@@ -75,11 +69,10 @@ Chayoung You
 
 ## <a id="interests"></a>Interests
 
+- Real-time OS
+- Embedded system
 - [Ruby](https://www.ruby-lang.org)
-- [Android](http://www.android.com)
 - [Vim](http://www.vim.org)
-- Security
-    - [GoN](http://gon.kaist.ac.kr)
 
 ## <a id="education"></a>Education
 
@@ -98,6 +91,7 @@ Chayoung You
     - [A Regular Crossword](http://web.mit.edu/puzzle/www/2013/coinheist.com/rubik/a_regular_crossword/index.html)
     - [regexcrossword.com](http://regexcrossword.com)
 - Games
+    - [Hearthstone](https://playhearthstone.com)
     - [Super Hexagon](http://superhexagon.com)
     - [Monument Valley](http://www.monumentvalleygame.com)
     - [Portal 2](http://www.thinkwithportals.com)
