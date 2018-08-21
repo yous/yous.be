@@ -248,13 +248,13 @@ end</pre></noscript> <script src="https://gist.github.com/imathis/2219214.js"> <
 <span class="p">{</span>
   <span class="nb">chomp</span><span class="p">;</span>
   <span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="nb">map</span> <span class="p">{</span> <span class="nv">$max</span><span class="p">[</span><span class="nv">$_</span><span class="o">-&gt;</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="nv">$_</span><span class="o">-&gt;</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="k">if</span> <span class="nv">$_</span><span class="o">-&gt;</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">&gt;</span> <span class="p">(</span><span class="nv">$max</span><span class="p">[</span><span class="nv">$_</span><span class="o">-&gt;</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span> <span class="p">}</span>
+  <span class="sr">map { $max[$_-&gt;[1]] = $_-&gt;[0] if $_-&gt;[0] &gt; ($max</span><span class="p">[</span><span class="nv">$_</span><span class="o">-&gt;</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">||</span> <span class="mi">0</span><span class="p">)</span> <span class="p">}</span>
     <span class="p">(</span><span class="nb">map</span> <span class="p">{[</span><span class="nb">length</span> <span class="nv">$_</span><span class="p">,</span> <span class="nv">$i</span><span class="o">++</span><span class="p">]}</span> <span class="nb">split</span><span class="p">(</span><span class="nv">$delim</span><span class="p">));</span>
 <span class="p">}</span>
 <span class="nb">close</span> <span class="nv">F</span><span class="p">;</span>
 
 <span class="k">print</span> <span class="bp">STDERR</span> <span class="s">'Field width:   '</span><span class="p">,</span> <span class="nb">join</span><span class="p">(</span><span class="s">', '</span><span class="p">,</span> <span class="nv">@max</span><span class="p">),</span> <span class="s">"\n"</span><span class="p">;</span>
-<span class="k">print</span> <span class="bp">STDERR</span> <span class="nb">join</span><span class="p">(</span><span class="s">' '</span><span class="p">,</span> <span class="nb">map</span> <span class="p">{</span><span class="s">'-'</span> <span class="nv">x</span> <span class="nv">$_</span><span class="p">}</span> <span class="nv">@max</span><span class="p">);</span>
+<span class="k">print</span> <span class="bp">STDERR</span> <span class="nb">join</span><span class="p">(</span><span class="s">' '</span><span class="p">,</span> <span class="sr">map {'-' x $_} @max</span><span class="p">);</span>
 
 <span class="c1"># second pass</span>
 <span class="nb">open</span> <span class="nv">F</span><span class="p">,</span> <span class="s">"&lt;$ARGV[0]"</span> <span class="ow">or</span> <span class="nb">die</span><span class="p">;</span>
@@ -262,9 +262,9 @@ end</pre></noscript> <script src="https://gist.github.com/imathis/2219214.js"> <
   <span class="p">{</span>
   <span class="nb">chomp</span><span class="p">;</span>
   <span class="nv">$i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span>
-  <span class="nb">map</span> <span class="p">{</span> <span class="nb">printf</span><span class="p">(</span><span class="s">"%-$max[$_-&gt;[1]]s "</span><span class="p">,</span> <span class="nv">$_</span><span class="o">-&gt;</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="p">}</span>
-    <span class="p">(</span><span class="nb">map</span> <span class="p">{[</span><span class="nv">$_</span><span class="p">,</span> <span class="nv">$i</span><span class="o">++</span><span class="p">]}</span> <span class="nb">split</span><span class="p">(</span><span class="nv">$delim</span><span class="p">));</span>
-  <span class="k">print</span> <span class="s">"\n"</span><span class="p">;</span>
+  <span class="sr">map { printf("%-$max</span><span class="p">[</span><span class="nv">$_</span><span class="o">-&gt;</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span><span class="nv">s</span> <span class="s">", $_-&gt;[0]) }
+    (map {[$_, $i++]} split($delim));
+  print "</span><span class="o">\</span><span class="nv">n</span><span class="err">"</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="nb">close</span> <span class="nv">F</span><span class="p">;</span>
 </code></pre></div></div><div class="language-java highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">import</span> <span class="nn">java.util.Map</span><span class="o">;</span>
