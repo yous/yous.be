@@ -5,7 +5,7 @@
   
   <link href="https://yous.be/atom.xml" rel="self" type="application/atom+xml" />
   <link href="https://yous.be/" rel="alternate" type="text/html" />
-  <updated>2018-08-21T16:50:56+00:00</updated>
+  <updated>2018-09-05T04:52:52+00:00</updated>
   <id>https://yous.be//</id>
 
   
@@ -2274,7 +2274,7 @@ content is released based on KST timezone, which is GMT+9.&lt;/p&gt;
 &lt;p&gt;Right after that I tried to deploy my blog through Travis CI, I realized that
 something went wrong. Travis CI uses UTC by default, so the URL of every post
 between 0AM and 9AM was shifted by one day backward. I
-&lt;a href=&quot;https://github.com/yous/yous.github.io/commit/0bd96e27320a82c9fee0d1413c744300d1e1af08&quot;&gt;had to modify&lt;/a&gt;
+&lt;a href=&quot;https://github.com/yous/yous.be/commit/0bd96e27320a82c9fee0d1413c744300d1e1af08&quot;&gt;had to modify&lt;/a&gt;
 &lt;code class=&quot;highlighter-rouge&quot;&gt;/etc/timezone&lt;/code&gt; or set environment variable &lt;code class=&quot;highlighter-rouge&quot;&gt;TZ&lt;/code&gt; to restore the URLs.&lt;/p&gt;
 
 &lt;p&gt;Yes, this can solve the problem I faced. But should I really use the KST for
@@ -2372,7 +2372,7 @@ template appropriately.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;Update&lt;/strong&gt;: Jekyll released 3.0.0, and there were some changes on
 &lt;code class=&quot;highlighter-rouge&quot;&gt;Jekyll::Post&lt;/code&gt;. Following code is updated version of spec code. Also you can
 track the file on
-&lt;a href=&quot;https://github.com/yous/yous.github.io/blob/source/spec/site_spec.rb&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&quot;https://github.com/yous/yous.be/blob/source/spec/site_spec.rb&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt;
 
 &lt;div class=&quot;language-ruby highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;no&quot;&gt;RSpec&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;::&lt;/span&gt;&lt;span class=&quot;no&quot;&gt;Matchers&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nf&quot;&gt;define&lt;/span&gt; &lt;span class=&quot;ss&quot;&gt;:be_utc_post&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
   &lt;span class=&quot;n&quot;&gt;match&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;&lt;span class=&quot;n&quot;&gt;actual&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;|&lt;/span&gt;
@@ -2445,7 +2445,7 @@ Remained things are boring file renames and making backward redirect links,
 using &lt;a href=&quot;https://github.com/jekyll/jekyll-redirect-from&quot;&gt;jekyll-redirect-from&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;You can see the full changes on
-&lt;a href=&quot;https://github.com/yous/yous.github.io/commit/4aae28ea371af67cb099a249f2c4f7a5bb1be723&quot;&gt;this commit&lt;/a&gt;.&lt;/p&gt;</content>
+&lt;a href=&quot;https://github.com/yous/yous.be/commit/4aae28ea371af67cb099a249f2c4f7a5bb1be723&quot;&gt;this commit&lt;/a&gt;.&lt;/p&gt;</content>
 
       
       
