@@ -30,16 +30,16 @@ I usually use Tomorrow Night Eighties of [Tomorrow Theme][] in [Vim][], [iTerm2]
 ![Tomorrow Night Blue](/images/2013/12/04/Tomorrow-Night-Blue.png "Tomorrow Night Blue")
 ![Tomorrow Night Bright](/images/2013/12/04/Tomorrow-Night-Bright.png "Tomorrow Night Bright")
 
-So I made scss files for Octopress that overrides colors of `.highlight` and `.gist` class elements. Usual code blocks and embedded gists are properly highlighted. The [demo][Syntax Highlighting Test] and the [code][yous.github.io/sass/custom] are available.
+So I made scss files for Octopress that overrides colors of `.highlight` and `.gist` class elements. Usual code blocks and embedded gists are properly highlighted. The [demo][Syntax Highlighting Test] and the [code][yous.be/sass/custom] are available.
 
 [Syntax Highlighting Test]: /2013/12/03/syntax-highlighting-test/
-[yous.github.io/sass/custom]: https://github.com/yous/yous.github.io/tree/octopress/sass/custom
+[yous.be/sass/custom]: https://github.com/yous/yous.be/tree/octopress/sass/custom
 
 <!-- more -->
 
 ## <a id="usage"></a>Usage
 
-1. Download `tomorrow` folder and `_tomorrow.scss` from [GitHub][yous.github.io/sass/custom].
+1. Download `tomorrow` folder and `_tomorrow.scss` from [GitHub][yous.be/sass/custom].
 2. Put files to `sass/custom` and enable just one `@import` line of `_tomorrow.scss`. For example, if you want to use Tomorrow Night Eighties theme, make `sass/custom/_tomorrow.scss`:
 
    ``` scss

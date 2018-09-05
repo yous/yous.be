@@ -145,4 +145,4 @@ For more information, see [A Git Horror Story: Repository Integrity With Signed 
 
 ## <a id="contact-me"></a>Contact Me
 
-So, now feel free to contact me via [keybase.io/yous][] and other <a href="{{ root_url }}/about">contacts</a>. The source of this site is available on [GitHub](https://github.com/yous/yous.github.io), forks and pull requests are welcome!
+So, now feel free to contact me via [keybase.io/yous][] and other <a href="{{ root_url }}/about">contacts</a>. The source of this site is available on [GitHub](https://github.com/yous/yous.be), forks and pull requests are welcome!

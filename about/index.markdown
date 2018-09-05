@@ -43,12 +43,12 @@ Chayoung You
 
 ## <a id="blog"></a>Blog
 
-- [Yous]({{ site.url }})
+- [yous.be]({{ site.url }})
 
     What you see now. Hosted on [GitHub Pages](https://pages.github.com) and all
     articles are written using
     [Markdown](http://daringfireball.net/projects/markdown/). The source is
-    available on [GitHub repository](https://github.com/yous/yous.github.io).
+    available on [GitHub repository](https://github.com/yous/yous.be).
 
 ## <a id="experiences"></a>Experiences
 

@@ -1,12 +1,12 @@
-# Yous
+# yous.be
 
-[![Build Status](https://travis-ci.org/yous/yous.github.io.svg?branch=source)](https://travis-ci.org/yous/yous.github.io)
+[![Build Status](https://travis-ci.org/yous/yous.be.svg?branch=source)](https://travis-ci.org/yous/yous.be)
 
 Blog for hackers.
 
 ## History
 
-See [octopress branch](https://github.com/yous/yous.github.io/tree/octopress) for source of the previous Octopress blog.
+See [octopress branch](https://github.com/yous/yous.be/tree/octopress) for source of the previous Octopress blog.
 
 ## License
 

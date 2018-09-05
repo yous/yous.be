@@ -16,7 +16,7 @@ content is released based on KST timezone, which is GMT+9.
 Right after that I tried to deploy my blog through Travis CI, I realized that
 something went wrong. Travis CI uses UTC by default, so the URL of every post
 between 0AM and 9AM was shifted by one day backward. I
-[had to modify](https://github.com/yous/yous.github.io/commit/0bd96e27320a82c9fee0d1413c744300d1e1af08)
+[had to modify](https://github.com/yous/yous.be/commit/0bd96e27320a82c9fee0d1413c744300d1e1af08)
 `/etc/timezone` or set environment variable `TZ` to restore the URLs.
 
 Yes, this can solve the problem I faced. But should I really use the KST for
@@ -115,7 +115,7 @@ template appropriately.
 **Update**: Jekyll released 3.0.0, and there were some changes on
 `Jekyll::Post`. Following code is updated version of spec code. Also you can
 track the file on
-[GitHub](https://github.com/yous/yous.github.io/blob/source/spec/site_spec.rb).
+[GitHub](https://github.com/yous/yous.be/blob/source/spec/site_spec.rb).
 
 ``` ruby
 RSpec::Matchers.define :be_utc_post do
@@ -187,4 +187,4 @@ Remained things are boring file renames and making backward redirect links,
 using [jekyll-redirect-from](https://github.com/jekyll/jekyll-redirect-from).
 
 You can see the full changes on
-[this commit](https://github.com/yous/yous.github.io/commit/4aae28ea371af67cb099a249f2c4f7a5bb1be723).
+[this commit](https://github.com/yous/yous.be/commit/4aae28ea371af67cb099a249f2c4f7a5bb1be723).
