@@ -53,8 +53,8 @@ Chayoung You
 ## <a id="experiences"></a>Experiences
 
 - Researcher, [RTst](http://rtst.co.kr), 2017.02--Current
-- Korean Translator Moderator, [Twitter](https://twitter.com), 2016.01--Current
-- Freelance Translator, [Lionbridge](http://www.lionbridge.com), 2015.11--Current
+- Korean Translator Moderator, [Twitter](https://twitter.com), 2016.01--2017.11
+- Freelance Translator, [Lionbridge](http://www.lionbridge.com), 2015.11--2018.01
 - Web Developer, GoldSpoon, 2015.06--2016.07
 - Android Developer, [Tamseng](http://tamseng.co.kr), 2013.07--2014.12
 - KAIST CERT, 2012.01--2013.03
@@ -76,7 +76,7 @@ Chayoung You
 
 ## <a id="education"></a>Education
 
-- [KAIST](http://www.kaist.ac.kr), Undergraduate of Mathematical Sciences and Computer Science, 2011--2017
+- [KAIST](http://www.kaist.ac.kr), Bachelor of Science in Mathematical Sciences and Computer Science, 2011--2017
 
 ## <a id="likes"></a>Likes
 
