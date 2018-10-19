@@ -167,8 +167,8 @@ end</pre></noscript> <script src="https://gist.github.com/imathis/2219214.js"> <
                     <span class="s2">"Previous settings recorded in ~/tmp/crontab-conflict-arch."</span>
         <span class="k">fi</span>
     <span class="p">;;</span>
-</code></pre></div></div><div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c"># test python (sample from offlineimap)</span>
-
+</code></pre></div></div><div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># test python (sample from offlineimap)
+</span>
 <span class="k">class</span> <span class="nc">ExitNotifyThread</span><span class="p">(</span><span class="n">Thread</span><span class="p">):</span>
     <span class="s">"""This class is designed to alert a "monitor" to the fact that a thread has
     exited and to provide for the ability for it to find out why."""</span>
@@ -176,8 +176,8 @@ end</pre></noscript> <script src="https://gist.github.com/imathis/2219214.js"> <
         <span class="k">global</span> <span class="n">exitthreads</span><span class="p">,</span> <span class="n">profiledir</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">threadid</span> <span class="o">=</span> <span class="n">thread</span><span class="o">.</span><span class="n">get_ident</span><span class="p">()</span>
         <span class="k">try</span><span class="p">:</span>
-            <span class="k">if</span> <span class="ow">not</span> <span class="n">profiledir</span><span class="p">:</span>          <span class="c"># normal case</span>
-                <span class="n">Thread</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">profiledir</span><span class="p">:</span>          <span class="c1"># normal case
+</span>                <span class="n">Thread</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="kn">import</span> <span class="nn">cProfile</span> <span class="k">as</span> <span class="n">profile</span>
