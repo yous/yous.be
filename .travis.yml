@@ -3,24 +3,23 @@ sudo: false
 cache: bundler
 rvm:
   - 2.5.3
-env:
-  global:
-    - secure: "VXyH6cv6n1aFDxpZqSknZuA9rxrPOlBenGgNpmO9oU4IiTpswW0ZzcY1lDbjw3fDMYhwW/6SsyPiWdpEK4nnKRmRLtwNU3qJLjyi9eICKegMaQ46+kBdycIOoUkAAyM4SZS9wEB9uEfEn/sk+zqXmuoaFgsZmLyB8+ETvEayp1s="
 before_install:
   - gem update --system
   - gem install bundler
-before_script:
-  - git config --global user.name "$(git --no-pager show --no-patch --format='%an')"
-  - git config --global user.email "$(git --no-pager show --no-patch --format='%ae')"
 script:
-  - git clone -b master --depth 1 "https://${TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git" _site >/dev/null 2>&1
-  - rm -r _site/*
+  - find _site -mindepth 1 -delete
   - bundle exec rake spec
-after_success:
-  - cd _site
-  - git add -A
-  - git commit -m "Updated to $(git rev-parse --short $TRAVIS_COMMIT) at $(date -u +'%Y-%m-%d %H:%M:%S %Z')"
-  - git push "https://${TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git" master >/dev/null 2>&1
+  - find _site -mindepth 1 -delete
+  - bundle exec jekyll build
 branches:
   only:
     - source
+deploy:
+  provider: pages
+  skip-cleanup: true
+  github-token: $GITHUB_TOKEN  # Set in the settings page of your repository, as a secure variable
+  keep-history: true
+  local-dir: _site
+  target-branch: master
+  on:
+    branch: source
