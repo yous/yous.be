@@ -53,7 +53,7 @@ So here is a way to resetting the window size of Slack.
    value of `windowSettings`, application may crash.
 6. Open Slack again. It will set the default window size automatically.
 
-### Slack 2.4.1
+### Slack 2.4.1, 3.3.3
 
 With updates of Slack, settings related to window were separated and moved to
 another location. Here is a way to resetting the window size:
