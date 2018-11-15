@@ -14,4 +14,4 @@ external-url: http://www.isthe.com/chongo/tech/comp/c/expert.html
 >
 > The Writer asked:
 >
-> > ``I just recently visited your website ... Just wanted to say greetings and ask a simple question: Do you think I stand a chance in the C programming field if I keep it up? Tell me what I should do in order to keep strong feelings towards C.''
+> > \`\`I just recently visited your website ... Just wanted to say greetings and ask a simple question: Do you think I stand a chance in the C programming field if I keep it up? Tell me what I should do in order to keep strong feelings towards C.\'\'

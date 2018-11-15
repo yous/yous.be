@@ -70,7 +70,7 @@ comments: false
 63. Double K --- Ink Music
 64. Overclass --- Love Songs
 65. Nuol --- Instrumental of 'The Mission' 'Humanoid / Hypnotica'
-66. JA --- &rsquo;90 Director's cut
+66. JA --- ’90 Director's cut
 67. 화나 --- Brainstorming
 68. Supreme Team --- Spin Off
 69. B-Free --- Road to FREEDUMB the MIXTAPE
@@ -243,7 +243,7 @@ comments: false
 236. Drunken Tiger --- 살자 (THE CURE)
 237. ヱヴァンゲリヲン新劇場版:序 オリジナルサウンドトラック
 238. ヱヴァンゲリヲン新劇場版:破 オリジナルサウンドトラック SPECIAL EDITION
-239. Shiro SAGISU Music from“EVANGELION: 3.0"YOU CAN(NOT)REDO.
+239. Shiro SAGISU Music from“EVANGELION: 3.0”YOU CAN(NOT)REDO.
 240. Reddy --- Commitment
 241. IU --- Modern Times
 242. Arctic Monkeys --- AM
@@ -344,7 +344,7 @@ comments: false
 337. amazarashi --- 夕日信仰ヒガシズム
 338. Verbal Jint --- Go Hard Part.1 : 양가치
 339. ZICO --- Gallery
-340. Illinit --- Made in &rsquo;98
+340. Illinit --- Made in ’98
 341. BUMKEY --- U-Turn
 342. ZICO --- ZICO SPECIAL EDITION
 343. 넉살 --- 작은 것들의 신
