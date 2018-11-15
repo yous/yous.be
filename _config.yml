@@ -46,6 +46,7 @@ plugins:
 
 # Build settings
 markdown: kramdown
+highlighter: rouge
 excerpt_separator: "<!-- more -->"
 sass:
   style: compressed
@@ -58,12 +59,17 @@ feed:
   path: atom.xml
 
 # Markdown settings
+# See https://kramdown.gettalong.org/options.html.
 kramdown:
+  auto_id_stripping: true
   auto_ids: false
   enable_coderay: false
   entity_output: as_char
   footnote_nr: 1
-  smart_quotes: lsquo,rsquo,ldquo,rdquo
+  gfm_quirks: [paragraph_end]
+  hard_wrap: false
+  input: GFM
+  smart_quotes: [lsquo, rsquo, ldquo, rdquo]
   toc_levels: 1..6
 
 redcarpet:

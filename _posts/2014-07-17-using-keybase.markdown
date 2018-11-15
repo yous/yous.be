@@ -83,6 +83,7 @@ Your decision? 5
 Do you really want to set this key to ultimate trust? (y/N) y
 gpg> save
 ```
+
 ## <a id="signing-commits"></a>Signing Commits
 
 All the crypto of Keybase is performed with GPG, you can sign your tags and your commits. To setup your signing key, you need to get your key id by:
