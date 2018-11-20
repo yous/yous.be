@@ -397,3 +397,8 @@ comments: false
 390. Epik High --- We've done something wonderful
 391. Epik High --- LOST MAP #002
 392. Zion.T --- ZZZ
+393. Drunken Tiger --- Rebirth of Tiger JK
+394. 장기하와 얼굴들 --- Mono
+395. The Quiett --- Millionaire Poetry
+396. The Quiett --- Glow Forever
+397. 새소년 --- 여름깃
