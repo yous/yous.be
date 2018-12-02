@@ -5,7 +5,7 @@
   
   <link href="https://yous.be/atom.xml" rel="self" type="application/atom+xml" />
   <link href="https://yous.be/" rel="alternate" type="text/html" />
-  <updated>2018-12-01T02:09:08+00:00</updated>
+  <updated>2018-12-02T10:47:48+00:00</updated>
   <id>https://yous.be//</id>
 
   
@@ -24,6 +24,236 @@
     </author>
   
 
+  
+  
+    <entry>
+      
+      <title type="html">How to open binary plist files using vim-plist</title>
+      
+      
+      <link href="https://yous.be/2018/12/02/how-to-open-binary-plist-files-using-vim-plist/" rel="alternate" type="text/html" title="How to open binary plist files using vim-plist" />
+      
+      <published>2018-12-02T08:42:47+00:00</published>
+      <updated>2018-12-02T08:42:47+00:00</updated>
+      <id>https://yous.be/2018/12/02/how-to-open-binary-plist-files-using-vim-plist</id>
+      <content type="html" xml:base="https://yous.be/2018/12/02/how-to-open-binary-plist-files-using-vim-plist/">&lt;p&gt;&lt;img src=&quot;/images/2018/12/02/plist.png&quot; alt=&quot;Vim editing a binary plist file&quot; title=&quot;Vim editing a binary plist file&quot; /&gt;&lt;/p&gt;
+
+&lt;p&gt;Using macOS, you may have had experiences of handling plist files. For example,
+&lt;code class=&quot;highlighter-rouge&quot;&gt;~/Library/Preferences/.GlobalPreferences.plist&lt;/code&gt; file holds some configurations
+of macOS. When you type &lt;code class=&quot;highlighter-rouge&quot;&gt;defaults write -g ApplePressAndHoldEnabled -bool false&lt;/code&gt;
+on terminal, the following lines are added to &lt;code class=&quot;highlighter-rouge&quot;&gt;.GlobalPreferences.plist&lt;/code&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;language-xml highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nt&quot;&gt;&amp;lt;key&amp;gt;&lt;/span&gt;ApplePressAndHoldEnabled&lt;span class=&quot;nt&quot;&gt;&amp;lt;/key&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;nt&quot;&gt;&amp;lt;false/&amp;gt;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;So when you dig down the preferences or resources of macOS system, you’ll meet
+plist files.&lt;/p&gt;
+
+&lt;h2&gt;vim-plist&lt;/h2&gt;
+
+&lt;p&gt;darfink’s &lt;a href=&quot;https://github.com/darfink/vim-plist&quot;&gt;vim-plist&lt;/a&gt; plugin handles
+*.plist files quite well. A plist file is in one of three formats; json,
+binary, xml. macOS is bundled with the &lt;code class=&quot;highlighter-rouge&quot;&gt;plutil&lt;/code&gt; command that can convert a plist
+file from one format to another. The plugin also uses &lt;code class=&quot;highlighter-rouge&quot;&gt;plutil&lt;/code&gt; to handle read
+and write of plist files.&lt;/p&gt;
+
+&lt;p&gt;The plugin registers autocmd for &lt;a href=&quot;https://github.com/darfink/vim-plist/blob/67280fb32b88ad75e255068dfe69b9f069421618/plugin/plist.vim#L19-L20&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;BufReadCmd&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;FileReadCmd&lt;/code&gt;&lt;/a&gt;
+to read *.plist files, &lt;a href=&quot;https://github.com/darfink/vim-plist/blob/67280fb32b88ad75e255068dfe69b9f069421618/plugin/plist.vim#L16&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;BufWriteCmd&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;FileWriteCmd&lt;/code&gt;&lt;/a&gt;
+to write *.plist files. &lt;code class=&quot;highlighter-rouge&quot;&gt;BufRead&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;BufWrite&lt;/code&gt; events are triggered &lt;em&gt;after&lt;/em&gt;
+reading the file into the buffer, but &lt;code class=&quot;highlighter-rouge&quot;&gt;BufReadCmd&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;BufWriteCmd&lt;/code&gt; events are
+triggered &lt;em&gt;before&lt;/em&gt; reading the file, and that autocmd should handle actual read
+and write operation of that file. These differences make handling plist files
+more complex.&lt;/p&gt;
+
+&lt;h2&gt;Problems&lt;/h2&gt;
+
+&lt;h3&gt;*.strings files&lt;/h3&gt;
+
+&lt;p&gt;Overall, the plugin is quite useful and seamless. But recently, I found some
+*.strings plist files under &lt;code class=&quot;highlighter-rouge&quot;&gt;/System/Library&lt;/code&gt;, almost of them in binary
+formats. The plugin registers autocmds only for *.plist files, so there is no
+chance to convert them to readable formats.&lt;/p&gt;
+
+&lt;p&gt;At first, I’ve considered to register an autocmd for *.strings file, but I’m
+not sure about that &lt;code class=&quot;highlighter-rouge&quot;&gt;.strings&lt;/code&gt; extension is only used for plist file, and also
+there can be other extensions with plist contents (for example, *.nib files are
+plist, too).&lt;/p&gt;
+
+&lt;h3&gt;Saving a new file&lt;/h3&gt;
+
+&lt;p&gt;darfink’s vim-plist checks &lt;code class=&quot;highlighter-rouge&quot;&gt;g:plist_save_format&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;b:plist_save_format&lt;/code&gt;
+before writing to plist files. The buffer-local variable is set when the plugin
+reads the file and detect the format. The global one is set by user, and
+overrides buffer-local one.&lt;/p&gt;
+
+&lt;p&gt;I don’t want the plugin to override the content of plist files with different
+format, so I haven’t set &lt;code class=&quot;highlighter-rouge&quot;&gt;g:plist_save_format&lt;/code&gt;. Then the problem raised. Open a
+new plist file, like &lt;code class=&quot;highlighter-rouge&quot;&gt;vim test.plist&lt;/code&gt;, and save it after editing. Then the
+plugin didn’t set &lt;code class=&quot;highlighter-rouge&quot;&gt;b:plist_save_format&lt;/code&gt; because it’s a new file, and I also
+didn’t set &lt;code class=&quot;highlighter-rouge&quot;&gt;g:plist_save_format&lt;/code&gt;, so the plugin don’t know the format to use for
+saving.&lt;/p&gt;
+
+&lt;p&gt;I think this problem can be solved by patching the plugin, but its last commit
+is pushed in 2014, which makes me use the faster way.&lt;/p&gt;
+
+&lt;h2&gt;Solving the problems with .vimrc&lt;/h2&gt;
+
+&lt;h3&gt;Binary plist files&lt;/h3&gt;
+
+&lt;p&gt;I decided to check if the file is binary plist file or not, and load with
+functions of vim-plist plugin. The checking process is easy, because the file
+starts with &lt;code class=&quot;highlighter-rouge&quot;&gt;bplist&lt;/code&gt;. At first, I think it’s okay to register an autocmd for
+&lt;code class=&quot;highlighter-rouge&quot;&gt;BufReadCmd&lt;/code&gt; because calling functions of the plugin should be easy. So my first
+try was:&lt;/p&gt;
+
+&lt;div class=&quot;language-vim highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;s:DetectBinaryPlist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;filename &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; expand&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'&amp;lt;afile&amp;gt;'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; filereadable&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;filename&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;content &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; readfile&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;l&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;filename&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'b'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; len&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;content&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt; &amp;amp;&amp;amp; content&lt;span class=&quot;p&quot;&gt;[&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;]&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=~&lt;/span&gt;# &lt;span class=&quot;s1&quot;&gt;'^bplist'&lt;/span&gt;
+      &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;return&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;0&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;endfunction&lt;/span&gt;
+autocmd &lt;span class=&quot;nb&quot;&gt;BufReadCmd&lt;/span&gt; *
+&lt;span class=&quot;se&quot;&gt;      \&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;s:DetectBinaryPlist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;      \&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; plist#Read&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;      \&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; plist#ReadPost&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;      \&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Can you see the problem? This makes Vim returns an empty buffer when it reads a
+file that’s not a binary plist file. As I said above, &lt;code class=&quot;highlighter-rouge&quot;&gt;BufReadCmd&lt;/code&gt; should handle
+actual read and write operation of the file. If it’s not a binary plist file,
+Vim won’t read anything according to this code.&lt;/p&gt;
+
+&lt;p&gt;So I changed &lt;code class=&quot;highlighter-rouge&quot;&gt;BufReadCmd&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;BufRead&lt;/code&gt;. This event happens &lt;em&gt;after&lt;/em&gt; reading the
+file into the buffer, so I have to empty the buffer.&lt;/p&gt;
+
+&lt;div class=&quot;language-vim highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;s:ConvertBinaryPlist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;silent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;!&lt;/span&gt; execute &lt;span class=&quot;s1&quot;&gt;'%d'&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; plist#Read&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; plist#ReadPost&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;endfunction&lt;/span&gt;
+autocmd &lt;span class=&quot;nb&quot;&gt;BufRead&lt;/span&gt; *
+&lt;span class=&quot;se&quot;&gt;      \&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; getline&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=~&lt;/span&gt;# &lt;span class=&quot;s1&quot;&gt;'^bplist'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;      \&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;s:ConvertBinaryPlist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;      \&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;getline(1)&lt;/code&gt; reads the first line of the buffer, and we can call it because
+it’s after reading the file. It’s working quite well, so at that time, I wanted
+to bring the writing functionality also.&lt;/p&gt;
+
+&lt;div class=&quot;language-vim highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;s:ConvertBinaryPlist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;silent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;!&lt;/span&gt; execute &lt;span class=&quot;s1&quot;&gt;'%d'&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; plist#Read&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; plist#ReadPost&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+
+  autocmd&lt;span class=&quot;p&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;BufWriteCmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;FileWriteCmd&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;buffer&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+  autocmd &lt;span class=&quot;nb&quot;&gt;BufWriteCmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;FileWriteCmd&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;buffer&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;        \&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; plist#Write&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;endfunction&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Note that the &lt;code class=&quot;highlighter-rouge&quot;&gt;autocmd!&lt;/code&gt; line means deleting every other &lt;code class=&quot;highlighter-rouge&quot;&gt;BufWriteCmd&lt;/code&gt; and
+&lt;code class=&quot;highlighter-rouge&quot;&gt;FileWriteCmd&lt;/code&gt; autocmds for that buffer, and the second line registers
+&lt;code class=&quot;highlighter-rouge&quot;&gt;BufWriteCmd&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;FileWriteCmd&lt;/code&gt; for that buffer.&lt;/p&gt;
+
+&lt;p&gt;But when I saved after editing a *.strings file, I saw this error message:&lt;/p&gt;
+
+&lt;div class=&quot;highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&amp;lt;stdin&amp;gt;: Property List error: Unable to convert string to correct encoding / JSON error: JSON text did not start with array or object and option to allow fragments not set.
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;After poking around, I found that the &lt;code class=&quot;highlighter-rouge&quot;&gt;fileencoding&lt;/code&gt; is set to &lt;code class=&quot;highlighter-rouge&quot;&gt;latin1&lt;/code&gt;. The
+original file is binary and we just replaced the contents of the buffer, the
+&lt;code class=&quot;highlighter-rouge&quot;&gt;fileencoding&lt;/code&gt; was not properly set. So I just set it to UTF-8.&lt;/p&gt;
+
+&lt;div class=&quot;language-vim highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;s:ConvertBinaryPlist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;silent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;!&lt;/span&gt; execute &lt;span class=&quot;s1&quot;&gt;'%d'&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; plist#Read&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; plist#ReadPost&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; fileencoding&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;utf&lt;span class=&quot;m&quot;&gt;-8&lt;/span&gt;
+
+  autocmd&lt;span class=&quot;p&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;BufWriteCmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;FileWriteCmd&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;buffer&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+  autocmd &lt;span class=&quot;nb&quot;&gt;BufWriteCmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;FileWriteCmd&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;buffer&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;        \&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; plist#Write&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;endfunction&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;h3&gt;Saving a new file&lt;/h3&gt;
+
+&lt;p&gt;It’s simple:&lt;/p&gt;
+
+&lt;div class=&quot;language-vim highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;autocmd &lt;span class=&quot;nb&quot;&gt;BufNewFile&lt;/span&gt; *&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;plist
+&lt;span class=&quot;se&quot;&gt;      \&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;!&lt;/span&gt;get&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'plist_original_format'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;      \&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;b:plist_original_format&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'xml'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;      \&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;We don’t write binary file by our own hands, so a new plist file would be in xml
+format.&lt;/p&gt;
+
+&lt;h2&gt;Conclusion&lt;/h2&gt;
+
+&lt;p&gt;So this is the complete part of my .vimrc for binary plist files:&lt;/p&gt;
+
+&lt;div class=&quot;language-vim highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;s:ConvertBinaryPlist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;silent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;!&lt;/span&gt; execute &lt;span class=&quot;s1&quot;&gt;'%d'&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; plist#Read&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; plist#ReadPost&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; fileencoding&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;utf&lt;span class=&quot;m&quot;&gt;-8&lt;/span&gt;
+
+  autocmd&lt;span class=&quot;p&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;BufWriteCmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;FileWriteCmd&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;buffer&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+  autocmd &lt;span class=&quot;nb&quot;&gt;BufWriteCmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;FileWriteCmd&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;buffer&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;        \&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; plist#Write&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;endfunction&lt;/span&gt;
+autocmd &lt;span class=&quot;nb&quot;&gt;BufRead&lt;/span&gt; *
+&lt;span class=&quot;se&quot;&gt;      \&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; getline&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=~&lt;/span&gt;# &lt;span class=&quot;s1&quot;&gt;'^bplist'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;      \&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;s:ConvertBinaryPlist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;      \&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt;
+autocmd &lt;span class=&quot;nb&quot;&gt;BufNewFile&lt;/span&gt; *&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;plist
+&lt;span class=&quot;se&quot;&gt;      \&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;!&lt;/span&gt;get&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'plist_original_format'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;      \&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;b:plist_original_format&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'xml'&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;
+&lt;span class=&quot;se&quot;&gt;      \&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;It’s also available on &lt;a href=&quot;https://github.com/yous/dotfiles/blob/ab9bf598d5bdb7c8d83a52f0ce18c66101db857c/vimrc#L1420-L1438&quot;&gt;GitHub&lt;/a&gt;,
+you can visit my &lt;a href=&quot;https://github.com/yous/dotfiles&quot;&gt;dotfiles&lt;/a&gt; repository!&lt;/p&gt;</content>
+
+      
+      
+      
+      
+      
+
+      
+        <author>
+            <name>Yous</name>
+          
+          
+        </author>
+      
+
+      
+        <category term="Vim" />
+      
+
+      
+
+      
+        <summary type="html">Using macOS, you may have had experiences of handling plist files. For example, ~/Library/Preferences/.GlobalPreferences.plist file holds some configurations of macOS. When you type defaults write -g ApplePressAndHoldEnabled -bool false on terminal, the following lines are added to .GlobalPreferences.plist: &amp;lt;key&amp;gt;ApplePressAndHoldEnabled&amp;lt;/key&amp;gt; &amp;lt;false/&amp;gt; So when you dig down the preferences or resources of macOS system, you’ll meet plist files. vim-plist darfink’s vim-plist plugin handles *.plist files quite well. A plist file is in one of three formats; json, binary, xml. macOS is bundled with the plutil command that can convert a plist file from one format to another. The plugin also uses plutil to handle read and write of plist files. The plugin registers autocmd for BufReadCmd and FileReadCmd to read *.plist files, BufWriteCmd and FileWriteCmd to write *.plist files. BufRead and BufWrite events are triggered after reading the file into the buffer, but BufReadCmd and BufWriteCmd events are triggered before reading the file, and that autocmd should handle actual read and write operation of that file. These differences make handling plist files more complex. Problems *.strings files Overall, the plugin is quite useful and seamless. But recently, I found some *.strings plist files under /System/Library, almost of them in binary formats. The plugin registers autocmds only for *.plist files, so there is no chance to convert them to readable formats. At first, I’ve considered to register an autocmd for *.strings file, but I’m not sure about that .strings extension is only used for plist file, and also there can be other extensions with plist contents (for example, *.nib files are plist, too). Saving a new file darfink’s vim-plist checks g:plist_save_format and b:plist_save_format before writing to plist files. The buffer-local variable is set when the plugin reads the file and detect the format. The global one is set by user, and overrides buffer-local one. I don’t want the plugin to override the content of plist files with different format, so I haven’t set g:plist_save_format. Then the problem raised. Open a new plist file, like vim test.plist, and save it after editing. Then the plugin didn’t set b:plist_save_format because it’s a new file, and I also didn’t set g:plist_save_format, so the plugin don’t know the format to use for saving. I think this problem can be solved by patching the plugin, but its last commit is pushed in 2014, which makes me use the faster way. Solving the problems with .vimrc Binary plist files I decided to check if the file is binary plist file or not, and load with functions of vim-plist plugin. The checking process is easy, because the file starts with bplist. At first, I think it’s okay to register an autocmd for BufReadCmd because calling functions of the plugin should be easy. So my first try was: function! s:DetectBinaryPlist() let l:filename = expand('&amp;lt;afile&amp;gt;') if filereadable(l:filename) let l:content = readfile(l:filename, 'b', 1) if len(content) &amp;gt; 0 &amp;amp;&amp;amp; content[0] =~# '^bplist' return 1 endif endif return 0 endfunction autocmd BufReadCmd * \ if s:DetectBinaryPlist() | \ call plist#Read(1) | \ call plist#ReadPost() | \ endif Can you see the problem? This makes Vim returns an empty buffer when it reads a file that’s not a binary plist file. As I said above, BufReadCmd should handle actual read and write operation of the file. If it’s not a binary plist file, Vim won’t read anything according to this code. So I changed BufReadCmd to BufRead. This event happens after reading the file into the buffer, so I have to empty the buffer. function! s:ConvertBinaryPlist() silent! execute '%d' call plist#Read(1) call plist#ReadPost() endfunction autocmd BufRead * \ if getline(1) =~# '^bplist' | \ call s:ConvertBinaryPlist() | \ endif The getline(1) reads the first line of the buffer, and we can call it because it’s after reading the file. It’s working quite well, so at that time, I wanted to bring the writing functionality also. function! s:ConvertBinaryPlist() silent! execute '%d' call plist#Read(1) call plist#ReadPost() autocmd! BufWriteCmd,FileWriteCmd &amp;lt;buffer&amp;gt; autocmd BufWriteCmd,FileWriteCmd &amp;lt;buffer&amp;gt; \ call plist#Write() endfunction Note that the autocmd! line means deleting every other BufWriteCmd and FileWriteCmd autocmds for that buffer, and the second line registers BufWriteCmd and FileWriteCmd for that buffer. But when I saved after editing a *.strings file, I saw this error message: &amp;lt;stdin&amp;gt;: Property List error: Unable to convert string to correct encoding / JSON error: JSON text did not start with array or object and option to allow fragments not set. After poking around, I found that the fileencoding is set to latin1. The original file is binary and we just replaced the contents of the buffer, the fileencoding was not properly set. So I just set it to UTF-8. function! s:ConvertBinaryPlist() silent! execute '%d' call plist#Read(1) call plist#ReadPost() set fileencoding=utf-8 autocmd! BufWriteCmd,FileWriteCmd &amp;lt;buffer&amp;gt; autocmd BufWriteCmd,FileWriteCmd &amp;lt;buffer&amp;gt; \ call plist#Write() endfunction Saving a new file It’s simple: autocmd BufNewFile *.plist \ if !get(b:, 'plist_original_format') | \ let b:plist_original_format = 'xml' | \ endif We don’t write binary file by our own hands, so a new plist file would be in xml format. Conclusion So this is the complete part of my .vimrc for binary plist files: function! s:ConvertBinaryPlist() silent! execute '%d' call plist#Read(1) call plist#ReadPost() set fileencoding=utf-8 autocmd! BufWriteCmd,FileWriteCmd &amp;lt;buffer&amp;gt; autocmd BufWriteCmd,FileWriteCmd &amp;lt;buffer&amp;gt; \ call plist#Write() endfunction autocmd BufRead * \ if getline(1) =~# '^bplist' | \ call s:ConvertBinaryPlist() | \ endif autocmd BufNewFile *.plist \ if !get(b:, 'plist_original_format') | \ let b:plist_original_format = 'xml' | \ endif It’s also available on GitHub, you can visit my dotfiles repository!</summary>
+      
+
+      
+      
+        
+        <media:thumbnail xmlns:media="http://search.yahoo.com/mrss/" url="https://yous.be/images/2018/12/02/plist.png" />
+      
+    </entry>
+  
   
   
     <entry>
@@ -4226,87 +4456,6 @@ You may want to close only the current tab with &lt;code class=&quot;highlighter
 
       
         <summary type="html">The following is from an EMail message that I sent to to an individual on 12-Apr-2001. You may find this EMail message useful. The Writer asked: ``I just recently visited your website … Just wanted to say greetings and ask a simple question: Do you think I stand a chance in the C programming field if I keep it up? Tell me what I should do in order to keep strong feelings towards C.''</summary>
-      
-
-      
-      
-    </entry>
-  
-  
-  
-    <entry>
-      
-      <title type="html">Yet Another Hex Word</title>
-      
-      
-      <link href="https://yous.be/2014/09/20/yet-another-hex-word/" rel="alternate" type="text/html" title="Yet Another Hex Word" />
-      
-      <published>2014-09-20T20:59:49+00:00</published>
-      <updated>2014-09-20T20:59:49+00:00</updated>
-      <id>https://yous.be/2014/09/20/yet-another-hex-word</id>
-      <content type="html" xml:base="https://yous.be/2014/09/20/yet-another-hex-word/">&lt;p&gt;&lt;img src=&quot;/images/2014/09/20/01de57.svg&quot; alt=&quot;#01de57&quot; title=&quot;#01de57&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/0a7.svg&quot; alt=&quot;#0a7&quot; title=&quot;#0a7&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/0dd.svg&quot; alt=&quot;#0dd&quot; title=&quot;#0dd&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/0ff.svg&quot; alt=&quot;#0ff&quot; title=&quot;#0ff&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/0ff1ce.svg&quot; alt=&quot;#0ff1ce&quot; title=&quot;#0ff1ce&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/10ca1e.svg&quot; alt=&quot;#10ca1e&quot; title=&quot;#10ca1e&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/57ab1e.svg&quot; alt=&quot;#57ab1e&quot; title=&quot;#57ab1e&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/5ad.svg&quot; alt=&quot;#5ad&quot; title=&quot;#5ad&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/5afe57.svg&quot; alt=&quot;#5afe57&quot; title=&quot;#5afe57&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/50f7ba11.svg&quot; alt=&quot;#50f7ba11&quot; title=&quot;#50f7ba11&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/70e.svg&quot; alt=&quot;#70e&quot; title=&quot;#70e&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/7a7700.svg&quot; alt=&quot;#7a7700&quot; title=&quot;#7a7700&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/7ab.svg&quot; alt=&quot;#7ab&quot; title=&quot;#7ab&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/7ab1e7.svg&quot; alt=&quot;#7ab1e7&quot; title=&quot;#7ab1e7&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/7ea.svg&quot; alt=&quot;#7ea&quot; title=&quot;#7ea&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/ad1da5.svg&quot; alt=&quot;#ad1da5&quot; title=&quot;#ad1da5&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/affec7.svg&quot; alt=&quot;#affec7&quot; title=&quot;#affec7&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/b01dface.svg&quot; alt=&quot;#b01dface&quot; title=&quot;#b01dface&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/b0771e.svg&quot; alt=&quot;#b0771e&quot; title=&quot;#b0771e&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/ba11ad.svg&quot; alt=&quot;#ba11ad&quot; title=&quot;#ba11ad&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/ba5eba11.svg&quot; alt=&quot;#ba5eba11&quot; title=&quot;#ba5eba11&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/c0ffee.svg&quot; alt=&quot;#c0ffee&quot; title=&quot;#c0ffee&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/c105e7.svg&quot; alt=&quot;#c105e7&quot; title=&quot;#c105e7&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/c105ed.svg&quot; alt=&quot;#c105ed&quot; title=&quot;#c105ed&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/ca7.svg&quot; alt=&quot;#ca7&quot; title=&quot;#ca7&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/cafebabe.svg&quot; alt=&quot;#cafebabe&quot; title=&quot;#cafebabe&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/d00d1e.svg&quot; alt=&quot;#d00d1e&quot; title=&quot;#d00d1e&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/d1ab10.svg&quot; alt=&quot;#d1ab10&quot; title=&quot;#d1ab10&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/dad.svg&quot; alt=&quot;#dad&quot; title=&quot;#dad&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/de7ec7.svg&quot; alt=&quot;#de7ec7&quot; title=&quot;#de7ec7&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/deadbeef.svg&quot; alt=&quot;#deadbeef&quot; title=&quot;#deadbeef&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/dec0de.svg&quot; alt=&quot;#dec0de&quot; title=&quot;#dec0de&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/defea7.svg&quot; alt=&quot;#defea7&quot; title=&quot;#defea7&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/defec7.svg&quot; alt=&quot;#defec7&quot; title=&quot;#defec7&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/defec7ed.svg&quot; alt=&quot;#defec7ed&quot; title=&quot;#defec7ed&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/ea7.svg&quot; alt=&quot;#ea7&quot; title=&quot;#ea7&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/effec7.svg&quot; alt=&quot;#effec7&quot; title=&quot;#effec7&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/f007ba11.svg&quot; alt=&quot;#f007ba11&quot; title=&quot;#f007ba11&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/f01ded.svg&quot; alt=&quot;#f01ded&quot; title=&quot;#f01ded&quot; /&gt;
-&lt;img src=&quot;/images/2014/09/20/faceb00c.svg&quot; alt=&quot;#faceb00c&quot; title=&quot;#faceb00c&quot; /&gt;&lt;/p&gt;</content>
-
-      
-      
-      
-      
-      
-
-      
-        <author>
-            <name>Yous</name>
-          
-          
-        </author>
-      
-
-      
-        <category term="Design" />
-      
-
-      
-
-      
-        <summary type="html"></summary>
       
 
       
