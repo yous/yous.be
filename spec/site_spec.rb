@@ -1,5 +1,7 @@
 # frozen_string_literal: true
 
+require 'jekyll'
+
 RSpec::Matchers.define :be_utc_post do
   match do |actual|
     expect(actual.date.zone).to eq('UTC')
@@ -43,10 +45,13 @@ RSpec::Matchers.define :have_utc_url do
 end
 
 RSpec.describe '_site' do
-  include JekyllHelper
+  let(:site) { Jekyll::Site.new(Jekyll.configuration('serving': false)) }
+
+  before { Jekyll::Commands::Clean.process({}) }
 
   describe 'timezone' do
     it 'uses UTC instead of local timezone' do
+      site.process
       expect(site.posts.docs).to all(be_utc_post)
       expect(site.posts.docs).to all(have_utc_filename)
       expect(site.posts.docs).to all(have_utc_url)
