@@ -46,7 +46,7 @@ more complex.
 
 ## Problems
 
-###  \*.strings files
+### \*.strings files
 
 Overall, the plugin is quite useful and seamless. But recently, I found some
 \*.strings plist files under `/System/Library`, almost of them in binary
