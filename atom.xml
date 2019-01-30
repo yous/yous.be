@@ -5,7 +5,7 @@
   
   <link href="https://yous.be/atom.xml" rel="self" type="application/atom+xml" />
   <link href="https://yous.be/" rel="alternate" type="text/html" />
-  <updated>2019-01-15T17:21:47+00:00</updated>
+  <updated>2019-01-30T06:13:00+00:00</updated>
   <id>https://yous.be//</id>
 
   
@@ -42,7 +42,7 @@ Ruby releases a new version, I had to compile that version from scratch using
 &lt;a href=&quot;https://github.com/postmodern/ruby-install&quot;&gt;ruby-install&lt;/a&gt;. It takes quite a
 long time, and I should do that on every macOS device I use.&lt;/p&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://xkcd.com/303/&quot;&gt;&lt;img src=&quot;/images/2019/01/15/compiling.png&quot; alt=&quot;Compiling&quot; title=&quot;Compiling&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&quot;http://xkcd.com/303/&quot;&gt;&lt;img src=&quot;/images/2019/01/15/compiling.png&quot; alt=&quot;Compiling&quot; title=&quot;'Are you stealing those LCDs?' 'Yeah, but I'm doing it while my code compiles.'&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
 &lt;h2&gt;Why should I compile?&lt;/h2&gt;
 
