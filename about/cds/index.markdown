@@ -406,3 +406,7 @@ comments: false
 399. Epik High --- Black Swan Songs
 400. Epik High --- sleepless in \_\_\_\_\_\_\_\_\_\_
 401. XXX --- SECOND LANGUAGE
+402. The Quiett --- Q Day Remixes
+403. Arctic Monkeys --- Tranquility Base Hotel & Casino
+404. Dua Lipa --- Dua Lipa (COMPLETE EDITION)
+405. The Weeknd --- Starboy
