@@ -12,6 +12,10 @@ task :proof do
     check_opengraph: true,
     check_html: true,
     http_status_ignore: [302],
+    typhoeus: {
+      connecttimeout: 30,
+      timeout: 60
+    },
     url_ignore: [
       %r{^https?://localhost},
       # _include/fonts.html
