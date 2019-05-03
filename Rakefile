@@ -8,6 +8,9 @@ desc 'Validate HTML files'
 task :proof do
   HTMLProofer.check_directory(
     '_site',
+    cache: {
+      timeframe: '4w'
+    },
     check_favicon: true,
     check_opengraph: true,
     check_html: true,
