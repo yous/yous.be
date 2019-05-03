@@ -541,7 +541,7 @@ for($i=$a;$i<count($flag_array);$i++){ $flag_array[$i] = chr($flag_array[$i]); }
 
 일단 라틴 알파벳들은 보기 쉬운 알파벳들로 바꾸고, 계산 작업을 수행해 줍니다.
 
-``` php?start_inline=1
+``` php
 $_a = array(0);
 $_a[a] = 4;
 $_a[c] = 17;
@@ -561,7 +561,7 @@ if (chr(109) != $b[2]) exit("wrong");
 
 `$flag_array`의 경우 주석 때문에 가운데 영역이 주석 처리됩니다.
 
-``` php?start_inline=1
+``` php
 $flag_array = array(
     7,
     111,
@@ -573,7 +573,7 @@ $flag_array = array(
 
 첫 번째 `for` 문은 한 줄로 끝나는 것으로, 다음 줄부터는 들여 쓰는 것이 아닙니다. `$i`도 `for` 문이 끝났으므로 `5`로 값이 고정되어 있습니다. 또한 `$_GET[flag]`가 아닌 `$_GET[fIag]`가 있는 것에 주의하시기 바랍니다.
 
-``` php?start_inline=1
+``` php
 for ($i = 1; $i < count($flag_array); $i++) { $flag_array[$i] = chr($flag_array[$i]); }
 for ($count = 5; $count < 10; $count++) {
     if ($_GET[flag][$count].$_GET[fIag][$count - 5] != $flag_array[$count - 5].$_GET[fIag][$count - 4]) exit("wrong");
@@ -582,7 +582,7 @@ for ($count = 5; $count < 10; $count++) {
 
 위 코드로부터 아래의 것들을 유추할 수 있습니다.
 
-``` php?start_inline=1
+``` php
 $_GET[flag][5] = "7";
 $_GET[flag][6] = "o";
 $_GET[flag][7] = "_";
@@ -592,7 +592,7 @@ $_GET[flag][9] = "0";
 
 그 다음은 `$flag_len`입니다.
 
-``` php?start_inline=1
+``` php
 $flag_len = strlen($_GET[flag]);
 $length_chk = 1;
 while ($flag_len > 1) $length_chk += $flag_len -= 1;
@@ -601,7 +601,7 @@ if (($length_chk < 110) || ($length_chk > 130)) exit("wrong");
 
 `$_GET[flag]`가 16글자가 되어야 한다는 사실을 알 수 있습니다.
 
-``` php?start_inline=1
+``` php
 $stage3 = substr($_GET[flag], -7);
 $stage3_1 = substr($stage3, 0, 6);
 $stage3_2 = substr($stage3, 1, 6);

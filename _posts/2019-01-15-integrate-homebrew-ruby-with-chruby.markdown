@@ -13,12 +13,11 @@ facebook:
   image: https://yous.be/images/2019/01/15/compiling.png
 ---
 
-For a while after [switching from RVM to chruby]({% post_url
-2016-01-01-switching-rvm-to-chruby %}), I've been quite satisfied with
-[chruby](https://github.com/postmodern/chruby), except for one thing. Every time
-Ruby releases a new version, I had to compile that version from scratch using
-[ruby-install](https://github.com/postmodern/ruby-install). It takes quite a
-long time, and I should do that on every macOS device I use.
+For a while after [switching from RVM to chruby]({% post_url 2016-01-01-switching-rvm-to-chruby %}),
+I've been quite satisfied with [chruby](https://github.com/postmodern/chruby),
+except for one thing. Every time Ruby releases a new version, I had to compile
+that version from scratch using [ruby-install](https://github.com/postmodern/ruby-install).
+It takes quite a long time, and I should do that on every macOS device I use.
 
 [![Compiling](/images/2019/01/15/compiling.png "'Are you stealing those LCDs?' 'Yeah, but I'm doing it while my code compiles.'")](http://xkcd.com/303/)
 

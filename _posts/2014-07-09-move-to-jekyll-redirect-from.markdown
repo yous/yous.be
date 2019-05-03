@@ -79,7 +79,7 @@ index 50e9404..76102db 100644
        end
 ```
 
-To say the result first, I had [no luck](https://github.com/yous/yous.be/commit/2cf44cbe21b499c89dc8ac68f6f170add52f9d6e). The alias directories are generated, every `index.html` file under each directory won't. By looking at diff of `sitemap.xml`, the plugin seems to generate wrong paths. I'm pretty newbie to Jekyll and how Octopress works with it. Also this is a plugin for Jekyll, not Octopress. So if you have any fix for this problem, please make pull requests to [jekyll_alias_generator](https://github.com/tsmango/jekyll_alias_generator/pulls) or just [contact me](/about/#contact).
+To say the result first, I had [no luck](https://github.com/yous/yous.be/commit/2cf44cbe21b499c89dc8ac68f6f170add52f9d6e). The alias directories are generated, every `index.html` file under each directory won't. By looking at diff of `sitemap.xml`, the plugin seems to generate wrong paths. I'm pretty newbie to Jekyll and how Octopress works with it. Also this is a plugin for Jekyll, not Octopress. So if you have any fix for this problem, please make pull requests to [jekyll_alias_generator](https://github.com/tsmango/jekyll_alias_generator/pulls) or just [contact me]({{ "/about/#contact" | prepend: site.baseurl }}).
 
 <!-- more -->
 
