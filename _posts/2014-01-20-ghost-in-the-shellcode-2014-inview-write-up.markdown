@@ -46,7 +46,7 @@ if version >= 702
 end
 ```
 
-Then [Vim] highlights trailing whitespace to red color.
+Then [Vim][] highlights trailing whitespace to red color.
 
 [Vim]: http://www.vim.org
 
@@ -62,7 +62,7 @@ I felt something weird, so I converted the file to hex code. In Vim:
 Looking at whitespace, I realized there are `09(Tab)`, `0A(New Line)`, `20(Space)` with no rule. Right after that I came up with [Whitespace][]. Also there is a [interpreter written in JavaScript][]. Almost done! Just copy and paste the file content to site and press 'Exec' button. If you want to execute it in local, you can use [whitespacers][].
 
 [Whitespace]: https://en.wikipedia.org/wiki/Whitespace_(programming_language)
-[interpreter written in JavaScript]: http://ws2js.luilak.net/interpreter.html
+[interpreter written in JavaScript]: https://naokikp.github.io/wsi/whitespace.html
 [whitespacers]: https://github.com/hostilefork/whitespacers
 
 Finally the key is:

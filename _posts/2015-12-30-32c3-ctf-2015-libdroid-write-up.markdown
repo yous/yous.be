@@ -34,7 +34,7 @@ If the above link doesn't work, please use this
 
 First things first, rename the `libdroid_fixed.apk` to `libdroid_fixed.zip` and
 unzip it. Then there should be a `classes.dex` file, and we have
-[dex2jar](http://sourceforge.net/projects/dex2jar/).
+[dex2jar](https://sourceforge.net/projects/dex2jar/).
 
 On Windows,
 

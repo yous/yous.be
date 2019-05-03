@@ -16,7 +16,7 @@ external-url: https://www.imperialviolet.org/2014/02/22/applebug.html
 
 iOS 7.0.6, iOS 6.1.6, Apple TV 6.0.2가 [배포됐다][9to5Mac]. 애플에서 공개한 iOS 7.0.6의 [보안 문제][security content of iOS 7.0.6]는 다음과 같다.
 
-[9to5Mac]: http://9to5mac.com/2014/02/21/apple-releases-ios-7-0-6-ios-6-1-6-with-fixes/
+[9to5Mac]: https://9to5mac.com/2014/02/21/apple-releases-ios-7-0-6-ios-6-1-6-with-fixes/
 [security content of iOS 7.0.6]: http://support.apple.com/kb/HT6147
 
 > Impact: An attacker with a privileged network position may capture or modify data in sessions protected by SSL/TLS
@@ -63,4 +63,4 @@ fail:
 
 또한 OS X 10.9.1에는 아직 [이 문제][9to5Mac 2]가 있는 것으로 보인다.
 
-[9to5Mac 2]: http://9to5mac.com/2014/02/22/apple-patched-a-major-ssl-bug-in-ios-yesterday-but-os-x-is-still-at-risk/
+[9to5Mac 2]: https://9to5mac.com/2014/02/22/apple-patched-a-major-ssl-bug-in-ios-yesterday-but-os-x-is-still-at-risk/
