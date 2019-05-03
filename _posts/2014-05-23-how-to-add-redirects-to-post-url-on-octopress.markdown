@@ -14,7 +14,8 @@ When I write a new post on [Octopress][], I share the link of it to somewhere do
 [Octopress]: http://octopress.org
 [Hyperlink]: http://en.wikipedia.org/wiki/Hyperlink
 
-## <a id="alias-generator-for-posts"></a>Alias Generator for Posts
+## Alias Generator for Posts
+{: #alias-generator-for-posts}
 
 There is a [Jekyll][] plugin that [generates redirect pages for posts with aliases][jekyll_alias_generator]. Octopress is based on Jekyll and this plugin has no compatibility problem. Its source is on GitHub, so I just added it as submodule:
 
@@ -34,7 +35,8 @@ plugins: plugins
 Then it reads `plugins` directory and `alias_generator.rb` in `plugins/jekyll_alias_generator/_plugins/` directory is also loaded, so you can use and manage it!
 
 
-## <a id="how-to-use"></a>How to Use
+## How to Use
+{: #how-to-use}
 
 This plugin checks `alias` inside every post's YAML Front Matter. Just place the path of the alias:
 

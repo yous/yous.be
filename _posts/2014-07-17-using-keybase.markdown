@@ -16,7 +16,8 @@ facebook:
     image: http://yous.be/images/2014/07/17/logo.png
 ---
 
-## <a id="keybase"></a>Keybase
+## Keybase
+{: #keybase}
 
 
 ![Keybase](/images/2014/07/17/logo.png "Keybase")
@@ -28,7 +29,8 @@ I just created my [Keybase][]. You can see my PGP public key on [keybase.io/yous
 [Keybase]: https://keybase.io
 [keybase.io/yous]: https://keybase.io/yous
 
-## <a id="keybase-proof"></a>Keybase Proof
+## Keybase Proof
+{: #keybase-proof}
 
 Keybase provides several ways to prove own identity of a Twitter account, a GitHub account, websites and a bitcoin address. Still it can be done on the browser, also you can use [command line](https://keybase.io/docs/command_line) for it. I proved [my GitHub](https://github.com/yous) by [keybase.md](https://gist.github.com/yous/149b0775d2ff02eac323) and [this site]({{ site.url }}) by [keybase.txt](http://yous.be/keybase.txt). Also you can check it with command line like:
 
@@ -41,7 +43,8 @@ $ keybase id yous
 
 <!-- more -->
 
-## <a id="directory-signing"></a>Directory Signing
+## Directory Signing
+{: #directory-signing}
 
 Command line program of Keybase provides `dir` command to sign or verify directory. First you should install command line, see the [installation docs](https://keybase.io/download). If you already have an account, just run `keybase login`. You can also signup with `keybase signup` in terminal.
 
@@ -65,7 +68,8 @@ info: Signed 4 minutes ago (Fri Jul 18 2014 20:06:31 GMT+0900 (KST))
 info: Success! 1 signature(s) verified; 224 items checked
 ```
 
-## <a id="using-custom-email"></a>Using Custom Email
+## Using Custom Email
+{: #using-custom-email}
 
 When you create public key on [Keybase][], default UID has name as `keybase.io/<username>` and email as `<username>@keybase.io`. You can add UID with your real name and regular email. From [One GnuPG/PGP key pair, two emails?](http://superuser.com/questions/293184/one-gnupg-pgp-key-pair-two-emails):
 
@@ -84,7 +88,8 @@ Do you really want to set this key to ultimate trust? (y/N) y
 gpg> save
 ```
 
-## <a id="signing-commits"></a>Signing Commits
+## Signing Commits
+{: #signing-commits}
 
 All the crypto of Keybase is performed with GPG, you can sign your tags and your commits. To setup your signing key, you need to get your key id by:
 
@@ -144,6 +149,7 @@ For more information, see [A Git Horror Story: Repository Integrity With Signed 
 
 [A Git Horror Story: Repository Integrity With Signed Commits]: http://mikegerwitz.com/papers/git-horror-story
 
-## <a id="contact-me"></a>Contact Me
+## Contact Me
+{: #contact-me}
 
 So, now feel free to contact me via [keybase.io/yous][] and other <a href="{{ root_url }}/about">contacts</a>. The source of this site is available on [GitHub](https://github.com/yous/yous.be), forks and pull requests are welcome!

@@ -44,7 +44,8 @@ CTF 대회에서 문제를 풀다가 [나중에 깨달을 때][hindsight] 가장
 
 <!-- ## What the heck is ROP? -->
 
-## <a id="what-the-heck-is-rop"></a>도대체 ROP가 뭐야?
+## 도대체 ROP가 뭐야?
+{: #what-the-heck-is-rop}
 
 <!-- ROP---return-oriented programming---is a modern name for a classic exploit called "[return into libc][]". The idea is that you found an overflow or other type of vulnerability in a program that lets you take control, but you have no reliable way get your code into executable memory ([DEP][], or data execution prevention, means that you can't run code from anywhere you want anymore). -->
 ROP(return-oriented programming)는 고전적 익스플로잇(exploit) "[return into libc][]"를 나타내는 현대 용어다. 이 아이디어는 프로그램을 마음대로 조종할 수 있는 오버플로(overflow)나 다른 유형의 취약점을 발견했지만, 임의의 코드를 실행 가능한 메모리 영역(executable memory)에 올릴 수 있는 확실한 방법이 없을 때([DEP][], 데이터 실행 방지(Data Execution Prevention), 사용자가 원하는 곳에서부터 코드를 실행시킬 수 없다.)를 위한 것이다.
@@ -66,7 +67,8 @@ ROP를 이용하면 실행 가능한 메모리 영역(executable memory)에 있�
 
 <!-- ## The stack -->
 
-## <a id="the-stack"></a>스택
+## 스택
+{: #the-stack}
 
 <!-- I'm sure you've heard of the stack before. [Stack overflows][]? Smashing the stack? But what's it actually mean? If you already know, feel free to treat this as a quick primer, or to just skip right to the next section. Up to you! -->
 스택에 관해 한 번쯤은 들어보았을 것이다. [스택 오버플로(stack overflow)][Stack overflows]? 스택 깨뜨리기(smashing the stack)? 하지만 그게 무엇을 의미하는 걸까? 이미 알고 있다면, 이걸 간단한 입문서의 느낌으로 보든지, 바로 다음 섹션으로 넘어가라. 당신 마음대로!
@@ -180,7 +182,8 @@ ROP를 이용하면 실행 가능한 메모리 영역(executable memory)에 있�
 
 <!-- ## Heaven, hell, and stack frames -->
 
-## <a id="heaven-hell-and-stack-frames"></a>천국, 지옥 그리고 스택 프레임
+## 천국, 지옥 그리고 스택 프레임
+{: #heaven-hell-and-stack-frames}
 
 <!-- The main thing you have to understand to know ROP is this: a function's entire universe is its stack frame. The stack is its god, the parameters are its commandments, local variables are its sins, the saved frame pointer is its bible, and the return address is its heaven (okay, probably hell). It's all right there in the [Book of Inte][], chapter 3, verses 19 - 26 (note: it isn't actually, don't bother looking). -->
 ROP를 이해하기 위해 이해해야 하는 가장 중요한 건, 함수의 스택 프레임은 그 함수의 온 우주라는 것이다. 스택은 함수의 신이고, 인자는 성경의 십계명이고, 지역 변수는 죄며, 프레임 포인터는 성경이고 반환 주소는 천국이다(그래, 지옥일 수도 있다). 모든 건 [인텔의 책][Book of Intel], 3장, 19-26구절에 있다(주: 사실 아니니 보는 수고는 할 필요 없다).
@@ -242,7 +245,8 @@ ROP를 이해하기 위해 이해해야 하는 가장 중요한 건, 함수의 �
 
 <!-- ## Controlling the stack -->
 
-## <a id="controlling-the-stack"></a>스택 주무르기
+## 스택 주무르기
+{: #controlling-the-stack}
 
 <!-- ...well, since you asked, let me tell you. We've all heard of a "stack overflow", which involves overwriting a variable on the stack. What's that mean? Well, let's say we have a frame that looks like this: -->
 ...뭐, 당신이 궁금해 하니 말하겠다. 우리 모두 "스택 오버플로"에 대해 들어봤다. 그건 스택에 있는 변수를 덮어쓰는 것과 관련이 있다. 그게 무슨 뜻이냐? 뭐, 이런 스택 프레임이 있다고 하자.
@@ -284,7 +288,8 @@ ROP를 이해하기 위해 이해해야 하는 가장 중요한 건, 함수의 �
 
 <!-- ## DEP -->
 
-## <a id="dep"></a>DEP
+## DEP
+{: #dep}
 
 <!-- Traditionally, an attacker would change the return address to point to the stack, since the attacker already has the ability to put code on the stack (after all, code is just a bunch of bytes!). But, being that it was such a common and easy way to exploit systems, those assholes at OS companies (just kidding, I love you guys :) ) put a stop to it by introducing data execution prevention, or DEP. On any DEP-enabled system, you can no longer run code on the stack---or, more generally, anywhere an attacker can write---instead, it crashes. -->
 전통적으로, 공격자는 스택에 코드를 넣을 수 있었기 때문에(어찌 되었건, 코드는 그저 바이트 뭉치일 뿐이다!), 반환 주소가 스택을 가리키도록 바꿔 왔다. 하지만 그건 시스템을 공격하는 일반적이고 쉬운 방법이었기 때문에, OS 회사의 나쁜 자식들이(농담이다, 난 당신들을 사랑한다 :)) 데이터 실행 방지, DEP를 통해 이를 멈췄다. DEP가 적용된 어떤 시스템이건, 스택에서, 좀 더 일반적으로는 공격자가 쓸(write) 수 있는 어떤 곳에서도 코드를 실행할 수 없다. 그렇지 않으면, 크래시를 일으킨다.
@@ -297,7 +302,8 @@ ROP를 이해하기 위해 이해해야 하는 가장 중요한 건, 함수의 �
 
 <!-- ## The vulnerability -->
 
-## <a id="the-vulnerability"></a>취약점
+## 취약점
+{: #the-vulnerability}
 
 <!-- Here's the vulnerable function, fresh from IDA: -->
 여기 IDA에서 막 뽑아낸 취약한 함수다.
@@ -369,7 +375,8 @@ ron@debian-x86 ~ $ gdb ./ropasaurusrex core
 
 <!-- ## Starting to write an exploit -->
 
-## <a id="starting-to-write-an-exploit"></a>익스플로잇 제작 시작하기
+## 익스플로잇 제작 시작하기
+{: #starting-to-write-an-exploit}
 
 <!-- The first thing you should do is start running `ropasaurusrex` as a network service. The folks who wrote the CTF used [xinetd][] to do this, but we're going to use [netcat][], which is just as good (for our purposes): -->
 가장 먼저 해야 할 일은 `ropasaurusrex`를 네트워크 서비스로 실행시키는 것이다. CTF 주최자들은 [xinetd][]를 썼지만, 우리는 우리의 목적에 알맞은 [netcat][]을 쓸 것이다.
@@ -437,7 +444,8 @@ Program terminated with signal 11, Segmentation fault.
 
 <!-- ## How to waste time with ASLR -->
 
-## <a id="how-to-waste-time-with-aslr"></a>어떻게 ASLR로 시간을 낭비하는가
+## 어떻게 ASLR로 시간을 낭비하는가
+{: #how-to-waste-time-with-aslr}
 
 <!-- I called this section 'wasting time', because I didn't realize---at the time---that ASLR was enabled. However, assuming no ASLR actually makes this a much more instructive puzzle. So for now, let's not worry about ASLR---in fact, let's not even _define_ ASLR. That'll come up in the next section. -->
 이 섹션을 '시간 낭비'라고 하는 이유는, 내가 ASLR이 적용되어 있다는 것을 그때 깨닫지 못했기 때문이다. 하지만 ASLR이 적용되어 있지 않다고 가정하는 것은 이 문제를 훨씬 교육하기 좋은 퍼즐로 만들어준다. 그러니 지금은 ASLR에 대해 걱정하지 말자. 실제로, ASLR을 _정의조차_ 하지 말자. 다음 섹션에 나올 것이다.
@@ -460,7 +468,8 @@ Program terminated with signal 11, Segmentation fault.
 
 <!-- ### Getting the string into memory -->
 
-### <a id="getting-the-string-into-memory"></a>메모리에 문자열 넣기
+### 메모리에 문자열 넣기
+{: #getting-the-string-into-memory}
 
 <!-- Getting the string into memory actually involves two sub-steps: -->
 메모리에 문자열을 넣는 건 실제로 두 소단계를 포함한다.
@@ -634,7 +643,8 @@ Program terminated with signal 11, Segmentation fault.
 
 <!-- ### Running it -->
 
-### <a id="running-it"></a>실행하기
+### 실행하기
+{: #running-it}
 
 <!-- Now that we've written `cat /etc/passwd` into memory, we need to call `system()` and point it at that address. It turns out, if we assume ASLR is off, this is easy. We know that the executable is linked with libc: -->
 이제 우린 `cat /etc/passwd`를 메모리에 썼고, `system()`을 호출해서 저 주소를 가리키면 된다. 거의 다 됐다. ASLR이 적용되지 않았다면 쉽다. 실행 파일에는 libc가 링크되어 있다.
@@ -1170,7 +1180,8 @@ ron@debian-x86 ~ $ ruby sploit.rb "cat /etc/passwd"
 
 <!-- ## What is ASLR? -->
 
-## <a id="what-is-aslr"></a>ASLR이 뭐야?
+## ASLR이 뭐야?
+{: #what-is-aslr}
 
 <!-- ASLR---or address space layout randomization---is a defense implemented on all modern systems (except for FreeBSD) that randomizes the address that libraries are loaded at. As an example, let's run ropasaurusrex twice and get the address of `system()`: -->
 ASLR(주소 공간 레이아웃 불규칙화(address space layout randomization))은 FreeBSD를 제외한 현대 시스템에 구현된 방어 기법으로, 라이브러리가 로드 되는 주소를 불규칙하게 바꾼다. 그 예로, ropasaurusrex를 두 번 실행하고 `system()`의 주소를 알아내 보자.
@@ -1197,7 +1208,8 @@ Program terminated with signal 11, Segmentation fault.
 `system()`의 주소가 `0xb766e450`에서 `0xb76a7450`으로 바뀐 것을 보라. 이게 문제다!
 
 <!-- ## Defeating ASLR -->
-## <a id="defeating-aslr"></a>ASLR 정복
+## ASLR 정복
+{: #defeating-aslr}
 
 <!-- So, what do we know? Well, the binary itself isn't ASLRed, which means that we can rely on every address in it to stay put, which is useful. Most importantly, the relocation table will remain at the same address: -->
 그래서 뭘 해야 할까? 사실, 바이너리 자체는 ASLR이 적용되지 않아서, 유용하게도 거기 있는 모든 주소는 그대로 머물러 있다고 믿을 수 있다. 아주 중요하게도, 재배치(relocation) 테이블은 같은 주소에 남아있다.
@@ -1236,7 +1248,8 @@ $1 = {<text variable, no debug info>} 0xb7f48110 <read>
 
 <!-- ## Finally, running some code! -->
 
-## <a id="finally-running-some-code"></a>드디어, 코드 실행!
+## 드디어, 코드 실행!
+{: #finally-running-some-code}
 
 <!-- Okay, let's break, this down into steps. We need to: -->
 좋다, 잠깐 멈추고, 단계를 나누자. 우리는 이와 같은 과정이 필요하다.
@@ -1402,7 +1415,8 @@ $1 = {<text variable, no debug info>} 0xb7f48110 <read>
 
 <!-- ## Final code -->
 
-## <a id="final-code"></a>최종 코드
+## 최종 코드
+{: #final-code}
 
 <!-- Whew! That's quite complicated. Here's code that implements the full exploit for ropasaurusrex, bypassing both DEP and ASLR: -->
 휴! 꽤 복잡했다. DEP와 ASLR을 모두 우회하며 ropasaurusrex의 익스플로잇을 모두 구현한 코드다.
@@ -1537,7 +1551,8 @@ ron
 
 <!-- ## Conclusion -->
 
-## <a id="conclusion"></a>결론
+## 결론
+{: #conclusion}
 
 <!-- And that's it! We just wrote a reliable, DEP/ASLR-bypassing exploit for ropasaurusrex. -->
 이게 끝이다! 난 믿을 만한, DEP/ASLR을 우회하는 ropasaurusrex 익스플로잇을 만들었다.

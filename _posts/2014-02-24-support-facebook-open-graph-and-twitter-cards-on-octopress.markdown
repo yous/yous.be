@@ -23,7 +23,8 @@ twitter_card:
 
 <!-- more -->
 
-## <a id="facebook-open-graph-tags"></a>Facebook Open Graph Tags
+## Facebook Open Graph Tags
+{: #facebook-open-graph-tags}
 
 ![Facebook Open Graph](/images/2014/02/24/facebook_open_graph.png "Facebook Open Graph")
 
@@ -53,7 +54,8 @@ twitter_card:
 [follow]: https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#follow
 [property links to the publisher of the article]: https://developers.facebook.com/docs/reference/opengraph/object-type/article
 
-## <a id="twitter-cards"></a>Twitter Cards
+## Twitter Cards
+{: #twitter-cards}
 
 [Twitter Cards][]는 트윗 자체에 링크의 내용을 보여주는 '카드'를 추가하는 기능이다.
 
@@ -81,7 +83,8 @@ twitter_card:
 
 [Card Validator]: https://cards-dev.twitter.com/validator
 
-## <a id="support-in-octopress"></a>Octopress에서 지원하기
+## Octopress에서 지원하기
+{: #support-in-octopress}
 
 페이스북 Open Graph를 위한 설정 값을 `_config.yml`에 추가한다.
 

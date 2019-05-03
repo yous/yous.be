@@ -30,7 +30,8 @@ facebook:
 - [PHP Obfuscate - WEB500](#php-obfuscate)
 - [Trace - MISC100](#trace)
 
-## <a id="are-you-able-to-multiply"></a>Are you able to multiply? - ALGO200
+## Are you able to multiply? - ALGO200
+{: #are-you-able-to-multiply}
 
 > 곱하기는 정말 어렵지 않나요?
 >
@@ -162,7 +163,8 @@ Flag is I_L0VE_S6nta, I_L0Ve_Father, I_L0VE_Y0U...
 
 Flag는 `I_L0VE_S6nta, I_L0Ve_Father, I_L0VE_Y0U...`입니다.
 
-## <a id="jingle-bell"></a>JingleBell - MISC200
+## JingleBell - MISC200
+{: #jingle-bell}
 
 > Kevin은 이번 크리스마스에 자신의 여자친구인 Margaretha에게 노래를 선물하기 위해 징글벨을 편곡했다.  
 > 악보에 숨겨진 Kevin의 메세지를 찾으시오.  
@@ -184,7 +186,8 @@ MAS CTF PAS SIS ####
 
 Flag는 `MATAHARIZZANG`입니다.
 
-## <a id="krystal-holic"></a>KrystalHolic - WEB400
+## KrystalHolic - WEB400
+{: #krystal-holic}
 
 > http://web-prob.dkserver.wo.tc/krystalholic_1e2fdfa6874f87345dd7f27099a38668
 
@@ -236,7 +239,8 @@ Your level : Null
 
 Flag는 `UP_down_UP_UP_down`입니다.
 
-## <a id="a-letter-to-her"></a>A Letter To Her - WEB100
+## A Letter To Her - WEB100
+{: #a-letter-to-her}
 
 > [Link](http://web-prob.dkserver.wo.tc/letter_4f1ad94372c166c3cb9632ed5041849a/)
 
@@ -296,7 +300,8 @@ if($page == "photo"){ ?-->
 
 Flag는 `snow_is_commmming`입니다.
 
-## <a id="a-letter-to-her-2"></a>A Letter To Her 2 - WEB500
+## A Letter To Her 2 - WEB500
+{: #a-letter-to-her-2}
 
 > [Link](http://web-prob.dkserver.wo.tc/sqli_962a035aacf08966ffc7610957ac0c29/)
 
@@ -356,7 +361,8 @@ end
 
 Flag는 `오리야날아라`입니다.
 
-## <a id="weight-and-measures"></a>WEIGHT AND MEASURES - ALGO200
+## WEIGHT AND MEASURES - ALGO200
+{: #weight-and-measures}
 
 > 밤(bam)이라는 검은 거북이가 친구들과 햄버거놀이를 하기 위해 문의를 해왔다. 혹시 놀이를 하다가 다칠 수도 있기 때문이다. 햄버거놀이를 하기 위해 동원된 거북이는 체중과 체력이 모두 다르다. 가능한 한 가장 많은 거북이를 쌓는 방법을 찾아보자.
 >
@@ -452,7 +458,8 @@ The Flag is christmas{Rac_reKrei$her_!s_so_cute_@lligat0r!}
 
 Flag는 `Rac_reKrei$her_!s_so_cute_@lligat0r!`입니다.
 
-## <a id="php-obfuscate"></a>PHP Obfuscate - WEB500
+## PHP Obfuscate - WEB500
+{: #php-obfuscate}
 
 > PHP Version 5.2.12에서 테스트했습니다
 >
@@ -610,7 +617,8 @@ echo "You did it!<br>Flag is {<strong>" . $_GET[flag] . "</strong>}";
 
 Flag는 `time_7o_d0_bar0n`입니다.
 
-## <a id="trace"></a>Trace - MISC100
+## Trace - MISC100
+{: #trace}
 
 > Just Find a Key
 >

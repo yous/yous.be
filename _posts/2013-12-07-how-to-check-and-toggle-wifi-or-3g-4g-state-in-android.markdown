@@ -25,9 +25,9 @@ At some point, we want to know whether the device is connected to network so tha
 
 <!-- more -->
 
-## <a id="1"></a>1. Check if WiFi or 3G/4G is Enabled (by User)
+<h2 id="1">1. Check if WiFi or 3G/4G is Enabled (by User)</h2>
 
-### <a id="1-1"></a>WiFi
+<h3 id="1-1">WiFi</h3>
 
 `ACCESS_WIFI_STATE` permission must be added to `AndroidManifest.xml`.
 
@@ -44,7 +44,7 @@ WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
 boolean wifiEnabled = wifiManager.isWifiEnabled();
 ```
 
-### <a id="1-2"></a>3G/4G
+<h3 id="1-2">3G/4G</h3>
 
 This is more complicated. As WiFi case, we have to add `ACCESS_NETWORK_STATE` permission.
 
@@ -135,11 +135,11 @@ boolean mobileDisabled = mobileInfo.getState() == NetworkInfo.State.DISCONNECTED
     && (reason == null || reason.equals("specificDisabled"));
 ```
 
-## <a id="2"></a>2. Check if WiFi or 3G/4G is Connected
+<h2 id="2">2. Check if WiFi or 3G/4G is Connected</h2>
 
 WiFi or 3G/4G may not be connected even if the user enables them. Checking connectivity is useful when we are going to do some network communication.
 
-### <a id="2-1"></a>WiFi
+<h3 id="2-1">WiFi</h3>
 
 ``` java
 NetworkInfo wifiInfo =
@@ -147,7 +147,7 @@ NetworkInfo wifiInfo =
 boolean wifiConnected = wifiInfo.getState() == NetworkInfo.State.CONNECTED;
 ```
 
-### <a id="2-2"></a>3G/4G
+<h3 id="2-2">3G/4G</h3>
 
 ``` java
 NetworkInfo mobileInfo =
@@ -155,9 +155,9 @@ NetworkInfo mobileInfo =
 boolean mobileConnected = mobileInfo.getState() == NetworkInfo.State.CONNECTED;
 ```
 
-## <a id="3"></a>3. Toggle WiFi or 3G/4G Programmatically
+<h2 id="3">3. Toggle WiFi or 3G/4G Programmatically</h2>
 
-### <a id="3-1"></a>WiFi
+<h3 id="3-1">WiFi</h3>
 
 `CHANGE_WIFI_STATE` permission must be added to `AndroidManifest.xml`.
 
@@ -172,7 +172,7 @@ WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
 wifiManager.setWifiEnabled(isWifiEnabled);
 ```
 
-### <a id="3-2"></a>3G/4G
+<h3 id="3-2">3G/4G</h3>
 
 There is an workaround with reflection on ["How can i turn off 3G/Data programmatically on Android?"][Stack Overflow].
 

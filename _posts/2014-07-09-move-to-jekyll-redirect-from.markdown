@@ -9,7 +9,8 @@ keywords: redirect, alias, shortcut, octopress, jekyll, jekyll redirect from
 redirect_from: /p/20140709/
 ---
 
-## <a id="problems-with-jekyll-alias-generator"></a>Problems with jekyll_alias_generator
+## Problems with jekyll_alias_generator
+{: #problems-with-jekyll-alias-generator}
 
 I wrote ["How to Add Redirects to Post URL on Octopress"]({% post_url 2014-05-23-how-to-add-redirects-to-post-url-on-octopress %}) few month ago. Now [Octopress is compatible](https://github.com/imathis/octopress/commit/72ea6042e33f0b92e4923c3af00e923f19472573) with [Jekyll][] 2.0, and some plugins don't seem to work. Current Octopress uses Jekyll [2.0.3](https://github.com/imathis/octopress/blob/4fdae37e4294618084f652c99c0c06ba7663ac07/Gemfile.lock#L26) and when I run `rake generate`, I see an error:
 
@@ -82,7 +83,8 @@ To say the result first, I had [no luck](https://github.com/yous/yous.be/commit/
 
 <!-- more -->
 
-## <a id="jekyll-redirect-from"></a>jekyll-redirect-from
+## jekyll-redirect-from
+{: #jekyll-redirect-from}
 
 While searching how to fix this problem, I found [jekyll-redirect-from][] served by Jekyll team. What it does is almost completely same with `jekyll_alias_generator`. Generates alias HTML files when we set `redirect_from` key in YAML front matter of the post.
 

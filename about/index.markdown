@@ -9,18 +9,21 @@ twitter_card:
     image: http://yous.be/images/about/yous.png
 ---
 
-## <a id="yous"></a>Yous
+## Yous
+{: #yous}
 
 Chayoung You
 
 <img src="/images/about/yous.png" alt="Yous" width="200px" height="200px" />
 
-## <a id="contact"></a>Contact
+## Contact
+{: #contact}
 
 - <yous@yous.be>
 - [keybase.io/yous](https://keybase.io/yous)
 
-## <a id="projects"></a>Projects
+## Projects
+{: #projects}
 
 - [whiteglass](https://github.com/yous/whiteglass) --- Minimal, responsive Jekyll theme for hackers.
 - [vim-open-color](https://github.com/yous/vim-open-color) --- Vim color scheme using [Open Color](https://yeun.github.io/open-color/).
@@ -36,12 +39,14 @@ Chayoung You
 - [Raheui](https://github.com/yous/raheui) --- Aheui interpreter in Ruby.
 - [스터디 헬퍼](https://play.google.com/store/apps/details?id=kr.co.tamseng.StudyHelper)
 
-## <a id="code"></a>Code
+## Code
+{: #code}
 
 - [@yous](https://github.com/yous) on GitHub
 - [@yous](https://bitbucket.org/yous) on Bitbucket
 
-## <a id="blog"></a>Blog
+## Blog
+{: #blog}
 
 - [yous.be]({{ site.url }})
 
@@ -50,7 +55,8 @@ Chayoung You
     [Markdown](http://daringfireball.net/projects/markdown/). The source is
     available on [GitHub repository](https://github.com/yous/yous.be).
 
-## <a id="experiences"></a>Experiences
+## Experiences
+{: #experiences}
 
 - Researcher, [RTst](http://rtst.co.kr), 2017.02--Current
 - Korean Translator Moderator, [Twitter](https://twitter.com), 2016.01--2017.11
@@ -60,25 +66,29 @@ Chayoung You
 - KAIST CERT, 2012.01--2013.03
 - KAIST GoN, 2011--Current
 
-## <a id="activities"></a>Activities
+## Activities
+{: #activities}
 
 - ChristmasCTF 2014, the 2nd place, 2014.12.25
 - DEF CON 20 Hacking Conference, KAIST GoN, Las Vegas, 2012.07.26--29
 - The 11th KAIST-POSTECH Science War, Pohang, Korea, 2012
 - The 10th POSTECH-KAIST Science War, Daejeon, Korea, 2011
 
-## <a id="interests"></a>Interests
+## Interests
+{: #interests}
 
 - Real-time OS
 - Embedded system
 - [Ruby](https://www.ruby-lang.org)
 - [Vim](http://www.vim.org)
 
-## <a id="education"></a>Education
+## Education
+{: #education}
 
 - [KAIST](http://www.kaist.ac.kr), Bachelor of Science in Mathematical Sciences and Computer Science, 2011--2017
 
-## <a id="likes"></a>Likes
+## Likes
+{: #likes}
 
 - Music
     - Collecting [CDs](/about/cds/)

@@ -14,7 +14,8 @@ twitter_card:
     image: http://yous.be/images/2014/05/15/gradle_logo.gif
 ---
 
-## <a id="gradle"></a>Gradle
+## Gradle
+{: #gradle}
 
 ![Gradle](/images/2014/05/15/gradle_logo.gif "Gradle")
 
@@ -24,7 +25,8 @@ twitter_card:
 [Gradle]: http://www.gradle.org
 [ProGuard]: http://proguard.sourceforge.net
 
-## <a id="how-to-create-release-apk-using-gradle"></a>Gradle 환경에서 배포 APK 생성하기
+## Gradle 환경에서 배포 APK 생성하기
+{: #how-to-create-release-apk-using-gradle}
 
 배포 APK에는 서명이 되어 있어야 하는데, 이를 위해서는 keystore 파일과 그 암호, 키 별칭, 키 암호가 필요하다. 디버그 APK에도 서명을 하지만, [알려진 keystore 암호와 키 별칭, 키 암호][Signing in Debug Mode]를 사용한다. 배포 APK의 서명을 위해 프로젝트의 `build.gradle` 파일에 다음 코드를 추가하면 된다.
 
@@ -111,7 +113,8 @@ Gradle은 [캐멀케이스 단축키를 지원][TOC-Android-tasks]해서 `aR`에
 
 <!-- more -->
 
-## <a id="how-to-use-proguard"></a>ProGuard 사용하기
+## ProGuard 사용하기
+{: #how-to-use-proguard}
 
 배포 APK를 생성할 때 ProGuard를 사용할 수도 있는데, `build.gradle`에 다음 코드를 추가하면 된다.
 
@@ -141,7 +144,8 @@ buildTypes {
 
 다른 라이브러리 프로젝트를 가져다 사용하고 있을 경우, ProGuard 사용에 있어 주의해야 한다.
 
-### <a id="actionbarsherlock"></a>ActionBarSherlock
+### ActionBarSherlock
+{: #actionbarsherlock}
 
 [ActionBarSherlock][]의 경우 ProGuard를 사용할 때, [다음 규칙을 추가하라고 명시][ActionBarSherlock FAQ]하고 있다.
 
@@ -157,7 +161,8 @@ buildTypes {
 -keepattributes *Annotation*
 ```
 
-### <a id="crashlytics"></a>Crashlytics
+### Crashlytics
+{: #crashlytics}
 
 [Crashlytics][]는 이미 ProGuard를 사용한 라이브러리들을 다시 ProGuard가 검사할 필요 없게 해서 [빌드 시간을 줄이는 팁][Mastering ProGuard for Building Lightweight Android Code]을 제공하고 있다.
 
@@ -196,7 +201,8 @@ ProGuard를 이용해 코드 난독화 작업을 거치게 되면, 소스 파일
 -keepattributes SourceFile,LineNumberTable
 ```
 
-### <a id="google-play-services-sdk"></a>Google Play Services SDK
+### Google Play Services SDK
+{: #google-play-services-sdk}
 
 [Google Play Services SDK][] 또한 필요한 클래스가 사라지는 것을 방지하기 위한 [ProGuard 규칙][Create a Proguard Exception]을 제공하고 있다.
 
@@ -222,7 +228,8 @@ ProGuard를 이용해 코드 난독화 작업을 거치게 되면, 소스 파일
 }
 ```
 
-## <a id="see-also"></a>참고 목록
+## 참고 목록
+{: #see-also}
 
 - [Gradle Plugin User Guide](http://tools.android.com/tech-docs/new-build-system/user-guide) by [Android Tools Project Site](http://tools.android.com)
 - [Mastering ProGuard for Building Lightweight Android Code][] by [Crashlytics][]
