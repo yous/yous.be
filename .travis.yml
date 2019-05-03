@@ -10,6 +10,7 @@ script:
   - bundle exec rake spec
   - bundle exec jekyll clean
   - bundle exec jekyll build
+  - bundle exec rake proof
 branches:
   only:
     - source

@@ -8,6 +8,8 @@ desc 'Validate HTML files'
 task :proof do
   HTMLProofer.check_directory(
     '_site',
+    check_favicon: true,
+    check_opengraph: true,
     check_html: true,
     http_status_ignore: [302],
     url_ignore: [
@@ -34,7 +36,11 @@ task :proof do
       %r{http://58\.229\.6\.45},
       # /2016/10/11/hitcon-ctf-2016-rop-write-up/
       %r{https://s3-ap-northeast-1\.amazonaws\.com/hitcon2016qual/rop\.iseq_a9ac4b7a1669257d0914ca556a6aa6d14b4a2092}
-    ]
+    ],
+    validation: {
+      report_missing_names: true,
+      report_script_embeds: true
+    }
   ).run
 end
 
