@@ -28,6 +28,7 @@ exclude:
   - cscope.out
   - spec
   - tags
+  - tmp
   - vendor
 
 # Social media
