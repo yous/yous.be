@@ -14,12 +14,13 @@ twitter_card:
     image: http://yous.be/images/2014/02/24/twitter_card_summary.png
 ---
 
-블로그에 글을 쓰고 나면 트위터나 페이스북에 링크를 공유하곤 하는데 페이스북의 미리보기가 적절히 표시되지 않고 있다는 사실을 깨달았다. 또한 트위터도 그와 비슷한 기능을 제공하는데, 둘 다 지원하면 좋겠다는 생각을 했다. 이를 제대로 지원하려면 [Facebook Open Graph tags][]와 [Twitter Cards][]에 대해 알아야 한다. 웹 페이지에 적절한 [메타 태그][Meta element]를 추가해 주면 페이스북과 트위터에서 인식하고 올바른, 작성자가 의도한 미리보기를 보여준다. 기본적으로 Zac Clancy가 쓴 [Octopress에서 이 두 가지를 지원하는 글][Black Glasses]에 상세히 설명되어 있다.
+블로그에 글을 쓰고 나면 트위터나 페이스북에 링크를 공유하곤 하는데 페이스북의 미리보기가 적절히 표시되지 않고 있다는 사실을 깨달았다. 또한 트위터도 그와 비슷한 기능을 제공하는데, 둘 다 지원하면 좋겠다는 생각을 했다. 이를 제대로 지원하려면 [Facebook Open Graph tags][]와 [Twitter Cards][]에 대해 알아야 한다. 웹 페이지에 적절한 [메타 태그][Meta element]를 추가해 주면 페이스북과 트위터에서 인식하고 올바른, 작성자가 의도한 미리보기를 보여준다. 기본적으로 [Zac Clancy][]가 쓴 [Octopress에서 이 두 가지를 지원하는 글][Black Glasses]에 상세히 설명되어 있다.
 
-[Facebook Open Graph tags]: https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#tags
-[Twitter Cards]: https://dev.twitter.com/docs/cards
+[Facebook Open Graph tags]: https://developers.facebook.com/docs/sharing/best-practices#tags
+[Twitter Cards]: https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards.html
 [Meta element]: http://en.wikipedia.org/wiki/Meta_element
-[Black Glasses]: http://blackglasses.me/2013/09/19/twitter-cards-facebook-open-graph-and-octopress/
+[Zac Clancy]: https://twitter.com/zac_c
+[Black Glasses]: http://zclancy.github.io/2013/09/19/twitter-cards-facebook-open-graph-and-octopress/
 
 <!-- more -->
 
@@ -38,7 +39,7 @@ twitter_card:
 - `fb:app_id`: 페이스북이 사이트의 신원을 파악할 수 있게 해 주는 고유 ID다. Facebook Insights가 제대로 동작하는 데에 중요하다. 자세한 내용은 [Insights 문서][Insights documentation]에서 확인할 수 있다.
 
 [Canonical link element]: http://en.wikipedia.org/wiki/Canonical_link_element
-[Insights documentation]: https://developers.facebook.com/docs/insights/
+[Insights documentation]: https://developers.facebook.com/docs/sharing/referral-insights
 
 다른 종류의 태그를 더 추가할 수도 있다.
 
@@ -49,7 +50,7 @@ twitter_card:
 
 [number of different common object types]: http://ogp.me/#types
 [Internationalization]: https://developers.facebook.com/docs/internationalization/
-[Open Graph Internationalization]: https://developers.facebook.com/docs/technical-guides/opengraph/internationalization/
+[Open Graph Internationalization]: https://developers.facebook.com/docs/internationalization#locales
 [property links to the authors of the article]: https://developers.facebook.com/docs/reference/opengraph/object-type/article
 [follow]: https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#follow
 [property links to the publisher of the article]: https://developers.facebook.com/docs/reference/opengraph/object-type/article
@@ -71,12 +72,12 @@ twitter_card:
 - [Player Card][]: 트윗 형태의 비디오/오디오/미디어 재생 카드다.
 - [Product Card][]: 상품 내용을 더 잘 나타내기 위한 트윗 카드다.
 
-[Summary Card]: https://dev.twitter.com/docs/cards/types/summary-card
-[Summary Card with Large Image]: https://dev.twitter.com/docs/cards/large-image-summary-card
+[Summary Card]: https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/summary-card-with-large-image
+[Summary Card with Large Image]: https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/summary-card-with-large-image.html
 [Photo Card]: https://dev.twitter.com/docs/cards/types/photo-card
 [Gallery Card]: https://dev.twitter.com/docs/cards/types/gallery-card
-[App Card]: https://dev.twitter.com/docs/cards/types/app-card
-[Player Card]: https://dev.twitter.com/docs/cards/types/player-card
+[App Card]: https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/app-card
+[Player Card]: https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/player-card
 [Product Card]: https://dev.twitter.com/docs/cards/types/product-card
 
 트위터는 [카드 검사 도구][Card Validator]를 직접 제공하고 있으므로 각 종류의 카드가 어떻게 보이는지, 자신의 사이트가 제대로 인식되는지 테스트 해볼 수 있다.
