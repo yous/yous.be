@@ -5,7 +5,7 @@
   
   <link href="https://yous.be/atom.xml" rel="self" type="application/atom+xml" />
   <link href="https://yous.be/" rel="alternate" type="text/html" />
-  <updated>2019-04-19T16:08:12+00:00</updated>
+  <updated>2019-05-03T12:31:54+00:00</updated>
   <id>https://yous.be//</id>
 
   
@@ -36,11 +36,11 @@
       <published>2019-01-15T16:34:26+00:00</published>
       <updated>2019-01-15T16:34:26+00:00</updated>
       <id>https://yous.be/2019/01/15/integrate-homebrew-ruby-with-chruby</id>
-      <content type="html" xml:base="https://yous.be/2019/01/15/integrate-homebrew-ruby-with-chruby/">&lt;p&gt;For a while after &lt;a href=&quot;/2016/01/01/switching-rvm-to-chruby/&quot;&gt;switching from RVM to chruby&lt;/a&gt;, I’ve been quite satisfied with
-&lt;a href=&quot;https://github.com/postmodern/chruby&quot;&gt;chruby&lt;/a&gt;, except for one thing. Every time
-Ruby releases a new version, I had to compile that version from scratch using
-&lt;a href=&quot;https://github.com/postmodern/ruby-install&quot;&gt;ruby-install&lt;/a&gt;. It takes quite a
-long time, and I should do that on every macOS device I use.&lt;/p&gt;
+      <content type="html" xml:base="https://yous.be/2019/01/15/integrate-homebrew-ruby-with-chruby/">&lt;p&gt;For a while after &lt;a href=&quot;/2016/01/01/switching-rvm-to-chruby/&quot;&gt;switching from RVM to chruby&lt;/a&gt;,
+I’ve been quite satisfied with &lt;a href=&quot;https://github.com/postmodern/chruby&quot;&gt;chruby&lt;/a&gt;,
+except for one thing. Every time Ruby releases a new version, I had to compile
+that version from scratch using &lt;a href=&quot;https://github.com/postmodern/ruby-install&quot;&gt;ruby-install&lt;/a&gt;.
+It takes quite a long time, and I should do that on every macOS device I use.&lt;/p&gt;
 
 &lt;p&gt;&lt;a href=&quot;http://xkcd.com/303/&quot;&gt;&lt;img src=&quot;/images/2019/01/15/compiling.png&quot; alt=&quot;Compiling&quot; title=&quot;'Are you stealing those LCDs?' 'Yeah, but I'm doing it while my code compiles.'&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
 
@@ -948,7 +948,7 @@ tex, sty, mp, bib files.&lt;/p&gt;
 
 &lt;h2&gt;Behavior of &lt;code class=&quot;highlighter-rouge&quot;&gt;\write18&lt;/code&gt;&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&quot;http://gsis.kaist.ac.kr/cysec/daeheejang.html&quot;&gt;@daehee&lt;/a&gt; found this helpful
+&lt;p&gt;&lt;a href=&quot;https://cysec.kaist.ac.kr/daeheejang.html&quot;&gt;@daehee&lt;/a&gt; found this helpful
 link:
 &lt;a href=&quot;http://scumjr.github.io/2016/11/28/pwning-coworkers-thanks-to-latex/&quot;&gt;“Pwning coworkers thanks to LaTeX”&lt;/a&gt;.
 According to the post, &lt;code class=&quot;highlighter-rouge&quot;&gt;\write18&lt;/code&gt; normally executes any program listed in
@@ -2118,7 +2118,7 @@ changes to internal logic.&lt;/li&gt;
 
 &lt;p&gt;First things first, rename the &lt;code class=&quot;highlighter-rouge&quot;&gt;libdroid_fixed.apk&lt;/code&gt; to &lt;code class=&quot;highlighter-rouge&quot;&gt;libdroid_fixed.zip&lt;/code&gt; and
 unzip it. Then there should be a &lt;code class=&quot;highlighter-rouge&quot;&gt;classes.dex&lt;/code&gt; file, and we have
-&lt;a href=&quot;http://sourceforge.net/projects/dex2jar/&quot;&gt;dex2jar&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&quot;https://sourceforge.net/projects/dex2jar/&quot;&gt;dex2jar&lt;/a&gt;.&lt;/p&gt;
 
 &lt;p&gt;On Windows,&lt;/p&gt;
 
@@ -3322,7 +3322,7 @@ Any issues and pull requests are welcome!&lt;/p&gt;</content>
   &lt;li&gt;&lt;a href=&quot;#trace&quot;&gt;Trace - MISC100&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-&lt;h2&gt;&lt;a id=&quot;are-you-able-to-multiply&quot;&gt;&lt;/a&gt;Are you able to multiply? - ALGO200&lt;/h2&gt;
+&lt;h2 id=&quot;are-you-able-to-multiply&quot;&gt;Are you able to multiply? - ALGO200&lt;/h2&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;곱하기는 정말 어렵지 않나요?&lt;/p&gt;
@@ -3453,7 +3453,7 @@ Flag is I_L0VE_S6nta, I_L0Ve_Father, I_L0VE_Y0U...
 
 &lt;p&gt;Flag는 &lt;code class=&quot;highlighter-rouge&quot;&gt;I_L0VE_S6nta, I_L0Ve_Father, I_L0VE_Y0U...&lt;/code&gt;입니다.&lt;/p&gt;
 
-&lt;h2&gt;&lt;a id=&quot;jingle-bell&quot;&gt;&lt;/a&gt;JingleBell - MISC200&lt;/h2&gt;
+&lt;h2 id=&quot;jingle-bell&quot;&gt;JingleBell - MISC200&lt;/h2&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Kevin은 이번 크리스마스에 자신의 여자친구인 Margaretha에게 노래를 선물하기 위해 징글벨을 편곡했다.&lt;br /&gt;
@@ -3478,7 +3478,7 @@ MAS CTF PAS SIS ####
 
 &lt;p&gt;Flag는 &lt;code class=&quot;highlighter-rouge&quot;&gt;MATAHARIZZANG&lt;/code&gt;입니다.&lt;/p&gt;
 
-&lt;h2&gt;&lt;a id=&quot;krystal-holic&quot;&gt;&lt;/a&gt;KrystalHolic - WEB400&lt;/h2&gt;
+&lt;h2 id=&quot;krystal-holic&quot;&gt;KrystalHolic - WEB400&lt;/h2&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;http://web-prob.dkserver.wo.tc/krystalholic_1e2fdfa6874f87345dd7f27099a38668&lt;/p&gt;
@@ -3527,7 +3527,7 @@ Your level : Null
 
 &lt;p&gt;Flag는 &lt;code class=&quot;highlighter-rouge&quot;&gt;UP_down_UP_UP_down&lt;/code&gt;입니다.&lt;/p&gt;
 
-&lt;h2&gt;&lt;a id=&quot;a-letter-to-her&quot;&gt;&lt;/a&gt;A Letter To Her - WEB100&lt;/h2&gt;
+&lt;h2 id=&quot;a-letter-to-her&quot;&gt;A Letter To Her - WEB100&lt;/h2&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;&lt;a href=&quot;http://web-prob.dkserver.wo.tc/letter_4f1ad94372c166c3cb9632ed5041849a/&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;
@@ -3591,7 +3591,7 @@ Your level : Null
 
 &lt;p&gt;Flag는 &lt;code class=&quot;highlighter-rouge&quot;&gt;snow_is_commmming&lt;/code&gt;입니다.&lt;/p&gt;
 
-&lt;h2&gt;&lt;a id=&quot;a-letter-to-her-2&quot;&gt;&lt;/a&gt;A Letter To Her 2 - WEB500&lt;/h2&gt;
+&lt;h2 id=&quot;a-letter-to-her-2&quot;&gt;A Letter To Her 2 - WEB500&lt;/h2&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;&lt;a href=&quot;http://web-prob.dkserver.wo.tc/sqli_962a035aacf08966ffc7610957ac0c29/&quot;&gt;Link&lt;/a&gt;&lt;/p&gt;
@@ -3648,7 +3648,7 @@ Your level : Null
 
 &lt;p&gt;Flag는 &lt;code class=&quot;highlighter-rouge&quot;&gt;오리야날아라&lt;/code&gt;입니다.&lt;/p&gt;
 
-&lt;h2&gt;&lt;a id=&quot;weight-and-measures&quot;&gt;&lt;/a&gt;WEIGHT AND MEASURES - ALGO200&lt;/h2&gt;
+&lt;h2 id=&quot;weight-and-measures&quot;&gt;WEIGHT AND MEASURES - ALGO200&lt;/h2&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;밤(bam)이라는 검은 거북이가 친구들과 햄버거놀이를 하기 위해 문의를 해왔다. 혹시 놀이를 하다가 다칠 수도 있기 때문이다. 햄버거놀이를 하기 위해 동원된 거북이는 체중과 체력이 모두 다르다. 가능한 한 가장 많은 거북이를 쌓는 방법을 찾아보자.&lt;/p&gt;
@@ -3744,7 +3744,7 @@ The Flag is christmas{Rac_reKrei$her_!s_so_cute_@lligat0r!}
 
 &lt;p&gt;Flag는 &lt;code class=&quot;highlighter-rouge&quot;&gt;Rac_reKrei$her_!s_so_cute_@lligat0r!&lt;/code&gt;입니다.&lt;/p&gt;
 
-&lt;h2&gt;&lt;a id=&quot;php-obfuscate&quot;&gt;&lt;/a&gt;PHP Obfuscate - WEB500&lt;/h2&gt;
+&lt;h2 id=&quot;php-obfuscate&quot;&gt;PHP Obfuscate - WEB500&lt;/h2&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;PHP Version 5.2.12에서 테스트했습니다&lt;/p&gt;
@@ -3897,7 +3897,7 @@ The Flag is christmas{Rac_reKrei$her_!s_so_cute_@lligat0r!}
 
 &lt;p&gt;Flag는 &lt;code class=&quot;highlighter-rouge&quot;&gt;time_7o_d0_bar0n&lt;/code&gt;입니다.&lt;/p&gt;
 
-&lt;h2&gt;&lt;a id=&quot;trace&quot;&gt;&lt;/a&gt;Trace - MISC100&lt;/h2&gt;
+&lt;h2 id=&quot;trace&quot;&gt;Trace - MISC100&lt;/h2&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Just Find a Key&lt;/p&gt;
