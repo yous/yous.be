@@ -5,7 +5,7 @@
   
   <link href="https://yous.be/atom.xml" rel="self" type="application/atom+xml" />
   <link href="https://yous.be/" rel="alternate" type="text/html" />
-  <updated>2019-05-09T08:02:59+00:00</updated>
+  <updated>2019-05-15T09:36:39+00:00</updated>
   <id>https://yous.be//</id>
 
   
@@ -141,7 +141,7 @@ updated.&lt;/p&gt;
       <published>2018-12-02T08:42:47+00:00</published>
       <updated>2018-12-02T08:42:47+00:00</updated>
       <id>https://yous.be/2018/12/02/how-to-open-binary-plist-files-using-vim-plist</id>
-      <content type="html" xml:base="https://yous.be/2018/12/02/how-to-open-binary-plist-files-using-vim-plist/">&lt;p&gt;&lt;img src=&quot;/images/2018/12/02/plist.png&quot; alt=&quot;Vim editing a binary plist file&quot; title=&quot;Vim editing a binary plist file&quot; /&gt;&lt;/p&gt;
+      <content type="html" xml:base="https://yous.be/2018/12/02/how-to-open-binary-plist-files-using-vim-plist/">&lt;p&gt;&lt;img src=&quot;/images/2018/12/02/plist.min.png&quot; alt=&quot;Vim editing a binary plist file&quot; title=&quot;Vim editing a binary plist file&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Using macOS, you may have had experiences of handling plist files. For example,
 &lt;code class=&quot;highlighter-rouge&quot;&gt;~/Library/Preferences/.GlobalPreferences.plist&lt;/code&gt; file holds some configurations
@@ -1689,7 +1689,7 @@ customized window size. And I found it, so here I am to share with you.&lt;/p&gt
 of Slack API or something that is guaranteed by them. My Windows machine is
 64-bit and the version of Slack is 2.2.1.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/2016/10/07/slack-2.2.1.png&quot; alt=&quot;Slack 2.2.1&quot; title=&quot;Slack 2.2.1&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/2016/10/07/slack-2.2.1.min.png&quot; alt=&quot;Slack 2.2.1&quot; title=&quot;Slack 2.2.1&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;So here is a way to resetting the window size of Slack.&lt;/p&gt;
 
@@ -2134,7 +2134,7 @@ unzip it. Then there should be a &lt;code class=&quot;highlighter-rouge&quot;&gt
 &lt;a href=&quot;http://jd.benow.ca/&quot;&gt;JD-GUI&lt;/a&gt;’s turn. Open the jar file with JD-GUI and you will
 see the content of class &lt;code class=&quot;highlighter-rouge&quot;&gt;ctf.stratumauhhur.libdroid.a&lt;/code&gt;.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/2015/12/30/jd-gui.png&quot; alt=&quot;JD-GUI&quot; title=&quot;JD-GUI&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/2015/12/30/jd-gui.min.png&quot; alt=&quot;JD-GUI&quot; title=&quot;JD-GUI&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The full content of the &lt;code class=&quot;highlighter-rouge&quot;&gt;a.class&lt;/code&gt; is available on
 &lt;a href=&quot;https://gist.github.com/yous/43bc6f60d41d0197cf18&quot;&gt;this gist&lt;/a&gt;.&lt;/p&gt;
@@ -2557,7 +2557,7 @@ Congratulations! The rootkit is sucessfully installed. The Flag is 32C3_this_is_
 &lt;p&gt;So the flag is &lt;code class=&quot;highlighter-rouge&quot;&gt;32C3_this_is_build_for_flag_ship_phones&lt;/code&gt;. If you want to see the
 flag within the application, just press &lt;code class=&quot;highlighter-rouge&quot;&gt;103875&lt;/code&gt; on it.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/2015/12/30/libdroid_flag.jpg&quot; alt=&quot;libdroid Flag&quot; /&gt;&lt;/p&gt;</content>
+&lt;p&gt;&lt;img src=&quot;/images/2015/12/30/libdroid_flag.min.jpg&quot; alt=&quot;libdroid Flag&quot; /&gt;&lt;/p&gt;</content>
 
       
       
@@ -2907,7 +2907,7 @@ be sent to the tmux server process to recreate it.&lt;/p&gt;
       <published>2015-05-05T03:12:07+00:00</published>
       <updated>2015-05-05T03:12:07+00:00</updated>
       <id>https://yous.be/2015/05/05/using-pinpoint-with-docker</id>
-      <content type="html" xml:base="https://yous.be/2015/05/05/using-pinpoint-with-docker/">&lt;p&gt;&lt;img src=&quot;/images/2015/05/05/logo.png&quot; alt=&quot;Pinpoint&quot; title=&quot;Pinpoint&quot; /&gt;&lt;/p&gt;
+      <content type="html" xml:base="https://yous.be/2015/05/05/using-pinpoint-with-docker/">&lt;p&gt;&lt;img src=&quot;/images/2015/05/05/logo.min.png&quot; alt=&quot;Pinpoint&quot; title=&quot;Pinpoint&quot; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;&lt;a href=&quot;https://github.com/naver/pinpoint&quot;&gt;&lt;strong&gt;Pinpoint&lt;/strong&gt;&lt;/a&gt; is an open source APM
@@ -3133,17 +3133,17 @@ of Pinpoint, we run several scripts.&lt;/p&gt;
   &lt;li&gt;
     &lt;p&gt;Collector: &lt;code class=&quot;highlighter-rouge&quot;&gt;quickstart/bin/start-collector.sh&lt;/code&gt;&lt;/p&gt;
 
-    &lt;p&gt;&lt;img src=&quot;/images/2015/05/05/quickstart-start-collector.png&quot; alt=&quot;start-collector.sh&quot; title=&quot;start-collector.sh&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;/images/2015/05/05/quickstart-start-collector.min.png&quot; alt=&quot;start-collector.sh&quot; title=&quot;start-collector.sh&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Web UI: &lt;code class=&quot;highlighter-rouge&quot;&gt;quickstart/bin/start-web.sh&lt;/code&gt;&lt;/p&gt;
 
-    &lt;p&gt;&lt;img src=&quot;/images/2015/05/05/quickstart-start-web.png&quot; alt=&quot;start-web.sh&quot; title=&quot;start-web.sh&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;/images/2015/05/05/quickstart-start-web.min.png&quot; alt=&quot;start-web.sh&quot; title=&quot;start-web.sh&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;TestApp: &lt;code class=&quot;highlighter-rouge&quot;&gt;quickstart/bin/start-testapp.sh&lt;/code&gt;&lt;/p&gt;
 
-    &lt;p&gt;&lt;img src=&quot;/images/2015/05/05/quickstart-start-testapp.png&quot; alt=&quot;start-testapp.sh&quot; title=&quot;start-testapp.sh&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;/images/2015/05/05/quickstart-start-testapp.min.png&quot; alt=&quot;start-testapp.sh&quot; title=&quot;start-testapp.sh&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -3154,12 +3154,12 @@ out your Pinpoint instance.&lt;/p&gt;
   &lt;li&gt;
     &lt;p&gt;Web UI: &lt;a href=&quot;http://localhost:28080&quot;&gt;http://localhost:28080&lt;/a&gt;&lt;/p&gt;
 
-    &lt;p&gt;&lt;img src=&quot;/images/2015/05/05/quickstart-web-ui.png&quot; alt=&quot;Web UI&quot; title=&quot;Web UI&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;/images/2015/05/05/quickstart-web-ui.min.png&quot; alt=&quot;Web UI&quot; title=&quot;Web UI&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;TestApp: &lt;a href=&quot;http://localhost:28081&quot;&gt;http://localhost:28081&lt;/a&gt;&lt;/p&gt;
 
-    &lt;p&gt;&lt;img src=&quot;/images/2015/05/05/quickstart-testapp.png&quot; alt=&quot;TestApp&quot; title=&quot;TestApp&quot; /&gt;&lt;/p&gt;
+    &lt;p&gt;&lt;img src=&quot;/images/2015/05/05/quickstart-testapp.min.png&quot; alt=&quot;TestApp&quot; title=&quot;TestApp&quot; /&gt;&lt;/p&gt;
   &lt;/li&gt;
 &lt;/ul&gt;
 
@@ -3307,7 +3307,7 @@ Any issues and pull requests are welcome!&lt;/p&gt;</content>
       <published>2014-12-25T15:41:26+00:00</published>
       <updated>2014-12-25T15:41:26+00:00</updated>
       <id>https://yous.be/2014/12/25/christmasctf-2014-write-up</id>
-      <content type="html" xml:base="https://yous.be/2014/12/25/christmasctf-2014-write-up/">&lt;p&gt;&lt;img src=&quot;/images/2014/12/25/christmasctf-1_800.png&quot; alt=&quot;ChristmasCTF&quot; title=&quot;ChristmasCTF&quot; /&gt;&lt;/p&gt;
+      <content type="html" xml:base="https://yous.be/2014/12/25/christmasctf-2014-write-up/">&lt;p&gt;&lt;img src=&quot;/images/2014/12/25/christmasctf-1.min.png&quot; alt=&quot;ChristmasCTF&quot; title=&quot;ChristmasCTF&quot; /&gt;&lt;/p&gt;
 
 &lt;!-- more --&gt;
 
@@ -3469,7 +3469,7 @@ Flag is I_L0VE_S6nta, I_L0Ve_Father, I_L0VE_Y0U...
 
 &lt;p&gt;마타하리라는 암호라고 하는데, 정보가 확실하진 않으나 해당 글의 WELCOME TO까지 완벽히 동일합니다. 아래 표를 보고 직접 해독합니다.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/2014/12/25/Matahari.jpg&quot; alt=&quot;Matahari&quot; title=&quot;Matahari&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/2014/12/25/Matahari.min.jpg&quot; alt=&quot;Matahari&quot; title=&quot;Matahari&quot; /&gt;&lt;/p&gt;
 
 &lt;div class=&quot;language-text highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;WELC OME TO CHRI ST
 MAS CTF PAS SIS ####
@@ -4084,17 +4084,17 @@ but when I woke up, half my QR code was gone!”&lt;/p&gt;
 
 &lt;p&gt;At first, we need clean image based on the image above.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/2014/12/07/skeleton_qr.png&quot; alt=&quot;Skeleton QR code&quot; title=&quot;Skeleton QR code&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/2014/12/07/skeleton_qr.min.png&quot; alt=&quot;Skeleton QR code&quot; title=&quot;Skeleton QR code&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;The size of this QR code is 29x29 and the size of version &lt;em&gt;V&lt;/em&gt; is &lt;em&gt;N × N&lt;/em&gt; with &lt;em&gt;N = 17 + 4V&lt;/em&gt;, so this is version 3.&lt;/p&gt;
 
 &lt;h2&gt;Format Information&lt;/h2&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/2014/12/07/qr_format_information.png&quot; alt=&quot;Format information&quot; title=&quot;Format information&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/2014/12/07/qr_format_information.min.png&quot; alt=&quot;Format information&quot; title=&quot;Format information&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Note that the area indicates format information of QR code. Actually the format information is 15 bits long and the area has last 8 bits.&lt;/p&gt;
 
-&lt;p&gt;&lt;img src=&quot;/images/2014/12/07/format_information_bits.png&quot; alt=&quot;Format information bits&quot; title=&quot;Format information bits&quot; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;/images/2014/12/07/format_information_bits.min.png&quot; alt=&quot;Format information bits&quot; title=&quot;Format information bits&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Searching &lt;a href=&quot;http://www.thonky.com/qr-code-tutorial/format-version-tables/#list-of-all-format-information-strings&quot;&gt;the list of all format information strings&lt;/a&gt;, we can find out that the type information bits are &lt;code class=&quot;highlighter-rouge&quot;&gt;001001110111110&lt;/code&gt;. So this QR code has ECC level H and mask pattern 1.&lt;/p&gt;
 
@@ -4346,7 +4346,7 @@ but when I woke up, half my QR code was gone!”&lt;/p&gt;
       <published>2014-11-30T09:02:45+00:00</published>
       <updated>2014-11-30T09:02:45+00:00</updated>
       <id>https://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed</id>
-      <content type="html" xml:base="https://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed/">&lt;p&gt;&lt;img src=&quot;/images/2014/11/30/vim_800.png&quot; alt=&quot;Vim&quot; title=&quot;Vim&quot; /&gt;&lt;/p&gt;
+      <content type="html" xml:base="https://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed/">&lt;p&gt;&lt;img src=&quot;/images/2014/11/30/vim.min.png&quot; alt=&quot;Vim&quot; title=&quot;Vim&quot; /&gt;&lt;/p&gt;
 
 &lt;h2&gt;Sidebar&lt;/h2&gt;
 
