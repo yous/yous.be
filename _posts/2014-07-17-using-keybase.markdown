@@ -20,7 +20,7 @@ facebook:
 {: #keybase}
 
 
-![Keybase](/images/2014/07/17/logo.png "Keybase")
+![Keybase](/images/2014/07/17/logo.min.png "Keybase")
 
 > Keybase will be a public directory of publicly auditable public keys. All paired, for convenience, with unique usernames.
 

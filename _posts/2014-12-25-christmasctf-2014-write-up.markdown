@@ -17,7 +17,7 @@ facebook:
     image: http://yous.be/images/2014/12/25/christmasctf-1.png
 ---
 
-![ChristmasCTF](/images/2014/12/25/christmasctf-1_800.png "ChristmasCTF")
+![ChristmasCTF](/images/2014/12/25/christmasctf-1.min.png "ChristmasCTF")
 
 <!-- more -->
 
@@ -176,7 +176,7 @@ Flag는 `I_L0VE_S6nta, I_L0Ve_Father, I_L0VE_Y0U...`입니다.
 
 마타하리라는 암호라고 하는데, 정보가 확실하진 않으나 해당 글의 WELCOME TO까지 완벽히 동일합니다. 아래 표를 보고 직접 해독합니다.
 
-![Matahari](/images/2014/12/25/Matahari.jpg "Matahari")
+![Matahari](/images/2014/12/25/Matahari.min.jpg "Matahari")
 
 ``` text
 WELC OME TO CHRI ST

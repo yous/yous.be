@@ -36,7 +36,7 @@ First of all, note that this is not the permanent solution since it's not a part
 of Slack API or something that is guaranteed by them. My Windows machine is
 64-bit and the version of Slack is 2.2.1.
 
-![Slack 2.2.1](/images/2016/10/07/slack-2.2.1.png "Slack 2.2.1")
+![Slack 2.2.1](/images/2016/10/07/slack-2.2.1.min.png "Slack 2.2.1")
 
 So here is a way to resetting the window size of Slack.
 

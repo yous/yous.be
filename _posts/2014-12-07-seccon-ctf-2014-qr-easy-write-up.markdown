@@ -33,17 +33,17 @@ facebook:
 
 At first, we need clean image based on the image above.
 
-![Skeleton QR code](/images/2014/12/07/skeleton_qr.png "Skeleton QR code")
+![Skeleton QR code](/images/2014/12/07/skeleton_qr.min.png "Skeleton QR code")
 
 The size of this QR code is 29x29 and the size of version _V_ is _N &times; N_ with _N = 17 + 4V_, so this is version 3.
 
 ## Format Information
 
-![Format information](/images/2014/12/07/qr_format_information.png "Format information")
+![Format information](/images/2014/12/07/qr_format_information.min.png "Format information")
 
 Note that the area indicates format information of QR code. Actually the format information is 15 bits long and the area has last 8 bits.
 
-![Format information bits](/images/2014/12/07/format_information_bits.png "Format information bits")
+![Format information bits](/images/2014/12/07/format_information_bits.min.png "Format information bits")
 
 Searching [the list of all format information strings](http://www.thonky.com/qr-code-tutorial/format-version-tables/#list-of-all-format-information-strings), we can find out that the type information bits are `001001110111110`. So this QR code has ECC level H and mask pattern 1.
 

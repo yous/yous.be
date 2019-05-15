@@ -13,7 +13,7 @@ facebook:
     image: http://yous.be/images/2014/11/30/vim.png
 ---
 
-![Vim](/images/2014/11/30/vim_800.png "Vim")
+![Vim](/images/2014/11/30/vim.min.png "Vim")
 
 ## Sidebar
 
