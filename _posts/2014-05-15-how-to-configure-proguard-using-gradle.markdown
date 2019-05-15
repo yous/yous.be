@@ -21,16 +21,16 @@ twitter_card:
 
 최근 [Android Studio][]를 통해 개발을 진행하게 되면서, 자연스럽게 [Gradle][]을 사용하게 되었다. `.gradle` 확장자를 가진 파일을 통해 빌드 설정을 자유롭게 조정할 수 있다. 이 글에서는 Gradle을 이용해 배포 APK를 생성하는 방법과 함께 [ProGuard][]를 사용법을 공유하겠다.
 
-[Android Studio]: http://developer.android.com/sdk/installing/studio.html
-[Gradle]: http://www.gradle.org
-[ProGuard]: http://proguard.sourceforge.net
+[Android Studio]: https://developer.android.com/studio
+[Gradle]: https://gradle.org
+[ProGuard]: https://www.guardsquare.com/en/products/proguard
 
 ## Gradle 환경에서 배포 APK 생성하기
 {: #how-to-create-release-apk-using-gradle}
 
 배포 APK에는 서명이 되어 있어야 하는데, 이를 위해서는 keystore 파일과 그 암호, 키 별칭, 키 암호가 필요하다. 디버그 APK에도 서명을 하지만, [알려진 keystore 암호와 키 별칭, 키 암호][Signing in Debug Mode]를 사용한다. 배포 APK의 서명을 위해 프로젝트의 `build.gradle` 파일에 다음 코드를 추가하면 된다.
 
-[Signing in Debug Mode]: http://developer.android.com/tools/publishing/app-signing.html#debugmode
+[Signing in Debug Mode]: https://developer.android.com/studio/publish/app-signing#debug-mode
 
 ``` groovy
 android {
@@ -73,7 +73,7 @@ signingConfigs {
 
 그러나 이는 [IDE를 통해 디버그 APK를 생성할 때 크래시][How to create a release signed apk file using Gradle?]를 내며, 이는 그때 코드의 `console`이 `null`이라서 발생하는 오류다. 이를 해결한 최종 코드는 다음과 같다.
 
-[How to create a release signed apk file using Gradle?]: http://stackoverflow.com/questions/18328730/how-to-create-a-release-signed-apk-file-using-gradle#19210105
+[How to create a release signed apk file using Gradle?]: https://stackoverflow.com/questions/18328730/how-to-create-a-release-signed-apk-file-using-gradle#19210105
 
 ``` groovy
 signingConfigs {
@@ -166,8 +166,8 @@ buildTypes {
 
 [Crashlytics][]는 이미 ProGuard를 사용한 라이브러리들을 다시 ProGuard가 검사할 필요 없게 해서 [빌드 시간을 줄이는 팁][Mastering ProGuard for Building Lightweight Android Code]을 제공하고 있다.
 
-[Crashlytics]: https://www.crashlytics.com
-[Mastering ProGuard for Building Lightweight Android Code]: http://www.crashlytics.com/blog/mastering-proguard-for-building-lightweight-android-code/
+[Crashlytics]: https://try.crashlytics.com
+[Mastering ProGuard for Building Lightweight Android Code]: https://fabric.io/blog/2014/02/18/mastering-proguard-for-building-lightweight-android-code
 
 ```
 -libraryjars libs
@@ -176,7 +176,7 @@ buildTypes {
 
 [Android Support Library][]는 이미 소스가 공개되어 있기 때문에 코드 난독화가 필요하지 않다.
 
-[Android Support Library]: http://developer.android.com/tools/support-library/
+[Android Support Library]: https://developer.android.com/topic/libraries/support-library/
 
 ```
 -libraryjars libs
@@ -186,7 +186,7 @@ buildTypes {
 
 ProGuard를 이용해 코드 난독화 작업을 거치게 되면, 소스 파일의 줄 번호가 바뀌게 되어 Crashlytics의 스택 트레이스에서 정보를 얻기 어려울 수 있다. [소스 파일의 줄 번호 정보를 유지][Android Studio and IntelliJ with ProGuard]하려면 다음 문장을 추가한다.
 
-[Android Studio and IntelliJ with ProGuard]: http://support.crashlytics.com/knowledgebase/articles/202926-android-studio-and-intellij-with-proguard
+[Android Studio and IntelliJ with ProGuard]: https://support.crashlytics.com/knowledgebase/articles/202926-android-studio-and-intellij-with-proguard
 
 ```
 -keepattributes SourceFile,LineNumberTable
@@ -194,7 +194,7 @@ ProGuard를 이용해 코드 난독화 작업을 거치게 되면, 소스 파일
 
 다만 이 코드 때문에 난독화가 덜 되는 것 같다는 생각이 든다면, 파일 이름을 모두 `"SourceFile"` 문자열로 [바꿀 수도 있다][Producing useful obfuscated stack traces].
 
-[Producing useful obfuscated stack traces]: http://proguard.sourceforge.net/manual/examples.html#stacktrace
+[Producing useful obfuscated stack traces]: https://www.guardsquare.com/en/products/proguard/manual/examples#stacktrace
 
 ```
 -renamesourcefileattribute SourceFile
@@ -206,7 +206,7 @@ ProGuard를 이용해 코드 난독화 작업을 거치게 되면, 소스 파일
 
 [Google Play Services SDK][] 또한 필요한 클래스가 사라지는 것을 방지하기 위한 [ProGuard 규칙][Create a Proguard Exception]을 제공하고 있다.
 
-[Google Play Services SDK]: https://developer.android.com/google/play-services/index.html
+[Google Play Services SDK]: https://developers.google.com/android/guides/overview
 [Create a Proguard Exception]: https://developer.android.com/google/play-services/setup.html#Proguard
 
 ```
@@ -233,5 +233,5 @@ ProGuard를 이용해 코드 난독화 작업을 거치게 되면, 소스 파일
 
 - [Gradle Plugin User Guide](http://tools.android.com/tech-docs/new-build-system/user-guide) by [Android Tools Project Site](http://tools.android.com)
 - [Mastering ProGuard for Building Lightweight Android Code][] by [Crashlytics][]
-- [ProGuard Manual](http://proguard.sourceforge.net/manual/index.html) by [ProGuard][]
+- [ProGuard Manual](https://www.guardsquare.com/en/products/proguard/manual) by [ProGuard][]
 - [Gradle - Progaurd 사용하기(proguard rule)](http://novafactory.net/archives/2845) ([archive](https://web.archive.org/web/20160805062722/http://novafactory.net/archives/2845) by [Nova](https://plus.google.com/113131691466488717287)
