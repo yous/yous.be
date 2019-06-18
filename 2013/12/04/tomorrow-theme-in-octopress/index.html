@@ -3,8 +3,8 @@
 <span class="k">@import</span> <span class="s2">"tomorrow/tomorrow-night-eighties"</span><span class="p">;</span>
 <span class="c1">// @import "tomorrow/tomorrow-night-blue";</span>
 <span class="c1">// @import "tomorrow/tomorrow-night-bright";</span>
-</code></pre></div></div></ol><h2 id="fixes">Fixes</h2><ul><li><p>With default <code class="highlighter-rouge">sass/partial/_syntax.scss</code>, embedded gist code looks <a href="http://devspade.com/blog/2013/08/06/fixing-gist-embeds-in-octopress/">weird</a> (<a href="https://web.archive.org/web/20150812112659/http://devspade.com/blog/2013/08/06/fixing-gist-embeds-in-octopress/">archive</a>). To fix them, we should override some styles.</p><div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gu">@@ -1,10 +1,10 @@
-</span> .highlight, html .gist .gist-file .gist-syntax .gist-highlight {
+</code></pre></div></div></ol><h2 id="fixes">Fixes</h2><ul><li><p>With default <code class="highlighter-rouge">sass/partial/_syntax.scss</code>, embedded gist code looks <a href="http://devspade.com/blog/2013/08/06/fixing-gist-embeds-in-octopress/">weird</a> (<a href="https://web.archive.org/web/20150812112659/http://devspade.com/blog/2013/08/06/fixing-gist-embeds-in-octopress/">archive</a>). To fix them, we should override some styles.</p><div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@@ -1,10 +1,10 @@</span>
+ .highlight, html .gist .gist-file .gist-syntax .gist-highlight {
 <span class="gd">-  table td.code { width: 100%; }
 </span><span class="gi">+  table td.code, td.line-data { width: 100%; }
 </span>   border: 1px solid $pre-border !important;
@@ -16,8 +16,8 @@
 </span>   line-height: 1.45em;
    @if $solarized == light {
      background: lighten($base03, 1) $noise-bg !important;
-<span class="gu">@@ -69,7 +69,7 @@ html .gist .gist-file {
-</span>       &amp;:hover { color: $base1 !important; }
+<span class="p">@@ -69,7 +69,7 @@</span> html .gist .gist-file {
+       &amp;:hover { color: $base1 !important; }
      }
      a[href*='#file'] {
 <span class="gd">-      position: absolute; top: 0; left:0; right:-10px;
@@ -33,8 +33,8 @@
 <span class="nt">figure</span><span class="nc">.code</span><span class="o">,</span> <span class="nc">.gist-file</span> <span class="p">{</span>
   <span class="k">@include</span> <span class="nd">box-shadow</span><span class="p">(</span><span class="nb">none</span><span class="p">);</span>
 <span class="p">}</span>
-</code></pre></div></div><li><p><strong>This issue was fixed by this <a href="https://github.com/lucaslew/whitespace/commit/b047f268c804808fb8e2d6a17cbfe8669b9da6b4">commit</a>.</strong> This blog uses <a href="https://github.com/lucaslew/whitespace">Whitespace</a> theme. I found some problems that it overrides colors of code block to dark blue and it hides line numbers. To fix these problems, remove lines in <code class="highlighter-rouge">sass/custom/_styles.scss</code>.</p><div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="gu">@@ -166,20 +166,6 @@ article {
-</span>     
+</code></pre></div></div><li><p><strong>This issue was fixed by this <a href="https://github.com/lucaslew/whitespace/commit/b047f268c804808fb8e2d6a17cbfe8669b9da6b4">commit</a>.</strong> This blog uses <a href="https://github.com/lucaslew/whitespace">Whitespace</a> theme. I found some problems that it overrides colors of code block to dark blue and it hides line numbers. To fix these problems, remove lines in <code class="highlighter-rouge">sass/custom/_styles.scss</code>.</p><div class="language-diff highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">@@ -166,20 +166,6 @@</span> article {
+     
  }
    
 <span class="gd">-figure.code {

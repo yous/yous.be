@@ -7,8 +7,8 @@
 index 1d24cd8..50e9404 100644
 </span><span class="gd">--- a/_plugins/alias_generator.rb
 </span><span class="gi">+++ b/_plugins/alias_generator.rb
-</span><span class="gu">@@ -70,9 +70,10 @@ module Jekyll
-</span>           file.write(alias_template(destination_path))
+</span><span class="p">@@ -70,9 +70,10 @@</span> module Jekyll
+           file.write(alias_template(destination_path))
          end
  
 <span class="gd">-        (alias_index_path.split('/').size + 1).times do |sections|
@@ -23,8 +23,8 @@ index 1d24cd8..50e9404 100644
 index 50e9404..76102db 100644
 </span><span class="gd">--- a/_plugins/alias_generator.rb
 </span><span class="gi">+++ b/_plugins/alias_generator.rb
-</span><span class="gu">@@ -56,13 +56,13 @@ module Jekyll
-</span>       alias_paths.compact!
+</span><span class="p">@@ -56,13 +56,13 @@</span> module Jekyll
+       alias_paths.compact!
  
        alias_paths.flatten.each do |alias_path|
 <span class="gd">-        alias_path = alias_path.to_s
@@ -40,8 +40,8 @@ index 50e9404..76102db 100644
 </span> 
          FileUtils.mkdir_p(fs_path_to_dir)
  
-<span class="gu">@@ -70,8 +70,8 @@ module Jekyll
-</span>           file.write(alias_template(destination_path))
+<span class="p">@@ -70,8 +70,8 @@</span> module Jekyll
+           file.write(alias_template(destination_path))
          end
  
 <span class="gd">-        alias_index_path.split('/').size.times do |sections|
