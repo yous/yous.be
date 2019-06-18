@@ -34,6 +34,8 @@ task :proof do
       %r{^https://developers\.facebook\.com/docs/reference/opengraph/object-type/article},
       # /2014/03/04/design-details-paper-by-facebook/
       %r{^https://itunes\.apple\.com/us/app/paper-stories-from-facebook/id794163692},
+      # /2014/03/27/twitter-link-bookmarklet/
+      %r{^http://yoonjiman\.net/2014/03/25/twitter-profile-bookmarklet/},
       # /2014/05/15/how-to-configure-proguard-using-gradle/
       %r{^http://novafactory\.net/archives/2845},
       # /2014/12/25/christmasctf-2014-write-up/

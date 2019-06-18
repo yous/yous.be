@@ -42,3 +42,4 @@ javascript:var%20url=document.URL;var%20match=url.match(/status(?:es)?%5C/(%5Cd+
 기기에 Tweetbot 2와 Tweetbot 3가 모두 깔려 있을 때 Tweetbot 2로 열리는 점은 아쉽다.
 
 via [Yoon Jiman](http://yoonjiman.net/2014/03/25/twitter-profile-bookmarklet/)
+([archive](https://web.archive.org/web/20150602012856/http://yoonjiman.net/2014/03/25/twitter-profile-bookmarklet/))
