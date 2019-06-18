@@ -75,6 +75,35 @@ saving.
 I think this problem can be solved by patching the plugin, but its last commit
 is pushed in 2014, which makes me use the faster way.
 
+### Incomplete plist files (Update: 2019-06-18)
+
+vim-plist always uses `plutil -convert` command when opening plist files. But
+`plutil` checks whether the given file is valid or not. This leads to a problem
+when we have incomplete plist files. Say a plist file is tracked by git, and
+when there is a merge conflict, that plist file will contain SCM conflict
+markers.
+
+``` xml
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+<<<<<<< HEAD
+    <key>other_content</key>
+    <integer>4</integer>
+=======
+    <key>content</key>
+    <integer>5</integer>
+>>>>>>> master
+    <key>test</key>
+    <integer>3</integer>
+</dict>
+</plist>
+```
+
+With vim-plist, we will never be able to edit this file because vim-plist will
+refuse to load it into the buffer.
+
 ## Solving the problems with .vimrc
 
 ### Binary plist files
@@ -180,6 +209,26 @@ autocmd BufNewFile *.plist
 We don't write binary file by our own hands, so a new plist file would be in xml
 format.
 
+### Disable `autocmd`s of vim-plist (Update: 2019-06-18)
+
+I decided to remove default `autocmd`s of vim-plist. The plist files I open
+or edit are either in XML format or binary format. When the file is in binary
+format, it's handled by above vimrc. When the file is in XML format, it doesn't
+need to be converted as I'll save them in the same format.
+
+``` vim
+let g:loaded_plist = 1
+let g:plist_display_format = 'xml'
+let g:plist_save_format = ''
+let g:plist_json_filetype = 'json'
+```
+
+When `g:loaded_plist` exists, vim-plist will do nothing. In
+[plugin/plist.vim](https://github.com/darfink/vim-plist/blob/master/plugin/plist.vim),
+it registers `autocmd`s and set default values to global variables. So here we
+set global variables of vim-plist. The default value of `g:plist_json_filetype`
+is `'javascript'`, but I set it to `'json'` as Vim can handle that filetype.
+
 ## Conclusion
 
 So this is the complete part of my .vimrc for binary plist files:
@@ -191,19 +240,28 @@ function! s:ConvertBinaryPlist()
   call plist#ReadPost()
   set fileencoding=utf-8
 
-  autocmd! BufWriteCmd,FileWriteCmd <buffer>
-  autocmd BufWriteCmd,FileWriteCmd <buffer>
-        \ call plist#Write()
+  augroup BinaryPlistWrite
+    autocmd! BufWriteCmd,FileWriteCmd <buffer>
+    autocmd BufWriteCmd,FileWriteCmd <buffer> call plist#Write()
+  augroup END
 endfunction
-autocmd BufRead *
-      \ if getline(1) =~# '^bplist' |
-      \   call s:ConvertBinaryPlist() |
-      \ endif
-autocmd BufNewFile *.plist
-      \ if !get(b:, 'plist_original_format') |
-      \   let b:plist_original_format = 'xml' |
-      \ endif
+augroup BinaryPlistRead
+  autocmd!
+  autocmd BufRead *
+        \ if getline(1) =~# '^bplist' |
+        \   call s:ConvertBinaryPlist() |
+        \ endif
+  autocmd BufNewFile *.plist
+        \ if !get(b:, 'plist_original_format') |
+        \   let b:plist_original_format = 'xml' |
+        \ endif
+augroup END
+" Disable default autocmds
+let g:loaded_plist = 1
+let g:plist_display_format = 'xml'
+let g:plist_save_format = ''
+let g:plist_json_filetype = 'json'
 ```
 
-It's also available on [GitHub](https://github.com/yous/dotfiles/blob/ab9bf598d5bdb7c8d83a52f0ce18c66101db857c/vimrc#L1420-L1438),
+It's also available on [GitHub](https://github.com/yous/dotfiles/blob/0d95f7a13f70fe755ff9d1e35b64a42bcbf99973/vimrc#L1684-L1711),
 you can visit my [dotfiles](https://github.com/yous/dotfiles) repository!
