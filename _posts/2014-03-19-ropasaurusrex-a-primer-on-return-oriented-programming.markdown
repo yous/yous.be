@@ -77,7 +77,7 @@ called "[return into libc][]". The idea is that you found an overflow or other
 type of vulnerability in a program that lets you take control, but you have no
 reliable way get your code into executable memory ([DEP][], or data execution
 prevention, means that you can't run code from anywhere you want anymore). -->
-ROP(return-oriented programming)는 고전적인 취약점 공격 '[return into libc][]'를
+ROP(return-oriented programming)는 고전적인 취약점 공격 '[return into libc][]’를
 가리키는 요즘 단어입니다. 이 아이디어는 프로그램을 마음대로 조종할 수 있는
 오버플로나 다른 유형의 취약점을 발견했지만, 임의의 코드를 실행 가능한 메모리
 영역에 올릴 수 있는 확실한 방법이 없을 때([DEP][] 또는 데이터 실행 방지(Data
@@ -91,7 +91,7 @@ Execution Prevention), 사용자가 원하는 곳에서 코드를 실행시킬 �
 sections executable memory and followed by a '[return][]'. Sometimes those
 pieces are simple, and sometimes they're complicated. In this exercise, we only
 need the simple stuff, thankfully! -->
-ROP를 이용하면 실행 가능한 메모리 영역에 있는 코드 중 '[return][]'으로 끝나는
+ROP를 이용하면 실행 가능한 메모리 영역에 있는 코드 중 '[return][]’으로 끝나는
 조각들을 고를 수 있습니다. 그 조각들이 간단할 때도 있고, 복잡할 때도 있죠.
 다행히도 이 예제에서는 간단한 것만 있으면 됩니다!
 
