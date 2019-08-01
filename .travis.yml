@@ -6,16 +6,20 @@ addons:
   apt:
     packages:
       - libcurl4-openssl-dev
+      - openjdk-8-jre
 cache:
   directories:
     - $TRAVIS_BUILD_DIR/tmp/.htmlproofer
 before_install:
   - gem update --system
   - gem install bundler
+install:
+  - pip install --user html5validator
 script:
   - bundle exec rake spec
   - bundle exec jekyll clean
   - bundle exec jekyll build
+  - html5validator -Werror --also-check-css --also-check-svg --root _site/
   - bundle exec rake proof
 branches:
   only:
