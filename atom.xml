@@ -3,10 +3,10 @@
   <generator uri="http://jekyllrb.com" version="3.8.5">Jekyll</generator>
   
   
-  <link href="http://localhost:4000/atom.xml" rel="self" type="application/atom+xml" />
-  <link href="http://localhost:4000/" rel="alternate" type="text/html" />
-  <updated>2019-08-01T11:05:53+00:00</updated>
-  <id>http://localhost:4000//</id>
+  <link href="https://yous.be/atom.xml" rel="self" type="application/atom+xml" />
+  <link href="https://yous.be/" rel="alternate" type="text/html" />
+  <updated>2019-08-01T11:25:55+00:00</updated>
+  <id>https://yous.be//</id>
 
   
     <title type="html">Yous</title>
@@ -31,12 +31,12 @@
       <title type="html">Integrate Homebrew Ruby with chruby</title>
       
       
-      <link href="http://localhost:4000/2019/01/15/integrate-homebrew-ruby-with-chruby/" rel="alternate" type="text/html" title="Integrate Homebrew Ruby with chruby" />
+      <link href="https://yous.be/2019/01/15/integrate-homebrew-ruby-with-chruby/" rel="alternate" type="text/html" title="Integrate Homebrew Ruby with chruby" />
       
       <published>2019-01-15T16:34:26+00:00</published>
       <updated>2019-01-15T16:34:26+00:00</updated>
-      <id>http://localhost:4000/2019/01/15/integrate-homebrew-ruby-with-chruby</id>
-      <content type="html" xml:base="http://localhost:4000/2019/01/15/integrate-homebrew-ruby-with-chruby/">&lt;p&gt;For a while after &lt;a href=&quot;/2016/01/01/switching-rvm-to-chruby/&quot;&gt;switching from RVM to chruby&lt;/a&gt;,
+      <id>https://yous.be/2019/01/15/integrate-homebrew-ruby-with-chruby</id>
+      <content type="html" xml:base="https://yous.be/2019/01/15/integrate-homebrew-ruby-with-chruby/">&lt;p&gt;For a while after &lt;a href=&quot;/2016/01/01/switching-rvm-to-chruby/&quot;&gt;switching from RVM to chruby&lt;/a&gt;,
 I’ve been quite satisfied with &lt;a href=&quot;https://github.com/postmodern/chruby&quot;&gt;chruby&lt;/a&gt;,
 except for one thing. Every time Ruby releases a new version, I had to compile
 that version from scratch using &lt;a href=&quot;https://github.com/postmodern/ruby-install&quot;&gt;ruby-install&lt;/a&gt;.
@@ -136,12 +136,12 @@ updated.&lt;/p&gt;
       <title type="html">How to open binary plist files using vim-plist</title>
       
       
-      <link href="http://localhost:4000/2018/12/02/how-to-open-binary-plist-files-using-vim-plist/" rel="alternate" type="text/html" title="How to open binary plist files using vim-plist" />
+      <link href="https://yous.be/2018/12/02/how-to-open-binary-plist-files-using-vim-plist/" rel="alternate" type="text/html" title="How to open binary plist files using vim-plist" />
       
       <published>2018-12-02T08:42:47+00:00</published>
       <updated>2018-12-02T08:42:47+00:00</updated>
-      <id>http://localhost:4000/2018/12/02/how-to-open-binary-plist-files-using-vim-plist</id>
-      <content type="html" xml:base="http://localhost:4000/2018/12/02/how-to-open-binary-plist-files-using-vim-plist/">&lt;p&gt;&lt;img src=&quot;/images/2018/12/02/plist.min.png&quot; alt=&quot;Vim editing a binary plist file&quot; title=&quot;Vim editing a binary plist file&quot; /&gt;&lt;/p&gt;
+      <id>https://yous.be/2018/12/02/how-to-open-binary-plist-files-using-vim-plist</id>
+      <content type="html" xml:base="https://yous.be/2018/12/02/how-to-open-binary-plist-files-using-vim-plist/">&lt;p&gt;&lt;img src=&quot;/images/2018/12/02/plist.min.png&quot; alt=&quot;Vim editing a binary plist file&quot; title=&quot;Vim editing a binary plist file&quot; /&gt;&lt;/p&gt;
 
 &lt;p&gt;Using macOS, you may have had experiences of handling plist files. For example,
 &lt;code class=&quot;highlighter-rouge&quot;&gt;~/Library/Preferences/.GlobalPreferences.plist&lt;/code&gt; file holds some configurations
@@ -422,12 +422,12 @@ you can visit my &lt;a href=&quot;https://github.com/yous/dotfiles&quot;&gt;dotf
       <title type="html">How to make a bootable USB with GRUB2 and ISO</title>
       
       
-      <link href="http://localhost:4000/2017/11/14/how-to-make-a-bootable-usb-with-grub2-and-iso/" rel="alternate" type="text/html" title="How to make a bootable USB with GRUB2 and ISO" />
+      <link href="https://yous.be/2017/11/14/how-to-make-a-bootable-usb-with-grub2-and-iso/" rel="alternate" type="text/html" title="How to make a bootable USB with GRUB2 and ISO" />
       
       <published>2017-11-14T03:23:14+00:00</published>
       <updated>2017-11-14T03:23:14+00:00</updated>
-      <id>http://localhost:4000/2017/11/14/how-to-make-a-bootable-usb-with-grub2-and-iso</id>
-      <content type="html" xml:base="http://localhost:4000/2017/11/14/how-to-make-a-bootable-usb-with-grub2-and-iso/">&lt;p&gt;Do you have multiple ISO files to install, with quite enough storage of USB stick? You’ll want to install all of them with a single USB stick. Here’s how.&lt;/p&gt;
+      <id>https://yous.be/2017/11/14/how-to-make-a-bootable-usb-with-grub2-and-iso</id>
+      <content type="html" xml:base="https://yous.be/2017/11/14/how-to-make-a-bootable-usb-with-grub2-and-iso/">&lt;p&gt;Do you have multiple ISO files to install, with quite enough storage of USB stick? You’ll want to install all of them with a single USB stick. Here’s how.&lt;/p&gt;
 
 &lt;h2&gt;Formatting USB disk&lt;/h2&gt;
 
@@ -682,12 +682,12 @@ under &lt;code class=&quot;highlighter-rouge&quot;&gt;/mnt/usb/elf/&lt;/code&gt;
       <title type="html">Pushing git repository to multiple remotes</title>
       
       
-      <link href="http://localhost:4000/2017/03/07/pushing-git-repository-to-multiple-remotes/" rel="alternate" type="text/html" title="Pushing git repository to multiple remotes" />
+      <link href="https://yous.be/2017/03/07/pushing-git-repository-to-multiple-remotes/" rel="alternate" type="text/html" title="Pushing git repository to multiple remotes" />
       
       <published>2017-03-07T12:26:59+00:00</published>
       <updated>2017-03-07T12:26:59+00:00</updated>
-      <id>http://localhost:4000/2017/03/07/pushing-git-repository-to-multiple-remotes</id>
-      <content type="html" xml:base="http://localhost:4000/2017/03/07/pushing-git-repository-to-multiple-remotes/">&lt;p&gt;I’m currently managing my dotfiles repository on both of
+      <id>https://yous.be/2017/03/07/pushing-git-repository-to-multiple-remotes</id>
+      <content type="html" xml:base="https://yous.be/2017/03/07/pushing-git-repository-to-multiple-remotes/">&lt;p&gt;I’m currently managing my dotfiles repository on both of
 &lt;a href=&quot;https://github.com/yous/dotfiles&quot;&gt;GitHub&lt;/a&gt; and
 &lt;a href=&quot;https://bitbucket.org/yous/dotfiles&quot;&gt;Bitbucket&lt;/a&gt;. These two repositories are the
 same, but I don’t want to remove one of them. I mainly use GitHub for hosting
@@ -794,12 +794,12 @@ git remote set-url &lt;span class=&quot;nt&quot;&gt;--add&lt;/span&gt; &lt;span 
       <title type="html">Boston Key Party CTF 2017: vimjail write-up</title>
       
       
-      <link href="http://localhost:4000/2017/03/01/boston-key-party-ctf-2017-vimjail-write-up/" rel="alternate" type="text/html" title="Boston Key Party CTF 2017: vimjail write-up" />
+      <link href="https://yous.be/2017/03/01/boston-key-party-ctf-2017-vimjail-write-up/" rel="alternate" type="text/html" title="Boston Key Party CTF 2017: vimjail write-up" />
       
       <published>2017-03-01T09:34:52+00:00</published>
       <updated>2017-03-01T09:34:52+00:00</updated>
-      <id>http://localhost:4000/2017/03/01/boston-key-party-ctf-2017-vimjail-write-up</id>
-      <content type="html" xml:base="http://localhost:4000/2017/03/01/boston-key-party-ctf-2017-vimjail-write-up/">&lt;h2&gt;vimjail (pwn 150)&lt;/h2&gt;
+      <id>https://yous.be/2017/03/01/boston-key-party-ctf-2017-vimjail-write-up</id>
+      <content type="html" xml:base="https://yous.be/2017/03/01/boston-key-party-ctf-2017-vimjail-write-up/">&lt;h2&gt;vimjail (pwn 150)&lt;/h2&gt;
 
 &lt;blockquote&gt;
   &lt;ul&gt;
@@ -971,12 +971,12 @@ that worked!&lt;/p&gt;
       <title type="html">33C3 CTF 2016: pdfmaker write-up</title>
       
       
-      <link href="http://localhost:4000/2017/02/20/33c3-ctf-2016-pdfmaker-write-up/" rel="alternate" type="text/html" title="33C3 CTF 2016: pdfmaker write-up" />
+      <link href="https://yous.be/2017/02/20/33c3-ctf-2016-pdfmaker-write-up/" rel="alternate" type="text/html" title="33C3 CTF 2016: pdfmaker write-up" />
       
       <published>2017-02-20T02:21:38+00:00</published>
       <updated>2017-02-20T02:21:38+00:00</updated>
-      <id>http://localhost:4000/2017/02/20/33c3-ctf-2016-pdfmaker-write-up</id>
-      <content type="html" xml:base="http://localhost:4000/2017/02/20/33c3-ctf-2016-pdfmaker-write-up/">&lt;h2&gt;pdfmaker (misc 75)&lt;/h2&gt;
+      <id>https://yous.be/2017/02/20/33c3-ctf-2016-pdfmaker-write-up</id>
+      <content type="html" xml:base="https://yous.be/2017/02/20/33c3-ctf-2016-pdfmaker-write-up/">&lt;h2&gt;pdfmaker (misc 75)&lt;/h2&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Just a tiny
@@ -1126,12 +1126,12 @@ on compilation.&lt;/p&gt;
       <title type="html">HITCON CTF 2016: ROP write-up</title>
       
       
-      <link href="http://localhost:4000/2016/10/11/hitcon-ctf-2016-rop-write-up/" rel="alternate" type="text/html" title="HITCON CTF 2016: ROP write-up" />
+      <link href="https://yous.be/2016/10/11/hitcon-ctf-2016-rop-write-up/" rel="alternate" type="text/html" title="HITCON CTF 2016: ROP write-up" />
       
       <published>2016-10-11T08:25:35+00:00</published>
       <updated>2016-10-11T08:25:35+00:00</updated>
-      <id>http://localhost:4000/2016/10/11/hitcon-ctf-2016-rop-write-up</id>
-      <content type="html" xml:base="http://localhost:4000/2016/10/11/hitcon-ctf-2016-rop-write-up/">&lt;h2&gt;ROP (Reverse 250)&lt;/h2&gt;
+      <id>https://yous.be/2016/10/11/hitcon-ctf-2016-rop-write-up</id>
+      <content type="html" xml:base="https://yous.be/2016/10/11/hitcon-ctf-2016-rop-write-up/">&lt;h2&gt;ROP (Reverse 250)&lt;/h2&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;&lt;/p&gt;
@@ -1717,12 +1717,12 @@ Congratz! flag is hitcon&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;ROP &lt;sp
       <title type="html">How to reset window size of Slack on Windows</title>
       
       
-      <link href="http://localhost:4000/2016/10/07/how-to-reset-window-size-of-slack-on-windows/" rel="alternate" type="text/html" title="How to reset window size of Slack on Windows" />
+      <link href="https://yous.be/2016/10/07/how-to-reset-window-size-of-slack-on-windows/" rel="alternate" type="text/html" title="How to reset window size of Slack on Windows" />
       
       <published>2016-10-07T12:07:02+00:00</published>
       <updated>2016-10-07T12:07:02+00:00</updated>
-      <id>http://localhost:4000/2016/10/07/how-to-reset-window-size-of-slack-on-windows</id>
-      <content type="html" xml:base="http://localhost:4000/2016/10/07/how-to-reset-window-size-of-slack-on-windows/">&lt;h2&gt;Slack application&lt;/h2&gt;
+      <id>https://yous.be/2016/10/07/how-to-reset-window-size-of-slack-on-windows</id>
+      <content type="html" xml:base="https://yous.be/2016/10/07/how-to-reset-window-size-of-slack-on-windows/">&lt;h2&gt;Slack application&lt;/h2&gt;
 
 &lt;p&gt;&lt;a href=&quot;https://slack.com/&quot;&gt;Slack&lt;/a&gt;, you may know. It rocks, and I’m also involved in
 several teams. Their site is great, but more teams, more tabs in my browser. I
@@ -1819,12 +1819,12 @@ like &lt;code class=&quot;highlighter-rouge&quot;&gt;C:\Users\{username}\AppData
       <title type="html">Unicode Adopt-a-Character</title>
       
       
-      <link href="http://localhost:4000/2016/04/20/unicode-adopt-a-character/" rel="alternate" type="text/html" title="Unicode Adopt-a-Character" />
+      <link href="https://yous.be/2016/04/20/unicode-adopt-a-character/" rel="alternate" type="text/html" title="Unicode Adopt-a-Character" />
       
       <published>2016-04-20T16:25:37+00:00</published>
       <updated>2016-04-20T16:25:37+00:00</updated>
-      <id>http://localhost:4000/2016/04/20/unicode-adopt-a-character</id>
-      <content type="html" xml:base="http://localhost:4000/2016/04/20/unicode-adopt-a-character/">&lt;p&gt;Now you can
+      <id>https://yous.be/2016/04/20/unicode-adopt-a-character</id>
+      <content type="html" xml:base="https://yous.be/2016/04/20/unicode-adopt-a-character/">&lt;p&gt;Now you can
 &lt;a href=&quot;http://unicode.org/consortium/adopt-a-character.html&quot;&gt;adopt a character&lt;/a&gt;!&lt;/p&gt;
 
 &lt;ol&gt;
@@ -1881,12 +1881,12 @@ adoptions of hangul character.&lt;/p&gt;
       <title type="html">Installing Ruby 1.8.7 on OS X El Capitan</title>
       
       
-      <link href="http://localhost:4000/2016/04/16/installing-ruby-1-8-7-on-os-x-el-capitan/" rel="alternate" type="text/html" title="Installing Ruby 1.8.7 on OS X El Capitan" />
+      <link href="https://yous.be/2016/04/16/installing-ruby-1-8-7-on-os-x-el-capitan/" rel="alternate" type="text/html" title="Installing Ruby 1.8.7 on OS X El Capitan" />
       
       <published>2016-04-16T13:08:13+00:00</published>
       <updated>2016-04-16T13:08:13+00:00</updated>
-      <id>http://localhost:4000/2016/04/16/installing-ruby-1-8-7-on-os-x-el-capitan</id>
-      <content type="html" xml:base="http://localhost:4000/2016/04/16/installing-ruby-1-8-7-on-os-x-el-capitan/">&lt;h2&gt;A bug in Ruby 1.8.7&lt;/h2&gt;
+      <id>https://yous.be/2016/04/16/installing-ruby-1-8-7-on-os-x-el-capitan</id>
+      <content type="html" xml:base="https://yous.be/2016/04/16/installing-ruby-1-8-7-on-os-x-el-capitan/">&lt;h2&gt;A bug in Ruby 1.8.7&lt;/h2&gt;
 
 &lt;p&gt;There is a bug in Ruby 1.8.7’s exponentiation. See
 &lt;a href=&quot;http://stackoverflow.com/questions/12009799/exponentiation-in-ruby-1-8-7-returns-wrong-answers&quot;&gt;“Exponentiation in Ruby 1.8.7 Returns Wrong Answers”&lt;/a&gt;.&lt;/p&gt;
@@ -2019,12 +2019,12 @@ you don’t need tk, then try the following command:&lt;/p&gt;
       <title type="html">Switching RVM to chruby</title>
       
       
-      <link href="http://localhost:4000/2016/01/01/switching-rvm-to-chruby/" rel="alternate" type="text/html" title="Switching RVM to chruby" />
+      <link href="https://yous.be/2016/01/01/switching-rvm-to-chruby/" rel="alternate" type="text/html" title="Switching RVM to chruby" />
       
       <published>2016-01-01T11:26:07+00:00</published>
       <updated>2016-01-01T11:26:07+00:00</updated>
-      <id>http://localhost:4000/2016/01/01/switching-rvm-to-chruby</id>
-      <content type="html" xml:base="http://localhost:4000/2016/01/01/switching-rvm-to-chruby/">&lt;p&gt;I’ve found RVM’s gemsets are no longer useful to me. I used to make a separate
+      <id>https://yous.be/2016/01/01/switching-rvm-to-chruby</id>
+      <content type="html" xml:base="https://yous.be/2016/01/01/switching-rvm-to-chruby/">&lt;p&gt;I’ve found RVM’s gemsets are no longer useful to me. I used to make a separate
 gemset for each project by placing &lt;code class=&quot;highlighter-rouge&quot;&gt;.ruby-version&lt;/code&gt; and &lt;code class=&quot;highlighter-rouge&quot;&gt;.ruby-gemset&lt;/code&gt; file in
 each project directory. But whenever a Ruby release come out, I repeated
 uninstalling previous version and then clean installing new version. So I
@@ -2144,12 +2144,12 @@ manually with chruby commands like &lt;code class=&quot;highlighter-rouge&quot;&
       <title type="html">32C3 CTF 2015: libdroid Write-up</title>
       
       
-      <link href="http://localhost:4000/2015/12/30/32c3-ctf-2015-libdroid-write-up/" rel="alternate" type="text/html" title="32C3 CTF 2015: libdroid Write-up" />
+      <link href="https://yous.be/2015/12/30/32c3-ctf-2015-libdroid-write-up/" rel="alternate" type="text/html" title="32C3 CTF 2015: libdroid Write-up" />
       
       <published>2015-12-30T16:59:51+00:00</published>
       <updated>2015-12-30T16:59:51+00:00</updated>
-      <id>http://localhost:4000/2015/12/30/32c3-ctf-2015-libdroid-write-up</id>
-      <content type="html" xml:base="http://localhost:4000/2015/12/30/32c3-ctf-2015-libdroid-write-up/">&lt;h2&gt;Reversing (150)&lt;/h2&gt;
+      <id>https://yous.be/2015/12/30/32c3-ctf-2015-libdroid-write-up</id>
+      <content type="html" xml:base="https://yous.be/2015/12/30/32c3-ctf-2015-libdroid-write-up/">&lt;h2&gt;Reversing (150)&lt;/h2&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Solves: 17&lt;/p&gt;
@@ -2653,12 +2653,12 @@ flag within the application, just press &lt;code class=&quot;highlighter-rouge&q
       <title type="html">Moving Timezone to UTC in Jekyll</title>
       
       
-      <link href="http://localhost:4000/2015/09/05/moving-timezone-to-utc-in-jekyll/" rel="alternate" type="text/html" title="Moving Timezone to UTC in Jekyll" />
+      <link href="https://yous.be/2015/09/05/moving-timezone-to-utc-in-jekyll/" rel="alternate" type="text/html" title="Moving Timezone to UTC in Jekyll" />
       
       <published>2015-09-05T12:39:19+00:00</published>
       <updated>2015-09-05T12:39:19+00:00</updated>
-      <id>http://localhost:4000/2015/09/05/moving-timezone-to-utc-in-jekyll</id>
-      <content type="html" xml:base="http://localhost:4000/2015/09/05/moving-timezone-to-utc-in-jekyll/">&lt;p&gt;At the very first, I haven’t think about the timezone of my blog. I had used to
+      <id>https://yous.be/2015/09/05/moving-timezone-to-utc-in-jekyll</id>
+      <content type="html" xml:base="https://yous.be/2015/09/05/moving-timezone-to-utc-in-jekyll/">&lt;p&gt;At the very first, I haven’t think about the timezone of my blog. I had used to
 generate my blog on my local machine and deploy manually. At that time every
 content is released based on KST timezone, which is GMT+9.&lt;/p&gt;
 
@@ -2873,12 +2873,12 @@ using &lt;a href=&quot;https://github.com/jekyll/jekyll-redirect-from&quot;&gt;j
       <title type="html">Revive the Tmux Sessions</title>
       
       
-      <link href="http://localhost:4000/2015/05/08/revive-the-tmux-sessions/" rel="alternate" type="text/html" title="Revive the Tmux Sessions" />
+      <link href="https://yous.be/2015/05/08/revive-the-tmux-sessions/" rel="alternate" type="text/html" title="Revive the Tmux Sessions" />
       
       <published>2015-05-08T00:36:46+00:00</published>
       <updated>2015-05-08T00:36:46+00:00</updated>
-      <id>http://localhost:4000/2015/05/08/revive-the-tmux-sessions</id>
-      <content type="html" xml:base="http://localhost:4000/2015/05/08/revive-the-tmux-sessions/">&lt;p&gt;On the previous day, I accidently removed &lt;code class=&quot;highlighter-rouge&quot;&gt;/tmp/tmux-1000/&lt;/code&gt; directory. At first,
+      <id>https://yous.be/2015/05/08/revive-the-tmux-sessions</id>
+      <content type="html" xml:base="https://yous.be/2015/05/08/revive-the-tmux-sessions/">&lt;p&gt;On the previous day, I accidently removed &lt;code class=&quot;highlighter-rouge&quot;&gt;/tmp/tmux-1000/&lt;/code&gt; directory. At first,
 there seems no problem with Tmux. But when I created another SSH connection, I
 saw this error message:&lt;/p&gt;
 
@@ -2958,12 +2958,12 @@ be sent to the tmux server process to recreate it.&lt;/p&gt;
       <title type="html">Using Pinpoint with Docker</title>
       
       
-      <link href="http://localhost:4000/2015/05/05/using-pinpoint-with-docker/" rel="alternate" type="text/html" title="Using Pinpoint with Docker" />
+      <link href="https://yous.be/2015/05/05/using-pinpoint-with-docker/" rel="alternate" type="text/html" title="Using Pinpoint with Docker" />
       
       <published>2015-05-05T03:12:07+00:00</published>
       <updated>2015-05-05T03:12:07+00:00</updated>
-      <id>http://localhost:4000/2015/05/05/using-pinpoint-with-docker</id>
-      <content type="html" xml:base="http://localhost:4000/2015/05/05/using-pinpoint-with-docker/">&lt;p&gt;&lt;img src=&quot;/images/2015/05/05/logo.min.png&quot; alt=&quot;Pinpoint&quot; title=&quot;Pinpoint&quot; /&gt;&lt;/p&gt;
+      <id>https://yous.be/2015/05/05/using-pinpoint-with-docker</id>
+      <content type="html" xml:base="https://yous.be/2015/05/05/using-pinpoint-with-docker/">&lt;p&gt;&lt;img src=&quot;/images/2015/05/05/logo.min.png&quot; alt=&quot;Pinpoint&quot; title=&quot;Pinpoint&quot; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;&lt;a href=&quot;https://github.com/naver/pinpoint&quot;&gt;&lt;strong&gt;Pinpoint&lt;/strong&gt;&lt;/a&gt; is an open source APM
@@ -3290,12 +3290,12 @@ Any issues and pull requests are welcome!&lt;/p&gt;</content>
       <title type="html">Comparing binary files</title>
       
       
-      <link href="http://localhost:4000/2015/03/03/comparing-binary-files/" rel="alternate" type="text/html" title="Comparing binary files" />
+      <link href="https://yous.be/2015/03/03/comparing-binary-files/" rel="alternate" type="text/html" title="Comparing binary files" />
       
       <published>2015-03-03T10:13:29+00:00</published>
       <updated>2015-03-03T10:13:29+00:00</updated>
-      <id>http://localhost:4000/2015/03/03/comparing-binary-files</id>
-      <content type="html" xml:base="http://localhost:4000/2015/03/03/comparing-binary-files/">&lt;h2&gt;Seeing differences between files&lt;/h2&gt;
+      <id>https://yous.be/2015/03/03/comparing-binary-files</id>
+      <content type="html" xml:base="https://yous.be/2015/03/03/comparing-binary-files/">&lt;h2&gt;Seeing differences between files&lt;/h2&gt;
 
 &lt;p&gt;As using &lt;a href=&quot;http://git-scm.com/&quot;&gt;Git&lt;/a&gt;, looking changes of files with &lt;code class=&quot;highlighter-rouge&quot;&gt;git diff&lt;/code&gt; is common. Always we can check the status of files with &lt;code class=&quot;highlighter-rouge&quot;&gt;git status&lt;/code&gt;, including whether there is a new file that isn’t added to index, existence of changed files.&lt;/p&gt;
 
@@ -3358,12 +3358,12 @@ Any issues and pull requests are welcome!&lt;/p&gt;</content>
       <title type="html">ChristmasCTF 2014 Write-up</title>
       
       
-      <link href="http://localhost:4000/2014/12/25/christmasctf-2014-write-up/" rel="alternate" type="text/html" title="ChristmasCTF 2014 Write-up" />
+      <link href="https://yous.be/2014/12/25/christmasctf-2014-write-up/" rel="alternate" type="text/html" title="ChristmasCTF 2014 Write-up" />
       
       <published>2014-12-25T15:41:26+00:00</published>
       <updated>2014-12-25T15:41:26+00:00</updated>
-      <id>http://localhost:4000/2014/12/25/christmasctf-2014-write-up</id>
-      <content type="html" xml:base="http://localhost:4000/2014/12/25/christmasctf-2014-write-up/">&lt;p&gt;&lt;img src=&quot;/images/2014/12/25/christmasctf-1.min.png&quot; alt=&quot;ChristmasCTF&quot; title=&quot;ChristmasCTF&quot; /&gt;&lt;/p&gt;
+      <id>https://yous.be/2014/12/25/christmasctf-2014-write-up</id>
+      <content type="html" xml:base="https://yous.be/2014/12/25/christmasctf-2014-write-up/">&lt;p&gt;&lt;img src=&quot;/images/2014/12/25/christmasctf-1.min.png&quot; alt=&quot;ChristmasCTF&quot; title=&quot;ChristmasCTF&quot; /&gt;&lt;/p&gt;
 
 &lt;!-- more --&gt;
 
@@ -4026,12 +4026,12 @@ Hint2: its IP Address in Decimal. therefore =&amp;gt; http://988087853/k3y.png a
       <title type="html">SECCON CTF 2014: Easy Cipher Write-up</title>
       
       
-      <link href="http://localhost:4000/2014/12/08/seccon-ctf-2014-easy-cipher-write-up/" rel="alternate" type="text/html" title="SECCON CTF 2014: Easy Cipher Write-up" />
+      <link href="https://yous.be/2014/12/08/seccon-ctf-2014-easy-cipher-write-up/" rel="alternate" type="text/html" title="SECCON CTF 2014: Easy Cipher Write-up" />
       
       <published>2014-12-08T15:11:30+00:00</published>
       <updated>2014-12-08T15:11:30+00:00</updated>
-      <id>http://localhost:4000/2014/12/08/seccon-ctf-2014-easy-cipher-write-up</id>
-      <content type="html" xml:base="http://localhost:4000/2014/12/08/seccon-ctf-2014-easy-cipher-write-up/">&lt;h2&gt;Crypto100 - Easy Cipher&lt;/h2&gt;
+      <id>https://yous.be/2014/12/08/seccon-ctf-2014-easy-cipher-write-up</id>
+      <content type="html" xml:base="https://yous.be/2014/12/08/seccon-ctf-2014-easy-cipher-write-up/">&lt;h2&gt;Crypto100 - Easy Cipher&lt;/h2&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;87 101 108 1100011 0157 6d 0145 040 116 0157 100000 0164 104 1100101 32 0123 69 67 0103 1001111 1001110 040 062 060 49 064 100000 0157 110 6c 0151 1101110 101 040 0103 1010100 70 101110 0124 1101000 101 100000 1010011 1000101 67 0103 4f 4e 100000 105 1110011 040 116 1101000 0145 040 1100010 0151 103 103 0145 1110011 0164 100000 1101000 0141 99 6b 1100101 0162 32 0143 111 1101110 1110100 101 0163 0164 040 0151 0156 040 74 0141 1110000 1100001 0156 056 4f 0157 0160 115 44 040 0171 1101111 117 100000 1110111 0141 0156 1110100 32 0164 6f 32 6b 1101110 1101111 1110111 100000 0164 1101000 0145 040 0146 6c 97 1100111 2c 100000 0144 111 110 100111 116 100000 1111001 6f 117 63 0110 1100101 0162 0145 100000 1111001 111 117 100000 97 114 0145 46 1010011 0105 0103 67 79 1001110 123 87 110011 110001 67 110000 1001101 32 55 060 100000 110111 0110 110011 32 53 51 0103 0103 060 0116 040 5a 0117 73 0101 7d 1001000 0141 1110110 1100101 100000 102 0165 0156 33&lt;/p&gt;
@@ -4113,12 +4113,12 @@ Hint2: its IP Address in Decimal. therefore =&amp;gt; http://988087853/k3y.png a
       <title type="html">SECCON CTF 2014: QR (Easy) Write-up</title>
       
       
-      <link href="http://localhost:4000/2014/12/07/seccon-ctf-2014-qr-easy-write-up/" rel="alternate" type="text/html" title="SECCON CTF 2014: QR (Easy) Write-up" />
+      <link href="https://yous.be/2014/12/07/seccon-ctf-2014-qr-easy-write-up/" rel="alternate" type="text/html" title="SECCON CTF 2014: QR (Easy) Write-up" />
       
       <published>2014-12-07T10:02:51+00:00</published>
       <updated>2014-12-07T10:02:51+00:00</updated>
-      <id>http://localhost:4000/2014/12/07/seccon-ctf-2014-qr-easy-write-up</id>
-      <content type="html" xml:base="http://localhost:4000/2014/12/07/seccon-ctf-2014-qr-easy-write-up/">&lt;h2&gt;QR200 - QR (Easy)&lt;/h2&gt;
+      <id>https://yous.be/2014/12/07/seccon-ctf-2014-qr-easy-write-up</id>
+      <content type="html" xml:base="https://yous.be/2014/12/07/seccon-ctf-2014-qr-easy-write-up/">&lt;h2&gt;QR200 - QR (Easy)&lt;/h2&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Funniest joke in the world(?):&lt;br /&gt;
@@ -4397,12 +4397,12 @@ but when I woke up, half my QR code was gone!”&lt;/p&gt;
       <title type="html">Automatically Quit Vim if Actual Files are Closed</title>
       
       
-      <link href="http://localhost:4000/2014/11/30/automatically-quit-vim-if-actual-files-are-closed/" rel="alternate" type="text/html" title="Automatically Quit Vim if Actual Files are Closed" />
+      <link href="https://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed/" rel="alternate" type="text/html" title="Automatically Quit Vim if Actual Files are Closed" />
       
       <published>2014-11-30T09:02:45+00:00</published>
       <updated>2014-11-30T09:02:45+00:00</updated>
-      <id>http://localhost:4000/2014/11/30/automatically-quit-vim-if-actual-files-are-closed</id>
-      <content type="html" xml:base="http://localhost:4000/2014/11/30/automatically-quit-vim-if-actual-files-are-closed/">&lt;p&gt;&lt;img src=&quot;/images/2014/11/30/vim.min.png&quot; alt=&quot;Vim&quot; title=&quot;Vim&quot; /&gt;&lt;/p&gt;
+      <id>https://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed</id>
+      <content type="html" xml:base="https://yous.be/2014/11/30/automatically-quit-vim-if-actual-files-are-closed/">&lt;p&gt;&lt;img src=&quot;/images/2014/11/30/vim.min.png&quot; alt=&quot;Vim&quot; title=&quot;Vim&quot; /&gt;&lt;/p&gt;
 
 &lt;h2&gt;Sidebar&lt;/h2&gt;
 
