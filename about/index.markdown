@@ -14,7 +14,7 @@ twitter_card:
 
 Chayoung You
 
-![Yous](/images/about/yous.png){: width="200px" height="200px"}
+![Yous](/images/about/yous.png){: width="200" height="200"}
 
 ## Contact
 {: #contact}
