@@ -20,7 +20,7 @@ script:
   - bundle exec rake spec
   - bundle exec jekyll clean
   - bundle exec jekyll build
-  - html5validator -Werror --also-check-css --also-check-svg --root _site/
+  - html5validator --Werror --also-check-css --also-check-svg --root _site/
   - bundle exec rake proof
 branches:
   only:
