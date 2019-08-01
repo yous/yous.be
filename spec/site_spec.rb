@@ -1,6 +1,8 @@
 # frozen_string_literal: true
 
 require 'jekyll'
+require 'fileutils'
+require 'tmpdir'
 
 RSpec::Matchers.define :be_utc_post do
   match do |actual|
@@ -45,9 +47,14 @@ RSpec::Matchers.define :have_utc_url do
 end
 
 RSpec.describe '_site' do
-  let(:site) { Jekyll::Site.new(Jekyll.configuration('serving': false)) }
+  let(:site_dir) { Dir.mktmpdir }
+  let(:site) do
+    Jekyll::Site.new(
+      Jekyll.configuration('destination': site_dir, 'serving': false)
+    )
+  end
 
-  before { Jekyll::Commands::Clean.process({}) }
+  after { FileUtils.remove_entry(site_dir) }
 
   describe 'timezone' do
     it 'uses UTC instead of local timezone' do
