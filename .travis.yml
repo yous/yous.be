@@ -13,14 +13,17 @@ cache:
 before_install:
   - gem update --system
   - gem install bundler
+  - nvm install node
 install:
   - bundle install --jobs=3 --retry=3
   - pip install --user html5validator
+  - npm install -g pa11y-ci
 script:
   - bundle exec rake spec
   - bundle exec jekyll clean
   - bundle exec jekyll build
   - html5validator --Werror --also-check-css --also-check-svg --root _site/
+  - bundle exec jekyll server >/dev/null & && SERVER_PID=$! && pa11y-ci --sitemap http://localhost:4000/sitemap.xml && kill -3 $SERVER_PID
   - bundle exec rake proof
 branches:
   only:
