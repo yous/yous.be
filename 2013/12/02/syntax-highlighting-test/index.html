@@ -154,7 +154,7 @@ end</pre></noscript> <script src="https://gist.github.com/imathis/2219214.js"> <
         <span class="c">#conform_link "$CONF_DIR/shell/zshenv" ".zshenv"</span>
         crontab <span class="nt">-l</span> <span class="o">&gt;</span> <span class="nv">$ROOT_DIR</span>/tmp/crontab-conflict-arch
         <span class="nb">cd</span> <span class="nv">$ROOT_DIR</span>/<span class="nv">$CONF_DIR</span>/cron
-        <span class="k">if</span> <span class="o">[[</span> <span class="s2">"</span><span class="k">$(</span>diff ~/tmp/crontab-conflict-arch crontab-current-arch<span class="k">)</span><span class="s2">"</span> <span class="o">==</span> <span class="s2">""</span>
+        <span class="k">if</span> <span class="o">[[</span> <span class="s2">"</span><span class="si">$(</span>diff ~/tmp/crontab-conflict-arch crontab-current-arch<span class="si">)</span><span class="s2">"</span> <span class="o">==</span> <span class="s2">""</span>
             <span class="o">]]</span><span class="p">;</span>
             <span class="k">then</span> <span class="c"># no difference with current backup</span>
                 logger <span class="s2">"</span><span class="nv">$LOG_PREFIX</span><span class="s2">: crontab live settings match stored "</span><span class="se">\</span>

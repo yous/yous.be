@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <generator uri="http://jekyllrb.com" version="3.8.5">Jekyll</generator>
+  <generator uri="http://jekyllrb.com" version="4.0.0">Jekyll</generator>
   
   
   <link href="https://yous.be/atom.xml" rel="self" type="application/atom+xml" />
   <link href="https://yous.be/" rel="alternate" type="text/html" />
-  <updated>2019-08-01T11:42:19+00:00</updated>
+  <updated>2019-08-26T09:07:56+00:00</updated>
   <id>https://yous.be//</id>
 
   
@@ -67,7 +67,7 @@ since 2.5.3, so if you had installed Homebrew Ruby earlier than or equal to
 &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.rubies/ruby-2.6.0&lt;/code&gt;. So what if we make a symbolic link under &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.rubies&lt;/code&gt;
 pointing Homebrew Ruby?&lt;/p&gt;
 
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;ln&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;brew &lt;span class=&quot;nt&quot;&gt;--prefix&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/Cellar/ruby/2.6.0&quot;&lt;/span&gt; ~/.rubies/ruby-2.6.0
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;ln&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-s&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;brew &lt;span class=&quot;nt&quot;&gt;--prefix&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/Cellar/ruby/2.6.0&quot;&lt;/span&gt; ~/.rubies/ruby-2.6.0
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Specify &lt;code class=&quot;highlighter-rouge&quot;&gt;ruby-2.6.0&lt;/code&gt; in &lt;code class=&quot;highlighter-rouge&quot;&gt;~/.ruby-version&lt;/code&gt;, and opening a new shell works like a
@@ -93,7 +93,7 @@ gem &lt;span class=&quot;nb&quot;&gt;install &lt;/span&gt;irb
 for a new revision. The symlink is based on the cellar, so the link should be
 updated.&lt;/p&gt;
 
-&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;ln&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-sfn&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;brew &lt;span class=&quot;nt&quot;&gt;--prefix&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/Cellar/ruby/2.6.0_1&quot;&lt;/span&gt; ~/.rubies/ruby-2.6.0
+&lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;ln&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-sfn&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;brew &lt;span class=&quot;nt&quot;&gt;--prefix&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;/Cellar/ruby/2.6.0_1&quot;&lt;/span&gt; ~/.rubies/ruby-2.6.0
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;No more compiling time!&lt;/p&gt;</content>
@@ -1757,7 +1757,7 @@ of Slack API or something that is guaranteed by them. My Windows machine is
   &lt;li&gt;
     &lt;p&gt;Find &lt;code class=&quot;highlighter-rouge&quot;&gt;windowSettings&lt;/code&gt; under &lt;code class=&quot;highlighter-rouge&quot;&gt;state&lt;/code&gt;’s &lt;code class=&quot;highlighter-rouge&quot;&gt;app&lt;/code&gt;. Its value would be like:&lt;/p&gt;
 
-    &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;windowSettings&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;:{&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;size&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;:[1152,832],&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;position&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;:[384,104],&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;isMaximized&lt;/span&gt;&lt;span class=&quot;se&quot;&gt;\&quot;&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;:false}
+    &lt;div class=&quot;language-json highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;err&quot;&gt;\&lt;/span&gt;&lt;span class=&quot;nl&quot;&gt;&quot;windowSettings\&quot;:{\&quot;size\&quot;:[1152,832],\&quot;position\&quot;:[384,104],\&quot;isMaximized\&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;kc&quot;&gt;false&lt;/span&gt;&lt;span class=&quot;err&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;w&quot;&gt;
 &lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;    &lt;/div&gt;
   &lt;/li&gt;
   &lt;li&gt;Delete the whole &lt;code class=&quot;highlighter-rouge&quot;&gt;windowSettings&lt;/code&gt; entry above. If you delete only a part of
@@ -3094,7 +3094,7 @@ Running &lt;code class=&quot;highlighter-rouge&quot;&gt;fakeroot make-jpkg ...&l
 files, directories, or remote file from URL to the specified path. Above lines
 just download Maven files from Apache mirror.&lt;/p&gt;
 
-&lt;div class=&quot;language-dockerfile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;md5sum &lt;/span&gt;apache-maven-3.2.5-bin.tar.gz | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--only-matching&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; 1 &lt;span class=&quot;s1&quot;&gt;'^[0-9a-f]*'&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;apache-maven-3.2.5-bin.tar.gz.md5&lt;span class=&quot;k&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+&lt;div class=&quot;language-dockerfile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;&lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;md5sum &lt;/span&gt;apache-maven-3.2.5-bin.tar.gz | &lt;span class=&quot;nb&quot;&gt;grep&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;--only-matching&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt; 1 &lt;span class=&quot;s1&quot;&gt;'^[0-9a-f]*'&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;si&quot;&gt;$(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cat &lt;/span&gt;apache-maven-3.2.5-bin.tar.gz.md5&lt;span class=&quot;si&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;This matches MD5 hash checksum of &lt;code class=&quot;highlighter-rouge&quot;&gt;apache-maven-3.2.5-bin.tar.gz&lt;/code&gt; with
@@ -3309,8 +3309,8 @@ Any issues and pull requests are welcome!&lt;/p&gt;</content>
 
 &lt;p&gt;You can use &lt;a href=&quot;http://www.computerhope.com/fchlp.htm&quot;&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;fc&lt;/code&gt;&lt;/a&gt;, file compare, which is Microsoft DOS command.&lt;/p&gt;
 
-&lt;pre&gt;&lt;code class=&quot;language-bat&quot;&gt;fc /b file1 file2
-&lt;/code&gt;&lt;/pre&gt;
+&lt;div class=&quot;language-bat highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;fc&lt;/span&gt; &lt;span class=&quot;na&quot;&gt;/b &lt;/span&gt;&lt;span class=&quot;kd&quot;&gt;file1&lt;/span&gt; &lt;span class=&quot;kd&quot;&gt;file2&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;The &lt;code class=&quot;highlighter-rouge&quot;&gt;/b&lt;/code&gt; flag is for a binary comparison. If two files are the same, it prints a message like ‘FC: no differences encountered’, if they’re not, it shows each byte of two files per line.&lt;/p&gt;
 
@@ -3625,7 +3625,7 @@ Your level : Null
 
 &lt;span class=&quot;o&quot;&gt;==&amp;amp;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;gt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;./&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;letter&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;/../&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;flag&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;.&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;php&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;lt&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;;&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;==&lt;/span&gt;
 &lt;span class=&quot;o&quot;&gt;&amp;lt;!--?&lt;/span&gt;&lt;span class=&quot;nx&quot;&gt;php&lt;/span&gt;
-&lt;span class=&quot;sd&quot;&gt;/********************************
+&lt;span class=&quot;cd&quot;&gt;/********************************
 *                               *
 *                               *
 *    Flag:{snow_is_commmming}   *
@@ -3657,9 +3657,9 @@ Your level : Null
 
 &lt;div class=&quot;language-sql highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;CREATE&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;TABLE&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;`table_name`&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;
 
-&lt;span class=&quot;nv&quot;&gt;`no`&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;NOT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;`no`&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;int&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;NOT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;NULL&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;
 
-&lt;span class=&quot;nv&quot;&gt;`letter`&lt;/span&gt; &lt;span class=&quot;n&quot;&gt;varchar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;256&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;COLLATE&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'utf32_unicode_ci'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;NOT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;NULL&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;`letter`&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;varchar&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;mi&quot;&gt;256&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;COLLATE&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;'utf32_unicode_ci'&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;NOT&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;NULL&lt;/span&gt;
 
 &lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;

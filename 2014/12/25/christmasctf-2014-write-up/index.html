@@ -136,7 +136,7 @@ Your level : Null
 
 <span class="o">==&amp;</span><span class="nx">gt</span><span class="p">;</span> <span class="o">./</span><span class="nx">letter</span><span class="o">/../</span><span class="nx">flag</span><span class="o">.</span><span class="nx">php</span> <span class="o">&amp;</span><span class="nx">lt</span><span class="p">;</span><span class="o">==</span>
 <span class="o">&lt;!--?</span><span class="nx">php</span>
-<span class="sd">/********************************
+<span class="cd">/********************************
 *                               *
 *                               *
 *    Flag:{snow_is_commmming}   *
@@ -156,9 +156,9 @@ Your level : Null
 <span class="k">if</span><span class="p">(</span><span class="nv">$page</span> <span class="o">==</span> <span class="s2">"photo"</span><span class="p">){</span> <span class="o">?--&gt;</span>
 </code></pre></div></div><p>Flag는 <code class="highlighter-rouge">snow_is_commmming</code>입니다.</p><h2 id="a-letter-to-her-2">A Letter To Her 2 - WEB500</h2><blockquote><p><a href="http://web-prob.dkserver.wo.tc/sqli_962a035aacf08966ffc7610957ac0c29/">Link</a></p></blockquote><p>Clue를 봅시다.</p><div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">CREATE</span> <span class="k">TABLE</span> <span class="nv">`table_name`</span> <span class="p">(</span>
 
-<span class="nv">`no`</span> <span class="n">int</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
+<span class="nv">`no`</span> <span class="nb">int</span> <span class="k">NOT</span> <span class="k">NULL</span><span class="p">,</span>
 
-<span class="nv">`letter`</span> <span class="n">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">COLLATE</span> <span class="s1">'utf32_unicode_ci'</span> <span class="k">NOT</span> <span class="k">NULL</span>
+<span class="nv">`letter`</span> <span class="nb">varchar</span><span class="p">(</span><span class="mi">256</span><span class="p">)</span> <span class="k">COLLATE</span> <span class="s1">'utf32_unicode_ci'</span> <span class="k">NOT</span> <span class="k">NULL</span>
 
 <span class="p">)</span>
 </code></pre></div></div><p>Letter는 아까와 같지만 4번 항목만 <code class="highlighter-rouge">Secret :)</code>이라는 메시지와 함께 가려져 있습니다. 일단 괄호를 쓸 수 없습니다. 시도 끝에 like를 사용한 쿼리를 하나 만들었습니다.</p><div class="language-sql highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">?</span><span class="n">letter</span><span class="o">=-</span><span class="mi">1</span> <span class="k">or</span> <span class="n">letter</span> <span class="k">like</span> <span class="nv">"%%"</span> <span class="k">and</span> <span class="k">no</span><span class="o">=</span><span class="mi">4</span>
