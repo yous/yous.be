@@ -61,7 +61,7 @@ GEM
       jekyll (>= 3.7, < 5.0)
     jekyll-watch (2.2.1)
       listen (~> 3.0)
-    jekyll-whiteglass (1.9.0)
+    jekyll-whiteglass (1.9.1)
       jekyll (>= 3.3)
       jekyll-archives (~> 2.1)
       jekyll-paginate (~> 1.1)
