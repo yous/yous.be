@@ -53,6 +53,7 @@ highlighter: rouge
 excerpt_separator: "<!-- more -->"
 sass:
   style: compressed
+  sourcemap: never
 
 # Outputting
 permalink: /:year/:month/:day/:title/
