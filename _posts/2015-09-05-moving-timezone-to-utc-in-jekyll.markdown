@@ -24,6 +24,8 @@ this whole blog? It'll be nice if I can show the time based on timezone of each
 client, but I won't be able to handle the date part of the post URL as well. So
 I decided to move the timezone of this site to UTC, global standard at least.
 
+<!-- more -->
+
 First I should write some tests for the migration since I want to change URLs by
 only one push. You can access current posts by using `jekyll` gem. Place
 `spec/support/jekyll_helper.rb` with:

@@ -18,6 +18,8 @@ code now, but the first place I uploaded my dotfiles to was Bitbucket.
 I want to keep the HEAD of two remote repositories be the same, so when I push
 code to my dotfiles, the both of them must be updated at the same time.
 
+<!-- more -->
+
 ## Default git config
 
 First, clone or init the repository.

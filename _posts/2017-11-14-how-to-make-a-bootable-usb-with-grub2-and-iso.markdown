@@ -11,6 +11,8 @@ redirect_from: /p/20171114/
 
 Do you have multiple ISO files to install, with quite enough storage of USB stick? You'll want to install all of them with a single USB stick. Here's how.
 
+<!-- more -->
+
 ## Formatting USB disk
 
 First, plug in your USB stick and find it from your Linux machine:

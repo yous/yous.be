@@ -27,6 +27,8 @@ I wanted to install pre-compiled Ruby. It should exist! Then I thought up
 Homebrew. Almost every formula of Homebrew has "bottles" for multiple versions
 of macOS. So I thought: 'Just use Homebrew Ruby with chruby!'
 
+<!-- more -->
+
 ## Cleaning up
 
 Homebrew Ruby is [keg-only](https://github.com/Homebrew/homebrew-core/commit/b4bf45228a60a9a64a0f17d0374b27ffe84c862c)

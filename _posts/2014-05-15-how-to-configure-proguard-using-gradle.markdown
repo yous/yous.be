@@ -25,6 +25,8 @@ twitter_card:
 [Gradle]: https://gradle.org
 [ProGuard]: https://www.guardsquare.com/en/products/proguard
 
+<!-- more -->
+
 ## Gradle 환경에서 배포 APK 생성하기
 {: #how-to-create-release-apk-using-gradle}
 
@@ -110,8 +112,6 @@ $ ./gradlew assembleRelease
 Gradle은 [캐멀케이스 단축키를 지원][TOC-Android-tasks]해서 `aR`에 해당하는 다른 명령이 없는 한 `assembleRelease` 대신 `aR`을 사용할 수 있다.
 
 [TOC-Android-tasks]: http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Android-tasks
-
-<!-- more -->
 
 ## ProGuard 사용하기
 {: #how-to-use-proguard}

@@ -44,6 +44,8 @@ triggered _before_ reading the file, and that autocmd should handle actual read
 and write operation of that file. These differences make handling plist files
 more complex.
 
+<!-- more -->
+
 ## Problems
 
 ### \*.strings files
