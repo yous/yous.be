@@ -52,7 +52,7 @@ Then we can obtain `classes-dex2jar.jar`, now it's
 [JD-GUI](http://jd.benow.ca/)'s turn. Open the jar file with JD-GUI and you will
 see the content of class `ctf.stratumauhhur.libdroid.a`.
 
-![JD-GUI](/images/2015/12/30/jd-gui.min.png "JD-GUI")
+![JD-GUI navigating classes-dex2jar.jar](/images/2015/12/30/jd-gui.min.png)
 
 The full content of the `a.class` is available on
 [this gist](https://gist.github.com/yous/43bc6f60d41d0197cf18).
@@ -486,4 +486,4 @@ Congratulations! The rootkit is sucessfully installed. The Flag is 32C3_this_is_
 So the flag is `32C3_this_is_build_for_flag_ship_phones`. If you want to see the
 flag within the application, just press `103875` on it.
 
-![libdroid Flag](/images/2015/12/30/libdroid_flag.min.jpg)
+![libdroid showing the flag](/images/2015/12/30/libdroid_flag.min.jpg)

@@ -13,7 +13,7 @@ facebook:
     image: http://yous.be/images/2015/05/05/logo.png
 ---
 
-![Pinpoint](/images/2015/05/05/logo.min.png "Pinpoint")
+![Pinpoint](/images/2015/05/05/logo.min.png)
 
 > [**Pinpoint**](https://github.com/naver/pinpoint) is an open source APM
 (Application Performance Management) tool for large-scale distributed systems
@@ -256,23 +256,23 @@ of Pinpoint, we run several scripts.
 
 - Collector: `quickstart/bin/start-collector.sh`
 
-  ![start-collector.sh](/images/2015/05/05/quickstart-start-collector.min.png "start-collector.sh")
+  ![Running start-collector.sh](/images/2015/05/05/quickstart-start-collector.min.png)
 - Web UI: `quickstart/bin/start-web.sh`
 
-  ![start-web.sh](/images/2015/05/05/quickstart-start-web.min.png "start-web.sh")
+  ![Running start-web.sh](/images/2015/05/05/quickstart-start-web.min.png)
 - TestApp: `quickstart/bin/start-testapp.sh`
 
-  ![start-testapp.sh](/images/2015/05/05/quickstart-start-testapp.min.png "start-testapp.sh")
+  ![Running start-testapp.sh](/images/2015/05/05/quickstart-start-testapp.min.png)
 
 Once HBase and the 3 daemons are running, visit the following addresses to test
 out your Pinpoint instance.
 
 - Web UI: <http://localhost:28080>
 
-  ![Web UI](/images/2015/05/05/quickstart-web-ui.min.png "Web UI")
+  ![Screenshot of Web UI](/images/2015/05/05/quickstart-web-ui.min.png)
 - TestApp: <http://localhost:28081>
 
-  ![TestApp](/images/2015/05/05/quickstart-testapp.min.png "TestApp")
+  ![Screenshot of TestApp](/images/2015/05/05/quickstart-testapp.min.png)
 
 ### Stopping
 

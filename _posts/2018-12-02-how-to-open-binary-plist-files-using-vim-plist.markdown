@@ -13,7 +13,7 @@ facebook:
     image: https://yous.be/images/2018/12/02/plist.png
 ---
 
-![Vim editing a binary plist file](/images/2018/12/02/plist.min.png "Vim editing a binary plist file")
+![Vim editing a binary plist file](/images/2018/12/02/plist.min.png)
 
 Using macOS, you may have had experiences of handling plist files. For example,
 `~/Library/Preferences/.GlobalPreferences.plist` file holds some configurations

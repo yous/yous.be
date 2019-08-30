@@ -19,7 +19,7 @@ facebook:
 > "Last night, I had a dream I was eating QR cakes....  
 > but when I woke up, half my QR code was gone!"
 >
-> ![QR (Easy)](/images/2014/12/07/DSC01964_s.JPG)
+> ![The right half of a pancake on which a QR code is printed](/images/2014/12/07/DSC01964_s.JPG)
 >
 > ---
 >
@@ -33,17 +33,17 @@ facebook:
 
 At first, we need clean image based on the image above.
 
-![Skeleton QR code](/images/2014/12/07/skeleton_qr.min.png "Skeleton QR code")
+![The right half of a QR code](/images/2014/12/07/skeleton_qr.min.png)
 
 The size of this QR code is 29x29 and the size of version _V_ is _N &times; N_ with _N = 17 + 4V_, so this is version 3.
 
 ## Format Information
 
-![Format information](/images/2014/12/07/qr_format_information.min.png "Format information")
+![The right half of a QR code with the format information area highlighted](/images/2014/12/07/qr_format_information.min.png)
 
 Note that the area indicates format information of QR code. Actually the format information is 15 bits long and the area has last 8 bits.
 
-![Format information bits](/images/2014/12/07/format_information_bits.min.png "Format information bits")
+![The upper right corner of a QR code with format information bits of 10111110](/images/2014/12/07/format_information_bits.min.png "Format information bits")
 
 Searching [the list of all format information strings](http://www.thonky.com/qr-code-tutorial/format-version-tables/#list-of-all-format-information-strings), we can find out that the type information bits are `001001110111110`. So this QR code has ECC level H and mask pattern 1.
 
@@ -53,7 +53,7 @@ According to [QR Mask Patterns Explained](http://www.thonky.com/qr-code-tutorial
 
 Also there are fixed patterns in QR code, so we have to switch bits of data section only. See the data area and the bit order.
 
-![QR Ver3 Codeword Ordering](/images/2014/12/07/QR_Ver3_Codeword_Ordering.svg "QR Ver3 Codeword Ordering")  
+![QR Ver3 Codeword Ordering](/images/2014/12/07/QR_Ver3_Codeword_Ordering.svg)  
 (via [wikipedia.org](http://commons.wikimedia.org/wiki/File:QR_Ver3_Codeword_Ordering.svg))
 
 So, the raw D1--D26 are:

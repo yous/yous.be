@@ -27,7 +27,7 @@ twitter_card:
 ## Facebook Open Graph Tags
 {: #facebook-open-graph-tags}
 
-![Facebook Open Graph](/images/2014/02/24/facebook_open_graph.min.png "Facebook Open Graph")
+![Facebook Open Graph](/images/2014/02/24/facebook_open_graph.min.png)
 
 페이스북에 웹 페이지가 제대로 인식되게 하려면 [Open Graph 태그][Facebook Open Graph tags]를 이용해야 한다. 기본적으로 채워야 할 태그들은 다음과 같다:
 
@@ -60,7 +60,7 @@ twitter_card:
 
 [Twitter Cards][]는 트윗 자체에 링크의 내용을 보여주는 '카드'를 추가하는 기능이다.
 
-![Twitter Summary Card](/images/2014/02/24/twitter_card_summary.min.png "Twitter Summary Card")
+![Twitter Summary Card](/images/2014/02/24/twitter_card_summary.min.png)
 
 카드의 종류는 7개가 있으며 원하는 용도에 따라 적절히 사용할 수 있다.
 

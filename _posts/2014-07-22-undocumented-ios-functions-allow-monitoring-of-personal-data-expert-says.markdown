@@ -20,7 +20,7 @@ facebook:
 >
 > Zdziarski said the service that raises the most concern is known as com.apple.mobile.file_relay. It dishes out a staggering amount of data---including account data for e-mail, Twitter, iCloud, and other services, a full copy of the address book including deleted entries, the user cache folder, logs of geographic positions, and a complete dump of the user photo album---all without requiring a backup password to be entered. He said two other services dubbed com.apple.pcapd and com.apple.mobile.house_arrest may have legitimate uses for app developers or support people but can also be used to spy on users by government agencies or even jilted ex-lovers. The Pcapd service, for instance, allows people to wirelessly monitor all network traffic traveling into and out of the device, even when it's not running in a special developer or support mode. House_arrest, meanwhile, allows the copying of sensitive files and documents from Twitter, Facebook, and many other applications.
 >
-> ![com.apple.pcapd](/images/2014/07/22/pcapd1.min.jpg "com.apple.pcapd")
+> ![com.apple.pcapd](/images/2014/07/22/pcapd1.min.jpg)
 >
 > Slides of Zdziarski's talk, titled **Identifying Back Doors, Attack Points, and Surveillance Mechanisms in iOS Devices** are [here](https://pentest.com/ios_backdoors_attack_points_surveillance_mechanisms.pdf).
 

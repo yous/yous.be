@@ -13,7 +13,7 @@ facebook:
     image: http://yous.be/images/2014/11/30/vim.png
 ---
 
-![Vim](/images/2014/11/30/vim.min.png "Vim")
+![Vim with multiple windows opened](/images/2014/11/30/vim.min.png)
 
 ## Sidebar
 
