@@ -1,0 +1,14 @@
+#!/bin/bash
+set -euo pipefail
+
+bundle exec jekyll clean
+bundle exec jekyll build
+(cd _master && git pull)
+
+for SRC in _site _master; do
+  rm -rf ${SRC}_debug
+  cp -R ${SRC} ${SRC}_debug
+  find ${SRC}_debug -type f -name \*.html -print0 | xargs -0 htmlbeautifier -t 0
+done
+
+diff -ur _master_debug _site_debug | vim -R -
