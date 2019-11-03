@@ -410,3 +410,6 @@ comments: false
 403. Arctic Monkeys --- Tranquility Base Hotel & Casino
 404. Dua Lipa --- Dua Lipa (COMPLETE EDITION)
 405. The Weeknd --- Starboy
+406. 태연 --- Purpose (DELUXE EDITION)
+407. Nell --- Colors In Black
+408. 권진아 --- 나의 모양
