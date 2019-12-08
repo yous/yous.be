@@ -400,7 +400,7 @@ comments: false
 393. Drunken Tiger --- X : Rebirth of Tiger JK
 394. 장기하와 얼굴들 --- Mono
 395. The Quiett --- Millionaire Poetry
-396. The Quiett --- Glow Forever
+396. The Quiett --- glow forever
 397. 새소년 --- 여름깃
 398. XXX --- LANGUAGE (Limited Edition)
 399. Epik High --- Black Swan Songs
@@ -413,3 +413,6 @@ comments: false
 406. 태연 --- Purpose (DELUXE EDITION)
 407. Nell --- Colors In Black
 408. 권진아 --- 나의 모양
+409. Dynamic Duo --- OFF DUTY
+410. 아이유(IU) --- Love Poem
+411. E SENS --- 이방인
