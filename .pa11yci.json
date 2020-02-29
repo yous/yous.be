@@ -2,7 +2,7 @@
     "urls": [
         {
             "url": "http://localhost:4000/2013/12/02/syntax-highlighting-test/",
-            "hideElements": "#gist4321346"
+            "hideElements": "#gist2219214, #gist4321346"
         }
     ]
 }

@@ -63,9 +63,9 @@ window.x$ = window.xui = xui = function(q, context) {
 </body></html>
 ```
 
-{% gist imathis/2219214 %}
-
 <!-- more -->
+
+{% gist imathis/2219214 %}
 
 ``` php
 <?php
