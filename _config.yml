@@ -101,6 +101,10 @@ compress_html:
 paginate_path: /posts/:num/
 paginate: 5
 
+# jekyll-redirect-from
+redirect_from:
+  json: false
+
 # jekyll-sass-converter
 sass:
   style: compressed
