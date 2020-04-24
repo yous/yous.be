@@ -52,14 +52,9 @@ plugins:
 markdown: kramdown
 highlighter: rouge
 excerpt_separator: "<!-- more -->"
-sass:
-  style: compressed
-  sourcemap: never
 
 # Outputting
 permalink: /:year/:month/:day/:title/
-paginate_path: /posts/:num/
-paginate: 5
 feed:
   path: atom.xml
 
@@ -101,3 +96,12 @@ compress_html:
   clippings: all
   comments: ["<!-- ", " -->"]
   endings: all
+
+# jekyll-paginate
+paginate_path: /posts/:num/
+paginate: 5
+
+# jekyll-sass-converter
+sass:
+  style: compressed
+  sourcemap: never
