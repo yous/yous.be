@@ -5,7 +5,7 @@
   
   <link href="https://yous.be/atom.xml" rel="self" type="application/atom+xml" />
   <link href="https://yous.be/" rel="alternate" type="text/html" />
-  <updated>2020-04-24T11:03:50+00:00</updated>
+  <updated>2020-04-24T11:23:51+00:00</updated>
   <id>https://yous.be//</id>
 
   
@@ -1950,9 +1950,9 @@ some searching about OpenSSL and Ruby 1.8.7, I found that RVM is using
 openssl098 for Ruby 1.8.7 compilation. But, unfortunately, they decided to
 remove it from homebrew/versions tap because of deprecation and security issues.
 See
-&lt;a href=&quot;https://github.com/Homebrew/homebrew-versions/issues/1150&quot;&gt;Homebrew/homebrew-versions#1150&lt;/a&gt;
+&lt;a href=&quot;https://web.archive.org/web/20190629052829/https://github.com/Homebrew/homebrew-versions/issues/1150&quot;&gt;Homebrew/homebrew-versions#1150&lt;/a&gt;
 for the issue and
-&lt;a href=&quot;https://github.com/Homebrew/homebrew-versions/commit/4e169f22cc48e61e2ed6e2f80a5414fe281db335&quot;&gt;the commit&lt;/a&gt;
+&lt;a href=&quot;https://web.archive.org/web/20160505072158/https://github.com/Homebrew/homebrew-versions/commit/4e169f22cc48e61e2ed6e2f80a5414fe281db335&quot;&gt;the commit&lt;/a&gt;
 removing openssl098.&lt;/p&gt;
 
 &lt;h2&gt;Building Ruby 1.8.7&lt;/h2&gt;
