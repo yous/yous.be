@@ -69,9 +69,9 @@ some searching about OpenSSL and Ruby 1.8.7, I found that RVM is using
 openssl098 for Ruby 1.8.7 compilation. But, unfortunately, they decided to
 remove it from homebrew/versions tap because of deprecation and security issues.
 See
-[Homebrew/homebrew-versions#1150](https://github.com/Homebrew/homebrew-versions/issues/1150)
+[Homebrew/homebrew-versions#1150](https://web.archive.org/web/20190629052829/https://github.com/Homebrew/homebrew-versions/issues/1150)
 for the issue and
-[the commit](https://github.com/Homebrew/homebrew-versions/commit/4e169f22cc48e61e2ed6e2f80a5414fe281db335)
+[the commit](https://web.archive.org/web/20160505072158/https://github.com/Homebrew/homebrew-versions/commit/4e169f22cc48e61e2ed6e2f80a5414fe281db335)
 removing openssl098.
 
 ## Building Ruby 1.8.7
