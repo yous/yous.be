@@ -58,7 +58,7 @@ end</pre></noscript> <script src="https://gist.github.com/imathis/2219214.js"> <
 
 <span class="nv">$f_country_language_selected</span> <span class="o">=</span> <span class="nx">camp_session_get</span><span class="p">(</span><span class="s1">'f_language_selected'</span><span class="p">,</span> <span class="s1">''</span><span class="p">);</span>
 <span class="nv">$f_country_offset</span> <span class="o">=</span> <span class="nx">camp_session_get</span><span class="p">(</span><span class="s1">'f_country_offset'</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-<span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$f_country_language_selected</span><span class="p">))</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="nb">empty</span><span class="p">(</span><span class="nv">$f_country_language_selected</span><span class="p">))</span> <span class="p">{</span>
     <span class="nv">$f_country_language_selected</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="nv">$ItemsPerPage</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
@@ -174,66 +174,66 @@ end</pre></noscript> <script src="https://gist.github.com/imathis/2219214.js"> <
     exited and to provide for the ability for it to find out why."""</span>
     <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">global</span> <span class="n">exitthreads</span><span class="p">,</span> <span class="n">profiledir</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">threadid</span> <span class="o">=</span> <span class="n">thread</span><span class="o">.</span><span class="n">get_ident</span><span class="p">()</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">threadid</span> <span class="o">=</span> <span class="n">thread</span><span class="p">.</span><span class="n">get_ident</span><span class="p">()</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">profiledir</span><span class="p">:</span>          <span class="c1"># normal case
-</span>                <span class="n">Thread</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</span>                <span class="n">Thread</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
                     <span class="kn">import</span> <span class="nn">cProfile</span> <span class="k">as</span> <span class="n">profile</span>
                 <span class="k">except</span> <span class="nb">ImportError</span><span class="p">:</span>
                     <span class="kn">import</span> <span class="nn">profile</span>
-                <span class="n">prof</span> <span class="o">=</span> <span class="n">profile</span><span class="o">.</span><span class="n">Profile</span><span class="p">()</span>
+                <span class="n">prof</span> <span class="o">=</span> <span class="n">profile</span><span class="p">.</span><span class="n">Profile</span><span class="p">()</span>
                 <span class="k">try</span><span class="p">:</span>
-                    <span class="n">prof</span> <span class="o">=</span> <span class="n">prof</span><span class="o">.</span><span class="n">runctx</span><span class="p">(</span><span class="s">"Thread.run(self)"</span><span class="p">,</span> <span class="nb">globals</span><span class="p">(),</span> <span class="nb">locals</span><span class="p">())</span>
+                    <span class="n">prof</span> <span class="o">=</span> <span class="n">prof</span><span class="p">.</span><span class="n">runctx</span><span class="p">(</span><span class="s">"Thread.run(self)"</span><span class="p">,</span> <span class="nb">globals</span><span class="p">(),</span> <span class="nb">locals</span><span class="p">())</span>
                 <span class="k">except</span> <span class="nb">SystemExit</span><span class="p">:</span>
                     <span class="k">pass</span>
-                <span class="n">prof</span><span class="o">.</span><span class="n">dump_stats</span><span class="p">(</span> \
-                            <span class="n">profiledir</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">threadid</span><span class="p">)</span> <span class="o">+</span> <span class="s">"_"</span> <span class="o">+</span> \
-                            <span class="bp">self</span><span class="o">.</span><span class="n">getName</span><span class="p">()</span> <span class="o">+</span> <span class="s">".prof"</span><span class="p">)</span>
+                <span class="n">prof</span><span class="p">.</span><span class="n">dump_stats</span><span class="p">(</span> \
+                            <span class="n">profiledir</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">threadid</span><span class="p">)</span> <span class="o">+</span> <span class="s">"_"</span> <span class="o">+</span> \
+                            <span class="bp">self</span><span class="p">.</span><span class="n">getName</span><span class="p">()</span> <span class="o">+</span> <span class="s">".prof"</span><span class="p">)</span>
         <span class="k">except</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">setExitCause</span><span class="p">(</span><span class="s">'EXCEPTION'</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">setExitCause</span><span class="p">(</span><span class="s">'EXCEPTION'</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">sys</span><span class="p">:</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">setExitException</span><span class="p">(</span><span class="n">sys</span><span class="o">.</span><span class="n">exc_info</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span>
-                <span class="n">tb</span> <span class="o">=</span> <span class="n">traceback</span><span class="o">.</span><span class="n">format_exc</span><span class="p">()</span>
-                <span class="bp">self</span><span class="o">.</span><span class="n">setExitStackTrace</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">setExitException</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">exc_info</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">tb</span> <span class="o">=</span> <span class="n">traceback</span><span class="p">.</span><span class="n">format_exc</span><span class="p">()</span>
+                <span class="bp">self</span><span class="p">.</span><span class="n">setExitStackTrace</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">setExitCause</span><span class="p">(</span><span class="s">'NORMAL'</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">setExitCause</span><span class="p">(</span><span class="s">'NORMAL'</span><span class="p">)</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">'exitmessage'</span><span class="p">):</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">setExitMessage</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+            <span class="bp">self</span><span class="p">.</span><span class="n">setExitMessage</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">exitthreads</span><span class="p">:</span>
-            <span class="n">exitthreads</span><span class="o">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+            <span class="n">exitthreads</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="nf">setExitCause</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cause</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">exitcause</span> <span class="o">=</span> <span class="n">cause</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">exitcause</span> <span class="o">=</span> <span class="n">cause</span>
     <span class="k">def</span> <span class="nf">getExitCause</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="s">"""Returns the cause of the exit, one of:
         'EXCEPTION' -- the thread aborted because of an exception
         'NORMAL' -- normal termination."""</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">exitcause</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">exitcause</span>
     <span class="k">def</span> <span class="nf">setExitException</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">exitexception</span> <span class="o">=</span> <span class="n">exc</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">exitexception</span> <span class="o">=</span> <span class="n">exc</span>
     <span class="k">def</span> <span class="nf">getExitException</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="s">"""If getExitCause() is 'EXCEPTION', holds the value from
         sys.exc_info()[1] for this exception."""</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">exitexception</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">exitexception</span>
     <span class="k">def</span> <span class="nf">setExitStackTrace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">st</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">exitstacktrace</span> <span class="o">=</span> <span class="n">st</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">exitstacktrace</span> <span class="o">=</span> <span class="n">st</span>
     <span class="k">def</span> <span class="nf">getExitStackTrace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="s">"""If getExitCause() is 'EXCEPTION', returns a string representing
         the stack trace for this exception."""</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">exitstacktrace</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">exitstacktrace</span>
     <span class="k">def</span> <span class="nf">setExitMessage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
         <span class="s">"""Sets the exit message to be fetched by a subsequent call to
         getExitMessage.  This message may be any object or type except
         None."""</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">exitmessage</span> <span class="o">=</span> <span class="n">msg</span>
+        <span class="bp">self</span><span class="p">.</span><span class="n">exitmessage</span> <span class="o">=</span> <span class="n">msg</span>
     <span class="k">def</span> <span class="nf">getExitMessage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="s">"""For any exit cause, returns the message previously set by
         a call to setExitMessage(), or None if there was no such message
         set."""</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">exitmessage</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">exitmessage</span>
 </code></pre></div></div><div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!perl -w</span>
 
 <span class="c1"># Time-stamp: &lt;2002/04/06, 13:12:13 (EST), maverick, csvformat.pl&gt;</span>
