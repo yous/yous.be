@@ -1,5 +1,4 @@
 language: ruby
-cache: bundler
 rvm:
   - 2.7.1
 env:
@@ -15,6 +14,7 @@ addons:
       - libcurl4-openssl-dev
       - openjdk-8-jre
 cache:
+  bundler: true
   directories:
     - $TRAVIS_BUILD_DIR/tmp/.htmlproofer
 before_install:
