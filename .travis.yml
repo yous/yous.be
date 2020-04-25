@@ -39,4 +39,4 @@ deploy:
   target_branch: master
   on:
     branch: source
-    condition: env(TEST_SUITE) = default
+    condition: $TEST_SUITE = default
