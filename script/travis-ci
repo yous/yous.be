@@ -10,8 +10,6 @@ if [ "$TEST_SUITE" == default ]; then
   script/pa11y-ci
 elif [ "$TEST_SUITE" == proof ]; then
   bundle exec rake proof
-elif [ "$TEST_SUITE" == deploy ]; then
-  :
 else
   echo 'Unknown test suite.'
   exit 1
