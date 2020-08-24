@@ -2,7 +2,7 @@
 
 source 'https://rubygems.org'
 
-gem 'jekyll', '~> 4.0'
+gem 'jekyll', '~> 4.1'
 gem 'jekyll-gist', '~> 1.5'
 gem 'jekyll-redirect-from', '~> 0.16'
 gem 'jekyll-whiteglass'
