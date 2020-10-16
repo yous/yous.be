@@ -170,8 +170,8 @@ comments: false
 163. Bizzy --- BIZZIONARY
 164. DJ Soulscape --- 180g beats
 165. DJ Soulscape --- strange sweet sounds presents\.\.\. 어쩌면 espionne remixes
-167. DJ Soulscape --- Lovers
-166. DJ Soulscape --- 창작과비트 Vol.1 patterns for words
+166. DJ Soulscape --- Lovers
+167. DJ Soulscape --- 창작과비트 Vol.1 patterns for words
 168. Drunken Tiger --- 하나하면 너와나 One is not a lonely word
 169. Drunken Tiger --- sky is the limit
 170. Dynamic Duo --- Taxi Driver
@@ -186,8 +186,8 @@ comments: false
 179. TBNY --- HI [SIDE-A]
 180. UMC/UW --- 'ONE/ONLY' 2nd delivery edition
 181. Verbal Jint --- 누명 간보기
-183. Verbal Jint --- 사수자리 vol.1 모범라임즈
-182. Verbal Jint --- 누명 afterplay
+182. Verbal Jint --- 사수자리 vol.1 모범라임즈
+183. Verbal Jint --- 누명 afterplay
 184. Verbal Jint --- 무명
 185. DJ Shadow --- Endtroducing\.\.\.\.\.
 186. Dr. Dre --- The Chronic
@@ -200,10 +200,10 @@ comments: false
 193. Lil Wayne --- The Carter III
 194. Mos Def --- True Magic
 195. N\*E\*R\*D --- Seeing Sounds
-199. Nas --- It Was Wriiten
-198. Nas --- Street's Disciple
-196. Nas --- Hip Hop Is Dead
-197. Nas --- Untitled
+196. Nas --- It Was Wriiten
+197. Nas --- Street's Disciple
+198. Nas --- Hip Hop Is Dead
+199. Nas --- Untitled
 200. Q-Tip --- The Renaissance
 201. Rakim --- The 18th Letter / The Book Of Life
 202. The Game --- LAX
@@ -416,3 +416,5 @@ comments: false
 409. Dynamic Duo --- OFF DUTY
 410. 아이유(IU) --- Love Poem
 411. E SENS --- 이방인
+412. Sik-K --- HEADLINER (Deluxe)
+413. H1GHR MUSIC --- H1GHR : RED TAPE & H1GHR : BLUE TAPE
