@@ -15,8 +15,8 @@
 <span class="n">str</span> <span class="o">=</span> <span class="n">nums</span><span class="p">.</span><span class="nf">map</span> <span class="k">do</span> <span class="o">|</span><span class="n">s</span><span class="o">|</span>
   <span class="n">ord</span> <span class="o">=</span> <span class="k">if</span> <span class="n">s</span><span class="p">.</span><span class="nf">size</span> <span class="o">&gt;=</span> <span class="mi">5</span>
           <span class="n">s</span><span class="p">.</span><span class="nf">to_i</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-        <span class="k">elsif</span> <span class="n">s</span> <span class="o">=~</span> <span class="sr">/[a-f]/</span><span class="err">
-          </span><span class="sr">s</span><span class="p">.</span><span class="nf">to_i</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
+        <span class="k">elsif</span> <span class="n">s</span> <span class="o">=~</span> <span class="sr">/[a-f]/</span>
+          <span class="n">s</span><span class="p">.</span><span class="nf">to_i</span><span class="p">(</span><span class="mi">16</span><span class="p">)</span>
         <span class="k">elsif</span> <span class="n">s</span><span class="p">.</span><span class="nf">start_with?</span><span class="p">(</span><span class="s1">'0'</span><span class="p">)</span>
           <span class="n">s</span><span class="p">.</span><span class="nf">to_i</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
         <span class="k">else</span>
@@ -27,4 +27,4 @@
 <span class="nb">puts</span> <span class="n">str</span><span class="p">.</span><span class="nf">join</span>
 </code></pre></div></div><p>Just run with Ruby:</p><div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Welcome to the SECCON 2014 online CTF.The SECCON is the biggest hacker contest in Japan.Oops, you want to know the flag, don't you?Here you are.SECCON{W31C0M 70 7H3 53CC0N ZOIA}Have fun!
 </code></pre></div></div><p>Finally the flag is:</p><div class="language-text highlighter-rouge"><div class="highlight"><pre class="highlight"><code>SECCON{W31C0M 70 7H3 53CC0N ZOIA}
-</code></pre></div></div></div></article></div></main><footer class="site-footer"><div class="wrapper"><p> Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a><br /> &copy; 2013&ndash;2020 - <a href="/about/">Yous</a> - Powered by <a href="https://jekyllrb.com">Jekyll</a> &amp; <a href="https://github.com/yous/whiteglass">whiteglass</a> - Subscribe via <a href="https://yous.be/atom.xml">RSS</a></p></div></footer>
+</code></pre></div></div></div></article></div></main><footer class="site-footer"><div class="wrapper"><p> Content on this site is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a><br /> &copy; 2013&ndash;2021 - <a href="/about/">Yous</a> - Powered by <a href="https://jekyllrb.com">Jekyll</a> &amp; <a href="https://github.com/yous/whiteglass">whiteglass</a> - Subscribe via <a href="https://yous.be/atom.xml">RSS</a></p></div></footer>
