@@ -21,6 +21,7 @@ task :proof do
     },
     url_ignore: [
       %r{^https?://localhost},
+      %r{^https?://web\.archive\.org/web/},
       # _include/fonts.html
       %r{^https://fonts\.gstatic\.com$},
       # /2013/12/04/tomorrow-theme-in-octopress/
