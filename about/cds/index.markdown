@@ -416,5 +416,10 @@ comments: false
 409. Dynamic Duo --- OFF DUTY
 410. 아이유(IU) --- Love Poem
 411. E SENS --- 이방인
-412. Sik-K --- HEADLINER (Deluxe)
-413. H1GHR MUSIC --- H1GHR : RED TAPE & H1GHR : BLUE TAPE
+412. 이용신 --- Returned Fullmoon
+413. Sik-K --- HEADLINER (Deluxe)
+414. H1GHR MUSIC --- H1GHR : RED TAPE & H1GHR : BLUE TAPE
+415. 김심야 --- Dog
+416. Epik High --- Epik High Is Here 上
+417. 백예린 --- Every Letter I Sent You
+418. 백예린 --- Tellusboutyourself
