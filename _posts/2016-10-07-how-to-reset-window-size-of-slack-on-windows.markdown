@@ -65,4 +65,21 @@ another location. Here is a way to resetting the window size:
 4. Delete the whole content, but do not delete the file itself.
 5. Open Slack again. It will set the default window size automatically.
 
+### Slack 4.13.0
+
+With updates of Slack, settings including window-related ones are merged and
+moved to another location. Here is a way to resetting the window size:
+
+1. Quit your Slack application.
+2. Navigate to `%APPDATA%\Slack\storage`. The value of `%APPDATA%` is something
+   like `C:\Users\{username}\AppData\Roaming`.
+3. Open `root-state.json` to edit.
+4. Find `mainWindowSettings` under `settings`. Its value would be like:
+
+   ``` json
+   "mainWindowSettings":{"fullScreen":false,"maximized":false,"bounds":{"x":172,"y":52,"width":1024,"height":768}}
+   ```
+5. Delete the whole `mainWindowSettings` entry above.
+6. Open Slack again. It will set the default window size automatically.
+
 Keep calm and use Slack!
