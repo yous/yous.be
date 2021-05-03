@@ -64,7 +64,7 @@ task :post, :title do |_t, args|
   end
   time = Time.now.utc
   slug = "#{time.strftime('%Y-%m-%d')}-#{title.downcase.gsub(/[^\w]+/, '-')}"
-  filename = File.join(File.dirname(__FILE__), '_posts', slug + '.markdown')
+  filename = File.join(File.dirname(__FILE__), '_posts', "#{slug}.markdown")
 
   if File.exist?(filename)
     puts "#{filename} already exists."
