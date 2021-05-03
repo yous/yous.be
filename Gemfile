@@ -3,10 +3,10 @@
 source 'https://rubygems.org'
 
 gem 'jekyll', '~> 4.1'
-gem 'webrick'
 gem 'jekyll-gist', '~> 1.5'
 gem 'jekyll-redirect-from', '~> 0.16'
 gem 'jekyll-whiteglass'
+gem 'webrick'
 
 group :test do
   gem 'html-proofer', '~> 3.0'
