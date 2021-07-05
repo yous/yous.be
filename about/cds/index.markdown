@@ -423,3 +423,11 @@ comments: false
 416. Epik High --- Epik High Is Here 上
 417. 백예린 --- Every Letter I Sent You
 418. 백예린 --- Tellusboutyourself
+419. 아이유(IU) --- LILAC (HILAC VER.)
+420. Crush --- With Her
+421. 김효은 --- LOVE-HATE
+422. Hi-Lite Records --- Legacy
+423. 유라(youra) --- GAUSSIAN (EP)
+424. ZENE THE ZILLA --- FLOCC (DELUXE)
+425. Heize --- She's Fine
+426. hmusic.co.kr sampler vol.4
