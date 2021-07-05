@@ -1,6 +1,6 @@
 language: ruby
 rvm:
-  - 3.0.0
+  - 3.0.1
 env:
   matrix:
     - TEST_SUITE=default
