@@ -13,6 +13,11 @@ jobs:
           TEST_SUITE: default
     steps:
       - checkout
+      - run:
+          name: Setup environment variables
+          command: |
+            echo 'export PYENV_ROOT=/home/circleci/.pyenv' >> $BASH_ENV
+            echo 'export PATH=/home/circleci/.pyenv/shims:/home/circleci/.pyenv/bin:$PATH' >> $BASH_ENV
       - run: curl https://pyenv.run | bash
       - run: pyenv install 3.9.6 && pyenv global 3.9.6
       - ruby/install-deps
