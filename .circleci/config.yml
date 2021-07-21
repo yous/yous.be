@@ -1,0 +1,76 @@
+version: 2.1
+
+orbs:
+  ruby: circleci/ruby@1.1
+  python: circleci/python@1.4
+  node: circleci/node@4.5
+
+jobs:
+  build:
+    docker:
+      - image: cimg/ruby:3.0-node
+        environment:
+          TEST_SUITE: default
+    steps:
+      - checkout
+      - run: curl https://pyenv.run | bash
+      - run: pyenv install 3.9.6 && pyenv global 3.9.6
+      - ruby/install-deps
+      - python/install-packages:
+          args: html5validator
+          pip-dependency-file:
+          pkg-manager: pip
+      - run: npm install -g pa11y-ci
+      - run: script/ci
+      - persist_to_workspace:
+          root: .
+          paths:
+            - _site
+  proof:
+    docker:
+      - images: cimg/ruby:3.0
+        environment:
+          TEST_SUITE: proof
+    steps:
+      - checkout
+      - ruby/install-deps
+      - restore_cache:
+          keys:
+            - htmlproofer-{{ arch }}
+            - htmlproofer-
+      - run: script/ci || true
+      - save_cache:
+          key: htmlproofer-{{ arch }}
+          paths:
+            - tmp/.htmlproofer
+  deploy:
+    docker:
+      - image: cimg/node:16.5
+    steps:
+      - checkout
+      - attach_workspace:
+          at: .
+      - run:
+          name: Install gh-pages
+          command: |
+            npm install -g --silent gh-pages@3.2
+            git config user.name "$(git --no-pager show --no-patch --format='%an')"
+            git config user.email "$(git --no-pager show --no-patch --format='%ae')"
+      - run:
+          command: gh-pages --branch master --dist _site
+          environment:
+            GITHUB_TOKEN: "$GITHUB_TOKEN"
+
+workflows:
+  version: 2
+  build:
+    jobs:
+      - build
+      - proof
+      - deploy:
+          context: yous.be
+          requires:
+            - build
+          filters:
+            branches:
+              only: source
