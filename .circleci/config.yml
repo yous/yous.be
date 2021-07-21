@@ -76,7 +76,7 @@ jobs:
       - restore_cache:
           keys:
             - npm-{{ arch }}
-      - run: npm instal gh-pages
+      - run: npm install -g gh-pages
       - save_cache:
           key: npm-{{ arch }}
           paths:
