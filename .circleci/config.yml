@@ -91,7 +91,7 @@ jobs:
           fingerprints:
             - "dc:df:dd:84:71:e8:e3:e9:65:f4:27:1d:c1:eb:41:46"
       - run:
-          command: gh-pages --branch master --dist _site --message "Update to ${CIRCLE_SHA1:0:7}"
+          command: gh-pages --branch master --dist _site --message "Update to ${CIRCLE_SHA1:0:7} [ci skip]"
           environment:
             CACHE_DIR: "~/.npm-global/.cache"
 
@@ -103,15 +103,9 @@ workflows:
       - validate:
           requires:
             - build
-          filters:
-            branches:
-              only: source
       - proof:
           requires:
             - build
-          filters:
-            branches:
-              only: source
       - deploy:
           requires:
             - build
