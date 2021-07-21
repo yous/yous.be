@@ -3,25 +3,37 @@ version: 2.1
 orbs:
   ruby: circleci/ruby@1.1
 
+node-environments: &node-environments
+  NPM_CONFIG_PREFIX: '~/.npm-global'
+
+node-global-path: &node-global-path
+  run: echo 'export PATH=~/.npm-global/bin:$PATH' >> $BASH_ENV
+
+node-restore-cache: &node-restore-cache
+  - restore_cache:
+      keys:
+        - npm-{{ arch }}
+
+node-save-cache: &node-save-cache
+  save_cache:
+    key: npm-{{ arch }}
+    paths:
+      - ~/.npm
+      - ~/.npm-global
+
 jobs:
   build:
     docker:
       - image: cimg/ruby:3.0-node
         environment:
-          NPM_CONFIG_PREFIX: '~/.npm-global'
+          <<: *node-environments
     steps:
       - checkout
       - ruby/install-deps
-      - run: echo 'export PATH=~/.npm-global/bin:$PATH' >> $BASH_ENV
-      - restore_cache:
-          keys:
-            - npm-{{ arch }}
+      - *node-global-path
+      - *node-restore-cache
       - run: npm install -g pa11y-ci
-      - save_cache:
-          key: npm-{{ arch }}
-          paths:
-            - ~/.npm
-            - ~/.npm-global
+      - *node-save-cache
       - run: |
           bundle exec jekyll clean
           bundle exec jekyll build
@@ -69,19 +81,13 @@ jobs:
     docker:
       - image: cimg/node:16.5
         environment:
-          NPM_CONFIG_PREFIX: '~/.npm-global'
+          <<: *node-environments
     steps:
       - checkout
-      - run: echo 'export PATH=~/.npm-global/bin:$PATH' >> $BASH_ENV
-      - restore_cache:
-          keys:
-            - npm-{{ arch }}
+      - *node-global-path
+      - *node-restore-cache
       - run: npm install -g gh-pages
-      - save_cache:
-          key: npm-{{ arch }}
-          paths:
-            - ~/.npm
-            - ~/.npm-global
+      - *node-save-cache
       - attach_workspace:
           at: .
       - run: |
