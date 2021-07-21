@@ -90,6 +90,7 @@ jobs:
       - run:
           command: gh-pages --branch master --dist _site
           environment:
+            CACHE_DIR: "~/.npm-global/.cache"
             GITHUB_TOKEN: "$GITHUB_TOKEN"
 
 workflows:
