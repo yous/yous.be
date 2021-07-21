@@ -2,48 +2,65 @@ version: 2.1
 
 orbs:
   ruby: circleci/ruby@1.1
-  python: circleci/python@1.4
-  node: circleci/node@4.5
 
 jobs:
   build:
     docker:
       - image: cimg/ruby:3.0-node
         environment:
-          TEST_SUITE: default
+          NPM_CONFIG_PREFIX: '~/.npm-global'
     steps:
       - checkout
-      - run:
-          name: Setup environment variables
-          command: |
-            echo 'export PYENV_ROOT=/home/circleci/.pyenv' >> $BASH_ENV
-            echo 'export PATH=/home/circleci/.pyenv/shims:/home/circleci/.pyenv/bin:$PATH' >> $BASH_ENV
-      - run: curl https://pyenv.run | bash
-      - run: pyenv install 3.9.6 && pyenv global 3.9.6
       - ruby/install-deps
-      - python/install-packages:
-          args: html5validator
-          pip-dependency-file: ""
-          pkg-manager: pip
+      - run: echo 'export PATH=~/.npm-global/bin:$PATH' >> $BASH_ENV
+      - restore_cache:
+          keys:
+            - npm-{{ arch }}
       - run: npm install -g pa11y-ci
-      - run: script/ci
+      - save_cache:
+          key: npm-{{ arch }}
+          paths:
+            - ~/.npm
+            - ~/.npm-global
+      - run: |
+          bundle exec jekyll clean
+          bundle exec jekyll build
+          bundle exec rake spec
+      - run: script/pa11y-ci
       - persist_to_workspace:
           root: .
           paths:
             - _site
+  validate:
+    docker:
+      - image: cimg/python:3.9
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - pypi-{{ checksum "/home/circleci/.pyenv/version" }}
+      - run: pip install -U html5validator
+      - save_cache:
+          key: pypi-{{ checksum "/home/circleci/.pyenv/version" }}
+          paths:
+            - /home/circleci/.cache/pip
+            - /home/circleci/.pyenv/versions/
+            - /home/circleci/.local/lib/
+      - attach_workspace:
+          at: .
+      - run: html5validator --Werror --also-check-css --also-check-svg --root _site/
   proof:
     docker:
       - image: cimg/ruby:3.0
-        environment:
-          TEST_SUITE: proof
     steps:
       - checkout
       - ruby/install-deps
+      - attach_workspace:
+          at: .
       - restore_cache:
           keys:
             - htmlproofer-{{ arch }}
-            - htmlproofer-
-      - run: script/ci || true
+      - run: bundle exec rake proof || true
       - save_cache:
           key: htmlproofer-{{ arch }}
           paths:
@@ -51,16 +68,25 @@ jobs:
   deploy:
     docker:
       - image: cimg/node:16.5
+        environment:
+          NPM_CONFIG_PREFIX: '~/.npm-global'
     steps:
       - checkout
+      - run: echo 'export PATH=~/.npm-global/bin:$PATH' >> $BASH_ENV
+      - restore_cache:
+          keys:
+            - npm-{{ arch }}
+      - run: npm instal gh-pages
+      - save_cache:
+          key: npm-{{ arch }}
+          paths:
+            - ~/.npm
+            - ~/.npm-global
       - attach_workspace:
           at: .
-      - run:
-          name: Install gh-pages
-          command: |
-            npm install -g --silent gh-pages@3.2
-            git config user.name "$(git --no-pager show --no-patch --format='%an')"
-            git config user.email "$(git --no-pager show --no-patch --format='%ae')"
+      - run: |
+          git config user.name "$(git --no-pager show --no-patch --format='%an')"
+          git config user.email "$(git --no-pager show --no-patch --format='%ae')"
       - run:
           command: gh-pages --branch master --dist _site
           environment:
@@ -71,11 +97,17 @@ workflows:
   build:
     jobs:
       - build
-      - proof
+      - validate:
+          requires:
+            - build
+      - proof:
+          requires:
+            - build
       - deploy:
           context: yous.be
           requires:
             - build
+            - validate
           filters:
             branches:
               only: source
