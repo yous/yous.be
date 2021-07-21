@@ -28,7 +28,7 @@ jobs:
             - _site
   proof:
     docker:
-      - images: cimg/ruby:3.0
+      - image: cimg/ruby:3.0
         environment:
           TEST_SUITE: proof
     steps:
