@@ -33,7 +33,7 @@ jobs:
             - _site
   validate:
     docker:
-      - image: cimg/python:3.9
+      - image: cimg/python:3.6
     steps:
       - checkout
       - restore_cache:
