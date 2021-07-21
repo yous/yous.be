@@ -23,7 +23,7 @@ jobs:
       - ruby/install-deps
       - python/install-packages:
           args: html5validator
-          pip-dependency-file:
+          pip-dependency-file: ""
           pkg-manager: pip
       - run: npm install -g pa11y-ci
       - run: script/ci
