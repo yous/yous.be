@@ -24,7 +24,7 @@ node-save-cache: &node-save-cache
 jobs:
   build:
     docker:
-      - image: cimg/ruby:3.0-node
+      - image: cimg/ruby:3.0-browsers
         environment:
           <<: *node-environments
     steps:
