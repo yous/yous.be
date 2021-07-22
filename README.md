@@ -1,6 +1,6 @@
 # yous.be
 
-[![Build Status](https://travis-ci.com/yous/yous.be.svg?branch=source)](https://travis-ci.com/yous/yous.be)
+[![CircleCI](https://circleci.com/gh/yous/yous.be/tree/source.svg?style=shield)](https://circleci.com/gh/yous/yous.be/tree/source)
 
 Blog for hackers.
 
