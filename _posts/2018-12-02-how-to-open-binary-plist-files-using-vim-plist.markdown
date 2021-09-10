@@ -231,6 +231,20 @@ it registers `autocmd`s and set default values to global variables. So here we
 set global variables of vim-plist. The default value of `g:plist_json_filetype`
 is `'javascript'`, but I set it to `'json'` as Vim can handle that filetype.
 
+### Fix for editing a new file (Update: 2021-09-10)
+
+As we disabled all `autocmd`s of vim-plist, above "Saving a new file" section
+also doesn't work. Instead of setting the `b:plist_original_format` variable,
+setting `filetype` to xml would be enough.
+
+``` vim
+autocmd BufNewFile *.plist set filetype=xml
+```
+
+Also, there was an [update](https://github.com/darfink/vim-plist/commit/0d8a2aa3e332cdc8aa70c53793abf7e149451bc3)
+to vim-plist, supporting plistutil and removing the `g:plist_json_filetype`
+variable.
+
 ## Conclusion
 
 So this is the complete part of my .vimrc for binary plist files:
@@ -253,17 +267,13 @@ augroup BinaryPlistRead
         \ if getline(1) =~# '^bplist' |
         \   call s:ConvertBinaryPlist() |
         \ endif
-  autocmd BufNewFile *.plist
-        \ if !get(b:, 'plist_original_format') |
-        \   let b:plist_original_format = 'xml' |
-        \ endif
+  autocmd BufNewFile *.plist set filetype=xml
 augroup END
 " Disable default autocmds
 let g:loaded_plist = 1
 let g:plist_display_format = 'xml'
 let g:plist_save_format = ''
-let g:plist_json_filetype = 'json'
 ```
 
-It's also available on [GitHub](https://github.com/yous/dotfiles/blob/0d95f7a13f70fe755ff9d1e35b64a42bcbf99973/vimrc#L1684-L1711),
+It's also available on [GitHub](https://github.com/yous/dotfiles/blob/65837be11bbea487bffd261d35bbc4b36484adbf/vimrc#L1970-L1993),
 you can visit my [dotfiles](https://github.com/yous/dotfiles) repository!
