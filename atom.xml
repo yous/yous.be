@@ -5,7 +5,7 @@
   
   <link href="https://yous.be/atom.xml" rel="self" type="application/atom+xml" />
   <link href="https://yous.be/" rel="alternate" type="text/html" />
-  <updated>2021-08-14T08:34:16+00:00</updated>
+  <updated>2021-09-10T09:22:17+00:00</updated>
   <id>https://yous.be//</id>
 
   
@@ -352,6 +352,19 @@ it registers &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;
 set global variables of vim-plist. The default value of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;g:plist_json_filetype&lt;/code&gt;
 is &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&apos;javascript&apos;&lt;/code&gt;, but I set it to &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;&apos;json&apos;&lt;/code&gt; as Vim can handle that filetype.&lt;/p&gt;
 
+&lt;h3&gt;Fix for editing a new file (Update: 2021-09-10)&lt;/h3&gt;
+
+&lt;p&gt;As we disabled all &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;autocmd&lt;/code&gt;s of vim-plist, above “Saving a new file” section
+also doesn’t work. Instead of setting the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;b:plist_original_format&lt;/code&gt; variable,
+setting &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;filetype&lt;/code&gt; to xml would be enough.&lt;/p&gt;
+
+&lt;div class=&quot;language-vim highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;autocmd &lt;span class=&quot;nb&quot;&gt;BufNewFile&lt;/span&gt; *&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;plist &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;filetype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;xml
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
+
+&lt;p&gt;Also, there was an &lt;a href=&quot;https://github.com/darfink/vim-plist/commit/0d8a2aa3e332cdc8aa70c53793abf7e149451bc3&quot;&gt;update&lt;/a&gt;
+to vim-plist, supporting plistutil and removing the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;g:plist_json_filetype&lt;/code&gt;
+variable.&lt;/p&gt;
+
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 
 &lt;p&gt;So this is the complete part of my .vimrc for binary plist files:&lt;/p&gt;
@@ -373,19 +386,15 @@ augroup BinaryPlistRead
 &lt;span class=&quot;se&quot;&gt;        \&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;getline&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=~&lt;/span&gt;# &lt;span class=&quot;s1&quot;&gt;&apos;^bplist&apos;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;
 &lt;span class=&quot;se&quot;&gt;        \&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;s:ConvertBinaryPlist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;
 &lt;span class=&quot;se&quot;&gt;        \&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt;
-  autocmd &lt;span class=&quot;nb&quot;&gt;BufNewFile&lt;/span&gt; *&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;plist
-&lt;span class=&quot;se&quot;&gt;        \&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;!&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;get&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;b&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;:,&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;plist_original_format&apos;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;
-&lt;span class=&quot;se&quot;&gt;        \&lt;/span&gt;   &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;b:plist_original_format&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;xml&apos;&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt;
-&lt;span class=&quot;se&quot;&gt;        \&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt;
+  autocmd &lt;span class=&quot;nb&quot;&gt;BufNewFile&lt;/span&gt; *&lt;span class=&quot;p&quot;&gt;.&lt;/span&gt;plist &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;filetype&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;xml
 augroup END
 &lt;span class=&quot;c&quot;&gt;&quot; Disable default autocmds&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:loaded_plist&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:plist_display_format&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;xml&apos;&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:plist_save_format&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&apos;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:plist_json_filetype&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;json&apos;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;It’s also available on &lt;a href=&quot;https://github.com/yous/dotfiles/blob/0d95f7a13f70fe755ff9d1e35b64a42bcbf99973/vimrc#L1684-L1711&quot;&gt;GitHub&lt;/a&gt;,
+&lt;p&gt;It’s also available on &lt;a href=&quot;https://github.com/yous/dotfiles/blob/65837be11bbea487bffd261d35bbc4b36484adbf/vimrc#L1970-L1993&quot;&gt;GitHub&lt;/a&gt;,
 you can visit my &lt;a href=&quot;https://github.com/yous/dotfiles&quot;&gt;dotfiles&lt;/a&gt; repository!&lt;/p&gt;</content>
 
       
