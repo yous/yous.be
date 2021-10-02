@@ -1,7 +1,7 @@
 version: 2.1
 
 orbs:
-  ruby: circleci/ruby@1.1
+  ruby: circleci/ruby@1.2
 
 node-environments: &node-environments
   NPM_CONFIG_PREFIX: '~/.npm-global'
@@ -79,7 +79,7 @@ jobs:
             - tmp/.htmlproofer
   deploy:
     docker:
-      - image: cimg/node:16.5
+      - image: cimg/node:16.10
         environment:
           <<: *node-environments
     steps:
