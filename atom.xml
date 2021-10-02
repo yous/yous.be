@@ -5,7 +5,7 @@
   
   <link href="https://yous.be/atom.xml" rel="self" type="application/atom+xml" />
   <link href="https://yous.be/" rel="alternate" type="text/html" />
-  <updated>2021-10-02T12:43:49+00:00</updated>
+  <updated>2021-10-02T13:38:01+00:00</updated>
   <id>https://yous.be//</id>
 
   
@@ -1021,7 +1021,7 @@ tex, sty, mp, bib files.&lt;/p&gt;
 
 &lt;h2&gt;Behavior of &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\write18&lt;/code&gt;&lt;/h2&gt;
 
-&lt;p&gt;&lt;a href=&quot;https://cysec.kaist.ac.kr/daeheejang.html&quot;&gt;@daehee&lt;/a&gt; found this helpful
+&lt;p&gt;&lt;a href=&quot;https://daehee87.github.io&quot;&gt;@daehee&lt;/a&gt; found this helpful
 link:
 &lt;a href=&quot;http://scumjr.github.io/2016/11/28/pwning-coworkers-thanks-to-latex/&quot;&gt;“Pwning coworkers thanks to LaTeX”&lt;/a&gt;.
 According to the post, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;\write18&lt;/code&gt; normally executes any program listed in
@@ -3005,15 +3005,15 @@ be sent to the tmux server process to recreate it.&lt;/p&gt;
       <content type="html" xml:base="https://yous.be/2015/05/05/using-pinpoint-with-docker/">&lt;p&gt;&lt;img src=&quot;/images/2015/05/05/logo.min.png&quot; alt=&quot;Pinpoint&quot; /&gt;&lt;/p&gt;
 
 &lt;blockquote&gt;
-  &lt;p&gt;&lt;a href=&quot;https://github.com/naver/pinpoint&quot;&gt;&lt;strong&gt;Pinpoint&lt;/strong&gt;&lt;/a&gt; is an open source APM
+  &lt;p&gt;&lt;a href=&quot;https://github.com/pinpoint-apm/pinpoint&quot;&gt;&lt;strong&gt;Pinpoint&lt;/strong&gt;&lt;/a&gt; is an open source APM
 (Application Performance Management) tool for large-scale distributed systems
 written in Java.&lt;/p&gt;
 &lt;/blockquote&gt;
 
 &lt;h2&gt;Preliminary&lt;/h2&gt;
 
-&lt;p&gt;In this post, our goal is to run a sample Pinpoint instance with QuickStart
-scripts. You can find them on &lt;a href=&quot;https://github.com/naver/pinpoint/tree/master/quickstart&quot;&gt;GitHub&lt;/a&gt;.
+&lt;p&gt;In this post, our goal is to run a sample Pinpoint 1.6.x instance with
+QuickStart scripts. You can find them on &lt;a href=&quot;https://github.com/pinpoint-apm/pinpoint/tree/1.6.x/quickstart&quot;&gt;GitHub&lt;/a&gt;.
 Also note that we’re going to use &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker&lt;/a&gt;.&lt;/p&gt;
 
 &lt;h2&gt;Requirements&lt;/h2&gt;
@@ -3078,7 +3078,7 @@ information on &lt;a href=&quot;https://github.com/docker/docker/issues/4032&quo
 &lt;div class=&quot;language-dockerfile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;useradd pinpoint &lt;span class=&quot;nt&quot;&gt;-m&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;As &lt;a href=&quot;https://github.com/naver/pinpoint/blob/master/doc/installation.md&quot;&gt;installation guide of Pinpoint&lt;/a&gt;
+&lt;p&gt;As &lt;a href=&quot;https://github.com/pinpoint-apm/pinpoint/blob/1.6.x/doc/installation.md&quot;&gt;installation guide of Pinpoint&lt;/a&gt;
 indicates, we need to install JDK 6 and JDK 7+. To install Java, we need a
 non-root user. So we add a user &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;pinpoint&lt;/code&gt; and create its home directory by
 passing &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;-m&lt;/code&gt;. Adding a user is needed to install Java.&lt;/p&gt;
@@ -3154,7 +3154,7 @@ just download Maven files from Apache mirror.&lt;/p&gt;
 &lt;p&gt;Now we install Maven 3.2.5 on the Docker. Note that we have to add the path of
 Maven to the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;PATH&lt;/code&gt;.&lt;/p&gt;
 
-&lt;div class=&quot;language-dockerfile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;git clone https://github.com/naver/pinpoint.git /pinpoint
+&lt;div class=&quot;language-dockerfile highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;git clone &lt;span class=&quot;nt&quot;&gt;-b&lt;/span&gt; 1.6.x https://github.com/pinpoint-apm/pinpoint.git /pinpoint
 &lt;span class=&quot;k&quot;&gt;WORKDIR&lt;/span&gt;&lt;span class=&quot;s&quot;&gt; /pinpoint&lt;/span&gt;
 &lt;span class=&quot;k&quot;&gt;RUN &lt;/span&gt;mvn &lt;span class=&quot;nb&quot;&gt;install&lt;/span&gt; &lt;span class=&quot;nt&quot;&gt;-Dmaven&lt;/span&gt;.test.skip&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;true&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
@@ -3172,7 +3172,7 @@ install it.&lt;/p&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;After installation of Pinpoint, we install HBase 0.94.25 as
-&lt;a href=&quot;https://github.com/naver/pinpoint/blob/master/quickstart/bin/start-hbase.sh&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;quickstart/bin/start-hbase.sh&lt;/code&gt;&lt;/a&gt;
+&lt;a href=&quot;https://github.com/pinpoint-apm/pinpoint/blob/1.6.x/quickstart/bin/start-hbase.sh&quot;&gt;&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;quickstart/bin/start-hbase.sh&lt;/code&gt;&lt;/a&gt;
 of Pinpoint does it.&lt;/p&gt;
 
 &lt;h2&gt;Running Docker&lt;/h2&gt;
@@ -3212,7 +3212,7 @@ for details.&lt;/p&gt;
 &lt;h2&gt;QuickStart&lt;/h2&gt;
 
 &lt;p&gt;We built a Docker image for Pinpoint, so now we can run QuickStart scripts. As
-mentioned in &lt;a href=&quot;https://github.com/naver/pinpoint/blob/master/quickstart/README.md&quot;&gt;QuickStart&lt;/a&gt;
+mentioned in &lt;a href=&quot;https://github.com/pinpoint-apm/pinpoint/blob/1.6.x/quickstart/README.md&quot;&gt;QuickStart&lt;/a&gt;
 of Pinpoint, we run several scripts.&lt;/p&gt;
 
 &lt;h3&gt;Install &amp;amp; Start HBase&lt;/h3&gt;
@@ -3312,7 +3312,7 @@ Any issues and pull requests are welcome!&lt;/p&gt;</content>
       
 
       
-        <summary type="html">Pinpoint is an open source APM (Application Performance Management) tool for large-scale distributed systems written in Java. Preliminary In this post, our goal is to run a sample Pinpoint instance with QuickStart scripts. You can find them on GitHub. Also note that we’re going to use Docker. Requirements First things first, install Docker. wget -qO- https://get.docker.com/ | sh You can verify docker is installed correctly. sudo docker run hello-world For more details, see the installation guides of Docker. Look into the Dockerfile In fact, I already made a Dockerfile for Pinpoint. You can see on yous/pinpoint-docker. From now on, I’ll describe the Dockerfile line by line.</summary>
+        <summary type="html">Pinpoint is an open source APM (Application Performance Management) tool for large-scale distributed systems written in Java. Preliminary In this post, our goal is to run a sample Pinpoint 1.6.x instance with QuickStart scripts. You can find them on GitHub. Also note that we’re going to use Docker. Requirements First things first, install Docker. wget -qO- https://get.docker.com/ | sh You can verify docker is installed correctly. sudo docker run hello-world For more details, see the installation guides of Docker. Look into the Dockerfile In fact, I already made a Dockerfile for Pinpoint. You can see on yous/pinpoint-docker. From now on, I’ll describe the Dockerfile line by line.</summary>
       
 
       
