@@ -15,14 +15,14 @@ facebook:
 
 ![Pinpoint](/images/2015/05/05/logo.min.png)
 
-> [**Pinpoint**](https://github.com/naver/pinpoint) is an open source APM
+> [**Pinpoint**](https://github.com/pinpoint-apm/pinpoint) is an open source APM
 (Application Performance Management) tool for large-scale distributed systems
 written in Java.
 
 ## Preliminary
 
-In this post, our goal is to run a sample Pinpoint instance with QuickStart
-scripts. You can find them on [GitHub](https://github.com/naver/pinpoint/tree/master/quickstart).
+In this post, our goal is to run a sample Pinpoint 1.6.x instance with
+QuickStart scripts. You can find them on [GitHub](https://github.com/pinpoint-apm/pinpoint/tree/1.6.x/quickstart).
 Also note that we're going to use [Docker](https://www.docker.com/).
 
 ## Requirements
@@ -94,7 +94,7 @@ information on [docker/docker#4032](https://github.com/docker/docker/issues/4032
 RUN useradd pinpoint -m
 ```
 
-As [installation guide of Pinpoint](https://github.com/naver/pinpoint/blob/master/doc/installation.md)
+As [installation guide of Pinpoint](https://github.com/pinpoint-apm/pinpoint/blob/1.6.x/doc/installation.md)
 indicates, we need to install JDK 6 and JDK 7+. To install Java, we need a
 non-root user. So we add a user `pinpoint` and create its home directory by
 passing `-m`. Adding a user is needed to install Java.
@@ -180,7 +180,7 @@ Now we install Maven 3.2.5 on the Docker. Note that we have to add the path of
 Maven to the `PATH`.
 
 ``` dockerfile
-RUN git clone https://github.com/naver/pinpoint.git /pinpoint
+RUN git clone -b 1.6.x https://github.com/pinpoint-apm/pinpoint.git /pinpoint
 WORKDIR /pinpoint
 RUN mvn install -Dmaven.test.skip=true
 ```
@@ -199,7 +199,7 @@ RUN chmod +x hbase-0.94.25/bin/start-hbase.sh
 ```
 
 After installation of Pinpoint, we install HBase 0.94.25 as
-[`quickstart/bin/start-hbase.sh`](https://github.com/naver/pinpoint/blob/master/quickstart/bin/start-hbase.sh)
+[`quickstart/bin/start-hbase.sh`](https://github.com/pinpoint-apm/pinpoint/blob/1.6.x/quickstart/bin/start-hbase.sh)
 of Pinpoint does it.
 
 ## Running Docker
@@ -244,7 +244,7 @@ docker run -i -t -p 28080:28080 -p 28081:28081 -p 28082:28082 \
 ## QuickStart
 
 We built a Docker image for Pinpoint, so now we can run QuickStart scripts. As
-mentioned in [QuickStart](https://github.com/naver/pinpoint/blob/master/quickstart/README.md)
+mentioned in [QuickStart](https://github.com/pinpoint-apm/pinpoint/blob/1.6.x/quickstart/README.md)
 of Pinpoint, we run several scripts.
 
 ### Install & Start HBase
