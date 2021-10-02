@@ -37,7 +37,7 @@ Chayoung You
 - [aheui.vim](https://github.com/yous/aheui.vim) --- Vim syntax highlighting for Aheui.
 - [lime](https://github.com/yous/lime) --- Simple standalone Zsh theme.
 - [Raheui](https://github.com/yous/raheui) --- Aheui interpreter in Ruby.
-- [스터디 헬퍼](https://play.google.com/store/apps/details?id=kr.co.tamseng.StudyHelper)
+- [스터디 헬퍼](https://web.archive.org/web/20160519111159/https://play.google.com/store/apps/details?id=kr.co.tamseng.StudyHelper)
 
 ## Code
 {: #code}
@@ -96,7 +96,7 @@ Chayoung You
     - [evangelion.jp](http://evangelion.jp) ([GitHub](https://github.com/yous/evangelion.jp))
     - [asuka.moe](http://asuka.moe) ([GitHub](https://github.com/yous/asuka.moe))
 - Puzzles
-    - [Nikoli Puzzles](http://nikoli.co.jp/en/puzzles/)
+    - [Nikoli Puzzles](https://www.nikoli.co.jp/en/puzzles/index.html)
     - [Nonogram](http://en.wikipedia.org/wiki/Nonogram)
     - [A Regular Crossword](http://web.mit.edu/puzzle/www/2013/coinheist.com/rubik/a_regular_crossword/index.html)
     - [regexcrossword.com](http://regexcrossword.com)

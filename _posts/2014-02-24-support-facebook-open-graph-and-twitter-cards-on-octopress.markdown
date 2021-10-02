@@ -20,7 +20,7 @@ twitter_card:
 [Twitter Cards]: https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards.html
 [Meta element]: http://en.wikipedia.org/wiki/Meta_element
 [Zac Clancy]: https://twitter.com/zac_c
-[Black Glasses]: http://zclancy.github.io/2013/09/19/twitter-cards-facebook-open-graph-and-octopress/
+[Black Glasses]: https://web.archive.org/web/20170306054219/http://blackglasses.me/2013/09/19/twitter-cards-facebook-open-graph-and-octopress/
 
 <!-- more -->
 

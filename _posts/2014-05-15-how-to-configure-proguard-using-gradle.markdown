@@ -186,7 +186,7 @@ buildTypes {
 
 ProGuard를 이용해 코드 난독화 작업을 거치게 되면, 소스 파일의 줄 번호가 바뀌게 되어 Crashlytics의 스택 트레이스에서 정보를 얻기 어려울 수 있다. [소스 파일의 줄 번호 정보를 유지][Android Studio and IntelliJ with ProGuard]하려면 다음 문장을 추가한다.
 
-[Android Studio and IntelliJ with ProGuard]: https://support.crashlytics.com/knowledgebase/articles/202926-android-studio-and-intellij-with-proguard
+[Android Studio and IntelliJ with ProGuard]: https://web.archive.org/web/20161206085850/https://support.crashlytics.com/knowledgebase/articles/202926-android-studio-and-intellij-with-proguard
 
 ```
 -keepattributes SourceFile,LineNumberTable

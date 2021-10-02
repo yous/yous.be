@@ -105,7 +105,7 @@ stack, so if this is unclear, please check out [my assembly tutorial][]. -->
 참고하세요.
 
 [stack]: https://en.wikipedia.org/wiki/Call_stack
-[my assembly tutorial]: https://blog.skullsecurity.org/wiki/index.php/The_Stack
+[my assembly tutorial]: https://wiki.skullsecurity.org/index.php/The_Stack
 
 <!-- ## The stack -->
 

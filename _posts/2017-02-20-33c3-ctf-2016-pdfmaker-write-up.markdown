@@ -36,7 +36,7 @@ tex, sty, mp, bib files.
 
 ## Behavior of `\write18`
 
-[@daehee](https://cysec.kaist.ac.kr/daeheejang.html) found this helpful
+[@daehee](https://daehee87.github.io) found this helpful
 link:
 ["Pwning coworkers thanks to LaTeX"](http://scumjr.github.io/2016/11/28/pwning-coworkers-thanks-to-latex/).
 According to the post, `\write18` normally executes any program listed in
