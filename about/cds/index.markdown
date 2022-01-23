@@ -432,3 +432,8 @@ comments: false
 425. Heize --- She's Fine
 426. hmusic.co.kr sampler vol.4
 427. Epik High --- Face ID
+428. 아이유(IU) --- 조각집: 스물아홉 살의 겨울
+429. Leellamarz --- 흑백영화
+430. CL --- ALPHA (COLOR Ver.)
+431. 브로콜리 너마저 --- 속물들
+432. Hoody --- Departure
