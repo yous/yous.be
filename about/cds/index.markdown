@@ -437,4 +437,6 @@ comments: false
 430. 브로콜리 너마저 --- 속물들
 431. Hoody --- Departure
 432. FANA --- FANATIIC
-433. 아이유(IU) --- 조각집: 스물아홉 살의 겨울
+433. Epik High --- Epik High Is Here
+434. 태연 --- INVU
+435. 아이유(IU) --- 조각집: 스물아홉 살의 겨울
