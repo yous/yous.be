@@ -96,7 +96,7 @@ Chayoung You
     - [evangelion.jp](http://evangelion.jp) ([GitHub](https://github.com/yous/evangelion.jp))
     - [asuka.moe](http://asuka.moe) ([GitHub](https://github.com/yous/asuka.moe))
 - Puzzles
-    - [Nikoli Puzzles](https://www.nikoli.co.jp/en/puzzles/index.html)
+    - [Nikoli Puzzles](https://www.nikoli.co.jp/en/puzzles/)
     - [Nonogram](http://en.wikipedia.org/wiki/Nonogram)
     - [A Regular Crossword](http://web.mit.edu/puzzle/www/2013/coinheist.com/rubik/a_regular_crossword/index.html)
     - [regexcrossword.com](http://regexcrossword.com)
