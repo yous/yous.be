@@ -245,6 +245,13 @@ Also, there was an [update](https://github.com/darfink/vim-plist/commit/0d8a2aa3
 to vim-plist, supporting plistutil and removing the `g:plist_json_filetype`
 variable.
 
+### Apply changes of [vim-plist#5](https://github.com/darfink/vim-plist/pull/5) (Update: 2022-04-09)
+
+In this pull request, `plist#BufReadCmd()`, `plist#FileReadCmd()`,
+`plist#BufWriteCmd()`, and `plist#FileWriteCmd()` are added instead of
+`plist#Read()` and `plist#Write()` functions. So we apply that changes to the
+patch.
+
 ## Conclusion
 
 So this is the complete part of my .vimrc for binary plist files:
@@ -252,13 +259,13 @@ So this is the complete part of my .vimrc for binary plist files:
 ``` vim
 function! s:ConvertBinaryPlist()
   silent! execute '%d'
-  call plist#Read(1)
-  call plist#ReadPost()
+  call plist#BufReadCmd()
   set fileencoding=utf-8
 
   augroup BinaryPlistWrite
     autocmd! BufWriteCmd,FileWriteCmd <buffer>
-    autocmd BufWriteCmd,FileWriteCmd <buffer> call plist#Write()
+    autocmd BufWriteCmd <buffer> call plist#BufWriteCmd()
+    autocmd FileWriteCmd <buffer> call plist#FileWriteCmd()
   augroup END
 endfunction
 augroup BinaryPlistRead
@@ -275,5 +282,5 @@ let g:plist_display_format = 'xml'
 let g:plist_save_format = ''
 ```
 
-It's also available on [GitHub](https://github.com/yous/dotfiles/blob/65837be11bbea487bffd261d35bbc4b36484adbf/vimrc#L1970-L1993),
+It's also available on [GitHub](https://github.com/yous/dotfiles/blob/eb5de0f362d0babf9b21667a9723439ab0782a51/vimrc#L1973-L1996),
 you can visit my [dotfiles](https://github.com/yous/dotfiles) repository!
