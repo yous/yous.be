@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <generator uri="http://jekyllrb.com" version="4.2.1">Jekyll</generator>
+  <generator uri="http://jekyllrb.com" version="4.2.2">Jekyll</generator>
   
   
   <link href="https://yous.be/atom.xml" rel="self" type="application/atom+xml" />
   <link href="https://yous.be/" rel="alternate" type="text/html" />
-  <updated>2022-03-01T15:04:00+00:00</updated>
+  <updated>2022-04-09T10:36:48+00:00</updated>
   <id>https://yous.be//</id>
 
   
@@ -365,19 +365,26 @@ setting &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;filet
 to vim-plist, supporting plistutil and removing the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;g:plist_json_filetype&lt;/code&gt;
 variable.&lt;/p&gt;
 
+&lt;h3&gt;Apply changes of &lt;a href=&quot;https://github.com/darfink/vim-plist/pull/5&quot;&gt;vim-plist#5&lt;/a&gt; (Update: 2022-04-09)&lt;/h3&gt;
+
+&lt;p&gt;In this pull request, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;plist#BufReadCmd()&lt;/code&gt;, &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;plist#FileReadCmd()&lt;/code&gt;,
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;plist#BufWriteCmd()&lt;/code&gt;, and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;plist#FileWriteCmd()&lt;/code&gt; are added instead of
+&lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;plist#Read()&lt;/code&gt; and &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;plist#Write()&lt;/code&gt; functions. So we apply that changes to the
+patch.&lt;/p&gt;
+
 &lt;h2&gt;Conclusion&lt;/h2&gt;
 
 &lt;p&gt;So this is the complete part of my .vimrc for binary plist files:&lt;/p&gt;
 
 &lt;div class=&quot;language-vim highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;k&quot;&gt;function&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;s:ConvertBinaryPlist&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;silent&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;execute&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;%d&apos;&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; plist#Read&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;m&quot;&gt;1&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; plist#ReadPost&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+  &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; plist#&lt;span class=&quot;nb&quot;&gt;BufReadCmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
   &lt;span class=&quot;k&quot;&gt;set&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;fileencoding&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;=&lt;/span&gt;utf&lt;span class=&quot;m&quot;&gt;-8&lt;/span&gt;
 
   augroup BinaryPlistWrite
     autocmd&lt;span class=&quot;p&quot;&gt;!&lt;/span&gt; &lt;span class=&quot;nb&quot;&gt;BufWriteCmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;FileWriteCmd&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;buffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt;
-    autocmd &lt;span class=&quot;nb&quot;&gt;BufWriteCmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;,&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;FileWriteCmd&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;buffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; plist#Write&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    autocmd &lt;span class=&quot;nb&quot;&gt;BufWriteCmd&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;buffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; plist#&lt;span class=&quot;nb&quot;&gt;BufWriteCmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
+    autocmd &lt;span class=&quot;nb&quot;&gt;FileWriteCmd&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;buffer&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;&amp;gt;&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;call&lt;/span&gt; plist#&lt;span class=&quot;nb&quot;&gt;FileWriteCmd&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;()&lt;/span&gt;
   augroup END
 &lt;span class=&quot;k&quot;&gt;endfunction&lt;/span&gt;
 augroup BinaryPlistRead
@@ -394,7 +401,7 @@ augroup END
 &lt;span class=&quot;k&quot;&gt;let&lt;/span&gt; &lt;span class=&quot;nv&quot;&gt;g:plist_save_format&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;=&lt;/span&gt; &lt;span class=&quot;s1&quot;&gt;&apos;&apos;&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;It’s also available on &lt;a href=&quot;https://github.com/yous/dotfiles/blob/65837be11bbea487bffd261d35bbc4b36484adbf/vimrc#L1970-L1993&quot;&gt;GitHub&lt;/a&gt;,
+&lt;p&gt;It’s also available on &lt;a href=&quot;https://github.com/yous/dotfiles/blob/eb5de0f362d0babf9b21667a9723439ab0782a51/vimrc#L1973-L1996&quot;&gt;GitHub&lt;/a&gt;,
 you can visit my &lt;a href=&quot;https://github.com/yous/dotfiles&quot;&gt;dotfiles&lt;/a&gt; repository!&lt;/p&gt;</content>
 
       
