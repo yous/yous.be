@@ -440,3 +440,12 @@ comments: false
 433. Epik High --- Epik High Is Here
 434. 태연 --- INVU
 435. 아이유(IU) --- 조각집: 스물아홉 살의 겨울
+436. THAMA --- DON'T DIE COLORS
+437. CHANGMO --- 돈 벌 시간 2
+438. CHANGMO --- 돈 벌 시간 3
+439. CHANGMO --- 돈 번 순간
+440. CHANGMO --- 닿는 순간
+441. CHANGMO --- BOYHOOD
+442. CHANGMO --- UNDERGROUND ROCKSTAR
+443. ASH ISLAND --- ISLAND
+444. Leellamarz --- [L] [DELUXE]
