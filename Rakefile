@@ -8,18 +8,17 @@ desc 'Validate HTML files'
 task :proof do
   HTMLProofer.check_directory(
     '_site',
-    cache: {
-      timeframe: '4w'
-    },
-    check_favicon: true,
-    check_opengraph: true,
-    check_html: true,
-    http_status_ignore: [302],
     typhoeus: {
       connecttimeout: 30,
       timeout: 60
     },
-    url_ignore: [
+    cache: {
+      timeframe: { external: '4w' }
+    },
+    checks: ['Links', 'Images', 'Scripts', 'Favicon', 'OpenGraph'],
+    enforce_https: false,
+    ignore_status_codes: [302],
+    ignore_urls: [
       %r{^https?://localhost},
       %r{^https?://web\.archive\.org/web/},
       # _include/fonts.html
@@ -46,11 +45,7 @@ task :proof do
       %r{http://58\.229\.6\.45},
       # /2016/10/11/hitcon-ctf-2016-rop-write-up/
       %r{https://s3-ap-northeast-1\.amazonaws\.com/hitcon2016qual/rop\.iseq_a9ac4b7a1669257d0914ca556a6aa6d14b4a2092}
-    ],
-    validation: {
-      report_missing_names: true,
-      report_script_embeds: true
-    }
+    ]
   ).run
 end
 

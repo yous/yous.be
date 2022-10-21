@@ -8,7 +8,7 @@ gem 'jekyll-redirect-from', '~> 0.16'
 gem 'jekyll-whiteglass'
 
 group :test do
-  gem 'html-proofer', '~> 3.0'
+  gem 'html-proofer', '~> 4.0'
   gem 'rake'
   gem 'rspec', '~> 3.0'
 end
