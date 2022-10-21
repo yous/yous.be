@@ -8,12 +8,12 @@ categories:
 description: Jared Barboza가 쓴 줄 끝 공백에 관한 글이다. "난 최근에 다양한 사람/언어/편집기와 함께 많은 프로젝트를 진행해 왔다. 우리들 대부분은 Git 초보자였고, 각 프로젝트는 줄 끝 공백에 관한 문제가 있었다."
 keywords: trailing, whitespace, git
 redirect_from: /p/20140331/
-external-url: http://codeimpossible.com/2012/04/02/trailing-whitespace-is-evil-don-t-commit-evil-into-your-repo/
+external-url: https://web.archive.org/web/20220124112313/http://codeimpossible.com/2012/04/02/trailing-whitespace-is-evil-don-t-commit-evil-into-your-repo/
 ---
 
 Jared Barboza가 쓴 [줄 끝 공백에 관한 글][external-url]이다.
 
-[external-url]: http://codeimpossible.com/2012/04/02/trailing-whitespace-is-evil-don-t-commit-evil-into-your-repo/
+[external-url]: https://web.archive.org/web/20220124112313/http://codeimpossible.com/2012/04/02/trailing-whitespace-is-evil-don-t-commit-evil-into-your-repo/
 
 <!-- **Lately, I’ve beeen working on a lot of projects with different people/languages/editors, most of us were new git’ers and each project had a real problem with trailing whitespace.** -->
 > **난 최근에 다양한 사람/언어/편집기와 함께 많은 프로젝트를 진행해 왔다. 우리들 대부분은 Git 초보자였고, 각 프로젝트는 줄 끝 공백에 관한 문제가 있었다.**

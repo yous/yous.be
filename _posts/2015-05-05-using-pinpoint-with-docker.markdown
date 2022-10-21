@@ -39,7 +39,7 @@ You can verify `docker` is installed correctly.
 sudo docker run hello-world
 ```
 
-For more details, see the [installation guides](https://docs.docker.com/installation/#installation)
+For more details, see the [installation guides](https://web.archive.org/web/20150526062842/https://docs.docker.com/installation/#installation)
 of Docker.
 
 ## Look into the Dockerfile

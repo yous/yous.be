@@ -23,7 +23,7 @@ We use `:q` to quit, `:q!` or `ZQ` to quit without saving, `:wq`, `:x` or `ZZ` t
 
 ## Getting into the Problem
 
-But as one of the Vim users, I close it within a few minutes or even a few seconds after I opened it. I want to keep quitting Vim easy. Using `:qa` everytime doesn't make sence. Actually, [NERDTree gives us a tip](https://github.com/scrooloose/nerdtree#faq) to close Vim if the only window left open is a NERDTree:
+But as one of the Vim users, I close it within a few minutes or even a few seconds after I opened it. I want to keep quitting Vim easy. Using `:qa` everytime doesn't make sence. Actually, [NERDTree gives us a tip](https://github.com/scrooloose/nerdtree#frequently-asked-questions) to close Vim if the only window left open is a NERDTree:
 
 ``` vim
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif

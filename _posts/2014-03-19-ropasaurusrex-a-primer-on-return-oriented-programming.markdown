@@ -295,7 +295,7 @@ ROP를 알기 위해 이해해야 하는 가장 중요한 건, 함수의 스택 
 [인텔의 책][Book of Intel], 3장, 19-26구절에 있습니다(주: 사실 아니니 보는
 수고를 할 필요는 없습니다).
 
-[Book of Intel]: http://www.intel.com/content/www/us/en/processors/architectures-software-developer-manuals.html
+[Book of Intel]: https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html
 
 <!-- Let's say you call the `sleep()` function, and get to the first line; its
 stack frame is going to look like this: -->

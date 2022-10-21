@@ -14,10 +14,10 @@ twitter_card:
     image: http://yous.be/images/2014/02/24/twitter_card_summary.png
 ---
 
-블로그에 글을 쓰고 나면 트위터나 페이스북에 링크를 공유하곤 하는데 페이스북의 미리보기가 적절히 표시되지 않고 있다는 사실을 깨달았다. 또한 트위터도 그와 비슷한 기능을 제공하는데, 둘 다 지원하면 좋겠다는 생각을 했다. 이를 제대로 지원하려면 [Facebook Open Graph tags][]와 [Twitter Cards][]에 대해 알아야 한다. 웹 페이지에 적절한 [메타 태그][Meta element]를 추가해 주면 페이스북과 트위터에서 인식하고 올바른, 작성자가 의도한 미리보기를 보여준다. 기본적으로 [Zac Clancy][]가 쓴 [Octopress에서 이 두 가지를 지원하는 글][Black Glasses]에 상세히 설명되어 있다.
+블로그에 글을 쓰고 나면 트위터나 페이스북에 링크를 공유하곤 하는데 페이스북의 미리보기가 적절히 표시되지 않고 있다는 사실을 깨달았다. 또한 트위터도 그와 비슷한 기능을 제공하는데, 둘 다 지원하면 좋겠다는 생각을 했다. 이를 제대로 지원하려면 [Facebook Open Graph 마크업][]과 [Twitter Cards][]에 대해 알아야 한다. 웹 페이지에 적절한 [메타 태그][Meta element]를 추가해 주면 페이스북과 트위터에서 인식하고 올바른, 작성자가 의도한 미리보기를 보여준다. 기본적으로 [Zac Clancy][]가 쓴 [Octopress에서 이 두 가지를 지원하는 글][Black Glasses]에 상세히 설명되어 있다.
 
-[Facebook Open Graph tags]: https://developers.facebook.com/docs/sharing/best-practices#tags
-[Twitter Cards]: https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/abouts-cards.html
+[Facebook Open Graph 마크업]: https://developers.facebook.com/docs/sharing/webmasters#markup
+[Twitter Cards]: https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/abouts-cards
 [Meta element]: http://en.wikipedia.org/wiki/Meta_element
 [Zac Clancy]: https://twitter.com/zac_c
 [Black Glasses]: https://web.archive.org/web/20170306054219/http://blackglasses.me/2013/09/19/twitter-cards-facebook-open-graph-and-octopress/
@@ -29,7 +29,7 @@ twitter_card:
 
 ![Facebook Open Graph](/images/2014/02/24/facebook_open_graph.min.png)
 
-페이스북에 웹 페이지가 제대로 인식되게 하려면 [Open Graph 태그][Facebook Open Graph tags]를 이용해야 한다. 기본적으로 채워야 할 태그들은 다음과 같다:
+페이스북에 웹 페이지가 제대로 인식되게 하려면 [Open Graph 마크업][Facebook Open Graph 마크업]을 이용해야 한다. 기본적으로 채워야 할 태그들은 다음과 같다.
 
 - `og:title`: 사이트 이름 등의 브랜드를 제외한 글 제목이다.
 - `og:site_name`: 웹 사이트의 이름이다. URL이 아니라 이름이다. (예: "imdb.com"이 아닌 "IMDb")
@@ -51,9 +51,9 @@ twitter_card:
 [number of different common object types]: http://ogp.me/#types
 [Internationalization]: https://developers.facebook.com/docs/internationalization/
 [Open Graph Internationalization]: https://developers.facebook.com/docs/internationalization#locales
-[property links to the authors of the article]: https://developers.facebook.com/docs/reference/opengraph/object-type/article
-[follow]: https://developers.facebook.com/docs/opengraph/howtos/maximizing-distribution-media-content#follow
-[property links to the publisher of the article]: https://developers.facebook.com/docs/reference/opengraph/object-type/article
+[property links to the authors of the article]: https://web.archive.org/web/20170207152958/https://developers.facebook.com/docs/reference/opengraph/object-type/article/
+[follow]: https://developers.facebook.com/docs/sharing/best-practices
+[property links to the publisher of the article]: https://web.archive.org/web/20170207152958/https://developers.facebook.com/docs/reference/opengraph/object-type/article/
 
 ## Twitter Cards
 {: #twitter-cards}

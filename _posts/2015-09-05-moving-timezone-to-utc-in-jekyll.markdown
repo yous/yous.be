@@ -175,7 +175,7 @@ end
 ```
 
 Tests are ready, so now we start migrating. See 'Time Zone' part of
-[the documentation of Jekyll configuration](http://jekyllrb.com/docs/configuration/#global-configuration).
+[the documentation of Jekyll configuration](https://jekyllrb.com/docs/configuration/options/#global-configuration).
 
 > Set the time zone for site generation. This sets the `TZ` environment
 > variable, which Ruby uses to handle time and date creation and manipulation.

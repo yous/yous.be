@@ -93,7 +93,7 @@ Chayoung You
 - Music
     - Collecting [CDs](/about/cds/)
 - [Evangelion](http://www.evangelion.co.jp)
-    - [evangelion.jp](http://evangelion.jp) ([GitHub](https://github.com/yous/evangelion.jp))
+    - [evangelion.jp](https://web.archive.org/web/20220612093124/evangelion.jp) ([GitHub](https://github.com/yous/evangelion.jp))
     - [asuka.moe](http://asuka.moe) ([GitHub](https://github.com/yous/asuka.moe))
 - Puzzles
     - [Nikoli Puzzles](https://www.nikoli.co.jp/en/puzzles/)
