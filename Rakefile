@@ -23,6 +23,8 @@ task :proof do
       %r{^https?://web\.archive\.org/web/},
       # _include/fonts.html
       %r{^https://fonts\.gstatic\.com$},
+      # /2013/02/18/ios-6.1-music-album-shuffle/
+      %r{^http://www\.hackint0sh\.org/free-toolchain-software-126/req-album-shuffle-option-18867\.htm},
       # /2013/12/04/tomorrow-theme-in-octopress/
       %r{^http://devspade\.com/blog/2013/08/06/fixing-gist-embeds-in-octopress/},
       # /2014/01/20/ghost-in-the-shellcode-2014-inview-write-up/
