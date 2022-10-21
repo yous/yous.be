@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom">
-  <generator uri="http://jekyllrb.com" version="4.2.2">Jekyll</generator>
+  <generator uri="http://jekyllrb.com" version="4.3.0">Jekyll</generator>
   
   
   <link href="https://yous.be/atom.xml" rel="self" type="application/atom+xml" />
   <link href="https://yous.be/" rel="alternate" type="text/html" />
-  <updated>2022-07-05T20:55:10+00:00</updated>
+  <updated>2022-10-21T07:23:12+00:00</updated>
   <id>https://yous.be//</id>
 
   
@@ -2866,7 +2866,7 @@ track the file on
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
 &lt;p&gt;Tests are ready, so now we start migrating. See ‘Time Zone’ part of
-&lt;a href=&quot;http://jekyllrb.com/docs/configuration/#global-configuration&quot;&gt;the documentation of Jekyll configuration&lt;/a&gt;.&lt;/p&gt;
+&lt;a href=&quot;https://jekyllrb.com/docs/configuration/options/#global-configuration&quot;&gt;the documentation of Jekyll configuration&lt;/a&gt;.&lt;/p&gt;
 
 &lt;blockquote&gt;
   &lt;p&gt;Set the time zone for site generation. This sets the &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;TZ&lt;/code&gt; environment
@@ -3035,7 +3035,7 @@ Also note that we’re going to use &lt;a href=&quot;https://www.docker.com/&quo
 &lt;div class=&quot;language-sh highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;&lt;span class=&quot;nb&quot;&gt;sudo &lt;/span&gt;docker run hello-world
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;
 
-&lt;p&gt;For more details, see the &lt;a href=&quot;https://docs.docker.com/installation/#installation&quot;&gt;installation guides&lt;/a&gt;
+&lt;p&gt;For more details, see the &lt;a href=&quot;https://web.archive.org/web/20150526062842/https://docs.docker.com/installation/#installation&quot;&gt;installation guides&lt;/a&gt;
 of Docker.&lt;/p&gt;
 
 &lt;h2&gt;Look into the Dockerfile&lt;/h2&gt;
@@ -4458,7 +4458,7 @@ but when I woke up, half my QR code was gone!”&lt;/p&gt;
 
 &lt;h2&gt;Getting into the Problem&lt;/h2&gt;
 
-&lt;p&gt;But as one of the Vim users, I close it within a few minutes or even a few seconds after I opened it. I want to keep quitting Vim easy. Using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;:qa&lt;/code&gt; everytime doesn’t make sence. Actually, &lt;a href=&quot;https://github.com/scrooloose/nerdtree#faq&quot;&gt;NERDTree gives us a tip&lt;/a&gt; to close Vim if the only window left open is a NERDTree:&lt;/p&gt;
+&lt;p&gt;But as one of the Vim users, I close it within a few minutes or even a few seconds after I opened it. I want to keep quitting Vim easy. Using &lt;code class=&quot;language-plaintext highlighter-rouge&quot;&gt;:qa&lt;/code&gt; everytime doesn’t make sence. Actually, &lt;a href=&quot;https://github.com/scrooloose/nerdtree#frequently-asked-questions&quot;&gt;NERDTree gives us a tip&lt;/a&gt; to close Vim if the only window left open is a NERDTree:&lt;/p&gt;
 
 &lt;div class=&quot;language-vim highlighter-rouge&quot;&gt;&lt;div class=&quot;highlight&quot;&gt;&lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;autocmd bufenter * &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;winnr&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;$&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;m&quot;&gt;1&lt;/span&gt; &amp;amp;&amp;amp; &lt;span class=&quot;nb&quot;&gt;exists&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;b:NERDTreeType&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &amp;amp;&amp;amp; &lt;span class=&quot;nv&quot;&gt;b:NERDTreeType&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;primary&quot;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;q&lt;/span&gt; &lt;span class=&quot;p&quot;&gt;|&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;endif&lt;/span&gt;
 &lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;&lt;/div&gt;

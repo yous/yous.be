@@ -58,7 +58,7 @@ end</pre></noscript> <script src="https://gist.github.com/imathis/2219214.js"> <
 
 <span class="nv">$f_country_language_selected</span> <span class="o">=</span> <span class="nf">camp_session_get</span><span class="p">(</span><span class="s1">'f_language_selected'</span><span class="p">,</span> <span class="s1">''</span><span class="p">);</span>
 <span class="nv">$f_country_offset</span> <span class="o">=</span> <span class="nf">camp_session_get</span><span class="p">(</span><span class="s1">'f_country_offset'</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span>
-<span class="k">if</span> <span class="p">(</span><span class="nb">empty</span><span class="p">(</span><span class="nv">$f_country_language_selected</span><span class="p">))</span> <span class="p">{</span>
+<span class="k">if</span> <span class="p">(</span><span class="k">empty</span><span class="p">(</span><span class="nv">$f_country_language_selected</span><span class="p">))</span> <span class="p">{</span>
     <span class="nv">$f_country_language_selected</span> <span class="o">=</span> <span class="kc">null</span><span class="p">;</span>
 <span class="p">}</span>
 <span class="nv">$ItemsPerPage</span> <span class="o">=</span> <span class="mi">20</span><span class="p">;</span>
