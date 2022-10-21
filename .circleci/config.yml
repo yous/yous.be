@@ -80,6 +80,8 @@ jobs:
   deploy:
     docker:
       - image: cimg/node:lts
+        environment:
+          <<: *node-environments
     steps:
       - checkout
       - *node-global-path
