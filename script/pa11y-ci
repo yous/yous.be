@@ -10,6 +10,7 @@ cleanup() {
 
 trap 'cleanup' ERR
 
+mkdir -p tmp
 (bundle exec jekyll serve -d _tmp_site & echo $! >&3) 3>tmp/jekyll.pid >tmp/jekyll.log
 while true; do
   grep -q 'Server running' tmp/jekyll.log && break
