@@ -3,6 +3,7 @@ set -euo pipefail
 
 cleanup() {
   kill -9 "$(cat tmp/jekyll.pid)"
+  cat tmp/jekyll.log
   rm -f tmp/jekyll.pid
   rm -f tmp/jekyll.log
   rm -rf _tmp_site
