@@ -30,7 +30,7 @@ jobs:
     steps:
       - checkout
       - ruby/install-deps:
-          key: gems-v2
+          key: gems-v3
       - *node-global-path
       - *node-restore-cache
       - run: npm install -g pa11y-ci
