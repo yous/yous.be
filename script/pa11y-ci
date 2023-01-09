@@ -2,19 +2,18 @@
 set -euo pipefail
 
 cleanup() {
-  kill -9 "$(cat tmp/jekyll.pid)"
-  cat tmp/jekyll.log
-  rm -f tmp/jekyll.pid
-  rm -f tmp/jekyll.log
+  kill -9 "$(cat _jekyll.pid)"
+  cat _jekyll.log
+  rm -f _jekyll.pid
+  rm -f _jekyll.log
   rm -rf _tmp_site
 }
 
 trap 'cleanup' ERR
 
-mkdir -p tmp
-(bundle exec jekyll serve -d _tmp_site --no-watch & echo $! >&3) 3>tmp/jekyll.pid >tmp/jekyll.log
+(bundle exec jekyll serve -d _tmp_site --no-watch & echo $! >&3) 3>_jekyll.pid >_jekyll.log
 while true; do
-  grep -q 'Server running' tmp/jekyll.log && break
+  grep -q 'Server running' _jekyll.log && break
 done
 
 pa11y-ci --sitemap 'http://localhost:4000/sitemap.xml' \
