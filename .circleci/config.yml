@@ -96,7 +96,7 @@ jobs:
           git config user.email "$(git --no-pager show --no-patch --format='%ae')"
       - add_ssh_keys:
           fingerprints:
-            - "dc:df:dd:84:71:e8:e3:e9:65:f4:27:1d:c1:eb:41:46"
+            - "94:bc:2e:a8:3e:13:83:83:4c:27:6a:61:39:00:1a:55"
       - run:
           command: gh-pages --branch master --dist _site --message "Update to ${CIRCLE_SHA1:0:7} [ci skip]"
           environment:
