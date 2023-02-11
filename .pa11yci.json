@@ -1,6 +1,10 @@
 {
     "defaults": {
-        "chromeLaunchConfig": "/usr/bin/google-chrome",
+        "chromeLaunchConfig": {
+            "args": [
+                "--no-sandbox"
+            ]
+        },
         "hideElements": ".gist"
     }
 }
