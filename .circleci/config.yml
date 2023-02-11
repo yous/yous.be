@@ -24,7 +24,7 @@ node-save-cache: &node-save-cache
 jobs:
   build:
     docker:
-      - image: cimg/ruby:3.1.2-browsers
+      - image: cimg/ruby:3.2-browsers
         environment:
           <<: *node-environments
     steps:
@@ -46,7 +46,7 @@ jobs:
             - _site
   validate:
     docker:
-      - image: cimg/python:3.10-browsers
+      - image: cimg/python:3.11-browsers
     steps:
       - checkout
       - restore_cache:
@@ -64,7 +64,7 @@ jobs:
       - run: html5validator --Werror --also-check-css --also-check-svg --root _site/
   proof:
     docker:
-      - image: cimg/ruby:3.1
+      - image: cimg/ruby:3.2
     steps:
       - checkout
       - ruby/install-deps
