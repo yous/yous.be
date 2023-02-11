@@ -2,6 +2,7 @@ version: 2.1
 
 orbs:
   ruby: circleci/ruby@2.0
+  browser-tools: circleci/browser-tools@1.4
 
 node-environments: &node-environments
   NPM_CONFIG_PREFIX: '~/.npm-global'
@@ -28,6 +29,7 @@ jobs:
         environment:
           <<: *node-environments
     steps:
+      - browser-tools/install-browser-tools
       - checkout
       - ruby/install-deps:
           key: gems-v3
