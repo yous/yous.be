@@ -7,18 +7,18 @@ sample javascript from xui
 <span class="kd">var</span> <span class="kc">undefined</span><span class="p">,</span>
     <span class="nx">xui</span><span class="p">,</span>
     <span class="nb">window</span>     <span class="o">=</span> <span class="k">this</span><span class="p">,</span>
-    <span class="nx">string</span>     <span class="o">=</span> <span class="k">new</span> <span class="nb">String</span><span class="p">(</span><span class="dl">'</span><span class="s1">string</span><span class="dl">'</span><span class="p">),</span>
+    <span class="nx">string</span>     <span class="o">=</span> <span class="k">new</span> <span class="nc">String</span><span class="p">(</span><span class="dl">'</span><span class="s1">string</span><span class="dl">'</span><span class="p">),</span>
     <span class="nb">document</span>   <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nb">document</span><span class="p">,</span>
     <span class="nx">simpleExpr</span> <span class="o">=</span> <span class="sr">/^#</span><span class="se">?([\w</span><span class="sr">-</span><span class="se">]</span><span class="sr">+</span><span class="se">)</span><span class="sr">$/</span><span class="p">,</span>
     <span class="nx">idExpr</span>     <span class="o">=</span> <span class="sr">/^#/</span><span class="p">,</span>
     <span class="nx">tagExpr</span>    <span class="o">=</span> <span class="sr">/&lt;</span><span class="se">([\w</span><span class="sr">:</span><span class="se">]</span><span class="sr">+</span><span class="se">)</span><span class="sr">/</span><span class="p">,</span>
-    <span class="nx">slice</span>      <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">[].</span><span class="nx">slice</span><span class="p">.</span><span class="nx">call</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="p">};</span>
-    <span class="k">try</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nx">slice</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">nodeType</span><span class="p">;</span> <span class="p">}</span>
-    <span class="k">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span> <span class="nx">slice</span> <span class="o">=</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">ret</span><span class="o">=</span><span class="p">[];</span> <span class="k">for</span> <span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
-        <span class="nx">ret</span><span class="p">.</span><span class="nx">push</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span> <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span> <span class="p">};</span> <span class="p">}</span>
+    <span class="nx">slice</span>      <span class="o">=</span> <span class="nf">function </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="p">[].</span><span class="nx">slice</span><span class="p">.</span><span class="nf">call</span><span class="p">(</span><span class="nx">e</span><span class="p">,</span> <span class="mi">0</span><span class="p">);</span> <span class="p">};</span>
+    <span class="k">try</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">a</span> <span class="o">=</span> <span class="nf">slice</span><span class="p">(</span><span class="nb">document</span><span class="p">.</span><span class="nx">documentElement</span><span class="p">.</span><span class="nx">childNodes</span><span class="p">)[</span><span class="mi">0</span><span class="p">].</span><span class="nx">nodeType</span><span class="p">;</span> <span class="p">}</span>
+    <span class="nf">catch</span><span class="p">(</span><span class="nx">e</span><span class="p">){</span> <span class="nx">slice</span> <span class="o">=</span> <span class="nf">function </span><span class="p">(</span><span class="nx">e</span><span class="p">)</span> <span class="p">{</span> <span class="kd">var</span> <span class="nx">ret</span><span class="o">=</span><span class="p">[];</span> <span class="nf">for </span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span><span class="o">=</span><span class="mi">0</span><span class="p">;</span> <span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">];</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span>
+        <span class="nx">ret</span><span class="p">.</span><span class="nf">push</span><span class="p">(</span><span class="nx">e</span><span class="p">[</span><span class="nx">i</span><span class="p">]);</span> <span class="k">return</span> <span class="nx">ret</span><span class="p">;</span> <span class="p">};</span> <span class="p">}</span>
 
 <span class="nb">window</span><span class="p">.</span><span class="nx">x$</span> <span class="o">=</span> <span class="nb">window</span><span class="p">.</span><span class="nx">xui</span> <span class="o">=</span> <span class="nx">xui</span> <span class="o">=</span> <span class="kd">function</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">)</span> <span class="p">{</span>
-    <span class="k">return</span> <span class="k">new</span> <span class="nx">xui</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">);</span>
+    <span class="k">return</span> <span class="k">new</span> <span class="nx">xui</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nf">find</span><span class="p">(</span><span class="nx">q</span><span class="p">,</span> <span class="nx">context</span><span class="p">);</span>
 <span class="p">};</span>
 </code></pre></div></div><div class="language-html highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="cp">&lt;!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"&gt;</span>
 <span class="nt">&lt;html&gt;&lt;head&gt;</span>
@@ -30,10 +30,10 @@ sample javascript from xui
 <span class="nt">&lt;/style&gt;&lt;/head&gt;</span><span class="c">&lt;!-- real comment --&gt;</span>
 <span class="nt">&lt;body</span> <span class="na">bgcolor=</span><span class="s">"#FFFFFF"</span> <span class="na">text=</span><span class="s">"#000000"</span> <span class="na">link=</span><span class="s">"#0000CC"</span><span class="nt">&gt;</span>
 <span class="nt">&lt;script </span><span class="na">language=</span><span class="s">"javascript"</span> <span class="na">type=</span><span class="s">"text/javascript"</span><span class="nt">&gt;</span>
-      <span class="kd">function</span> <span class="nx">changeHeight</span><span class="p">(</span><span class="nx">h</span><span class="p">)</span> <span class="p">{</span>
-        <span class="kd">var</span> <span class="nx">tds</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getElementsByTagName</span><span class="p">(</span><span class="dl">"</span><span class="s2">td</span><span class="dl">"</span><span class="p">);</span>
+      <span class="kd">function</span> <span class="nf">changeHeight</span><span class="p">(</span><span class="nx">h</span><span class="p">)</span> <span class="p">{</span>
+        <span class="kd">var</span> <span class="nx">tds</span> <span class="o">=</span> <span class="nb">document</span><span class="p">.</span><span class="nf">getElementsByTagName</span><span class="p">(</span><span class="dl">"</span><span class="s2">td</span><span class="dl">"</span><span class="p">);</span>
         <span class="k">for</span><span class="p">(</span><span class="kd">var</span> <span class="nx">i</span> <span class="o">=</span> <span class="mi">0</span><span class="p">;</span> <span class="nx">i</span> <span class="o">&lt;</span> <span class="nx">tds</span><span class="p">.</span><span class="nx">length</span><span class="p">;</span> <span class="nx">i</span><span class="o">++</span><span class="p">)</span> <span class="p">{</span>
-          <span class="nx">tds</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nx">setAttribute</span><span class="p">(</span><span class="dl">"</span><span class="s2">height</span><span class="dl">"</span><span class="p">,</span> <span class="nx">h</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">px</span><span class="dl">"</span><span class="p">);</span>
+          <span class="nx">tds</span><span class="p">[</span><span class="nx">i</span><span class="p">].</span><span class="nf">setAttribute</span><span class="p">(</span><span class="dl">"</span><span class="s2">height</span><span class="dl">"</span><span class="p">,</span> <span class="nx">h</span> <span class="o">+</span> <span class="dl">"</span><span class="s2">px</span><span class="dl">"</span><span class="p">);</span>
       <span class="p">}}</span>
 <span class="nt">&lt;/script&gt;</span>
 <span class="nt">&lt;h1&gt;</span>abc<span class="nt">&lt;/h1&gt;</span>
@@ -172,68 +172,68 @@ end</pre></noscript> <script src="https://gist.github.com/imathis/2219214.js"> <
 <span class="k">class</span> <span class="nc">ExitNotifyThread</span><span class="p">(</span><span class="n">Thread</span><span class="p">):</span>
     <span class="s">"""This class is designed to alert a "monitor" to the fact that a thread has
     exited and to provide for the ability for it to find out why."""</span>
-    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">run</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
         <span class="k">global</span> <span class="n">exitthreads</span><span class="p">,</span> <span class="n">profiledir</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">threadid</span> <span class="o">=</span> <span class="n">thread</span><span class="p">.</span><span class="n">get_ident</span><span class="p">()</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">threadid</span> <span class="o">=</span> <span class="n">thread</span><span class="p">.</span><span class="nf">get_ident</span><span class="p">()</span>
         <span class="k">try</span><span class="p">:</span>
             <span class="k">if</span> <span class="ow">not</span> <span class="n">profiledir</span><span class="p">:</span>          <span class="c1"># normal case
-</span>                <span class="n">Thread</span><span class="p">.</span><span class="n">run</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span>
+</span>                <span class="n">Thread</span><span class="p">.</span><span class="nf">run</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
             <span class="k">else</span><span class="p">:</span>
                 <span class="k">try</span><span class="p">:</span>
-                    <span class="kn">import</span> <span class="nn">cProfile</span> <span class="k">as</span> <span class="n">profile</span>
+                    <span class="kn">import</span> <span class="n">cProfile</span> <span class="k">as</span> <span class="n">profile</span>
                 <span class="k">except</span> <span class="nb">ImportError</span><span class="p">:</span>
-                    <span class="kn">import</span> <span class="nn">profile</span>
-                <span class="n">prof</span> <span class="o">=</span> <span class="n">profile</span><span class="p">.</span><span class="n">Profile</span><span class="p">()</span>
+                    <span class="kn">import</span> <span class="n">profile</span>
+                <span class="n">prof</span> <span class="o">=</span> <span class="n">profile</span><span class="p">.</span><span class="nc">Profile</span><span class="p">()</span>
                 <span class="k">try</span><span class="p">:</span>
-                    <span class="n">prof</span> <span class="o">=</span> <span class="n">prof</span><span class="p">.</span><span class="n">runctx</span><span class="p">(</span><span class="s">"Thread.run(self)"</span><span class="p">,</span> <span class="nb">globals</span><span class="p">(),</span> <span class="nb">locals</span><span class="p">())</span>
+                    <span class="n">prof</span> <span class="o">=</span> <span class="n">prof</span><span class="p">.</span><span class="nf">runctx</span><span class="p">(</span><span class="s">"Thread.run(self)"</span><span class="p">,</span> <span class="nf">globals</span><span class="p">(),</span> <span class="nf">locals</span><span class="p">())</span>
                 <span class="k">except</span> <span class="nb">SystemExit</span><span class="p">:</span>
                     <span class="k">pass</span>
-                <span class="n">prof</span><span class="p">.</span><span class="n">dump_stats</span><span class="p">(</span> \
-                            <span class="n">profiledir</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="p">.</span><span class="n">threadid</span><span class="p">)</span> <span class="o">+</span> <span class="s">"_"</span> <span class="o">+</span> \
-                            <span class="bp">self</span><span class="p">.</span><span class="n">getName</span><span class="p">()</span> <span class="o">+</span> <span class="s">".prof"</span><span class="p">)</span>
+                <span class="n">prof</span><span class="p">.</span><span class="nf">dump_stats</span><span class="p">(</span> \
+                            <span class="n">profiledir</span> <span class="o">+</span> <span class="s">"/"</span> <span class="o">+</span> <span class="nf">str</span><span class="p">(</span><span class="n">self</span><span class="p">.</span><span class="n">threadid</span><span class="p">)</span> <span class="o">+</span> <span class="s">"_"</span> <span class="o">+</span> \
+                            <span class="n">self</span><span class="p">.</span><span class="nf">getName</span><span class="p">()</span> <span class="o">+</span> <span class="s">".prof"</span><span class="p">)</span>
         <span class="k">except</span><span class="p">:</span>
-            <span class="bp">self</span><span class="p">.</span><span class="n">setExitCause</span><span class="p">(</span><span class="s">'EXCEPTION'</span><span class="p">)</span>
+            <span class="n">self</span><span class="p">.</span><span class="nf">setExitCause</span><span class="p">(</span><span class="s">'EXCEPTION'</span><span class="p">)</span>
             <span class="k">if</span> <span class="n">sys</span><span class="p">:</span>
-                <span class="bp">self</span><span class="p">.</span><span class="n">setExitException</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="n">exc_info</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span>
-                <span class="n">tb</span> <span class="o">=</span> <span class="n">traceback</span><span class="p">.</span><span class="n">format_exc</span><span class="p">()</span>
-                <span class="bp">self</span><span class="p">.</span><span class="n">setExitStackTrace</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span>
+                <span class="n">self</span><span class="p">.</span><span class="nf">setExitException</span><span class="p">(</span><span class="n">sys</span><span class="p">.</span><span class="nf">exc_info</span><span class="p">()[</span><span class="mi">1</span><span class="p">])</span>
+                <span class="n">tb</span> <span class="o">=</span> <span class="n">traceback</span><span class="p">.</span><span class="nf">format_exc</span><span class="p">()</span>
+                <span class="n">self</span><span class="p">.</span><span class="nf">setExitStackTrace</span><span class="p">(</span><span class="n">tb</span><span class="p">)</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="bp">self</span><span class="p">.</span><span class="n">setExitCause</span><span class="p">(</span><span class="s">'NORMAL'</span><span class="p">)</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="nb">hasattr</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s">'exitmessage'</span><span class="p">):</span>
-            <span class="bp">self</span><span class="p">.</span><span class="n">setExitMessage</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
+            <span class="n">self</span><span class="p">.</span><span class="nf">setExitCause</span><span class="p">(</span><span class="s">'NORMAL'</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="nf">hasattr</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="s">'exitmessage'</span><span class="p">):</span>
+            <span class="n">self</span><span class="p">.</span><span class="nf">setExitMessage</span><span class="p">(</span><span class="bp">None</span><span class="p">)</span>
 
         <span class="k">if</span> <span class="n">exitthreads</span><span class="p">:</span>
-            <span class="n">exitthreads</span><span class="p">.</span><span class="n">put</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
+            <span class="n">exitthreads</span><span class="p">.</span><span class="nf">put</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="bp">True</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">setExitCause</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">cause</span><span class="p">):</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">exitcause</span> <span class="o">=</span> <span class="n">cause</span>
-    <span class="k">def</span> <span class="nf">getExitCause</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">setExitCause</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">cause</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">exitcause</span> <span class="o">=</span> <span class="n">cause</span>
+    <span class="k">def</span> <span class="nf">getExitCause</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
         <span class="s">"""Returns the cause of the exit, one of:
         'EXCEPTION' -- the thread aborted because of an exception
         'NORMAL' -- normal termination."""</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">exitcause</span>
-    <span class="k">def</span> <span class="nf">setExitException</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">exc</span><span class="p">):</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">exitexception</span> <span class="o">=</span> <span class="n">exc</span>
-    <span class="k">def</span> <span class="nf">getExitException</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="n">exitcause</span>
+    <span class="k">def</span> <span class="nf">setExitException</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">exc</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">exitexception</span> <span class="o">=</span> <span class="n">exc</span>
+    <span class="k">def</span> <span class="nf">getExitException</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
         <span class="s">"""If getExitCause() is 'EXCEPTION', holds the value from
         sys.exc_info()[1] for this exception."""</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">exitexception</span>
-    <span class="k">def</span> <span class="nf">setExitStackTrace</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">st</span><span class="p">):</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">exitstacktrace</span> <span class="o">=</span> <span class="n">st</span>
-    <span class="k">def</span> <span class="nf">getExitStackTrace</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="n">exitexception</span>
+    <span class="k">def</span> <span class="nf">setExitStackTrace</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">st</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">exitstacktrace</span> <span class="o">=</span> <span class="n">st</span>
+    <span class="k">def</span> <span class="nf">getExitStackTrace</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
         <span class="s">"""If getExitCause() is 'EXCEPTION', returns a string representing
         the stack trace for this exception."""</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">exitstacktrace</span>
-    <span class="k">def</span> <span class="nf">setExitMessage</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="n">exitstacktrace</span>
+    <span class="k">def</span> <span class="nf">setExitMessage</span><span class="p">(</span><span class="n">self</span><span class="p">,</span> <span class="n">msg</span><span class="p">):</span>
         <span class="s">"""Sets the exit message to be fetched by a subsequent call to
         getExitMessage.  This message may be any object or type except
         None."""</span>
-        <span class="bp">self</span><span class="p">.</span><span class="n">exitmessage</span> <span class="o">=</span> <span class="n">msg</span>
-    <span class="k">def</span> <span class="nf">getExitMessage</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">self</span><span class="p">.</span><span class="n">exitmessage</span> <span class="o">=</span> <span class="n">msg</span>
+    <span class="k">def</span> <span class="nf">getExitMessage</span><span class="p">(</span><span class="n">self</span><span class="p">):</span>
         <span class="s">"""For any exit cause, returns the message previously set by
         a call to setExitMessage(), or None if there was no such message
         set."""</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="p">.</span><span class="n">exitmessage</span>
+        <span class="k">return</span> <span class="n">self</span><span class="p">.</span><span class="n">exitmessage</span>
 </code></pre></div></div><div class="language-perl highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#!perl -w</span>
 
 <span class="c1"># Time-stamp: &lt;2002/04/06, 13:12:13 (EST), maverick, csvformat.pl&gt;</span>
