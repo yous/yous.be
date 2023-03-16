@@ -4,7 +4,7 @@ GEM
     addressable (2.8.1)
       public_suffix (>= 2.0.2, < 6.0)
     colorator (1.1.0)
-    concurrent-ruby (1.2.0)
+    concurrent-ruby (1.2.2)
     diff-lcs (1.5.0)
     em-websocket (0.5.3)
       eventmachine (>= 0.12.9)
@@ -18,7 +18,7 @@ GEM
     faraday-net_http (3.0.2)
     ffi (1.15.5)
     forwardable-extended (2.6.0)
-    google-protobuf (3.21.12)
+    google-protobuf (3.22.2)
     html-proofer (4.4.3)
       addressable (~> 2.3)
       mercenary (~> 0.3)
@@ -75,7 +75,7 @@ GEM
       rb-inotify (~> 0.9, >= 0.9.10)
     mercenary (0.4.0)
     mini_portile2 (2.8.1)
-    nokogiri (1.14.1)
+    nokogiri (1.14.2)
       mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
     octokit (4.25.1)
@@ -92,7 +92,7 @@ GEM
     rb-inotify (0.10.1)
       ffi (~> 1.0)
     rexml (3.2.5)
-    rouge (4.0.1)
+    rouge (4.1.0)
     rspec (3.12.0)
       rspec-core (~> 3.12.0)
       rspec-expectations (~> 3.12.0)
@@ -102,7 +102,7 @@ GEM
     rspec-expectations (3.12.2)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
-    rspec-mocks (3.12.3)
+    rspec-mocks (3.12.4)
       diff-lcs (>= 1.2.0, < 2.0)
       rspec-support (~> 3.12.0)
     rspec-support (3.12.0)
@@ -137,4 +137,4 @@ DEPENDENCIES
   sass-embedded (= 1.54.5)
 
 BUNDLED WITH
-   2.3.7
+   2.4.6
