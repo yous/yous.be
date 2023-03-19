@@ -10,7 +10,7 @@ gem 'jekyll-whiteglass'
 gem 'sass-embedded', '1.54.5' # if ENV['gem_platform'].include?('-linux-')
 
 group :test do
-  gem 'html-proofer', '~> 4.0'
+  gem 'html-proofer', '~> 5.0'
   gem 'rake'
   gem 'rspec', '~> 3.0'
 end
