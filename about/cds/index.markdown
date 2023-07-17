@@ -475,3 +475,6 @@ comments: false
 468. 기린 & 수민 --- CLUB 33 (EP)
 469. 피싱걸스(FISHINGIRLS) --- FISHING QUEEN
 470. Paloalto --- Summer Grooves
+471. 일탈 --- 적응
+472. Beenzino --- NOWITZKI
+473. Colde --- Love Part 1 (Reissued)
