@@ -478,3 +478,6 @@ comments: false
 471. 일탈 --- 적응
 472. Beenzino --- NOWITZKI
 473. Colde --- Love Part 1 (Reissued)
+474. Kid Milli --- BEIGE [VER.1 Black]
+475. 미란이 --- The Drift
+476. 유라, 만동 --- 이런 분위기는 기회다
