@@ -483,3 +483,4 @@ comments: false
 476. 유라, 만동 --- 이런 분위기는 기회다
 477. YUNHWAY --- YUNHWAY
 478. jerd --- BOMM
+479. E SENS --- 저금통
