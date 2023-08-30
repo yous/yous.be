@@ -484,3 +484,5 @@ comments: false
 477. YUNHWAY --- YUNHWAY
 478. jerd --- BOMM
 479. E SENS --- 저금통
+480. Sik-K --- POP A LOT
+481. The Prodigy --- The Fat of the Land
