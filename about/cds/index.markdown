@@ -486,3 +486,4 @@ comments: false
 479. E SENS --- 저금통
 480. Sik-K --- POP A LOT
 481. The Prodigy --- The Fat of the Land
+482. Verbal Jint --- K-XY : INFP
