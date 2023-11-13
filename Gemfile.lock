@@ -10,7 +10,7 @@ GEM
       fiber-annotation
       io-event (~> 1.1)
       timers (~> 4.1)
-    base64 (0.1.1)
+    base64 (0.2.0)
     colorator (1.1.0)
     concurrent-ruby (1.2.2)
     console (1.23.2)
@@ -32,7 +32,7 @@ GEM
     fiber-annotation (0.2.0)
     fiber-local (1.0.0)
     forwardable-extended (2.6.0)
-    google-protobuf (3.24.4)
+    google-protobuf (3.25.0)
     hashery (2.1.2)
     html-proofer (5.0.8)
       addressable (~> 2.3)
@@ -106,7 +106,7 @@ GEM
       ruby-rc4
       ttfunk
     public_suffix (5.0.3)
-    racc (1.7.1)
+    racc (1.7.3)
     rainbow (3.1.1)
     rake (13.1.0)
     rb-fsevent (0.11.2)
