@@ -489,3 +489,5 @@ comments: false
 482. Verbal Jint --- K-XY : INFP
 483. Hoody --- 항해
 484. Epik High --- Screen Time
+485. Crush --- wonderego
+486. ASH ISLAND --- ROSE
