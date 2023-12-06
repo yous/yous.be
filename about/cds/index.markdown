@@ -492,3 +492,6 @@ comments: false
 485. Crush --- wonderego
 486. ASH ISLAND --- ROSE
 487. SINCE --- THE SOLOEST
+488. THAMA --- WOOOF!
+489. 태연 --- To. X (Myself Ver.)
+490. Skyminhyuk --- 해방
