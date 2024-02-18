@@ -497,3 +497,5 @@ comments: false
 490. Skyminhyuk --- 해방
 491. Heize --- Last Winter (MATCH Included VER.)
 492. Zion.T --- Zip
+493. 김효은, DON MALIK --- 49
+494. Silica Gel --- POWER ANDRE 99
