@@ -499,3 +499,4 @@ comments: false
 492. Zion.T --- Zip
 493. 김효은, DON MALIK --- 49
 494. Silica Gel --- POWER ANDRE 99
+495. 아이유(IU) --- The Winning (Special Ver.)
