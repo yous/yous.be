@@ -500,3 +500,5 @@ comments: false
 493. 김효은, DON MALIK --- 49
 494. Silica Gel --- POWER ANDRE 99
 495. 아이유(IU) --- The Winning (Special Ver.)
+496. 홍다빈 --- Giggles
+497. Leellamarz --- VIOLINIST
