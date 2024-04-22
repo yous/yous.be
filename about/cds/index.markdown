@@ -507,3 +507,5 @@ comments: false
 500. 김사월 --- DEFAULT
 501. BOBBY --- Sir. Robert
 502. Dynamic Duo --- 2 Kids On The Block
+503. HAON --- HAONOAH
+504. 권진아 --- 우리의 방식 (Reissued)
