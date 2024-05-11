@@ -14,7 +14,7 @@ external-url: https://blog.skullsecurity.org/2013/ropasaurusrex-a-primer-on-retu
 [SkullSecurity][]의 [Ron Bowes][]가 쓴 [return-oriented programming 입문서][external-url]가 있어 번역했다.
 
 [SkullSecurity]: https://blog.skullsecurity.org
-[Ron Bowes]: https://blog.skullsecurity.org/author/ron
+[Ron Bowes]: https://blog.skullsecurity.org/authors/ron.html
 [external-url]: https://blog.skullsecurity.org/2013/ropasaurusrex-a-primer-on-return-oriented-programming
 
 <!-- more -->
@@ -33,7 +33,7 @@ CTF 대회에서 가장 기분 나쁜 순간 중 하나는 [나중에 깨달을 
 그게 ROP라고 할 수 있습니다!
 
 [hindsight]: http://knowyourmeme.com/memes/captain-hindsight
-[cnot]: https://blog.skullsecurity.org/blog/2013/epic-cnot-writeup-plaidctf
+[cnot]: https://blog.skullsecurity.org/2013/epic-cnot-writeup-plaidctf
 
 <!-- Anyway, even though I spent a lot of time working on the wrong solution
 (specifically, I didn't think to bypass [ASLR][] for quite awhile), the process
@@ -65,7 +65,7 @@ return-oriented programming 입문서가 될 것입니다. 만약 CTF 문제를 
 궁금하다면, [제 cnot 문제 풀이][my writeup of cnot]를 보세요. :)
 
 [ROP]: https://en.wikipedia.org/wiki/Return-oriented_programming
-[my writeup of cnot]: https://blog.skullsecurity.org/blog/2013/epic-cnot-writeup-plaidctf
+[my writeup of cnot]: https://blog.skullsecurity.org/2013/epic-cnot-writeup-plaidctf
 
 <!-- ## What the heck is ROP? -->
 

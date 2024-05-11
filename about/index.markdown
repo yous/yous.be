@@ -62,7 +62,7 @@ Chayoung You
 - Korean Translator Moderator, [Twitter](https://twitter.com), 2016.01--2017.11
 - Freelance Translator, [Lionbridge](http://www.lionbridge.com), 2015.11--2018.01
 - Web Developer, GoldSpoon, 2015.06--2016.07
-- Android Developer, [Tamseng](http://tamseng.co.kr), 2013.07--2014.12
+- Android Developer, [Tamseng](https://web.archive.org/web/20151011032837/http://tamseng.co.kr/), 2013.07--2014.12
 - KAIST CERT, 2012.01--2013.03
 - KAIST GoN, 2011--Current
 

@@ -57,8 +57,8 @@ android {
 
 이때 `buildTypes` 아래의 `debug` 항목은 굳이 명시하지 않아도 [기본적으로 생성][TOC-Build-Types]되며, 이 `buildType`은 [디버그 keystore와 키를 사용하도록 설정][TOC-Signing-Configurations]되어 있다.
 
-[TOC-Build-Types]: http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Build-Types
-[TOC-Signing-Configurations]: http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Signing-Configurations
+[TOC-Build-Types]: https://web.archive.org/web/20140528082703/http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Build-Types
+[TOC-Signing-Configurations]: https://web.archive.org/web/20140528082703/http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Signing-Configurations
 
 다만 이때 `build.gradle` 파일에 keystore 암호와 키 암호가 평문으로 들어가게 되는데, 소스를 공개하고 있는 등의 이유로 이를 피하고 싶다면 각각의 항목을 쉘 프롬프트에서 입력받을 수 있다.
 
@@ -111,7 +111,7 @@ $ ./gradlew assembleRelease
 
 Gradle은 [캐멀케이스 단축키를 지원][TOC-Android-tasks]해서 `aR`에 해당하는 다른 명령이 없는 한 `assembleRelease` 대신 `aR`을 사용할 수 있다.
 
-[TOC-Android-tasks]: http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Android-tasks
+[TOC-Android-tasks]: https://web.archive.org/web/20140528082703/http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Android-tasks
 
 ## ProGuard 사용하기
 {: #how-to-use-proguard}
@@ -129,7 +129,7 @@ buildTypes {
 
 `getDefaultProguardFile()`는 [SDK에 위치한 해당 이름의 파일을 가져와 적용][TOC-Running-ProGuard]한다. `proguard-android.txt`와 `proguard-android-optimize.txt`가 있으며 [앞의 것은 최적화를 수행하지 않고, 뒤의 것은 최적화를 수행][TOC-Running-ProGuard]한다.
 
-[TOC-Running-ProGuard]: http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Running-ProGuard
+[TOC-Running-ProGuard]: https://web.archive.org/web/20140528082703/http://tools.android.com/tech-docs/new-build-system/user-guide#TOC-Running-ProGuard
 
 추가적인 다른 `proguardFile`을 더 적용하고 싶다면 `proguardFiles`를 사용하면 된다.
 
@@ -176,7 +176,7 @@ buildTypes {
 
 [Android Support Library][]는 이미 소스가 공개되어 있기 때문에 코드 난독화가 필요하지 않다.
 
-[Android Support Library]: https://developer.android.com/topic/libraries/support-library/
+[Android Support Library]: https://web.archive.org/web/20190519201126/https://developer.android.com/topic/libraries/support-library
 
 ```
 -libraryjars libs
@@ -207,7 +207,7 @@ ProGuard를 이용해 코드 난독화 작업을 거치게 되면, 소스 파일
 [Google Play Services SDK][] 또한 필요한 클래스가 사라지는 것을 방지하기 위한 [ProGuard 규칙][Create a Proguard Exception]을 제공하고 있다.
 
 [Google Play Services SDK]: https://developers.google.com/android/guides/overview
-[Create a Proguard Exception]: https://developer.android.com/google/play-services/setup.html#Proguard
+[Create a Proguard Exception]: https://web.archive.org/web/20140527112158/https://developer.android.com/google/play-services/setup.html#Proguard
 
 ```
 -keep class * extends java.util.ListResourceBundle {

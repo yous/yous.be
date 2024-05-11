@@ -22,7 +22,7 @@ facebook:
 >
 > ![com.apple.pcapd](/images/2014/07/22/pcapd1.min.jpg)
 >
-> Slides of Zdziarski's talk, titled **Identifying Back Doors, Attack Points, and Surveillance Mechanisms in iOS Devices** are [here](https://pentest.com/ios_backdoors_attack_points_surveillance_mechanisms.pdf).
+> Slides of Zdziarski's talk, titled **Identifying Back Doors, Attack Points, and Surveillance Mechanisms in iOS Devices** are [here](https://web.archive.org/web/20140724061438/https://pentest.com/ios_backdoors_attack_points_surveillance_mechanisms.pdf).
 
 Also check the page about [iOS: About diagnostic capabilities](http://support.apple.com/kb/HT6331) on Apple Support:
 

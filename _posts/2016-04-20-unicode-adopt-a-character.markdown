@@ -20,9 +20,9 @@ be listed in
 [Sponsors of Adopted Characters](http://unicode.org/consortium/adopted-characters.html).
 You support Unicode Consortium by donation while expressing your interests in
 the adopted character as
-[チルノ adopted ⑨](http://unicode.org/consortium/adopted-characters.html#b2468).
+[チルノ adopted ⑨](http://unicode.org/consortium/adopted-characters.html#bronze-2468).
 
-[I chose '유' (U+C720, HANGUL SYLLABLE YU)](http://unicode.org/consortium/adopted-characters.html#bC720),
+[I chose '유' (U+C720, HANGUL SYLLABLE YU)](http://unicode.org/consortium/adopted-characters.html#bronze-c720),
 which is my family name written in Korean. And this is one of the first
 adoptions of hangul character.
 
