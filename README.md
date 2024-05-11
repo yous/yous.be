@@ -1,6 +1,6 @@
 # yous.be
 
-[![CircleCI](https://circleci.com/gh/yous/yous.be/tree/source.svg?style=shield)](https://circleci.com/gh/yous/yous.be/tree/source)
+[![CI](https://github.com/yous/yous.be/actions/workflows/main.yml/badge.svg)](https://github.com/yous/yous.be/actions/workflows/main.yml)
 
 Blog for hackers.
 
