@@ -509,3 +509,5 @@ comments: false
 502. Dynamic Duo --- 2 Kids On The Block
 503. HAON --- HAONOAH
 504. 권진아 --- 우리의 방식 (Reissued)
+505. 김윤아 --- 관능소설
+506. CAMO --- Pressure Makes Diamonds
