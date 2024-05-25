@@ -511,3 +511,4 @@ comments: false
 504. 권진아 --- 우리의 방식 (Reissued)
 505. 김윤아 --- 관능소설
 506. CAMO --- Pressure Makes Diamonds
+507. EK --- ESCAPE
