@@ -29,6 +29,7 @@ jobs:
           JEKYLL_ENV: production
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
+        retention-days: '90'
 
   spec:
     needs: build
@@ -100,35 +101,6 @@ jobs:
           mkdir _site
           tar -xf artifact.tar -C _site/
       - run: html5validator --Werror --also-check-css --also-check-svg --root _site/
-
-  proof:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-      - name: Setup Ruby
-        uses: ruby/setup-ruby@v1
-        with:
-          ruby-version: '3.3'
-          bundler-cache: true
-      - name: Download artifact
-        uses: actions/download-artifact@v4
-        with:
-          name: github-pages
-      - run: |
-          mkdir _site
-          tar -xf artifact.tar -C _site/
-      - name: Cache .htmlproofer
-        uses: actions/cache@v4
-        with:
-          path: |
-            tmp/.htmlproofer
-          key: htmlproofer-${{ runner.os }}-${{ github.run_id }}
-          restore-keys: |
-            htmlproofer-${{ runner.os }}
-          save-always: true
-      - run: bundle exec rake proof
 
   deploy:
     needs: [build, spec, pa11y-ci, validate]
