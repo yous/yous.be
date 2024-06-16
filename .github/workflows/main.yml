@@ -29,7 +29,8 @@ jobs:
           JEKYLL_ENV: production
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
-        retention-days: '90'
+        with:
+          retention-days: '90'
 
   spec:
     needs: build
