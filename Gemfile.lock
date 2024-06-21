@@ -2,8 +2,8 @@ GEM
   remote: https://rubygems.org/
   specs:
     Ascii85 (1.1.1)
-    addressable (2.8.6)
-      public_suffix (>= 2.0.2, < 6.0)
+    addressable (2.8.7)
+      public_suffix (>= 2.0.2, < 7.0)
     afm (0.2.2)
     async (2.12.0)
       console (~> 1.25, >= 1.25.2)
@@ -23,7 +23,7 @@ GEM
     ethon (0.16.0)
       ffi (>= 1.15.0)
     eventmachine (1.2.7)
-    faraday (2.9.1)
+    faraday (2.9.2)
       faraday-net_http (>= 2.0, < 3.2)
     faraday-net_http (3.1.0)
       net-http
@@ -111,7 +111,7 @@ GEM
       hashery (~> 2.0)
       ruby-rc4
       ttfunk
-    public_suffix (5.1.0)
+    public_suffix (6.0.0)
     racc (1.8.0)
     rainbow (3.1.1)
     rake (13.2.1)
@@ -168,4 +168,4 @@ DEPENDENCIES
   rspec (~> 3.0)
 
 BUNDLED WITH
-   2.5.9
+   2.5.11
