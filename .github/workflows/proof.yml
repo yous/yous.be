@@ -6,6 +6,8 @@ on:
 
 jobs:
   proof:
+    permissions:
+      actions: read
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
