@@ -1,9 +1,10 @@
 name: HTML-Proofer
 
 on:
-  push:
-    branches:
-      - source
+  workflow_run:
+    workflows: [CI]
+    types:
+      - completed
   schedule:
     - cron: "0 0 * * 0"
 
