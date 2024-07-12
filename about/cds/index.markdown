@@ -515,3 +515,4 @@ comments: false
 508. 한로로 --- 집
 509. Blase --- Debugging
 510. Epik High --- PUMP
+511. The Quiett --- Luxury Flow
