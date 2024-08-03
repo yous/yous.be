@@ -516,3 +516,6 @@ comments: false
 509. Blase --- Debugging
 510. Epik High --- PUMP
 511. The Quiett --- Luxury Flow
+512. Don Mills --- 인생을 바꿀 앨범
+513. Los --- SKANDALOUZ 2
+514. Uneducated Kid - Uneducated World 1+2 Complete Pack
