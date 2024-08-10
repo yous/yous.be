@@ -519,3 +519,5 @@ comments: false
 512. Don Mills --- 인생을 바꿀 앨범
 513. Los --- SKANDALOUZ 2
 514. Uneducated Kid - Uneducated World 1+2 Complete Pack
+515. Loopy --- MARNI
+516. 최유리 --- 생각을 멈추다 보면
