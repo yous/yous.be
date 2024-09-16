@@ -522,3 +522,4 @@ comments: false
 515. Loopy --- MARNI
 516. 최유리 --- 생각을 멈추다 보면
 517. Khakii --- Home
+518. SUMIN & Slom --- MINISERIES 2
