@@ -101,7 +101,7 @@ jobs:
       - run: |
           mkdir _site
           tar -xf artifact.tar -C _site/
-      - run: html5validator --Werror --also-check-css --also-check-svg --root _site/
+      - run: html5validator --Werror --also-check-css --also-check-svg --root _site/ --log DEBUG
 
   deploy:
     needs: [build, spec, pa11y-ci, validate]
