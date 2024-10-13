@@ -36,7 +36,8 @@ jobs:
           name: github-pages
           github-token: ${{ github.token }}
           run-id: ${{ steps.get-run-id.outputs.run-id }}
-      - run: |
+      - name: Extract artifact
+        run: |
           mkdir _site
           tar -xf artifact.tar -C _site/
       - name: Cache .htmlproofer
