@@ -523,3 +523,4 @@ comments: false
 516. 최유리 --- 생각을 멈추다 보면
 517. Khakii --- Home
 518. SUMIN & Slom --- MINISERIES 2
+519. 브로콜리너마저 --- 우리는 모두 실패할 것을 알고 있어요
