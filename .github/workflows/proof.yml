@@ -40,13 +40,20 @@ jobs:
         run: |
           mkdir _site
           tar -xf artifact.tar -C _site/
-      - name: Cache .htmlproofer
-        uses: actions/cache@v4
+      - name: Restore .htmlproofer
+        id: cache-htmlproofer-restore
+        uses: actions/cache/restore@v4
         with:
           path: |
             tmp/.htmlproofer
           key: htmlproofer-${{ runner.os }}-${{ github.run_id }}
           restore-keys: |
             htmlproofer-${{ runner.os }}
-          save-always: true
       - run: bundle exec rake proof
+      - name: Save .htmlproofer
+        if: always() && steps.cache-htmlproofer-restore.outputs.cache-hit != 'true'
+        uses: actions/cache/save@v4
+        with:
+          path: |
+            tmp/.htmlproofer
+          key: ${{ steps.cache-htmlproofer-restore.outputs.cache-primary-key }}
