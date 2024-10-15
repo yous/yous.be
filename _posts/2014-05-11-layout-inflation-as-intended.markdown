@@ -19,7 +19,7 @@ external-url: https://web.archive.org/web/20140118053951/http://www.doubleencore
 [LayoutInflater]: http://developer.android.com/reference/android/view/LayoutInflater.html
 [inflate(int, ViewGroup)]: http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup)
 [inflate(int, ViewGroup, boolean)]: http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup,%20boolean)
-[Android Lint]: http://tools.android.com/tips/lint
+[Android Lint]: https://web.archive.org/web/20140617222526/http://tools.android.com/tips/lint/
 
 ``` java
 inflater.inflate(R.layout.my_layout, null);

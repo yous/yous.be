@@ -231,7 +231,7 @@ ProGuard를 이용해 코드 난독화 작업을 거치게 되면, 소스 파일
 ## 참고 목록
 {: #see-also}
 
-- [Gradle Plugin User Guide](http://tools.android.com/tech-docs/new-build-system/user-guide) by [Android Tools Project Site](http://tools.android.com)
+- [Gradle Plugin User Guide](https://web.archive.org/web/20140528082703/tools.android.com/tech-docs/new-build-system/user-guide) by [Android Tools Project Site](https://web.archive.org/web/20140513235014/http://tools.android.com/)
 - [Mastering ProGuard for Building Lightweight Android Code][] by [Crashlytics][]
 - [ProGuard Manual](https://www.guardsquare.com/en/products/proguard/manual) by [ProGuard][]
-- [Gradle - Progaurd 사용하기(proguard rule)](http://novafactory.net/archives/2845) ([archive](https://web.archive.org/web/20160805062722/http://novafactory.net/archives/2845) by [Nova](https://plus.google.com/113131691466488717287)
+- [Gradle - Progaurd 사용하기(proguard rule)](https://web.archive.org/web/20160805062722/http://novafactory.net/archives/2845) by [Nova](https://web.archive.org/web/20190327235044/https://plus.google.com/113131691466488717287)

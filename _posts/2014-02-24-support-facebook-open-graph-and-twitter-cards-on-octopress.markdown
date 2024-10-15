@@ -74,11 +74,11 @@ twitter_card:
 
 [Summary Card]: https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/summary-card-with-large-image
 [Summary Card with Large Image]: https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/summary-card-with-large-image.html
-[Photo Card]: https://dev.twitter.com/docs/cards/types/photo-card
-[Gallery Card]: https://dev.twitter.com/docs/cards/types/gallery-card
+[Photo Card]: https://web.archive.org/web/20140214225453/https://dev.twitter.com/docs/cards/types/photo-card
+[Gallery Card]: https://web.archive.org/web/20140214213932/https://dev.twitter.com/docs/cards/types/gallery-card
 [App Card]: https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/app-card
 [Player Card]: https://developer.twitter.com/en/docs/tweets/optimize-with-cards/overview/player-card
-[Product Card]: https://dev.twitter.com/docs/cards/types/product-card
+[Product Card]: https://web.archive.org/web/20140214202425/https://dev.twitter.com/docs/cards/types/product-card
 
 트위터는 [카드 검사 도구][Card Validator]를 직접 제공하고 있으므로 각 종류의 카드가 어떻게 보이는지, 자신의 사이트가 제대로 인식되는지 테스트 해볼 수 있다.
 
