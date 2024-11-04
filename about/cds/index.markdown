@@ -524,3 +524,4 @@ comments: false
 517. Khakii --- Home
 518. SUMIN & Slom --- MINISERIES 2
 519. 브로콜리너마저 --- 우리는 모두 실패할 것을 알고 있어요
+520. 이진아 --- 도시의 속마음
