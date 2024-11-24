@@ -25,7 +25,7 @@ iOS 7.0.6, iOS 6.1.6, Apple TV 6.0.2가 [배포됐다][9to5Mac]. 애플에서 �
 
 그런데 이 문제의 원인이 된 [소스 코드][sslKeyExchange.c]가 흥미롭다. Adam Langley의 [이 버그에 관한 글][external-url]에 따르면 실제 소스(sslKeyExchange.c)는 이렇다.
 
-[sslKeyExchange.c]: http://opensource.apple.com/source/Security/Security-55471/libsecurity_ssl/lib/sslKeyExchange.c
+[sslKeyExchange.c]: https://web.archive.org/web/20140223043258/http://opensource.apple.com/source/Security/Security-55471/libsecurity_ssl/lib/sslKeyExchange.c
 [external-url]: https://www.imperialviolet.org/2014/02/22/applebug.html
 
 ``` c
