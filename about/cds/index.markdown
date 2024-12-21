@@ -527,3 +527,4 @@ comments: false
 520. 이진아 --- 도시의 속마음
 521. Heize --- FALLIN'
 522. 태연 --- Letter To Myself (Letter Ver.)
+523. Epik High --- PUMP (COLLECTOR'S EDITION)
