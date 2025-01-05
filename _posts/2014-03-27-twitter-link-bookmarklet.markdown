@@ -8,17 +8,17 @@ categories:
 description: Dave Bradford의 Twitter Profile Bookmarklet에 추가됐으면 하는 기능이 있어 추가했다.
 keywords: twitter, profile, link, bookmark, bookmarklet, tweetbot
 redirect_from: /p/20140327/
-external-url: http://davebradford.com/blog/twitter-profile-bookmarklet/
+external-url: https://davebradford.com/blog/twitter-profile-bookmarklet/
 ---
 
 [Dave Bradford][]의 트위터에 관한 팁 [Twitter Profile Bookmarklet][external-url]을 봤다. 직접 써 보니 기능이 추가됐으면 더 좋을 것 같아 추가했다.
 
-[Dave Bradford]: http://davebradford.com/about/
-[external-url]: http://davebradford.com/blog/twitter-profile-bookmarklet/
+[Dave Bradford]: https://davebradford.com/about/
+[external-url]: https://davebradford.com/blog/twitter-profile-bookmarklet/
 
 일단, 원글에 있는 코드의 기능은 간단하다. 모바일 사파리를 통해 트위터 계정을 보다가 북마크 버튼을 한 번 누르면 [Tweetbot][]에서 볼 수 있게 된다. 여기에 브라우저를 통해 '트윗'을 보고 있다면 Tweetbot으로 바로 그 트윗을 볼 수 있게 기능을 추가했다. OS X에서도 동일하게 작동한다.
 
-[Tweetbot]: http://tapbots.com/software/tweetbot/
+[Tweetbot]: https://tapbots.com/software/tweetbot/
 
 ``` javascript
 var url = document.URL;

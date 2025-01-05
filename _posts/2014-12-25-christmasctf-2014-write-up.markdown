@@ -12,9 +12,9 @@ redirect_from:
     - /2014/12/26/christmasctf-2014-write-up/
     - /p/20141225/
 twitter_card:
-    image: http://yous.be/images/2014/12/25/christmasctf-1.png
+    image: https://yous.be/images/2014/12/25/christmasctf-1.png
 facebook:
-    image: http://yous.be/images/2014/12/25/christmasctf-1.png
+    image: https://yous.be/images/2014/12/25/christmasctf-1.png
 ---
 
 ![Poster of ChristmasCTF 2014](/images/2014/12/25/christmasctf-1.min.png)
@@ -172,7 +172,7 @@ Flag는 `I_L0VE_S6nta, I_L0Ve_Father, I_L0VE_Y0U...`입니다.
 >
 > ![JingleBell piano score with random bass notes](/images/2014/12/25/e11369defdb6e1a58fe1931b2cdac372bca8b05a4c5ffebd681f093b82c0fcb5.jpg)
 
-꽤나 수상한 악보입니다. 아랫줄을 보면 박자도 맞지 않고 음도 제멋대로입니다. [CODEGATE 2009 예선전 Prob9](http://webhacking.tistory.com/6) 문제를 참고하여 주시기 바랍니다.
+꽤나 수상한 악보입니다. 아랫줄을 보면 박자도 맞지 않고 음도 제멋대로입니다. [CODEGATE 2009 예선전 Prob9](https://webhacking.tistory.com/6) 문제를 참고하여 주시기 바랍니다.
 
 마타하리라는 암호라고 하는데, 정보가 확실하진 않으나 해당 글의 WELCOME TO까지 완벽히 동일합니다. 아래 표를 보고 직접 해독합니다.
 
@@ -191,7 +191,7 @@ Flag는 `MATAHARIZZANG`입니다.
 
 > http://web-prob.dkserver.wo.tc/krystalholic_1e2fdfa6874f87345dd7f27099a38668
 
-Board를 보면 트위터 아이디 [@kruby808](https://twitter.com/kruby808)이 보입니다. 들어가서 트윗을 보면 좋아하는 뮤직비디오의 주소(<http://www.youtube.com/watch?v=KEDCy1NA8H0>)를 얻을 수 있습니다. 이를 이용해 `kruby808` 계정의 비밀번호를 찾읍시다.
+Board를 보면 트위터 아이디 [@kruby808](https://twitter.com/kruby808)이 보입니다. 들어가서 트윗을 보면 좋아하는 뮤직비디오의 주소(<https://www.youtube.com/watch?v=KEDCy1NA8H0>)를 얻을 수 있습니다. 이를 이용해 `kruby808` 계정의 비밀번호를 찾읍시다.
 
 ``` text
 id : kruby808
@@ -537,7 +537,7 @@ for($i=$a;$i<count($flag_array);$i++){ $flag_array[$i] = chr($flag_array[$i]); }
 ?>
 ```
 
-동일한 동작을 위해 최대한 비슷한 PHP 버전에서 시도해야 합니다. [Online PHP Functions의 PHP Sandbox](http://sandbox.onlinephpfunctions.com/)에서 PHP 5.2.16 환경으로 작업했습니다.
+동일한 동작을 위해 최대한 비슷한 PHP 버전에서 시도해야 합니다. [Online PHP Functions의 PHP Sandbox](https://sandbox.onlinephpfunctions.com/)에서 PHP 5.2.16 환경으로 작업했습니다.
 
 일단 라틴 알파벳들은 보기 쉬운 알파벳들로 바꾸고, 계산 작업을 수행해 줍니다.
 

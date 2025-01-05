@@ -11,15 +11,15 @@ redirect_from: /p/20140523/
 
 When I write a new post on [Octopress][], I share the link of it to somewhere doesn't support [hyperlinks][Hyperlink]. Since people can't click the link, they should copy and paste or just type it letter by letter. I wanted to make it easier, so I maded short url for every post.
 
-[Octopress]: http://octopress.org
-[Hyperlink]: http://en.wikipedia.org/wiki/Hyperlink
+[Octopress]: https://octopress.org/
+[Hyperlink]: https://en.wikipedia.org/wiki/Hyperlink
 
 ## Alias Generator for Posts
 {: #alias-generator-for-posts}
 
 There is a [Jekyll][] plugin that [generates redirect pages for posts with aliases][jekyll_alias_generator]. Octopress is based on Jekyll and this plugin has no compatibility problem. Its source is on GitHub, so I just added it as submodule:
 
-[Jekyll]: http://jekyllrb.com
+[Jekyll]: https://jekyllrb.com/
 [jekyll_alias_generator]: https://github.com/tsmango/jekyll_alias_generator
 
 ``` sh
@@ -73,4 +73,4 @@ When I `rake generate`, the plugin generates static html file at `/p/20140523/in
 
 When you go to [/p/20140523](/p/20140523), it will redirect here. It also has [canonical link][Canonical_link_element], so it won't affect search engine or web analysis services.
 
-[Canonical_link_element]: http://en.wikipedia.org/wiki/Canonical_link_element
+[Canonical_link_element]: https://en.wikipedia.org/wiki/Canonical_link_element

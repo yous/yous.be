@@ -16,9 +16,9 @@ external-url: https://web.archive.org/web/20140118053951/http://www.doubleencore
 
 안드로이드 개발을 하다 보면 [LayoutInflater][]의 [inflate(int, ViewGroup)][]와 [inflate(int, ViewGroup, boolean)][]는 꽤 익숙하다. 하지만 다음 두 줄의 코드가 어떻게 다른지 아는 사람은 그리 많지 않을 것 같다. 실제로 [Android Lint][]는 한쪽 코드는 피하도록 권하고 있다.
 
-[LayoutInflater]: http://developer.android.com/reference/android/view/LayoutInflater.html
-[inflate(int, ViewGroup)]: http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup)
-[inflate(int, ViewGroup, boolean)]: http://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup,%20boolean)
+[LayoutInflater]: https://developer.android.com/reference/android/view/LayoutInflater.html
+[inflate(int, ViewGroup)]: https://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup)
+[inflate(int, ViewGroup, boolean)]: https://developer.android.com/reference/android/view/LayoutInflater.html#inflate(int,%20android.view.ViewGroup,%20boolean)
 [Android Lint]: https://web.archive.org/web/20140617222526/http://tools.android.com/tips/lint/
 
 ``` java

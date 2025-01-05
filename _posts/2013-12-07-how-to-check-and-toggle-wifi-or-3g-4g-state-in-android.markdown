@@ -37,7 +37,7 @@ At some point, we want to know whether the device is connected to network so tha
 
 Checking code is simple. In activity, [WifiManager][] has a handy method.
 
-[WifiManager]: http://developer.android.com/reference/android/net/wifi/WifiManager.html
+[WifiManager]: https://developer.android.com/reference/android/net/wifi/WifiManager.html
 
 ``` java
 WifiManager wifiManager = (WifiManager) getSystemService(WIFI_SERVICE);
@@ -54,8 +54,8 @@ This is more complicated. As WiFi case, we have to add `ACCESS_NETWORK_STATE` pe
 
 Then we get [NetworkInfo][] from [ConnectivityManager][].
 
-[NetworkInfo]: http://developer.android.com/reference/android/net/NetworkInfo.html
-[ConnectivityManager]: http://developer.android.com/reference/android/net/ConnectivityManager.html
+[NetworkInfo]: https://developer.android.com/reference/android/net/NetworkInfo.html
+[ConnectivityManager]: https://developer.android.com/reference/android/net/ConnectivityManager.html
 
 ``` java
 ConnectivityManager connectivityManager =
@@ -68,7 +68,7 @@ See [getState()][] overview.
 
 > Reports the current coarse-grained state of the network.
 
-[getState()]: http://developer.android.com/reference/android/net/NetworkInfo.html#getState()
+[getState()]: https://developer.android.com/reference/android/net/NetworkInfo.html#getState()
 
 There are 6 types of [NetworkInfo.State][].
 
@@ -79,13 +79,13 @@ There are 6 types of [NetworkInfo.State][].
 - `SUSPENDED`
 - `UNKNOWN`
 
-[NetworkInfo.State]: http://developer.android.com/reference/android/net/NetworkInfo.State.html
+[NetworkInfo.State]: https://developer.android.com/reference/android/net/NetworkInfo.State.html
 
 Also this is [getReason()][] overview.
 
 > Report the reason an attempt to establish connectivity failed, if one is available.
 
-[getReason()]: http://developer.android.com/reference/android/net/NetworkInfo.html#getReason()
+[getReason()]: https://developer.android.com/reference/android/net/NetworkInfo.html#getReason()
 
 We can realize that when `NetworkInfo.State` is `DISCONNECTED`, `getReason()` reports to us why mobile data is disconnected.
 
@@ -176,7 +176,7 @@ wifiManager.setWifiEnabled(isWifiEnabled);
 
 There is an workaround with reflection on ["How can i turn off 3G/Data programmatically on Android?"][Stack Overflow].
 
-[Stack Overflow]: http://stackoverflow.com/questions/12535101/how-can-i-turn-off-3g-data-programmatically-on-android#12535246
+[Stack Overflow]: https://stackoverflow.com/questions/12535101/how-can-i-turn-off-3g-data-programmatically-on-android#12535246
 
 For Android 2.3 and above:
 
@@ -224,4 +224,4 @@ setMobileDataEnabled(this, isMobileDataEnabled);
 
 Codes for Android 2.2 and below are also in the same [answer][Stack Overflow], but it requires `MODIFY_PHONE_STATE` permission that can be used by [system applications only][].
 
-[system applications only]: http://developer.android.com/reference/android/Manifest.permission.html#MODIFY_PHONE_STATE
+[system applications only]: https://developer.android.com/reference/android/Manifest.permission.html#MODIFY_PHONE_STATE

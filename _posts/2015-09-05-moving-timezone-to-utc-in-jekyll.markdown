@@ -179,9 +179,9 @@ Tests are ready, so now we start migrating. See 'Time Zone' part of
 
 > Set the time zone for site generation. This sets the `TZ` environment
 > variable, which Ruby uses to handle time and date creation and manipulation.
-> Any entry from the [IANA Time Zone Database](http://en.wikipedia.org/wiki/Tz_database)
+> Any entry from the [IANA Time Zone Database](https://en.wikipedia.org/wiki/Tz_database)
 > is valid, e.g. `America/New_York`. A list of all available values can be found
-> [here](http://en.wikipedia.org/wiki/List_of_tz_database_time_zones). The
+> [here](https://en.wikipedia.org/wiki/List_of_tz_database_time_zones). The
 > default is the local time zone, as set by your operating system.
 
 So when you add `timezone: UTC` to your `_config.yml`, you're almost done!

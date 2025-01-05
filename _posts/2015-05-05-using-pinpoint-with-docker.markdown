@@ -8,9 +8,9 @@ description: How to use Pinpoint with Docker.
 keywords: pinpoint, docker
 redirect_from: /p/20150505/
 twitter_card:
-    image: http://yous.be/images/2015/05/05/logo.png
+    image: https://yous.be/images/2015/05/05/logo.png
 facebook:
-    image: http://yous.be/images/2015/05/05/logo.png
+    image: https://yous.be/images/2015/05/05/logo.png
 ---
 
 ![Pinpoint](/images/2015/05/05/logo.min.png)
@@ -126,7 +126,7 @@ RUN rm oracle-j2sdk1.7_1.7.0+update79_amd64.deb
 ```
 
 Now we install Java SE 6 and then Java SE 7 on the Docker. The `wget` script is
-from ["How to automate download and installation of Java JDK on Linux?"](http://stackoverflow.com/a/10959815/3108885).
+from ["How to automate download and installation of Java JDK on Linux?"](https://stackoverflow.com/a/10959815/3108885).
 Running `fakeroot make-jpkg ...` and `dpkg -i ...` installs Java.
 
 ``` dockerfile

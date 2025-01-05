@@ -19,7 +19,7 @@ except for one thing. Every time Ruby releases a new version, I had to compile
 that version from scratch using [ruby-install](https://github.com/postmodern/ruby-install).
 It takes quite a long time, and I should do that on every macOS device I use.
 
-[![Compiling](/images/2019/01/15/compiling.png "'Are you stealing those LCDs?' 'Yeah, but I'm doing it while my code compiles.'")](http://xkcd.com/303/)
+[![Compiling](/images/2019/01/15/compiling.png "'Are you stealing those LCDs?' 'Yeah, but I'm doing it while my code compiles.'")](https://xkcd.com/303/)
 
 ## Why should I compile?
 

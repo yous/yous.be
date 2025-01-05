@@ -48,7 +48,7 @@ end
 
 Then [Vim][] highlights trailing whitespace to red color.
 
-[Vim]: http://www.vim.org
+[Vim]: https://www.vim.org/
 
 ## How to Solve
 {: #how-to-solve}

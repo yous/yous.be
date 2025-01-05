@@ -9,16 +9,16 @@ description: "웹 페이지에 적절한 메타 태그를 추가해 주면 페�
 keywords: octopress, facebook, open graph, twitter, twitter card
 redirect_from: /p/20140224/
 facebook:
-    image: http://yous.be/images/2014/02/24/facebook_open_graph.png
+    image: https://yous.be/images/2014/02/24/facebook_open_graph.png
 twitter_card:
-    image: http://yous.be/images/2014/02/24/twitter_card_summary.png
+    image: https://yous.be/images/2014/02/24/twitter_card_summary.png
 ---
 
 블로그에 글을 쓰고 나면 트위터나 페이스북에 링크를 공유하곤 하는데 페이스북의 미리보기가 적절히 표시되지 않고 있다는 사실을 깨달았다. 또한 트위터도 그와 비슷한 기능을 제공하는데, 둘 다 지원하면 좋겠다는 생각을 했다. 이를 제대로 지원하려면 [Facebook Open Graph 마크업][]과 [Twitter Cards][]에 대해 알아야 한다. 웹 페이지에 적절한 [메타 태그][Meta element]를 추가해 주면 페이스북과 트위터에서 인식하고 올바른, 작성자가 의도한 미리보기를 보여준다. 기본적으로 [Zac Clancy][]가 쓴 [Octopress에서 이 두 가지를 지원하는 글][Black Glasses]에 상세히 설명되어 있다.
 
 [Facebook Open Graph 마크업]: https://developers.facebook.com/docs/sharing/webmasters#markup
 [Twitter Cards]: https://developer.twitter.com/en/docs/twitter-for-websites/cards/overview/abouts-cards
-[Meta element]: http://en.wikipedia.org/wiki/Meta_element
+[Meta element]: https://en.wikipedia.org/wiki/Meta_element
 [Zac Clancy]: https://twitter.com/zac_c
 [Black Glasses]: https://web.archive.org/web/20170306054219/http://blackglasses.me/2013/09/19/twitter-cards-facebook-open-graph-and-octopress/
 
@@ -38,7 +38,7 @@ twitter_card:
 - `og:image`: 연관된 이미지다. 최소 1200x630 픽셀 크기의 이미지 사용을 추천한다.
 - `fb:app_id`: 페이스북이 사이트의 신원을 파악할 수 있게 해 주는 고유 ID다. Facebook Insights가 제대로 동작하는 데에 중요하다. 자세한 내용은 [Insights 문서][Insights documentation]에서 확인할 수 있다.
 
-[Canonical link element]: http://en.wikipedia.org/wiki/Canonical_link_element
+[Canonical link element]: https://en.wikipedia.org/wiki/Canonical_link_element
 [Insights documentation]: https://developers.facebook.com/docs/sharing/referral-insights
 
 다른 종류의 태그를 더 추가할 수도 있다.
@@ -48,7 +48,7 @@ twitter_card:
 - `article:author`: [글의 저자들로 통하는 링크][property links to the authors of the article]다. 링크 주소는 뉴스피드에 나타났을 때 저자를 팔로우 할 수 있는 페이스북 프로필이나 페이스북 페이지가 될 수 있다. (저자들은 사람들이 팔로우 할 수 있게 [팔로우][follow] 기능을 켜 두어야 한다.)
 - `article:publisher`: [글의 발행인으로 통하는 링크][property links to the publisher of the article]다. 링크 주소는 페이스북 페이지여야 한다. 페이스북은 발행인이 뉴스피드에 표시되었을 때 그것을 '좋아요' 하는 기능을 제공할 수 있다. 이 태그는 미디어 발행인만 쓸 수 있다.
 
-[number of different common object types]: http://ogp.me/#types
+[number of different common object types]: https://ogp.me/#types
 [Internationalization]: https://developers.facebook.com/docs/internationalization/
 [Open Graph Internationalization]: https://developers.facebook.com/docs/internationalization#locales
 [property links to the authors of the article]: https://web.archive.org/web/20170207152958/https://developers.facebook.com/docs/reference/opengraph/object-type/article/
@@ -165,11 +165,11 @@ categories:
     - Example
 description: This is an example post.
 facebook:
-    image: http://example.com/path/to/image.png
+    image: https://example.com/path/to/image.png
 twitter_card:
     creator: twitter
     type: summary_large_image
-    image: http://example.com/path/to/image.png
+    image: https://example.com/path/to/image.png
 ---
 ```
 
@@ -188,7 +188,7 @@ categories:
 description: This is an example post.
 twitter_card:
     type: photo
-    image: http://example.com/path/to/image.png
+    image: https://example.com/path/to/image.png
     width: 640
     height: 960
 ---
@@ -209,10 +209,10 @@ categories:
 description: This is an example post.
 twitter_card:
     type: gallery
-    image: http://example.com/path/to/image.png
-    image1: http://example.com/path/to/image1.png
-    image2: http://example.com/path/to/image2.png
-    image3: http://example.com/path/to/image3.png
+    image: https://example.com/path/to/image.png
+    image1: https://example.com/path/to/image1.png
+    image2: https://example.com/path/to/image2.png
+    image3: https://example.com/path/to/image3.png
 ---
 ```
 

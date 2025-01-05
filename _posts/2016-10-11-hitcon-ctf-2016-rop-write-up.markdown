@@ -64,7 +64,7 @@ ruby 2.3.1p112 (2016-04-26 revision 54768) [x86_64-linux]
 
 Once the binary is loaded by `.load_from_binary`, we can get the instruction
 sequence as a String by
-[`#disasm`](http://ruby-doc.org/core-2.3.0/RubyVM/InstructionSequence.html#method-i-disasm):
+[`#disasm`](https://ruby-doc.org/core-2.3.0/RubyVM/InstructionSequence.html#method-i-disasm):
 
 ``` ruby
 puts RubyVM::InstructionSequence.load_from_binary(File.read('rop.iseq')).disasm

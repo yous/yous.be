@@ -7,11 +7,11 @@ categories:
 description: "\"Backdoor\" can be abused by gov't agents and ex-lovers to gain persistent access."
 keywords: ios, back door, com.apple.mobile.file_relay, com.apple.pcapd, com.apple.mobile.house_arrest, diagnostic capabilities
 redirect_from: /p/20140722/
-external-url: http://arstechnica.com/security/2014/07/undocumented-ios-functions-allow-monitoring-of-personal-data-expert-says/
+external-url: https://arstechnica.com/security/2014/07/undocumented-ios-functions-allow-monitoring-of-personal-data-expert-says/
 twitter_card:
-    image: http://yous.be/images/2014/07/22/pcapd1.jpg
+    image: https://yous.be/images/2014/07/22/pcapd1.jpg
 facebook:
-    image: http://yous.be/images/2014/07/22/pcapd1.jpg
+    image: https://yous.be/images/2014/07/22/pcapd1.jpg
 ---
 
 > "Backdoor" can be abused by gov't agents and ex-lovers to gain persistent access.
@@ -24,6 +24,6 @@ facebook:
 >
 > Slides of Zdziarski's talk, titled **Identifying Back Doors, Attack Points, and Surveillance Mechanisms in iOS Devices** are [here](https://web.archive.org/web/20140724061438/https://pentest.com/ios_backdoors_attack_points_surveillance_mechanisms.pdf).
 
-Also check the page about [iOS: About diagnostic capabilities](http://support.apple.com/kb/HT6331) on Apple Support:
+Also check the page about [iOS: About diagnostic capabilities](https://support.apple.com/kb/HT6331) on Apple Support:
 
 > Each of these diagnostic capabilities requires the user to have unlocked their device and agreed to trust another computer. Any data transmitted between the iOS device and trusted computer is encrypted with keys not shared with Apple. For users who have enabled iTunes Wi-Fi Sync on a trusted computer, these services may also be accessed wirelessly by that computer.

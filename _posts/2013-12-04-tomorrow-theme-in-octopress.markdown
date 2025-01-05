@@ -9,9 +9,9 @@ description: "This is how to apply Tomorrow Theme to code block in Octopress."
 keywords: octopress, tomorrow theme
 redirect_from: /p/20131204/
 facebook:
-    image: http://yous.be/images/2013/12/04/Tomorrow-Night.png
+    image: https://yous.be/images/2013/12/04/Tomorrow-Night.png
 twitter_card:
-    image: http://yous.be/images/2013/12/04/Tomorrow-Night.png
+    image: https://yous.be/images/2013/12/04/Tomorrow-Night.png
 ---
 
 ## Tomorrow Theme
@@ -20,10 +20,10 @@ twitter_card:
 I usually use Tomorrow Night Eighties of [Tomorrow Theme][] in [Vim][], [iTerm2][], [IntelliJ IDEA][] ([Android Studio][]). You can take a look of Tomorrow Theme.
 
 [Tomorrow Theme]: https://github.com/chriskempson/tomorrow-theme
-[Vim]: http://www.vim.org
-[iTerm2]: http://www.iterm2.com
-[IntelliJ IDEA]: http://www.jetbrains.com/idea/
-[Android Studio]: http://developer.android.com/sdk/installing/studio.html
+[Vim]: https://www.vim.org
+[iTerm2]: https://iterm2.com/
+[IntelliJ IDEA]: https://www.jetbrains.com/idea/
+[Android Studio]: https://developer.android.com/studio
 
 ![Tomorrow Night](/images/2013/12/04/Tomorrow-Night.min.png "Tomorrow Night")
 ![Tomorrow](/images/2013/12/04/Tomorrow.min.png "Tomorrow")

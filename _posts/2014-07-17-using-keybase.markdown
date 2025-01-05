@@ -11,9 +11,9 @@ redirect_from:
     - /2014/07/18/using-keybase/
     - /p/20140717/
 twitter_card:
-    image: http://yous.be/images/2014/07/17/logo.png
+    image: https://yous.be/images/2014/07/17/logo.png
 facebook:
-    image: http://yous.be/images/2014/07/17/logo.png
+    image: https://yous.be/images/2014/07/17/logo.png
 ---
 
 ## Keybase
@@ -71,7 +71,7 @@ info: Success! 1 signature(s) verified; 224 items checked
 ## Using Custom Email
 {: #using-custom-email}
 
-When you create public key on [Keybase][], default UID has name as `keybase.io/<username>` and email as `<username>@keybase.io`. You can add UID with your real name and regular email. From [One GnuPG/PGP key pair, two emails?](http://superuser.com/questions/293184/one-gnupg-pgp-key-pair-two-emails):
+When you create public key on [Keybase][], default UID has name as `keybase.io/<username>` and email as `<username>@keybase.io`. You can add UID with your real name and regular email. From [One GnuPG/PGP key pair, two emails?](https://superuser.com/questions/293184/one-gnupg-pgp-key-pair-two-emails):
 
 ``` sh
 $ gpg --edit-key <username>@keybase.io
@@ -147,7 +147,7 @@ Date:   Fri Jul 18 21:29:14 2014 +0900
 
 For more information, see [A Git Horror Story: Repository Integrity With Signed Commits][] by Mike Gerwitz.
 
-[A Git Horror Story: Repository Integrity With Signed Commits]: http://mikegerwitz.com/papers/git-horror-story
+[A Git Horror Story: Repository Integrity With Signed Commits]: https://mikegerwitz.com/papers/git-horror-story
 
 ## Contact Me
 {: #contact-me}

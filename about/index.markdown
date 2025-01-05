@@ -4,9 +4,9 @@ title: "About"
 comments: false
 description: About Yous - contact, projects, interests, likes, etc.
 facebook:
-    image: http://yous.be/images/about/yous.png
+    image: https://yous.be/images/about/yous.png
 twitter_card:
-    image: http://yous.be/images/about/yous.png
+    image: https://yous.be/images/about/yous.png
 ---
 
 ## Yous
@@ -52,15 +52,15 @@ Chayoung You
 
     What you see now. Hosted on [GitHub Pages](https://pages.github.com) and all
     articles are written using
-    [Markdown](http://daringfireball.net/projects/markdown/). The source is
+    [Markdown](https://daringfireball.net/projects/markdown/). The source is
     available on [GitHub repository](https://github.com/yous/yous.be).
 
 ## Experiences
 {: #experiences}
 
-- Researcher, [RTst](http://rtst.co.kr), 2017.02--Current
-- Korean Translator Moderator, [Twitter](https://twitter.com), 2016.01--2017.11
-- Freelance Translator, [Lionbridge](http://www.lionbridge.com), 2015.11--2018.01
+- Researcher, [RTst](https://www.rtst.co.kr/), 2017.02--Current
+- Korean Translator Moderator, [Twitter](https://twitter.com/), 2016.01--2017.11
+- Freelance Translator, [Lionbridge](https://www.lionbridge.com/), 2015.11--2018.01
 - Web Developer, GoldSpoon, 2015.06--2016.07
 - Android Developer, [Tamseng](https://web.archive.org/web/20151011032837/http://tamseng.co.kr/), 2013.07--2014.12
 - KAIST CERT, 2012.01--2013.03
@@ -79,29 +79,29 @@ Chayoung You
 
 - Real-time OS
 - Embedded system
-- [Ruby](https://www.ruby-lang.org)
-- [Vim](http://www.vim.org)
+- [Ruby](https://www.ruby-lang.org/)
+- [Vim](https://www.vim.org/)
 
 ## Education
 {: #education}
 
-- [KAIST](http://www.kaist.ac.kr), Bachelor of Science in Mathematical Sciences and Computer Science, 2011--2017
+- [KAIST](https://www.kaist.ac.kr/), Bachelor of Science in Mathematical Sciences and Computer Science, 2011--2017
 
 ## Likes
 {: #likes}
 
 - Music
     - Collecting [CDs](/about/cds/)
-- [Evangelion](http://www.evangelion.co.jp)
+- [Evangelion](https://www.evangelion.co.jp/)
     - [evangelion.jp](https://web.archive.org/web/20220612093124/evangelion.jp) ([GitHub](https://github.com/yous/evangelion.jp))
-    - [asuka.moe](http://asuka.moe) ([GitHub](https://github.com/yous/asuka.moe))
+    - [asuka.moe](https://asuka.moe/) ([GitHub](https://github.com/yous/asuka.moe))
 - Puzzles
     - [Nikoli Puzzles](https://www.nikoli.co.jp/en/puzzles/)
-    - [Nonogram](http://en.wikipedia.org/wiki/Nonogram)
-    - [A Regular Crossword](http://web.mit.edu/puzzle/www/2013/coinheist.com/rubik/a_regular_crossword/index.html)
-    - [regexcrossword.com](http://regexcrossword.com)
+    - [Nonogram](https://en.wikipedia.org/wiki/Nonogram)
+    - [A Regular Crossword](https://web.mit.edu/puzzle/www/2013/coinheist.com/rubik/a_regular_crossword/index.html)
+    - [regexcrossword.com](https://regexcrossword.com/)
 - Games
-    - [Hearthstone](https://playhearthstone.com)
-    - [Super Hexagon](http://superhexagon.com)
-    - [Monument Valley](http://www.monumentvalleygame.com)
-    - [Portal 2](http://www.thinkwithportals.com)
+    - [Hearthstone](https://playhearthstone.com/)
+    - [Super Hexagon](https://superhexagon.com/)
+    - [Monument Valley](https://www.monumentvalleygame.com/)
+    - [Portal 2](https://www.thinkwithportals.com/)

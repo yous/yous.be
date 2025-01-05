@@ -12,9 +12,9 @@ redirect_from:
     - /2013/02/19/ios-6-1-music-album-shuffle/
     - /p/20130218/
 facebook:
-    image: http://yous.be/images/2013/02/18/1.png
+    image: https://yous.be/images/2013/02/18/1.png
 twitter_card:
-    image: http://yous.be/images/2013/02/18/1.png
+    image: https://yous.be/images/2013/02/18/1.png
 ---
 
 ## 목차
@@ -30,7 +30,7 @@ twitter_card:
 
 [iTunes][]에는 앨범별 임의 재생을 이용해 음악을 들을 수 있는 기능이 있습니다.
 
-[iTunes]: http://www.apple.com/kr/itunes/
+[iTunes]: https://www.apple.com/kr/itunes/
 
 ![iTunes](/images/2013/02/18/1.min.png)
 
@@ -63,12 +63,12 @@ twitter_card:
 2. [iFunBox][]
 3. [텍스트 편집기][]
 
-[iFunBox]: http://www.i-funbox.com/
-[텍스트 편집기]: http://www.vim.org/
+[iFunBox]: https://www.i-funbox.com/en/index.html
+[텍스트 편집기]: https://www.vim.org/
 
 이건 제가 테스트한 환경일 뿐이므로 하위 iOS나 다른 iOS 기기에서도 가능한 방법일 수 있습니다. [iBackupBot][]을 이용하면 탈옥되지 않은 iOS 기기에도 적용될 가능성이 있습니다. 하지만 시스템 파일을 바꾸는 것이므로 불가능할 가능성이 높습니다. 혹시 순정 iOS 기기에서 성공하셨다면 알려주시기 바랍니다.
 
-[iBackupBot]: http://www.icopybot.com/itunes-backup-manager.htm
+[iBackupBot]: https://www.icopybot.com/itunes-backup-manager.htm
 
 이제 본론으로 들어가겠습니다. 변경할 파일은 단 하나입니다.
 
@@ -78,7 +78,7 @@ twitter_card:
 
 확장자는 [plist][]지만 그냥 메모장으로 열어도 편집할 수 있을 것입니다. 이 파일에는 `설정` - `음악`에서 볼 수 있는 모든 정보를 담고 있습니다.
 
-[plist]: http://ko.wikipedia.org/wiki/%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0_%EB%A6%AC%EC%8A%A4%ED%8A%B8
+[plist]: https://ko.wikipedia.org/wiki/%ED%94%84%EB%A1%9C%ED%8D%BC%ED%8B%B0_%EB%A6%AC%EC%8A%A4%ED%8A%B8
 
 ![설정 - 음악](/images/2013/02/18/2.min.png)
 

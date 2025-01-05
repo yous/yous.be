@@ -8,9 +8,9 @@ description: How to close Vim automatically when remaining windows aren't import
 keywords: vim, auto, quit, help, quickfix, nerdtree, taglist
 redirect_from: /p/20141130/
 twitter_card:
-    image: http://yous.be/images/2014/11/30/vim.png
+    image: https://yous.be/images/2014/11/30/vim.png
 facebook:
-    image: http://yous.be/images/2014/11/30/vim.png
+    image: https://yous.be/images/2014/11/30/vim.png
 ---
 
 ![Vim with multiple windows opened](/images/2014/11/30/vim.min.png)

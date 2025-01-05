@@ -9,9 +9,9 @@ description: Gradle을 이용해 배포 APK를 생성하는 방법과 함께 Pro
 keywords: gradle, proguard, signed, release, apk, android studio, actionbarsherlock, crashlytics, google play services sdk
 redirect_from: /p/20140515/
 facebook:
-    image: http://yous.be/images/2014/05/15/gradle_logo.gif
+    image: https://yous.be/images/2014/05/15/gradle_logo.gif
 twitter_card:
-    image: http://yous.be/images/2014/05/15/gradle_logo.gif
+    image: https://yous.be/images/2014/05/15/gradle_logo.gif
 ---
 
 ## Gradle

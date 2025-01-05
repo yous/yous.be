@@ -14,7 +14,7 @@ redirect_from: /p/20140709/
 
 I wrote ["How to Add Redirects to Post URL on Octopress"]({% post_url 2014-05-23-how-to-add-redirects-to-post-url-on-octopress %}) few month ago. Now [Octopress is compatible](https://github.com/imathis/octopress/commit/72ea6042e33f0b92e4923c3af00e923f19472573) with [Jekyll][] 2.0, and some plugins don't seem to work. Current Octopress uses Jekyll [2.0.3](https://github.com/imathis/octopress/blob/4fdae37e4294618084f652c99c0c06ba7663ac07/Gemfile.lock#L26) and when I run `rake generate`, I see an error:
 
-[Jekyll]: http://jekyllrb.com
+[Jekyll]: https://jekyllrb.com/
 [Octopress]: https://github.com/imathis/octopress
 
 ``` sh

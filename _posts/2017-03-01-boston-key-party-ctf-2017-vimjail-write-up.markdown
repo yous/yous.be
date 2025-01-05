@@ -90,7 +90,7 @@ ctfuser@ip-172-31-31-196:/tmp$ find / -perm -4000 -o -perm -2000 -type f 2>/dev/
 
 ## Jump into Vim
 
-Suddenly [@zzoru](http://zzoru.github.io) mentioned that we can run
+Suddenly [@zzoru](https://zzoru.github.io) mentioned that we can run
 `sudo -u secretuser /usr/bin/rvim`. Later, I learned that `sudo` has `-l`,
 `--list` option:
 

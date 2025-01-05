@@ -8,9 +8,9 @@ description: "Write-up of 32C3 CTF 2015: libdroid."
 keywords: 32c3, 32c3 ctf 2015, libdroid, android, write-up
 redirect_from: /p/20151230/
 twitter_card:
-    image: http://yous.be/images/2015/12/30/jd-gui.png
+    image: https://yous.be/images/2015/12/30/jd-gui.png
 facebook:
-    image: http://yous.be/images/2015/12/30/jd-gui.png
+    image: https://yous.be/images/2015/12/30/jd-gui.png
 ---
 
 ## Reversing (150)
@@ -49,7 +49,7 @@ dsj-dex2jar.sh classes.dex
 ```
 
 Then we can obtain `classes-dex2jar.jar`, now it's
-[JD-GUI](http://jd.benow.ca/)'s turn. Open the jar file with JD-GUI and you will
+[JD-GUI](https://java-decompiler.github.io/)'s turn. Open the jar file with JD-GUI and you will
 see the content of class `ctf.stratumauhhur.libdroid.a`.
 
 ![JD-GUI navigating classes-dex2jar.jar](/images/2015/12/30/jd-gui.min.png)

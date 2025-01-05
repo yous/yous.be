@@ -12,7 +12,7 @@ redirect_from: /p/20160416/
 ## A bug in Ruby 1.8.7
 
 There is a bug in Ruby 1.8.7's exponentiation. See
-["Exponentiation in Ruby 1.8.7 Returns Wrong Answers"](http://stackoverflow.com/questions/12009799/exponentiation-in-ruby-1-8-7-returns-wrong-answers).
+["Exponentiation in Ruby 1.8.7 Returns Wrong Answers"](https://stackoverflow.com/questions/12009799/exponentiation-in-ruby-1-8-7-returns-wrong-answers).
 
 ``` irb
 >> 2 ** 62

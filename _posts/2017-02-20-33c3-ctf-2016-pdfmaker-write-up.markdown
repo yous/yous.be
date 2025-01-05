@@ -38,7 +38,7 @@ tex, sty, mp, bib files.
 
 [@daehee](https://daehee87.github.io) found this helpful
 link:
-["Pwning coworkers thanks to LaTeX"](http://scumjr.github.io/2016/11/28/pwning-coworkers-thanks-to-latex/).
+["Pwning coworkers thanks to LaTeX"](https://scumjr.github.io/2016/11/28/pwning-coworkers-thanks-to-latex/).
 According to the post, `\write18` normally executes any program listed in
 `shell_escape_commands`:
 
