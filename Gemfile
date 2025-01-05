@@ -3,6 +3,8 @@
 source 'https://rubygems.org'
 
 gem 'jekyll', '~> 4.3'
+gem 'base64'
+gem 'csv', '~> 3.0'
 gem 'jekyll-gist', '~> 1.5'
 gem 'jekyll-redirect-from', '~> 0.16'
 gem 'jekyll-whiteglass'
