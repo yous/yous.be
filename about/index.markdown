@@ -33,7 +33,7 @@ Chayoung You
 - [vanilli.sh](https://github.com/yous/vanilli.sh) --- A lightweight start point of shell configuration.
 - [Pinpoint Docker](https://github.com/yous/pinpoint-docker) --- Docker for [Pinpoint](https://github.com/naver/pinpoint).
 - [BaseHangul](https://github.com/yous/basehangul) --- Human-readable binary encoding, [BaseHangul](https://basehangul.github.io) for Ruby.
-- [YousList](https://github.com/yous/YousList) --- Block filter for Adblock Plus, uBlock Origin, 1Blocker, AdAway, and AdGuard.
+- [YousList](https://github.com/yous/YousList) --- Block filter for advertisements, mainly on Korean sites.
 - [aheui.vim](https://github.com/yous/aheui.vim) --- Vim syntax highlighting for Aheui.
 - [lime](https://github.com/yous/lime) --- Simple standalone Zsh theme.
 - [Raheui](https://github.com/yous/raheui) --- Aheui interpreter in Ruby.
