@@ -58,7 +58,10 @@ Chayoung You
 ## Experiences
 {: #experiences}
 
-- Researcher, [RTst](https://www.rtst.co.kr/), 2017.02--Current
+- [RTst](https://www.rtst.co.kr/)
+  - Principal Researcher, 2025.01--Current
+  - Senior Researcher, 2021.01--2025.01
+  - Researcher, 2017.02-2021.01
 - Korean Translator Moderator, [Twitter](https://twitter.com/), 2016.01--2017.11
 - Freelance Translator, [Lionbridge](https://www.lionbridge.com/), 2015.11--2018.01
 - Web Developer, GoldSpoon, 2015.06--2016.07
