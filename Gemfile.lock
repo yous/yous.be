@@ -37,7 +37,7 @@ GEM
       fiber-storage
     fiber-storage (1.0.0)
     forwardable-extended (2.6.0)
-    google-protobuf (4.29.2)
+    google-protobuf (4.29.3)
       bigdecimal
       rake (>= 13)
     hashery (2.1.2)
@@ -173,4 +173,4 @@ DEPENDENCIES
   rspec (~> 3.0)
 
 BUNDLED WITH
-   2.5.22
+   2.6.2
