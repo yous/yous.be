@@ -528,3 +528,7 @@ comments: false
 521. Heize --- FALLIN'
 522. 태연 --- Letter To Myself (Letter Ver.)
 523. Epik High --- PUMP (COLLECTOR'S EDITION)
+524. XXX --- KYOMI (Reissued)
+525. 김심야와 손대현 --- Moonshine (Reissued)
+526. 가리온 --- 가리온 3
+527. Verbal Jint --- Happy End
