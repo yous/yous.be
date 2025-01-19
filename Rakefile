@@ -29,6 +29,7 @@ task :proof do
       %r{^https://tweetdeck\.twitter\.com},
       # /2013/02/18/ios-6.1-music-album-shuffle/
       %r{^http://www\.hackint0sh\.org/free-toolchain-software-126/req-album-shuffle-option-18867\.htm},
+      %r{^https://www\.i-funbox\.com/en/index\.html},
       # /2014/01/20/ghost-in-the-shellcode-2014-inview-write-up/
       %r{^https://2014\.ghostintheshellcode\.com/inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155},
       # /2014/02/24/support-facebook-open-graph-and-twitter-cards-on-octopress/
