@@ -104,6 +104,8 @@ Chayoung You
     - [A Regular Crossword](https://web.mit.edu/puzzle/www/2013/coinheist.com/rubik/a_regular_crossword/index.html)
     - [regexcrossword.com](https://regexcrossword.com/)
 - Games
+    - [TEKKEN 8](https://tekken.com/)
+    - [TEKKEN 7](https://www.bandainamcoent.com/games/tekken-7)
     - [Hearthstone](https://playhearthstone.com/)
     - [Super Hexagon](https://superhexagon.com/)
     - [Monument Valley](https://www.monumentvalleygame.com/)
