@@ -7,7 +7,7 @@ categories:
 description: Zsh allows Filename Generation and Pattern Matching (Globbing) using square brackets and other characters. That may cause problem with shell commands.
 keywords: zsh, no matches found, globbing, rake install, head^
 redirect_from: /p/20140805/
-external-url: https://marcboquet.com/blog/2011/07/24/zsh-no-matches-found/
+external-url: https://web.archive.org/web/20140814213022/http://marcboquet.com/blog/2011/07/24/zsh-no-matches-found/
 ---
 
 With the use of [Git][] or [Octopress][] (typically [Rake][]), we type `[`, `]`, `^` characters to terminal:
