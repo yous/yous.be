@@ -109,3 +109,5 @@ redirect_from:
 sass:
   style: compressed
   sourcemap: never
+  # https://sass-lang.com/d/import
+  silence_deprecations: [import, global-builtin]
