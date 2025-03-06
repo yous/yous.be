@@ -532,3 +532,4 @@ comments: false
 525. 김심야와 손대현 --- Moonshine (Reissued)
 526. 가리온 --- 가리온 3
 527. Verbal Jint --- Happy End
+528. G-DRAGON --- Übermensch JEWEL ver.02
