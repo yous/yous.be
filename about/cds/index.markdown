@@ -533,3 +533,4 @@ comments: false
 526. 가리온 --- 가리온 3
 527. Verbal Jint --- Happy End
 528. G-DRAGON --- Übermensch JEWEL ver.02
+529. ZENE THE ZILLA --- 94-24
