@@ -39,8 +39,12 @@ task :proof do
       %r{^http://web-prob\.dkserver\.wo\.tc/sqli_962a035aacf08966ffc7610957ac0c29/},
       %r{^http://988087853},
       %r{^http://58\.229\.6\.45},
+      # /2015/12/30/32c3-ctf-2015-libdroid-write-up/
+      %r{^https://32c3ctf\.ccc\.ac/uploads/libdroid_fixed\.tar\.gz},
       # /2016/10/11/hitcon-ctf-2016-rop-write-up/
-      %r{^https://s3-ap-northeast-1\.amazonaws\.com/hitcon2016qual/rop\.iseq_a9ac4b7a1669257d0914ca556a6aa6d14b4a2092}
+      %r{^https://s3-ap-northeast-1\.amazonaws\.com/hitcon2016qual/rop\.iseq_a9ac4b7a1669257d0914ca556a6aa6d14b4a2092},
+      # /2017/02/20/33c3-ctf-2016-pdfmaker-write-up/
+      %r{^https://archive\.aachen\.ccc\.de/33c3ctf\.ccc\.ac/uploads/pdfmaker-023c4ad945cb421a8bec1013bddf2bab5f77f77a\.tar\.xz}
     ],
     swap_urls: {
       %r{^(//.*)} => 'https:\1',
