@@ -45,11 +45,11 @@ Note that the area indicates format information of QR code. Actually the format 
 
 ![The upper right corner of a QR code with format information bits of 10111110](/images/2014/12/07/format_information_bits.min.png "Format information bits")
 
-Searching [the list of all format information strings](https://www.thonky.com/qr-code-tutorial/format-version-tables/#list-of-all-format-information-strings), we can find out that the type information bits are `001001110111110`. So this QR code has ECC level H and mask pattern 1.
+Searching [the list of all format information strings](https://www.thonky.com/qr-code-tutorial/format-version-tables#list-of-all-format-information-strings), we can find out that the type information bits are `001001110111110`. So this QR code has ECC level H and mask pattern 1.
 
 ## Off the Mask
 
-According to [QR Mask Patterns Explained](https://www.thonky.com/qr-code-tutorial/mask-patterns/), mask number 1 has formula `(row) mod 2 == 0`. Note that the row number start from 0. So we have to switch the bit of the row of which the coordinate is 0, 2, 4, ..., 28.
+According to [QR Mask Patterns Explained](https://www.thonky.com/qr-code-tutorial/mask-patterns), mask number 1 has formula `(row) mod 2 == 0`. Note that the row number start from 0. So we have to switch the bit of the row of which the coordinate is 0, 2, 4, ..., 28.
 
 Also there are fixed patterns in QR code, so we have to switch bits of data section only. See the data area and the bit order.
 
@@ -122,7 +122,7 @@ Now we can start decoding the data.
 
 ## Data Decoding
 
-There are [mode indicators](https://www.thonky.com/qr-code-tutorial/data-encoding/#step-3-add-the-mode-indicator) for decoding:
+There are [mode indicators](https://www.thonky.com/qr-code-tutorial/data-encoding#step-3-add-the-mode-indicator) for decoding:
 
 - `0001`: Numeric Mode (10 bits per 3 digits)
 - `0010`: Alphanumeric Mode (11 bits per 2 characters)
@@ -130,7 +130,7 @@ There are [mode indicators](https://www.thonky.com/qr-code-tutorial/data-encodin
 - `1000`: Kanji Mode (13 bits per character)
 - `0111`: ECI Mode
 
-[Character count indicator](https://www.thonky.com/qr-code-tutorial/data-encoding/#step-4-add-the-character-count-indicator) follows after a mode indicator.
+[Character count indicator](https://www.thonky.com/qr-code-tutorial/data-encoding#step-4-add-the-character-count-indicator) follows after a mode indicator.
 
 - Version 1--9
   - Numeric mode: 10 bits
@@ -150,10 +150,10 @@ There are [mode indicators](https://www.thonky.com/qr-code-tutorial/data-encodin
 
 See the encoding process for each mode:
 
-- [Numeric Mode Encoding](https://www.thonky.com/qr-code-tutorial/numeric-mode-encoding/)
-- [Alphanumeric Mode Encoding](https://www.thonky.com/qr-code-tutorial/alphanumeric-mode-encoding/)
-- [Byte Mode Encoding](https://www.thonky.com/qr-code-tutorial/byte-mode-encoding/)
-- [Kanji Mode Encoding](https://www.thonky.com/qr-code-tutorial/kanji-mode-encoding/)
+- [Numeric Mode Encoding](https://www.thonky.com/qr-code-tutorial/numeric-mode-encoding)
+- [Alphanumeric Mode Encoding](https://www.thonky.com/qr-code-tutorial/alphanumeric-mode-encoding)
+- [Byte Mode Encoding](https://www.thonky.com/qr-code-tutorial/byte-mode-encoding)
+- [Kanji Mode Encoding](https://www.thonky.com/qr-code-tutorial/kanji-mode-encoding)
 
 Let's start with above data D1--D26:
 
