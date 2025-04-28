@@ -39,6 +39,8 @@ task :proof do
       %r{^http://web-prob\.dkserver\.wo\.tc/sqli_962a035aacf08966ffc7610957ac0c29/},
       %r{^http://988087853},
       %r{^http://58\.229\.6\.45},
+      # /2015/03/03/comparing-binary-files/
+      %r{^https://www\.computerhope\.com/fchlp\.htm},
       # /2015/12/30/32c3-ctf-2015-libdroid-write-up/
       %r{^https://32c3ctf\.ccc\.ac/uploads/libdroid_fixed\.tar\.gz},
       # /2016/10/11/hitcon-ctf-2016-rop-write-up/
