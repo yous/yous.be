@@ -534,3 +534,4 @@ comments: false
 527. Verbal Jint --- Happy End
 528. G-DRAGON --- Übermensch JEWEL ver.02
 529. ZENE THE ZILLA --- 94-24
+530. Tablo X RM --- Stop The Rain
