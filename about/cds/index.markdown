@@ -535,3 +535,6 @@ comments: false
 528. G-DRAGON --- Übermensch JEWEL ver.02
 529. ZENE THE ZILLA --- 94-24
 530. Tablo X RM --- Stop The Rain
+531. 권진아 --- The Dreamest
+532. Coogie --- UPSET
+533. 아이유(IU) --- 꽃갈피 셋
