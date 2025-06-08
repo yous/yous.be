@@ -4,6 +4,8 @@ on:
   push:
     branches:
       - source
+  schedule:
+    - cron: "0 0 1 * *"
 
 concurrency:
   group: "pages"
@@ -101,6 +103,7 @@ jobs:
           skip_git_check: true
 
   deploy:
+    if: ${{ github.event_name != 'schedule' }}
     needs: [build, spec, pa11y-ci, validate]
     permissions:
       pages: write
