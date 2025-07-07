@@ -25,6 +25,8 @@ task :proof do
     ignore_urls: [
       %r{^https?://localhost},
       %r{^https?://web\.archive\.org/web/},
+      %r{^https?://stackoverflow\.com/},
+      %r{^https?://superuser\.com/},
       # _include/fonts.html
       %r{^https://fonts\.gstatic\.com$},
       # /about/
@@ -34,6 +36,8 @@ task :proof do
       %r{^https://www\.i-funbox\.com/en/index\.html},
       # /2014/01/20/ghost-in-the-shellcode-2014-inview-write-up/
       %r{^https://2014\.ghostintheshellcode\.com/inview-324b8fb59c14da0d5ca1fe2c31192d80cec8e155},
+      # /2014/03/19/ropasaurusrex-a-primer-on-return-oriented-programming/
+      %r{^https://www\.intel\.com/content/www/us/en/developer/articles/technical/intel-sdm\.html},
       # /2014/12/25/christmasctf-2014-write-up/
       %r{^http://web-prob\.dkserver\.wo\.tc/letter_4f1ad94372c166c3cb9632ed5041849a/},
       %r{^http://web-prob\.dkserver\.wo\.tc/sqli_962a035aacf08966ffc7610957ac0c29/},
