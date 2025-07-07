@@ -21,7 +21,7 @@ I just wanted to check whether two binary files are the same or not, no matter w
 
 ### Windows
 
-You can use [`fc`](https://www.computerhope.com/fchlp.htm), file compare, which is Microsoft DOS command.
+You can use [`fc`](https://learn.microsoft.com/en-us/windows-server/administration/windows-commands/fc), file compare, which is Microsoft DOS command.
 
 ``` bat
 fc /b file1 file2
