@@ -133,7 +133,7 @@ is the main content of vimjail.
 ## Jailbreak
 
 Seeing `:version`, we found that it has extra patch 8.0.0056, so
-[CVE-2016-1248](https://www.cvedetails.com/cve/CVE-2016-1248/) exploiting
+[CVE-2016-1248](https://nvd.nist.gov/vuln/detail/cve-2016-1248) exploiting
 modeline would also not work. However, it's containing `+python3` support. So
 first we tried to execute Python with something like `:python3 print(1)`. And
 that worked!
