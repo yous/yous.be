@@ -237,4 +237,4 @@ linux ... noeject noprompt splash nomodeset --
 ## See also
 
 - [Grub2/ISOBoot/Examples](https://help.ubuntu.com/community/Grub2/ISOBoot/Examples)
-- [Ubuntu Manpage: casper](https://manpages.ubuntu.com/manpages/xenial/man7/casper.7.html)
+- [Ubuntu Manpage: casper](https://web.archive.org/web/20171111074440/https://manpages.ubuntu.com/manpages/xenial/man7/casper.7.html)
