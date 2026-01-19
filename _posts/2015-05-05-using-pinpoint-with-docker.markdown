@@ -54,7 +54,7 @@ I'll describe the Dockerfile line by line.
 FROM debian
 ```
 
-[`FROM`](https://docs.docker.com/reference/builder/#from) instruction sets the
+[`FROM`](https://docs.docker.com/reference/dockerfile#from) instruction sets the
 base image of the Docker. We use lateste debian image.
 
 ``` dockerfile
@@ -62,7 +62,7 @@ RUN echo 'deb http://http.debian.net/debian/ wheezy contrib' >> /etc/apt/sources
 RUN apt-get update
 ```
 
-[`RUN`](https://docs.docker.com/reference/builder/#run) instruction executes
+[`RUN`](https://docs.docker.com/reference/dockerfile#run) instruction executes
 commands in Docker. We add `http://http.debian.net/debian/ wheezy contrib` to
 the `/etc/apt/sources.list` for `java-package` package, and then run
 `apt-get update`.
@@ -103,7 +103,7 @@ passing `-m`. Adding a user is needed to install Java.
 WORKDIR /home/pinpoint
 ```
 
-[`WORKDIR`](https://docs.docker.com/reference/builder/#workdir) instruction sets
+[`WORKDIR`](https://docs.docker.com/reference/dockerfile#workdir) instruction sets
 the working directory for Docker. After this line, any `RUN` instructions are
 runned in this working directory.
 
@@ -150,7 +150,7 @@ ADD http://www.apache.org/dist//maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-
 ADD http://www.apache.org/dist//maven/maven-3/3.2.5/binaries/apache-maven-3.2.5-bin.tar.gz.asc ./
 ```
 
-[`ADD`](https://docs.docker.com/reference/builder/#add) instructions copies new
+[`ADD`](https://docs.docker.com/reference/dockerfile#add) instructions copies new
 files, directories, or remote file from URL to the specified path. Above lines
 just download Maven files from Apache mirror.
 
