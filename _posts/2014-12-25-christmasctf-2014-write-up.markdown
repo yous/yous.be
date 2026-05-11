@@ -537,7 +537,7 @@ for($i=$a;$i<count($flag_array);$i++){ $flag_array[$i] = chr($flag_array[$i]); }
 ?>
 ```
 
-동일한 동작을 위해 최대한 비슷한 PHP 버전에서 시도해야 합니다. [Online PHP Functions의 PHP Sandbox](https://sandbox.onlinephpfunctions.com/)에서 PHP 5.2.16 환경으로 작업했습니다.
+동일한 동작을 위해 최대한 비슷한 PHP 버전에서 시도해야 합니다. [Online PHP Functions의 PHP Sandbox](https://web.archive.org/web/20141229123403/http://sandbox.onlinephpfunctions.com/)에서 PHP 5.2.16 환경으로 작업했습니다.
 
 일단 라틴 알파벳들은 보기 쉬운 알파벳들로 바꾸고, 계산 작업을 수행해 줍니다.
 
