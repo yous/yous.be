@@ -67,6 +67,8 @@ jobs:
           bundler-cache: true
       - name: Setup Chrome
         uses: browser-actions/setup-chrome@2e1d749697dd1612b833dba4a722266286fbefcd # v2.1.2
+        with:
+          chrome-version: 148
         id: setup-chrome
       - run: ${{ steps.setup-chrome.outputs.chrome-path }} --version
       - name: Setup Node.js
@@ -75,6 +77,7 @@ jobs:
           node-version: 'lts/*'
           check-latest: true
       - run: npm install -g pa11y-ci
+      - run: pa11y-ci --version
       - name: Download artifact
         uses: actions/download-artifact@3e5f45b2cfb9172054b4087a40e8e0b5a5461e7c # v8.0.1
         with:
